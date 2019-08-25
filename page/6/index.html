@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/07/Applied Nonlinear Control/6. Nonlinear Control System Desgin/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/10/07/Applied Nonlinear Control/6. Nonlinear Control System Desgin/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/" class="post-title-link" itemprop="url">5. Pole Placement Problem IO Model</a>
           
         </h1>
 
@@ -244,11 +244,19 @@
                 
               
 
-              <time title="Created: 2018-10-07 21:38:16 / Modified: 21:41:03" itemprop="dateCreated datePublished" datetime="2018-10-07T21:38:16+08:00">2018-10-07</time>
+              <time title="Created: 2018-11-12 12:18:05" itemprop="dateCreated datePublished" datetime="2018-11-12T12:18:05+08:00">2018-11-12</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-26 00:02:29" itemprop="dateModified" datetime="2019-08-26T00:02:29+08:00">2019-08-26</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -257,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Applied-Nonlinear-Control/" itemprop="url" rel="index"><span itemprop="name">Applied Nonlinear Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
 
                 
                 
@@ -276,7 +284,186 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="nonlinear-control-system-design">7. Nonlinear Control System Design</h2>
+          <h2 id="io-pole-placement">1. IO Pole Placement</h2>
+<p>For a input-output model</p>
+<p>Plant:<span class="math inline">\(\frac{B(z)}{A(z)}\)</span></p>
+<p>Feedback controller:<span class="math inline">\(\frac{S(z)}{R(z)}\)</span></p>
+<p>Feedforward controller:<span class="math inline">\(\frac{T(z)}{R(z)}\)</span></p>
+<p>For the close loop:,</p>
+<p>We have close loop t.f. <span class="math display">\[
+H_{cl}=\frac{RB}{AR+SB}\frac{T}{R}=\frac{TB}{AR+SB}
+\]</span> We have the c.p. <span class="math display">\[
+A_{cl}(z)=A_m(z)A_o(z)=A(z)R(z)+S(z)B(z)
+\]</span> If the order of the plant is n,</p>
+<p>we will have the following in order to tune all parameters <span class="math display">\[
+Deg \space A_{cl}=2n-1\\
+Deg \space S=n-1\\
+Deg \space R=n-1
+\]</span></p>
+<h2 id="reduce-order-by-pole-zero-cancellation">2.Reduce Order by Pole-Zero Cancellation</h2>
+<p>If we want to cancel out stable zeros, we can choose <span class="math display">\[
+A_{cl}=\bar{A}_{cl}B^+(z)\\
+\]</span> Then <span class="math display">\[
+H_{cl}=\frac{TB^{+}B^{-}}{\bar A_{cl}B^{+}}=\frac{TB^{-}}{\bar A_{cl}}
+\]</span> But we cannot cancel unstable zeros.</p>
+<p>and we can also cancel stable poles by choosing <span class="math display">\[
+T=\bar TA^+
+\]</span> and <span class="math display">\[
+A_{cl}=\bar{A}_{cl}A^+B^+(z)\\
+\]</span> and we can also cancel them at the same time.</p>
+<p>and the equation becomes <span class="math display">\[
+A^+A^-R+SB^+B^-=A_{cl}=\bar{A}_{cl}A^+B^+(z)
+\]</span> in order to cancel <span class="math inline">\(A^+B^+\)</span></p>
+<p>we need to choose <span class="math display">\[
+R=B^+\bar R\\
+S=A^+\bar S\\
+T=\bar TA^+\\
+\]</span> Then we have <span class="math display">\[
+A^-\bar R+\bar SB^-=\bar{A}_{cl}
+\]</span> The order of the equation is becoming less.</p>
+<h2 id="disturbance-rejection">3. Disturbance Rejection</h2>
+<p>we find the transfer function between disturbance and output is <span class="math display">\[
+H_{v}=\frac{Y(z)}{V(z)}=\frac{\frac{B}{A}}{1+\frac{SB}{RA}}=\frac{RB}{AR+SB}
+\]</span> if the disturbance is constant, we just need <span class="math inline">\(H_v(1)=0 \quad R(1)=0\)</span>.</p>
+<p>therefore, we just need <span class="math display">\[
+R(z)=(z-1)R&#39;
+\]</span> Tracking Problem</p>
+<p><span class="math inline">\(B(z)\)</span> is stable, i.e. the system has stable inverse.</p>
+<h2 id="design-steps">4. Design Steps</h2>
+<p>First build feedback controller and then build feedforward controller.</p>
+<p>how to build feedback controller</p>
+<ol type="1">
+<li>Design R, if zero cancelled, R needs to contain zero. if disturbance is cancelled, R needs to contain z-1.</li>
+<li>Design R and S by solving <span class="math inline">\(AR+BS=A_{cl}\)</span></li>
+<li>Choose T or <span class="math inline">\(H_{ff}\)</span> at the final stage.</li>
+</ol>
+<h2 id="io-example">5. IO Example</h2>
+<p>The Plant <span class="math display">\[
+G(z)=\frac{0.00058}{z-0.942}
+\]</span> The Desired Model <span class="math display">\[
+H_d(z)=\frac{0.0952z+0.0755}{z^2-1.331z+0.5016}
+\]</span> We need disturbance rejection <span class="math display">\[
+R=z-1\\
+S=s_0z+s_1\\
+A_{cl}=z^2-1.331z+0.5016\\
+AR+SB=(z-0.942)(z-1)+\\(s_0z+s_1)(0.00058)\\=z^2-1.331z+0.5016
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=1053.448\\
+s_1=-759.31
+\end{cases}
+\]</span> Then we have <span class="math display">\[
+R=z-1\\
+S=1053.448z-759.31
+\]</span> Then the feedback close loop system is <span class="math display">\[
+H_{fbc}=\frac{(z-1)0.00058}{z^2-1.331z+0.5016}
+\]</span> Now we will design the feedforward controller, <span class="math display">\[
+H_{fbc}H_{ff}=H_d\\
+H_{ff}=\frac{0.0952z+0.0755}{(z-1)0.00058}\\=\frac{16.41z+130.17}{z-1}
+\]</span> Therefore the controller is <span class="math display">\[
+U(z)=-H_{fb}(z)Y(z)+H_{ff}(z)U_c(z)\\
+H_{fb}=\frac{1053.448z-759.31}{z-1}\\
+H_{ff}=\frac{16.41z+130.17}{z-1}
+\]</span> Example</p>
+<p>Plant <span class="math display">\[
+H(z)=\frac{z+0.9}{z^2-2.5z+1}
+\]</span> The desired <span class="math display">\[
+A_m(z)=z^2-1.
+8z+0.9
+\]</span> a) The process zero is canceled</p>
+<p>The order of the plant is 2. <span class="math display">\[
+R=(z+0.9)\\
+S=s_0z+s_1\\
+A_{cl}=(z+0.9)(z^2-1.8z+0.9)
+\]</span> Then we have Diophantine Equation <span class="math display">\[
+AR+SB=(z^2-2.5z+1)(z+0.9)+(s_0z+s_1)(z+0.9)\\
+=A_{cl}=(z+0.9)(z^2-1.8z+0.9)\\
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=0.7\\
+s_1=-0.1\\
+\end{cases}
+\]</span> Then the close loop system is <span class="math display">\[
+H_{ff}=\frac{T}{R}
+\\H_{cl}=\frac{RB}{AR+SB}H_{ff}\\=\frac{TB}{AR+SB}\\=\frac{T}{z^2-1.8z+0.9}
+\]</span> We know <span class="math display">\[
+H_{cl}(1)=1
+\]</span> Then we have <span class="math display">\[
+T=0.1
+\]</span> Therefore <span class="math display">\[
+U(z)=-\frac{S}{R}Y(z)+\frac{T}{R}U(z)\\=-\frac{0.7z-0.1}{z+0.9}Y(z)+\frac{0.1}{z+0.9}U_c(z)
+\]</span></p>
+<ol start="2" type="a">
+<li>The process zero is not canceled <span class="math display">\[
+A_{cl}=zA_m=z^3-1.8z^2+0.9z\\
+S=s_0z+s_1\\
+R=z+r_1
+\]</span> Then we have Diophantine Equation <span class="math display">\[
+AR+SB=A_{cl}\\
+(z^2-2.5z+1)(z+r_1)+\\(s_0z+s_1)(z+0.9)=\\z^3-1.8z^2+0.9z
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+r_1=0.1618\\
+s_0=0.5382\\
+s_1=-0.1798
+\end{cases}
+\]</span> Then we design the feedforward controller. <span class="math display">\[
+H_{cl}=\frac{TB}{AR+SB}\\
+H_{cl}(1)=1\\
+T=0.05263\\
+\]</span></li>
+</ol>
+<p>Therefore, the controller is <span class="math display">\[
+U(z)=-\frac{0.5382z-0.1798}{z+0.1618}Y(z)\\+\frac{0.05263}{z+0.1618}U_c(z)
+\]</span></p>
+<p>Example <span class="math display">\[
+H(z)=\frac{z-0.5}{z^2-1}\\
+H_m(z)=\frac{1}{z^2}\\
+\]</span> (a)Desgin a controller in the form <span class="math inline">\(R(q)u(k)=T(q)u_c(k)-S(q)y(k)\)</span>. Match the reference model and reject disturbance. <span class="math display">\[
+R(z)=(z-1)(z-0.5)\\
+S(z)=s_0z^2+s_1z+s_2\\
+A_{cl}=A_oA_m=z^3(z-0.5)\\
+AR+SB=A_{cl}\\
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=1\\
+s_1=1\\
+s_2=-1\\
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\frac{RB}{AR+SB}\frac{T}{R}=H_m(z)\\
+\frac{zt_0}{z^3}=\frac{1}{z^2}\\
+t_0=1\\
+\]</span></p>
+<p><span class="math display">\[
+U(z)=-\frac{z^2+z-1}{(z-1)(z-0.5)}Y(z)+\frac{z}{(z-1)(z-0.5)}U_c(z)\\
+(z^2-1.5z+0.5)U(z)=-(z^2+z-1)Y(z)+zU_c(z)\\
+u(k+2)-1.5u(k+1)+0.5u(k)=\\-y(k+2)-y(k+1)+y(k)+u_c(k+1)\\
+u(k)=1.5u(k-1)-0.5u(k-2)\\-y(k)-y(k-1)+y(k-2)+u_c(k-1)
+\]</span></p>
+<ol start="2" type="a">
+<li>Design controller in the form of <span class="math inline">\(u(k)=u_{fb}(k)+u_{ff}(k)\)</span> <span class="math display">\[
+R(z)=(z-1)(z+r_1)\\
+S(z)=s_0z^2+s_1z+s_2\\
+A_{cl}=A_oA_m=z^4\\
+AR+SB=\\(z^2-1)(z-1)(z+r_1)\\+(s_0z^2+s_1z+s_2)(z-0.5)\\
+=z^4\\
+\]</span> We can get the result <span class="math display">\[
+\begin{cases}
+r_1=-\frac{1}{3}\\
+s_0=\frac{4}{3}\\
+s_1=\frac{4}{3}\\
+s_2=-\frac{2}{3}\\
+\end{cases}
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+\frac{RB}{AR+SB}H_{ff}\\=\frac{(z-1)(z-\frac{1}{3})(z-0.5)}{z^4}H_{ff}\\
+=\frac{1}{z^2}\\
+H_{ff}(z)=\frac{z^2}{(z-1)(z-\frac{1}{3})(z-0.5)}\\
+U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H_{ff}U_c(z)
+\]</span></p>
 
         
       
@@ -301,7 +488,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -315,7 +502,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/" class="post-title-link" itemprop="url">4. Pole Placement Problem SS Approach</a>
           
         </h1>
 
@@ -330,7 +517,7 @@
                 
               
 
-              <time title="Created: 2018-10-02 22:33:45" itemprop="dateCreated datePublished" datetime="2018-10-02T22:33:45+08:00">2018-10-02</time>
+              <time title="Created: 2018-11-12 12:18:04" itemprop="dateCreated datePublished" datetime="2018-11-12T12:18:04+08:00">2018-11-12</time>
             </span>
           
             
@@ -341,7 +528,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-10-07 21:34:26" itemprop="dateModified" datetime="2018-10-07T21:34:26+08:00">2018-10-07</time>
+                <time title="Modified: 2019-08-26 00:02:15" itemprop="dateModified" datetime="2019-08-26T00:02:15+08:00">2019-08-26</time>
               </span>
             
           
@@ -351,7 +538,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Applied-Nonlinear-Control/" itemprop="url" rel="index"><span itemprop="name">Applied Nonlinear Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
 
                 
                 
@@ -370,86 +557,247 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="describing-function-analysis-skip">6.Describing Function Analysis (skip)</h2>
-<h3 id="introduction-to-nyquist-criterion">1. Introduction to Nyquist Criterion</h3>
-<p>==Mapping== <span class="math display">\[
-F(s)=s^2+2s+1 \\
-s=4+j3
-\]</span> s-plane to F-plane <span class="math display">\[
-F(4+j3)=16+j30
-\]</span> ==Contour==</p>
-<p>Consider a collection of points, called contour A.</p>
-<p>Map A into Contour B with function F. <span class="math display">\[
-F(s)=\frac{(s-z_1)(s-z_2) \dotsm}{(s-p_1)(s-p_2) \dotsm}
-\]</span> We assuming clockwise direction for mapping.</p>
-<p>If contour A enclose one zero, then contour B enclose one origin in a clockwise direction.</p>
-<p>If contour A enclose one pole, then contour B enclose one origin in a counterclockwise direction.</p>
-<p>If contour A enclose one zero and one pole, then contour B does not enclose origin.</p>
-<p>Letting <span class="math display">\[
-G(s)=\frac{N_G}{D_G} \quad H(s)=\frac{N_H}{D_H}
-\]</span> for the open loop system, we have <span class="math display">\[
-G(s)H(s)=\frac{N_G N_H}{D_GD_H}
-\]</span> for the closed loop system, we have <span class="math display">\[
-T(s)=\frac{G(s)}{1+G(s)H(s)} \\
-=\frac{N_GD_H}{D_GD_H+N_GN_H}
-\]</span> and we have <span class="math display">\[
-\tag{1.1}
-1+G(s)H(s)=\frac{D_GD_H+N_GN_H}{D_GD_H}
-\]</span> for (1.1), we find the poles are the poles of closed loop system and the zeros are the poles of the open loop system.</p>
-<p>if we have known the number of unstable poles of the open loop system (poles of (1.1) in the right plane) and denote it with P. And we want to know the number of unstable poles of closed loop system (zeros of (1.1) in the right plane). We draw a contour enclosing the whole right plane(from $(0,0) (0,) (,) (,0) (,-) $)</p>
-<p>N is the number of counterclockwise revolution around (-1, j0), we have <span class="math display">\[
-Z=P-N
-\]</span></p>
-<h3 id="describing-function-fundamental">2. Describing Function Fundamental</h3>
-<p>An example of describing function analysis <span class="math display">\[
-\ddot{x}+\alpha(x^2-1)\dot{x}+x=0
-\]</span> we can divide it into two parts. Linear part <span class="math inline">\(\ddot{x}-\alpha \dot x+x\)</span>. Nonlinear part <span class="math inline">\(-x^2 \dot x\)</span></p>
-<p>we assume there is a limit circle <span class="math display">\[
-x(t)=Asin(\omega t) \\
-\dot x(t)=A\omega cos(\omega t)
-\]</span> Through the nonlinear element, <span class="math display">\[
-w=-x^2\dot x=-A^2sin^2(\omega t)A\omega cos(\omega t)=-\frac{A^3\omega}{4}(cos(\omega t)-cos(3 \omega t))
-\]</span> since the linear block has the low pass filter <span class="math display">\[
-w\approx-\frac{A^3\omega}{4}cos(\omega t)=\frac{A^2}{4} \frac{d}{dt}[-x]
-\]</span> therefore, for the nonlinear part <span class="math display">\[
-N=\frac{w}{-x}=\frac{A^2}{4}s \\
-N(A,\omega)=\frac{A^2}{4}(j\omega)
+          <h2 id="pole-placement-for-state-space-model">1. Pole Placement for State Space Model</h2>
+<p>If one matrix is controllable canonical form <span class="math display">\[
+x(k+1)= \Phi x(k)+\Gamma u(k) \\
+y(k)=Cx(k)
 \]</span></p>
 <p><span class="math display">\[
-x=NG(-x) \\
-1+NG=0 \\
+\Phi=\begin{bmatrix}{}
+-a_1 &amp; -a_2 &amp;\dotsm &amp;-a_{n-1} &amp;-a_n\\
+1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
+0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
+\end{bmatrix}\\\\
 \]</span></p>
-<p>Finally we have A=2, <span class="math inline">\(\omega\)</span>=1</p>
-<h3 id="application-domain">3. Application Domain</h3>
-<p>The first important class consists of &quot;almost&quot; linear system. e.g. the system with a linear plant and a linear controller but the actuator is nonlinear.</p>
-<p>The second important class is the genuinely nonlinear system like the example.</p>
-<h3 id="basic-assumption">4. Basic Assumption</h3>
-<blockquote>
-<ol type="1">
-<li>there is only a single nonlinear component</li>
-<li>the nonlinear component is time invariant</li>
-<li>corresponding to a sinusoidal input, only the fundamental output is considered</li>
-<li>the nonlinear is odd</li>
+<p>If we choose <span class="math inline">\(u=-Lx(k)\quad L=[l_1\quad l_2\quad \dotsm l_n ] \quad \Gamma=[1 \quad 0 \quad 0 \dotsm]^T\)</span> <span class="math display">\[
+x(k+1)=(\Phi-\Gamma L)x(k)
+\]</span></p>
+<p><span class="math display">\[
+\Phi-\Gamma L=\begin{bmatrix}{}
+-(a_1+l_1) &amp; -(a_2+l_2) &amp;\dotsm &amp;-(a_{n-1}+l_{n-1}) &amp;-(a_n+l_n)\\
+1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
+0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>For any state space model, according to Ackermann's Formula, we have <span class="math display">\[
+L=[0\quad0\quad\dotsm\quad1]M_c^{-1}A_m(\Phi)
+\]</span> For a uncontrollable system, if we use state feedback control, some poles cannot be changed.</p>
+<p>If uncontrollable poles are stable, we can still control some poles.</p>
+<h2 id="observer">2. Observer</h2>
+<p><span class="math display">\[
+\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
+\hat y=C\hat x(k) \\
+e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
+\]</span> Common used observer</p>
+<p>Deadbeat Observer <span class="math display">\[
+A_o(\Phi)=\Phi^n
+\]</span> From Ackerman's Formula <span class="math display">\[
+K=A_o(\Phi)M_o^{-1}[0\quad0\quad\dotsm\quad1]^T
+\]</span> ## 3. Disturbance Rejection</p>
+<p>Augmented state vector <span class="math display">\[
+z(k)=\begin{bmatrix}
+x(k)\\
+\omega(k)
+\end{bmatrix}\\
+z(k+1)=\begin{bmatrix}
+\Phi&amp;\Phi_{\omega x}\\
+0&amp;\Phi_\omega
+\end{bmatrix}z(k)
++\begin{bmatrix}
+\Gamma\\
+0
+\end{bmatrix}u(k)
+\]</span> If we choose <span class="math inline">\(u(k)=-Lx(k)-L_ww(k)\)</span>,</p>
+<p>Then <span class="math display">\[
+x(k+1)=(\Phi-\Gamma L)x(k)+(\Phi_{wx}-\Gamma L_w)w(k)
+\]</span> Therefore, we only need <span class="math display">\[
+\Phi_{wx}-\Gamma L_w=0
+\]</span> If the above cannot be satisfied, we can use the following method,</p>
+<p>if the disturbance is constant <span class="math display">\[
+x(k+1)=\Phi x(k)+\Phi_{x\omega}\omega(k)+\Gamma u(k) \\
+\]</span> If we use state feedback controller, then we will have, <span class="math display">\[
+u(k)=-Lx(k)-L_w\omega(k) \\
+x(k+1)=(\Phi-\Gamma L) x(k)+(\Phi_{x\omega}-\Gamma L_\omega)\omega(k) \\
+(zI-(\Phi-\Gamma L))X(z)=(\Phi_{x\omega}-\Gamma L_\omega)W(z) \\
+G_{x\omega}(z)=(zI-(\Phi-\Gamma L))^{-1}(\Phi_{x\omega}-\Gamma L_\omega) \\
+G_{x\omega}(1)=0
+\]</span> If the disturbance is not constant, then frequency analysis should be used.</p>
+<p>Example <span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+1 &amp; h\\
+0 &amp; 1\\
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+\frac{h^2}{2}\\
+h
+\end{bmatrix}(u(k)+w(k))\\
+w(k+1)=w(k)
+\]</span> We can get the augmented state space model <span class="math display">\[
+z(k+1)=
+\begin{bmatrix}
+1 &amp; h &amp; \frac{h^2}{2}\\
+0 &amp; 1 &amp; h\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}z(k)+
+\begin{bmatrix}
+\frac{h^2}{2}\\
+h\\
+0\\
+\end{bmatrix}u(k)\\
+\]</span> Step1. Disturbance Rejection <span class="math display">\[
+\Phi_{wx}-\Gamma L_{w}=0\\
+\]</span> Then we have <span class="math display">\[
+L_w=1
+\]</span> If not satisfied and the disturbance is constant, we will have <span class="math display">\[
+G_{xw}(1)=0
+\]</span> Step2. Observer <span class="math display">\[
+A_o(\Phi)=\tilde A^n\\
+M_o=\begin{bmatrix}
+\tilde C\\
+\tilde C\tilde\Phi\\
+\tilde C\tilde\Phi^2
+\end{bmatrix}
+\\
+K=A_o(\Phi)M_o^{-1}\begin{bmatrix}
+0\\0\\1
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+\hat z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)+K(y-\tilde C\hat z)
+\]</span> Step3. Pole Placement <span class="math display">\[
+L=
+\begin{bmatrix}
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+M_c^{-1}A_m(\Phi)\\
+u(k)=-L\hat x-L_w\hat w
+\]</span></p>
+<h2 id="ss-feedforward-controller">4. SS Feedforward Controller</h2>
+<p>We can check the transfer function from feedforward input <span class="math inline">\(u_{ff}\)</span> to Output y <span class="math display">\[
+H_{cl}(z)=C(zI-\Phi+\Gamma L)^{-1}\Gamma L_c=L_c\frac{B(z)}{A_m(z)}
+\]</span> Therefore, we can choose <span class="math display">\[
+H_{ff}=L_c=\frac{B_m}{B}
+\]</span></p>
+<p>We can achieve perfect tracking if and only if B is stable. Then the input of the feedforward controller is bounded.</p>
+<h2 id="ss-example">5. SS Example</h2>
+<p><span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+0.5 &amp; 1\\
+0.2 &amp; 0.8\\
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+1\\
+1\\
+\end{bmatrix}u(k)+
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}v(k)\\
+y=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}x(k)
+\]</span></p>
+<p>Where, disturbance v is constant. Design controllers such that influence of v can be eliminated in s.s. in the following cases.</p>
+<ol type="a">
+<li>The state and v can be measured.</li>
 </ol>
-</blockquote>
-<p>1 implies that if there are two nonlinear parts. they should be lumped together or one can be neglected.</p>
-<p>2 implies that we only consider only autonomous nonlinear system</p>
-<p>3 implies that the linear part should be a low pass filter</p>
-<p>4 means that the nonlinearity relation f(x) between input and output is symmetric about the origin for the simplicity of Fourier expansion of the output.</p>
-<h3 id="basic-definitions">5. Basic Definitions</h3>
-<p>Analytical Calculation based on Fourier Transform</p>
-<p>Numerical Integration</p>
-<p>Experimental Evaluation</p>
-<h3 id="common-nonlinearities">6. Common Nonlinearities</h3>
-<p>Saturation</p>
-<p>Dead-Zone</p>
-<p>Backlash</p>
-<h3 id="describing-function-analysis-of-nonlinear-system">7. Describing Function Analysis of Nonlinear System</h3>
-<p>If there is a K before G, K is complex.</p>
-<p>then the point from (-1, 0) to (Re(-1/k), Im(-1/k))</p>
-<p>therefore, if <span class="math inline">\(N(A,\omega)\)</span> substitutes K <span class="math display">\[
-G(j\omega)N(A,\omega)+1=0 \\
-G(j\omega)=-\frac{1}{N(A,\omega)}
+<p>The augmented state space model is <span class="math display">\[
+z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)\\
+z(k+1)=
+\begin{bmatrix}
+x(k+1)\\
+v(k+1)
+\end{bmatrix}=
+\begin{bmatrix}
+0.5 &amp; 1 &amp; 1\\
+0.2 &amp; 0.8 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}
+\begin{bmatrix}
+x(k)\\
+v(k)
+\end{bmatrix}+
+\begin{bmatrix}
+1\\
+1\\
+0\\
+\end{bmatrix}u(k)
+\]</span> We can choose the controller, <span class="math display">\[
+u(k)=-Lx-L_vv
+\]</span> Step 1. Disturbance Rejection. <span class="math display">\[
+\Phi_{vx}-\Gamma L_v=0\\
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}-
+\begin{bmatrix}
+1\\
+1\\
+\end{bmatrix}L_v=0
+\]</span> We cannot get a <span class="math inline">\(L_v\)</span> to solve this equation.</p>
+<p>Step 2. Feedback Controller <span class="math display">\[
+A_m(\Phi)=\Phi^2\\
+M_c=
+\begin{bmatrix}
+1 &amp; 1.5\\
+1 &amp; 1\\
+\end{bmatrix}\\
+L=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}M_c^{-1}A_m(\Phi)=
+\begin{bmatrix}
+0.38 &amp; 0.92
+\end{bmatrix}\\
+\]</span> Then we have <span class="math display">\[
+u(k)=-Lx-L_vv
+\]</span> Then <span class="math display">\[
+H_v(z)=C(zI-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)\\
+H_v(1)=C(I-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)=0\\
+\]</span> We can get <span class="math display">\[
+L_v=0.9333
+\]</span> b) The state can be measured.</p>
+<p>We set k=0. <span class="math display">\[
+x(1)=\Phi x(0)+\Gamma u(0)+\Phi_{vx}v
+\]</span> Because states can be measured, we can solve v</p>
+<p>Then the controller is the same as a).</p>
+<ol start="3" type="a">
+<li>The input can be measured.</li>
+</ol>
+<p>Now we need to design an Deadbeat observer. <span class="math display">\[
+A_o(\tilde\Phi)=\tilde \Phi^3=
+\begin{bmatrix}
+0.485 &amp; 1.49 &amp; 1.95\\
+0.298 &amp; 0.932 &amp; 0.46 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\\
+M_o=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0.5 &amp; 1 &amp; 1\\
+0.45 &amp; 1.3 &amp; 1.5\\
+\end{bmatrix}\\
+K=A_o(\tilde\Phi)M_o^{-1}
+\begin{bmatrix}
+0\\
+0\\
+1\\
+\end{bmatrix}=
+\begin{bmatrix}
+2.3\\
+-2.36\\
+5\\
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+{\hat z(k+1)}=\tilde \Phi \hat z(k)+\tilde \Gamma u(k)+K(y(k)-\tilde C\hat z(k))
+\]</span> Now our controller should be <span class="math display">\[
+u(k)=-L\hat x(k)-L_v\hat v
 \]</span></p>
 
         
@@ -474,7 +822,7 @@ G(j\omega)=-\frac{1}{N(A,\omega)}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -519,7 +867,7 @@ G(j\omega)=-\frac{1}{N(A,\omega)}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -538,7 +886,9 @@ G(j\omega)=-\frac{1}{N(A,\omega)}
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

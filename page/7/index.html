@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/Computer Control/3. Analysis of Discrete Time System/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2018/11/09/Computer Control/3. Analysis of Discrete Time System/" class="post-title-link" itemprop="url">3. Analysis of Discrete Time System</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2018-10-02 22:32:34" itemprop="dateCreated datePublished" datetime="2018-10-02T22:32:34+08:00">2018-10-02</time>
+              <time title="Created: 2018-11-09 15:43:37" itemprop="dateCreated datePublished" datetime="2018-11-09T15:43:37+08:00">2018-11-09</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-19 20:12:18" itemprop="dateModified" datetime="2018-11-19T20:12:18+08:00">2018-11-19</time>
+                <time title="Modified: 2019-08-26 00:04:46" itemprop="dateModified" datetime="2019-08-26T00:04:46+08:00">2019-08-26</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Applied-Nonlinear-Control/" itemprop="url" rel="index"><span itemprop="name">Applied Nonlinear Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
 
                 
                 
@@ -284,253 +284,202 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="concepts-of-stability-for-non-autonomous-systems">1. concepts of stability for non-autonomous systems</h2>
-<p>For non-autonomous system <span class="math display">\[
-\dot{x} = f(x,t)
-\]</span> equilibrium points are defined as <span class="math display">\[
-f(x^*,t)=0
-\]</span> for <span class="math inline">\(t \in [t_0,\infty]\)</span> .</p>
-<p>Example <span class="math display">\[
-\dot x=-\frac{a(t)x}{1+x^2}
-\]</span> Then the equilibrium point is <span class="math inline">\(x=0\)</span>.</p>
-<p>==Stability== <span class="math display">\[
-\forall R&gt;0 \quad \exist r(t_0)&gt;0 \quad||x(t_0)||&lt;r \implies ||x(t)||&lt; R \quad \forall t\ge t_0
-\]</span> ==Asymptotically Stable==</p>
-<p>it is stable and <span class="math display">\[
-\exist r(t_0) &gt; 0
-\]</span> such that $$ \begin{array}{} ||x(t_0)||&lt;r(t_0) &amp; &amp; ||x(t)|| 0 &amp; as &amp; t </p>
-<p>\end{array} <span class="math display">\[
-==Exponentially Stable==
-\]</span> \begin{array}{} ||x(t)|| ||x_0||e^{-(t-t_0)} &amp; t t_0</p>
-<p>\end{array} $$</p>
-<p>==Globally Asymptotically Stable== <span class="math display">\[
-x(t) \rightarrow0 \space as \space t\rightarrow \infty
-\]</span> ==Uniformity== in stability concepts</p>
-<p>the equilibrium is uniformly stable if the scalar <span class="math inline">\(r\)</span> can be chosen independently of <span class="math inline">\(t_0\)</span> <span class="math display">\[
-r=r(R)
-\]</span> ==Uniformly Asymptotically Stable== <span class="math display">\[
-r=r(R)
+          <h2 id="stability">1. Stability</h2>
+<p>Jury's Stability Test</p>
+<p>For the system <span class="math display">\[
+\frac{1}{z^2+a_1z+a_2}
+\]</span> Using Jury's Stability Test <span class="math display">\[
+\begin{array}{ccc}
+1 &amp; a_1 &amp; a_2\\
+a_2 &amp; a_1 &amp; 1 &amp; \times -a_2\\ \hline
+1-a_2^2 &amp; a_1-a_1a_2\\ 
+a_1-a_1a_2 &amp; 1-a_2^2 &amp;  &amp; \times-\frac{a_1}{1+a_2}\\ \hline
+\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}
+\end{array}
+\]</span> If the system is stable, we have <span class="math display">\[
+1-a_2^2 &gt;0\\
+\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}&gt;0
 \]</span></p>
-<p>Non-uniformity means less and less stable and longer and longer converge time with large <span class="math inline">\(t_0\)</span> .</p>
-<p>exponentially stable usually means uniformly asymptotically stable.</p>
-<h2 id="lyapunov-analysis-of-non-autonomous-system">2. Lyapunov Analysis of Non-Autonomous system</h2>
-<p>==Locally Positive Definite== <span class="math display">\[
-\forall t \ge t_0 , \quad V(x,t) \ge V_0(x)
-\]</span> <span class="math inline">\(V_0(x)\)</span> is positive definite.</p>
-<p>That means a time-variant function is locally positive definite if it dominates a time-invariant locally positive definite function.</p>
-<p>Other concepts are the same.</p>
-<p>==Decrescent==</p>
-<p>A scalar function <span class="math inline">\(V(x,t)\)</span> is decrescent if <span class="math inline">\(V(0,t)=0\)</span> and if there exists a time-invariant positive definite function <span class="math inline">\(V_1(x)\)</span> <span class="math display">\[
-\forall t \ge0, \quad V(x,t) \le V_1(x)
-\]</span> for the time variant scalar function <span class="math inline">\(V\)</span> <span class="math display">\[
-\frac{dV}{dt}=\frac{\part V}{\part t}+\frac{\part V}{\part x}\frac{\part x}{\part t}\\
-=\frac{\part V}{\part t}+\frac{\part V}{\part x}f(x,t)
-\]</span> Example</p>
-<p>Consider the positive definite function <span class="math display">\[
-V(x,t)=(1+\sin^2t)(x_1^2+x_2^2)
-\]</span> It dominates the function <span class="math inline">\(V_0=x_1^2+x_2^2\)</span> and it is dominated by <span class="math inline">\(V_1=2(x_1^2+x_2^2)\)</span> . Therefore the function is positive definite and is decrescent.</p>
-<p>==Lyapunov Theorem for Non-Autonomous Systems==</p>
-<blockquote>
-<p>for <span class="math inline">\(V(x,t)\)</span> , in a ball <span class="math inline">\(B_{R_{0}}\)</span></p>
-<ol type="1">
-<li>V is positive definite</li>
-<li><span class="math inline">\(\dot{V}\)</span> is negative semi-definite</li>
-</ol>
-<p>then the equilibrium point 0 is stable.</p>
-</blockquote>
-<p>If V is decrescent, uniformly stable.</p>
-<p>If <span class="math inline">\(\dot{V}\)</span> is negative definite and V is decrescent, uniformly asymptotically stable</p>
-<p>If <span class="math inline">\(B_{R_{0}}\)</span> is the whole state, globally uniformly asymptotically stable.</p>
-<h2 id="proof-of-lyapunov-analysis-of-non-autonomous-systems">3. Proof of Lyapunov Analysis of Non-Autonomous Systems</h2>
-<p>A continuous function <span class="math inline">\(\alpha\)</span> is said to be of class K (<span class="math inline">\(R^+ \rightarrow R^+\)</span>) if</p>
-<ul>
-<li><span class="math inline">\(\alpha(0)=0\)</span></li>
-<li><span class="math inline">\(\alpha(p)&gt;0\)</span> if <span class="math inline">\(\forall p&gt;0\)</span></li>
-<li><span class="math inline">\(\alpha\)</span> is non-decreasing</li>
-</ul>
-<p>Lemma 1</p>
-<p>A function is locally (globally) positive definite if, and only if, there exists a function <span class="math inline">\(\alpha\)</span> of class K such that <span class="math inline">\(V(0,t)=0\)</span> and <span class="math display">\[
-V(x,t) \ge \alpha(||x||)
-\]</span> A function is locally (globally) decrescent if and only if there exists a class K function <span class="math inline">\(\beta\)</span> such that <span class="math inline">\(V(0,t)=0\)</span> and<br>
-<span class="math display">\[
-V(x,t) \le \beta(||x||)
-\]</span> Theorem</p>
-<p>For non-autonomous system <span class="math inline">\(V(x,t)\)</span> and a class K function <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\gamma\)</span></p>
-<blockquote>
-<ol type="1">
-<li><p><span class="math inline">\(V(x,t) \ge \alpha(||x||) &gt; 0\)</span></p></li>
-<li><p><span class="math inline">\(\dot V(x,t) \le 0\)</span></p></li>
-</ol>
-<p>The system is <span class="math inline">\(L\)</span> stable.</p>
-<ol start="3" type="1">
-<li><span class="math inline">\(V(x,t) \le \beta(||x||)\)</span></li>
-</ol>
-<p>The system is uniformly stable.</p>
-<p>if 2 is change to</p>
-<p><span class="math inline">\(\dot V(x,t) \le -\gamma(||x||) &lt; 0\)</span></p>
-<p>the system is uniformly asymptotically stale</p>
-<p><span class="math inline">\(\displaystyle \lim _{x \rightarrow \infty} \alpha(||x||) \rightarrow \infty\)</span> and 1. 2. 3. are satisfied in whole state space then</p>
-<p>the system is globally uniformly asymptotically stable.</p>
-</blockquote>
-<p>Consider the system defined by <span class="math display">\[
-\dot x_1=-x_1-e^{-2t}x_2\\
-\dot x_2=x_1-x_2
-\]</span> Now we try <span class="math display">\[
-V=x_1^2+(1+e^{-2t})x_2^2\\
-\dot V=-2e^{-2t}x_2^2+2x_1(-x_1-e^{-2t}x_2)+(1+e^{-2t})2x_2(x_1-x_2)\\
-=-2[x_1^2-x_1x_2+(2e^{-2t}+1)x_2^2]
+<h2 id="controllability">2. Controllability</h2>
+<p>Controllable: The system can be driven from any initial state to any other destination in finite time.</p>
+<p>For the system <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k)=Cx(k)\\
+\]</span> We have the initial state <span class="math inline">\(x(0)\)</span></p>
+<p>Then <span class="math display">\[
+x(1)=\Phi x(0)+\Gamma u(0)\\
+x(2)=\Phi x(1)+\Gamma u(1)=\Phi(\Phi x(0)+\Gamma u(0))+\Gamma u(1)\\
+=\Phi^2 x(0)+\Phi\Gamma u(0)+\Gamma u(1)\\
+\vdots\\
+x(n)=\Phi^nx(0)+\Phi^{n-1}\Gamma u(0)+\Phi^{n-2}\Gamma u(1)+\dotsm+\Gamma u(n-1)
+\]</span> If the system can be driven to any state in finite steps, we just need to ensure <span class="math display">\[
+W_c=\begin{bmatrix}
+\Gamma &amp; \Phi\Gamma &amp; \Phi^2\Gamma &amp; \dotsm &amp; \Phi^{n-1}\Gamma
+\end{bmatrix}
+\]</span> is NONSINGULAR.</p>
+<p>If we cannot get to one state with n-1 steps, we cannot to get to one state with n steps.</p>
+<p>Proof <span class="math display">\[
+A(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\dotsm+\ a_n \\
 \]</span> Then we have <span class="math display">\[
-\dot V \le-2[x_1^2-x_1x_2+x_2^2]&lt;0
-\]</span> System is globally asymptotically stable.</p>
-<h2 id="lyapunov-analysis-of-ltv">4. Lyapunov Analysis of LTV</h2>
-<p>in view the relationship between the LTV and the non-autonomous system. Nonlinear non-autonomous system can be linearized to LTV and then discuss the stability. <span class="math display">\[
-\dot{x}=A(t)x
-\]</span> Given <span class="math display">\[
-\begin{array}{lll}
-V &amp; = &amp; x^Tx \\
-\dot{V} &amp; = &amp; \dot{x}^Tx+x^T\dot{x} \\
- &amp; = &amp; x^TA^T(t)x+x^TA(t)x \\
- &amp; = &amp; x^T(A^T(t)+A(t))x
-\end{array}
-\]</span> Therefore,</p>
-<p>if <span class="math inline">\(A^T(t)+A(t)\)</span> is negative definite, the LTV system is stable.</p>
-<p>but this theorem is only sufficient</p>
-<p>and since <span class="math display">\[
-\exist \lambda&gt;0, \forall i, \forall t\ge0,\lambda_i(A(t)+A^T(t))\le-\lambda \\
-\dot{V}=x^T(A^T(t)+A(t))x \le -\lambda x^T x=-\lambda V
-\]</span> therefore, the system is exponentially stable.</p>
-<p>perturbed linear system <span class="math display">\[
-\dot{x}=(A_1+A_2(t))x
-\]</span> If <span class="math inline">\(A_1\)</span> is constant and Hurwitz (all its eigenvalues are strictly in the left-half plane), and if <span class="math inline">\(A_2\)</span>(t) is <span class="math display">\[
-A_2(t) \rightarrow0 \quad as \quad t \rightarrow \infty
-\]</span> and <span class="math display">\[
-\int_0^\infty||A_2(t)||dt&lt;\infty
-\]</span> That means the integral exists and is finite.</p>
-<p>The system is globally exponentially stable</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=-(5+x_2^5+x_3^8)x_1\\
-\dot x_2=-x_2+4x_3^2\\
-\dot x_3=-(2+\sin t)x_3\\
-\]</span> We can see <span class="math inline">\(x_3\)</span> is asymptotically stable and it converges to zero exponentially, so is <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_1\)</span>.</p>
-<h2 id="the-linearization-of-non-autonomous-system">5. The linearization of non-autonomous system</h2>
-<p>if origin is the equilibrium point <span class="math display">\[
-A(t)=(\frac{\part f}{\part x})_{x=0}\\
-\dot{x}=A(t)x
-\]</span> the second part is said to be the linearization of the non-autonomous system.</p>
-<p>but <span class="math display">\[
-\dot{x}=A(t)x+O(x,t)
-\]</span> the system can be linearized only with this condition satisfied <span class="math display">\[
-\lim_{||x||\rightarrow 0} \sup\frac{||O(x,t)||}{||x||}=0, \quad \forall \ge0
-\]</span> Note, <span class="math inline">\(A\)</span> can be time-varying and also can be constant.</p>
-<p>If the linearized system is uniformly asymptotically stable, then the equilibrium point 0 of the original non-autonomous system is also uniformly asymptotically stable.</p>
-<p>But it does not relate the instability.</p>
-<h2 id="instability-theorem">6. Instability Theorem</h2>
-<p>First we can try the linearization method to analyze the instability of the system.</p>
-<p>when the linearization method failed. we can use the direct method.</p>
-<p>==First Instability Theorem==</p>
-<p><span class="math inline">\(V(0,t) = 0 \quad \forall \space t\ge t_0\)</span></p>
-<p><span class="math inline">\(V(x,t_0)\)</span> can assume strictly positive value arbitrarily close to the origin</p>
-<p><span class="math inline">\(\dot{V}(x,t)\)</span> is positive definite.</p>
-<p>then the system is unstable.</p>
-<p>Example</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=2x_2+x_1(x_1^2+2x_2^4)\\
-\dot x_2=-2x_1+x_2(x_1^2+x_2^4)
-\]</span> We take <span class="math display">\[
-V=\frac{1}{2}(x_1^2+x_2^2)
-\]</span> its derivative is <span class="math display">\[
-\dot V=(x_1^2+x_2^2)(x_1^2+x_2^4)
-\]</span> The system is instable.</p>
-<p>==Second Instability Theorem== <span class="math display">\[
-\dot{V}(x,t)-\lambda V(x,t) \ge 0 \quad \forall t \ge t_0 \quad \forall x \in \Omega
-\]</span> <span class="math inline">\(\Omega\)</span> is a certain neighborhood of the origin. V is differentiable, decrescent function. <span class="math display">\[
-V(x,t)=x_1^2-x_2^2
-\]</span> For the above equation, <span class="math inline">\(\Omega\)</span> can be said to be a certain neighborhood of the origin.</p>
-<p>==Third instability theorem==</p>
-<p>?????(P119) similar to 2.</p>
-<h2 id="existence-of-lyapunov-function">7. Existence of Lyapunov Function</h2>
-<p>Stability</p>
-<p>If the origin of the system is stable, there exists a positive definite function <span class="math inline">\(V(x,t)\)</span> with a non-positive definite.</p>
-<p>Uniform Asymptotic Stability</p>
-<p>If the equilibrium point at the origin is uniformly asymptotically stable, there exists a positive definite and decrescent function <span class="math inline">\(V(x,t)\)</span> with a negative definite derivative.</p>
-<h2 id="lyapunov-like-analysis-using-barbalats-lemma">8. Lyapunov-Like Analysis Using Barbalat's Lemma</h2>
-<p><span class="math inline">\(\dot{f} \rightarrow 0 \quad t \rightarrow \infty\)</span> does not mean f converge</p>
+A(\Phi)=\Phi^n+a_1\Phi^{n-1}+a_2\Phi^{n-2}+\dotsm+\ a_nI \\
+\]</span> Similarly,</p>
+<p>We know <span class="math inline">\(\Phi^n\)</span> is linear combination of <span class="math inline">\(\Phi^0, \quad \Phi,\quad\dotsm\quad\Phi^{n-1}\)</span>.</p>
+<p>Therefore, we still cannot get to arbitrary desired state.</p>
+<p>Controllable Canonical Form <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+-a_{n} &amp; -a_{n-1} &amp; \dotsm &amp; -a_{2} &amp; -a_1\\
+1 &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+1\\
+0\\
+0\\
+\vdots\\
+0\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+b_n &amp; b_{n-1} &amp; \dotsm &amp; b_1
+\end{bmatrix}
+\]</span></p>
+<h2 id="observability">3. Observability</h2>
+<p>Observer <span class="math display">\[
+\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
+\hat y=C\hat x(k) \\
+e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
+\]</span> Observability Matrix <span class="math display">\[
+M_o^{-1}=\begin{bmatrix}
+C\\C\Phi\\C\Phi^2\\\vdots\\C\Phi^{n-1}
+\end{bmatrix}
+\]</span> Observable Canonical Form <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+-a_{n} &amp; 1 &amp; 0 &amp; \dotsm &amp; 0\\
+-a_{n-1} &amp; 0 &amp; 1 &amp; \dotsm  &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+-a_{2} &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
+-a_{1} &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+b_n\\
+b_{n-1}\\
+b_{n-2}\\
+\vdots\\
+b_1\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; \dotsm &amp; 0
+\end{bmatrix}
+\]</span></p>
+<h2 id="how-to-create-state-space-from-difference-equation">4. How to Create State Space From Difference Equation</h2>
 <p>Example <span class="math display">\[
-f(t)=\sin (\log t)\\
-f&#39;(t)=\frac{\cos(\log t)}{t} \rightarrow0
-\]</span> f converge does not mean <span class="math inline">\(\dot{f} \rightarrow 0\)</span></p>
-<p><span class="math display">\[
-f(t)=e^{-t}\sin(e^{2t})\rightarrow0\\
-f&#39;(t)=-e^{-t}\sin (e^{2t})+e^{t}\cos (e^{2t}) \rightarrow\infty
-\]</span> If <span class="math inline">\(f\)</span> is lower bounded and decreasing (<span class="math inline">\(\dot{f} \le 0\)</span>), then it converges to a limit.</p>
-<p>==Barbalat's Lemma==</p>
-<p>If differential function <span class="math inline">\(f(t)\)</span> has a finite limit as $t $, and if <span class="math inline">\(\dot f(t)\)</span> is uniformly continuous, then <span class="math inline">\(\dot f(t) \rightarrow 0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span></p>
-<p>It can be proved that if $ (t)$ is bounded, then <span class="math inline">\(\dot f(t)\)</span> is uniformly continuous.</p>
-<p>==Lyapunov-Like Lemma==</p>
-<p>If a scalar function <span class="math inline">\(V(x,t)\)</span> satisfies the following conditions</p>
-<p><span class="math inline">\(V(x,t)\)</span> is lower bounded</p>
-<p><span class="math inline">\(\dot V(x,t)\)</span> is negative semi-definite</p>
-<p><span class="math inline">\(\dot V(x,t)\)</span> is uniformly continuous in time</p>
-<p>then <span class="math inline">\(\dot{V}(x,t) \rightarrow0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span></p>
-<p>Example</p>
-<p>for an adaptive control system <span class="math display">\[
-\dot e = -e+\theta w(t) \\
-\dot \theta = -ew(t)
-\]</span> Consider <span class="math display">\[
-V = e^2+\theta^2
-\]</span> We have <span class="math display">\[
-\begin{array}{}
-\dot V &amp;=&amp; 2e\dot e+2\theta \dot \theta \\
-&amp;=&amp;2e(-e+\theta w(t))+2\theta(-ew(t)) \\
-&amp;=&amp;-2e^2
-\end{array}
+y(k+1)=-a_1y(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
+\]</span> First, we choose <span class="math display">\[
+x_1(k)=y(k)
+\]</span> Then we have <span class="math display">\[
+x_1(k+1)=y(k+1)=-a_1x_1(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
+\]</span> Then we choose <span class="math display">\[
+x_2(k)=-a_2y(k-1)-a_3y(k-2)+b_2u(k-1)+b_3u(k-2)\\
+x_2(k+1)=-a_2y(k)-a_3y(k-1)+b_2u(k)+b_3u(k-1)\\
+x_3(k)=-a_3y(k-1)+b_3u(k-1)\\
+x_3(k+1)=-a_3y(k)+b_3u(k)
+\]</span> Therefore, we have <span class="math display">\[
+x_1(k+1)=-a_1x_1+x_2(k)+b_1u(k)\\
+x_2(k+1)=-a_2x_1(k)+x_3(k)+b_2u(k)\\
+x_3(k+1)=-a_3x_1(k)+b_3u(k)\\
+\]</span> Therefore, <span class="math display">\[
+\Phi=\begin{bmatrix}
+-a_1 &amp; 1 &amp; 0\\
+-a_2 &amp; 0 &amp; 1\\
+-a_3 &amp; 0 &amp; 0
+\end{bmatrix}
+\Gamma=\begin{bmatrix}
+b_1\\b_2\\b_3
+\end{bmatrix}
+C=\begin{bmatrix}
+1 &amp; 0 &amp; 0
+\end{bmatrix}
 \]</span></p>
-<p>that means <span class="math inline">\(V(t) \le V(0)\)</span> , <span class="math inline">\(e\)</span> and <span class="math inline">\(\theta\)</span> is bounded.</p>
-<p><span class="math inline">\(V\)</span> is lower bounded and <span class="math inline">\(\dot V\)</span> is negative semi-definite. we need <span class="math inline">\(\dot V\)</span> is uniformly continuous. <span class="math display">\[
-\ddot V = -4e \dot e=-4e(-e+\theta w(t))
-\]</span></p>
-<p><span class="math inline">\(\ddot V\)</span> is bounded</p>
-<p><span class="math inline">\(\dot V\)</span> goes to 0 as <span class="math inline">\(t \rightarrow \infty\)</span></p>
-<p>that means $e 0 $ as <span class="math inline">\(t \rightarrow \infty\)</span></p>
-<h2 id="positive-linear-system">9. Positive Linear System</h2>
-<p>In the analysis and design of nonlinear system, it is possible to decompose the system into a linear subsystem and a nonlinear subsystem. If the transfer function of the linear subsystem is so-called positive real, then it has important properties which may lead to the generation of a Lyapunov function for the whole system.</p>
-<p>==Positive Real Function and Strictly Positive Real Function==</p>
-<p>A transfer function is positive real if <span class="math inline">\(Re[h(p)] \ge 0\)</span> for all <span class="math inline">\(Re[p] \ge 0\)</span></p>
-<p>It is strictly positive real if <span class="math inline">\(h(p-\epsilon )\)</span> is positive real for some <span class="math inline">\(\epsilon \ge 0\)</span></p>
-<p>It means that h(p) always has a positive real part when p has positive (or zero) real part.</p>
-<p>A transfer function is SPR if and only if</p>
-<p>​ 1) <span class="math inline">\(h(p)\)</span> is a strictly stable transfer function</p>
-<p>​ 2) the real part of <span class="math inline">\(h(p)\)</span> is strictly positive along the <span class="math inline">\(j\omega\)</span> axis, <span class="math inline">\(\forall \omega \ge 0\)</span>, <span class="math inline">\(Re[h(j \omega)]&gt;0\)</span></p>
-<p>There are four necessary conditions according to the above</p>
-<p>​ 1) <span class="math inline">\(h(p)\)</span> is strictly stable</p>
-<p>​ 2) Nyquist plot of <span class="math inline">\(h(j\omega)\)</span> lies entirely in the right half complex plane.</p>
-<p>​ 3) <span class="math inline">\(h(p)\)</span> has relative degree 0 or 1</p>
-<p>​ 4) <span class="math inline">\(h(p)\)</span> is strictly minimum-phase (all zeros are strictly in the left half plane)</p>
-<p>==KY Lemma==</p>
-<p>Consider a controllable LTI system <span class="math display">\[
-\dot{x}=Ax+bu\\
-y=c^Tx
-\]</span> The transfer function <span class="math display">\[
-h(p)=c^T[pI-A]^{-1}b
-\]</span> is SPR if and only if there exist positive definite matrices P and Q such that <span class="math display">\[
-A^TP+PA=-Q \\
-Pb=c
-\]</span></p>
-<h2 id="the-passivity-formalism">10. The Passivity Formalism (?????)</h2>
-<p><span class="math display">\[
-\frac{d[\text{Stored Energy}]}{dt} = [\text{External Power Input}]+[\text{Internal Power Generation}]
-\]</span></p>
-<p>Therefore, we define the form <span class="math display">\[
-\dot{V_1}=y_1^Tu_1-g_1(t)
-\]</span> if <span class="math inline">\(V_1\)</span> is lower bounded and <span class="math inline">\(g_1 \ge 0\)</span>, the system is said to be passive (passive mapping from u to y)</p>
-<ol start="11" type="1">
-<li>Exercise</li>
+<h2 id="some-useful-conclusions">5. Some Useful Conclusions</h2>
+<ol type="1">
+<li>The minimal realization has the same order as that of the transfer function. If higher, it is called non-minimal realization.</li>
+<li>The minimal realization can be always cast into the form of observable canonical form. Therefore, the minimal realization is always observable.</li>
+<li>If there are common zeros and poles, uncontrollable, otherwise, controllable.</li>
 </ol>
-<p>4.2 <span class="math display">\[
-\dot{v}+2a|v|v+bv=c \\
-V=v^2 \\
-\dot{V}=2v\dot{v}=2v(c-2a|v|v-bv)
+<h2 id="example">6. Example</h2>
+<p>Example 1 <span class="math display">\[
+y(k+1)=3y(k)-2y(k-1)+u(k-1)+2u(k-2)
+\]</span> a) What is the Transfer Function? <span class="math display">\[
+zY(z)=3Y(z)-2z^{-1}Y(z)+z^{-1}U(z)+2z^{-2}U(z)\\
+\frac{Y(z)}{U(z)}=\frac{z^{-1}+2z^{-2}}{z-3+2z^{-1}}=\frac{z+2}{z^3-3z^2+2z}=\frac{z+2}{z(z-1)(z-2)}
+\]</span> b) is it possible to realize the system such that it is observable but not controllable.</p>
+<p>It is not controllable, therefore, it should have common zeros and poles. <span class="math display">\[
+G(z)=\frac{(z+2)(z+1)}{z(z-1)(z-2)(z+1)}=\frac{z^2+3z+2}{z^4-2z^3-z^2+2z}\\
+\]</span> The system is observable, therefore, we realize the system in observable canonical form. <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+2 &amp; 1 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 1 &amp; 0\\
+-2 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+0\\
+1\\
+3\\
+2\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\end{bmatrix}\\
 \]</span></p>
+<p><span class="math display">\[
+M_C=
+\begin{bmatrix}
+0 &amp; 1 &amp; 5 &amp; 13\\
+1 &amp; 3 &amp; 3 &amp; 3\\
+3 &amp; 2 &amp; -2 &amp; -10\\
+2 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+M_o=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 &amp; 0\\
+5 &amp; 2 &amp; 1 &amp; 0\\
+10 &amp; 5 &amp; 2 &amp; 1
+\end{bmatrix}\\
+\]</span></p>
+<p>Therefore, the system is observable but not controllable.</p>
+<p>However, we need to check if this space state is that transfer function. It is easy to find that it is exactly the G(z) instead of the transfer function in the question. Therefore, it is <strong>impossible</strong> to realize this system in observable but not controllable form.</p>
+<ol start="3" type="a">
+<li>is it possible to realize the system such that it is controllable but not observable.</li>
+</ol>
+<p>Same as the above, it is possible to realize.</p>
+<ol start="4" type="a">
+<li>is it possible to realize the system such that it is both controllable and observable.</li>
+</ol>
+<p>Obviously, it is possible.</p>
+<p>Example 2. <span class="math display">\[
+y(k+1)=3y(k-1)-2y(k-2)+u(k)-2u(k-1)+u(k-2)\\
+\]</span> The questions are same as the above.</p>
+<ol type="a">
+<li><span class="math display">\[
+zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
+\frac{Y(z)}{U(z)}=\frac{z^2-2z+1}{z^3-3z-2}=\frac{(z-1)^2}{(z-1)^2(z+2)}
+\]</span></li>
+<li><p>it is possible observable but not controllable</p></li>
+<li><p>it is not possible controllable but not observable</p></li>
+<li><p>it is not possible controllable and observable</p></li>
+</ol>
 
         
       
@@ -555,7 +504,7 @@ V=v^2 \\
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/3.3 System Analysis Based on Lyapunov's Direct Method/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/Computer Control/1. Computer Control Background/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -569,7 +518,7 @@ V=v^2 \\
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/10/02/Applied Nonlinear Control/3.3 System Analysis Based on Lyapunov's Direct Method/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2018/11/07/Computer Control/1. Computer Control Background/" class="post-title-link" itemprop="url">1. Computer Control Background</a>
           
         </h1>
 
@@ -584,7 +533,7 @@ V=v^2 \\
                 
               
 
-              <time title="Created: 2018-10-02 22:30:56" itemprop="dateCreated datePublished" datetime="2018-10-02T22:30:56+08:00">2018-10-02</time>
+              <time title="Created: 2018-11-07 18:06:29" itemprop="dateCreated datePublished" datetime="2018-11-07T18:06:29+08:00">2018-11-07</time>
             </span>
           
             
@@ -595,7 +544,7 @@ V=v^2 \\
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-19 13:28:20" itemprop="dateModified" datetime="2018-11-19T13:28:20+08:00">2018-11-19</time>
+                <time title="Modified: 2019-08-26 00:00:39" itemprop="dateModified" datetime="2019-08-26T00:00:39+08:00">2019-08-26</time>
               </span>
             
           
@@ -605,7 +554,7 @@ V=v^2 \\
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Applied-Nonlinear-Control/" itemprop="url" rel="index"><span itemprop="name">Applied Nonlinear Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
 
                 
                 
@@ -624,185 +573,78 @@ V=v^2 \\
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="lyapunov-analysis-of-lti">1. Lyapunov Analysis of LTI</h2>
-<p>Linear Algebra Knowledge</p>
-<p>A matrix is symmetric if <span class="math inline">\(M=M^T\)</span></p>
-<p>A matrix is skew-symmetric if <span class="math inline">\(M=-M^T\)</span></p>
-<p>every square matrix can be represented as the sum of a symmetric matrix and a skew-symmetric matrix. <span class="math display">\[
-M=\frac{M+M^T}{2}+\frac{M-M^T}{2}
-\]</span> The first part is a symmetric matrix and the second part is a skew-symmetric matrix</p>
-<p>an important property of skew-symmetric matrix is the quadratic function of it is always zero <span class="math display">\[
-f(x)=x^TMx=-x^TM^Tx
-\]</span> because <span class="math inline">\(-x^TM^Tx\)</span> is a scalar, its transpose is <span class="math inline">\(-x^TMx\)</span> <span class="math display">\[
-x^TMx=0 \\
-f(x)=0
-\]</span> therefore, the quadratic function of any square matrix can be represented by a symmetric matrix.</p>
-<p>N is a square matrix. <span class="math display">\[
-\begin{array}{}
-f(x)&amp;=&amp;x^TNx\\
-&amp;=&amp;x^T(\frac{N+N^T}{2}+\frac{N-N^T}{2})x\\
-&amp;=&amp;x^T(\frac{N+N^T}{2})x
-\end{array}
-\]</span> if <span class="math inline">\(M=\frac{N+N^T}{2}\)</span>, <span class="math inline">\(f(x)=x^TMx\)</span></p>
-<p>a square matrix <span class="math inline">\(M\)</span> is positive definite if the quadratic function <span class="math inline">\(x^TMx\)</span> is a positive definite function.</p>
-<p>the same as positive semi-definite, negative definite, negative semi-definite. <span class="math display">\[
-M_1&gt;M_2
-\]</span> means <span class="math display">\[
-M_1-M_2&gt;0
-\]</span> <span class="math inline">\(M_1-M_2\)</span> is positive definite, same as <span class="math inline">\(\ge ,&lt;,\le\)</span> <span class="math display">\[
-\lambda_{min}(M)||x||^2 \le x^TMx \le \lambda_{max}(M)||x||^2
-\]</span></p>
-<h2 id="lyapunov-function-for-lti">2. Lyapunov Function for LTI</h2>
-<p>For a system <span class="math display">\[
-\dot{x}=Ax
-\]</span> we define the Lyapunov Function candidate <span class="math display">\[
-V=x^TPx
-\]</span> P is positive definite and V is also positive definite. <span class="math display">\[
-\dot{V}=\dot{x}^TPx+x^TP\dot{x} =x^TA^TPx+x^TPAx=-x^TQx
-\]</span> we have <span class="math display">\[
-A^TP+PA=-Q
-\]</span> if we first choose P and then get Q, Q may be not positive definite and there is no conclusion can be gained.</p>
-<p>if we first choose Q and then solve the P, and check whether P is positive definite, which always leads to conclusive results for stable linear systems, which is also necessary and sufficient conditions.</p>
-<p>Example</p>
-<p>Consider a second-order linear system whose A matrix is <span class="math display">\[
-A=
-\begin{bmatrix}
-0  &amp; 4\\
--8 &amp; -12\\
-\end{bmatrix}
-\]</span> Then we can choose Q as <span class="math display">\[
-Q=
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}
-\]</span> Then we have equations <span class="math display">\[
-\begin{bmatrix}
-0 &amp; -8\\
-4 &amp; -12\\
-\end{bmatrix}
-\begin{bmatrix}
-p_1 &amp; p_2\\
-p_2 &amp; p_3
-\end{bmatrix}+
-\begin{bmatrix}
-p_1 &amp; p_2\\
-p_2 &amp; p_3
-\end{bmatrix}
-\begin{bmatrix}
-0  &amp; 4\\
--8 &amp; -12\\
-\end{bmatrix}
-=
--\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-P=
-\begin{bmatrix}
-\frac{5}{16} &amp; \frac{1}{16}\\
-\frac{1}{16} &amp; \frac{1}{16}
-\end{bmatrix}
-\]</span> P is positive definite. Therefore, the system is asymptotically stable.</p>
-<h2 id="how-to-choose-lyapunov-function">3. How to choose Lyapunov Function</h2>
-<p>Let us now come back to the problem finding Lyapunov Functions for general nonlinear system. An explicit Lyapunov Function is somehow difficult to find. The question is therefore how to find a Lyapunov Function. Here gives some general methods but there is no general way to find Lyapunov Functions.</p>
-<h3 id="krasovskiis-method">Krasovskii's Method</h3>
-<p>Let <span class="math inline">\(A(x)\)</span> denote the Jacobian matrix of the system. <span class="math display">\[
-A(x)=\frac{\partial f}{\partial x}
-\]</span> If the matrix <span class="math display">\[
-F=A+A^T
-\]</span> is negative definite in a neighborhood <span class="math inline">\(\Omega\)</span> , then the equilibrium point at the origin is asymptotically stable. A Lyapunov Function for the system is</p>
-<p><span class="math display">\[
-V(x)=f^T(x)f(x)
-\]</span> If <span class="math inline">\(\Omega\)</span> is entire state space and in addition, <span class="math inline">\(V(x) \rightarrow \infty\)</span> as $||x|| $, then the equilibrium point is globally asymptotically stable.</p>
-<p>Proof:</p>
-<p>First, let us prove that the negative definiteness of F means <span class="math inline">\(f(x) \neq 0\)</span> for <span class="math inline">\(||x|| \neq 0\)</span></p>
-<p>If <span class="math inline">\(A\)</span> is singular, there is a <span class="math inline">\(y_0\)</span> , we have <span class="math inline">\(Ay_0=0\)</span> .</p>
-<p>Then <span class="math display">\[
-y_0^TFy_0=y_0^TAy_0+y_0^TAy_0=2y_0^TAy_0=0
-\]</span> that means <span class="math inline">\(F\)</span> is not negative definite, which contradicts the assume.</p>
-<p>Then <span class="math display">\[
+          <h2 id="laplace-transform">1. Laplace Transform</h2>
+<p>Here we need to talk about Laplace Transform firstly. For the system <span class="math display">\[
+\ddot y-y=u
+\]</span> if <span class="math inline">\(u=e^{st} \quad y=H(s)e^{st}\)</span></p>
+<p>we can build the relationship between u and y. <span class="math display">\[
+s^2H(s)e^{st}-H(s)e^{st}=e^{st}
+\]</span> Then we can get the following equation <span class="math display">\[
+H(s)=\frac{1}{s^2-1}
+\]</span> The meaning of this equation is quite clear. If we choose one input <span class="math display">\[
+u=e^{2t}
+\]</span> Obviously, s=2.</p>
+<p>The output will be <span class="math display">\[
+y=H(2)e^{2t}=\frac{1}{3}e^{2t}
+\]</span> Now we will choose another general tool which has the same properties. <span class="math display">\[
+u(t)=\frac{1}{2\pi i}\int_{a-i\infty}^{a+i\infty}U(s)e^{st}ds
+\]</span> And then we can get U(s) <span class="math display">\[
+U(s)=\int_0^\infty u(t)e^{-st}dt
+\]</span> This is the famous Laplace Transform. Fourier Transform transforms domain form time to frequencies. Laplace transform is another kind of transformation which may not have very clear physical meaning. But it has the very convenient calculate properties.</p>
+<h2 id="stability">2. Stability</h2>
+<p>Stable: small deviation from the equilibrium will remain small.</p>
+<p>Asymptotic Stable: small deviation from the equilibrium point will be completely eliminated.</p>
+<p>Unstable: small deviation from the equilibrium point will result in huge deviation.</p>
+<p>We will introduce a invert pendulum to this introduction part.</p>
+<p>For a invert pendulum, we have the following equations derived from Newton's Second Law. <span class="math display">\[
+ml^2\ddot \theta=u(t)-mlgsin(\theta(t))
+\]</span> To make the problem simple, we have <span class="math display">\[
+ml^2=mgl=1\\
+\ddot \theta+sin(\theta(t))=u(t)
+\]</span> We can find two equilibrium points from physics <span class="math display">\[
+\theta=0,\dot \theta=0\quad\theta=\pi,\dot \theta=0
+\]</span> What is equilibrium in math?</p>
+<p>Equilibrium points are the state of the system if once <span class="math inline">\(x(t)\)</span> is equal to <span class="math inline">\(x^*\)</span> , it remains to <span class="math inline">\(x^*\)</span> for all future time.</p>
+<p>Because of <span class="math display">\[
+\tag{3.1}
+\dot{\mathbf x} = \mathbf f(\mathbf x)
+\]</span> We have <span class="math display">\[
+\mathbf f(\mathbf x^*)= \mathbf 0
+\]</span> For a LTI system <span class="math display">\[
+\dot{\mathbf x}=A\mathbf x\\
+A\mathbf x^*=0
+\]</span> If <span class="math inline">\(A\)</span> is nonsingular, that means there is no nontrivial solution for the equation, there is only trivial solution <span class="math inline">\(\mathbf x^*=0\)</span> , there is only one equilibrium for the system and if <span class="math inline">\(A\)</span> is singular, there are equilibriums same as the solutions for the above equation.​</p>
+<p>And if the equilibrium is not at the origin, we can transfer it to the origin. <span class="math display">\[
 \begin{array}{lll}
-\dot{V}(x)&amp;=&amp;\dot{f^T}(x)f(x)+f^T(x)\dot{f}(x) \\
-&amp;=&amp; f^TA^Tf+f^TAf \\
-&amp;=&amp; f^T(A^T+A)f \\
-&amp;=&amp; f^TFf
+\mathbf y = \mathbf x - \mathbf x^*\\
+\mathbf x= \mathbf y + \mathbf x^* \\
+{(\mathbf y + \mathbf x^*）&#39;}=\mathbf f(\mathbf y + \mathbf x^*) \\
+\dot{\mathbf y}=\mathbf f(\mathbf y + \mathbf x^*)
 \end{array}
-\]</span> That means if F is negative definite, <span class="math inline">\(\dot{V}(x)\)</span> is negative definite.</p>
-<p>Example</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=-6x_1+2x_2\\
-\dot x_2=2x_1-6x_2-2x_2^3
-\]</span> Then we have <span class="math display">\[
-A=\begin{bmatrix}
--6 &amp; 2\\
-2 &amp; -6-6x_2^2
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-F=A+A^T=\begin{bmatrix}
--12 &amp; 4\\
-4 &amp; -12-12x_2^2
-\end{bmatrix}
-\]</span> We can see <span class="math inline">\(F\)</span> is negative definite over the whole state space, therefore the system is asymptotically stable.</p>
-<h3 id="generalized-krasovskii-theorem">Generalized Krasovskii Theorem</h3>
-<p><span class="math display">\[
-F(x)=A^TP+PA+Q \\
-V(x)=f^TPf
-\]</span> <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> are positive definite. F is negative semi-definite. Then <span class="math inline">\(V(x)\)</span> is a Lyapunov function for the system.</p>
-<p>Proof. <span class="math display">\[
-\dot V(x)=f^TA^TPf+f^TPAf=f^T(A^TP+PA)f=f^T(F(x)-Q)f
-\]</span> Then because F(x) is negative definite and Q is positive definite, the system is asymptotically stable.</p>
-<h3 id="the-variable-gradient-method">The Variable Gradient Method</h3>
-<p><span class="math display">\[
-V(x)=\int_0^x\nabla Vdx
+\]</span> Then we can say, for the invert pendulum, we have the following equations to get the equilibrium points. <span class="math display">\[
+\ddot \theta=0\quad\dot\theta=0\quad u=0
+\]</span> How to check whether the point is stable or not. Many methods. Here we talk about linearization.</p>
+<p>With the help of Taylor Series, we can easily find linear equations for a nonlinear system in one point and its close area. Therefore, we will use Taylor Series to expand the invert pendulum system. Then we can get the following form. <span class="math display">\[
+\ddot y(t)-y=u(t)
 \]</span></p>
-<p><span class="math display">\[
-\nabla V_1 = \frac{\partial V}{\partial x_1}\\
-\nabla V_2 = \frac{\partial V}{\partial x_2}\\
-\vdots \\
-\nabla V_n = \frac{\partial V}{\partial x_n}
-\]</span></p>
-<p>In order to ensure that <span class="math inline">\(V(x)\)</span> is a scalar.</p>
-<p>Curl conditions <span class="math display">\[
-\frac{\partial \nabla V_1}{\partial x_2}=\frac{\partial \nabla V_2}{\partial x_1}
-\]</span> First we assume <span class="math display">\[
-\nabla V_i=\sum_{j=1}^na_{ij}x_j
-\]</span></p>
-<p>Solve for the coefficients <span class="math inline">\(a_{ij}\)</span> so as to satisfy the curl equations.</p>
-<p>Let <span class="math inline">\(\dot{V}(x)\)</span> is negative semi-definite.</p>
-<p>Compute <span class="math inline">\(V\)</span> from <span class="math inline">\(\nabla V\)</span> by integration.</p>
-<p>Check whether <span class="math inline">\(V\)</span> is positive definite. <span class="math display">\[
-V(x)=\int_0^{x_{1}}\nabla V_1(x_1,0,\dots,0)dx_1+\int_0^{x_{2}}\nabla V_1(x_1,x_2,0,\dots,0)dx_2+\\
-\int_0^{x_{n}}\nabla V_1(x_1,x_2,x_3,\dots,x_n)dx_n+
-\]</span></p>
-<p>Example</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=-2x_1\\
-\dot x_2=-2x_2+2x_1x_2^2\\
-\]</span> Then we choose <span class="math display">\[
-\nabla V_1=a_{11}x_1+a_{12}x_2\\
-\nabla V_2=a_{21}x_1+a_{22}x_2\\
-\]</span> We use curl condition <span class="math display">\[
-\frac{\partial \nabla V_1}{\partial x_2}=
-\frac{\partial a_{11}}{\partial x_2}x_1+\frac{\partial a_{12}}{\partial x_2}x_2+a_{12}\\
-\frac{\partial \nabla V_2}{\partial x_1}=
-\frac{\partial a_{21}}{\partial x_1}x_1+a_{21}+\frac{\partial a_{22}}{\partial x_1}x_2\\
-\]</span> The solution is not unique. If we assume all parameter are scalar, then we choose <span class="math display">\[
-a_{11}=a_{22}=1\\
-a_{12}=a_{21}=0\\
-\]</span> Then the Lyapunov Equation is that <span class="math display">\[
-V(x)=\int_0^{x_{1}}\nabla V_1(x_1,0,\dots,0)dx_1+\int_0^{x_{2}}\nabla V_1(x_1,x_2,0,\dots,0)dx_2\\
-=\int_0^{x_1}x_1dx_1+\int_0^{x_2}x_2dx_2\\
-=\frac{x_1^2+x_2^2}{2}
-\]</span> We can also check <span class="math inline">\(\dot V\)</span> is negative definite. Therefore the system is asymptotically stable.</p>
-<h3 id="physically-motivated-lyapunov-functions">Physically Motivated Lyapunov Functions</h3>
-<h2 id="performance-analysis">4. Performance Analysis</h2>
-<p>A simple convergence lemma <span class="math display">\[
-\dot{W}(t)+\alpha W(t) \le 0
-\]</span> we have <span class="math display">\[
-W(t) \le W(0)e^{-\alpha t}
-\]</span></p>
+<h2 id="section"></h2>
+<p>State space to time domain <span class="math display">\[
+x(t)=e^{At}x(0)+\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau
+\]</span> transfer function to time domain</p>
+<p>look up the table</p>
+<p>State space to transfer function <span class="math display">\[
+\begin{array}{}
+\dot x&amp;=&amp;Ax+Bu \\
+y&amp;=&amp;cx \\
+sX(s)&amp;=&amp;AX(s)+BU(s) \\
+X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
+\end{array}
+\]</span> Transfer function to state space</p>
+<p>(skip)</p>
+<p>==Second Order System==</p>
+<p>rise time <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
+<p>settling time <span class="math inline">\(t_r=\frac{4.6}{\xi\omega_n}\)</span></p>
+<p>overshoot <span class="math inline">\(e^{\frac{-\pi\xi}{\sqrt{1-\xi^2}}}\)</span></p>
 
         
       
@@ -826,7 +668,7 @@ W(t) \le W(0)e^{-\alpha t}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -871,7 +713,7 @@ W(t) \le W(0)e^{-\alpha t}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -890,7 +732,9 @@ W(t) \le W(0)e^{-\alpha t}
         
           
         
-        <span class="site-state-item-count">2</span>
+          
+        
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
