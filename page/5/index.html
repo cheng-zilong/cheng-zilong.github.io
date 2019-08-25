@@ -554,7 +554,7 @@ f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y)
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 20:54:28" itemprop="dateModified" datetime="2019-08-25T20:54:28+08:00">2019-08-25</time>
+                <time title="Modified: 2019-08-25 21:20:41" itemprop="dateModified" datetime="2019-08-25T21:20:41+08:00">2019-08-25</time>
               </span>
             
           
@@ -731,44 +731,47 @@ x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\ge0.
 <h2 id="operations-that-preserve-convexity">2.3 Operations That Preserve Convexity</h2>
 <p>In this section, we describe some operations that preserve convexity of sets, or allow us to construct convex set from others.</p>
 <h3 id="intersection">2.3.1 Intersection</h3>
-<p>Convexity is preserved under intersection. If <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, then <span class="math inline">\(S_1 \cap S_2\)</span> is convex. The converse also holds, every closed convex set is a intersection of halfspaces.</p>
+<p>Convexity is preserved under intersection. If <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, then <span class="math inline">\(S_1 \cap S_2\)</span> is convex. Every closed convex set is an intersection of halfspaces.</p>
 <h3 id="affine-function">2.3.2 Affine Function</h3>
-<p>Recall that a function f: <span class="math inline">\(R^n\rightarrow R^m\)</span> is <strong>affine</strong> if it is a sum of linear function and a constant. That means it has the form <span class="math display">\[
-f(x)=Ax+b
-\]</span> Suppose <span class="math inline">\(S\subseteq R^n\)</span> is convex and f is an affine function. Then the image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is convex. Similarly, the inverse image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is also convex.</p>
-<p>The <strong>projection</strong> of a convex set onto some of its coordinates is convex. if <span class="math inline">\(S\subseteq R^m\times R^n\)</span> is convex, that means the following is convex. <span class="math display">\[
-T=\{x_1\in R^m|(x_1,x_2)\in S\text{ for some }x_2\in R^n\}
-\]</span> The <strong>sum</strong> of two convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, the following is also convex. <span class="math display">\[
-S_1+S_2=\{x+y|\space x\in S_1,y\in S_2\}
-\]</span> <strong>Partial sum</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex. <span class="math display">\[
-S=\{(x,y_1+y_2)|\space (x,y_1)\in S_1,(x,y_2)\in S_2\}
+<p>Recall that a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R^m\)</span> is <strong>affine</strong> if it is a sum of linear function and a constant. That means it has the form <span class="math display">\[
+f(x)=Ax+b.
+\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in \mathbb R^m\)</span>.</p>
+<p>Suppose <span class="math inline">\(S\subseteq \mathbb R^n\)</span> is convex and <span class="math inline">\(f\)</span> is an affine function. Then the image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is convex. Similarly, the inverse image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is also convex. This affine function can be considered as a translation of a convex set.</p>
+<p>The <strong>projection</strong> of a convex set onto some of its coordinates is convex. if <span class="math inline">\(S\subseteq \mathbb R^m\times \mathbb R^n\)</span> is convex, that means the following is convex. <span class="math display">\[
+T=\{x_1\in \mathbb R^m\;|\;(x_1,x_2)\in S\text{ for some }x_2\in \mathbb R^n\}
+\]</span> The <strong>sum</strong> of two convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, the following set is also convex, <span class="math display">\[
+S_1+S_2=\{x+y\;|\; x\in S_1,y\in S_2\}.
+\]</span> The <strong>partial sum</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
+S=\{(x,y_1+y_2)|\space (x,y_1)\in S_1,(x,y_2)\in S_2\}.
+\]</span> The <strong>Cartesian product</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
+S_1\times S_2=\{(x_1,x_2)\;|\;x_1\in S_1,x_2\in S_2\}.
 \]</span> <strong>Example</strong> Polyhedron</p>
 <p>The polyhedron can be expressed as the inverse image of the Cartesian product of the nonnegative orthant and the origin under the affine function <span class="math inline">\(f(x)=(b-Ax,d-Cx)\)</span>: <span class="math display">\[
-\{x|Ax\preceq b,Cx=d\}=\{x|f(x)\in R^m_+\times\{0\}\}
+\{x\;|\;Ax\preceq b,Cx=d\}=\{x\;|\;f(x)\in \mathbb R^m_+\times\{0\}\}.
 \]</span> The inverse image of S under the function <span class="math inline">\(f\)</span> means <span class="math display">\[
-f^{-1}(S)=\{x|f(x)\in S\}
+f^{-1}(S)=\{x\;|\;f(x)\in S\}.
 \]</span> <strong>Example</strong> Solution set of linear matrix inequality (LMI), The condition <span class="math display">\[
 A(x)=x_1A_1+\dotsm+x_nA_n\preceq B
-\]</span> where <span class="math inline">\(B,A_i \in S^m\)</span> is called linear matrix inequality (LMI) in x.</p>
-<p>The solution set of a LMI <span class="math inline">\(\{x|A(x)\preceq B\}\)</span> is convex. Since it is the inverse image of the positive definite cone (2.2.5) under the affine function <span class="math inline">\(f:R^n\rightarrow S^m\)</span> given by <span class="math display">\[
-f(x)=B-A(x)
+\]</span> where <span class="math inline">\(B,A_i \in \mathbb S^m\)</span>, is called the linear matrix inequality (LMI) in <span class="math inline">\(x\)</span>.</p>
+<p>The solution set of a LMI <span class="math inline">\(\{x\;|\;A(x)\preceq B\}\)</span> is convex. Since it is the inverse image of the positive definite cone (2.2.5) under the affine function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^m\)</span> given by <span class="math display">\[
+f(x)=B-A(x).
 \]</span> That means the solution set is <span class="math display">\[
-\{x|f(x)=B-A(x)\in S_+^m\}
+\{x\;|\;f(x)=B-A(x)\in S_+^m\}.
 \]</span> <strong>Example</strong> Hyperbolic cone</p>
 <p>The set <span class="math display">\[
-\mathcal N=\{x|x^T Px\le(c^Tx)^2,c^Tx\ge0\}
-\]</span> where <span class="math inline">\(P\in S_+^n\)</span> and <span class="math inline">\(c\in R^n\)</span> is convex, since it is the inverse image of the second order cone <span class="math display">\[
-\mathcal M=\{(z,t)|z^Tz\le t^2,t\ge 0 \}
-\]</span> under the affine function <span class="math inline">\(f(x)=(p^{1/2} x,c^Tx)\)</span></p>
+\mathcal N=\{x\;|\;x^T Px\le(c^Tx)^2,c^Tx\ge0\}
+\]</span> where <span class="math inline">\(P\in \mathbb S_+^n\)</span> and <span class="math inline">\(c\in \mathbb R^n\)</span> is convex, since it is the inverse image of the second-order cone <span class="math display">\[
+\mathcal M=\{(z,t)\;|\;z^Tz\le t^2,t\ge 0 \},
+\]</span> under the affine function <span class="math inline">\(f(x)=(P^{1/2} x,c^Tx)\)</span>.</p>
 <p>That means the set <span class="math inline">\(\mathcal N\)</span> should be <span class="math display">\[
-\{x|f(x)\in\mathcal M\}=\{x|(p^{1/2} x,c^Tx)\in\mathcal M\}=\{x|x^Tp^{1/2}p^{1/2}x\le(c^Tx)^2,c^Tx\ge 0\}=\mathcal N
+\{x\;|\;f(x)\in\mathcal M\}=\{x\;|\;(P^{1/2} x,c^Tx)\in\mathcal M\}=\{x\;|\;x^TP^{1/2}P^{1/2}x\le(c^Tx)^2,c^Tx\ge 0\}=\mathcal N.
 \]</span> <strong>Example</strong> Ellipsoid</p>
-<p>The ellipsoid where <span class="math inline">\(P\in S_{++}^n\)</span> <span class="math display">\[
-\varepsilon = \{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\}
-\]</span> is the image of the unit Euclidean ball <span class="math inline">\(\{u|\space ||u||_2\le 1\}\)</span> under the affine mapping <span class="math display">\[
-f(u)=P^{1/2}u+x_c
+<p>The ellipsoid <span class="math display">\[
+\varepsilon = \{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\},
+\]</span> where <span class="math inline">\(P\in \mathbb S_{++}^n\)</span>, is the image of the unit Euclidean ball <span class="math inline">\(\{u|\space ||u||_2\le 1\}\)</span> under the affine mapping <span class="math display">\[
+f(u)=P^{1/2}u+x_c.
 \]</span> We can check <span class="math display">\[
-f(x)\in\{P^{1/2}u+x_c|\space||u||_2\le 1\}=\{x|\space||P^{-1/2}(x-x_c)||\le1\}\\=\{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\}=\varepsilon
+f(x)\in\{P^{1/2}u+x_c|\space||u||_2\le 1\}=\{x|\space||P^{-1/2}(x-x_c)||\le1\}\\=\{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\}=\varepsilon.
 \]</span></p>
 <h3 id="linear-fractional-and-perspective-functions">2.3.3 Linear-fractional and perspective functions</h3>
 <p>In this section, we explores a class of functions, called linear-fractional, that is more general than affine function but still preserve convexity.</p>
