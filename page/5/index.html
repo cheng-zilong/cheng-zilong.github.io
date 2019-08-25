@@ -554,7 +554,7 @@ f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y)
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 20:44:11" itemprop="dateModified" datetime="2019-08-25T20:44:11+08:00">2019-08-25</time>
+                <time title="Modified: 2019-08-25 20:54:28" itemprop="dateModified" datetime="2019-08-25T20:54:28+08:00">2019-08-25</time>
               </span>
             
           
@@ -583,14 +583,14 @@ f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="convex-sets">Convex Sets</h1>
-<h2 id="affine-and-convex-sets">Affine and Convex Sets</h2>
-<h3 id="lines-and-line-segments">Lines and line segments</h3>
+          <h1 id="convex-sets">2. Convex Sets</h1>
+<h2 id="affine-and-convex-sets">2.1 Affine and Convex Sets</h2>
+<h3 id="lines-and-line-segments">2.1.1 Lines and line segments</h3>
 <p>Suppose <span class="math inline">\(x_1 \neq x_2\)</span> are two points in <span class="math inline">\(\mathbb R^n\)</span>. Points of the form <span class="math display">\[
 y=\theta x_1+(1-\theta)x_2,
 \]</span> where <span class="math inline">\(\theta\in \mathbb R\)</span>, form a line passing <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</p>
 <p>If <span class="math inline">\(0\le\theta\le 1\)</span>, the line is restricted between the two points, which is therefore a line segment.</p>
-<h3 id="affine-sets">Affine sets</h3>
+<h3 id="affine-sets">2.1.2 Affine sets</h3>
 <p>A set <span class="math inline">\(C \subseteq \mathbb R^n\)</span> is <strong>affine</strong> if the line through any two distinct points in C lies in C, i.e. for any <span class="math inline">\(x_1, x_2\in C\)</span> and <span class="math inline">\(\theta\in R\)</span>, we have <span class="math inline">\(\theta x_1+(1-\theta)x_2 \in C\)</span>. We refer to a point of the form <span class="math inline">\(y=\theta_1 x_1 +\theta_2 x_2 +\dotsm+\theta_k x_k\)</span>, where <span class="math inline">\(\theta_1 + \theta_2+\dotsm+\theta_k=1\)</span> as an <strong>affine combination</strong> of the points <span class="math inline">\(x_1,x_2,\dotsm,x_k\)</span>. An <strong>affine set</strong> contains every <strong>affine combination</strong> of its points.</p>
 <p>If <span class="math inline">\(C\)</span> is an affine set and we have <span class="math inline">\(x_0 \in C\)</span>, then the set <span class="math display">\[
 V=C-x_0=\{x-x_0|x\in C\},
@@ -606,12 +606,12 @@ C=V+x_0=\{v+x_0|v\in V\}.
 \]</span> The set of all affine combinations of points in some set <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is called the affine hull of C, and denoted as <span class="math inline">\(\text{aff } C\)</span>. <span class="math display">\[
 \text{aff }C=\{\theta_1x_1+\dotsm+\theta_kx_k\;|\; x_1,\dotsm,x_k\in \mathbb R^n,\theta_1+\dotsm+\theta_k=1\}
 \]</span></p>
-<h3 id="affine-dimension-and-relative-interior">Affine dimension and relative interior</h3>
+<h3 id="affine-dimension-and-relative-interior">2.1.3 Affine dimension and relative interior</h3>
 <p>We define the <strong>affine dimension</strong> of a set <span class="math inline">\(C\)</span> as the dimension of its <strong>affine hull</strong>.</p>
 <p>We define the <strong>relative interior</strong> of the set <span class="math inline">\(C\)</span>, denoted as <span class="math inline">\(\text{relint }C\)</span>, as its interior relative to <span class="math inline">\(\text{aff }C\)</span>.</p>
 <p><strong>Difference between the interior and relative interior</strong>. Consider <span class="math inline">\(\mathbb R^3\)</span> with the standard Euclidean metric, and look at the set of points <span class="math inline">\((x,y,0)\)</span> such that <span class="math inline">\(x^2+y^2\le1\)</span> . A point is in the interior of a set if you can draw a small open ball around it which is itself contained in the set. But for any point in our set, any open ball around any point in it will contain points outside the <span class="math inline">\(x−y\)</span> plane, and so it has empty interior. That's technically correct, but it's undesirable behavior. The relative interior of a set is obtained by looking at the affine hull of the set, which in this case is <span class="math inline">\(\mathbb R^2\)</span>, and using the appropriate metric there. So while our set has empty interior, its relative interior is the interior of the unit disc, which is what it &quot;really should be&quot;. (From Quora)</p>
 <p>We can then define the <strong>relative boundary</strong> of a set <span class="math inline">\(C\)</span> as <span class="math inline">\(\text{cl }C\backslash \text{relint }C\)</span>, where <span class="math inline">\(\text{cl } C\)</span> is the closure of <span class="math inline">\(C\)</span>.</p>
-<h3 id="convex-sets-1">Convex sets</h3>
+<h3 id="convex-sets-1">2.1.4 Convex sets</h3>
 <p>A set <span class="math inline">\(C\)</span> is <strong>convex</strong> if the line segment between any two points in <span class="math inline">\(C\)</span> lies in <span class="math inline">\(C\)</span>.</p>
 <p>If for any <span class="math inline">\(x_1,x_2 \in C\)</span> and any <span class="math inline">\(\theta\)</span> with <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
 \theta x_1+(1-\theta)x_2\in C.
@@ -623,7 +623,7 @@ C=V+x_0=\{v+x_0|v\in V\}.
 <p>Suppose <span class="math inline">\(p:\mathbb R^n \rightarrow \mathbb R\)</span> satisfies <span class="math inline">\(p(x)&gt;0\)</span> for all <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\int_Cp(x)dx =1\)</span>, where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is convex, then <span class="math display">\[
 \int_Cp(x)x dx\in C.
 \]</span></p>
-<h3 id="cones">Cones</h3>
+<h3 id="cones">2.1.5 Cones</h3>
 <p>A set <span class="math inline">\(C\)</span> is called <strong>cone</strong>, if for every <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\theta\ge0\)</span> ,we have <span class="math inline">\(\theta x\in C\)</span>.</p>
 <p>A set <span class="math inline">\(C\)</span> is called <strong>convex cone</strong> if it is convex and a cone, which means that for any <span class="math inline">\(x_1,x_2 \in C\)</span> and <span class="math inline">\(\theta_1,\theta_2\ge 0\)</span> (We do <strong>not</strong> need <span class="math inline">\(\theta_1+\theta_2=1\)</span> here), we have <span class="math display">\[
 \theta_1x_1+\theta_2 x_2 \in C.
@@ -639,7 +639,7 @@ C=V+x_0=\{v+x_0|v\in V\}.
 <li>Conic combination: we need <span class="math inline">\(\theta_i\ge 0\)</span>, but we do not care about <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
 <li>Convex combination: we need <span class="math inline">\(\theta_i\ge 0\)</span> and <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
 </ol>
-<h2 id="some-important-examples">Some Important Examples</h2>
+<h2 id="some-important-examples">2.2 Some Important Examples</h2>
 <ol type="1">
 <li>The single point set, empty set, and the whole space set are both convex and affine.</li>
 <li>Any line is affine, and also hence convex.</li>
@@ -647,7 +647,7 @@ C=V+x_0=\{v+x_0|v\in V\}.
 <li>A ray is convex but not affine. It is a cone.</li>
 <li>Any subspace is affine, and therefore convex.</li>
 </ol>
-<h3 id="hyperplanes-and-halfspaces">Hyperplanes and halfspaces</h3>
+<h3 id="hyperplanes-and-halfspaces">2.2.1 Hyperplanes and halfspaces</h3>
 <p>A <strong>hyperplane</strong> is the set of the form <span class="math display">\[
 \{x|a^Tx=b\},
 \]</span> where <span class="math inline">\(a\in \mathbb R^n,a\neq0,b\in \mathbb R\)</span>.</p>
@@ -657,7 +657,7 @@ C=V+x_0=\{v+x_0|v\in V\}.
 \{x|a^Tx\le b\}.
 \]</span> Halfspaces are convex but not affine.</p>
 <p>The set <span class="math inline">\(\{x|a^Tx&lt; b\}\)</span> which is the interior of the (closed) halfspace is called an <strong>open halfspace</strong>.</p>
-<h3 id="euclidean-balls-and-ellipsoids">Euclidean balls and ellipsoids</h3>
+<h3 id="euclidean-balls-and-ellipsoids">2.2.2 Euclidean balls and ellipsoids</h3>
 <p>A <strong>Euclidean ball</strong> in <span class="math inline">\(\mathbb R^n\)</span> has the form <span class="math display">\[
 B(x_c,r)=\{x\;|\;||x-x_c||_2\le r\}=\{x\;|\;\space(x-x_c)^T(x-x_c)\le r^2\}
 \]</span> A Euclidean ball is obviously a convex set, and it can be proved by, if <span class="math inline">\(||x_1-x_c||_2\le r\)</span> and <span class="math inline">\(||x_2-x_c||_2\le r\)</span> and <span class="math inline">\(0\le\theta\le 1\)</span>, then we check the point <span class="math inline">\(\theta x_1+(1-\theta)x_2\)</span></p>
@@ -675,14 +675,14 @@ B(x_c,r)=\{x_c+ru|\space||u||_2\le1\}.
 <p>Another common representation of an ellipsoid is <span class="math display">\[
 \varepsilon=\{x_c+Au\;|\;||u||_2\le1\},
 \]</span> where <span class="math inline">\(A\)</span> is square and nonsingular. It can be seen that <span class="math inline">\(A=P^{\frac{1}{2}}\)</span>. If <span class="math inline">\(A\)</span> is <strong>singular</strong>, then it is a degenerate ellipsoid which is also convex.</p>
-<h3 id="norm-balls-and-norm-cones">Norm balls and norm cones</h3>
+<h3 id="norm-balls-and-norm-cones">2.2.3 Norm balls and norm cones</h3>
 <p>Suppose <span class="math inline">\(||\cdot||\)</span> is any norm on <span class="math inline">\(\mathbb R^n\)</span>. From the general properties it can be seen the <strong>norm ball</strong> given by <span class="math display">\[
 \{x\;|\;||x-x_c||\le r\},
 \]</span> is convex.</p>
 <p>The norm cone is given by <span class="math display">\[
 \{(x,t)\;|\;||x||\le t\} \subseteq \mathbb R^{n+1},
 \]</span> is a convex cone.</p>
-<h3 id="polyhedra">Polyhedra</h3>
+<h3 id="polyhedra">2.2.4 Polyhedra</h3>
 <p>A <strong>polyhedron</strong> is defined as the solution set of a finite number of linear equalities and inequalities, i.e. <span class="math display">\[
 \mathcal P=\{x\;|\;a_j^Tx\le b_j,j=1,\dotsm,m,c_j^Tx=d_j,j=1,\dotsm,p\}.
 \]</span> Therefore, a polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes. Affine sets, rays, line segments, and halfspaces are all polyhedra. It is easily shown that polyhedra are convex sets (just use the definition). A <strong>bounded polyhedron</strong> is called <strong>polytope</strong>. It is convenient to use the compact notation <span class="math display">\[
@@ -724,11 +724,11 @@ A_2 x=A_2 v_0
 \]</span> Then, <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(A_2 x=A_2 v_0\)</span>, and the vector <span class="math inline">\(y=A_1x-A_1v_0\)</span> satisfies <span class="math inline">\(y\succeq 0\)</span> and <span class="math inline">\(1^Ty\le 1\)</span> , that is same to <span class="math display">\[
 A_2x=A_2v_0\quad A_1x\succeq A_1v_0\quad 1^TA_1x\le1+1^TA_1v_0
 \]</span></p>
-<h3 id="positive-semi-definite-cone">Positive semi-definite cone</h3>
+<h3 id="positive-semi-definite-cone">2.2.5 Positive semi-definite cone</h3>
 <p>The set <span class="math inline">\(\mathbb S_+^n\)</span> is a convex cone, if <span class="math inline">\(\theta_1, \theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>. Then <span class="math inline">\(\theta_1 A+\theta_2B \in \mathbb S_+^n\)</span>. That can be easily checked by for any <span class="math inline">\(x\in \mathbb R^n\)</span> , if <span class="math inline">\(\theta_1,\theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>, <span class="math display">\[
 x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\ge0.
 \]</span> That means <span class="math inline">\((\theta_1A+\theta_2B) \in \mathbb S_+^n\)</span>.</p>
-<h2 id="operations-that-preserve-convexity">Operations That Preserve Convexity</h2>
+<h2 id="operations-that-preserve-convexity">2.3 Operations That Preserve Convexity</h2>
 <p>In this section, we describe some operations that preserve convexity of sets, or allow us to construct convex set from others.</p>
 <h3 id="intersection">2.3.1 Intersection</h3>
 <p>Convexity is preserved under intersection. If <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, then <span class="math inline">\(S_1 \cap S_2\)</span> is convex. The converse also holds, every closed convex set is a intersection of halfspaces.</p>
