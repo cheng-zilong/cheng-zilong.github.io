@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 23:12:18" itemprop="dateModified" datetime="2019-08-25T23:12:18+08:00">2019-08-25</time>
+                <time title="Modified: 2019-08-25 23:40:34" itemprop="dateModified" datetime="2019-08-25T23:40:34+08:00">2019-08-25</time>
               </span>
             
           
@@ -597,7 +597,14 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
 <li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x\le \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span></li>
 <li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x&lt; \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span>, <span class="math inline">\(\lambda \neq 0\)</span></li>
 </ol>
-<h3 id="minimum-and-minimal-elements-via-dual-inequalities-skipped">2.6.3 Minimum and minimal elements via dual inequalities (skipped)</h3>
+<h3 id="minimum-and-minimal-elements-via-dual-inequalities">2.6.3 Minimum and minimal elements via dual inequalities</h3>
+<p>We can use dual generalized inequalities to charaterize minimum and minimal elements of a (possitively nonconvex) set <span class="math inline">\(S\subseteq \mathbb R^n\)</span> with respect to the generalized inequality induced by a proper cone <span class="math inline">\(K\)</span>.</p>
+<p><strong>Dual characterization of minimum element</strong> (Unique)</p>
+<p><span class="math inline">\(x\)</span> is the minimum element of <span class="math inline">\(S\)</span>, with respect to the generalized inequality <span class="math inline">\(\preceq_K\)</span>, if and only if for all <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, <span class="math inline">\(x\)</span> is the unique minimizer of <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>. Geometrically, this means that for any <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, the hyperplane <span class="math display">\[
+\{z\;|\;\lambda^T(z-x)=0\}
+\]</span> is strict supporting hyperplane to <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>. (By <strong>strict supporting plane</strong>, we mean the hyperplane only intersects <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>)</p>
+<p><strong>Dual characterization of minimal elements</strong> (Maybe many)</p>
+<p>We now turn to a similar characterization of minimal elements. Here there is a gap between the necessary and sufficient conditions. If <span class="math inline">\(\lambda\succeq_{K^*}0\)</span> and <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>, then <span class="math inline">\(x\)</span> is minimal. The converse is ingeneral false.</p>
 
         
       
