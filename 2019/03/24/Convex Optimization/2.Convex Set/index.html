@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="Convex Sets Affine and Convex Sets Lines and line segments Suppose \(x_1 \neq x_2\) are two points in \(\mathbb R^n\). Points of the form \[ y=\theta x_1+(1-\theta)x_2, \] where \(\theta\in \R\),">
+  <meta name="description" content="Convex Sets Affine and Convex Sets Lines and line segments Suppose \(x_1 \neq x_2\) are two points in \(\mathbb R^n\). Points of the form \[ y=\theta x_1+(1-\theta)x_2, \] where \(\theta\in \math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2. Convex Sets">
 <meta property="og:url" content="http://yoursite.com/2019/03/24/Convex Optimization/2.Convex Set/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="Convex Sets Affine and Convex Sets Lines and line segments Suppose \(x_1 \neq x_2\) are two points in \(\mathbb R^n\). Points of the form \[ y=\theta x_1+(1-\theta)x_2, \] where \(\theta\in \R\),">
+<meta property="og:description" content="Convex Sets Affine and Convex Sets Lines and line segments Suppose \(x_1 \neq x_2\) are two points in \(\mathbb R^n\). Points of the form \[ y=\theta x_1+(1-\theta)x_2, \] where \(\theta\in \math">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-25T12:14:59.598Z">
+<meta property="og:updated_time" content="2019-08-25T12:41:05.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2. Convex Sets">
-<meta name="twitter:description" content="Convex Sets Affine and Convex Sets Lines and line segments Suppose \(x_1 \neq x_2\) are two points in \(\mathbb R^n\). Points of the form \[ y=\theta x_1+(1-\theta)x_2, \] where \(\theta\in \R\),">
+<meta name="twitter:description" content="Convex Sets Affine and Convex Sets Lines and line segments Suppose \(x_1 \neq x_2\) are two points in \(\mathbb R^n\). Points of the form \[ y=\theta x_1+(1-\theta)x_2, \] where \(\theta\in \math">
   <link rel="canonical" href="http://yoursite.com/2019/03/24/Convex Optimization/2.Convex Set/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 20:14:59" itemprop="dateModified" datetime="2019-08-25T20:14:59+08:00">2019-08-25</time>
+                <time title="Modified: 2019-08-25 20:41:05" itemprop="dateModified" datetime="2019-08-25T20:41:05+08:00">2019-08-25</time>
               </span>
             
           
@@ -293,7 +293,7 @@
 <h3 id="lines-and-line-segments">Lines and line segments</h3>
 <p>Suppose <span class="math inline">\(x_1 \neq x_2\)</span> are two points in <span class="math inline">\(\mathbb R^n\)</span>. Points of the form <span class="math display">\[
 y=\theta x_1+(1-\theta)x_2,
-\]</span> where <span class="math inline">\(\theta\in \R\)</span>, form a line passing <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</p>
+\]</span> where <span class="math inline">\(\theta\in \mathbb R\)</span>, form a line passing <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</p>
 <p>If <span class="math inline">\(0\le\theta\le 1\)</span>, the line is restricted between the two points, which is therefore a line segment.</p>
 <h3 id="affine-sets">Affine sets</h3>
 <p>A set <span class="math inline">\(C \subseteq \mathbb R^n\)</span> is <strong>affine</strong> if the line through any two distinct points in C lies in C, i.e. for any <span class="math inline">\(x_1, x_2\in C\)</span> and <span class="math inline">\(\theta\in R\)</span>, we have <span class="math inline">\(\theta x_1+(1-\theta)x_2 \in C\)</span>. We refer to a point of the form <span class="math inline">\(y=\theta_1 x_1 +\theta_2 x_2 +\dotsm+\theta_k x_k\)</span>, where <span class="math inline">\(\theta_1 + \theta_2+\dotsm+\theta_k=1\)</span> as an <strong>affine combination</strong> of the points <span class="math inline">\(x_1,x_2,\dotsm,x_k\)</span>. An <strong>affine set</strong> contains every <strong>affine combination</strong> of its points.</p>
@@ -382,16 +382,16 @@ B(x_c,r)=\{x_c+ru|\space||u||_2\le1\}.
 \]</span> where <span class="math inline">\(A\)</span> is square and nonsingular. It can be seen that <span class="math inline">\(A=P^{\frac{1}{2}}\)</span>. If <span class="math inline">\(A\)</span> is <strong>singular</strong>, then it is a degenerate ellipsoid which is also convex.</p>
 <h3 id="norm-balls-and-norm-cones">Norm balls and norm cones</h3>
 <p>Suppose <span class="math inline">\(||\cdot||\)</span> is any norm on <span class="math inline">\(\mathbb R^n\)</span>. From the general properties it can be seen the <strong>norm ball</strong> given by <span class="math display">\[
-\{x\;|\;||x-x_c||\le r\}
+\{x\;|\;||x-x_c||\le r\},
 \]</span> is convex.</p>
 <p>The norm cone is given by <span class="math display">\[
-\{(x,t)\;|\;||x||\le t\} \subseteq \mathbb R^{n+1}
+\{(x,t)\;|\;||x||\le t\} \subseteq \mathbb R^{n+1},
 \]</span> is a convex cone.</p>
 <h3 id="polyhedra">Polyhedra</h3>
-<p>A <strong>polyhedron</strong> is defined as the solution set of finite number of linear equalities and inequalities <span class="math display">\[
-\mathcal P=\{x|a_j^Tx\le b_j,j=1,\dotsm,m,c_j^Tx=d_j,j=1,\dotsm,p\}
-\]</span> Therefore a polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes. Affine sets, rays, line segments and halfspaces are all polyhedra. It is easily shown that polyhedra are convex sets. A bounded polyhedron is called <strong>polytope</strong>. It is convenient to use the compact notation <span class="math display">\[
-\mathcal P=\{x|Ax\preceq b,Cx=d\}
+<p>A <strong>polyhedron</strong> is defined as the solution set of a finite number of linear equalities and inequalities, i.e. <span class="math display">\[
+\mathcal P=\{x\;|\;a_j^Tx\le b_j,j=1,\dotsm,m,c_j^Tx=d_j,j=1,\dotsm,p\}.
+\]</span> Therefore, a polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes. Affine sets, rays, line segments, and halfspaces are all polyhedra. It is easily shown that polyhedra are convex sets (just use the definition). A <strong>bounded polyhedron</strong> is called <strong>polytope</strong>. It is convenient to use the compact notation <span class="math display">\[
+\mathcal P=\{x|Ax\preceq b,Cx=d\},
 \]</span> where <span class="math display">\[
 A=
 \begin{bmatrix}
@@ -401,19 +401,21 @@ a_1^T\\a_2^T\\\vdots\\a_m^T
 C=
 \begin{bmatrix}
 c_1^T\\c_2^T\\\vdots\\c_p^T
-\end{bmatrix}\\
-\]</span> <strong>Simplexes</strong> are important family of polyhedra. Suppose k+1 points <span class="math inline">\(v_0,v_1,\dotsm,v_k\in R^n\)</span> are <strong>affinely independent</strong> that means <span class="math inline">\(v_1-v_0,v_2-v_0,\dotsm,v_k-v_0\)</span> are linearly independent. Then the simplex is determined by <span class="math display">\[
-C=conv\{v_0,\dotsm,v_k\}=\{\theta_0v_0+\dotsm+\theta_k v_k|\theta\succeq0,1^T\theta=1\}
-\]</span> To describe the simplex as polyhedron, we define <span class="math display">\[
+\end{bmatrix}.\\
+\]</span> <strong>Simplexes</strong> are important family of polyhedra. Suppose <span class="math inline">\(k+1\)</span> points <span class="math inline">\(v_0,v_1,\dotsm,v_k\in \mathbb R^n\)</span> are <strong>affinely independent</strong> that means <span class="math inline">\(v_1-v_0,v_2-v_0,\dotsm,v_k-v_0\)</span> are linearly independent. Then the simplex is determined by <span class="math display">\[
+C=\text{conv }\{v_0,\dotsm,v_k\}=\{\theta_0v_0+\dotsm+\theta_k v_k\;|\;\theta\succeq0,1^T\theta=1\}.
+\]</span> <strong>Notation</strong></p>
+<p>Roughly speaking, affine independence is like linear independence but without the restriction that the subset of lower dimension the points lie in contains the origin. So three points in space are affinely independent if the smallest flat thing containing them is a plane. They're affinely dependent if they lie on a line (or are the same point).</p>
+<p>To describe the simplex as polyhedron, we define <span class="math display">\[
 y=(\theta_1,\dotsm,\theta_k)\\
-B=[v_1-v_0,\dotsm,v_k-v_0]
-\]</span> Then <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(x=v_0+By\)</span> and <span class="math inline">\(y\succeq0\)</span> and <span class="math inline">\(1^T y\le 1\)</span></p>
+B=[v_1-v_0,\dotsm,v_k-v_0].
+\]</span> Then <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(x=v_0+By\)</span>, <span class="math inline">\(y\succeq0\)</span>, and <span class="math inline">\(1^T y\le 1\)</span>.</p>
 <p>Then we define <span class="math display">\[
-A_1B=I\quad A_2B=0
-\]</span> Because B is linear independent, we have a nonsingular matrix <span class="math display">\[
+A_1B=I\quad A_2B=0.
+\]</span> Because B is linear independent, we have a nonsingular matrix, <span class="math display">\[
 A=\begin{bmatrix}
 A_1\\A_2
-\end{bmatrix}\in R^{n\times n}
+\end{bmatrix}\in \mathbb R^{n\times n}.
 \]</span> Then we have <span class="math display">\[
 x=v_0+By\\ \iff\\
 Ax=Av_0+ \begin{bmatrix}
@@ -427,10 +429,10 @@ A_2 x=A_2 v_0
 \]</span> Then, <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(A_2 x=A_2 v_0\)</span>, and the vector <span class="math inline">\(y=A_1x-A_1v_0\)</span> satisfies <span class="math inline">\(y\succeq 0\)</span> and <span class="math inline">\(1^Ty\le 1\)</span> , that is same to <span class="math display">\[
 A_2x=A_2v_0\quad A_1x\succeq A_1v_0\quad 1^TA_1x\le1+1^TA_1v_0
 \]</span></p>
-<h3 id="positive-semi-definite-cone">2.2.5 Positive semi-definite cone</h3>
-<p>The set <span class="math inline">\(S_+^n\)</span> is a convex cone, if <span class="math inline">\(\theta_1, \theta_2\ge0\)</span> and <span class="math inline">\(A,B\in S_+^n\)</span> . then <span class="math inline">\(\theta_1 A+\theta_2B \in S_+^n\)</span>. That can be easily checked by for any <span class="math inline">\(x\in R^n\)</span> , if <span class="math inline">\(\theta_1,\theta_2\ge0\)</span> and <span class="math inline">\(A,B\in S_+^n\)</span> <span class="math display">\[
-x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\ge0
-\]</span> That means <span class="math inline">\((\theta_1A+\theta_2B) \in S_+^n\)</span></p>
+<h3 id="positive-semi-definite-cone">Positive semi-definite cone</h3>
+<p>The set <span class="math inline">\(\mathbb S_+^n\)</span> is a convex cone, if <span class="math inline">\(\theta_1, \theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>. Then <span class="math inline">\(\theta_1 A+\theta_2B \in \mathbb S_+^n\)</span>. That can be easily checked by for any <span class="math inline">\(x\in \mathbb R^n\)</span> , if <span class="math inline">\(\theta_1,\theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>, <span class="math display">\[
+x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\ge0.
+\]</span> That means <span class="math inline">\((\theta_1A+\theta_2B) \in \mathbb S_+^n\)</span>.</p>
 <h2 id="operations-that-preserve-convexity">2.3 Operations That Preserve Convexity</h2>
 <p>In this section, we describe some operations that preserve convexity of sets, or allow us to construct convex set from others.</p>
 <h3 id="intersection">2.3.1 Intersection</h3>
@@ -675,7 +677,7 @@ K^*=\{(u,v)\in R^{n+1}|\space ||u||_*\le v\}
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#convex-sets"><span class="nav-number">1.</span> <span class="nav-text">Convex Sets</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#affine-and-convex-sets"><span class="nav-number">1.1.</span> <span class="nav-text">Affine and Convex Sets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lines-and-line-segments"><span class="nav-number">1.1.1.</span> <span class="nav-text">Lines and line segments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#affine-sets"><span class="nav-number">1.1.2.</span> <span class="nav-text">Affine sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#affine-dimension-and-relative-interior"><span class="nav-number">1.1.3.</span> <span class="nav-text">Affine dimension and relative interior</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convex-sets-1"><span class="nav-number">1.1.4.</span> <span class="nav-text">Convex sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cones"><span class="nav-number">1.1.5.</span> <span class="nav-text">Cones</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-important-examples"><span class="nav-number">1.2.</span> <span class="nav-text">Some Important Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperplanes-and-halfspaces"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hyperplanes and halfspaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#euclidean-balls-and-ellipsoids"><span class="nav-number">1.2.2.</span> <span class="nav-text">Euclidean balls and ellipsoids</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#norm-balls-and-norm-cones"><span class="nav-number">1.2.3.</span> <span class="nav-text">Norm balls and norm cones</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#polyhedra"><span class="nav-number">1.2.4.</span> <span class="nav-text">Polyhedra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#positive-semi-definite-cone"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.2.5 Positive semi-definite cone</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#operations-that-preserve-convexity"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 Operations That Preserve Convexity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#intersection"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.3.1 Intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#affine-function"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.3.2 Affine Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-fractional-and-perspective-functions"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3.3 Linear-fractional and perspective functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generalized-inequalities"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 Generalized inequalities</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#proper-cones-and-generalized-inequalities"><span class="nav-number">1.4.1.</span> <span class="nav-text">2.4.1 Proper cones and generalized inequalities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-and-minimal-elements"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.4.2 Minimum and minimal elements</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#separating-and-supporting-hyperplanes"><span class="nav-number">1.5.</span> <span class="nav-text">2.5 Separating and Supporting hyperplanes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#separating-hyperplane-theorem"><span class="nav-number">1.5.1.</span> <span class="nav-text">2.5.1 Separating hyperplane theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#supporting-hyperplanes"><span class="nav-number">1.5.2.</span> <span class="nav-text">2.5.2 Supporting hyperplanes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dual-cones-and-generalized-inequalities"><span class="nav-number">1.6.</span> <span class="nav-text">2.6 Dual Cones and Generalized Inequalities</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dual-generalized-inequalities"><span class="nav-number">1.6.1.</span> <span class="nav-text">2.6.2 Dual generalized inequalities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-and-minimal-elements-via-dual-inequalities-skipped"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.6.3 Minimum and minimal elements via dual inequalities (skipped)</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#convex-sets"><span class="nav-number">1.</span> <span class="nav-text">Convex Sets</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#affine-and-convex-sets"><span class="nav-number">1.1.</span> <span class="nav-text">Affine and Convex Sets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lines-and-line-segments"><span class="nav-number">1.1.1.</span> <span class="nav-text">Lines and line segments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#affine-sets"><span class="nav-number">1.1.2.</span> <span class="nav-text">Affine sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#affine-dimension-and-relative-interior"><span class="nav-number">1.1.3.</span> <span class="nav-text">Affine dimension and relative interior</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convex-sets-1"><span class="nav-number">1.1.4.</span> <span class="nav-text">Convex sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cones"><span class="nav-number">1.1.5.</span> <span class="nav-text">Cones</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-important-examples"><span class="nav-number">1.2.</span> <span class="nav-text">Some Important Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperplanes-and-halfspaces"><span class="nav-number">1.2.1.</span> <span class="nav-text">Hyperplanes and halfspaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#euclidean-balls-and-ellipsoids"><span class="nav-number">1.2.2.</span> <span class="nav-text">Euclidean balls and ellipsoids</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#norm-balls-and-norm-cones"><span class="nav-number">1.2.3.</span> <span class="nav-text">Norm balls and norm cones</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#polyhedra"><span class="nav-number">1.2.4.</span> <span class="nav-text">Polyhedra</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#positive-semi-definite-cone"><span class="nav-number">1.2.5.</span> <span class="nav-text">Positive semi-definite cone</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#operations-that-preserve-convexity"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 Operations That Preserve Convexity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#intersection"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.3.1 Intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#affine-function"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.3.2 Affine Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-fractional-and-perspective-functions"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3.3 Linear-fractional and perspective functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generalized-inequalities"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 Generalized inequalities</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#proper-cones-and-generalized-inequalities"><span class="nav-number">1.4.1.</span> <span class="nav-text">2.4.1 Proper cones and generalized inequalities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-and-minimal-elements"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.4.2 Minimum and minimal elements</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#separating-and-supporting-hyperplanes"><span class="nav-number">1.5.</span> <span class="nav-text">2.5 Separating and Supporting hyperplanes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#separating-hyperplane-theorem"><span class="nav-number">1.5.1.</span> <span class="nav-text">2.5.1 Separating hyperplane theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#supporting-hyperplanes"><span class="nav-number">1.5.2.</span> <span class="nav-text">2.5.2 Supporting hyperplanes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dual-cones-and-generalized-inequalities"><span class="nav-number">1.6.</span> <span class="nav-text">2.6 Dual Cones and Generalized Inequalities</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dual-generalized-inequalities"><span class="nav-number">1.6.1.</span> <span class="nav-text">2.6.2 Dual generalized inequalities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-and-minimal-elements-via-dual-inequalities-skipped"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.6.3 Minimum and minimal elements via dual inequalities (skipped)</span></a></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
