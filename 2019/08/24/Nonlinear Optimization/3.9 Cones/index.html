@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="3.9 Cones ==Definition== Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be clos">
+  <meta name="description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:title" content="3.9 Cones">
 <meta property="og:url" content="http://yoursite.com/2019/08/24/Nonlinear Optimization/3.9 Cones/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="3.9 Cones ==Definition== Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be clos">
+<meta property="og:description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-25T02:11:43.283Z">
+<meta property="og:updated_time" content="2019-08-27T12:19:41.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Orandragon&#39;s Blog">
-<meta name="twitter:description" content="3.9 Cones ==Definition== Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be clos">
+<meta name="twitter:title" content="3.9 Cones">
+<meta name="twitter:description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
   <link rel="canonical" href="http://yoursite.com/2019/08/24/Nonlinear Optimization/3.9 Cones/">
 
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title> | Orandragon's Blog</title>
+  <title>3.9 Cones | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">3.9 Cones
 
           
         </h1>
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 10:11:43" itemprop="dateModified" datetime="2019-08-25T10:11:43+08:00">2019-08-25</time>
+                <time title="Modified: 2019-08-27 20:19:41" itemprop="dateModified" datetime="2019-08-27T20:19:41+08:00">2019-08-27</time>
               </span>
             
           
@@ -289,56 +289,79 @@
 
       
         <h2 id="cones">3.9 Cones</h2>
-<p>==Definition==</p>
+<p><strong>Definition</strong></p>
 <p>Consider <span class="math inline">\(p:\mathcal E\rightarrow (-\infty,\infty]\)</span>.</p>
 <ol type="1">
 <li><span class="math inline">\(p\)</span> is said to be a <strong>proper function</strong> if <span class="math inline">\(p(x)\)</span> is not identically equal to <span class="math inline">\(\infty\)</span>.</li>
-<li><span class="math inline">\(p\)</span> is said to be <strong>closed</strong> if its epi-graph is a closed subset of <span class="math inline">\(R\times \mathcal E\)</span>.</li>
+<li><span class="math inline">\(p\)</span> is said to be <strong>closed</strong> if its epi-graph <span class="math inline">\(\text{epi}(p):=\{(\alpha,x)\in \mathbb R\times \mathcal E\;|\; p(x)&lt;\alpha\}\)</span> is a closed subset of <span class="math inline">\(\mathbb R\times \mathcal E\)</span>.</li>
 <li>The <strong>domain</strong> of <span class="math inline">\(p\)</span> is defined to be set</li>
 </ol>
 <p><span class="math display">\[
-\text{dom} (p)=\{x\in R^n|f(x)&lt;\infty\}
+\text{dom} (p)=\{x\in \mathbb R^n\;|\;f(x)&lt;\infty\}.
 \]</span></p>
-<p>For a nonempty closed set <span class="math inline">\(C\subset R^n\)</span>, <span class="math inline">\(\delta_C\)</span> is a proper closed function.</p>
-<p>==Definition==</p>
+<p>For a nonempty closed set <span class="math inline">\(C\subset \mathbb R^n\)</span>, <span class="math inline">\(\delta_C\)</span> is a proper closed function.</p>
+<p><strong>Definition</strong></p>
 <ol type="1">
-<li>(Linearity space) Let <span class="math inline">\(C\subset R^n\)</span> be a closed convex cone. The linearity space of <span class="math inline">\(C\)</span> is the set</li>
+<li><p>(Linearity space) Let <span class="math inline">\(C\subset \mathbb R^n\)</span> be a closed convex cone. The linearity space of <span class="math inline">\(C\)</span> is the set <span class="math display">\[
+\text{lin} (C)=C\cap(-C).
+\]</span> It is the largest linear subspace of <span class="math inline">\(\mathcal E\)</span> contained in C.</p></li>
+<li><p>(Dual and polar cone) The dual of any cone <span class="math inline">\(S\)</span> (not necessarily convex) is defined by <span class="math display">\[
+S^* =\{y\in\mathcal E\;|\;\langle x,y\rangle\ge 0\;\forall x\in S\}.
+\]</span> The polar cone of <span class="math inline">\(S\)</span> is <span class="math inline">\(S^o=-S^*\)</span>.</p></li>
+<li><p>(self-dual) Let C be a cone in <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C^*=C\)</span>, then <span class="math inline">\(C\)</span> is said to be self-dual.</p></li>
 </ol>
-<p><span class="math display">\[
-\text{lin} (C)=C\cap(-C)
-\]</span></p>
-<p>It is the largest linear subspace of <span class="math inline">\(\mathcal E\)</span> contained in C.</p>
-<ol start="2" type="1">
-<li>(Dual and polar cone) The dual of any cone <span class="math inline">\(S\)</span> (not necessarily convex) is defined by</li>
-</ol>
-<p><span class="math display">\[
-S^\star =\{y\in\mathcal E|&lt;x,y&gt;\ge 0\;\forall x\in S\}
-\]</span></p>
-<p>​ The polar cone of <span class="math inline">\(S\)</span> is <span class="math inline">\(S^o=-S^\star\)</span></p>
-<ol start="3" type="1">
-<li>(self-dual) Let C be a cone in <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C^\star=C\)</span>, then <span class="math inline">\(C\)</span> is said to be self-dual.</li>
-</ol>
-<p>==Proposition==</p>
+<p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(C\)</span> be a cone in <span class="math inline">\(\mathcal E\)</span>.</p>
 <ol type="1">
-<li><span class="math inline">\(C^\star\)</span> is a closed convex cone.</li>
-<li>If <span class="math inline">\(C\)</span> is a nonempty closed convex cone, then <span class="math inline">\((C^\star)^\star=C\)</span>.</li>
+<li><span class="math inline">\(C^*\)</span> is a closed convex cone.</li>
+<li>If <span class="math inline">\(C\)</span> is a <strong>nonempty closed convex</strong> cone, then <span class="math inline">\((C^*)^*=C\)</span>.</li>
+</ol>
+<p><strong>Example</strong> If <span class="math inline">\(\mathcal E=\mathbb R^n\)</span>, and <span class="math inline">\(C=\mathbb R_+^n\)</span>. Then</p>
+<ol type="1">
+<li><span class="math inline">\(\text{aff} (C)=\mathbb R^n\)</span></li>
+<li><span class="math inline">\(\text{lin} (C)=\{0\}\)</span></li>
+<li><span class="math inline">\(C^*=\mathbb R_+^n\)</span>.</li>
+</ol>
+<p><strong>Example</strong></p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(\mathcal E=\mathbb S^n\)</span> be the space of <span class="math inline">\(n\times n\)</span> real symmetric matrices. Then the space <span class="math inline">\(\mathbb S_+^n\)</span> of <span class="math inline">\(n\times n\)</span> symmetric positive semidefinite matrices is a closed convex cone in <span class="math inline">\(\mathbb S^n\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathcal E =\mathbb R^n\)</span>. The set <span class="math display">\[
+C=\{(x_1;\bar x)\in \mathbb R^n\;|\; ||\bar x||\le x_1\}
+\]</span> is a cone, which is known as a second-order cone.</p></li>
+<li><p>A cone that is formed by the intersection of finitely many half space is known as a polyhedral cone, and it has the form: <span class="math inline">\(\{x\in\mathbb R^n\;|\;Ax\le 0\}\)</span>, where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>.</p></li>
+<li><p>Exponential cone. Consider the set <span class="math display">\[
+K=\{(x,y,z)\in\mathbb R^3\;|\;y\exp(x/y)\le z,y&gt;0\}.
+\]</span> The exponential cone is <span class="math inline">\(C=\text{cl }(K)\)</span>.</p></li>
+<li><p>Power cone. For <span class="math inline">\(\alpha =(\alpha_1;\dotsm,\alpha_n)&gt;0\)</span> and <span class="math inline">\(\sum_{i=1}^n\alpha_i=1\)</span>. <span class="math display">\[
+K_\alpha = \{(x;y)\in\mathbb R_+^n\times \mathbb R\;|\;|y|\le x_1^{\alpha_1}\dotsm x_n^{\alpha_n}\}
+\]</span></p></li>
+<li><p>Spectral cone and nuclear-norm cone.</p></li>
+<li><p>Copositive and completely positive cones.</p>
+<ol type="1">
+<li><p>Copositive cone: <span class="math inline">\(\text{COP}_n=\{X\in\mathbb S^n\;|\; v^TXv\ge 0\;\forall v\in \mathbb R_+^n\}\)</span></p></li>
+<li><p>Completely positive cone: <span class="math display">\[
+\text{CPP}_n=\{X\in\mathbb S^n\;|\; X=VV^T\;\exists V\in\mathbb R_+^n\}\\
+=\left\{\sum_{i=1}^r v_iv_i^T\;|\;v_i\in\mathbb R_+^n\;\forall i=1,\dotsm,r,\;r\in Z_+ \right\}
+\]</span></p></li>
+</ol></li>
+<li><p>Doubly nonnegative cone.</p>
+<p><span class="math inline">\(\mathbb D_n=\mathbb S_+^n\cap \mathcal N^n\)</span> where <span class="math inline">\(\mathcal N^n\)</span> is the set of symmetric <span class="math inline">\(n\times n\)</span> nonnegative matrices.</p></li>
 </ol>
 <h2 id="normal-cones">3.10 Normal cones</h2>
-<p>==Definition== (Normal cone)</p>
+<p><strong>Definition</strong> (Normal cone)</p>
 <p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x\in C\)</span>. The normal cone of <span class="math inline">\(C\)</span> at <span class="math inline">\(\bar x\in C\)</span> is defined by <span class="math display">\[
 N_c(\bar x)=\{z\in \mathcal E|&lt;z,x-\bar x&gt;\le 0\quad \forall x\in C\}
 \]</span> By convention, we let <span class="math inline">\(N_C(\bar x)=\empty\)</span> if <span class="math inline">\(\bar x\notin C\)</span>.</p>
-<p>==Proposition== Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar \in C\)</span>. Then</p>
+<p><strong>Proposition</strong> Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar \in C\)</span>. Then</p>
 <ol type="1">
 <li><span class="math inline">\(N_C(\bar x)\)</span> is a closed convex cone</li>
 <li>If <span class="math inline">\(\bar x\in int (C)\)</span>, then <span class="math inline">\(N_c(\bar x)=\{0\}\)</span>.</li>
 <li>If <span class="math inline">\(C\)</span> is also a cone, then <span class="math inline">\(N_c(\bar x)\subset C^o\)</span></li>
 </ol>
-<p>==Proposition==</p>
+<p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(C\subset R^n\)</span> be a closed convex set. Then for any <span class="math inline">\(u,y\in C\)</span>, <span class="math display">\[
 u\in N_c(y)\iff y=\Pi_C(y+u)
-\]</span> ==Proposition==</p>
+\]</span> <strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(C_1,C_2 \subset R^n\)</span> be convex sets such that <span class="math inline">\(\bar x\in C_1\cap C_2\)</span>.</p>
 <ol type="1">
 <li>It holds that <span class="math inline">\(N_{c_1}(\bar x)+N_{c_2}(\bar x)\subset N_{C_1\cap C_2}(\bar x)\)</span></li>
