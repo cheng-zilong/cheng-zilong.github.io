@@ -410,7 +410,7 @@ N_{C_1\cap C_2}(\bar x)\subset N_{c_1}(\bar x)+N_{c_2}(\bar x)
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-27 17:04:53" itemprop="dateModified" datetime="2019-08-27T17:04:53+08:00">2019-08-27</time>
+                <time title="Modified: 2019-08-27 19:43:48" itemprop="dateModified" datetime="2019-08-27T19:43:48+08:00">2019-08-27</time>
               </span>
             
           
@@ -683,7 +683,30 @@ q(x)=\frac{1}{2}x^TQx+c^Tx
 \]</span> The quadratic function is a convex function if <span class="math inline">\(Q\)</span> is positive semidefinite.</p>
 <p>The point <span class="math inline">\(x^\star \in S\)</span> is a global minimizer of the problem if and only if <span class="math inline">\(Qx^\star =-c\)</span>.</p>
 <h2 id="projection-onto-a-closed-convex-set">3.7 Projection onto a closed convex set</h2>
-<p><strong>Theorem 3.7</strong> (Projection theorem)</p>
+<p><strong>Theorem 3.7</strong></p>
+<p>Let <span class="math inline">\(f:C\rightarrow \mathbb R\)</span> be a convex and continuously differentiable function on the convex set <span class="math inline">\(C\subset \mathcal E\)</span>. Consider the constrained minimization problem, <span class="math display">\[
+\min\{f(x)\;|\;x\in C\}.
+\]</span> Then <span class="math inline">\(x^\star\in C\)</span> is a global minimizer if and only if <span class="math display">\[
+\langle \nabla f(x^\star),x-x^\star\rangle\ge 0,\;\forall x\in C.
+\]</span> Proof.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Suppose <span class="math inline">\(\langle \nabla f(x^\star),x-x^\star\rangle\ge 0,\;\forall x\in C\)</span>.Since <span class="math inline">\(f\)</span> is convex, we have <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)\;\forall x,y\in C.
+\]</span> Then <span class="math display">\[
+f(y)\ge f(x^\star)+\nabla f(x^\star)^T(y-x^\star)\ge f(x^\star)\;\forall y\in C.
+\]</span> That means <span class="math inline">\(x^\star\)</span> is the global minimizer.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>We will approve the sufficient condition by contradiction.</p>
+<p>Suppose <span class="math inline">\(x^\star\)</span> is the global minimizer and suppose that there exists <span class="math inline">\(\bar x\in C\)</span> such that <span class="math inline">\(\langle \nabla f(x^\star),\bar x-x^\star\rangle&lt; 0\)</span>.</p>
+<p>Consider the point <span class="math inline">\(w=t\bar x+(1-t)x^\star\)</span>. Note that <span class="math inline">\(f(w)-f(x^\star)\le \nabla f(w)^T(w-x^\star)\)</span>.Then <span class="math display">\[
+0\le f(w)-f(x^\star)\le \nabla f(w)^T(w-x^\star)\\
+=\langle \nabla f(t\bar x+(1-t)x^\star),(t\bar x+(1-t)x^\star-x^\star)\rangle\\
+=\langle \nabla f(t\bar x+(1-t)x^\star),t(\bar x-x^\star)\rangle\\
+=\langle \nabla f(t(\bar x-x^\star)+x^\star),t(\bar x-x^\star)\rangle.
+\]</span> Let <span class="math inline">\(t\rightarrow 0\)</span>, we have <span class="math inline">\(\langle \nabla f(x^\star),\bar x-x^\star\rangle = 0\)</span>. Q.E.D.</p>
+<p><strong>Remark</strong> Using the concept of the normal cone, we can rephrase the theorem as follows,</p>
+<p><span class="math inline">\(x^\star\)</span> is a global minimizer of the problem <span class="math inline">\(\min\{f(x)\;|\;x\in C\}\)</span> if and only if <span class="math inline">\(-\nabla f(x^\star)\in N_C(x^\star)\)</span>.</p>
+<p><strong>Theorem 3.8</strong> (Projection theorem)</p>
 <p>Let <span class="math inline">\(C\)</span> be a closed convex set in <span class="math inline">\(\mathcal E\)</span>,</p>
 <ol type="1">
 <li><p>For every <span class="math inline">\(z\in \mathcal E\)</span>, there exists a unique minimizer (denoted as <span class="math inline">\(\Pi_C(z)\)</span> and called as the <strong>projection</strong> of <span class="math inline">\(z\)</span> onto <span class="math inline">\(C\)</span>) of <span class="math display">\[
@@ -742,39 +765,48 @@ z=\Pi_C(z)+(z-\Pi_C(z)),\quad where\quad &lt;\Pi_C(z),z-\Pi_C(z)&gt;=0
 \]</span> Then we have <span class="math inline">\(x^\star =\max\{0,d\}\)</span>.</p>
 <p><strong>Definition 3.4</strong> (Fréchet differentiable)</p>
 <p>Let <span class="math inline">\(\mathcal E_1,\mathcal E_2\)</span> be two differentiable finite-dimensional real Euclidean spaces. A function <span class="math inline">\(f:\mathcal E_1\rightarrow \mathcal E_2\)</span> is said to be Fréchet differentiable at <span class="math inline">\(\mathcal x\in E_1\)</span> if there exists a linear map <span class="math inline">\(f&#39;(x):\mathcal E_1\rightarrow \mathcal E_2\)</span> such that for any <span class="math inline">\(h\rightarrow 0\)</span>, <span class="math display">\[
-f(x+h)-f(x)-f&#39;(x)[h]=o(||h||)
+f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
 \]</span> This can be explained by <span class="math display">\[
-\lim_{n\rightarrow 0}\frac{f(x+h)-f(x)}{h}\\ \iff\lim_{n\rightarrow 0}\frac{f(x+h)-f(x)-f(x)h}{h}=0\\ \iff f(x+h)-f(x)-f&#39;(x)[h]=o(||h||)
-\]</span> <strong>Proposition 3.8</strong></p>
+\lim_{n\rightarrow 0}\frac{f(x+h)-f(x)}{h}\\ \iff\lim_{n\rightarrow 0}\frac{f(x+h)-f(x)-f(x)h}{h}=0\\ \iff f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
+\]</span> <strong>Proposition 3.9</strong></p>
 <p>Let <span class="math inline">\(C\)</span> be a nonempty closed convex set in <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(X\)</span>, let <span class="math display">\[
 \theta(x)=\frac{1}{2}||x-\Pi_C(x)||^2.
 \]</span> The <span class="math inline">\(\theta(\cdot)\)</span> is a continuously differentiable convex function and <span class="math display">\[
 \nabla \theta(x)=x-\Pi_C(x)
 \]</span></p>
 <h2 id="convex-separation">3.8 Convex Separation</h2>
+<p>In this section, some propositions will be given without proof.</p>
 <p><strong>Definition 3.5</strong></p>
 <ol type="1">
-<li>Affine hull <span class="math inline">\(\text{aff(S)}\)</span> of a set S in <span class="math inline">\(\mathcal E\)</span> is the smallest affine set containing <span class="math inline">\(S\)</span>, i.e. in intersection of all affine set containing <span class="math inline">\(S\)</span>.</li>
+<li>The affine hull <span class="math inline">\(\text{aff(S)}\)</span> of a set S in <span class="math inline">\(\mathcal E\)</span> is the smallest affine set containing <span class="math inline">\(S\)</span>, i.e. in intersection of all affine set containing <span class="math inline">\(S\)</span>. That can be shown by</li>
 </ol>
 <p><span class="math display">\[
-\text{aff(S)}=\{\sum_{i=1}^k\alpha_ix_i\;|\; \sum_{i=1}^k \alpha_i=1,x_i\in S,k&gt;0\}
+\text{aff(S)}=\{\sum_{i=1}^k\alpha_ix_i\;|\; \sum_{i=1}^k \alpha_i=1,x_i\in S,k&gt;0\}.
 \]</span></p>
 <ol start="2" type="1">
-<li>Convex hull <span class="math inline">\(\text{conv(S)}\)</span> of a set S in <span class="math inline">\(\mathcal E\)</span> is the smallest convex set containing <span class="math inline">\(S\)</span>, i.e. in intersection of all convex set containing <span class="math inline">\(S\)</span>.</li>
+<li>The convex hull <span class="math inline">\(\text{conv(S)}\)</span> or <span class="math inline">\(\text{co(S)}\)</span> of a set <span class="math inline">\(S\)</span> in <span class="math inline">\(\mathcal E\)</span> is the smallest convex set containing <span class="math inline">\(S\)</span>, i.e. the intersection of all convex set containing <span class="math inline">\(S\)</span>.</li>
 </ol>
 <p><span class="math display">\[
 \text{conv(S)}=\{\sum_{i=1}^k\alpha_ix_i\;|\; \sum_{i=1}^k \alpha_i=1,x_i\in S,\alpha_i\ge 0,k&gt;0\}
 \]</span></p>
 <ol start="3" type="1">
-<li>A point <span class="math inline">\(x\)</span> is a relative interior point of <span class="math inline">\(S\)</span> if <span class="math inline">\(x\)</span> is an interior point relative to <span class="math inline">\(\text{aff(S)}\)</span>. The set of all relative interior points of <span class="math inline">\(S\)</span> is denoted as <span class="math inline">\(\text{ri(S)}\)</span></li>
+<li>A point <span class="math inline">\(x\)</span> is a relative interior point of <span class="math inline">\(S\)</span> if <span class="math inline">\(x\)</span> is an interior point relative to <span class="math inline">\(\text{aff(S)}\)</span>. The set of all relative interior points of <span class="math inline">\(S\)</span> is denoted as <span class="math inline">\(\text{relint(S)}\)</span> or <span class="math inline">\(\text{ri(S)}\)</span></li>
 </ol>
 <p><span class="math display">\[
-\text{ri(S)}=\{x\in \text{aff(S)}\;|\; \exist \varepsilon &gt;0, B_{\varepsilon}(x)\cap \text{aff(S)}\subset S\}
+\text{ri(S)}=\{x\in \text{aff(S)}\;|\; \exist \varepsilon &gt;0, B_{\varepsilon}(x)\cap \text{aff(S)}\subset S\}.
 \]</span></p>
-<p><strong>Proposition 3.9</strong> Let <span class="math inline">\(C\)</span> be a subset of a Euclidean space <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C\)</span> is convex, then <span class="math inline">\(\text{aff(ri C)}=\text{aff(C)}=\text{aff(cl(C))}\)</span></p>
+<p><strong>Examples</strong></p>
+<ol type="1">
+<li>The affine hull of the singleton (a set made of one single element) is the singleton itself.</li>
+<li>The affine hull of a set of two different points is the line through them.</li>
+<li>The affine hull of a set of three points not on one line is the plane going through them.</li>
+<li>The affine hull of a set of four points not in a plane in <span class="math inline">\(\mathbb R^3\)</span> is the entire space <span class="math inline">\(\mathbb R^3\)</span>.</li>
+<li><span class="math inline">\(\text{aff}(\mathbb R_+^n)=\mathbb R^n\)</span>.</li>
+</ol>
+<p><strong>Proposition 3.10</strong> Let <span class="math inline">\(C\)</span> be a subset of a Euclidean space <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C\)</span> is convex, then <span class="math inline">\(\text{aff(ri C)}=\text{aff(C)}=\text{aff(cl(C))}\)</span></p>
 <p>In the next proposition we will prove that any point outside a closed convex set can be separated from that set with a hyperplane.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(\Omega \in R^n\)</span> be a nonempty closed convex set and let <span class="math inline">\(\bar x\notin \Omega\)</span>. Then there exists a nonzero vector <span class="math inline">\(v\in R^n\)</span> such that <span class="math display">\[
+<p><strong>Proposition 3.11</strong></p>
+<p>Let <span class="math inline">\(\Omega \in \mathbb R^n\)</span> be a nonempty closed convex set and let <span class="math inline">\(\bar x\notin \Omega\)</span>. Then there exists a nonzero vector <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
 \sup\{\langle v,x\rangle \;|\;x\in \Omega\}&lt;\langle v,\bar x\rangle
 \]</span> Denote <span class="math inline">\(\bar w=\Pi_C(\bar x)\)</span>. let <span class="math inline">\(v=\bar x-\bar w\)</span>. For any <span class="math inline">\(x\in \Omega\)</span> we know that <span class="math display">\[
 &lt;v,x-\bar w&gt;=&lt;\bar x-\bar w,x-\bar w&gt;\le 0\\
@@ -782,59 +814,60 @@ f(x+h)-f(x)-f&#39;(x)[h]=o(||h||)
 &lt;v,x-\bar x+v&gt;=\\
 &lt;v,x&gt;-&lt;v,\bar x&gt;+||v||^2\le 0
 \]</span> Q.E.D.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be nonempty, closed, convex subsets of <span class="math inline">\(R^n\)</span> with <span class="math inline">\(\Omega_1\cap \Omega_2=\empty\)</span>. If <span class="math inline">\(\Omega_1\)</span> or <span class="math inline">\(\Omega_2\)</span> is bounded, then there is a nonzero element <span class="math inline">\(v\in R^n\)</span> such that <span class="math display">\[
-\sup\{&lt;v,x&gt;\;|\;x\in \Omega_1\}&lt;\inf\{&lt;v,y&gt;\;|\;y\in \Omega_2\}
-\]</span> Proof. Define <span class="math inline">\(\Omega=\Omega_1-\Omega_2\)</span>. Then <span class="math inline">\(\Omega\)</span> is nonempty closed convex set and <span class="math inline">\(0\notin \Omega\)</span>. Then we choose the point 0 and use the previous proposition. Q.E.D.</p>
-<p><strong>Proposition</strong> (Separation in a subspace)</p>
-<p>Let <span class="math inline">\(L\)</span> be a subspace of <span class="math inline">\(R^n\)</span> and let <span class="math inline">\(\Omega \subset L\)</span> be a nonempty convex set with <span class="math inline">\(\bar x\in L\)</span> and <span class="math inline">\(\bar x\notin \bar \Omega\)</span> (<span class="math inline">\(\bar \Omega\)</span> is the closure of <span class="math inline">\(\Omega\)</span>). Then there exists <span class="math inline">\(w\in L,w\neq 0\)</span> such that <span class="math display">\[
-\sup\{\langle w,x\rangle\;|\; x\in \Omega\}&lt;\langle w,\bar x\rangle
+<p><strong>Proposition 3.12</strong></p>
+<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be nonempty, closed, convex subsets of <span class="math inline">\(\mathbb R^n\)</span> with <span class="math inline">\(\Omega_1\cap \Omega_2=\empty\)</span>. If <span class="math inline">\(\Omega_1\)</span> or <span class="math inline">\(\Omega_2\)</span> is bounded, then there is a nonzero element <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
+\sup\{&lt;v,x&gt;\;|\;x\in \Omega_1\}&lt;\inf\{&lt;v,y&gt;\;|\;y\in \Omega_2\}.
+\]</span> Proof.</p>
+<p>Define <span class="math inline">\(\Omega=\Omega_1-\Omega_2\)</span>. Then <span class="math inline">\(\Omega\)</span> is nonempty closed convex set and <span class="math inline">\(0\notin \Omega\)</span>. Then we choose the point <span class="math inline">\(0\)</span> and use the previous proposition. Q.E.D.</p>
+<p><strong>Proposition 3.13</strong> (Separation in a subspace)</p>
+<p>Let <span class="math inline">\(L\)</span> be a subspace of <span class="math inline">\(\mathbb R^n\)</span> and let <span class="math inline">\(\Omega \subset L\)</span> be a nonempty convex set with <span class="math inline">\(\bar x\in L\)</span> and <span class="math inline">\(\bar x\notin \bar \Omega\)</span> (<span class="math inline">\(\bar \Omega\)</span> is the closure of <span class="math inline">\(\Omega\)</span>). Then there exists <span class="math inline">\(w\in L,w\neq 0\)</span> such that <span class="math display">\[
+\sup\{\langle w,x\rangle\;|\; x\in \Omega\}&lt;\langle w,\bar x\rangle.
 \]</span> <strong>Definition</strong></p>
 <p>We say that two empty convex set <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if there exists a nonzero vector <span class="math inline">\(v\in R^n\)</span> such that <span class="math display">\[
 \sup\{&lt;v,x&gt;\;|\; x\in\Omega_1\}\le \inf\{&lt;v,y&gt;\;|\; y\in\Omega_2\}\\
 \inf\{&lt;v,x&gt;\;|\; x\in\Omega_1\}&lt; \sup\{&lt;v,y&gt;\;|\; y\in\Omega_2\}
-\]</span> <strong>Proposition</strong></p>
+\]</span> <strong>Proposition 3.14</strong></p>
 <p>The following assertions hold for affine.</p>
 <ol type="1">
-<li>A set <span class="math inline">\(\Omega\subset R\)</span> is affine if and only if <span class="math inline">\(\Omega\)</span> contains all affine combinations of its elements.</li>
-<li>If <span class="math inline">\(\Omega_1\)</span> is an affine subset of <span class="math inline">\(R^n\)</span> and <span class="math inline">\(\Omega_2\)</span> is an affine subsets of <span class="math inline">\(R^m\)</span>, then <span class="math inline">\(\Omega_1\times \Omega_2\)</span> is an affine subset of <span class="math inline">\(R^n\times R^m\)</span></li>
-<li>Let <span class="math inline">\(B:R^n\rightarrow R^m\)</span> be an affine mapping if <span class="math inline">\(\Omega\)</span> is an affine subset of <span class="math inline">\(R^n\)</span> and <span class="math inline">\(\Theta\)</span> is an affine subset of <span class="math inline">\(R^m\)</span>. Then the image <span class="math inline">\(B(\Omega)\)</span> is an affine subset of <span class="math inline">\(R^m\)</span> and the inverse image <span class="math inline">\(B^{-1}(\Theta)\)</span> is an affine subset of <span class="math inline">\(R^n\)</span>.</li>
-<li>Let <span class="math inline">\(\Omega,\Omega_1,\Omega_2\)</span> are affine subsets of <span class="math inline">\(R^n\)</span>. Then the sum <span class="math inline">\(\Omega_1+\Omega_2\)</span> and the scalar product <span class="math inline">\(\lambda \Omega\)</span> for any <span class="math inline">\(\lambda \in R\)</span> are also affine subsets of <span class="math inline">\(R^n\)</span>.</li>
-<li>Given <span class="math inline">\(\Omega\subset R^n\)</span>, its affine hull is the smallest affine set containing <span class="math inline">\(\Omega\)</span>.</li>
-<li>A set <span class="math inline">\(\Omega\)</span> is a linear subspace of <span class="math inline">\(R^n\)</span> if and only if <span class="math inline">\(\Omega\)</span> is an affine set containing the origin.</li>
+<li>A set <span class="math inline">\(\Omega\subset \mathbb R\)</span> is affine if and only if <span class="math inline">\(\Omega\)</span> contains all affine combinations of its elements.</li>
+<li>If <span class="math inline">\(\Omega_1\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\)</span> and <span class="math inline">\(\Omega_2\)</span> is an affine subsets of <span class="math inline">\(\mathbb R^m\)</span>, then <span class="math inline">\(\Omega_1\times \Omega_2\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\times \mathbb R^m\)</span>.</li>
+<li>Let <span class="math inline">\(B:\mathbb R^n\rightarrow \mathbb R^m\)</span> be an affine mapping if <span class="math inline">\(\Omega\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\)</span> and <span class="math inline">\(\Theta\)</span> is an affine subset of <span class="math inline">\(\mathbb R^m\)</span>. Then the image <span class="math inline">\(B(\Omega)\)</span> is an affine subset of <span class="math inline">\(\mathbb R^m\)</span> and the inverse image <span class="math inline">\(B^{-1}(\Theta)\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\)</span>.</li>
+<li>Let <span class="math inline">\(\Omega,\Omega_1,\Omega_2\)</span> are affine subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then the sum <span class="math inline">\(\Omega_1+\Omega_2\)</span> and the scalar product <span class="math inline">\(\lambda \Omega\)</span> for any <span class="math inline">\(\lambda \in \mathbb R\)</span> are also affine subsets of <span class="math inline">\(\mathbb R^n\)</span>.</li>
+<li>Given <span class="math inline">\(\Omega\subset \mathbb R^n\)</span>, its affine hull is the smallest affine set containing <span class="math inline">\(\Omega\)</span>.</li>
+<li>A set <span class="math inline">\(\Omega\)</span> is a linear subspace of <span class="math inline">\(\mathbb R^n\)</span> if and only if <span class="math inline">\(\Omega\)</span> is an affine set containing the origin.</li>
 </ol>
 <p><strong>Definition</strong> (Affine independence)</p>
-<p>The elements <span class="math inline">\(v_0,\dotsm,v_m\)</span> in <span class="math inline">\(R^m\)</span>, <span class="math inline">\(m\ge 1\)</span> are affinely independent if <span class="math display">\[
-\sum_{i=1}^m \lambda_i v_i=0,\quad \sum_{i=1}^m \lambda_i=0\implies \lambda_i=0\quad \forall i=0,\dotsm,m
+<p>The elements <span class="math inline">\(v_0,\dotsm,v_m\)</span> in <span class="math inline">\(\mathbb R^m\)</span>, <span class="math inline">\(m\ge 1\)</span> are affinely independent if <span class="math display">\[
+\sum_{i=1}^m \lambda_i v_i=0,\quad \sum_{i=1}^m \lambda_i=0\implies \lambda_i=0\quad \forall i=0,\dotsm,m.
 \]</span> Roughly speaking, affine independence is like linear independence but without the restriction that the subset of lower dimension the points lie in contains the origin. So three points in space are affinely independent if the smallest flat thing containing them is a plane. They're affinely dependent if they lie on a line (or are the same point).</p>
 <p><strong>Definition</strong> (Simplex)</p>
-<p>Let <span class="math inline">\(v_0,\dotsm,v_m\)</span> be affinely independent in <span class="math inline">\(R^n\)</span>. Then the set <span class="math display">\[
-\Delta_m:conv\{v_i\;|\; i=0,\dotsm,m\}
-\]</span> is called an m-simplex in <span class="math inline">\(R^n\)</span> with the vertices <span class="math inline">\(v_0,\dotsm,v_m\)</span></p>
+<p>Let <span class="math inline">\(v_0,\dotsm,v_m\)</span> be affinely independent in <span class="math inline">\(\mathbb R^n\)</span>. Then the set <span class="math display">\[
+\Delta_m:\text{conv}\{v_i\;|\; i=0,\dotsm,m\}
+\]</span> is called an m-simplex in <span class="math inline">\(\mathbb R^n\)</span> with the vertices <span class="math inline">\(v_0,\dotsm,v_m\)</span>.</p>
 <p><strong>Lemma</strong></p>
-<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty, convex set in <span class="math inline">\(R^n\)</span> of dimension <span class="math inline">\(m\ge 1\)</span>. Then there exists <span class="math inline">\(m+1\)</span> affinely independent elements <span class="math inline">\(v_0,\dotsm,v_m\)</span> in <span class="math inline">\(\Omega\)</span>.</p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty, convex set in <span class="math inline">\(\mathbb R^n\)</span> of dimension <span class="math inline">\(m\ge 1\)</span>. Then there exists <span class="math inline">\(m+1\)</span> affinely independent elements <span class="math inline">\(v_0,\dotsm,v_m\)</span> in <span class="math inline">\(\Omega\)</span>.</p>
 <p><strong>Theorem</strong></p>
-<p>Let <span class="math inline">\(\Omega \subset R^n\)</span> be a nonempty, convex set. The following assertions hold</p>
+<p>Let <span class="math inline">\(\Omega \subset \mathbb R^n\)</span> be a nonempty, convex set. The following assertions hold</p>
 <ol type="1">
-<li>We always have <span class="math inline">\(ri(\Omega)\neq \empty\)</span></li>
-<li>We have <span class="math inline">\([a,b)\subset ri(\Omega)\)</span> for any <span class="math inline">\(a\in ri(\Omega)\)</span> and <span class="math inline">\(b\in\bar \Omega\)</span></li>
+<li>We always have <span class="math inline">\(\text{ri } (\Omega)\neq \empty\)</span></li>
+<li>We have <span class="math inline">\([a,b)\subset \text{ri }(\Omega)\)</span> for any <span class="math inline">\(a\in \text{ri }(\Omega)\)</span> and <span class="math inline">\(b\in\bar \Omega\)</span>.</li>
 </ol>
 <p><strong>Theorem</strong></p>
-<p>Let <span class="math inline">\(\Omega_1, \Omega_2\)</span> be nonempty convex subsets of <span class="math inline">\(R^n\)</span>. Then we have <span class="math display">\[
-ri(\Omega_1-\Omega_2)=ri(\Omega_1)-ri(\Omega_2)
+<p>Let <span class="math inline">\(\Omega_1, \Omega_2\)</span> be nonempty convex subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then we have <span class="math display">\[
+\text{ri }(\Omega_1-\Omega_2)=\text{ri }(\Omega_1)-\text{ri }(\Omega_2).
 \]</span> <strong>Lemma</strong></p>
-<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex subset of <span class="math inline">\(R^n\)</span>. Suppose that <span class="math inline">\(0\in \bar \Omega\backslash ri(\Omega)\)</span>. Then <span class="math inline">\(aff(\Omega)\)</span> is a subspace of <span class="math inline">\(R^n\)</span>.</p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex subset of <span class="math inline">\(\mathbb R^n\)</span>. Suppose that <span class="math inline">\(0\in \bar \Omega\backslash \text{ri }(\Omega)\)</span>. Then <span class="math inline">\(\text{aff }(\Omega)\)</span> is a subspace of <span class="math inline">\(\mathbb R^n\)</span>.</p>
 <p><strong>Lemma</strong></p>
-<p>A nonempty subset <span class="math inline">\(\Omega\)</span> of <span class="math inline">\(R^n\)</span> is affine if and only if <span class="math inline">\(\Omega-\omega\)</span> is a subspace of <span class="math inline">\(R^n\)</span> for any <span class="math inline">\(\omega\in \Omega\)</span></p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set. Suppose that <span class="math inline">\(\bar x\in ri(\Omega)\)</span> and <span class="math inline">\(\bar y\in \Omega\)</span>. Then there exists <span class="math inline">\(t&gt;0\)</span> such that <span class="math display">\[
+<p>A nonempty subset <span class="math inline">\(\Omega\)</span> of <span class="math inline">\(\mathbb R^n\)</span> is affine if and only if <span class="math inline">\(\Omega-\omega\)</span> is a subspace of <span class="math inline">\(\mathbb R^n\)</span> for any <span class="math inline">\(\omega\in \Omega\)</span>.</p>
+<p><strong>Proposition 3.15</strong></p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set. Suppose that <span class="math inline">\(\bar x\in \text{ri }(\Omega)\)</span> and <span class="math inline">\(\bar y\in \Omega\)</span>. Then there exists <span class="math inline">\(t&gt;0\)</span> such that <span class="math display">\[
 \bar x+t(\bar x-\bar y)\in \Omega
-\]</span> <strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set in <span class="math inline">\(R^n\)</span>. Then <span class="math inline">\(0\notin ri(\Omega)\)</span> if and only if the sets <span class="math inline">\(\Omega\)</span> and <span class="math inline">\(\{0\}\)</span> can be properly separated, i.e. there exists <span class="math inline">\(v\in R^n\)</span> such that <span class="math display">\[
-\sup\{&lt;v,x&gt;|x\in \Omega\}\le 0\\
-\inf\{&lt;v,x&gt;|x\in \Omega\}&lt;0
+\]</span> <strong>Proposition 3.16</strong></p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set in <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(0\notin \text{ri }(\Omega)\)</span> if and only if the sets <span class="math inline">\(\Omega\)</span> and <span class="math inline">\(\{0\}\)</span> can be properly separated, i.e. there exists <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
+\sup\{\langle v,x\rangle\;|\;x\in \Omega\}\le 0\\
+\inf\{\langle v,x\rangle\;|\;x\in \Omega\}&lt;0
 \]</span> <strong>Theorem</strong></p>
-<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be two nonempty convex subsets of <span class="math inline">\(R^n\)</span>. Then <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if and only if <span class="math inline">\(ri(\Omega_1)\cap ri(\Omega_2)=\empty\)</span></p>
+<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be two nonempty convex subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if and only if <span class="math inline">\(\text{ri }(\Omega_1)\cap \text{ri }(\Omega_2)=\empty\)</span></p>
 
         
       
