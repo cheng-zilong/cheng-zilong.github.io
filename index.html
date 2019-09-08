@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+  <link rel="canonical" href="http://yoursite.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-06 13:19:39 / Modified: 16:33:20" itemprop="dateCreated datePublished" datetime="2019-09-06T13:19:39+08:00">2019-09-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="gradient-methods">Gradient methods</h1>
+<h2 id="gradient-methods-for-unconstrained-optimization-problem">4.1 Gradient methods for unconstrained optimization problem</h2>
+<p>Consider the multidimensional unconstrained minimization problem <span class="math display">\[
+\min f(x)\\
+s.t. x\in S
+\]</span> In the situation where <span class="math inline">\(\nabla f(x)=0\)</span> cannot be solved analytically, we look for an approximate solution via iterative methods.</p>
+<p><strong>Descent property</strong> At a given point <span class="math inline">\(x^*\)</span>, let <span class="math inline">\(\hat d=-\frac{\nabla f(x^*)}{||\nabla f(x^*)||}\)</span>. The value of <span class="math inline">\(f\)</span> decreases most rapidly along the unit direction <span class="math inline">\(\hat d\)</span> and the rate of change of <span class="math inline">\(f\)</span> at <span class="math inline">\(x^*\)</span> along the direction <span class="math inline">\(\hat d\)</span> is <span class="math inline">\(-||\nabla f(x^*)||\)</span>.</p>
+<p>In general, a direction <span class="math inline">\(d\)</span> such that <span class="math inline">\(\langle \nabla f(x^*),d\rangle &lt;0\)</span> is called a descent direction.</p>
+<p>The direction <span class="math inline">\(-\nabla f(x^*)\)</span> is known as the steepest descent direction since it gives the fastest rate of decrease in <span class="math inline">\(f(x)\)</span> among all directions.</p>
+<p><strong>Remark</strong> The most difficult part of the steepest descent method usually is to find the <span class="math inline">\(t_k\)</span> that minimizes <span class="math inline">\(f\)</span> along the gradient direction.</p>
+<p><strong>Theorem 4.1</strong> The steepest descent method with exact linesearch moves in perpendicular steps.</p>
+<h3 id="convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</h3>
+<h3 id="convergence-rate-for-the-steepest-descent-method-for-strongly-convex-function">4.1.2 Convergence rate for the steepest descent method for strongly convex function</h3>
+<h2 id="line-search-strategies">4.2 Line search strategies</h2>
+<ol type="1">
+<li>Minimization rule = exact line search.</li>
+<li>Armijo rule.</li>
+<li>Non-monotone line search.</li>
+</ol>
+<h2 id="accelerated-proximal-gradient-method-for-convex-programming">4.3 Accelerated proximal gradient method for convex programming</h2>
+<p>Consider a smooth convex function <span class="math inline">\(f\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. We are interested in solving <span class="math display">\[
+\min \{F(x):=f(x)+g(x)\;|\;x\in \mathbb R^n\}
+\]</span> where <span class="math inline">\(g:\mathbb R^n\rightarrow (-\infty,\infty]\)</span> is a proper closed convex function.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/24/Nonlinear Optimization/3.9 Cones/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/08/24/Nonlinear Optimization/3.9 Cones/" class="post-title-link" itemprop="url">3. Basic Convex Analysis (2)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-24 23:28:41" itemprop="dateCreated datePublished" datetime="2019-08-24T23:28:41+08:00">2019-08-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-08 15:53:50" itemprop="dateModified" datetime="2019-09-08T15:53:50+08:00">2019-09-08</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="cones">3.9 Cones</h2>
+<p><strong>Definition</strong></p>
+<p>Consider <span class="math inline">\(p:\mathcal E\rightarrow (-\infty,\infty]\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(p\)</span> is said to be a <strong>proper function</strong> if <span class="math inline">\(p(x)\)</span> is not identically equal to <span class="math inline">\(\infty\)</span>.</li>
+<li><span class="math inline">\(p\)</span> is said to be <strong>closed</strong> if its epi-graph <span class="math inline">\(\text{epi}(p):=\{(\alpha,x)\in \mathbb R\times \mathcal E\;|\; p(x)\le\alpha\}\)</span> is a closed subset of <span class="math inline">\(\mathbb R\times \mathcal E\)</span>.</li>
+<li>The <strong>domain</strong> of <span class="math inline">\(p\)</span> is defined to be the set</li>
+</ol>
+<p><span class="math display">\[
+\text{dom} (p)=\{x\in \mathbb R^n\;|\;f(x)&lt;\infty\}.
+\]</span></p>
+<p>For a nonempty closed set <span class="math inline">\(C\subset \mathbb R^n\)</span>, <span class="math inline">\(\delta_C\)</span> is a proper closed function.</p>
+<p><strong>Definition</strong></p>
+<ol type="1">
+<li><p><strong>Linearity space</strong></p>
+<p>Let <span class="math inline">\(C\subset \mathbb R^n\)</span> be a closed convex cone. The linearity space of <span class="math inline">\(C\)</span> is the set <span class="math display">\[
+\text{lin} (C)=C\cap(-C).
+\]</span></p>
+<p>It is the largest linear subspace of <span class="math inline">\(\mathcal E\)</span> contained in C.</p></li>
+<li><p><strong>Dual and polar cone</strong></p>
+<p>The dual of any cone <span class="math inline">\(S\)</span> (not necessarily convex) is defined by</p></li>
+</ol>
+<p><span class="math display">\[
+   S^* =\{y\in\mathcal E\;|\;\langle x,y\rangle\ge 0\;\forall x\in S\}.
+\]</span> The polar cone of <span class="math inline">\(S\)</span> is <span class="math inline">\(S^o=-S^*\)</span>.</p>
+<ol start="3" type="1">
+<li><p><strong>Self-dual</strong></p>
+<p>Let C be a cone in <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C^*=C\)</span>, then <span class="math inline">\(C\)</span> is said to be self-dual.</p></li>
+</ol>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(C\)</span> be a cone in <span class="math inline">\(\mathcal E\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(C^*\)</span> is a closed convex cone.</li>
+<li>If <span class="math inline">\(C\)</span> is a <strong>nonempty closed convex</strong> cone, then <span class="math inline">\((C^*)^*=C\)</span>.</li>
+</ol>
+<p>Proof.</p>
+<ol type="1">
+<li>Suppose <span class="math inline">\(u,v \in C^*\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>. <span class="math display">\[
+\langle x,\alpha u+\beta v\rangle=\alpha \langle x,u\rangle+\beta \langle x,y\rangle\ge 0
+\]</span> Q.E.D.</li>
+</ol>
+<p><strong>Example</strong> If <span class="math inline">\(\mathcal E=\mathbb R^n\)</span>, and <span class="math inline">\(C=\mathbb R_+^n\)</span>. Then</p>
+<ol type="1">
+<li><span class="math inline">\(\text{aff} (C)=\mathbb R^n\)</span></li>
+<li><span class="math inline">\(\text{lin} (C)=\{0\}\)</span></li>
+<li><span class="math inline">\(C^*=\mathbb R_+^n\)</span>.</li>
+</ol>
+<p><strong>Examples</strong></p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(\mathcal E=\mathbb S^n\)</span> be the space of <span class="math inline">\(n\times n\)</span> real symmetric matrices. Then the space <span class="math inline">\(\mathbb S_+^n\)</span> of <span class="math inline">\(n\times n\)</span> symmetric positive semidefinite matrices is a closed convex cone in <span class="math inline">\(\mathbb S^n\)</span>.</p>
+<p>Proof of convexity.</p>
+<p>For any <span class="math inline">\(x,y\in \mathbb S_+^n\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>, we have <span class="math inline">\(\alpha x+\beta y\in \mathbb S_+^n\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\mathcal E =\mathbb R^n\)</span>. The set <span class="math display">\[
+C=\{(x_1;\bar x)\in \mathbb R^n\;|\; ||\bar x||\le x_1\}
+\]</span> is a cone, which is known as a <strong>second-order cone</strong>.</p>
+<p>Proof of convexity.</p>
+<p>For any <span class="math inline">\((x_1;\bar x),(y_1;\bar y)\in C\)</span> and <span class="math inline">\(\alpha,\beta \in\mathbb R_+\)</span>, we have <span class="math display">\[
+\alpha (x_1;\bar x)+\beta (y_1;\bar y)=(\alpha x_1+\beta y_1,\alpha\bar x+\beta \bar y).
+\]</span> Then we check <span class="math display">\[
+||\alpha \bar x+\beta \bar y||\le \alpha||\bar x||+\beta ||\bar y||\le \alpha x_1+\beta y_1.
+\]</span> Q.E.D.</p></li>
+<li><p>A cone that is formed by the intersection of finitely many half space is known as a <strong>polyhedral cone</strong>, and it has the form: <span class="math inline">\(\{x\in\mathbb R^n\;|\;Ax\le 0\}\)</span>, where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>.</p>
+<p>Proof of convexity.</p>
+<p>It is straightforward to show that.</p></li>
+<li><p><strong>Exponential cone</strong>. Consider the set <span class="math display">\[
+K=\{(x,y,z)\in\mathbb R^3\;|\;y\exp(x/y)\le z,y&gt;0\}.
+\]</span> The exponential cone is <span class="math inline">\(C=\text{cl }(K)\)</span>.</p>
+<p>Proof convexity.</p>
+<p>We define <span class="math inline">\(f(x,y)=y\exp(x/y)\)</span>, then we find the Hessian matrix is positive definite for all <span class="math inline">\(y&gt;0\)</span>.</p>
+<p>Since <span class="math inline">\(y\exp(x/y)\le z\)</span> is the epigraph of the convex function, we get the proof.</p></li>
+<li><strong>Power cone</strong>. For <span class="math inline">\(\alpha =(\alpha_1;\dotsm,\alpha_n)&gt;0\)</span> and <span class="math inline">\(\sum_{i=1}^n\alpha_i=1\)</span>, <span class="math display">\[
+K_\alpha = \{(x;y)\in\mathbb R_+^n\times \mathbb R\;|\;|y|\le x_1^{\alpha_1}\dotsm x_n^{\alpha_n}\}.
+\]</span></li>
+<li><p><strong>Spectral cone</strong> and <strong>nuclear-norm</strong> cone.</p>
+<p>Suppose <span class="math inline">\(X\in \mathbb R^{m\times n}\)</span> with <span class="math inline">\(m\le n\)</span>. Let the singular value decomposition of <span class="math inline">\(X\)</span> be <span class="math display">\[
+X=U[\Sigma, 0]V^T
+\]</span> where <span class="math inline">\(U\in \mathbb R^{n\times n}\)</span> and <span class="math inline">\(V\in\mathbb R^{m\times m}\)</span> are orthogonal matrices, and <span class="math inline">\(\sum=\text{diag }(\sigma_1,\dots,\sigma_m)\)</span> with <span class="math inline">\(\sigma_1\ge \dotsm\ge \sigma_m\)</span>. We can define the following cones: <span class="math display">\[
+\mathcal K=\{(t,X)\in \mathbb R\times \mathbb R^{m\times n}\;|\;||X||_*\le t\}\\
+\mathcal C=\{(t,X)\in\mathbb R\times \mathbb R^{m\times n}\;|\; ||X||_2\le t\}
+\]</span> where <span class="math inline">\(||X||_*=\sum_{i=1}^m\sigma _i(X)\)</span> and <span class="math inline">\(||X||_2=\sigma_1(X)\)</span>.</p>
+<p>Proof of (<span class="math inline">\(\mathcal K^*=\mathcal C\)</span>).</p>
+<p>Firstly, we try to prove <span class="math inline">\(\mathcal C\subseteq \mathcal K^*\)</span>, where <span class="math inline">\(\mathcal K^*=\{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; \langle(x,X),(y,Y)\rangle \ge 0\; ,\forall (x,X)\in \mathcal K\}\)</span>, i.e. <span class="math inline">\(\mathcal K^* = \{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; xy+\langle X,Y\rangle \ge 0\;, ||X||_*\le x\}\)</span>. <span class="math display">\[
+||Y||_2\le y\iff\sigma_1(Y)\le y
+\]</span> And we have <span class="math display">\[
+||X||_*\le x\iff \sigma_1(X)+\dotsm+\sigma_m(X)\le x.
+\]</span> Since we have <span class="math display">\[
+\langle -X,Y\rangle\le ||X||_*||Y||_2\le xy,
+\]</span> then we have <span class="math display">\[
+\langle X,Y\rangle+xy\ge 0.
+\]</span> Then we try to prove the necessity (<span class="math inline">\(K^*\subseteq \mathcal C\)</span>). That is if <span class="math display">\[
+xy+\langle X,Y\rangle \ge 0\;, ||X||_*\le x,
+\]</span> we need to prove <span class="math display">\[
+||Y||_2\le y.
+\]</span> We will prove this by contradiction.</p>
+<p>If we have <span class="math inline">\(||Y||_2&gt;y\)</span>, then we choose <span class="math inline">\(X=I\)</span> and <span class="math inline">\(x=1\)</span>, <span class="math display">\[
+0\le xy+\langle X,Y\rangle =y-\langle I,Y\rangle =y-||Y||_*&lt;0.
+\]</span> Contradiction and Q.E.D.</p></li>
+<li><p>Copositive and completely positive cones.</p>
+<ol type="1">
+<li><p>Copositive cone: <span class="math inline">\(\text{COP}_n=\{X\in\mathbb S^n\;|\; v^TXv\ge 0\;\forall v\in \mathbb R_+^n\}\)</span></p></li>
+<li><p>Completely positive cone: <span class="math display">\[
+\text{CPP}_n=\{X\in\mathbb S^n\;|\; X=VV^T\;\exists V\in\mathbb R_+^n\}\\
+=\left\{\sum_{i=1}^r v_iv_i^T\;|\;v_i\in\mathbb R_+^n\;\forall i=1,\dotsm,r,\;r\in Z_+ \right\}
+\]</span></p></li>
+</ol>
+<p>Proof. (<span class="math inline">\(CPP_n^*=COP_n\)</span>)</p>
+<p><span class="math inline">\(CPP_n^* =\{Y\in\mathbb S^n\;|\;\langle X,Y\rangle\ge 0\;\forall X\in CPP_n\}\)</span></p>
+<p>We first prove that <span class="math inline">\(COP_n\subseteq CPP_n^*\)</span>, <span class="math display">\[
+v^TYv\ge0\iff\langle Y,vv^T\rangle\ge 0\iff\langle Y,X\rangle \ge 0,\forall X\in CPP_n.
+\]</span> That means <span class="math inline">\(Y\in CPP_n^*\)</span>. Since every step we have equal conditions, Q.E.D.</p></li>
+<li><p>Doubly nonnegative cone.</p>
+<p><span class="math inline">\(\mathbb D_n=\mathbb S_+^n\cap \mathcal N^n\)</span> where <span class="math inline">\(\mathcal N^n\)</span> is the set of symmetric <span class="math inline">\(n\times n\)</span> nonnegative matrices (a matrix in which all the elements are equal to or greater than zero). We can also define <span class="math inline">\(\mathbb D_n\)</span> as <span class="math display">\[
+\mathbb D_n=\{X|X=X^T,\forall d\in \mathbb R^n,d^TXd\ge 0,X\ge 0\}.
+\]</span> Proof. (<span class="math inline">\(\mathbb D_n^*=\mathbb S_+^n+\mathcal N^n\)</span>)</p>
+<p>Firstly we prove that <span class="math inline">\(\mathbb S_+^n+\mathcal N^n\subseteq \mathbb D_n^*\)</span>.</p>
+<p>If <span class="math inline">\(Y_1\in \mathbb S_+^n\)</span> and <span class="math inline">\(Y_2 \in \mathcal N^n\)</span>, then we have <span class="math inline">\(Y=Y_1+Y_2\in\mathbb S_+^n+\mathcal N^n\)</span>.</p>
+<p>Then we have <span class="math display">\[
+\langle X,Y\rangle=\langle X,Y_1+Y_2\rangle=\langle X,Y_1\rangle+\langle X,Y_2\rangle\ge 0.
+\]</span> Therefore, <span class="math inline">\(\mathbb S_+^n+\mathcal N^n\subseteq \mathbb D_n^*\)</span>.</p>
+<p>Then we prove $D_n^*S_+<sup>n+N</sup>n $.</p>
+<p>If <span class="math inline">\(Y\in \mathbb D_n^*\)</span>, then we have <span class="math display">\[
+\langle X,Y\rangle\ge 0,d^TXd\ge 0,X\ge0\\
+\langle X,Y_1\rangle+ \langle X,Y_2\rangle\ge 0,d^TXd\ge 0,X\ge0.
+\]</span> Since we have <span class="math inline">\(X\)</span> is positive definite, we can choose any <span class="math inline">\(Y_1\in \mathcal N^n\)</span> and any <span class="math inline">\(Y_2\in S_+^n\)</span>. Q.E.D.</p></li>
+</ol>
+<p><strong>Example</strong></p>
+<p>Let <span class="math inline">\(C\)</span> be a closed convex cone in <span class="math inline">\(\mathcal E\)</span>. Show that for any <span class="math inline">\(z\in\mathcal E\)</span>, <span class="math display">\[
+z-\Pi_C(z)=\Pi_{C^o}(z).
+\]</span> Proof.</p>
+<p>Let <span class="math inline">\(w=z-\Pi_C(z)\)</span>. Then we have <span class="math display">\[
+\langle y-w,z-w\rangle\le 0\;\forall y\in{C^o},
+\]</span> which also means <span class="math inline">\(w=\Pi_{C^o}(z)\)</span>.</p>
+<h2 id="normal-cones">3.10 Normal cones</h2>
+<p><strong>Definition</strong> (Normal cone)</p>
+<p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x\in C\)</span>. The normal cone of <span class="math inline">\(C\)</span> at <span class="math inline">\(\bar x\in C\)</span> is defined by <span class="math display">\[
+N_c(\bar x)=\{z\in \mathcal E\;|\;\langle z,x-\bar x\rangle\le 0\quad \forall x\in C\}
+\]</span> By convention, we let <span class="math inline">\(N_C(\bar x)=\O\)</span> if <span class="math inline">\(\bar x\notin C\)</span>.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x \in C\)</span>. Then</p>
+<ol type="1">
+<li><span class="math inline">\(N_C(\bar x)\)</span> is a closed convex cone.</li>
+<li>If <span class="math inline">\(\bar x\in \text{int} (C)\)</span>, then <span class="math inline">\(N_C(\bar x)=\{0\}\)</span>.</li>
+<li>If <span class="math inline">\(C\)</span> is also a cone, then <span class="math inline">\(N_C(\bar x)\subset C^o\)</span>.</li>
+</ol>
+<p>Proof.</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(z_1,z_2\in N_c(\bar x)\)</span> and <span class="math inline">\(\alpha,\beta \in\mathbb R\)</span>, we have <span class="math display">\[
+\langle \alpha z_1+\beta z_2,x-\bar x\rangle \le 0\;\forall x\in C.
+\]</span> Q.E.D.</p></li>
+<li><p>If <span class="math inline">\(\bar x\in \text{int} (C)\)</span>, then we have <span class="math inline">\(\varepsilon &gt;0\)</span>, such that the ball <span class="math inline">\(B_{\varepsilon}(\bar x)\subseteq C\)</span>. Then we can choose <span class="math inline">\(x=\bar x+\lambda z\in B_\varepsilon (\bar x)\)</span>, and we have <span class="math display">\[
+\langle z,\lambda z\rangle \ge0.
+\]</span> Therefore, <span class="math inline">\(z=0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(C\)</span> is a cone, then we have <span class="math inline">\(x+\bar x\in C\;\forall x\in C\)</span>. Thus for any <span class="math inline">\(z\in N_C(\bar x)\)</span>, we have <span class="math display">\[
+\langle z,x\rangle = \langle z,(x+\bar x)-\bar x\rangle\le 0\;\forall x\in C,
+\]</span> Hence <span class="math inline">\(z\in C^o\)</span>. Q.E.D.</p></li>
+</ol>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(C\subset \mathbb R^n\)</span> be a closed convex set. Then for any <span class="math inline">\(u,y\in C\)</span>, <span class="math display">\[
+u\in N_C(y)\iff y=\Pi_C(y+u)
+\]</span> Proof.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>Assume <span class="math inline">\(u\in N_C(y)\)</span>, i.e. <span class="math inline">\(\langle u,z-y\rangle \le 0\;\forall z\in C\)</span>, we need to prove <span class="math display">\[
+\langle y+u-y,z-y\rangle \le 0\;\forall z\in C\\
+\iff\\
+\langle u,z-y\rangle\le \;\forall z\in C
+\]</span> <span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Same as the above. Q.E.D.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(C_1,C_2 \subset \mathbb R^n\)</span> be convex sets such that <span class="math inline">\(\bar x\in C_1\cap C_2\)</span>.</p>
+<ol type="1">
+<li>It holds that <span class="math inline">\(N_{C_1}(\bar x)+N_{C_2}(\bar x)\subset N_{C_1\cap C_2}(\bar x)\)</span></li>
+<li>If the following relative interior condition holds</li>
+</ol>
+<p><span class="math display">\[
+\text{ri}(C_1)\cap \text{ri}(C_2)\neq \O
+\]</span></p>
+<p>​ then we also have <span class="math display">\[
+N_{C_1\cap C_2}(\bar x)\subset N_{c_1}(\bar x)+N_{c_2}(\bar x)
+\]</span></p>
+<p>Proof.</p>
+<ol type="1">
+<li><p>Assume <span class="math inline">\(x_1\in N_{C_1}(\bar x)\)</span> and <span class="math inline">\(x_2\in N_{C_2}(\bar x)\)</span>. Then we need to prove that <span class="math inline">\(x_1+x_2\in N_{C_1\cap C_2}(\bar x)\)</span>. <span class="math display">\[
+x_1\in N_{C_1}(\bar x)\iff \langle x_1,x-\bar x\rangle \le 0\;\forall x\in C_1\\
+x_2\in N_{C_2}(\bar x)\iff \langle x_2,x-\bar x\rangle \le 0\;\forall x\in C_2
+\]</span> We need to prove <span class="math display">\[
+(x_1+x_2) \in N_{C_1\cap C_2}(\bar x)\iff \langle x_1+x_2,x-\bar x\rangle \le 0\;\forall x\in C_1\cap C_2
+\]</span> It is straightforward to prove that.</p></li>
+<li><p>Not done.</p></li>
+</ol>
+<h2 id="subgradients">3.11 Subgradients</h2>
+<p><strong>Definition</strong></p>
+<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a convex function. A vector <span class="math inline">\(v\)</span> is a subgradient of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\in\text{dom}(f)\)</span> if <span class="math display">\[
+f(z)\ge f(x)+\langle v,z-x\rangle \;\forall z\in\mathcal E.
+\]</span> The set of all subgradients at <span class="math inline">\(x\)</span> is called the subdifferential of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, and denoted as <span class="math inline">\(\partial f(x)\)</span>. By convention, <span class="math inline">\(\partial f(x)=\O\)</span> for any <span class="math inline">\(x\notin\text{dom} (f)\)</span>.</p>
+<p><strong>Proposition</strong></p>
+<p><span class="math inline">\(\partial f:\mathcal E\rightarrow \mathcal E\)</span> is a monotone mapping. That is <span class="math display">\[
+\langle v-u,y-x\rangle \ge 0\;\forall u\in \partial f(x),v\in \partial f(y).
+\]</span> Proof.</p>
+<p>By the definition, we have <span class="math display">\[
+f(y)\ge f(x)+\langle u,y-x\rangle \\
+f(x)\ge f(y)-\langle v,y-x\rangle.
+\]</span> It is straightforward to get proved.</p>
+<p><strong>Example</strong></p>
+<ol type="1">
+<li><p>If <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(x\)</span>, then <span class="math inline">\(\partial f(x)=\{\nabla f(x)\}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(C\)</span> be a convex subset of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math display">\[
+\partial \delta_C(x)=
+\begin{cases}\O&amp;\text{if }x\notin C\\ N_C(x)&amp;\text{if }x\in C \end{cases}
+\]</span></p></li>
+<li><p>Let <span class="math inline">\(f(x)=||x||_1\)</span> for <span class="math inline">\(x\in \mathbb R^n\)</span>. Show that <span class="math display">\[
+\partial f(0)=\{y\in\mathbb R^n\;|\; ||y||_\infty\le 1\}
+\]</span> Proof.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>Assume <span class="math inline">\(||y||_\infty \le 1\)</span>. Then we need to prove <span class="math display">\[
+f(z)\ge f(0)+\langle y,z-0\rangle\;\forall z\in\mathbb R^n\\
+\iff\\
+||z||_1\ge \langle y,z\rangle\;\forall z\in\mathbb R^n.
+\]</span> Then <span class="math display">\[
+\langle y,z\rangle =y_1z_1+\dotsm+y_nz_n\le |y_1z_1|+\dotsm|y_nz_n|\\
+\le |y_1||z_1|+\dotsm+|y_n||z_n|\le |z_1|+\dotsm+|z_n|=||z||_1.
+\]</span> <span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Assume <span class="math inline">\(||z||_1\ge \langle y,z\rangle\;\forall z\in \mathbb R^n\)</span>. We need to prove <span class="math inline">\(||y||_\infty\le 1\)</span>. We will prove by contradiction. Assume <span class="math inline">\(||y||_\infty &gt;1\)</span>.</p>
+<p>(draft) Let <span class="math inline">\(z\)</span> be a set, the <span class="math inline">\(i\)</span>th element be <span class="math inline">\(\max (y)\)</span> where <span class="math inline">\(i\)</span> is the index of the max element in <span class="math inline">\(y\)</span>. Then we have contradiction.</p>
+<p>Q.E.D.</p></li>
+</ol>
+<p><strong>Definition</strong></p>
+<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be an extended real-valued function. Define epigraph and effective domain as <span class="math display">\[
+\text{epi}f=\{(x,\mu)\in\mathcal E\times \mathbb R\;|\;f(x)\le \mu\}\\
+\text{dom} f=\{x\in\mathcal E\;|\;f(x)&lt;\infty\}.
+\]</span></p>
+<ol type="1">
+<li><span class="math inline">\(f\)</span> is said to be <strong>convex (closed)</strong> if <span class="math inline">\(\text{epi }f\)</span> is convex (closed).</li>
+<li><span class="math inline">\(f\)</span> is said to be <strong>proper</strong> if <span class="math inline">\(\text{dom}f\)</span> is nonempty.</li>
+<li><span class="math inline">\(f\)</span> is said to be positively homogeneous if <span class="math inline">\(f(\lambda x)=\lambda f(x)\)</span>for all <span class="math inline">\(x\in\mathcal E\)</span> and <span class="math inline">\(\lambda &gt;0\)</span>. Any norm function on <span class="math inline">\(\mathcal E\)</span> is positively homogenous.</li>
+</ol>
+<p><strong>Definition</strong></p>
+<p>A function <span class="math inline">\(F:\mathcal E_1\rightarrow \mathcal E_2\)</span> is said to be locally Lipschitz continuous if for any open set <span class="math inline">\(\mathcal O\subset \mathcal E_1\)</span>, there exists a constant <span class="math inline">\(L\)</span> (depending on <span class="math inline">\(\mathcal O\)</span>) such that <span class="math display">\[
+||F(x)-f(y)||\le L||x-y||\;\forall x,y\in\mathcal O.
+\]</span> If <span class="math inline">\(\mathcal O=\mathcal E_1\)</span>, then <span class="math inline">\(F\)</span> is said to be globally Lipschitz continuous.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(f\)</span> be an extended real-valued proper convex function on <span class="math inline">\(\mathcal E\)</span>. Then <span class="math inline">\(f\)</span> is locally Lipschitz continuous on <span class="math inline">\(\text{ri}(\text{dom}(f))\)</span>, the relative interior of <span class="math inline">\(\text{dom}(f)\)</span>. Moreover, <span class="math inline">\(f\)</span> is Lipschitz continuous on any closed bounded subset of <span class="math inline">\(\text{ri}(\text{dom}(f))\)</span>.</p>
+<p><strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(\mathcal O\)</span> be a open subset of <span class="math inline">\(\mathcal E_1\)</span> and <span class="math inline">\(F:\mathcal O\rightarrow \mathcal E_2\)</span> is locally Lipschitz on <span class="math inline">\(\mathcal O\)</span>, then <span class="math inline">\(F\)</span> is almost everywhere Fréchet differentiable on <span class="math inline">\(\mathcal O\)</span>.</p>
+<p><strong>Definition</strong></p>
+<p>A function <span class="math inline">\(F:\mathcal E_1\rightarrow \mathcal E_2\)</span> is locally Lipschitz continuous. Let <span class="math display">\[
+\mathcal D_F=\{x\in\mathcal E_1\;|\;F&#39;(x)\;\text{exists}\}
+\]</span> The B-subdifferential of <span class="math inline">\(F\)</span> at <span class="math inline">\(x\)</span> is defined by <span class="math display">\[
+\partial _BF(x)=\left\{\lim_{x^k(\in \mathcal D_F)\rightarrow x}F&#39;(x^k)\right\}.
+\]</span> The Clarke generalized Jacobian is defined by <span class="math display">\[
+\partial F(x)=\text{conv} (\partial _BF(x)).
+\]</span> In mathematics, <strong>Clarke's generalized Jacobian</strong> is a generalization of the Jacobian matrix of a smooth function to non-smooth functions.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(f\)</span> be an extended real-valued convex function on <span class="math inline">\(\mathcal E\)</span>. Then</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(f\)</span> is proper, then <span class="math inline">\(\text{ri}(\text{dom}(f))\neq \O\)</span> and <span class="math inline">\(\partial f(x)\neq \O\)</span> for any <span class="math inline">\(x\in \text{ri}(\text{dom}(f))\)</span>. Moreover, <span class="math inline">\(\partial f(x)\)</span> is bounded if and only if <span class="math inline">\(x\in\text{int}(\text{dom}(f))\)</span>.</p></li>
+<li><p><span class="math inline">\(\partial f\)</span> is monotone, i.e., for any <span class="math inline">\(x,y\in\mathcal E\)</span>, <span class="math display">\[
+\langle u-v,x-y\rangle \ge 0\;\forall u\in \partial f(x),v\in\partial f(y).
+\]</span></p></li>
+<li><p>Let <span class="math inline">\(f,g\)</span> be proper convex functions on <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(\text{ri}(\text{dom}(f))\cap\text{ri}(\text{dom}(g))\neq \O\)</span>, then <span class="math display">\[
+\partial(f+g)(x)=\partial f(x)+\partial g(x)\;\forall x\in\mathcal E.
+\]</span></p></li>
+<li><p>If <span class="math inline">\(f\)</span> is closed and proper, then <span class="math inline">\(\min_{z\in\mathcal E}f(z)\)</span> is attained at <span class="math inline">\(x\)</span> if and only if <span class="math inline">\(0\in \partial f(x)\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f\)</span> is closed and proper, then <span class="math inline">\(\partial f\)</span> is upper semicontinuous, i.e. for any <span class="math inline">\(v_k\in\partial f(x_k)\)</span> s.t. <span class="math inline">\(v_k\rightarrow v\)</span> and <span class="math inline">\(x_k\rightarrow x\)</span>, we have <span class="math inline">\(v\in \partial f(x)\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f(x)\)</span> is finite, then <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(x\)</span> if and only if <span class="math inline">\(\partial f(x)\)</span> is a singleton.</p></li>
+<li><p>If <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(f(x)\)</span> is finite, then the directional derivative <span class="math inline">\(f&#39;(x;h)\)</span> exists for any <span class="math inline">\(h\in\mathcal E\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f\)</span> is proper, <span class="math inline">\(f&#39;(x;h)\)</span> is an upper semicontinuous function of <span class="math inline">\((x,h)\in \text{int}(\text{dom}(f))\times \mathcal E\)</span>. Moreover, given any <span class="math inline">\(x\in\text{int}(\text{dom}(f))\)</span> and any <span class="math inline">\(\varepsilon &gt;0\)</span>, there exists a <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math display">\[
+\partial f(z)\subset \partial f(x)+\varepsilon B\;,\forall z\in(x+\delta B).
+\]</span></p></li>
+</ol>
+<h2 id="fenchel-conjugate">3.12 Fenchel conjugate</h2>
+<p>Let <span class="math inline">\(f\)</span> be an extended real-valued function on <span class="math inline">\(\mathcal E\)</span>. Then we define Fenchel conjugate <span class="math display">\[
+f^*(y)=\sup\{\langle y,x \rangle-f(x)\;|\;x\in \mathcal E\},\;y\in\mathcal E.
+\]</span> <span class="math inline">\(f^*\)</span> is always closed and convex, even if <span class="math inline">\(f\)</span> is non-convex or not closed.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(f\)</span> be a closed proper convex function on <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\in\mathcal E\)</span>, we have the following equivalent conditions for a vector <span class="math inline">\(x^* \in\mathcal E\)</span>:</p>
+<ol type="1">
+<li><span class="math inline">\(f(x)+f^*(x^*)=\langle x,x^*\rangle\)</span></li>
+<li><span class="math inline">\(x^*\in \partial f(x)\)</span></li>
+<li><span class="math inline">\(x\in \partial f^*(x^*)\)</span></li>
+<li><span class="math inline">\(\langle x,x^*\rangle -f(x)=\max_{z\in \mathcal E}\{\langle z,x^*\rangle -f(z)\}\)</span></li>
+<li><span class="math inline">\(\langle x,x^*\rangle -f^*(x^*)=\max_{z^*\in \mathcal E}\{\langle x,z^*\rangle -f^*(z^*)\}\)</span></li>
+</ol>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li><p>For a convex set <span class="math inline">\(C\)</span>, we have <span class="math display">\[
+\delta_C^*(x)=\sup\{\langle x,y\rangle-\delta_C(y)\}=\sup\{\langle x,y\rangle\;|\;y\in C\}.
+\]</span></p></li>
+<li><p>If <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> is a closed proper convex function, then <span class="math inline">\((f^*)^*=f\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> is a closed proper convex function, positively homogeneous and <span class="math inline">\(f(0)=0\)</span>, then <span class="math display">\[
+f^*=\delta_C,\;where\; C=\partial f(0).
+\]</span></p></li>
+</ol>
+<p>Proof.</p>
+<p><strong>Example</strong></p>
+<p>Let <span class="math inline">\(f(x)=||x||_\#\)</span> be any norm function defined on <span class="math inline">\(\mathcal E\)</span> and <span class="math inline">\(||\cdot||_*\)</span> be the dual norm of <span class="math inline">\(||\cdot||_\#\)</span>, i.e., for any <span class="math inline">\(x\in \mathcal E\)</span>, <span class="math inline">\(||x||_*=\sup_{y\in\mathcal E}\{\langle x,y \rangle\;|\;||y||_\#\le 1\}\)</span>. Since <span class="math inline">\(f\)</span> is a positively homogeneous closed convex function, <span class="math inline">\(f^*=\delta_C\)</span> where <span class="math display">\[
+C=\partial f(0)=B_*=\{x\in\mathcal E\;|\;||x||_*\le 1\}.
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> be defined by <span class="math inline">\(f(x)=\max_{i=1,\dotsm,n}x_i\)</span>. Then <span class="math display">\[
+S=\partial f(0)=\{x\in\mathbb R^n\;|\; \sum_{i=1}^nx_i=1,x\ge 0\}.
+\]</span> Since <span class="math inline">\(f\)</span> is proper closed convex function, positively homogeneous and <span class="math inline">\(f(0)=0\)</span>, <span class="math inline">\(f^*=\delta_S\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>Let <span class="math inline">\(g(x)=\max_{i=1,\dotsm,n}x_i\)</span> and <span class="math inline">\(f(x)=g(x)+\delta_{\mathbb R^n_+}(x)\)</span>. Clearly, <span class="math inline">\(f(\cdot)\)</span> is a positively homogeneous convex function. Then <span class="math display">\[
+\partial f(0)=\partial g(0)+\partial \delta_{\mathbb R^n_+}(0)=S-\mathbb R_+^n=\{x\in\mathbb R^n\;|\;e^Tx^+\le 1\},
+\]</span> where <span class="math inline">\(S\)</span> is defined in the above example and <span class="math inline">\(x_i^+=\max(x_i,0)\)</span>. Let <span class="math inline">\(x\in \mathbb R^{n}\)</span> be given. Define <span class="math inline">\(I_+=\{i\;|\;x_i\ge 0\}\)</span>, <span class="math inline">\(I_-=\{i\;|\;x_i&lt; 0\}\)</span>, and <span class="math inline">\(C=\{\xi \in R^{|I_+|}\;|\; e^T\xi\le 1,\xi \ge 0\}\)</span>. The projection <span class="math inline">\(\bar x=\Pi_{\partial f(0)}(x)\)</span> is given by <span class="math display">\[
+\begin{array}{rCl}
+\bar x_{I_+}&amp;=&amp;\Pi_C(x_{I_+})\\
+\bar x_{I_-}&amp;=&amp;x_{I_-}
+\end{array}
+\]</span></p>
+<h2 id="semismoothness-of-convex-functions">3.13 Semismoothness of convex functions</h2>
+<p><strong>Definition 3.14</strong> (Semismoothness)</p>
+<p>Let <span class="math inline">\(\Omega\)</span> be an open subset of <span class="math inline">\(\mathcal E\)</span>. Let <span class="math inline">\(f:\Omega\rightarrow \mathbb R\)</span> be a locally Lipschitz continuous function (not necessarily convex).</p>
+<ol type="1">
+<li><p><span class="math inline">\(f\)</span> is said to be semismooth at <span class="math inline">\(x\)</span> if it is directionally differentiable at <span class="math inline">\(x\)</span> and <span class="math display">\[
+f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||)\;\forall h\rightarrow 0,x+h\in \mathcal D_f
+\]</span> where <span class="math inline">\(\mathcal D_f = \{y\in\Omega\;|\; f \text{ is differentiable at }y\}\)</span>.</p></li>
+<li><p>Moreover, <span class="math inline">\(f\)</span> is said to be strongly semismooth at <span class="math inline">\(x\)</span> if <span class="math display">\[
+f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||^2)\;\forall h\rightarrow 0,x+h\in \mathcal D_f
+\]</span></p></li>
+</ol>
+<p><strong>Theorem</strong></p>
+<p>Any convex function <span class="math inline">\(f:\mathcal E\rightarrow \mathbb R\)</span> is semismooth.</p>
+<p><strong>Remark</strong> Piecewise smooth functions are semismooth functions.</p>
+<h2 id="moreau-yosida-regularization-and-proximal-mapping">3.14 Moreau-Yosida regularization and proximal mapping</h2>
+<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a closed proper convex function function.</p>
+<p>MY regularization of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
+M_f(x)=\min_{y\in \mathcal E}\{\phi(y;x)=f(y)+\frac{1}{2}||y-x||^2\}.
+\]</span> Proximal mapping of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
+P_f(x)=\arg\min_{y\in\mathcal E} \{\phi(y;x)=f(y)+\frac{1}{2}||y-x||^2\}
+\]</span> <strong>Proposition</strong></p>
+<ol type="1">
+<li><span class="math inline">\(P_f(x)\)</span> exists and is unique.</li>
+<li><span class="math inline">\(M_f(x)\le f(x)\)</span> for all <span class="math inline">\(x\in\mathcal E\)</span>.</li>
+</ol>
+<p><strong>Proposition</strong> (IMPORTANT)</p>
+<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a closed proper convex function. Then <span class="math display">\[
+\arg\min\{f(x)\;|\; x\in\mathcal E\}=\arg\min\{M_f(x)\;|\; x\in\mathcal E\}.
+\]</span> Proof.</p>
+<p>Suppose <span class="math inline">\(x^*\)</span> is a minimizer of <span class="math inline">\(f\)</span>. Then <span class="math inline">\(f(x^*)\le f(x)\)</span> for all <span class="math inline">\(x\in\mathcal E\)</span>. Thus for any <span class="math inline">\(x\mathcal \in E\)</span>, <span class="math display">\[
+M_f(x^*)=\min_{y\in \mathcal E}\{f(y)+\frac{1}{2}||y-x^*||^2\}\\
+\le f(x^*)\;\;(y=x^*)\\
+\le f(y)+\frac{1}{2}||y-x||^2\;\forall y\in\mathcal E 
+\]</span> That means <span class="math inline">\(M_f(x^*)\le \min_{y\in\mathcal E }\{f(y)+\frac{1}{2}||y-x||^2\}=M_f(x)\)</span>.</p>
+<p>Conversely, suppose <span class="math inline">\(x^*\)</span> is a minimizer of <span class="math inline">\(M_f\)</span>. Then <span class="math display">\[
+f(P_f(x^*))+\frac{1}{2}||P_f(x^*)-x^*||^2=M_f(x^*)\le M_f(x)\le f(x).
+\]</span> Let <span class="math inline">\(x=P_f(x^*)\)</span>, then we have <span class="math inline">\(P_f(x^*)=x^*\)</span>. Q.E.D.</p>
+<p><strong>Theorem</strong> (Moreau decomposition)</p>
+<p>Let <span class="math inline">\(f\)</span> be closed proper convex and <span class="math inline">\(f^*\)</span> be its conjugate. Then <span class="math display">\[
+x=P_f(x)+P_{f^*} (x)\quad \forall x\in\mathcal E\\
+\frac{1}{2}||x\|^2=M_f(x)+M_{f^*} (x).
+\]</span> For any <span class="math inline">\(t&gt;0\)</span>, <span class="math display">\[
+x=P_{tf}(x)+tP_{f^*/t}(x/t)\quad \forall x\in\mathcal E\\
+\frac{1}{2}||x||^2=M_{tf}(x)+t^2M_{f^*/t}(x/t).
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(f(x)=\lambda ||x||_1\)</span> for <span class="math inline">\(x\in\mathbb R^n\)</span>. Then <span class="math inline">\(f^*(z)=\delta_C(z)\)</span> where <span class="math inline">\(C=\partial f(0)=\{z\in\mathbb R^n\;|\;||z||_\infty\le \lambda\}\)</span>.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(f(x)\)</span> is a closed proper convex function, positively homogeneous and <span class="math inline">\(f(0)=0\)</span>, then <span class="math display">\[
+f^*=\delta_C,\;where\; C=\partial f(0).
+\]</span> For any <span class="math inline">\(v\in\partial f(0)\)</span>, we have <span class="math display">\[
+f(z)\ge f(0)+\langle v,z-0\rangle \;\forall z\\
+=\langle v,z\rangle \;\forall z\\
+\iff\\
+\lambda ||z||_1\ge \langle v,z\rangle\;\forall z\\
+\iff\\
+||v||_\infty \le \lambda.
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be closed and convex. For <span class="math inline">\(f=\delta _C\)</span>, <span class="math display">\[
+P_{\delta _C}(x)=\arg\min_{y\in\mathcal E}\{\delta_C(y)+\frac{1}{2}||y-x||\}=\arg\min_{y\in C}\frac{1}{2}||y-x||^2=\Pi_C(x).
+\]</span> Suppose <span class="math inline">\(C=\mathbb S_+^n\)</span>, the cone of <span class="math inline">\(n\times n\)</span> symmetric PSD matrices. Then <span class="math display">\[
+\Pi_C(x)=Q\text{diag} (d_+)Q^T. (PSD)
+\]</span> <strong>Theorem</strong></p>
+<ol type="1">
+<li><p><span class="math inline">\(P_f\)</span> and <span class="math inline">\(Q_f:I-P_f\)</span> are firmly nonexpensive, i.e., <span class="math display">\[
+||P_f(x)-P_f(y)||^2\le \langle P_f(x)-P_f(y),x-y\rangle \quad \forall x,y\in\mathcal E\\
+||Q_f(x)-Q_f(y)||^2\le \langle Q_f(x)-Q_f(y),x-y\rangle \quad \forall x,y\in\mathcal E.
+\]</span> Hence <span class="math inline">\(||P_f(x)-P_f(y)||\le ||x-y||\)</span>. That is, <span class="math inline">\(P_f\)</span> is Lipschitz continuous with modules 1. The same statement also holds for <span class="math inline">\(Q_f\)</span>.</p></li>
+<li><span class="math inline">\(M_f\)</span> is continuously differentiable and <span class="math inline">\(\nabla M_f(x)=x-P_f(x)\;\forall x\in\mathcal E\)</span>.</li>
+<li><p><span class="math inline">\(\nabla M_{tf}(x)=tP_{f^*/t}(x/t)\)</span> and <span class="math inline">\(\nabla M_{f^*/t}(x)=t^{-1}P_{tf}(tx)\)</span>.</p></li>
+</ol>
+<p><strong>Proposition</strong> Let <span class="math inline">\(f\)</span> be a closed proper convex function on <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\in\mathcal E\)</span>, <span class="math inline">\(\partial P_f(x)\)</span> has the following properties,</p>
+<ol type="1">
+<li>Any <span class="math inline">\(V\in\partial P_f(x)\)</span> is self-adjoint.</li>
+<li><span class="math inline">\(\langle Vd,d\rangle \ge ||Vd||^2\)</span> for any <span class="math inline">\(V\in\partial P_f(x)\)</span> and <span class="math inline">\(d\in\mathcal E\)</span>.</li>
+</ol>
+<h2 id="directional-derivatives-of-matrix-valued-functions">3.15 Directional derivatives of matrix-valued functions</h2>
+<p>Suppose <span class="math inline">\(X\in\mathbb S^n\)</span> has spectral decomposition <span class="math inline">\(X=\bar P\Lambda \bar P^T\)</span> with its eigenvalues contained in an bounded open subset <span class="math inline">\(I\)</span> of <span class="math inline">\(\mathbb R\)</span>. Let <span class="math inline">\(f:I\rightarrow \mathbb R\)</span> be a scalar function. The Lowner spectral operator is defined by <span class="math display">\[
+F(X)=\bar P\text{diag}(f(\lambda_1),\dots,f(\lambda_2))\bar P^T.
+\]</span> <strong>Proposition</strong></p>
+<p>The Lowner operator <span class="math inline">\(F(\cdot)\)</span> is differentiable at <span class="math inline">\(X\)</span> if and only if <span class="math inline">\(f(\cdot)\)</span> is differentiable at each <span class="math inline">\(\lambda_i (X)\)</span>. In this case, the Frechet derivative is given by <span class="math display">\[
+F&#39;(X)[H]=\bar P[f^{[1]}(\Lambda)\circ (\bar P^TH\bar P)]\bar P^T\quad \forall H\in \mathbb S^n.
+\]</span> Here given <span class="math inline">\(D=\text{diag}(d)\)</span>, <span class="math inline">\(f^{[1]}(D)\in \mathbb S^n\)</span> is defined by <span class="math display">\[
+(f^{[1]}(D))_{ij}=
+\begin{cases}
+\frac{f(d_i)-f(d_j)}{d_i-d_j}&amp; d_i \neq d_j\\
+f&#39;(d_i)&amp; d_i=d_j
+\end{cases}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

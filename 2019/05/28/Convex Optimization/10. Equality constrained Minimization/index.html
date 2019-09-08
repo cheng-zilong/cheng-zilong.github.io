@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="10. Equality constrained minimization 10.1 Equality constrained minimization problems In this chapter we describe methods for solving a convex optimization problem with equality constraints, \[ \co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10. Equality constrained Minimization">
+<meta property="og:url" content="http://yoursite.com/2019/05/28/Convex Optimization/10. Equality constrained Minimization/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="10. Equality constrained minimization 10.1 Equality constrained minimization problems In this chapter we describe methods for solving a convex optimization problem with equality constraints, \[ \co">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-25T15:23:24.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10. Equality constrained Minimization">
+<meta name="twitter:description" content="10. Equality constrained minimization 10.1 Equality constrained minimization problems In this chapter we describe methods for solving a convex optimization problem with equality constraints, \[ \co">
+  <link rel="canonical" href="http://yoursite.com/2019/05/28/Convex Optimization/10. Equality constrained Minimization/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>10. Equality constrained Minimization | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/Convex Optimization/10. Equality constrained Minimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">10. Equality constrained Minimization
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-28 13:19:25" itemprop="dateCreated datePublished" datetime="2019-05-28T13:19:25+08:00">2019-05-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-25 23:23:24" itemprop="dateModified" datetime="2019-08-25T23:23:24+08:00">2019-08-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="equality-constrained-minimization">10. Equality constrained minimization</h1>
+<h2 id="equality-constrained-minimization-problems">10.1 Equality constrained minimization problems</h2>
+<p>In this chapter we describe methods for solving a convex optimization problem with equality constraints, <span class="math display">\[
+\coo[f(x)]{Ax=b}
+\]</span> We denote <span class="math display">\[
+p^\star=\inf\{f(x)|Ax=b\}=f(x^\star)
+\]</span> Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Solving the equality constrained optimization problem is therefore equivalent to finding a solution of the KKT conditions shown in the above, which is a n+p equations in the n+p variables <span class="math inline">\(v^\star\)</span> and <span class="math inline">\(x^\star\)</span>. The first one is called <strong>primal feasibility equations</strong>, which are linear. The second one is called <strong>dual feasibility equations</strong>, and are in general non-linear.</p>
+<p>The bulk if this chapter is to denoted to extensions of Newton's method that directly handle equality constraints. In many cases, this method is preferable than the methods that reduce an equality constrained problem to unconstrained one. One reason is that the problem structure is destroyed by elimination. Another reason is conceptual, methods that directly handle the constraints can be thought of solving the problem directly.</p>
+<h3 id="equality-constrained-convex-quadratic-minimization">10.1.1 Equality constrained convex quadratic minimization</h3>
+<p><span class="math display">\[
+\coo[(1/2)x^TPx+q^Tx+r]{Ax=b}
+\]</span></p>
+<p>The optimal conditions are <span class="math display">\[
+Ax^\star =b \quad Px^\star +q+A^Tv^\star=0
+\]</span> which we can write as <span class="math display">\[
+\begin{bmatrix}
+P &amp; A^T\\
+A  &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x^\star \\ v^\star
+\end{bmatrix}=
+\begin{bmatrix}
+-q\\b
+\end{bmatrix}
+\]</span> This set of <span class="math inline">\(n+p\)</span> linear equations is called <strong>KKT system</strong>. The coefficient matrix is called <strong>KKT matrix</strong>.</p>
+<p>If KKT matrix is nonsingular, there is an unique optimal solution. If singular, there is infinite solutions. If not solvable, the problem is infeasible.</p>
+<h3 id="eliminating-equality-constraints">10.1.2 Eliminating equality constraints</h3>
+<p>We have <span class="math display">\[
+\{x|Ax=b\}=\{Fz+\hat x|z\in R^{n-p}\}
+\]</span> where <span class="math inline">\(\hat x\)</span> is a particular solution of <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(F\)</span> is the null space of A.</p>
+<h3 id="solving-equality-constrained-problem-via-the-dual">10.1.3 Solving equality constrained problem via the dual</h3>
+<p>Another approach is to solving the dual, and then recover the optimal primal variable <span class="math inline">\(x^\star\)</span>.</p>
+<p>The dual function of 10.1 is <span class="math display">\[
+g(v)=-b^Tv+\inf_x(f(x)+v^TAx) \\
+=-b^Tv-f^\star (-A^Tv)
+\]</span></p>
+<p>where <span class="math inline">\(f^*\)</span> is the conjugate of <span class="math inline">\(f\)</span>.</p>
+<h2 id="newtons-method-with-equality-constraints">10.2 Newton's method with equality constraints</h2>
+<p>In this section we describe an extension of Newton's method to include equality constraints. The method is almost the same as Newton's method without constraints, except two differences: the initial point must be feasible, and the definition of Newton step is modified to take the equality constraints into account.</p>
+<h3 id="the-newton-step">10.2.1 The newton step</h3>
+<p>For the equality constrained problem, <span class="math display">\[
+\coo[f(x)]{Ax=b}
+\]</span> we replace the objective with the second-order Taylor approximation near <span class="math inline">\(x\)</span>, to form the problem <span class="math display">\[
+\coo[\hat f(x+v)=f(x)+\nabla f(x)^Tv+(1/2)v^T\nabla^2f(x)v]{A(x+v)=b}
+\]</span> with variable <span class="math inline">\(v\)</span>. This is a convex quadratic minimization problem with equality constraints, and can be solved analytically. We define the newton step <span class="math inline">\(\Delta x_{nt}\)</span> at <span class="math inline">\(x\)</span> as the solution of the convex quadratic problem in the above. Then we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{nt}\\w
+\end{bmatrix}=
+\begin{bmatrix}
+-\nabla f(x)\\0
+\end{bmatrix}
+\]</span> where <span class="math inline">\(w\)</span> is the optimal dual variable for the quadratic problem.</p>
+<p><strong>Solution of linearized optimality conditions</strong></p>
+<p>Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\\ \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Newton method can be interpreted by solving the above equations.</p>
+<p>We substitute <span class="math inline">\(x+\Delta x_{nt}\)</span> for <span class="math inline">\(x^\star\)</span> and <span class="math inline">\(w\)</span> for <span class="math inline">\(v^\star\)</span>, and replace the gradient term in the second equation by its linearized approximation around <span class="math inline">\(x\)</span>, to obtain the equation, <span class="math display">\[
+A(x+\Delta x_{nt})=b\\
+\nabla f(x+\Delta x)+A^Tw\approx \nabla f(x)+\nabla^2 f(x)\Delta x_{nt}+A^Tw=0
+\]</span></p>
+<h2 id="infeasible-start-newton-method">10.3 Infeasible start Newton method</h2>
+<p>As in Newton's method, we start with optimality conditions for the equality constrained optimization problem: <span class="math display">\[
+Ax^\star=b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Let <span class="math inline">\(x\)</span> denote the current point, which we do not assume to be feasible. We will do second-order Taylor expansion around the point <span class="math inline">\(x\)</span>, and our goal is to find a step <span class="math inline">\(\Delta x\)</span> so that <span class="math inline">\(x+\Delta x\)</span> satisfies (at least approximately) the optimality conditions, i.e. <span class="math inline">\(x+\Delta x\approx x^\star\)</span>. <span class="math display">\[
+\nabla f(x+\Delta x)\approx \nabla f(x)+\nabla^2f(x)\Delta x
+\]</span> For the gradient, we have <span class="math display">\[
+A(x+\Delta x)=b\\
+\nabla f(x)+\nabla^2f(x)\Delta x+A^Tw=0
+\]</span> This is a linear equations for <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+ \begin{bmatrix}
+ \Delta x\\ w
+ \end{bmatrix}=
+ -\begin{bmatrix}
+ \nabla f(x)\\Ax-b
+ \end{bmatrix}
+\]</span></p>
+<p><strong>Primal-dual interpretation</strong></p>
+<p>We can give an interpretation of the equation in terms of the primal-dual method for the equality constrained problem. By the primal-dual method, we mean one in which we update both the primal variable <span class="math inline">\(x\)</span> and the dual variable <span class="math inline">\(v\)</span>, in order to satisfy the optimality conditions.</p>
+<p>We express the optimality conditions as <span class="math inline">\(r(x^\star,v^\star)=0\)</span>, where <span class="math inline">\(r:R^n\times R^p \rightarrow R^n\times R^p\)</span> is defined as <span class="math display">\[
+r(x,v)=(r_{dual}(x,v),r_{pri}(x,v))\\
+r_{dual}(x,v)=\nabla f(x)+A^Tv\\
+r_{pri}(x,v)=Ax-b
+\]</span> The first order Taylor approximate of <span class="math inline">\(r\)</span> is <span class="math display">\[
+r(y+z)\approx r(y)+Dr(y)z
+\]</span> We define <span class="math inline">\(\Delta y_{pd}=(\Delta x_{pd},\Delta v_{pd})\)</span> such that the Taylor approximation vanishes, i.e. <span class="math display">\[
+r(y+\Delta y_{pd})=r(y)+Dr(y)\Delta y_{pd}=0
+\]</span> Then we have <span class="math display">\[
+Dr(y)\Delta y_{pd}=-r(y)
+\]</span> Evaluating the derivative of <span class="math inline">\(r\)</span>, we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x)&amp;A^T\\A&amp;0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{pd}\\\Delta v_{pd}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+r_{dual}\\ r_{pri}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+\nabla f(x)+A^Tv\\ Ax-b
+\end{bmatrix}
+\]</span> Let <span class="math inline">\(w=v+\Delta v_{pd}\)</span>, we have Newton step.</p>
+<p><strong>Using infeasible start Newton method to simplify initialization</strong></p>
+<p>The main advantage of the infeasible start Newton method is in the initialization required.</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/05/28/Convex Optimization/9. Unconstraint Minimization/" rel="next" title="9. Unconstraint Minimization">
+                  <i class="fa fa-chevron-left"></i> 9. Unconstraint Minimization
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/07/24/Convex Optimization/11. Interior-Point Methods/" rel="prev" title="11. Interior-point methods">
+                  11. Interior-point methods <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#equality-constrained-minimization"><span class="nav-text">10. Equality constrained minimization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#equality-constrained-minimization-problems"><span class="nav-text">10.1 Equality constrained minimization problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#equality-constrained-convex-quadratic-minimization"><span class="nav-text">10.1.1 Equality constrained convex quadratic minimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eliminating-equality-constraints"><span class="nav-text">10.1.2 Eliminating equality constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#solving-equality-constrained-problem-via-the-dual"><span class="nav-text">10.1.3 Solving equality constrained problem via the dual</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#newtons-method-with-equality-constraints"><span class="nav-text">10.2 Newton&#39;s method with equality constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#the-newton-step"><span class="nav-text">10.2.1 The newton step</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#infeasible-start-newton-method"><span class="nav-text">10.3 Infeasible start Newton method</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

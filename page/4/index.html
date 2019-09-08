@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+  <link rel="canonical" href="http://yoursite.com/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/Convex Optimization/5. Duality/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/05/25/Convex Optimization/5. Duality/" class="post-title-link" itemprop="url">5. Duality</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-25 22:24:30" itemprop="dateCreated datePublished" datetime="2019-05-25T22:24:30+08:00">2019-05-25</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-25 23:20:39" itemprop="dateModified" datetime="2019-08-25T23:20:39+08:00">2019-08-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="duality">5. Duality</h1>
+<h2 id="the-lagrange-dual-function">5.1 The Lagrange dual function</h2>
+<h3 id="the-lagrangian">5.1.1 The Lagrangian</h3>
+<p>We consider the optimization problem (we do not assume convex) in the standard form <span class="math display">\[
+\coo[f_0(x)]{f_i(x)\le 0\\h_i(x)=0}
+\]</span> The basic idea in Lagrangian duality is to take the constraints in (5.1) into account by augmenting the objective function with a weighted sum of the constraint functions. <span class="math display">\[
+L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^p v_i h_i(x)
+\]</span> The vectors <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(v\)</span> are called dual variables or Lagrange Multiplier vectors.</p>
+<h3 id="the-lagrange-dual-function-1">5.1.2 The Lagrange dual function</h3>
+<p>We define the Lagrange dual function as the minimum value of the Lagrangian over x <span class="math display">\[
+g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right)
+\]</span> Since the dual function is the pointwise infimum of a family of affine functions of <span class="math inline">\((\lambda,v)\)</span>, it is concave even when the original problem is not convex.</p>
+<h3 id="lower-bounds-on-optimal-value">5.1.3 Lower bounds on optimal value</h3>
+<p>The dual function yields the lower bounds on the optimal value <span class="math inline">\(p^\star\)</span> of the problem. For any <span class="math inline">\(\lambda \succeq 0\)</span> and any <span class="math inline">\(v\)</span> we have <span class="math display">\[
+g(\lambda,v)\le p^\star
+\]</span> This important property is easily verified, suppose <span class="math inline">\(\tilde x\)</span> is a feasible point for the problem, i.e. <span class="math inline">\(f_i(\tilde x)\le 0\)</span> and <span class="math inline">\(h_i(\tilde x)=0\)</span>. Then we have <span class="math display">\[
+\sum_{i=1}^m \lambda_if_i(\tilde x)+\sum_{i=1}^p v_ih_i(\tilde x)\le 0
+\]</span> Then we have <span class="math display">\[
+g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right)\le L(\tilde x,\lambda,v)\le f_0(\tilde x)
+\]</span> The equality holds, but is vacuous when <span class="math inline">\(g(\lambda,v) = -\infty\)</span>. The dual function gives a nontrivial lower bound on <span class="math inline">\(p^\star\)</span> only when <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \dom g\)</span>.</p>
+<p>We refer to a pair <span class="math inline">\((\lambda, v)\)</span> with <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \dom g\)</span> as dual feasible to let <span class="math inline">\(g(\lambda,v)&gt; -\infty\)</span></p>
+<h3 id="linear-approximation-interpretation">5.1.4 Linear approximation interpretation</h3>
+<p>The Lagrangian and lower bound property can be given a simple interpretation.</p>
+<p>We first rewrite the origin problem as an unconstrained problem <span class="math display">\[
+\text{minimize }f_0(x)+\sum_{i=1}^mI_-(f_i(x))+\sum_{i=1}^pI_0(h_i(x))
+\]</span> where <span class="math display">\[
+I_-(u)=\begin{cases}0&amp;u\le 0\\\infty &amp;u&gt;0\end{cases}
+\]</span> and similar for <span class="math inline">\(I_0(u)\)</span>.The two indicator functions can be interpreted as expressing out displeasure associated with a constraint function. Then we can use <span class="math inline">\(\lambda_if_i(x)\)</span> and <span class="math inline">\(v_ih_i(x)\)</span> to replace the indicator functions to show the displeasure. Then the objective becomes the Lagrangian <span class="math display">\[
+\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)
+\]</span> and the dual function value <span class="math inline">\(g(\lambda,v)\)</span> is the optimal value of the problem.</p>
+<h3 id="examples">5.1.5 Examples</h3>
+<p><strong>Least-squares solution of linear equations</strong> <span class="math display">\[
+\coo[x^Tx]{Ax=b}
+\]</span> Then the Lagrangian <span class="math inline">\(L(x,v)=x^Tx +v^T(Ax-b)\)</span></p>
+<p>The dual function <span class="math inline">\(g(v)=\inf_x L(x,v)=\inf_x {(x^Tx +v^T(Ax-b))}\)</span></p>
+<p>We hope to derive the analytical expression <span class="math display">\[
+\nabla_xL(x,v)=2x+A^Tv=0\\
+x=-\frac{1}{2}A^Tv\\
+g(v)=\frac{1}{4}v^TAA^Tv+v^T(-\frac{1}{2}AA^Tv-b)=-\frac{1}{4}v^TAA^Tv-v^Tb
+\]</span> which is a concave quadratic function.</p>
+<p><strong>Standard form LP</strong> <span class="math display">\[
+\coo[c^Tx]
+{
+Ax=b\\x\succeq 0
+}
+\]</span> The Lagrangian <span class="math inline">\(L(x,\lambda,v)= c^Tx -\lambda^T x+v^T(Ax-b)\)</span></p>
+<p>The dual function <span class="math inline">\(g(\lambda,v) = \inf_x L(x,\lambda,v)\)</span> <span class="math display">\[
+\inf_x(c^Tx -\lambda^T x+v^T(Ax-b))=\\
+-v^Tb+\inf_x(c^T-\lambda^T+v^TA)x
+\]</span> Therefore <span class="math display">\[
+g(\lambda,v)=
+\begin{cases}
+-v^Tb&amp;c^T-\lambda^T+v^TA=0\\
+-\infty&amp;otherwise.
+\end{cases}
+\]</span></p>
+<h3 id="the-lagrange-dual-function-and-conjugate-functions">5.1.6 The Lagrange dual function and conjugate functions</h3>
+<p>Recall that the conjugate <span class="math inline">\(f^*\)</span> of a function <span class="math inline">\(f\)</span> is given by <span class="math display">\[
+f^*(y)=\sup_{x\in domf}(y^Tx-f(x))
+\]</span> The conjugate function and Lagrange dual function are closely related.</p>
+<p>Consider an optimization problem with linear inequality and equality constraints, <span class="math display">\[
+\coo[f_0(x)]
+{
+Ax\preceq b\\Cx=d
+}
+\]</span> We can write the dual function as <span class="math display">\[
+g(\lambda,v)=\inf _x(f_0(x)+\lambda^T(Ax-b)+v^T(Cx-d))\\
+=-b^T\lambda-d^Tv+\inf_x(f_0(x)+(A^T\lambda+C^Tv)^Tx)\\
+=-b^T\lambda-d^Tv-f_0^*(-A^T\lambda-C^Tv)
+\]</span></p>
+<h2 id="the-lagrange-dual-problem">5.2 The Lagrange dual problem</h2>
+<p>For each pair <span class="math inline">\((\lambda,v)\)</span> with <span class="math inline">\(\lambda\ge 0\)</span>, the Lagrange dual function gives us a lower bound on the optimal value <span class="math inline">\(p^\star\)</span> of the optimization problem. We hope to know the best lower bound <span class="math display">\[
+\text{maxmize    } g(\lambda,v)\\
+\text{subject to    } \lambda\succeq 0
+\]</span> This problem is called Lagrange dual problem. The original problem is sometimes called the primal problem. We refer to <span class="math inline">\((\lambda^\star,v^\star)\)</span> as dual optimal or optimal Lagrange multipliers.</p>
+<h3 id="making-dual-constraint-explicit">5.2.1 Making dual constraint explicit</h3>
+<p>We have known that the Lagrange dual function for the standard form LP <span class="math display">\[
+\coo[c^Tx]{Ax=b\\x\succeq0} 
+\]</span> is given by <span class="math display">\[
+g(\lambda,v)=\begin{cases}-b^Tv&amp;A^Tv-\lambda+c=0\\-\infty &amp; otherwise\end{cases}
+\]</span> We can form an equivalent problem by making these equality constraints explicit <span class="math display">\[
+\coo[b^Tv]{A^Tv-\lambda+c=0\\ \lambda\succeq 0}
+\]</span> The problem can be further simplified as <span class="math display">\[
+\coo[b^Tv]{A^Tv+c\succeq 0}
+\]</span></p>
+<h3 id="weak-duality">5.2.2 Weak duality</h3>
+<p>The optimal value of the Lagrange dual problem, which we denote as <span class="math inline">\(d^\star\)</span>. We have the simple but important inequality <span class="math display">\[
+d^\star \le p^\star
+\]</span> which holds even if the original problem is not convex. This property is called <strong>weak duality</strong>.</p>
+<p>The weak duality inequality holds when <span class="math inline">\(d^\star\)</span> and <span class="math inline">\(p^\star\)</span> are infinite. For example, if the primal problem is unbounded below, so that <span class="math inline">\(p^\star=-\infty\)</span>, we must have <span class="math inline">\(d^\star =-\infty\)</span>, i.e. the Lagrange dual problem is infeasible. Conversely, if the dual problem is unbounded above, the primal problem is infeasible.</p>
+<p>We refer to the difference <span class="math inline">\(p^\star -d^\star\)</span> as the optimal <strong>duality gap</strong>.</p>
+<h3 id="strong-duality-and-slaters-constraint-qualification">5.2.3 Strong duality and Slater's constraint qualification</h3>
+<p>if the equality <span class="math display">\[
+d^\star=p^\star 
+\]</span> holds, we say that strong duality holds.</p>
+<p>Strong duality does not hold in general. But if the primal problem is convex, we usually have strong duality. There are many results that establish conditions on the problem under which strong duality holds. These conditions are called constraint qualifications.</p>
+<p>==Slater's Condition==</p>
+<p>There exists an <span class="math inline">\(x\in \text{relint }\mathcal D\)</span> such that if the first k constraint functions <span class="math inline">\(f_1,\dotsm,f_k\)</span> are affine, then <span class="math display">\[
+f_i(x)\le0,i=1,\dotsm,k\\
+f_i(x)&lt;0,i=k+1,\dotsm,m\\
+Ax=b
+\]</span> Slater's theorem states that strong duality holds if Slater's condition holds.</p>
+<h3 id="examples-1">5.2.4 Examples</h3>
+<p>Least-squares solution of equations <span class="math display">\[
+\coo[x^Tx]{Ax=b}
+\]</span> The associated dual problem is <span class="math display">\[
+\text{maxmize }-(1/4)v^TAA^Tv-b^Tv
+\]</span> We have <span class="math display">\[
+p^\star=d^\star
+\]</span></p>
+<h3 id="mixed-strategies-for-matrix-games">5.2.5 Mixed strategies for matrix games</h3>
+<p>In this section, we use strong duality to derive a basic result for zero-sum matrix games. The players use randomized strategies, then the expected payoff from player 1 to player 2 is then <span class="math display">\[
+\sum_{k=1}^n\sum_{l=1}^m u_kv_lP_{kl}=u^TPv
+\]</span> Player 1 wishes to choose u to minimize <span class="math inline">\(u^TPv\)</span> while the player 2 wishes to maximize.</p>
+<p>If player 1 knows the strategy of player 2, (player 2 will choose <span class="math inline">\(v\)</span> to maximize <span class="math inline">\(u^TPv\)</span>, which results in the following) <span class="math display">\[
+\sup\{u^TPv| v\succeq 0,1^Tv=1\}=\max_{i=1,\dotsm,m} (P^Tu)_i
+\]</span> The best thing player 1 can do is to minimize the worst case, <span class="math display">\[
+\coo[\max_{i=1,\dotsm,m} (P^Tu)_i]{u\succeq 0&amp;1^Tu=1}
+\]</span> Similarly, if player 2 knows the strategy of player 1, we have <span class="math display">\[
+\coox[\min_{i=1,\dotsm,m} (Pv)_i]{v\succeq 0&amp;1^Tv=1}
+\]</span></p>
+<p>It can be shown the dual gap is zero.</p>
+<h2 id="geometric-interpretation">5.3 Geometric interpretation</h2>
+<p>Intuitive! Good!</p>
+<h2 id="saddle-point-interpretation">5.4 Saddle-point interpretation</h2>
+<p>Skipped</p>
+<h2 id="optimality-conditions">5.5 Optimality conditions</h2>
+<h3 id="certificate-of-suboptimality-and-stopping-criteria">5.5.1 Certificate of suboptimality and stopping criteria</h3>
+<p>If we can find a dual feasible <span class="math inline">\((\lambda,v)\)</span>, we establish a lower bound on the optimal value of the primal problem: <span class="math inline">\(p^\star \ge g(\lambda,v)\)</span> . Dual feasible points allow us to bound how suboptimal a given feasible point is, without knowing the exact value of <span class="math inline">\(p^\star\)</span> <span class="math display">\[
+f_0(x)-p^\star\le f_0(x)-g(\lambda,v) 
+\]</span> In particular, this establishes that <span class="math inline">\(x\)</span> is <span class="math inline">\(\epsilon-\)</span>suboptimal with <span class="math inline">\(\epsilon= f_0(x)-g(\lambda,v)\)</span></p>
+<p>This can be used as a stop criteria.</p>
+<h3 id="complementary-slackness">5.5.2 Complementary slackness</h3>
+<p>If the strong duality holds, Let <span class="math inline">\(x^\star\)</span> be a primal optimal and <span class="math inline">\((\lambda^\star, v^\star)\)</span> be a dual optimal point. This means that <span class="math display">\[
+f_0(x^\star)=g(\lambda^\star,v^\star)\\
+=\inf_x(f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x))\\
+\le f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star f_i(x^\star)+\sum_{i=1}^pv_i^\star h_i(x^\star)\\
+\le f_0(x^\star)
+\]</span> We conclude that two inequalities in this chain hold with equality.</p>
+<p>That means <span class="math display">\[
+h_i(x^\star)=0\\
+\sum_{i=1}^m \lambda_i^\star f_i(x^\star)=0
+\]</span> The second equality means <span class="math display">\[
+\lambda_i^\star &gt;0\implies f_i(x^\star)=0\\
+f_i(x^\star)&lt;0 \implies \lambda_i^\star=0
+\]</span></p>
+<h3 id="kkt-optimality-conditions">5.5.3 KKT optimality conditions</h3>
+<p>We now assume that the functions are differentiable, but we make no assumptions yet about convexity.</p>
+<p>KKT condition for problems</p>
+<p>Since <span class="math inline">\(x^\star\)</span> minimizes <span class="math inline">\(L(x,\lambda^\star,v^\star)\)</span>, the gradient must vanish. Thus we have <span class="math display">\[
+\begin{array}{rcl}
+f_i(x^\star)&amp;\le&amp; 0\\
+h_i(x^\star) &amp;=&amp;0\\
+\lambda_i^\star&amp;\ge&amp; 0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;0\\
+\nabla f_0(x^\star)+\sum_{i=1}^m \lambda_i^\star \nabla f_i(x^\star)+\sum_{i=1}^p v_i^\star \nabla h_i(x^\star)&amp;=&amp;0
+\end{array}
+\]</span> which are called the Karush-Kuhn-Tucker (KKT) conditions.</p>
+<p>To summarize, for any optimization problem with differentiable objective and constraint functions for which strong duality obtains, any pair of primal and dual optimal points must satisfy the KKT conditions.</p>
+<p>When the primal problem is convex, the KKT conditions are also sufficient for the points to be primal and dual optimal.</p>
+<h3 id="mechanic-interpretation-of-kkt-conditions">5.5.4 Mechanic interpretation of KKT conditions</h3>
+<p>The potential energy in the springs as a function of the block positions, is given by <span class="math display">\[
+f_0(x_1,x_2)=\frac{1}{2}k_1x_1^2+\frac{1}{2}k_2(x_2-x_1)^2+\frac{1}{2}k_3(l-x_2)^2
+\]</span> The equilibrium position <span class="math inline">\(x^\star\)</span> is the position that minimizes the potential energy subject to the inequalities <span class="math display">\[
+w/2-x_1\le 0\\
+w+x_1-x_2\le 0\\
+w/2-l+x_2\le 0
+\]</span> The KKT conditions for the problem consist of the constraints, <span class="math inline">\(\lambda_i\ge 0\)</span>, the complementary slackness conditions <span class="math display">\[
+\lambda_1(w/2-x_1)= 0\\
+\lambda_2(w+x_1-x_2)= 0\\
+\lambda_3(w/2-l+x_2)= 0
+\]</span> and the zero gradient condition <span class="math display">\[
+\begin{bmatrix}
+k_1x_1-k_2(x_2-x_1)\\k_2(x_2-x_1)-k_3(l-x_2)
+\end{bmatrix}+
+\lambda_1
+\begin{bmatrix}
+-1\\0
+\end{bmatrix}+
+\lambda_2
+\begin{bmatrix}
+1\\-1
+\end{bmatrix}+
+\lambda_3
+\begin{bmatrix}
+0\\1
+\end{bmatrix}=0
+\]</span> The gradient condition can be interpreted as the force balance equations for the two blocks.</p>
+<p><span class="math inline">\(\lambda_1\)</span> is the force from the left wall, <span class="math inline">\(\lambda_2\)</span> is the force between two blocks' contact, <span class="math inline">\(\lambda_3\)</span> is the force from the right wall. If no contact, the force will be zero, which is decided by the slackness conditions.</p>
+<h3 id="solving-the-primal-problem-via-the-dual">5.5.5 Solving the primal problem via the dual</h3>
+<p>Suppose we have strong duality and an optimal <span class="math inline">\((\lambda^\star, v^\star)\)</span> is known. Suppose the solution of <span class="math display">\[
+\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x)
+\]</span> is unique. Then if the solution is primal feasible, it must be primal optimal. If it is not primal feasible, then no primal optimal point can exist.</p>
+<h2 id="pertubation-and-sensitivity-analysis">5.6 Pertubation and sensitivity analysis</h2>
+<h2 id="examples-2">5.7 Examples</h2>
+<p>In this section, we show by example that simple equivalemt reformulations of a problem can lead to very different dual problems.</p>
+<h2 id="theorems-of-alternatives">5.8 Theorems of alternatives</h2>
+<h3 id="weak-alternatives-via-the-dual-function">5.8.1 Weak alternatives via the dual function</h3>
+<h2 id="generalized-inequalities">5.9 Generalized inequalities</h2>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/Convex Optimization/4.2 Convex Optimization Problems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/05/25/Convex Optimization/4.2 Convex Optimization Problems/" class="post-title-link" itemprop="url">4. Convex Optimization Problem (2)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-25 13:44:08" itemprop="dateCreated datePublished" datetime="2019-05-25T13:44:08+08:00">2019-05-25</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-25 23:20:24" itemprop="dateModified" datetime="2019-08-25T23:20:24+08:00">2019-08-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="linear-optimization-problems">4.3 Linear Optimization problems</h2>
+<p>When the objective and constraint functions are all affine, the problem is called a linear program (LP). <span class="math display">\[
+\coo[c^Tx+d]
+{Gx\preceq h\\Ax=b}
+\]</span> It is common to omit the constant <span class="math inline">\(d\)</span> in the objective function because it does not affect the optimal set.</p>
+<p>The feasible set if the LP is a polyhedron <span class="math inline">\(\mathcal P\)</span>. Two special cases are widely encountered.</p>
+<p>==Standard form and inequality form==</p>
+<p>The only inequalities are componentwise nonnegative constraints <span class="math inline">\(x\succeq 0\)</span> <span class="math display">\[
+\coo[c^Tx]
+{Ax=b\\x\succeq 0}
+\]</span> If the LP has no equality constraints, is called an ==inequality form== LP, usually written as <span class="math display">\[
+\coo[c^Tx]{Ax\preceq b}
+\]</span> Converting LPs to standard form</p>
+<p>First, introduce slack variable <span class="math inline">\(s_i\)</span> <span class="math display">\[
+\coo[c^Tx+d]
+{Gx+s=h\\Ax=b\\s\succeq 0}
+\]</span> Then express the variable x as the difference of two nonnegative variables <span class="math inline">\(x^+\)</span> and <span class="math inline">\(x^-\)</span>. Then, <span class="math inline">\(x=x^+-x^-\)</span></p>
+<p>This gives the problem <span class="math display">\[
+\coo[c^Tx^+-c^Tx^-+d]
+{Gx^+-Gx^-+s=h\\Ax^+-Ax^-=b\\x^+\succeq0,x^-\succeq0,s\succeq0}
+\]</span></p>
+<h3 id="examples">4.3.1 Examples</h3>
+<p>==Diet problem==</p>
+<p>A healthy diet contains m different nutrients in quantities at least equal to <span class="math inline">\(b_1,\dotsm.b_m\)</span> We can compose such a diet by choosing nonnegative quantities <span class="math inline">\(x_1,\dotsm,x_n\)</span> of n different foods. One unit quantity of food j contains an amount <span class="math inline">\(a_{ij}\)</span> of nutrient <span class="math inline">\(i\)</span>, and has a cost of <span class="math inline">\(c_j\)</span> . We want to determine the cheapest diet that satisfies the requirements. This problem can formulated as <span class="math display">\[
+\coo [c^Tx]
+{Ax\succeq b\\x\succeq 0}
+\]</span> ==Chebyshe center of a polyhedron==</p>
+<p>We consider the problem of finding the largest Euclidean ball that lies in a polyhedron described by linear inequalities, <span class="math display">\[
+\mathcal P=\{x\in R^n|a_i^T x\le b_i,i=1,\dotsm,m\}
+\]</span> The optimal point of this problem is the deepest point inside the polyhedron.</p>
+<p>We present the ball as <span class="math display">\[
+\mathcal B=\{x_c+u|\space||u||_2\le r\}
+\]</span> The variables in the problem are the center <span class="math inline">\(x_c\in R^n\)</span> and the radius r; we wish to maximize r subject to the constraint <span class="math inline">\(\mathcal B \subseteq \mathcal P\)</span></p>
+<p>We start considering the simpler constraint that <span class="math inline">\(\mathcal B\)</span> lies in one halfspace <span class="math inline">\(a_i^Tx\le b_i\)</span> <span class="math display">\[
+||u||_2\le r \implies a_i^T(x_c+u)\le b_i
+\]</span> since <span class="math display">\[
+\sup\{a_i^T u|\space ||u||_2\le r\}=r||a_i||_2
+\]</span> we have <span class="math display">\[
+||u||_2\le r \implies a_i^T(x_c+u)\le b_i\implies a_i^Tx+r||a_i||_2\le b
+\]</span> which a linear inequality in <span class="math inline">\(x_c\)</span> and <span class="math inline">\(r\)</span>. In other words, the constraint that the ball lies in the halfspace determined by the inequality <span class="math inline">\(a_i^T x\le b_i\)</span> can be written as a linear inequality.</p>
+<p>Therefore, we can form the problem in general cases, <span class="math display">\[
+\coo[r]{a_i^Tx_c+r||a_i||_2\le b_i, &amp; i=1,\dotsm,m}
+\]</span> ==Piecewise-linear minimization==</p>
+<p>Consider the (unconstraint) problem of minimizing piecewise-linear, convex function <span class="math display">\[
+f(x)=\max_{i=1,\dotsm,m}(a_i^Tx+b_i)
+\]</span> The problem can be transformed to LP by forming the epigraph problem <span class="math display">\[
+\coo [t]
+{\max_{i=1,\dotsm,m}(a_i^Tx+b_i)\le t}
+\]</span> Then <span class="math display">\[
+\coo [t]
+{a_i^Tx+b_i\le t &amp; i=1,\dotsm,m}
+\]</span></p>
+<h3 id="linear-fractional-programming">4.3.2 Linear-fractional programming</h3>
+<p><span class="math display">\[
+\coo[f_0(x)]
+{Gx\preceq h\\Ax=b}
+\]</span></p>
+<p>where the objective function is given by <span class="math display">\[
+f_0(x)=\frac{c^Tx+d}{e^Tx+f}\quad domf_0=\{x|e^Tx+f&gt;0\}
+\]</span> If the feasible set <span class="math display">\[
+\{x|Gx\preceq h, Ax=b,e^Tx+f&gt;0\}
+\]</span> is nonempty, the linear-fractional program can be transformed to an equaivalent linear program <span class="math display">\[
+\coo[c^Ty+dz]
+{Gy-hz\preceq0\\Ay-bz=0\\e^Ty+fz=1\\z\ge0}
+\]</span></p>
+<h2 id="quadratic-optimization-problems">4.4 Quadratic optimization problems</h2>
+<p>The convex optimization problem is called a quadratic program (QP) if the objective function is convex quadratic and the constraint functions are affine. <span class="math display">\[
+\coo[\frac{1}{2}x^TPx+q^Tx+r]
+{Gx\preceq h\\Ax=b}
+\]</span> If the problem is with quadratic constraints, then the problem is called a quadratically constrained quadratic program (QCQP). Quadratic programs include linear programs as a special case by taking <span class="math inline">\(P=0\)</span> . QCQP include QP as a special case by taking <span class="math inline">\(P_i=0\)</span> for <span class="math inline">\(i=1,\dotsm,m\)</span>. <span class="math display">\[
+\coo[\frac{1}{2}x^TP_0x+q_0^Tx+r_0]
+{\frac{1}{2}x^TP_1x+q_1^Tx+r_1\le 0 &amp; i=1,\dotsm,m
+\\Ax=b}
+\]</span></p>
+<h3 id="examples-1">4.4.1 Examples</h3>
+<p>==Least-squares and regression==</p>
+<p>The problem of minimizing convex quadratic function <span class="math display">\[
+||Ax-b||^2_2=x^TA^TAx-2b^TAx+b^Tb
+\]</span> is an unconstraint QP. This problem is simple enough to have the well-known analytical solution <span class="math inline">\(x=A^+ b\)</span> where <span class="math inline">\(A^+\)</span> is pseudo-inverse of A.</p>
+<p>When inequality constraints are added, the problem is called constrained regression or constrained least-squares, are there is no longer a simple analytical solution, <span class="math display">\[
+\coo[||Ax-b||_2^2]
+{l_i\le x_i\le u_i &amp; i=1,\dotsm,n}
+\]</span> ==Distance between polyhedra==</p>
+<p>The Euclidean distance between the polyhedra <span class="math inline">\(\mathcal P_1 = \{x|A_1x\preceq b_1\}\)</span> and <span class="math inline">\(\mathcal P_2\{x|A_2x\preceq b_2\}\)</span> in <span class="math inline">\(R^n\)</span> is defined as <span class="math display">\[
+dist(\mathcal P_1,\mathcal P_2)=\inf\{||x_1-x_2||_2|\space x_1\in \mathcal P_1,x_2\in \mathcal P_2\}
+\]</span> We can solve the QP <span class="math display">\[
+\coo[||x_1-x_2||^2_2]
+{A_1x_1\preceq b_1 &amp; A_2x_2\preceq b_2}
+\]</span></p>
+<h3 id="second-order-cone-programming">4.4.2 Second-order cone programming</h3>
+<p>A problem is closely related to quadratic programming is the second-order cone program (SOCP) <span class="math display">\[
+\coo[f^Tx]
+{||A_ix+b_i||_2\le c_i^Tx+d_i\quad i=1,\dotsm,m\\
+Fx=g}
+\]</span> The second-order cone of dimension <span class="math inline">\(k+1\)</span> is defined as <span class="math display">\[
+\mathscr{C}=\{\begin{bmatrix}u\\t\end{bmatrix}\space |u\in R^k,t\in \R,||u||\le t\}
+\]</span> The inequality constraints like such kind is called second order cone constraints since it is the same as requiring the affine function <span class="math inline">\((Ax+b,c^Tx+d)\)</span> to lie in the second order cone in <span class="math inline">\(R^{k+1}\)</span></p>
+<p>==Robust linear Programming==</p>
+<p>We consider a linear program in inequality form <span class="math display">\[
+\coo[c^T]{a_i^Tx\le b_i}
+\]</span> in which <span class="math inline">\(a_i\)</span> are known to lie in given ellipsoids <span class="math display">\[
+a_i \in \varepsilon_i=\{\bar a_i+P_i u|\space||u||_2\le 1\}
+\]</span> Then we have the robust linear programming <span class="math display">\[
+\coo[c^T]{a_i^Tx\le b_i&amp;a_i\in \varepsilon_i}\\
+a_i^Tx\le b_i \iff \sup\{a_i^Tx|a_i\in \varepsilon _i\}\le b_i\\
+\iff \sup\{\bar a_i^Tx+u^TP_i^Tx|\space ||u||_2\le 1\}\le b_i\\
+\iff \bar a_i^Tx+||P_i^Tx||_2\le b_i
+\]</span> Then we have <span class="math display">\[
+\coo[c^T]{\bar a_i^Tx+||P_i^Tx||_2\le b_i}\\
+\]</span></p>
+<h2 id="geometric-programming">4.5 Geometric Programming</h2>
+<p>In this section, we describe a family of optimization problems that are not convex in their natural form. These problems, however can be transformed to convex optimization problems, by a change of variables and a transformation of the objective and constraint functions.</p>
+<h3 id="monomials-and-posynomials">4.5.1 Monomials and posynomials</h3>
+<p>A function <span class="math inline">\(f:R^n\rightarrow R\)</span> with <span class="math inline">\(dom f=R^n_{++}\)</span> defined as <span class="math display">\[
+f(x)=cx_1^{a_1}x_2^{a_2}\dotsm x_n^{a_n}
+\]</span> where <span class="math inline">\(c&gt;0\)</span> and <span class="math inline">\(a_i \in R\)</span> is called a monomial function or simply a monomial. A sum of monomials in the form <span class="math display">\[
+f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}} x_2^{a_{2k}} \dotsm x_n^{a_{nk}}
+\]</span> where <span class="math inline">\(c_k&gt;0\)</span> is called a posynomial function or simply posynomial.</p>
+<p>Posynomials are closed under addition, multiplication, and nonnegative scaling. Monomials are closed under multiplication and division.</p>
+<h3 id="geometric-programming-1">4.5.2 Geometric programming</h3>
+<p>An optimization problem of the form <span class="math display">\[
+\coo[f_0(x)]
+{f_i(x)\le 1 &amp; i=1,\dotsm,m\\h_i(x)=1 &amp; i=1,\dotsm,p}
+\]</span> where <span class="math inline">\(f_0\space \dotsm\space f_m\)</span> are posynomials and <span class="math inline">\(h_1\space \dotsm\space h_p\)</span> are monomials is called a geometric program (GP).</p>
+<h3 id="geometric-program-in-convex-form">4.5.3 Geometric program in convex form</h3>
+<p>GP are not convex but they can be transformed to convex problems by a change of variables and a transformation of the objective and constraint functions.</p>
+<p>We define <span class="math inline">\(y_i=\log x_i\)</span> so <span class="math inline">\(x_i=e^{y_i}\)</span></p>
+<p>then <span class="math display">\[
+f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}} x_2^{a_{2k}} \dotsm x_n^{a_{nk}}\\
+f(x)=\sum_{k=1}^K e^{a_k^Ty+b_k}\quad b_k=\log c_k
+\]</span> Then the problem is <span class="math display">\[
+\coo [\sum_{k=1}^{K_0}e^{a^T_{0k}y+b_{0k}}]{\sum_{k=1}^{K_i}e^{a^T_{ik}y+b_{ik}}\le 1\\
+e^{g_i^Ty+h_i}=1
+}
+\]</span> Now we transform the objective functions and constraint functions by taking log <span class="math display">\[
+\coo[\tilde f_0(y)=\log {(\sum_{k=1}^{K_0}e^{a^T_{0k}y+b_{0k}})}]
+{\tilde f_i(y)=\log {(\sum_{k=1}^{K_i}e^{a^T_{ik}y+b_{ik}})}\le0\\
+\tilde h_i(y)=g_i^Ty+h_i=0
+}
+\]</span></p>
+<p>Since <span class="math inline">\(\tilde f_i\)</span> are log-sum-exp functions that are convex and <span class="math inline">\(\tilde h_i\)</span> is affine. This problem is convex.</p>
+<p>==Examples==</p>
+<p>Frobenius norm diagonal scalling</p>
+<p>Consider a matrix <span class="math inline">\(M\in R^{n\times n}\)</span>. Suppose we scale the coordinates. In the new coordinates, the linear function is given by <span class="math display">\[
+\tilde y=DMD^{-1}\tilde u 
+\]</span> where <span class="math inline">\(D\)</span> is diagonal with <span class="math inline">\(D_{ii}\ge 0\)</span></p>
+<p>Suppose we choose the scaling in such way that the resulting matrix <span class="math inline">\(DMD^{-1}\)</span> is small. We use F norm to measure the size of the matrix. <span class="math display">\[
+||DMD^{-1}||_F^2=tr((DMD^{-1})^T(DMD^{-1}))\\
+=\sum_{i,j=1}^n(DMD^{-1})^2_{ij}\\
+=\sum_{i,j=1}^nM_{ij}^2d_i^2/d_j^2
+\]</span> This is a geometric programming problem.</p>
+<h2 id="generalized-inequality-constraints">4.6 Generalized inequality constraints</h2>
+<p>One useful generalization of the standard form convex optimization problem is obtained by allowing the inequality functions to be vector valued. <span class="math display">\[
+\coo[f_0(x)]{f_i(x)\preceq_{K_i}0\\Ax=b}
+\]</span> where <span class="math inline">\(f_0:R^n\rightarrow R\)</span>, <span class="math inline">\(K_i\subseteq R^{k_i}\)</span> are proper cones and <span class="math inline">\(f_i:R^n\rightarrow R^{k_i}\)</span> are <span class="math inline">\(K_i-\)</span>convex .</p>
+<h3 id="conic-form-problem">4.6.1 Conic form problem</h3>
+<p><span class="math display">\[
+\coo[c^T x]
+{
+Fx+g\preceq_K0\\
+Ax=b
+}
+\]</span></p>
+<p>When K is nonnegative orthant, the conic form problem reduces to a linear program.</p>
+<h3 id="semidefinite-programming">4.6.2 Semidefinite programming</h3>
+<p>When <span class="math inline">\(K\)</span> is <span class="math inline">\(S_+^k\)</span>, the cone of positive semidefinite <span class="math inline">\(k\times k\)</span> matrices, the associated conic form problem is called a semidefinite program (SDP) <span class="math display">\[
+\coo[c^Tx]{x_1F_1+x_2F_2+\dotsm+x_nF_n+G\preceq 0\\Ax=b}
+\]</span> It is common to refer to a program with linear objective, linear equality and inequality constraints, and several LMI constraints <span class="math display">\[
+\coo[c^Tx]{F^{(i)}(x)=x_1F_1^{(i)}+\dotsm+x_nF_n^{(i)}+G^{(i)}\preceq 0\\Gx\preceq h\\
+Ax=b}
+\]</span></p>
+<h3 id="second-order-cone-programming-1">4.6.3 Second-order cone programming</h3>
+<p>The SOCP can be expressed as a conic form problem <span class="math display">\[
+\coo[c^Tx]{-(A_ix+b_i,c_i^Tx+d_i)\preceq_{K_i} 0\\Fx=g}
+\]</span> in which <span class="math display">\[
+K_i\{(y,t)\in R^{n_i+1}|\space ||y||_2\le t\}
+\]</span></p>
+<h2 id="vector-optimization">4.7 Vector Optimization</h2>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>
