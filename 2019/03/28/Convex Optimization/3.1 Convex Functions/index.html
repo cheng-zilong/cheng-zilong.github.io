@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="3. Convex Functions 3.1 Basic properties and examples 3.1.1 Definition A function \(f: \mathbb R^n\rightarrow \mathbb R\) is convex if \(\text{dom} f\) is a convex set and if for all \(x,y\in\text{">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-08T09:38:49.928Z">
+<meta property="og:updated_time" content="2019-09-08T09:44:12.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3. Convex Functions (1)">
 <meta name="twitter:description" content="3. Convex Functions 3.1 Basic properties and examples 3.1.1 Definition A function \(f: \mathbb R^n\rightarrow \mathbb R\) is convex if \(\text{dom} f\) is a convex set and if for all \(x,y\in\text{">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-08 17:38:49" itemprop="dateModified" datetime="2019-09-08T17:38:49+08:00">2019-09-08</time>
+                <time title="Modified: 2019-09-08 17:44:12" itemprop="dateModified" datetime="2019-09-08T17:44:12+08:00">2019-09-08</time>
               </span>
             
           
@@ -399,13 +399,20 @@ v^T\nabla^2 f(z) v=-(1^Tz)^{-2}v^Tzz^Tv+(1^Tz)^{-1}v^T\text{diag}(z)v\\
 =(1^Tz)^{-2}[(1^Tz)v^T\text{diag}(z)v-v^Tzz^Tv]\\
 =(1^Tz)^{-2}\left[\left(\sum_{i=1}^n z_i \right) \left(\sum_{i=1}^n v_i^2z_i\right)-\left(\sum_{i=1}^n v_iz_i\right)^2\right].
 \]</span> By Cauchy-Schwarz inequality <span class="math inline">\((a^Ta)(b^Tb)\ge(a^Tb)^2\)</span>, where <span class="math inline">\(a=\sqrt z_i\)</span> and <span class="math inline">\(b=v_i\sqrt z_i\)</span>, we can know the above matrix is positive definite.</p></li>
-<li><p>Geometric mean. <span class="math inline">\(f(x)=(\prod_{i=1}^n x_i)^{1/n}\)</span> is <strong>concave</strong> on <span class="math inline">\(\text{dom} f=R^n_{++}\)</span>. $$ =(<em>{k=1}^n x_k)^{1/n-1} = (</em>{k=1}^n x_k)^{1/n}\</p>
-<p>=(1-n) (_{k=1}^n x_k)<sup>{1/n}\ =(<em>{k=1}^n x_k)<sup>{1/n}. <span class="math display">\[
-Then we have
-\]</span> </sup>2f(x)=(</em>{k=1}</sup>n x_k)<sup>{1/n}(qq</sup>T-ndiag(1/x_1<sup>2,,1/x_n</sup>2) ), $$ where <span class="math inline">\(q_i=\frac{1}{x_i}\)</span>.</p>
+<li><p>Geometric mean. <span class="math inline">\(f(x)=(\prod_{i=1}^n x_i)^{1/n}\)</span> is <strong>concave</strong> on <span class="math inline">\(\text{dom} f=R^n_{++}\)</span>. <span class="math display">\[
+\frac{\partial f(x)}{\partial x_i}=\frac{1}{n}(\prod_{k=1}^n x_k)^{1/n-1}
+\frac{\prod_{k=1}^{n} x_k}{x_i}=
+\frac{1}{n x_i}(\prod_{k=1}^n x_k)^{1/n}\\
+\frac{\partial f^2(x)}{\partial x_i\partial x_i}=(1-n)\frac{1}{(nx_i)^2} (\prod_{k=1}^n x_k)^{1/n}\\
+\frac{\partial f^2(x)}{\partial x_i\partial x_j}=\frac{1}{n^2x_ix_j}(\prod_{k=1}^n x_k)^{1/n}.
+\]</span> Then we have <span class="math display">\[
+\nabla^2f(x)=\frac{1}{n^2}(\prod_{k=1}^n x_k)^{1/n}\left(qq^T-n\space diag(1/x_1^2,\dotsm,1/x_n^2)\right)
+\]</span> where <span class="math inline">\(q_i=\frac{1}{x_i}\)</span>.</p></li>
+</ol>
 <p>Then for any <span class="math inline">\(v\)</span>, we have <span class="math display">\[
-v^T \nabla^2 f(x)v =\frac{1}{n^2}(\prod_{k=1}^n x_k)^{1/n}\left(\left(\sum v_iq_i\right)^2-n\sum {v_i^2q_i^2}   \right)\le 0.
-\]</span></p></li>
+    v^T \nabla^2 f(x)v =\frac{1}{n^2}(\prod_{k=1}^n x_k)^{1/n}\left(\left(\sum v_iq_i\right)^2-n\sum {v_i^2q_i^2}   \right)\le 0.
+    \]</span></p>
+<ol start="11" type="1">
 <li><p>Log-determinant. For the function <span class="math inline">\(f(X)=\log \det X\)</span> is concave.</p>
 <p>We can verify concavity by considering an arbitrary line, given by <span class="math inline">\(X=Z+tV\)</span> where <span class="math inline">\(Z,V\in \mathbb S^n\)</span>. <span class="math display">\[
 g(t)=f(Z+tV)=\log \det (Z+tV)\\
