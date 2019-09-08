@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="3. Convex Functions 3.1 Basic properties and examples 3.1.1 Definition A function \(f: \mathbb R^n\rightarrow \mathbb R\) is convex if \(\text{dom} f\) is a convex set and if for all \(x,y\in\text{">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-08T09:20:33.000Z">
+<meta property="og:updated_time" content="2019-09-08T09:30:36.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3. Convex Functions (1)">
 <meta name="twitter:description" content="3. Convex Functions 3.1 Basic properties and examples 3.1.1 Definition A function \(f: \mathbb R^n\rightarrow \mathbb R\) is convex if \(\text{dom} f\) is a convex set and if for all \(x,y\in\text{">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-08 17:20:33" itemprop="dateModified" datetime="2019-09-08T17:20:33+08:00">2019-09-08</time>
+                <time title="Modified: 2019-09-08 17:30:36" itemprop="dateModified" datetime="2019-09-08T17:30:36+08:00">2019-09-08</time>
               </span>
             
           
@@ -436,34 +436,30 @@ f(x,Y)=x^TY^{-1}x
 \text{epi} f=\{(x,Y,t)\;|\;\space Y\succ 0, x^TY^{-1}x\le t\}\\
 =\{(x,Y,t)\;|\;\space Y\succ 0, t-x^TY^{-1}x\ge 0\}.
 \]</span> By Schur complement <span class="math display">\[
-S=t-x^TY^{-1}x\quad X=
+S=t-x^TY^{-1}x\ge0\iff  X=
 \begin{bmatrix}
 Y &amp; x\\
 x^T &amp; t
-\end{bmatrix}
-\]</span> and we have <span class="math display">\[
-\det X=\det Y\det S
-\]</span> we have <span class="math display">\[
-epi f=\{(x,Y,t)|\space Y\succ 0, \begin{bmatrix}
+\end{bmatrix}\succeq 0.
+\]</span> We have <span class="math display">\[
+\text{epi} f=\{(x,Y,t)|\space Y\succ 0, \begin{bmatrix}
 Y &amp; x\\x^T &amp; t
-\end{bmatrix}\succeq 0\}\\
-\]</span> The conditions are linear matrix inequality in (x,Y,t) and therefore, $epi f $ is convex.</p>
+\end{bmatrix}\succeq 0\}.
+\]</span> The conditions are linear matrix inequality in <span class="math inline">\((x,Y,t)\)</span> and therefore, $ f $ is convex.</p>
 <h3 id="jensens-inequality-and-extensions">3.1.8 Jensen's inequality and extensions</h3>
 <p>The basic inequality <span class="math display">\[
 f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)
 \]</span> is sometimes called <strong>Jensen's inequality</strong> . It is easily extended to convex combinations of more than two points. <span class="math display">\[
-f(\theta_1x_1+\dotsm+\theta_nx_n)\le\theta_1f(x_1)+\dotsm+\theta_nf(x_n)
-\]</span> if <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(\theta_1+\dotsm+\theta_n =1\)</span> and <span class="math inline">\(\theta_1,\theta_2,\dotsm,\theta_n\ge0\)</span></p>
+f(\theta_1x_1+\dotsm+\theta_nx_n)\le\theta_1f(x_1)+\dotsm+\theta_nf(x_n).
+\]</span> if <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(\theta_1+\dotsm+\theta_n =1\)</span> and <span class="math inline">\(\theta_1,\theta_2,\dotsm,\theta_n\ge0\)</span>.</p>
 <p>This is also correct in continuous cases <span class="math display">\[
-f(\int_sp(x)xdx)\le\int_sf(x)p(x)dx
-\]</span> if <span class="math inline">\(f\)</span> is convex, <span class="math inline">\(p(x)\ge0\)</span>,<span class="math inline">\(\int_sp(x)dx=1\)</span></p>
-<p>In the most general case, we can take any probability measure with support in <span class="math inline">\(\text{dom} f\)</span> and if f is convex, we have <span class="math display">\[
-f(Ex)\le Ef(x)
+f\left(\int_sp(x)xdx\right)\le\int_sf(x)p(x)dx
+\]</span> if <span class="math inline">\(f\)</span> is convex, <span class="math inline">\(p(x)\ge0\)</span>,<span class="math inline">\(\int_sp(x)dx=1\)</span>.</p>
+<p>In the most general case, we can take any probability measure with support in <span class="math inline">\(\text{dom} f\)</span> and if <span class="math inline">\(f\)</span> is convex, we have <span class="math display">\[
+f(Ex)\le Ef(x).
 \]</span></p>
 <h3 id="inequalities">3.1.9 Inequalities</h3>
 <p>Many famous inequalities can be derived by applying Jensen's inequality to some appropriate convex function.</p>
-<p>Exercises</p>
-<p>3.1</p>
 
     </div>
 
@@ -480,8 +476,8 @@ f(Ex)\le Ef(x)
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/03/28/Convex Optimization/3.2 Convex Functions/" rel="next" title="3. Convex Functions (2)">
-                  <i class="fa fa-chevron-left"></i> 3. Convex Functions (2)
+                <a href="/2019/03/24/Convex Optimization/2. Convex Set/" rel="next" title="2. Convex Sets">
+                  <i class="fa fa-chevron-left"></i> 2. Convex Sets
                 </a>
               
             </div>
@@ -490,8 +486,8 @@ f(Ex)\le Ef(x)
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/" rel="prev" title="4. Convex Optimization Problem (1)">
-                  4. Convex Optimization Problem (1) <i class="fa fa-chevron-right"></i>
+                <a href="/2019/03/28/Convex Optimization/3.2 Convex Functions/" rel="prev" title="3. Convex Functions (2)">
+                  3. Convex Functions (2) <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
