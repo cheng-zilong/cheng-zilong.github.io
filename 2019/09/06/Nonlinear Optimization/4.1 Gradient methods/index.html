@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \min f(x)\\ s.t. x\in S \] In the situation where">
+  <meta name="description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\ \t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Orandragon&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \min f(x)\\ s.t. x\in S \] In the situation where">
+<meta property="og:description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\ \t">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-06T08:33:20.000Z">
+<meta property="og:updated_time" content="2019-09-09T17:15:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Orandragon&#39;s Blog">
-<meta name="twitter:description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \min f(x)\\ s.t. x\in S \] In the situation where">
+<meta name="twitter:description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\ \t">
   <link rel="canonical" href="http://yoursite.com/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/">
 
 
@@ -248,11 +248,19 @@
                 
               
 
-              <time title="Created: 2019-09-06 13:19:39 / Modified: 16:33:20" itemprop="dateCreated datePublished" datetime="2019-09-06T13:19:39+08:00">2019-09-06</time>
+              <time title="Created: 2019-09-06 13:19:39" itemprop="dateCreated datePublished" datetime="2019-09-06T13:19:39+08:00">2019-09-06</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-10 01:15:49" itemprop="dateModified" datetime="2019-09-10T01:15:49+08:00">2019-09-10</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -283,26 +291,170 @@
         <h1 id="gradient-methods">Gradient methods</h1>
 <h2 id="gradient-methods-for-unconstrained-optimization-problem">4.1 Gradient methods for unconstrained optimization problem</h2>
 <p>Consider the multidimensional unconstrained minimization problem <span class="math display">\[
-\min f(x)\\
-s.t. x\in S
+\begin{array}{rCl}
+\text{minimize} &amp; f(x)\\
+\text{subject to}&amp; x\in S.
+\end{array}
 \]</span> In the situation where <span class="math inline">\(\nabla f(x)=0\)</span> cannot be solved analytically, we look for an approximate solution via iterative methods.</p>
-<p><strong>Descent property</strong> At a given point <span class="math inline">\(x^*\)</span>, let <span class="math inline">\(\hat d=-\frac{\nabla f(x^*)}{||\nabla f(x^*)||}\)</span>. The value of <span class="math inline">\(f\)</span> decreases most rapidly along the unit direction <span class="math inline">\(\hat d\)</span> and the rate of change of <span class="math inline">\(f\)</span> at <span class="math inline">\(x^*\)</span> along the direction <span class="math inline">\(\hat d\)</span> is <span class="math inline">\(-||\nabla f(x^*)||\)</span>.</p>
+<p>General framework of an optimization algorithm.</p>
+<hr>
+<p>For <span class="math inline">\(k=0,1,...,\)</span> if <span class="math inline">\(x^{(k)}\)</span> is optimal stop else determine an improved estimate of the solution <span class="math inline">\(x^{(k+1)}=x^{(k)}+\alpha_{k}\times p^{(k)}\)</span> end end</p>
+<hr>
+<p>Here <span class="math inline">\(p^{(k)}\)</span> is a <strong>search direction</strong> that we hope points towards the solution, or that improves our solution in some sense. The scalar <span class="math inline">\(\alpha_k\)</span> is a step length that determines the point <span class="math inline">\(x^{(k+1)}\)</span>. Once the search direction has been solved, the step length can be solved as some auxiliary one-dimensional problems.</p>
+<p><strong>Descent property</strong> At a given point <span class="math inline">\(x^*\)</span>, let <span class="math inline">\(\hat d=-\frac{\nabla f(x^*)}{||\nabla f(x^*)||}\)</span>. The value of <span class="math inline">\(f\)</span> decreases most rapidly along the unit direction <span class="math inline">\(\hat d\)</span> and the rate of change of <span class="math inline">\(f\)</span> at <span class="math inline">\(x^*\)</span> along the direction <span class="math inline">\(\hat d\)</span> is <span class="math inline">\(-||\nabla f(x^*)||\)</span>, i.e., as <span class="math inline">\(x\)</span> moves along <span class="math inline">\(\hat d\)</span> from <span class="math inline">\(x^*\)</span> by a small distance <span class="math inline">\(\delta\)</span>, the value <span class="math inline">\(f(x)\)</span> is changed by the amount <span class="math inline">\(-||\nabla f(x^*)||\delta\)</span>.</p>
 <p>In general, a direction <span class="math inline">\(d\)</span> such that <span class="math inline">\(\langle \nabla f(x^*),d\rangle &lt;0\)</span> is called a descent direction.</p>
 <p>The direction <span class="math inline">\(-\nabla f(x^*)\)</span> is known as the steepest descent direction since it gives the fastest rate of decrease in <span class="math inline">\(f(x)\)</span> among all directions.</p>
-<p><strong>Remark</strong> The most difficult part of the steepest descent method usually is to find the <span class="math inline">\(t_k\)</span> that minimizes <span class="math inline">\(f\)</span> along the gradient direction.</p>
-<p><strong>Theorem 4.1</strong> The steepest descent method with exact linesearch moves in perpendicular steps.</p>
+<p><strong>Steepest descent method with exact line search</strong></p>
+<hr>
+<p><strong>[step 0]</strong> Select an initial point <span class="math inline">\(x^{(0)}\)</span>, and <span class="math inline">\(\epsilon&gt;0\)</span> <strong>[step k]</strong> For <span class="math inline">\(k=0,1,...,\)</span></p>
+<ol type="1">
+<li><p>evaluate <span class="math inline">\(d^{(k)} = -\nabla f(x^{(k)})\)</span></p></li>
+<li><p>if <span class="math inline">\(||d^{(k)}||&lt;\epsilon\)</span>, stop and <span class="math inline">\(x^{(k)}\)</span> is an approximate solution</p>
+<p>else</p>
+<ol type="1">
+<li><p>find the value <span class="math inline">\(t_k\)</span> that minimizes the one-dimensional function <span class="math display">\[
+g(t)=f(x^{(k)}+td^{(k)})
+\]</span></p></li>
+<li><p>set <span class="math inline">\(x^{(k+1)}=x^{(k)}+t_kd^{(k)}\)</span>.</p></li>
+</ol></li>
+</ol>
+<p>end</p>
+<hr>
+<p><strong>Remark</strong></p>
+<p>The most difficult part of the steepest descent method usually is to find the <span class="math inline">\(t_k\)</span> that minimizes <span class="math inline">\(f\)</span> along the gradient direction.</p>
+<p><strong>Theorem 4.1</strong> The steepest descent method with exact linesearch moves in <strong>perpendicular</strong> steps.</p>
+<p><strong>Remarks</strong></p>
+<ol type="1">
+<li><p>Monotonic decreasing property</p>
+<p>If <span class="math inline">\(x^{(k)}\)</span> is a steepest descent sequence for a function <span class="math inline">\(f(x)\)</span>, and if <span class="math inline">\(\nabla f(x^{(k)})\neq 0\)</span> for some <span class="math inline">\(k\)</span>, then <span class="math inline">\(f(x^{(k+1)})&lt;f(x^{(k)})\)</span>.</p></li>
+<li><p>Convergence of a steepest descent method</p>
+<p>Suppose <span class="math inline">\(f(x)\)</span> is a coercive function with continuous first derivatives on <span class="math inline">\(\mathbb R^n\)</span>. Let <span class="math inline">\(x^{(0)}\in \mathbb R^n\)</span>. Suppose <span class="math inline">\(\{x^{(k)}\}\)</span> is the steepest descent sequence for <span class="math inline">\(f(x)\)</span> with initial point <span class="math inline">\(x^{(0)}\)</span>. Then some subsequence of <span class="math inline">\(\{x^{(k)}\}\)</span> converges. The limit of any convergent subsequence of <span class="math inline">\(\{x^{(k)}\}\)</span> is a critical point of <span class="math inline">\(f(x)\)</span>.</p></li>
+</ol>
 <h3 id="convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</h3>
+<p>Here we consider <span class="math display">\[
+\text{minimize}_{x\in\mathbb R^n}\; q(x)=\frac{1}{2}x^TQx,
+\]</span> where <span class="math inline">\(Q\)</span> is symmetric positive definite.</p>
+<p><strong>Proposition</strong></p>
+<p>For a symmetric positive definite <span class="math inline">\(Q\)</span>, suppose that <span class="math inline">\(\{x^{(k)}\}\)</span> is a sequence obtained from the steepest descent method with exact line search applied to the function <span class="math inline">\(q(x)\)</span>. Then</p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(d^{k}=\nabla q(x^k)=Qx^k\)</span>, <span class="math display">\[
+\frac{q(x^{k+1})}{q(x^{k})}=1-\frac{\langle d^k,d^k\rangle^2}{\langle d^k,Qd^k\rangle\langle d^k,Q^{-1}d^k\rangle}
+\]</span></p></li>
+<li><p><span class="math display">\[
+\frac{q(x^{k+1})}{q(x^{k})}\le \left[\frac{\kappa (Q)-1}{\kappa (Q)+1}\right]^2=\rho(Q)
+\]</span></p>
+<p>where <span class="math inline">\(\kappa (Q) = \lambda_n/\lambda_1\)</span>, and <span class="math inline">\(\lambda_n\)</span> and <span class="math inline">\(\lambda_1\)</span> are the largest and smallest eigenvalues of <span class="math inline">\(Q\)</span>, respectively. The number <span class="math inline">\(\kappa(Q)\)</span> is called the condition number of <span class="math inline">\(Q\)</span>. When <span class="math inline">\(\kappa(Q)\ge 1\)</span> is small, say less than <span class="math inline">\(10^3\)</span>, <span class="math inline">\(Q\)</span> is said to be well-conditioned.</p></li>
+</ol>
+<p>Proof is intuitive and skipped.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li><p>From proposition, we see that the convergence rate <span class="math inline">\(\rho (Q)\)</span> of the steepest descent method depends on <span class="math inline">\(\kappa(Q)\)</span>. When <span class="math inline">\(\kappa(Q)\)</span> is large, the convergence rate <span class="math display">\[
+\rho(Q)\approx 1-\frac{4}{\kappa(Q)}.
+\]</span></p></li>
+<li><p>The number of iterations needed to reduce the relative error <span class="math inline">\(q(x_k)/q(x_0)\)</span> to smaller than <span class="math inline">\(\epsilon\)</span> is given by <span class="math display">\[
+k=\left[\frac{\log \epsilon }{\log \rho(Q)}\right]+1
+\]</span> where <span class="math inline">\([a]\)</span> denotes the largest integer less than or equal to <span class="math inline">\(a\)</span>.</p></li>
+</ol>
 <h3 id="convergence-rate-for-the-steepest-descent-method-for-strongly-convex-function">4.1.2 Convergence rate for the steepest descent method for strongly convex function</h3>
+<p>Let <span class="math inline">\(S\subset \mathbb R^n\)</span> be a convex set and <span class="math inline">\(f:S\rightarrow \mathbb R\)</span> a convex function. We assume that <span class="math inline">\(f\)</span> is strongly convex with parameter <span class="math inline">\(m\)</span> and has <span class="math inline">\(M\)</span>-Lipschitz continuous gradient on <span class="math inline">\(S\)</span>. Then its Hessian satisfies the following property, <span class="math display">\[
+mI\preceq H_f(x)\preceq MI\;\forall x\in S.
+\]</span> <strong>Lemma</strong></p>
+<p>Let <span class="math inline">\(x^*\)</span> be a minimizer. Then <span class="math display">\[
+f(x)-\frac{1}{2m}||\nabla f(x)||^2\le f(x^*)\le f(x)-\frac{1}{2M}||\nabla f(x)||^2 \; \forall x\in S.
+\]</span> <strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> be strongly convex with parameter <span class="math inline">\(m\)</span> and its gradient is <span class="math inline">\(M\)</span>-Lipschitz. Let <span class="math inline">\(x^*\)</span> be the unique of <span class="math inline">\(f\)</span> over <span class="math inline">\(\mathbb R^n\)</span>. Define <span class="math inline">\(E_k = f(x^k)-f(x^*)\)</span>, where <span class="math inline">\(\{x^k\}\)</span> is generated by the steepest descent method with exact linesearch. Then, <span class="math display">\[
+E_{k+1}\le E_k-\frac{1}{2M}||\nabla f(x^k)||^2\\
+E_{k+1}\le E_k\left(1-\frac{m}{M}\right).
+\]</span> Proof.</p>
+<p>By using the property of <span class="math inline">\(M\)</span>-Lipschitz, we have <span class="math display">\[
+f(y)\le f(x)+\langle \nabla f(x),y-x \rangle+\frac{M}{2}||y-x||^2\;\forall x,y\in\mathbb R^n.
+\]</span></p>
+<p>If we choose <span class="math inline">\(y=x^k-td^k\)</span>, <span class="math inline">\(d^k=\nabla f(x^k)\)</span> and <span class="math inline">\(x=x^k\)</span>, we have <span class="math display">\[
+f(x^k-td^k)\le f(x^k)-t\langle \nabla f(x^k),d^k \rangle+\frac{Mt^2}{2}||d^k||^2.
+\]</span> We define the function <span class="math display">\[
+f(t)=f(x^k)-t\langle \nabla f(x^k),d^k \rangle+\frac{Mt^2}{2}||d^k||^2.
+\]</span> Then we have <span class="math display">\[
+f_{\min}=f(\frac{1}{M})=f(x^k)-\frac{1}{2M}||d^k||^2.
+\]</span> Therefore, we have <span class="math display">\[
+f(x^{k+1})\le f(x^k)-\frac{1}{2M}||d^k||^2.
+\]</span> The first inequality can be proved.</p>
+<p>For the second inequality, since we have <span class="math display">\[
+E_k\le \frac{1}{2m}||\nabla f(x)||^2.
+\]</span> Then we have <span class="math inline">\(-||d^k||^2\le -2mE_k\)</span>. The second inequality can be proved.</p>
+<p><strong>Remark</strong></p>
+<p>From the theorem, we see that <span class="math display">\[
+E(x^{k+1})/E(x^1)\le (1-m/M)^k\le \epsilon,
+\]</span> which implies that we need the number of iterations <span class="math inline">\(k\)</span> to satisfy <span class="math display">\[
+k\ge \frac{\log \epsilon ^{-1}}{\log\rho^{-1}}\approx \frac{m}{M}\log \epsilon^{-1} \;(\text{ if }m/M\ll 1),
+\]</span> where <span class="math inline">\(\rho = 1-m/M\)</span>.</p>
 <h2 id="line-search-strategies">4.2 Line search strategies</h2>
 <ol type="1">
-<li>Minimization rule = exact line search.</li>
-<li>Armijo rule.</li>
-<li>Non-monotone line search.</li>
+<li><p>Minimization rule = exact line search. <span class="math display">\[
+\alpha_k=\arg\min\{f(x^k+\alpha d^k)\;|\;\alpha \ge 0\}.
+\]</span> If the line search interval is limited to <span class="math inline">\(\alpha \in [0,\bar \alpha]\)</span>, it is called limited minimization rule.</p></li>
+<li><p>Armijo rule (<strong>backtracking</strong> method).</p>
+<p>Let <span class="math inline">\(\sigma\in(0,0.5)\)</span> and <span class="math inline">\(\beta\in (0,1)\)</span>. Start with <span class="math inline">\(\bar\alpha\)</span> and continue with $=,,$ until the following inequality is satisfied, <span class="math display">\[
+f(x^k+\alpha d^k)\le f(x^k)+\alpha\sigma\langle \nabla f(x^k),d^k\rangle.
+\]</span> Let <span class="math inline">\(r\)</span> be the first integer satisfying the inequality. Set <span class="math inline">\(\alpha_k=\beta^r\bar \alpha\)</span>.</p></li>
+<li><p>Non-monotone line search.</p></li>
 </ol>
 <h2 id="accelerated-proximal-gradient-method-for-convex-programming">4.3 Accelerated proximal gradient method for convex programming</h2>
 <p>Consider a smooth convex function <span class="math inline">\(f\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. We are interested in solving <span class="math display">\[
-\min \{F(x):=f(x)+g(x)\;|\;x\in \mathbb R^n\}
+\min \{F(x):=f(x)+g(x)\;|\;x\in \mathbb R^n\},
 \]</span> where <span class="math inline">\(g:\mathbb R^n\rightarrow (-\infty,\infty]\)</span> is a proper closed convex function.</p>
+<p><strong>Example</strong></p>
+<p>In sparse regression problem, <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2\)</span> and <span class="math inline">\(g(x)=\rho ||x||_1\)</span>.</p>
+<p>For a given <span class="math inline">\(\bar x\)</span> and <span class="math inline">\(H\succeq 0\)</span>, consider the convex quadratic function, <span class="math display">\[
+q(x;\bar x)= f(\bar x)+\langle \nabla f(\bar x),x-\bar x\rangle +\frac{1}{2}\langle x-\bar x,H(x-\bar x)\rangle.
+\]</span> At the current point <span class="math inline">\(\bar x\)</span>, proximal gradient and APG methods solve a sub-problem of the form, <span class="math display">\[
+\bar x =\arg \min \{g(x)+q(x;\bar x)\;|\;x\in \mathbb R^n\}.
+\]</span> <strong>Accelerated proximal gradient (APG) method</strong></p>
+<p>Given a positive sequence <span class="math inline">\(\{t_k\}\)</span> such that <span class="math inline">\(t_{k+1}^2-t_{k+1}\le t_k^2\)</span> starting with <span class="math inline">\(t_0=1\)</span>, <span class="math inline">\(t_1=1\)</span>. Given <span class="math inline">\(x^0\)</span>. For <span class="math inline">\(k=0,1,\dots\)</span>, do the following iterations.</p>
+<p><strong>[Step 1]</strong> Set <span class="math inline">\(\beta_k=(t_k-1)/t_{k+1}\)</span> and <span class="math inline">\(\bar x^k=x^k+\beta(x^k-x^{k-1})\)</span>.</p>
+<p><strong>[Step 2]</strong> Compute <span class="math display">\[
+x^{k+1}=\arg \min \{g(x)+q(x;\bar x^k)\;|\;x\in \mathbb R^n\}.
+\]</span> When <span class="math inline">\(t_k=1\)</span> for all <span class="math inline">\(k\)</span>, then <span class="math inline">\(\bar x^k=x^k\)</span> for all <span class="math inline">\(k\)</span>, and the method is the standard <strong>proximal gradient method</strong>.</p>
+<p><strong>Lemma</strong></p>
+<p>Assume that <span class="math inline">\(f(\hat x)\le q(\hat x;\bar x)\)</span>. Then we have the following <strong>decent property</strong>, <span class="math display">\[
+F(x)+\frac{1}{2}||x-\bar x||_H^2\ge F(\hat x)+\frac{1}{2}||x-\hat x||_H^2\;\forall x\in \mathbb R^n.
+\]</span> <strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(x^*\)</span> be a minimizer of <span class="math inline">\(F(\cdot)\)</span>. Define <span class="math inline">\(E(\cdot)=F(\cdot)-F(x^*)\ge 0\)</span>. Assume that <span class="math inline">\(f(x^{k+1})\le q(x^{k+1};\bar x^k)\)</span> for all <span class="math inline">\(k\)</span>. Then <span class="math display">\[
+E(x^{k+1})\le \frac{1}{2t_{k+1}^2}||x^*-x^0||_H^2.
+\]</span> In practice, the sequence <span class="math inline">\(\{t_k\}\)</span> is typically defined recursively as follows, <span class="math display">\[
+t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}\implies t_k\ge \frac{k}{2}\quad \forall k\ge 1
+\]</span> Hence, <span class="math display">\[
+0\le F(x^k)-F(x^*)\le \frac{1}{2t_k^2}||x^*-x^0||_H^2\le \frac{2}{k^2}||x^*-x^0||_H^2.
+\]</span> That is, the iteration complexity of APG is <span class="math inline">\(O(1/k^2)\)</span>.</p>
+<p>Proof.</p>
+<p><strong>Theorem</strong></p>
+<p>Assume that <span class="math inline">\(f(x^{k+1})\le q(x^{k+1};\bar x^k)\)</span> for all <span class="math inline">\(k\)</span>. If <span class="math inline">\(t_k=1\)</span> for all <span class="math inline">\(k\)</span>. Then <span class="math display">\[
+kE(x^k)+\frac{1}{2}||x^k-x^*||_H^2\le E(x^1)+\frac{1}{2}||x^1-x^*||_H^2\le \frac{1}{2}||x^0-x^*||_H^2.
+\]</span> Hence <span class="math display">\[
+0\le F(x^k)-F(x^*)\le \frac{1}{2k}||x^0-x^*||_H^2.
+\]</span> That is, the iteration complexity of the proximal gradient method is <span class="math inline">\(O(1/k)\)</span>.</p>
+<p>Proof.</p>
+<h2 id="gradient-projection-method">4.4 Gradient projection method</h2>
+<p>Let <span class="math inline">\(f:Q\rightarrow \mathbb R\)</span> be a continuously differentiable function (not necessarily convex) defined on a closed convex subset <span class="math inline">\(Q\)</span> of <span class="math inline">\(\mathbb R^n\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. Consider <span class="math display">\[
+\min\{f(x)\;|\; x\in Q\}.
+\]</span> We say that <span class="math inline">\(\bar x\in Q\)</span> is a stationary point if <span class="math display">\[
+\langle \nabla f(\bar x),y-\bar x\rangle \ge 0\quad\forall y\in Q.
+\]</span> The gradient projection method generate a sequence of iterates as follows, <span class="math display">\[
+x^{k+1}=P_Q(x^k-\alpha \nabla f(x^k)).
+\]</span> For each <span class="math inline">\(x\in Q\)</span>, let <span class="math display">\[
+x(\alpha )=x-\alpha\nabla f(x),\quad x_Q(\alpha )=P_Q(x(\alpha)).
+\]</span></p>
+<h2 id="stochastic-gradient-descent-method">4.5 Stochastic gradient descent method</h2>
+<p>Suppose <span class="math inline">\(\tilde Z\)</span> is an n-dimensional random variable with mean <span class="math inline">\(\mu \in \mathbb R^n\)</span>. Consider the following problem, <span class="math display">\[
+\min_{x\in\mathbb R^n}h(x)=\frac{1}{2}\mathbb E[||x-\tilde Z||^2],
+\]</span> where <span class="math inline">\(\mathbb E(\cdot)\)</span> denotes the expectation with respect to the distribution of <span class="math inline">\(Z\)</span>, i.e., <span class="math display">\[
+E[||x-\tilde Z||^2]=\int ||x-\tilde Z(w)||^2dP(w).
+\]</span> If <span class="math inline">\(Z\)</span> is a discrete random variable, then <span class="math display">\[
+E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
+\]</span> In practice, to solve this problem, one may draw <span class="math inline">\(m\)</span> independent identically distributed samples of <span class="math inline">\(\tilde Z\)</span>, say <span class="math inline">\(S=\{z_1,\dots,z_m\}\)</span>, and then solve <span class="math display">\[
+\min_{x\in\mathbb R^n}F_S(x)=\frac{1}{m}\sum_{i=1}^m \frac{1}{2}||x-z_i||^2.
+\]</span> The corresponding optimality condition is <span class="math display">\[
+0=\nabla F_S(x)=\frac{1}{m}\sum_{i=1}^m(x-z_i)\implies x=\frac{1}{m}\sum_{i=1}^mz_i.
+\]</span></p>
 
     </div>
 
@@ -376,7 +528,7 @@ s.t. x\in S
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gradient-methods"><span class="nav-text">Gradient methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-methods-for-unconstrained-optimization-problem"><span class="nav-text">4.1 Gradient methods for unconstrained optimization problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem"><span class="nav-text">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-for-the-steepest-descent-method-for-strongly-convex-function"><span class="nav-text">4.1.2 Convergence rate for the steepest descent method for strongly convex function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#line-search-strategies"><span class="nav-text">4.2 Line search strategies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accelerated-proximal-gradient-method-for-convex-programming"><span class="nav-text">4.3 Accelerated proximal gradient method for convex programming</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gradient-methods"><span class="nav-text">Gradient methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-methods-for-unconstrained-optimization-problem"><span class="nav-text">4.1 Gradient methods for unconstrained optimization problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem"><span class="nav-text">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-for-the-steepest-descent-method-for-strongly-convex-function"><span class="nav-text">4.1.2 Convergence rate for the steepest descent method for strongly convex function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#line-search-strategies"><span class="nav-text">4.2 Line search strategies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accelerated-proximal-gradient-method-for-convex-programming"><span class="nav-text">4.3 Accelerated proximal gradient method for convex programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-projection-method"><span class="nav-text">4.4 Gradient projection method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stochastic-gradient-descent-method"><span class="nav-text">4.5 Stochastic gradient descent method</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
