@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation $$    \coo [f_0(x)] {f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p} $$ to describe the problem of finding">
+  <meta name="description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation $$ \begin{array}{|l|ll|} &amp;amp; \begin{array}{lll} f_0(x) \end{array}\ &amp;amp; \begin{array}{lll}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4. Convex Optimization Problem (1)">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation $$    \coo [f_0(x)] {f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p} $$ to describe the problem of finding">
+<meta property="og:description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation $$ \begin{array}{|l|ll|} &amp;amp; \begin{array}{lll} f_0(x) \end{array}\ &amp;amp; \begin{array}{lll}">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-25T15:23:09.129Z">
+<meta property="og:updated_time" content="2019-09-15T16:26:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4. Convex Optimization Problem (1)">
-<meta name="twitter:description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation $$    \coo [f_0(x)] {f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p} $$ to describe the problem of finding">
+<meta name="twitter:description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation $$ \begin{array}{|l|ll|} &amp;amp; \begin{array}{lll} f_0(x) \end{array}\ &amp;amp; \begin{array}{lll}">
   <link rel="canonical" href="http://yoursite.com/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 23:23:09" itemprop="dateModified" datetime="2019-08-25T23:23:09+08:00">2019-08-25</time>
+                <time title="Modified: 2019-09-16 00:26:02" itemprop="dateModified" datetime="2019-09-16T00:26:02+08:00">2019-09-16</time>
               </span>
             
           
@@ -291,93 +291,95 @@
         <h1 id="convex-optimization-problem">4. Convex Optimization Problem</h1>
 <h2 id="optimization-problems">4.1 Optimization Problems</h2>
 <h3 id="basic-terminology">4.1.1 Basic terminology</h3>
-We use the notation $$
-
-
-
-<p>\coo [f_0(x)] {f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p} $$ to describe the problem of finding an <span class="math inline">\(x\)</span> that minimize <span class="math inline">\(f_0(x)\)</span> among all <span class="math inline">\(x\)</span> that satisfy the conditions <span class="math inline">\(f_i(x)\le 0,i=1,\dotsm,m\)</span> and <span class="math inline">\(h_i(x)=0,i=1,\dotsm,p\)</span>. We call <span class="math inline">\(x\in R^n\)</span> the ==optimization variable== and the function <span class="math inline">\(f_0: R^n\rightarrow R\)</span> the ==objective function== or ==cost function==. The inequalities <span class="math inline">\(f_i(x)\le 0\)</span> is called ==inequality constraints== and the corresponding functions are called ==inequality constraints functions==. The equations <span class="math inline">\(h_i(x)=0\)</span> are called ==equality constraints== and the functions are called ==equality constraints functions==. If there is no constraint, we say the problem is ==unconstraint==.</p>
+<p>We use the notation $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array} $$ to describe the problem of finding an <span class="math inline">\(x\)</span> that minimize <span class="math inline">\(f_0(x)\)</span> among all <span class="math inline">\(x\)</span> that satisfy the conditions <span class="math inline">\(f_i(x)\le 0,i=1,\dotsm,m\)</span> and <span class="math inline">\(h_i(x)=0,i=1,\dotsm,p\)</span>. We call <span class="math inline">\(x\in \mathbb R^n\)</span> the <strong>optimization variable</strong> and the function <span class="math inline">\(f_0: \mathbb R^n\rightarrow \mathbb R\)</span> the <strong>objective function</strong> or <strong>cost function</strong>. The inequalities <span class="math inline">\(f_i(x)\le 0\)</span> is called <strong>inequality constraints</strong> and the corresponding functions are called <strong>inequality constraints functions</strong>. The equations <span class="math inline">\(h_i(x)=0\)</span> are called <strong>equality constraints</strong> and the functions are called <strong>equality constraints functions</strong>. If there is no constraint, we say the problem is <strong>unconstraint</strong>.</p>
 <p>The set of points for which the objective and all constraint functions are defined, <span class="math display">\[
-\mathcal D=\bigcap_{i=0}^m dom f_i\cap\bigcap_{i=1}^p dom h_i
-\]</span> is called the ==domain== of the optimization problem. A point <span class="math inline">\(x\in \mathcal D\)</span> is ==feasible== if it satisfies the constraints <span class="math inline">\(f_i(x)\le 0\)</span> and <span class="math inline">\(h_i(x)=0\)</span> . The problem is said to be ==feasible== if there exists at least one feasible point. The set of all feasible points is called a ==feasible set== of the ==constraint set==. The optimal value <span class="math inline">\(p^\star\)</span> of the problem is defined as <span class="math display">\[
-p^\star = \inf \{f_0(x)|f_i(x)\le 0,i=1,\dotsm,m,h_i(x)=0,i=1,\dotsm,p\}
-\]</span> If the problem is infeasible, <span class="math inline">\(p^\star = \infty\)</span>. If there are feasible points <span class="math inline">\(x_k\)</span> with <span class="math inline">\(f_0(x_k)\rightarrow \infty\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span>, then <span class="math inline">\(p^\star = - \infty\)</span> , and we say the problem is ==unbounded below==.</p>
-<p>Optimal and locally optimal points</p>
-<p>We say <span class="math inline">\(x^\star\)</span> is an ==optimal point== if <span class="math inline">\(x^\star\)</span> is feasible and <span class="math inline">\(f_0(x^\star)=p^\star\)</span> . The set of all optimal points is the optimal set, denoted <span class="math display">\[
-X_{opt}=\{x| f_i(x)\le 0,i=1,\dotsm,m,h_i(x)=0,i=1,\dotsm,p,f_0(x)=p^\star\}
-\]</span> If there exits an optimal point for the problem, we say the optimal value is ==attained== or ==achieved==, and the problem is ==solvable==. If <span class="math inline">\(X_{opt}\)</span> is empty, we say the optimal point is ==not attained== or ==not achieved==. This always occurs when the problem is unbounded below. A feasible point x with <span class="math inline">\(f_0(x) \le p^\star +\epsilon\)</span> is called <span class="math inline">\(\epsilon-suboptimal\)</span> and the set of all <span class="math inline">\(\epsilon-suboptimal\)</span> points is called the <span class="math inline">\(\epsilon-suboptimal\)</span> set for the problem.</p>
+\mathcal D=\bigcap_{i=0}^m \text{dom} (f_i)\cap\bigcap_{i=1}^p \text{dom}(h_i)
+\]</span> is called the <strong>domain</strong> of the optimization problem. A point <span class="math inline">\(x\in \mathcal D\)</span> is <strong>feasible</strong> if it satisfies the constraints <span class="math inline">\(f_i(x)\le 0\)</span> and <span class="math inline">\(h_i(x)=0\)</span> . The problem is said to be <strong>feasible</strong> if there exists at least one feasible point. The set of all feasible points is called a <strong>feasible set</strong> of the <strong>constraint set</strong>. The optimal value <span class="math inline">\(p^\star\)</span> of the problem is defined as <span class="math display">\[
+p^\star = \inf \left\{f_0(x)\;\Bigg|\;
+\begin{array}{rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\end{array}\right\}.
+\]</span> If the problem is infeasible, <span class="math inline">\(p^\star = \infty\)</span>. If there are feasible points <span class="math inline">\(x_k\)</span> with <span class="math inline">\(f_0(x_k)\rightarrow \infty\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span>, then <span class="math inline">\(p^\star = - \infty\)</span> , and we say the problem is <strong>unbounded below</strong>.</p>
+<p><strong>Optimal and locally optimal points</strong></p>
+<p>We say <span class="math inline">\(x^\star\)</span> is an <strong>optimal point</strong> if <span class="math inline">\(x^\star\)</span> is feasible and <span class="math inline">\(f_0(x^\star)=p^\star\)</span> . The set of all optimal points is the optimal set, denoted <span class="math display">\[
+X_{opt}=\left\{f_0(x)\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
+\;f_0(x^\star)&amp;=&amp;p^\star\end{array}\right\}.
+\]</span> If there exits an optimal point for the problem, we say the optimal value is <strong>attained</strong> or <strong>achieved</strong>, and the problem is <strong>solvable</strong>. If <span class="math inline">\(X_{opt}\)</span> is empty, we say the optimal point is <strong>not attained</strong> or <strong>not achieved</strong>. This always occurs when the problem is unbounded below. A feasible point <span class="math inline">\(x\)</span> with <span class="math inline">\(f_0(x) \le p^\star +\epsilon\)</span> is called <span class="math inline">\(\epsilon\)</span>-suboptimal and the set of all <span class="math inline">\(\epsilon\)</span>-suboptimal points is called the <span class="math inline">\(\epsilon\)</span>-suboptimal set for the problem.</p>
 <p>We say feasible point <span class="math inline">\(x\)</span> is locally optimal (local minimizer) if there is an <span class="math inline">\(R&gt;0\)</span> such that <span class="math display">\[
-f_0(x)=\inf\{f_0(z)|f_i(z)\le 0,i=1,\dotsm,m,h_i(z)=0,i=1,\dotsm,p,||z-x||_2\le R\}
-\]</span> roughly speaking, this means <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(f_0\)</span> over nearby points in the feasible set. Throughout the book, optimal will mean globally optimal.</p>
-<p>If <span class="math inline">\(x\)</span> is feasible and <span class="math inline">\(f_i(x)=0\)</span>, we say that <span class="math inline">\(i\)</span>th inequality constraint <span class="math inline">\(f_i(x)\le 0\)</span> is active. otherwise it is inactive. We say that a constraint is redundant if deleting it does not change the feasible set.</p>
-<p>Feasibility problem <span class="math display">\[\]</span> The feasibility problem is to determine whether the constraints are consistent, and if so, find a point that satisfies them.</p>
+f_0(x)=\inf \left\{f_0(x)\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
+\;||z-x||_2&amp;\le&amp; R\end{array}\right\}.
+\]</span> Roughly speaking, this means <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(f_0\)</span> over nearby points in the feasible set. Throughout the book, optimal will mean globally optimal.</p>
+<p>If <span class="math inline">\(x\)</span> is feasible and <span class="math inline">\(f_i(x)=0\)</span>, we say that <span class="math inline">\(i\)</span>th inequality constraint <span class="math inline">\(f_i(x)\le 0\)</span> is <strong>active</strong>. otherwise it is <strong>inactive</strong>. We say that a constraint is redundant if deleting it does not change the feasible set.</p>
+<strong>Feasibility problem</strong> $$ \begin{array}{|l|ll|} &amp;
+<span class="math display">\[\begin{array}{lll}
+x
+\end{array}\]</span>
+<p>\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m\ h_i(x)=0,i=1,,p \end{array} \end{array}. $$ The feasibility problem is to determine whether the constraints are consistent, and if so, find a point that satisfies them.</p>
 <h3 id="expressing-problems-in-standard-form">4.1.2 Expressing problems in standard form</h3>
-<p><span class="math display">\[\]</span></p>
-<p>Maximization problems <span class="math display">\[\]</span></p>
+<p>$$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \ h_i(x)=0,i=1,,p \end{array} \end{array}. $$</p>
+<p><strong>Maximization problems</strong> $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} -f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \ h_i(x)=0,i=1,,p \end{array} \end{array}. $$</p>
 <h3 id="equivalent-problems">4.1.3 Equivalent problems</h3>
-<p>We call two problems ==equivalent== if from a solution of one, a solution of the other is readily found. (informal definition)</p>
-<p>We now describe some general transformations that yield equaivalent problems.</p>
-<p>==Change of variables==</p>
-<p>Suppose <span class="math inline">\(\phi:R^n\rightarrow R^n\)</span> is ==one-to-one==, with image covering the problem domain <span class="math inline">\(\mathcal D\)</span> , that means <span class="math inline">\(\mathcal D\subseteq \phi(dom \phi)\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as <span class="math display">\[
+<p>We call two problems <strong>equivalent</strong> if from a solution of one, a solution of the other is readily found. (informal definition)</p>
+<p>We now describe some general transformations that yield equivalent problems.</p>
+<p><strong>Change of variables</strong></p>
+<p>Suppose <span class="math inline">\(\phi:\mathbb R^n\rightarrow \mathbb R^n\)</span> is <strong>one-to-one</strong>, with image covering the problem domain <span class="math inline">\(\mathcal D\)</span> , that means <span class="math inline">\(\mathcal D\subseteq \phi(\text{dom} \phi)\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as <span class="math display">\[
 \tilde f_i(z)=f_i(\phi(z)),i=0,\dotsm,m\\
-\tilde h_i(z)=h_i(\phi(z)),i=1,\dotsm,p
-\]</span> Now consider the problem $$ \coo [f_0(z)] { f_i(z)0, i=1,, m\ h_i(z)=0,i=1,,p</p>
-<p>} $$ Then the problem is related to the original problem by <span class="math inline">\(x=\phi(z)\)</span> . If <span class="math inline">\(z\)</span> solves the problem, then <span class="math inline">\(x=\phi(z)\)</span> solves the original problem.</p>
-<p>==Transformation of objective and constraint functions==</p>
-<p>Suppose <span class="math inline">\(\varphi_0:R^n\rightarrow R^n\)</span> is ==monotone increasing==, <span class="math inline">\(\varphi_1,\dots,\varphi_m: R\rightarrow R\)</span> satisfy <span class="math inline">\(\varphi_i(u)\le 0\)</span> if and only if <span class="math inline">\(u\le 0\)</span>, and <span class="math inline">\(\varphi_{m+1},\dotsm,\varphi_{m+p}:R\rightarrow R\)</span> satisfy <span class="math inline">\(\varphi_i(0)=0\)</span> if and only if <span class="math inline">\(u=0\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as the compositions <span class="math display">\[
-\tilde f_i(x)=\varphi_i(f_i(x)),i=0,\dotsm,m\quad \tilde h_i(x)=\varphi_{m+i}(h_i(x)),i=1,\dotsm,p
-\]</span> The associated problem <span class="math display">\[\]</span> and the standard form problem are equivalent; indeed the feasible sets are identical, and the optimal points are identical.</p>
-<p>==Slack variables==</p>
-<p>One simple transformation is based on the observation that <span class="math inline">\(f_i(x)\le 0\)</span> if and only if there is an <span class="math inline">\(s_i\ge 0\)</span> that satisfies <span class="math inline">\(f_i(x)+s_i=0\)</span>. Using this transformation we obtain the problem <span class="math display">\[\]</span> The new variable <span class="math inline">\(s_i\)</span> is called slack variable associated with the original inequality constraints.Indeed, if <span class="math inline">\((x,s)\)</span> is feasible for the above problem, then x is feasible for the original problem. Conversely, if x is feasible for the original problem, then <span class="math inline">\((x,s)\)</span> is feasible for the above problem. Thant means x is optimal for the original problem if and only if (x,s) is optimal for the above problem.</p>
-<p>==Eliminating equality constraints==</p>
+\tilde h_i(z)=h_i(\phi(z)),i=1,\dotsm,p.
+\]</span> Now consider the problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(z) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(z)0, i=1,, m\ h_i(z)=0,i=1,,p \end{array} \end{array}. $$ Then the problem is related to the original problem by <span class="math inline">\(x=\phi(z)\)</span> . If <span class="math inline">\(z\)</span> solves the problem, then <span class="math inline">\(x=\phi(z)\)</span> solves the original problem.</p>
+<p><strong>Transformation of objective and constraint functions</strong></p>
+<p>Suppose <span class="math inline">\(\varphi_0:\mathbb R\rightarrow \mathbb R\)</span> is <strong>monotone increasing</strong>, <span class="math inline">\(\varphi_1,\dots,\varphi_m: \mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(u)\le 0\)</span> if and only if <span class="math inline">\(u\le 0\)</span>, and <span class="math inline">\(\varphi_{m+1},\dotsm,\varphi_{m+p}:\mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(0)=0\)</span> if and only if <span class="math inline">\(u=0\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as the compositions <span class="math display">\[
+\tilde f_i(x)=\varphi_i(f_i(x)),i=0,\dotsm,m\\\quad \tilde h_i(x)=\varphi_{m+i}(h_i(x)),i=1,\dotsm,p.
+\]</span> The associated problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0i=1,,m\ h_i(x)=0i=1,,p \end{array} \end{array}, $$ and the standard form problem are equivalent; indeed the feasible sets are identical, and the optimal points are identical.</p>
+<p><strong>Slack variables</strong></p>
+<p>One simple transformation is based on the observation that <span class="math inline">\(f_i(x)\le 0\)</span> if and only if there is an <span class="math inline">\(s_i\ge 0\)</span> that satisfies <span class="math inline">\(f_i(x)+s_i=0\)</span>. Using this transformation we obtain the problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} s_i0 &amp; i=1,,m\ f_i(x)+s_i=0 &amp; i=1,,m\ h_i(x)=0 &amp; i=1,,p \end{array} \end{array}. $$ The new variable <span class="math inline">\(s_i\)</span> is called slack variable associated with the original inequality constraints. Indeed, if <span class="math inline">\((x,s)\)</span> is feasible for the above problem, then <span class="math inline">\(x\)</span> is feasible for the original problem. Conversely, if <span class="math inline">\(x\)</span> is feasible for the original problem, then <span class="math inline">\((x,s)\)</span> is feasible for the above problem. Thant means <span class="math inline">\(x\)</span> is optimal for the original problem if and only if <span class="math inline">\((x,s)\)</span> is optimal for the above problem.</p>
+<p><strong>Eliminating equality constraints</strong></p>
 <p>If we can explicitly parametrize all solutions of the equality constraints <span class="math display">\[
-h_i(x)=0,\quad i=1,\dotsm,p
-\]</span> using some parameters <span class="math inline">\(z\in R^k\)</span>. That means suppose the function <span class="math inline">\(\phi:R^k\rightarrow R^n\)</span> is such that <span class="math inline">\(x\)</span> satisfies the above if and only if there is some <span class="math inline">\(z\in R^k\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> . The optimization problem <span class="math display">\[\]</span> is equaivalent to the original problem. If z is optimal for the transformed problem, then <span class="math inline">\(x=\phi(z)\)</span> is optimal for the original problem. Conversely, if x is optimal for the original problem, then there is at least one z such that <span class="math inline">\(x=\phi(z)\)</span> which is optimal for the transformed problem.</p>
-<p>==Eliminating linear equality constraints==</p>
-<p>When the constraints are all linear, i.e. <span class="math inline">\(Ax=b\)</span> .if <span class="math inline">\(b\notin \mathcal R(A)\)</span> then the problem is infeasible. Let <span class="math inline">\(F\in R^{n\times k}\)</span> be any matrix with <span class="math inline">\(\mathcal R(F)=\mathcal N(A)\)</span> , so the general solution of the linear equations <span class="math inline">\(Ax=b\)</span> is given by <span class="math inline">\(Fz+x_0\)</span> .</p>
-<p>Then the original problem is equivalent to <span class="math display">\[\]</span> ==Introducing equality constraints==</p>
-<p>Consider the problem <span class="math display">\[\]</span> Then the problem is equivalent to <span class="math display">\[\]</span> ==Optimizing over some variables==</p>
+h_i(x)=0,\quad i=1,\dotsm,p,
+\]</span> using some parameters <span class="math inline">\(z\in \mathbb R^k\)</span>. That means suppose the function <span class="math inline">\(\phi:\mathbb R^k\rightarrow \mathbb R^n\)</span> is such that <span class="math inline">\(x\)</span> satisfies the above if and only if there is some <span class="math inline">\(z\in \mathbb R^k\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> . The optimization problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(z)=f_0((z)) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(z)=f_i((z))0 &amp; i=1,,m \end{array} \end{array}. $$ is equivalent to the original problem. If <span class="math inline">\(z\)</span> is optimal for the transformed problem, then <span class="math inline">\(x=\phi(z)\)</span> is optimal for the original problem. Conversely, if <span class="math inline">\(x\)</span> is optimal for the original problem, then there is at least one <span class="math inline">\(z\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> which is optimal for the transformed problem.</p>
+<p><strong>Eliminating linear equality constraints</strong></p>
+<p>When the constraints are all linear, i.e. <span class="math inline">\(Ax=b\)</span>. if <span class="math inline">\(b\notin \mathcal R(A)\)</span> then the problem is infeasible. Let <span class="math inline">\(F\in \mathbb R^{n\times k}\)</span> be any matrix with <span class="math inline">\(\mathcal R(F)=\mathcal N(A)\)</span>, so the general solution of the linear equations <span class="math inline">\(Ax=b\)</span> is given by <span class="math inline">\(Fz+x_0\)</span> .</p>
+<p>Then the original problem is equivalent to $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(Fz+x_0) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(Fz+x_0)0 &amp; i=1,,m \end{array} \end{array}. $$ <strong>Introducing equality constraints</strong></p>
+<p>Consider the problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(A_0 x+b_0) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(A_ix+b_i)0 &amp; i=1,,m\ h_i(x)=0 &amp; i=1,,p \end{array} \end{array}. <span class="math display">\[
+Then the problem is equivalent to
+\]</span> \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(y_0) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(y_i)0 &amp; i=1,,m\ y_i=A_ix+b_i &amp; i=0,,m\ h_i(x)=0 &amp; i=1,,p \end{array} \end{array}. $$ <strong>Optimizing over some variables</strong></p>
 <p>We always have <span class="math display">\[
 \inf_{x,y}f(x,y)=\inf_x \tilde f(x)
 \]</span> where <span class="math display">\[
 \tilde f(x)=\inf_y f(x,y)
 \]</span> That means we can minimize a function by first minimizing over some of the variables and then minimizing over the remaining ones.</p>
-<p>For the problem <span class="math display">\[\]</span> We first minimize over <span class="math inline">\(x_2\)</span> . Define the function <span class="math inline">\(\tilde f_0\)</span> of <span class="math inline">\(x_1\)</span> by <span class="math display">\[
-\tilde f_0(x_1)=\inf \{f_0(x_1,z)|\tilde f_i(z)\le 0,i=1,\dotsm,m_2\}
-\]</span> Then we have the problem <span class="math display">\[
-
-\begin{array}{lll}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\tilde f_0(x_1)
-\end{array}\\\hline
-
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-
-f_i(x_1)\le 0 &amp; i=1,\dotsm,m_1
-
-\end{array}
-\end{array}
-
-\]</span> ==Epigraph problem form== <span class="math display">\[
-
-\begin{array}{lll}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
+<p>For the problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x_1,x_2) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x_1)0 &amp; i=1,,m_1\ f_i(x_2)0 &amp; i=1,,m_2 \end{array} \end{array}. <span class="math display">\[
+We first minimize over $x_2$ . Define the function $\tilde f_0$ of $x_1$ by
+\]</span> f_0(x_1)={f_0(x_1,z)|f_i(z)0,i=1,,m_2}. <span class="math display">\[
+Then we have the problem
+\]</span> \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x_1) \end{array}\</p>
+&amp; \begin{array}{lll} f_i(x_1)0 &amp; i=1,,m_1 \end{array} \end{array}. <span class="math display">\[
+**Epigraph problem form**
+\]</span> \begin{array}{|l|ll|} &amp;
+<span class="math display">\[\begin{array}{lll}
 t
-\end{array}\\\hline
-
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_0(x)-t\le 0\\
-f_i(x)\le 0 &amp; i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array}
-
-\]</span> ==Implicit and explicit constraints==</p>
+\end{array}\]</span>
+<p>\</p>
+<p>&amp; \begin{array}{lll} f_0(x)-t0\ f_i(x)0 &amp; i=1,,m\ h_i(x)=0 &amp; i=1,,p \end{array} \end{array}. $$ <strong>Implicit and explicit constraints</strong></p>
 <p>We can make the implicit constraint explicit which will be clear for solution.</p>
-<p>The implicit problem <span class="math display">\[
+The implicit problem <span class="math display">\[
 \text {minimize}\quad f(x)
 \]</span> where the function <span class="math inline">\(f(x)\)</span> is given by <span class="math display">\[
 f(x)=
@@ -385,9 +387,8 @@ f(x)=
 x^Tx\quad Ax=b\\
 \infty\quad otherwise
 \end{cases}
-\]</span> We can make the problem constraint explicit by <span class="math display">\[
-
-\begin{array}{lll}
+\]</span> We can make the problem constraint explicit by $$
+<span class="math display">\[\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 x^Tx
@@ -397,156 +398,107 @@ x^Tx
 \begin{array}{lll}
 Ax=b
 \end{array}
-\end{array}
-
-\]</span></p>
+\end{array}\]</span>
+<p>. $$</p>
 <h2 id="convex-optimization">4.2 Convex Optimization</h2>
 <h3 id="convex-optimization-problems-in-standard-form">4.2.1 Convex optimization problems in standard form</h3>
-<p>A convex optimization problem is one of the form <span class="math display">\[
-
-\begin{array}{lll}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0 &amp; i=1,\dotsm,m\\
-a_i^Tx=b_i &amp; i=1,\dotsm,p
-\end{array}
-\end{array}
-
-\]</span> where <span class="math inline">\(f_0,\dotsm,f_m\)</span> are convex functions. There are three additional requirements,</p>
+<p>A convex optimization problem is one of the form $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0 &amp; i=1,,m\ a_i^Tx=b_i &amp; i=1,,p \end{array} \end{array}. $$ where <span class="math inline">\(f_0,\dotsm,f_m\)</span> are convex functions. There are three additional requirements,</p>
 <ol type="1">
-<li>The objective function must be convex</li>
-<li>The inequality constraint functions must be convex</li>
-<li>The equality constraint functions <span class="math inline">\(h_i(x)=a_i^Tx-b_i\)</span> must be affine.</li>
+<li>The objective function must be <strong>convex</strong>.</li>
+<li>The inequality constraint functions must be <strong>convex</strong>.</li>
+<li>The equality constraint functions <span class="math inline">\(h_i(x)=a_i^Tx-b_i\)</span> must be <strong>affine</strong>.</li>
 </ol>
 <p>We immediately note a important property: The feasible set of a convex optimization problem is convex since it is the intersection of the domain of the problem <span class="math display">\[
-\mathcal D=\bigcap_{i=0}^m dom f_{i}
-\]</span> which is a convex set with m sublevel sets <span class="math inline">\(\{x| f_i(x)\le 0\}\)</span> and p hyperplanes <span class="math inline">\(\{x|a_i^T x=b_i\}\)</span></p>
-<p>If <span class="math inline">\(f_0\)</span> is quasiconvex instead of convex, we say the above problem is quasiconvex optimization problem.</p>
+\mathcal D=\bigcap_{i=0}^m \text{dom} (f_{i}),
+\]</span> which is a convex set with <span class="math inline">\(m\)</span> sublevel sets <span class="math inline">\(\{x\;|\;f_i(x)\le 0\}\)</span> and <span class="math inline">\(p\)</span> hyperplanes <span class="math inline">\(\{x\;|\;a_i^T x=b_i\}\)</span>.</p>
+<p>If <span class="math inline">\(f_0\)</span> is quasiconvex instead of convex, we say the above problem is <strong>quasiconvex optimization problem</strong>.</p>
 <p>If the objective function is strictly convex, then the optimal set contains at most one point.</p>
-<p>==Concave maximization problems== <span class="math display">\[\]</span> ==Abstract form convex optimization problem==</p>
+<p><strong>Concave maximization problems</strong> $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} -f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0 &amp; i=1,,m\ a_i^Tx=b_i &amp; i=1,,p \end{array} \end{array}. $$ <strong>Abstract form convex optimization problem</strong></p>
 <p>This book consider the convex problems without the standard form (Abstract convex optimization problem) as not convex problems.</p>
 <h3 id="local-and-global-optima">4.2.2 Local and global optima</h3>
 <p>A fundamental property of convex optimization problem is that any locally optimal point is also (globally) optimal.</p>
 <h3 id="an-optimality-criterion-for-differentiable-f_0">4.2.3 An optimality criterion for differentiable <span class="math inline">\(f_0\)</span></h3>
-<p>Suppose that the objective <span class="math inline">\(f_0\)</span> in a convex optimization problem is differentiable, so that for all <span class="math inline">\(x,y \in dom f_0\)</span>, <span class="math display">\[
-f_0(y)\ge f_0(x)+\nabla f_0(x)^T(y-x)
-\]</span> Let X denote the feasible set <span class="math display">\[
-X=\{x|f_i(x)\le0,i=1,\dotsm,m,h_i(x)=0,i=1,\dotsm,p\}
-\]</span> Then x is optimal if and only if <span class="math inline">\(x\in X\)</span> and <span class="math display">\[
-\nabla f_0(x)^T(y-x)\ge 0 
-\]</span> for all <span class="math inline">\(y \in X\)</span></p>
-<p>For unconstrained problems, <span class="math display">\[
-\nabla f_0(x)=0
-\]</span> ==Problems with equality constraints only== <span class="math display">\[
-
-\begin{array}{lll}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
+<p>Suppose that the objective <span class="math inline">\(f_0\)</span> in a convex optimization problem is differentiable, so that for all <span class="math inline">\(x,y \in \text{dom} (f_0)\)</span>, <span class="math display">\[
+f_0(y)\ge f_0(x)+\nabla f_0(x)^T(y-x).
+\]</span> Let <span class="math inline">\(X\)</span> denote the feasible set <span class="math display">\[
+X=\left\{x\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp;0,&amp;i=1,\dotsm,m\\
+\;h_i(x)&amp;=&amp;0,&amp;i=1,\dotsm,p\end{array}\right\}.
+\]</span> Then <span class="math inline">\(x\)</span> is optimal if and only if <span class="math inline">\(x\in X\)</span> and <span class="math display">\[
+\nabla f_0(x)^T(y-x)\ge 0,
+\]</span> for all <span class="math inline">\(y \in X\)</span>.</p>
+<p>For unconstrained problems, <span class="math inline">\(x\)</span> is optimal if and only if <span class="math display">\[
+\nabla f_0(x)=0.
+\]</span> <strong>Problems with equality constraints only</strong> $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+&amp;
+<span class="math display">\[\begin{array}{lll}
 Ax=b
-\end{array}
-\end{array}
-
-\]</span> For the convex optimal, for the optimal point <span class="math inline">\(x\)</span>, we have <span class="math display">\[
-\nabla f_0(x)^T(y-x)\ge 0
-\]</span> for all <span class="math inline">\(y\)</span> satisfying <span class="math inline">\(Ay=b\)</span> and <span class="math inline">\(Ax=b\)</span>. Then we have <span class="math inline">\(y=x+v\)</span> and <span class="math inline">\(v\in \mathcal N(A)\quad(Av=0)\)</span>.</p>
+\end{array}\]</span>
+<p>\end{array}. <span class="math display">\[
+For the convex optimal, for the optimal point $x$, we have
+\]</span> f_0(x)^T(y-x)0, $$ for all <span class="math inline">\(y\)</span> satisfying <span class="math inline">\(Ay=b\)</span> and <span class="math inline">\(Ax=b\)</span>. Then we have <span class="math inline">\(y=x+v\)</span> and <span class="math inline">\(v\in \mathcal N(A)\quad(Av=0)\)</span>.</p>
 <p>Then the problem becomes <span class="math display">\[
-\nabla f_0(x)^Tv\ge0\quad \forall v\in \mathcal N(A)
+\nabla f_0(x)^Tv\ge0\quad \forall v\in \mathcal N(A).
 \]</span> If a linear function is nonnegative on a subspace, then it must be zero on the subspace. That means <span class="math display">\[
 \nabla f_0(x)^Tv=0\quad \forall v\in \mathcal N(A)\\
 \nabla f_0(x)\perp \mathcal N(A)\\
 \mathcal R(A^T)\perp\mathcal N(A)\\
-\nabla f_0(x) \in \mathcal R(A^T)
-\]</span> Therefore, there exists <span class="math inline">\(v\in R^P\)</span> such that <span class="math display">\[
-\nabla f_0(x)+A^Tv=0
-\]</span> Together with the constraints.</p>
-<p>There exists a <span class="math inline">\(v\in R^p\)</span> such that <span class="math display">\[
-\nabla f_0(x)+A^Tv=0\\
-Ax=b
+\nabla f_0(x) \in \mathcal R(A^T).
+\]</span> Therefore, there exists <span class="math inline">\(v\in \mathbb R^P\)</span> such that <span class="math display">\[
+\nabla f_0(x)+A^Tv=0,
+\]</span> Together with the constraints <span class="math inline">\(Ax=b\)</span>.</p>
+<p>There exists a <span class="math inline">\(v\in \mathbb R^p\)</span> such that <span class="math display">\[
+\begin{array}{rcl}
+\nabla f_0(x)+A^Tv&amp;=&amp;0\\
+Ax&amp;=&amp;b,
+\end{array}
 \]</span> This is actually the classical Lagrange multiplier optimality condition.</p>
-<p>==Minimization over the nonnegative orthant==</p>
-<p>We consider the problem <span class="math display">\[
-
-\begin{array}{lll}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
+<p><strong>Minimization over the nonnegative orthant</strong></p>
+<p>We consider the problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+&amp;
+<span class="math display">\[\begin{array}{lll}
 x\succeq 0
-\end{array}
-\end{array}
-
-\]</span> We have optimality condition <span class="math display">\[
-x\succeq0 \quad \nabla f_0(x)^T(y-x)\ge 0\quad \forall y\succeq 0
-\]</span> We see the linear function of y <span class="math inline">\(\nabla f_0(x)^Ty-\nabla f_0(x)^T x\)</span> is greater than or equal to zero for all y only when <span class="math display">\[
-\nabla f_0(x)\succeq 0\\
--\nabla f_0(x)^Tx\ge 0
-\]</span> But <span class="math inline">\(x\succeq 0\)</span> and <span class="math inline">\(\nabla f_0(x)\succeq 0\)</span>, and therefore <span class="math inline">\(\nabla f_0(x)^Tx=0\)</span></p>
+\end{array}\]</span>
+<p>\end{array}. <span class="math display">\[
+We have optimality condition
+\]</span> x0 f_0(x)<sup>T(y-x)0y0 <span class="math display">\[
+We see the linear function of $y$, $\nabla f_0(x)^Ty-\nabla f_0(x)^T x$ is greater than or equal to zero for all $y$ only when 
+\]</span> f_0(x)0\ -f_0(x)</sup>Tx0. $$ But <span class="math inline">\(x\succeq 0\)</span> and <span class="math inline">\(\nabla f_0(x)\succeq 0\)</span>, and therefore <span class="math inline">\(\nabla f_0(x)^Tx=0\)</span></p>
 <p>The optimality condition can be expressed as <span class="math display">\[
 x\succeq 0\quad \nabla f_0(x)\succeq 0\quad x_i(\nabla f_0(x))_i=0 \space(\text{complementary condition})
 \]</span></p>
 <h3 id="equivalent-convex-problems">4.2.4 Equivalent Convex problems</h3>
-<p>Eliminating equality constraints</p>
-<p>Introducing equality constraints</p>
-<p>Slack varibles</p>
-<p>Epigraph problem form</p>
-<p>Minimizing over some variables</p>
+<ol type="1">
+<li><p>Eliminating equality constraints</p></li>
+<li><p>Introducing equality constraints</p></li>
+<li><p>Slack variables</p></li>
+<li><p>Epigraph problem form</p></li>
+<li><p>Minimizing over some variables</p></li>
+</ol>
 <h3 id="quasiconvex-optimization">4.2.5 Quasiconvex Optimization</h3>
-<p>Recall that a quasiconvex optimization problem has the standard form <span class="math display">\[
-
-\begin{array}{lll}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0 &amp; i=1,\dotsm,m\\
-Ax=b
-\end{array}
-\end{array}
-
-\]</span> where <span class="math inline">\(f_0\)</span> is quasiconvex and <span class="math inline">\(f_i\)</span> are convex.</p>
-<p>==Locally optimal solutions and optimality conditions==</p>
+<p>Recall that a quasiconvex optimization problem has the standard form $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
+<p>&amp; \begin{array}{lll} f_i(x)0 &amp; i=1,,m\ Ax=b \end{array} \end{array}, $$ where <span class="math inline">\(f_0\)</span> is quasiconvex and <span class="math inline">\(f_i\)</span> are convex.</p>
+<p><strong>Locally optimal solutions and optimality conditions</strong></p>
 <p>The most important difference between the convex and quasiconvex optimization is that quasiconvex optimization problems can have locally optimal solutions.</p>
-<p>It follows from the first order condition for quasiconvex optimization problem that x is optimal if <span class="math display">\[
+<p>It follows from the first order condition for quasiconvex optimization problem that <span class="math inline">\(x\)</span> is optimal if <span class="math display">\[
 x\in X,\quad \nabla f_0(x)^T(y-x)&gt;0\text{ for all }y\in X /\{x\}
 \]</span> There are two differences between this criterion and the analogous one for convex optimization.</p>
 <ol type="1">
 <li>This condition is only sufficient for optimality.</li>
 <li>This condition requires the gradient of <span class="math inline">\(f_0\)</span> to be nonzero.</li>
 </ol>
-<p>==Quasiconvex optimization via convex feasibility problems==</p>
-<p>One general approach to quasiconvex optimization relies on the representation of the sublevel sets of a quasiconvex function via a family of convex inequalities. <span class="math display">\[
+<p><strong>Quasiconvex optimization via convex feasibility problems</strong></p>
+One general approach to quasiconvex optimization relies on the representation of the sublevel sets of a quasiconvex function via a family of convex inequalities. <span class="math display">\[
 f_0(x)\le t \iff \phi_t(x)\le 0
-\]</span> Let <span class="math inline">\(p^\star\)</span> denote the optimal value of the quasiconvex function. If the feasibility problem <span class="math display">\[
-
-\begin{array}{lll}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
+\]</span> Let <span class="math inline">\(p^\star\)</span> denote the optimal value of the quasiconvex function. If the feasibility problem $$ \begin{array}{|l|ll|} &amp;
+<span class="math display">\[\begin{array}{lll}
 x
-\end{array}\\\hline
-
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-\phi_t(x)\le 0\\f_i(x)\le 0\\Ax=b
-\end{array}
-\end{array}
-
-\]</span> is feasible. Then <span class="math inline">\(p^\star \le t\)</span></p>
+\end{array}\]</span>
+<p>\</p>
+<p>&amp; \begin{array}{lll} _t(x)0\f_i(x)0\Ax=b \end{array} \end{array}, $$ is feasible. Then <span class="math inline">\(p^\star \le t\)</span></p>
 <h2 id="section"></h2>
 
     </div>
@@ -564,8 +516,8 @@ x
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/03/28/Convex Optimization/3.1 Convex Functions/" rel="next" title="3. Convex Functions (1)">
-                  <i class="fa fa-chevron-left"></i> 3. Convex Functions (1)
+                <a href="/2019/03/28/Convex Optimization/3.2 Convex Functions/" rel="next" title="3. Convex Functions (2)">
+                  <i class="fa fa-chevron-left"></i> 3. Convex Functions (2)
                 </a>
               
             </div>
@@ -640,7 +592,7 @@ x
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

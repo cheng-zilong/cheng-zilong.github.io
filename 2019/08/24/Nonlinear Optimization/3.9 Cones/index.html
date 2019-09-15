@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-08T07:53:50.000Z">
+<meta property="og:updated_time" content="2019-09-15T07:20:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3. Basic Convex Analysis (2)">
 <meta name="twitter:description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-08 15:53:50" itemprop="dateModified" datetime="2019-09-08T15:53:50+08:00">2019-09-08</time>
+                <time title="Modified: 2019-09-15 15:20:00" itemprop="dateModified" datetime="2019-09-15T15:20:00+08:00">2019-09-15</time>
               </span>
             
           
@@ -326,10 +326,11 @@
 <p>Proof.</p>
 <ol type="1">
 <li>Suppose <span class="math inline">\(u,v \in C^*\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>. <span class="math display">\[
-\langle x,\alpha u+\beta v\rangle=\alpha \langle x,u\rangle+\beta \langle x,y\rangle\ge 0
-\]</span> Q.E.D.</li>
+ \langle x,\alpha u+\beta v\rangle=\alpha \langle x,u\rangle+\beta \langle x,y\rangle\ge 0
+ \]</span> Q.E.D.</li>
 </ol>
-<p><strong>Example</strong> If <span class="math inline">\(\mathcal E=\mathbb R^n\)</span>, and <span class="math inline">\(C=\mathbb R_+^n\)</span>. Then</p>
+<p><strong>Example</strong></p>
+<p>If <span class="math inline">\(\mathcal E=\mathbb R^n\)</span>, and <span class="math inline">\(C=\mathbb R_+^n\)</span>. Then</p>
 <ol type="1">
 <li><span class="math inline">\(\text{aff} (C)=\mathbb R^n\)</span></li>
 <li><span class="math inline">\(\text{lin} (C)=\{0\}\)</span></li>
@@ -339,64 +340,83 @@
 <ol type="1">
 <li><p>Let <span class="math inline">\(\mathcal E=\mathbb S^n\)</span> be the space of <span class="math inline">\(n\times n\)</span> real symmetric matrices. Then the space <span class="math inline">\(\mathbb S_+^n\)</span> of <span class="math inline">\(n\times n\)</span> symmetric positive semidefinite matrices is a closed convex cone in <span class="math inline">\(\mathbb S^n\)</span>.</p>
 <p>Proof of convexity.</p>
-<p>For any <span class="math inline">\(x,y\in \mathbb S_+^n\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>, we have <span class="math inline">\(\alpha x+\beta y\in \mathbb S_+^n\)</span>.</p></li>
+<p>For any <span class="math inline">\(X,Y\in \mathbb S_+^n\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>, we have <span class="math inline">\(\alpha X+\beta Y\in \mathbb S_+^n\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(\mathcal E =\mathbb R^n\)</span>. The set <span class="math display">\[
-C=\{(x_1;\bar x)\in \mathbb R^n\;|\; ||\bar x||\le x_1\}
-\]</span> is a cone, which is known as a <strong>second-order cone</strong>.</p>
+ C=\{(x_1;\bar x)\in \mathbb R^n\;|\; ||\bar x||\le x_1\}
+ \]</span> is a cone, which is known as a <strong>second-order cone</strong>.</p>
 <p>Proof of convexity.</p>
 <p>For any <span class="math inline">\((x_1;\bar x),(y_1;\bar y)\in C\)</span> and <span class="math inline">\(\alpha,\beta \in\mathbb R_+\)</span>, we have <span class="math display">\[
-\alpha (x_1;\bar x)+\beta (y_1;\bar y)=(\alpha x_1+\beta y_1,\alpha\bar x+\beta \bar y).
+    \alpha (x_1;\bar x)+\beta (y_1;\bar y)=(\alpha x_1+\beta y_1,\alpha\bar x+\beta \bar y).
 \]</span> Then we check <span class="math display">\[
-||\alpha \bar x+\beta \bar y||\le \alpha||\bar x||+\beta ||\bar y||\le \alpha x_1+\beta y_1.
-\]</span> Q.E.D.</p></li>
+    ||\alpha \bar x+\beta \bar y||\le \alpha||\bar x||+\beta ||\bar y||\le \alpha x_1+\beta y_1.
+\]</span> Q.E.D.</p>
+<p>Since <span class="math inline">\(f(x)=||x||\)</span> is convex, <span class="math inline">\(C\)</span> is its epigraph and therefore convex. Q.E.D.</p></li>
 <li><p>A cone that is formed by the intersection of finitely many half space is known as a <strong>polyhedral cone</strong>, and it has the form: <span class="math inline">\(\{x\in\mathbb R^n\;|\;Ax\le 0\}\)</span>, where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>.</p>
 <p>Proof of convexity.</p>
-<p>It is straightforward to show that.</p></li>
+<p>It is straightforward to show the convexity.</p></li>
 <li><p><strong>Exponential cone</strong>. Consider the set <span class="math display">\[
-K=\{(x,y,z)\in\mathbb R^3\;|\;y\exp(x/y)\le z,y&gt;0\}.
-\]</span> The exponential cone is <span class="math inline">\(C=\text{cl }(K)\)</span>.</p>
+    K=\{(x,y,z)\in\mathbb R^3\;|\;y\exp(x/y)\le z,y&gt;0\}.
+ \]</span> The exponential cone is <span class="math inline">\(C=\text{cl }(K)\)</span>.</p>
 <p>Proof convexity.</p>
 <p>We define <span class="math inline">\(f(x,y)=y\exp(x/y)\)</span>, then we find the Hessian matrix is positive definite for all <span class="math inline">\(y&gt;0\)</span>.</p>
-<p>Since <span class="math inline">\(y\exp(x/y)\le z\)</span> is the epigraph of the convex function, we get the proof.</p></li>
-<li><strong>Power cone</strong>. For <span class="math inline">\(\alpha =(\alpha_1;\dotsm,\alpha_n)&gt;0\)</span> and <span class="math inline">\(\sum_{i=1}^n\alpha_i=1\)</span>, <span class="math display">\[
-K_\alpha = \{(x;y)\in\mathbb R_+^n\times \mathbb R\;|\;|y|\le x_1^{\alpha_1}\dotsm x_n^{\alpha_n}\}.
-\]</span></li>
-<li><p><strong>Spectral cone</strong> and <strong>nuclear-norm</strong> cone.</p>
+<p>Since <span class="math inline">\(y\exp(x/y)\le z\)</span> is the epigraph of the convex function, and closure of a convex set is convex. Then we finish the proof.</p></li>
+<li><p><strong>Power cone</strong>. For <span class="math inline">\(\alpha =(\alpha_1;\dotsm,\alpha_n)&gt;0\)</span> and <span class="math inline">\(\sum_{i=1}^n\alpha_i=1\)</span>, <span class="math display">\[
+ K_\alpha = \{(x;y)\in\mathbb R_+^n\times \mathbb R\;|\;|y|\le x_1^{\alpha_1}\dotsm x_n^{\alpha_n}\}.
+ \]</span></p></li>
+<li><p><strong>Spectral cone</strong> and <strong>nuclear-norm cone</strong>.</p>
 <p>Suppose <span class="math inline">\(X\in \mathbb R^{m\times n}\)</span> with <span class="math inline">\(m\le n\)</span>. Let the singular value decomposition of <span class="math inline">\(X\)</span> be <span class="math display">\[
 X=U[\Sigma, 0]V^T
-\]</span> where <span class="math inline">\(U\in \mathbb R^{n\times n}\)</span> and <span class="math inline">\(V\in\mathbb R^{m\times m}\)</span> are orthogonal matrices, and <span class="math inline">\(\sum=\text{diag }(\sigma_1,\dots,\sigma_m)\)</span> with <span class="math inline">\(\sigma_1\ge \dotsm\ge \sigma_m\)</span>. We can define the following cones: <span class="math display">\[
+\]</span> where <span class="math inline">\(U\in \mathbb R^{n\times n}\)</span> and <span class="math inline">\(V\in\mathbb R^{m\times m}\)</span> are unitary matrices, and <span class="math inline">\(\Sigma=\text{diag }(\sigma_1,\dots,\sigma_m)\)</span> with <span class="math inline">\(\sigma_1\ge \dotsm\ge \sigma_m\ge 0\)</span>. We can define the following cones: <span class="math display">\[
 \mathcal K=\{(t,X)\in \mathbb R\times \mathbb R^{m\times n}\;|\;||X||_*\le t\}\\
-\mathcal C=\{(t,X)\in\mathbb R\times \mathbb R^{m\times n}\;|\; ||X||_2\le t\}
+   \mathcal C=\{(t,X)\in\mathbb R\times \mathbb R^{m\times n}\;|\; ||X||_2\le t\}
 \]</span> where <span class="math inline">\(||X||_*=\sum_{i=1}^m\sigma _i(X)\)</span> and <span class="math inline">\(||X||_2=\sigma_1(X)\)</span>.</p>
 <p>Proof of (<span class="math inline">\(\mathcal K^*=\mathcal C\)</span>).</p>
-<p>Firstly, we try to prove <span class="math inline">\(\mathcal C\subseteq \mathcal K^*\)</span>, where <span class="math inline">\(\mathcal K^*=\{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; \langle(x,X),(y,Y)\rangle \ge 0\; ,\forall (x,X)\in \mathcal K\}\)</span>, i.e. <span class="math inline">\(\mathcal K^* = \{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; xy+\langle X,Y\rangle \ge 0\;, ||X||_*\le x\}\)</span>. <span class="math display">\[
-||Y||_2\le y\iff\sigma_1(Y)\le y
-\]</span> And we have <span class="math display">\[
+<p>Firstly, we will prove <span class="math inline">\(\mathcal C\subseteq \mathcal K^*\)</span>, where <span class="math display">\[
+\begin{array}{rcl}
+\mathcal K^*&amp;=&amp;\left\{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; \langle(x,X),(y,Y)\rangle \ge 0\; ,\forall (x,X)\in \mathcal K\right\}\\
+&amp;=&amp;\left\{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; xy+\langle X,Y\rangle \ge 0\;, ||X||_*\le x\right\}.
+\end{array}
+\]</span> Assume <span class="math inline">\((y,Y)\in \mathcal C\)</span>, and then we have <span class="math display">\[
+||Y||_2\le y\iff\sigma_1(Y)\le y.
+\]</span> For any <span class="math inline">\((x,X)\in \mathcal K\)</span>, we have <span class="math display">\[
 ||X||_*\le x\iff \sigma_1(X)+\dotsm+\sigma_m(X)\le x.
 \]</span> Since we have <span class="math display">\[
 \langle -X,Y\rangle\le ||X||_*||Y||_2\le xy,
-\]</span> then we have <span class="math display">\[
-\langle X,Y\rangle+xy\ge 0.
-\]</span> Then we try to prove the necessity (<span class="math inline">\(K^*\subseteq \mathcal C\)</span>). That is if <span class="math display">\[
-xy+\langle X,Y\rangle \ge 0\;, ||X||_*\le x,
-\]</span> we need to prove <span class="math display">\[
-||Y||_2\le y.
-\]</span> We will prove this by contradiction.</p>
-<p>If we have <span class="math inline">\(||Y||_2&gt;y\)</span>, then we choose <span class="math inline">\(X=I\)</span> and <span class="math inline">\(x=1\)</span>, <span class="math display">\[
-0\le xy+\langle X,Y\rangle =y-\langle I,Y\rangle =y-||Y||_*&lt;0.
-\]</span> Contradiction and Q.E.D.</p></li>
-<li><p>Copositive and completely positive cones.</p>
+\]</span></p>
+<p>then for any <span class="math inline">\((x,X)\in \mathcal K\)</span>, we have <span class="math display">\[
+ \langle X,Y\rangle+xy\ge 0,
+\]</span> which means <span class="math inline">\((y,Y)\in \mathcal K^*\)</span>.</p>
+<p>Conversely, we will prove <span class="math inline">\(\mathcal K^*\subseteq \mathcal C\)</span>. We will prove this by contradiction. Assume <span class="math inline">\((y,Y)\in\mathcal K^*\)</span>, and define <span class="math inline">\(Y=U_y[\Sigma_y,0]V_y^T\)</span>, where <span class="math inline">\(U_y\)</span> and <span class="math inline">\(V_y\)</span> are unitary matrices and <span class="math inline">\(\Sigma_y=\text{diag}(\sigma_{y1},\dots,\sigma_{ym})\)</span> with <span class="math inline">\(\sigma_{y1}\ge \dotsm\ge \sigma_{ym}\ge 0\)</span>. Then for any <span class="math inline">\((x,X)\in \mathcal K\)</span>, i.e., <span class="math inline">\(||X||_*\le x\)</span>, we have <span class="math display">\[
+ 0\le xy+\langle X,Y\rangle.
+\]</span></p>
+<p>Assume there exists <span class="math inline">\((y,Y)\notin \mathcal C\)</span>, i.e., <span class="math inline">\(||Y||_2&gt;y\)</span>. We choose <span class="math inline">\(X^*=-[\text{diag}\{1,0,0\dotsm\},0]\)</span> and <span class="math inline">\(x^*=1\)</span>. It is straightforward to see that <span class="math display">\[
+ ||X^*||_2=1=x^*,
+\]</span> which means <span class="math inline">\((x^*,X^*)\in \mathcal K\)</span>. Then we have <span class="math display">\[
+\begin{array}{rcl}
+x^*y+\text{Tr}\left((X^*)^TY\right)&amp;=&amp;x^*y-\text{Tr}([\text{diag}\{1,0,0\dotsm\},0]^T U_y[\Sigma_y\;0]V_y^T)\\
+ &amp;=&amp;x^*y-\text{Tr}([\text{diag}\{1,0,0\dotsm\},0]^T U_y[\Sigma_y\;0])\\
+ &amp;=&amp;x^*y-\text{Tr}([\Sigma_y\;0][\text{diag}\{1,0,0\dotsm\},0]^T)\\
+ &amp;=&amp;x^*y-\text{Tr}(\Sigma_y\text{diag}\{1,0,0\dotsm\})\\
+ &amp;=&amp;y-||Y||_2\\
+ &amp;&lt;&amp; 0,
+ \end{array}
+\]</span> which contradicts that <span class="math inline">\(0\le xy+\langle X,Y\rangle\)</span> for any <span class="math inline">\((x,X)\in \mathcal K\)</span>. Q.E.D.</p></li>
+<li><p><strong>Copositive and completely positive cones</strong>.</p>
 <ol type="1">
 <li><p>Copositive cone: <span class="math inline">\(\text{COP}_n=\{X\in\mathbb S^n\;|\; v^TXv\ge 0\;\forall v\in \mathbb R_+^n\}\)</span></p></li>
-<li><p>Completely positive cone: <span class="math display">\[
-\text{CPP}_n=\{X\in\mathbb S^n\;|\; X=VV^T\;\exists V\in\mathbb R_+^n\}\\
-=\left\{\sum_{i=1}^r v_iv_i^T\;|\;v_i\in\mathbb R_+^n\;\forall i=1,\dotsm,r,\;r\in Z_+ \right\}
-\]</span></p></li>
+<li><p>Completely positive cone:</p></li>
 </ol>
-<p>Proof. (<span class="math inline">\(CPP_n^*=COP_n\)</span>)</p>
-<p><span class="math inline">\(CPP_n^* =\{Y\in\mathbb S^n\;|\;\langle X,Y\rangle\ge 0\;\forall X\in CPP_n\}\)</span></p>
-<p>We first prove that <span class="math inline">\(COP_n\subseteq CPP_n^*\)</span>, <span class="math display">\[
-v^TYv\ge0\iff\langle Y,vv^T\rangle\ge 0\iff\langle Y,X\rangle \ge 0,\forall X\in CPP_n.
+<p><span class="math display">\[
+\begin{array}{rcl}
+CPP_n&amp;=&amp;\{X\in\mathbb S^n\;|\; X=VV^T\;\exists V\in\mathbb R_+^n\}\\
+&amp;=&amp;\left\{\sum_{i=1}^r v_iv_i^T\;|\;v_i\in\mathbb R_+^n\;\forall i=1,\dotsm,r,\;r\in Z_+ \right\}
+\end{array}
+\]</span></p>
+<p>Proof of (<span class="math inline">\(CPP_n^*=COP_n\)</span>)</p>
+<p><span class="math display">\[
+CPP_n^* =\{Y\in\mathbb S^n\;|\;\langle X,Y\rangle\ge 0\;\forall X\in CPP_n\}
+\]</span> We first prove that <span class="math inline">\(COP_n\subseteq CPP_n^*\)</span>, <span class="math display">\[
+    v^TYv\ge0\iff\langle Y,vv^T\rangle\ge 0\iff\langle Y,X\rangle \ge 0,\forall X\in CPP_n.
 \]</span> That means <span class="math inline">\(Y\in CPP_n^*\)</span>. Since every step we have equal conditions, Q.E.D.</p></li>
 <li><p>Doubly nonnegative cone.</p>
 <p><span class="math inline">\(\mathbb D_n=\mathbb S_+^n\cap \mathcal N^n\)</span> where <span class="math inline">\(\mathcal N^n\)</span> is the set of symmetric <span class="math inline">\(n\times n\)</span> nonnegative matrices (a matrix in which all the elements are equal to or greater than zero). We can also define <span class="math inline">\(\mathbb D_n\)</span> as <span class="math display">\[
@@ -580,7 +600,6 @@ f^*(y)=\sup\{\langle y,x \rangle-f(x)\;|\;x\in \mathcal E\},\;y\in\mathcal E.
 f^*=\delta_C,\;where\; C=\partial f(0).
 \]</span></p></li>
 </ol>
-<p>Proof.</p>
 <p><strong>Example</strong></p>
 <p>Let <span class="math inline">\(f(x)=||x||_\#\)</span> be any norm function defined on <span class="math inline">\(\mathcal E\)</span> and <span class="math inline">\(||\cdot||_*\)</span> be the dual norm of <span class="math inline">\(||\cdot||_\#\)</span>, i.e., for any <span class="math inline">\(x\in \mathcal E\)</span>, <span class="math inline">\(||x||_*=\sup_{y\in\mathcal E}\{\langle x,y \rangle\;|\;||y||_\#\le 1\}\)</span>. Since <span class="math inline">\(f\)</span> is a positively homogeneous closed convex function, <span class="math inline">\(f^*=\delta_C\)</span> where <span class="math display">\[
 C=\partial f(0)=B_*=\{x\in\mathcal E\;|\;||x||_*\le 1\}.
@@ -614,9 +633,9 @@ f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||^2)\;\forall h\rightarrow 0,
 <h2 id="moreau-yosida-regularization-and-proximal-mapping">3.14 Moreau-Yosida regularization and proximal mapping</h2>
 <p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a closed proper convex function function.</p>
 <p>MY regularization of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
-M_f(x)=\min_{y\in \mathcal E}\{\phi(y;x)=f(y)+\frac{1}{2}||y-x||^2\}.
+M_f(x)=\min_{y\in \mathcal E}\left\{\phi(y;x)=f(y)+\frac{1}{2}||y-x||^2\right\}.
 \]</span> Proximal mapping of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
-P_f(x)=\arg\min_{y\in\mathcal E} \{\phi(y;x)=f(y)+\frac{1}{2}||y-x||^2\}
+P_f(x)=\arg\min_{y\in\mathcal E} \left\{\phi(y;x)=f(y)+\frac{1}{2}||y-x||^2\right\}
 \]</span> <strong>Proposition</strong></p>
 <ol type="1">
 <li><span class="math inline">\(P_f(x)\)</span> exists and is unique.</li>
@@ -660,7 +679,7 @@ P_{\delta _C}(x)=\arg\min_{y\in\mathcal E}\{\delta_C(y)+\frac{1}{2}||y-x||\}=\ar
 \Pi_C(x)=Q\text{diag} (d_+)Q^T. (PSD)
 \]</span> <strong>Theorem</strong></p>
 <ol type="1">
-<li><p><span class="math inline">\(P_f\)</span> and <span class="math inline">\(Q_f:I-P_f\)</span> are firmly nonexpensive, i.e., <span class="math display">\[
+<li><p><span class="math inline">\(P_f\)</span> and <span class="math inline">\(Q_f:I-P_f\)</span> are firmly nonexpansive, i.e., <span class="math display">\[
 ||P_f(x)-P_f(y)||^2\le \langle P_f(x)-P_f(y),x-y\rangle \quad \forall x,y\in\mathcal E\\
 ||Q_f(x)-Q_f(y)||^2\le \langle Q_f(x)-Q_f(y),x-y\rangle \quad \forall x,y\in\mathcal E.
 \]</span> Hence <span class="math inline">\(||P_f(x)-P_f(y)||\le ||x-y||\)</span>. That is, <span class="math inline">\(P_f\)</span> is Lipschitz continuous with modules 1. The same statement also holds for <span class="math inline">\(Q_f\)</span>.</p></li>
@@ -711,8 +730,8 @@ f&#39;(d_i)&amp; d_i=d_j
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/" rel="prev" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/" rel="prev" title="4. Gradient methods">
+                  4. Gradient methods <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -777,7 +796,7 @@ f&#39;(d_i)&amp; d_i=d_j
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

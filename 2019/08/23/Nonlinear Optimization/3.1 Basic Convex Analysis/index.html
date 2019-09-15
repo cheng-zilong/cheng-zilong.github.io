@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="Thanks for the module MA5268 NUS 3. Basic Convex Analysis (1) Linear functions are very important in linear programming and applied mathematics. However, convex functions have a wider range of appli">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-09T16:59:50.000Z">
+<meta property="og:updated_time" content="2019-09-13T12:13:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3. Basic Convex Analysis (1)">
 <meta name="twitter:description" content="Thanks for the module MA5268 NUS 3. Basic Convex Analysis (1) Linear functions are very important in linear programming and applied mathematics. However, convex functions have a wider range of appli">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-10 00:59:50" itemprop="dateModified" datetime="2019-09-10T00:59:50+08:00">2019-09-10</time>
+                <time title="Modified: 2019-09-13 20:13:18" itemprop="dateModified" datetime="2019-09-13T20:13:18+08:00">2019-09-13</time>
               </span>
             
           
@@ -592,7 +592,7 @@ f(y)\ge f(x^\star)+\nabla f(x^\star)^T(y-x^\star)\ge f(x^\star)\;\forall y\in C.
 \]</span></p></li>
 <li><p>(Firmly non-expansive property) For any <span class="math inline">\(z,w\in \mathcal E\)</span>, <span class="math display">\[
 ||\Pi_C(z)-\Pi_C(w)||^2\le \langle z-w,\Pi_C(z)-\Pi_C(w)\rangle.
-\]</span> Hence, <span class="math inline">\(||\Pi_C(z)-\Pi_C(w)||\le ||z-w||\)</span>. That is, <span class="math inline">\(\Pi_c(\cdot)\)</span> is <strong>Lipschitz continuous</strong> with modulus 1.</p></li>
+\]</span> Firmly non-expansive property implies non-expansive propertity, which means <span class="math inline">\(||\Pi_C(z)-\Pi_C(w)||\le ||z-w||\)</span>. That is, <span class="math inline">\(\Pi_c(\cdot)\)</span> is <strong>Lipschitz continuous</strong> with modulus 1.</p></li>
 </ol>
 <p>Proof.</p>
 <ol type="1">
@@ -630,7 +630,11 @@ z=\Pi_C(z)+(z-\Pi_C(z)),\quad where\quad &lt;\Pi_C(z),z-\Pi_C(z)&gt;=0
 ||x-z||^2=(x^2_1-2z_1x_1+z^2_1)+\dotsm+(x^2_n-2z_nx_1+z^2_n)
 \]</span> Every part should be minimized.</p>
 <p><strong>Example</strong></p>
-<p><strong>Example</strong></p>
+<p><span class="math inline">\(C=\{x\in\ \mathbb R^n\;|\; \sum_{i=1}^n x_i=1,x\ge0\}\)</span> is a simplex. Suppose <span class="math inline">\(z\in \mathbb R^n\)</span> satisfies the condition that <span class="math inline">\(z_1\ge z_2\ge \dotsm\ge z_n\)</span>. Let <span class="math inline">\(k\)</span> be the maximum index in the set <span class="math inline">\(\{1\le j\le n\;|\; z_j+(1-\sum_{i=1}^j z_j)&gt;0\}\)</span>. Set <span class="math display">\[
+\lambda = \frac{1}{k}\left(1-\sum_{i=1}^k z_i\right).
+\]</span> Then the projection onto the simplex <span class="math inline">\(C\)</span> is given by <span class="math display">\[
+\Pi_C(z)=\max\{z+\lambda e,0\}.
+\]</span> <strong>Example</strong></p>
 <p>Let <span class="math inline">\(C=\mathbb S_+^n\)</span> is the positive semidefinite matrices space. For a given <span class="math inline">\(A\in\mathbb S_n\)</span>, let the eigenvalue decomposition of <span class="math inline">\(A\)</span> be <span class="math inline">\(A=U\text{diag}(d)U^T\)</span>, then we have <span class="math inline">\(\Pi_C(A)=U(\text{diag}(\max\{d,0\}))U^T\)</span>.</p>
 <p>Not that <span class="math inline">\(U\)</span> is orthogonal. Then we have <span class="math display">\[
 \min\{\frac{1}{2}||X-A||^2_F\;|\; X\in\mathbb  S^n_+\}\\
@@ -837,7 +841,7 @@ f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

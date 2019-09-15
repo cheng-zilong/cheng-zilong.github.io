@@ -58,14 +58,14 @@
 
   <meta name="description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\ \t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:title" content="4. Gradient methods">
 <meta property="og:url" content="http://yoursite.com/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\ \t">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-09T17:15:49.000Z">
+<meta property="og:updated_time" content="2019-09-10T16:18:48.585Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Orandragon&#39;s Blog">
+<meta name="twitter:title" content="4. Gradient methods">
 <meta name="twitter:description" content="Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\ \t">
   <link rel="canonical" href="http://yoursite.com/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/">
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title> | Orandragon's Blog</title>
+  <title>4. Gradient methods | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">4. Gradient methods
 
           
         </h1>
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-10 01:15:49" itemprop="dateModified" datetime="2019-09-10T01:15:49+08:00">2019-09-10</time>
+                <time title="Modified: 2019-09-11 00:18:48" itemprop="dateModified" datetime="2019-09-11T00:18:48+08:00">2019-09-11</time>
               </span>
             
           
@@ -400,14 +400,14 @@ f(x^k+\alpha d^k)\le f(x^k)+\alpha\sigma\langle \nabla f(x^k),d^k\rangle.
 </ol>
 <h2 id="accelerated-proximal-gradient-method-for-convex-programming">4.3 Accelerated proximal gradient method for convex programming</h2>
 <p>Consider a smooth convex function <span class="math inline">\(f\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. We are interested in solving <span class="math display">\[
-\min \{F(x):=f(x)+g(x)\;|\;x\in \mathbb R^n\},
+\min \{F(x)=f(x)+g(x)\;|\;x\in \mathbb R^n\},
 \]</span> where <span class="math inline">\(g:\mathbb R^n\rightarrow (-\infty,\infty]\)</span> is a proper closed convex function.</p>
 <p><strong>Example</strong></p>
 <p>In sparse regression problem, <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2\)</span> and <span class="math inline">\(g(x)=\rho ||x||_1\)</span>.</p>
 <p>For a given <span class="math inline">\(\bar x\)</span> and <span class="math inline">\(H\succeq 0\)</span>, consider the convex quadratic function, <span class="math display">\[
 q(x;\bar x)= f(\bar x)+\langle \nabla f(\bar x),x-\bar x\rangle +\frac{1}{2}\langle x-\bar x,H(x-\bar x)\rangle.
 \]</span> At the current point <span class="math inline">\(\bar x\)</span>, proximal gradient and APG methods solve a sub-problem of the form, <span class="math display">\[
-\bar x =\arg \min \{g(x)+q(x;\bar x)\;|\;x\in \mathbb R^n\}.
+\hat x =\arg \min \{g(x)+q(x;\bar x)\;|\;x\in \mathbb R^n\}.
 \]</span> <strong>Accelerated proximal gradient (APG) method</strong></p>
 <p>Given a positive sequence <span class="math inline">\(\{t_k\}\)</span> such that <span class="math inline">\(t_{k+1}^2-t_{k+1}\le t_k^2\)</span> starting with <span class="math inline">\(t_0=1\)</span>, <span class="math inline">\(t_1=1\)</span>. Given <span class="math inline">\(x^0\)</span>. For <span class="math inline">\(k=0,1,\dots\)</span>, do the following iterations.</p>
 <p><strong>[Step 1]</strong> Set <span class="math inline">\(\beta_k=(t_k-1)/t_{k+1}\)</span> and <span class="math inline">\(\bar x^k=x^k+\beta(x^k-x^{k-1})\)</span>.</p>
@@ -415,9 +415,29 @@ q(x;\bar x)= f(\bar x)+\langle \nabla f(\bar x),x-\bar x\rangle +\frac{1}{2}\lan
 x^{k+1}=\arg \min \{g(x)+q(x;\bar x^k)\;|\;x\in \mathbb R^n\}.
 \]</span> When <span class="math inline">\(t_k=1\)</span> for all <span class="math inline">\(k\)</span>, then <span class="math inline">\(\bar x^k=x^k\)</span> for all <span class="math inline">\(k\)</span>, and the method is the standard <strong>proximal gradient method</strong>.</p>
 <p><strong>Lemma</strong></p>
-<p>Assume that <span class="math inline">\(f(\hat x)\le q(\hat x;\bar x)\)</span>. Then we have the following <strong>decent property</strong>, <span class="math display">\[
+<p>Assume that <span class="math inline">\(f(\hat x)\le q(\hat x;\bar x)\)</span>. (This assumption can be satisfied by choosing <span class="math inline">\(H\)</span>) Then we have the following <strong>decent property</strong>, <span class="math display">\[
 F(x)+\frac{1}{2}||x-\bar x||_H^2\ge F(\hat x)+\frac{1}{2}||x-\hat x||_H^2\;\forall x\in \mathbb R^n.
-\]</span> <strong>Theorem</strong></p>
+\]</span> Proof.</p>
+<p>We have <span class="math display">\[
+\begin{array}{rCl}
+F(x)-F(\hat x)&amp;=&amp;F(x)-f(\hat x)-g(\hat x)\\
+&amp;\ge&amp; F(x)-q(\hat x;\bar x)-g(\hat x)\\
+&amp;=&amp; g(x)-g(\hat x)+f(x)-f(\bar x)-\langle \nabla f(\bar x),\hat x-\bar x\rangle-\frac{1}{2}||\hat x-\bar x||_H^2.
+\end{array}
+\]</span> By convexity of <span class="math inline">\(g\)</span> and <span class="math inline">\(f\)</span>, we have <span class="math display">\[
+g(x)-g(\hat x)\ge \langle \lambda,x-\hat x\rangle\quad \lambda \in \partial g(\hat x)\\
+f(x)-f(\bar x)\ge \langle \nabla f(\bar x),x-\bar x\rang.
+\]</span> Then we have <span class="math display">\[
+F(x)-F(\hat x)\ge \langle \lambda+\nabla f(\bar x),x-\hat x\rangle -\frac{1}{2}||\hat x-\bar x||_H^2.
+\]</span> From the optimality condition, we have <span class="math display">\[
+0\in \partial g(\hat x)+\nabla f(\bar x)+H(\hat x-\bar x)\\
+\implies\\
+\lambda +\nabla f(\bar x)= H(\bar x-\hat x).
+\]</span> Then we have <span class="math display">\[
+F(x)-F(\hat x)\ge \langle H(\bar x-\hat x),x-\hat x\rangle -\frac{1}{2}||\hat x-\bar x||_H^2\\
+=\frac{1}{2}||x-\hat x||_H^2-\frac{1}{2}||x-\bar x||_H^2.
+\]</span> Q.E.D.</p>
+<p><strong>Theorem</strong></p>
 <p>Let <span class="math inline">\(x^*\)</span> be a minimizer of <span class="math inline">\(F(\cdot)\)</span>. Define <span class="math inline">\(E(\cdot)=F(\cdot)-F(x^*)\ge 0\)</span>. Assume that <span class="math inline">\(f(x^{k+1})\le q(x^{k+1};\bar x^k)\)</span> for all <span class="math inline">\(k\)</span>. Then <span class="math display">\[
 E(x^{k+1})\le \frac{1}{2t_{k+1}^2}||x^*-x^0||_H^2.
 \]</span> In practice, the sequence <span class="math inline">\(\{t_k\}\)</span> is typically defined recursively as follows, <span class="math display">\[
@@ -425,14 +445,39 @@ t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}\implies t_k\ge \frac{k}{2}\quad \forall k\ge
 \]</span> Hence, <span class="math display">\[
 0\le F(x^k)-F(x^*)\le \frac{1}{2t_k^2}||x^*-x^0||_H^2\le \frac{2}{k^2}||x^*-x^0||_H^2.
 \]</span> That is, the iteration complexity of APG is <span class="math inline">\(O(1/k^2)\)</span>.</p>
-<p>Proof.</p>
 <p><strong>Theorem</strong></p>
 <p>Assume that <span class="math inline">\(f(x^{k+1})\le q(x^{k+1};\bar x^k)\)</span> for all <span class="math inline">\(k\)</span>. If <span class="math inline">\(t_k=1\)</span> for all <span class="math inline">\(k\)</span>. Then <span class="math display">\[
 kE(x^k)+\frac{1}{2}||x^k-x^*||_H^2\le E(x^1)+\frac{1}{2}||x^1-x^*||_H^2\le \frac{1}{2}||x^0-x^*||_H^2.
 \]</span> Hence <span class="math display">\[
 0\le F(x^k)-F(x^*)\le \frac{1}{2k}||x^0-x^*||_H^2.
 \]</span> That is, the iteration complexity of the proximal gradient method is <span class="math inline">\(O(1/k)\)</span>.</p>
-<p>Proof.</p>
+<p><strong>Example</strong></p>
+<p>Consider the sparse regression problem, <span class="math display">\[
+\min \{\frac{1}{2}||Ax-b||^2+\rho||x||_1\;|\; x\in\mathbb R^n\},
+\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>, <span class="math inline">\(b\in \mathbb R^m\)</span> and <span class="math inline">\(\rho\)</span> are given data. Let <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2\)</span> and <span class="math inline">\(g(x)=\rho||x||_1\)</span>. Then <span class="math inline">\(\nabla f(x)=A^T(Ax-b)\)</span> is Lipschitz continuous with modulus <span class="math inline">\(L=\lambda_\max(AA^T)\)</span>. Pick <span class="math inline">\(H=LI_n\)</span>, the APG subproblem is given by <span class="math display">\[
+\begin{array}{rCl}
+x^{k+1}&amp;=&amp;\arg\min_{x}\left\{g(x)+\langle \nabla f(\bar x^k),x-\bar x^k\rangle +\frac{L}{2}||x-\bar x^k||^2\;|\; x\in\mathbb R^n\right\}\\
+&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}(x-\bar x^k+\frac{2}{L}\nabla f(\bar x^k))^2-\frac{2}{L}||\nabla f(\bar x^k)||^2\right\}\\
+&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}[x-(\bar x^k-\frac{2}{L}\nabla f(\bar x^k))]^2\right\}
+\end{array}
+\]</span> Then if we define <span class="math inline">\(y^k=\bar x^k-\frac{2}{L}\nabla f(\bar x^k)\)</span>, we have <span class="math display">\[
+\begin{array}{rCl}
+x^{k+1}&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}(x-y^k)^2\right\}.
+\end{array}
+\]</span> To be done.............</p>
+<p><strong>Example</strong></p>
+<p>Given <span class="math inline">\(G\in \mathbb S^n\)</span>, consider the projection problem onto the closed convex cone <span class="math inline">\(DNN_n^*=S_+^N+\mathcal N^n\)</span>. This problem can be formulated as, <span class="math display">\[
+\min\left\{\frac{1}{2}||S+Z-G||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
+=\min\left\{\frac{1}{2}||Z-(G-S)||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
+=\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\;|\;S\in\mathbb S^n_+\right\}\\
+=\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2+\delta_{\mathbb S_+^n}(S)\right\}\\
+\]</span> We define <span class="math inline">\(f(S)=\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\)</span>. From the optimality condition, we have <span class="math display">\[
+0\in\nabla f(\bar S)+\partial \delta_{\mathbb S_+^n}\quad \text{$f(\bar S)$ is differentiable}.\\
+-\nabla f(\bar S)\in \delta_{\mathbb S_+^n}(S)\\
+\bar S-\nabla f(\bar S)\in (I+\delta_{\mathbb S_+^n})(\bar S)
+\]</span> Then we have <span class="math display">\[
+\bar S=(I+\delta_{\mathbb S_+^n})^{-1}(\bar S-\nabla f(\bar S))=\Pi_{\mathbb S_+^n}(\bar S-\nabla f(\bar S)).
+\]</span> To be done..........</p>
 <h2 id="gradient-projection-method">4.4 Gradient projection method</h2>
 <p>Let <span class="math inline">\(f:Q\rightarrow \mathbb R\)</span> be a continuously differentiable function (not necessarily convex) defined on a closed convex subset <span class="math inline">\(Q\)</span> of <span class="math inline">\(\mathbb R^n\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. Consider <span class="math display">\[
 \min\{f(x)\;|\; x\in Q\}.
@@ -480,6 +525,10 @@ E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/14/Nonlinear Optimization/5. Basic nonlinear programming/" rel="prev" title="5. Basic Nonlinear Programming">
+                  5. Basic Nonlinear Programming <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -543,7 +592,7 @@ E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="5. Basic Nonlinear Programming This chapter is concerned with the following multi-dimensional general constrained minimization problem, \[ \begin{array}{rCll} \min &amp;amp; f(x)\\ s.t.&amp;amp; g_i(x)=0,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5. Basic Nonlinear Programming">
+<meta property="og:url" content="http://yoursite.com/2019/09/14/Nonlinear Optimization/5. Basic nonlinear programming/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="5. Basic Nonlinear Programming This chapter is concerned with the following multi-dimensional general constrained minimization problem, \[ \begin{array}{rCll} \min &amp;amp; f(x)\\ s.t.&amp;amp; g_i(x)=0,">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-14T05:09:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5. Basic Nonlinear Programming">
+<meta name="twitter:description" content="5. Basic Nonlinear Programming This chapter is concerned with the following multi-dimensional general constrained minimization problem, \[ \begin{array}{rCll} \min &amp;amp; f(x)\\ s.t.&amp;amp; g_i(x)=0,">
+  <link rel="canonical" href="http://yoursite.com/2019/09/14/Nonlinear Optimization/5. Basic nonlinear programming/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>5. Basic Nonlinear Programming | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/Nonlinear Optimization/5. Basic nonlinear programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">5. Basic Nonlinear Programming
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-14 22:32:04 / Modified: 13:09:16" itemprop="dateCreated datePublished" datetime="2019-09-14T22:32:04+08:00">2019-09-14</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="basic-nonlinear-programming">5. Basic Nonlinear Programming</h1>
+<p>This chapter is concerned with the following multi-dimensional general constrained minimization problem, <span class="math display">\[
+\begin{array}{rCll}
+\min &amp; f(x)\\
+s.t.&amp; g_i(x)=0,&amp; i=1,2,\dots,m\\
+&amp;h_j(x)\le0,&amp; j=1,2,\dots,p\\
+&amp;&amp;x\in\mathbb R^n,
+\end{array}
+\]</span> where <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> are continuous functions, for <span class="math inline">\(i=1,2\dots,m\)</span> and <span class="math inline">\(j=1,2,\dots,p\)</span>. The feasible set of the problem is the following subset of <span class="math inline">\(\mathbb R^n\)</span>, <span class="math display">\[
+S=\left\{
+x\in\mathbb R^n\;\; 
+\begin{array}{|l}
+g_i(x)=0,\;i=1,2,\dots,m
+\\
+h_j(x)\le0,\;j=1,2\dots,p
+\end{array}
+\right\}.
+\]</span> <span class="math inline">\(S\)</span> is a closed set.</p>
+<p>The KKT necessary conditions are very useful in locating possible candidates for a global minimizer.</p>
+<h2 id="regular-point">5.1 Regular point</h2>
+<p><strong>Definition</strong> (Active constraint)</p>
+<p>Let <span class="math inline">\(x^*\in S\)</span>. An inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is said to be active at <span class="math inline">\(x^*\)</span> if <span class="math inline">\(h_j(x^*)=0\)</span>. Otherwise, it is said to be inactive at <span class="math inline">\(x^*\)</span>.</p>
+<p>Graphically, if the constraint is active, then the point lies on the boundary defined by the condition <span class="math inline">\(h_j(x)=0\)</span>.</p>
+<p><strong>Definition</strong> (Regular point)</p>
+<p>Let <span class="math inline">\(x^* \in S\)</span> be a feasible point. Let <span class="math display">\[
+J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\}\}
+\]</span> be the index set of active constraints at <span class="math inline">\(x^*\)</span>. Suppose the set of gradient vectors <span class="math display">\[
+\{\nabla g_i(x^*)\;|\; i=1,2,\dotsm,m\}\cup\{\nabla h_j(x^*)\;|\;j\in J(x^*)\}
+\]</span> is linearly independent. Then we say <span class="math inline">\(x^*\)</span> is a regular point or the regularity condition holds at <span class="math inline">\(x^*\)</span>.</p>
+<p>The above condition is called constraint qualification at <span class="math inline">\(x^*\in S\)</span>. There are other types of constraint qualifications. In this chapter, we shall only consider the above linearly independence constraint qualification (LICQ).</p>
+<p>In particular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\O\)</span>. We shall call a point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\O\)</span> a regular point.</p>
+<h2 id="karush-kuhn-tucker-necessary-conditions">5.2 Karush-Kuhn-Tucker necessary conditions</h2>
+<p>We state the KKT necessary conditions for a local minimizer <span class="math inline">\(x^*\)</span> at which the regularity condition holds.</p>
+<p><strong>Theorem</strong> (KKT necessary conditions)</p>
+<p>Suppose <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span>, where <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, has continuous first partial derivatives on the feasible set <span class="math inline">\(S\)</span>. Suppose <span class="math inline">\(x^*\in S\)</span> is a regular point.</p>
+<p>If <span class="math inline">\(x^*\)</span> is a local minimizer, then there exists (unique) scalars <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> such that the following conditions hold, <span class="math display">\[
+\begin{array}{rCl}
+\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)&amp;=&amp;0\\
+\mu_j^*\ge 0 &amp;&amp; \forall j=1,\dotsm,p\\
+\mu_j^*=0&amp;&amp;\forall j\notin J(x^*),
+\end{array}
+\]</span> where <span class="math inline">\(J(x^*)\)</span> is the index set of active inequality constraints at <span class="math inline">\(x^*\)</span>.</p>
+<p><strong>Remark</strong> (On the KKT necessary conditions)</p>
+<ol type="1">
+<li><p>We say that <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point whenever <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT first order conditions. KKT points are some times also called KKT solutions.</p></li>
+<li><p>The scalar <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> are called Lagrange multipliers.</p></li>
+<li><p>The conditions <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> means that the Lagrange multiplier corresponding to the inactive constraint must be zero. Since <span class="math inline">\(h_j(x^*)&lt;0\;\forall j\notin J(x^*)\)</span> and <span class="math inline">\(h_j(x^*)=0\;\forall j\in J(x^*)\)</span>, the condition <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> is equivalent to <span class="math display">\[
+\mu_j^*h_j(x^*)=0,\quad \forall j=1,\dotsm,p.
+\]</span> This is called the <strong>complementary slackness condition</strong>.</p></li>
+</ol>
+<h2 id="examples-to-illustrate-the-kkt-necessary-conditions.">5.3 Examples to illustrate the KKT necessary conditions.</h2>
+<p><strong>Corollary</strong></p>
+<p>Suppose the following two conditions hold,</p>
+<ol type="1">
+<li>A global minimizer <span class="math inline">\(x^*\)</span> is known to exist.</li>
+<li><span class="math inline">\(x^*\)</span> is a regular point.</li>
+</ol>
+<p>Then <span class="math inline">\(x^*\)</span> is a KKT point, i.e. there exists <span class="math inline">\(\lambda^*\in \mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that the following conditions hold <span class="math display">\[
+\begin{array}{rCl}
+\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)=0\\
+g_i(x^*)=0,\;i=1,2,\dotsm,m\\
+\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p.
+\end{array}
+\]</span> <strong>Example</strong> (Projection onto a simplex)</p>
+<p>Given <span class="math inline">\(g\in\mathbb R^n\)</span> and <span class="math inline">\(b&gt;0\)</span>. Consider the problem, <span class="math display">\[
+\min\left\{f(x)=\frac{1}{2}||x-g||^2\;|\; e^Tx=b,x\ge 0 \right\},
+\]</span> where <span class="math inline">\(e\)</span> is the vector of all ones. Its optimal solution <span class="math inline">\(x^*\)</span> can be computed analytically.</p>
+<p><strong>Solution</strong></p>
+<p>Assume <span class="math inline">\(g_1\ge g_2\ge \dotsm\ge g_n\)</span>.</p>
+<ol type="1">
+<li><p>First we prove that the optimal solution <span class="math inline">\(x^*\)</span> must also satisfy the condition <span class="math inline">\(x_1^*\ge x_2^*\ge\dotsm\ge x_n^*\)</span>. Suppose on the contrary that there exists indices <span class="math inline">\(i&lt;j\)</span> such that with <span class="math inline">\(x_i^*&lt;x_j^*\)</span>. Consider a new point <span class="math inline">\(\bar x\)</span> defined by (Just switch two elements) <span class="math display">\[
+\bar x=\begin{cases}
+x_k^*&amp;\text{if }k\neq i,j\\
+x_j^*&amp;\text{if }k=i\\
+x_i^*&amp;\text{if }k=j
+\end{cases}.
+\]</span> Then we have <span class="math display">\[
+f(\bar x)-f(x^*)=\frac{1}{2}\left((x_i^*-g_j)^2+(x_j^*-g_i^2)\right)-\frac{1}{2}\left((x_i^*-g_i)^2+(x_j^*-g_j^2)\right)\\
+=(g_i-g_j)(x_i^*-x_j^*)\le 0.
+\]</span> Hence <span class="math inline">\(f(\bar x)\le f(x^*)\)</span>.</p></li>
+<li><p>Then we use KKT conditions. The KKT conditions are given by, <span class="math display">\[
+x-g-\mu-\lambda e=0,\quad \mu\ge 0,\;\lambda\in \mathbb R,\; x\ge 0\\
+e^Tx=b\\
+\mu x=0.
+\]</span> The first equation imply that <span class="math inline">\(x=g+\mu+\lambda e\)</span>.</p>
+<p>Now if <span class="math inline">\(g_i+\lambda &gt;0\)</span>, set <span class="math inline">\(x_i=g_i+\lambda\)</span> and <span class="math inline">\(\mu_i=0\)</span>. If <span class="math inline">\(g_i+\lambda \le 0\)</span>, set <span class="math inline">\(x_i=0\)</span> and <span class="math inline">\(\mu_i=-(g_i+\lambda)\)</span>. Now suppose <span class="math inline">\(x_i^*&gt;0\)</span> for <span class="math inline">\(i=1,\dotsm,r\)</span> and <span class="math inline">\(x^*=0\)</span> for <span class="math inline">\(i=r+1,\dotsm,n\)</span>. Then we have <span class="math display">\[
+b=e^Tx=\sum_{i=1}^rx_i=\sum_{i=1}^r g_i+\lambda r\implies \lambda =\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right).
+\]</span> Now we need to find the largest <span class="math inline">\(r\)</span> denoted as <span class="math inline">\(\bar r\)</span> such that <span class="math display">\[
+\bar r = \max \{r\;|\;x_r\ge 0\},
+\]</span> where <span class="math inline">\(x_r=g_r+\lambda=g_r+\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right)\)</span>.</p>
+<p>Finally, we have <span class="math display">\[
+x_i^*=\begin{cases} g_i+\lambda &amp; \text{if } i\le \bar r\\0&amp; \text{if }i&gt;\bar r.\end{cases}
+\]</span></p></li>
+<li><p>If the components of <span class="math inline">\(g\)</span> is not sorted in a descending order, we can find a permutation matrix <span class="math inline">\(P\)</span> such that <span class="math inline">\(\hat g=Pg\)</span> has its components arranged in a descending order. Then the optimal solution <span class="math inline">\(x^*\)</span> is given by <span class="math inline">\(x^*=P^T\hat x^*\)</span>.</p></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/" rel="next" title="4. Gradient methods">
+                  <i class="fa fa-chevron-left"></i> 4. Gradient methods
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-nonlinear-programming"><span class="nav-text">5. Basic Nonlinear Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#regular-point"><span class="nav-text">5.1 Regular point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#karush-kuhn-tucker-necessary-conditions"><span class="nav-text">5.2 Karush-Kuhn-Tucker necessary conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#examples-to-illustrate-the-kkt-necessary-conditions."><span class="nav-text">5.3 Examples to illustrate the KKT necessary conditions.</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>
