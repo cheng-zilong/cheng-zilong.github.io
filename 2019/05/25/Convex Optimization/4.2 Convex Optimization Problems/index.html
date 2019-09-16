@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="4.3 Linear Optimization problems When the objective and constraint functions are all affine, the problem is called a linear program (LP), $$ \[\begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \be">
+  <meta name="description" content="4.3 Linear Optimization problems When the objective and constraint functions are all affine, the problem is called a linear program (LP), \[ \begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \begi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4. Convex Optimization Problem (2)">
 <meta property="og:url" content="http://yoursite.com/2019/05/25/Convex Optimization/4.2 Convex Optimization Problems/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="4.3 Linear Optimization problems When the objective and constraint functions are all affine, the problem is called a linear program (LP), $$ \[\begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \be">
+<meta property="og:description" content="4.3 Linear Optimization problems When the objective and constraint functions are all affine, the problem is called a linear program (LP), \[ \begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \begi">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-15T16:47:00.000Z">
+<meta property="og:updated_time" content="2019-09-16T03:37:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4. Convex Optimization Problem (2)">
-<meta name="twitter:description" content="4.3 Linear Optimization problems When the objective and constraint functions are all affine, the problem is called a linear program (LP), $$ \[\begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \be">
+<meta name="twitter:description" content="4.3 Linear Optimization problems When the objective and constraint functions are all affine, the problem is called a linear program (LP), \[ \begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \begi">
   <link rel="canonical" href="http://yoursite.com/2019/05/25/Convex Optimization/4.2 Convex Optimization Problems/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-16 00:47:00" itemprop="dateModified" datetime="2019-09-16T00:47:00+08:00">2019-09-16</time>
+                <time title="Modified: 2019-09-16 11:37:26" itemprop="dateModified" datetime="2019-09-16T11:37:26+08:00">2019-09-16</time>
               </span>
             
           
@@ -289,89 +289,81 @@
 
       
         <h2 id="linear-optimization-problems">4.3 Linear Optimization problems</h2>
-When the objective and constraint functions are all affine, the problem is called a linear program (LP), $$
-<span class="math display">\[\begin{array}{|l|ll|}
+<p>When the objective and constraint functions are all affine, the problem is called a linear program (LP), <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 c^Tx+d
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Gx\preceq h\\Ax=b
 \end{array}
-\end{array}\]</span>
-<p>. $$ It is common to omit the constant <span class="math inline">\(d\)</span> in the objective function because it does not affect the optimal set.</p>
+\end{array}.
+\]</span> It is common to omit the constant <span class="math inline">\(d\)</span> in the objective function because it does not affect the optimal set.</p>
 <p>The feasible set if the LP is a polyhedron <span class="math inline">\(\mathcal P\)</span>. Two special cases are widely encountered.</p>
 <p><strong>Standard form and inequality form</strong></p>
-The only inequalities are componentwise nonnegative constraints <span class="math inline">\(x\succeq 0\)</span>, $$
-<span class="math display">\[\begin{array}{|l|ll|}
+<p>The only inequalities are componentwise nonnegative constraints <span class="math inline">\(x\succeq 0\)</span>, <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 c^Tx
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Ax=b\\x\succeq 0
 \end{array}
-\end{array}\]</span>
-. <span class="math display">\[
-If the LP has no equality constraints, is called an **inequality form** LP, usually written as
-\]</span>
-<span class="math display">\[\begin{array}{|l|ll|}
+\end{array}.
+\]</span> If the LP has no equality constraints, is called an <strong>inequality form</strong> LP, usually written as <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 c^Tx
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Ax\preceq b
 \end{array}
-\end{array}\]</span>
-<p>. $$ Converting LPs to standard form</p>
-First, introduce slack variable <span class="math inline">\(s_i\)</span>, $$
-<span class="math display">\[\begin{array}{|l|ll|}
+\end{array}.
+\]</span> Converting LPs to standard form</p>
+<p>First, introduce slack variable <span class="math inline">\(s_i\)</span>, <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 c^Tx+d
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Gx+s=h\\Ax=b\\s\succeq 0
 \end{array}
-\end{array}\]</span>
-<p>. $$ Then express the variable <span class="math inline">\(x\)</span> as the difference of two nonnegative variables <span class="math inline">\(x^+\)</span> and <span class="math inline">\(x^-\)</span>. Then, <span class="math inline">\(x=x^+-x^-\)</span></p>
-This gives the problem $$
-<span class="math display">\[\begin{array}{|l|ll|}
+\end{array}.
+\]</span> Then express the variable <span class="math inline">\(x\)</span> as the difference of two nonnegative variables <span class="math inline">\(x^+\)</span> and <span class="math inline">\(x^-\)</span>. Then, <span class="math inline">\(x=x^+-x^-\)</span></p>
+<p>This gives the problem <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 c^Tx^+-c^Tx^-+d
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Gx^+-Gx^-+s=h\\Ax^+-Ax^-=b\\x^+\succeq0,x^-\succeq0,s\succeq0
 \end{array}
-\end{array}\]</span>
-<p>. $$</p>
+\end{array}.
+\]</span></p>
 <h3 id="examples">4.3.1 Examples</h3>
 <p><strong>Diet problem</strong></p>
-A healthy diet contains m different nutrients in quantities at least equal to <span class="math inline">\(b_1,\dotsm.b_m\)</span> We can compose such a diet by choosing nonnegative quantities <span class="math inline">\(x_1,\dotsm,x_n\)</span> of n different foods. One unit quantity of food j contains an amount <span class="math inline">\(a_{ij}\)</span> of nutrient <span class="math inline">\(i\)</span>, and has a cost of <span class="math inline">\(c_j\)</span> . We want to determine the cheapest diet that satisfies the requirements. This problem can formulated as $$
-<span class="math display">\[\begin{array}{|l|ll|}
+<p>A healthy diet contains m different nutrients in quantities at least equal to <span class="math inline">\(b_1,\dotsm.b_m\)</span> We can compose such a diet by choosing nonnegative quantities <span class="math inline">\(x_1,\dotsm,x_n\)</span> of n different foods. One unit quantity of food j contains an amount <span class="math inline">\(a_{ij}\)</span> of nutrient <span class="math inline">\(i\)</span>, and has a cost of <span class="math inline">\(c_j\)</span> . We want to determine the cheapest diet that satisfies the requirements. This problem can formulated as <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 c^Tx
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Ax\succeq b\\x\succeq 0
 \end{array}
-\end{array}\]</span>
-<p>. $$ <strong>Chebyshe center of a polyhedron</strong></p>
+\end{array}.
+\]</span> <strong>Chebyshe center of a polyhedron</strong></p>
 <p>We consider the problem of finding the largest Euclidean ball that lies in a polyhedron described by linear inequalities, <span class="math display">\[
 \mathcal P=\{x\in \mathbb R^n|a_i^T x\le b_i,i=1,\dotsm,m\}
 \]</span> The optimal point of this problem is the deepest point inside the polyhedron.</p>
@@ -385,174 +377,319 @@ Ax\succeq b\\x\succeq 0
 \]</span> we have <span class="math display">\[
 ||u||_2\le r \implies a_i^T(x_c+u)\le b_i\implies a_i^Tx+r||a_i||_2\le b,
 \]</span> which a linear inequality in <span class="math inline">\(x_c\)</span> and <span class="math inline">\(r\)</span>. In other words, the constraint that the ball lies in the halfspace determined by the inequality <span class="math inline">\(a_i^T x\le b_i\)</span> can be written as a linear inequality.</p>
-Therefore, we can form the problem in general cases, $$ \begin{array}{|l|ll|} &amp;
-<span class="math display">\[\begin{array}{lll}
+<p>Therefore, we can form the problem in general cases, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
 r
-\end{array}\]</span>
-<p>\</p>
-<p>&amp; \begin{array}{lll} a_i^Tx_c+r||a_i||_2b_i, &amp; i=1,,m \end{array} \end{array}. $$ <strong>Piecewise-linear minimization</strong></p>
-Consider the (unconstraint) problem of minimizing piecewise-linear, convex function <span class="math display">\[
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+a_i^Tx_c+r||a_i||_2\le b_i, &amp; i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span> <strong>Piecewise-linear minimization</strong></p>
+<p>Consider the (unconstraint) problem of minimizing piecewise-linear, convex function <span class="math display">\[
 f(x)=\max_{i=1,\dotsm,m}(a_i^Tx+b_i)
-\]</span> The problem can be transformed to LP by forming the epigraph problem $$ \begin{array}{|l|ll|} &amp;
-<span class="math display">\[\begin{array}{lll}
+\]</span> The problem can be transformed to LP by forming the epigraph problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
 t
-\end{array}\]</span>
-<p>\</p>
-&amp; \begin{array}{lll} _{i=1,,m}(a_i^Tx+b_i)t \end{array} \end{array}. <span class="math display">\[
-Then
-\]</span> \begin{array}{|l|ll|} &amp;
-<span class="math display">\[\begin{array}{lll}
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\max_{i=1,\dotsm,m}(a_i^Tx+b_i)\le t
+\end{array}
+\end{array}.
+\]</span> Then <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
 t
-\end{array}\]</span>
-<p>\</p>
-<p>&amp; \begin{array}{lll} a_i^Tx+b_it &amp; i=1,,m \end{array} \end{array}. $$</p>
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+a_i^Tx+b_i\le t &amp; i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span></p>
 <h3 id="linear-fractional-programming">4.3.2 Linear-fractional programming</h3>
-<p>$$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-&amp;
-<span class="math display">\[\begin{array}{lll}
+<p><span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
 Gx\preceq h\\Ax=b
-\end{array}\]</span>
-<p>\end{array}, $$</p>
-where the objective function is given by <span class="math display">\[
+\end{array}
+\end{array},
+\]</span></p>
+<p>where the objective function is given by <span class="math display">\[
 f_0(x)=\frac{c^Tx+d}{e^Tx+f}\quad \text{dom}(f_0)=\{x\;|\;e^Tx+f&gt;0\}
 \]</span> If the feasible set <span class="math display">\[
 \{x\;|\;Gx\preceq h, Ax=b,e^Tx+f&gt;0\}
-\]</span> is nonempty, the linear-fractional program can be transformed to an equivalent linear program $$
-<span class="math display">\[\begin{array}{|l|ll|}
+\]</span> is nonempty, the linear-fractional program can be transformed to an equivalent linear program <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 c^Ty+dz
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Gy-hz\preceq0\\Ay-bz=0\\e^Ty+fz=1\\z\ge0
 \end{array}
-\end{array}\]</span>
-<p>. $$</p>
-<h2 id="quadratic-optimization-problems-to-be-revised">4.4 Quadratic optimization problems (To be revised)</h2>
-The convex optimization problem is called a quadratic program (QP) if the objective function is convex quadratic and the constraint functions are affine. $$
-<span class="math display">\[\begin{array}{|l|ll|}
+\end{array}.
+\]</span></p>
+<h2 id="quadratic-optimization-problems">4.4 Quadratic optimization problems</h2>
+<p>The convex optimization problem is called a quadratic program (QP) if the objective function is convex quadratic and the constraint functions are affine. <span class="math display">\[
+\begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
 \frac{1}{2}x^TPx+q^Tx+r
 \end{array}\\\hline
-
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
 Gx\preceq h\\Ax=b
 \end{array}
-\end{array}\]</span>
-<p>. <span class="math display">\[
-If the problem is with quadratic constraints, then the problem is called a quadratically constrained quadratic program (QCQP). Quadratic programs include linear programs as a special case by taking $P=0$ . QCQP include QP as a special case by taking $P_i=0$ for $i=1,\dotsm,m$.
-\]</span> \begin{array}{|l|ll|} &amp; \begin{array}{lll} x<sup>TP_0x+q_0</sup>Tx+r_0 \end{array}\</p>
-<p>&amp; \begin{array}{lll} x<sup>TP_1x+q_1</sup>Tx+r_10 &amp; i=1,,m \Ax=b \end{array} \end{array}. $$</p>
+\end{array}.
+\]</span> If the problem is with quadratic constraints, then the problem is called a quadratically constrained quadratic program (QCQP). Quadratic programs include linear programs as a special case by taking <span class="math inline">\(P=0\)</span> . QCQP include QP as a special case by taking <span class="math inline">\(P_i=0\)</span> for <span class="math inline">\(i=1,\dotsm,m\)</span>. <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\frac{1}{2}x^TP_0x+q_0^Tx+r_0
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\frac{1}{2}x^TP_1x+q_1^Tx+r_1\le 0 &amp; i=1,\dotsm,m
+\\Ax=b
+\end{array}
+\end{array}.
+\]</span></p>
 <h3 id="examples-1">4.4.1 Examples</h3>
 <p><strong>Least-squares and regression</strong></p>
 <p>The problem of minimizing convex quadratic function <span class="math display">\[
 ||Ax-b||^2_2=x^TA^TAx-2b^TAx+b^Tb
 \]</span> is an unconstraint QP. This problem is simple enough to have the well-known analytical solution <span class="math inline">\(x=A^+ b\)</span> where <span class="math inline">\(A^+\)</span> is pseudo-inverse of A.</p>
-<p>When inequality constraints are added, the problem is called constrained regression or constrained least-squares, are there is no longer a simple analytical solution, $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} ||Ax-b||_2^2 \end{array}\</p>
-<p>&amp; \begin{array}{lll} l_ix_iu_i &amp; i=1,,n \end{array} \end{array}. $$ <strong>Distance between polyhedra</strong></p>
-<p>The Euclidean distance between the polyhedra <span class="math inline">\(\mathcal P_1 = \{x|A_1x\preceq b_1\}\)</span> and <span class="math inline">\(\mathcal P_2\{x|A_2x\preceq b_2\}\)</span> in <span class="math inline">\(R^n\)</span> is defined as <span class="math display">\[
+<p>When inequality constraints are added, the problem is called constrained regression or constrained least-squares, are there is no longer a simple analytical solution, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+||Ax-b||_2^2
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+l_i\le x_i\le u_i &amp; i=1,\dotsm,n
+\end{array}
+\end{array}.
+\]</span> <strong>Distance between polyhedra</strong></p>
+<p>The Euclidean distance between the polyhedra <span class="math inline">\(\mathcal P_1 = \{x\;|\;A_1x\preceq b_1\}\)</span> and <span class="math inline">\(\mathcal P_2\{x\;|\;A_2x\preceq b_2\}\)</span> in <span class="math inline">\(R^n\)</span> is defined as <span class="math display">\[
 \text{dist}(\mathcal P_1,\mathcal P_2)=\inf\{||x_1-x_2||_2|\space x_1\in \mathcal P_1,x_2\in \mathcal P_2\}
 \]</span></p>
-<p>We can solve the QP $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} ||x_1-x_2||^2_2 \end{array}\</p>
-<p>&amp; \begin{array}{lll} A_1x_1b_1 &amp; A_2x_2b_2 \end{array} \end{array}. $$</p>
+<p>We can solve the QP <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+||x_1-x_2||^2_2
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+A_1x_1\preceq b_1 &amp; A_2x_2\preceq b_2
+\end{array}
+\end{array}.
+\]</span></p>
 <h3 id="second-order-cone-programming">4.4.2 Second-order cone programming</h3>
-A problem is closely related to quadratic programming is the second-order cone program (SOCP) $$ \begin{array}{|l|ll|} &amp;
-<span class="math display">\[\begin{array}{lll}
+<p>A problem is closely related to quadratic programming is the second-order cone program (SOCP) <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
 f^Tx
-\end{array}\]</span>
-<p>\</p>
-&amp; \begin{array}{lll} ||A_ix+b_i||_2c_i^Tx+d_ii=1,,m\ Fx=g \end{array} \end{array}. <span class="math display">\[
-The second-order cone of dimension $k+1$ is defined as
-\]</span> ={
-<span class="math display">\[\begin{bmatrix}u\\t\end{bmatrix}\]</span>
-<p>;|;uR^k,t,||u||t}. $$ The inequality constraints like such kind is called second order cone constraints since it is the same as requiring the affine function <span class="math inline">\((Ax+b,c^Tx+d)\)</span> to lie in the second order cone in <span class="math inline">\(R^{k+1}\)</span></p>
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+||A_ix+b_i||_2\le c_i^Tx+d_i\quad i=1,\dotsm,m\\
+Fx=g
+\end{array}
+\end{array}.
+\]</span> The second-order cone of dimension <span class="math inline">\(k+1\)</span> is defined as <span class="math display">\[
+\mathscr{C}=\left\{\begin{bmatrix}u\\t\end{bmatrix}\space\;\Bigg|\;u\in \mathbb R^k,t\in \R,||u||\le t\right\}.
+\]</span> The inequality constraints like such kind is called second order cone constraints since it is the same as requiring the affine function <span class="math inline">\((Ax+b,c^Tx+d)\)</span> to lie in the second order cone in <span class="math inline">\(\mathbb R^{k+1}\)</span></p>
 <p><strong>Robust linear Programming</strong></p>
-<p>We consider a linear program in inequality form $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p><span class="math display">\[
-in which $a_i$ are known to lie in given ellipsoids 
-\]</span> a_i _i={a_i+P_i u|||u||_21} <span class="math display">\[
-Then we have the robust linear programming
-\]</span> \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-<p>\ a_i^Txb_i {a_i^Tx|a_i_i}b_i\ {a_i<sup>Tx+u</sup>TP_i^Tx|||u||_21}b_i\ a_i<sup>Tx+||P_i</sup>Tx||_2b_i <span class="math display">\[
-Then we have
-\]</span> \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-<p>\ $$</p>
+<p>We consider a linear program in inequality form <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+a_i^Tx\le b_i
+\end{array}
+\end{array}
+\]</span> in which <span class="math inline">\(a_i\)</span> are known to lie in given ellipsoids <span class="math display">\[
+a_i \in \varepsilon_i=\{\bar a_i+P_i u|\space||u||_2\le 1\}
+\]</span> Then we have the robust linear programming <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^T
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+a_i^Tx\le b_i&amp;a_i\in \varepsilon_i
+\end{array}
+\end{array}\\
+\begin{array}{rcl}
+a_i^Tx\le b_i &amp;\iff&amp; \sup\{a_i^Tx|a_i\in \varepsilon _i\}\le b_i\\
+&amp;\iff&amp; \sup\{\bar a_i^Tx+u^TP_i^Tx|\space ||u||_2\le 1\}\le b_i\\
+&amp;\iff&amp; \bar a_i^Tx+||P_i^Tx||_2\le b_i.
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\bar a_i^Tx+||P_i^Tx||_2\le b_i
+\end{array}
+\end{array}.
+\]</span></p>
 <h2 id="geometric-programming">4.5 Geometric Programming</h2>
 <p>In this section, we describe a family of optimization problems that are not convex in their natural form. These problems, however can be transformed to convex optimization problems, by a change of variables and a transformation of the objective and constraint functions.</p>
 <h3 id="monomials-and-posynomials">4.5.1 Monomials and posynomials</h3>
-<p>A function <span class="math inline">\(f:R^n\rightarrow R\)</span> with <span class="math inline">\(dom f=R^n_{++}\)</span> defined as <span class="math display">\[
+<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> with <span class="math inline">\(\text{dom} (f)=\mathbb R^n_{++}\)</span> defined as <span class="math display">\[
 f(x)=cx_1^{a_1}x_2^{a_2}\dotsm x_n^{a_n}
-\]</span> where <span class="math inline">\(c&gt;0\)</span> and <span class="math inline">\(a_i \in R\)</span> is called a monomial function or simply a monomial. A sum of monomials in the form <span class="math display">\[
+\]</span> where <span class="math inline">\(c&gt;0\)</span> and <span class="math inline">\(a_i \in \mathbb R\)</span> is called a monomial function or simply a monomial. A sum of monomials in the form <span class="math display">\[
 f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}} x_2^{a_{2k}} \dotsm x_n^{a_{nk}}
 \]</span> where <span class="math inline">\(c_k&gt;0\)</span> is called a posynomial function or simply posynomial.</p>
 <p>Posynomials are closed under addition, multiplication, and nonnegative scaling. Monomials are closed under multiplication and division.</p>
 <h3 id="geometric-programming-1">4.5.2 Geometric programming</h3>
-<p>An optimization problem of the form $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p>$$ where <span class="math inline">\(f_0\space \dotsm\space f_m\)</span> are posynomials and <span class="math inline">\(h_1\space \dotsm\space h_p\)</span> are monomials is called a geometric program (GP).</p>
+<p>An optimization problem of the form <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 1 &amp; i=1,\dotsm,m\\h_i(x)=1 &amp; i=1,\dotsm,p
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(f_0\space \dotsm\space f_m\)</span> are posynomials and <span class="math inline">\(h_1\space \dotsm\space h_p\)</span> are monomials is called a geometric program (GP).</p>
 <h3 id="geometric-program-in-convex-form">4.5.3 Geometric program in convex form</h3>
 <p>GP are not convex but they can be transformed to convex problems by a change of variables and a transformation of the objective and constraint functions.</p>
-<p>We define <span class="math inline">\(y_i=\log x_i\)</span> so <span class="math inline">\(x_i=e^{y_i}\)</span></p>
-<p>then <span class="math display">\[
-f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}} x_2^{a_{2k}} \dotsm x_n^{a_{nk}}\\
-f(x)=\sum_{k=1}^K e^{a_k^Ty+b_k}\quad b_k=\log c_k
-\]</span> Then the problem is $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
+<p>We define <span class="math inline">\(y_i=\log x_i\)</span> so <span class="math inline">\(x_i=e^{y_i}\)</span>, and then</p>
 <p><span class="math display">\[
-Now we transform the objective functions and constraint functions by taking log
-\]</span> \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p>$$</p>
+f(x)=\sum_{k=1}^K c_kx_1^{a_{1k}} x_2^{a_{2k}} \dotsm x_n^{a_{nk}}\\
+f(x)=\sum_{k=1}^K e^{a_k^Ty+b_k}\quad b_k=\log c_k.
+\]</span> Then the problem is <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\sum_{k=1}^{K_0}e^{a^T_{0k}y+b_{0k}}
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\sum_{k=1}^{K_i}e^{a^T_{ik}y+b_{ik}}\le 1\\
+e^{g_i^Ty+h_i}=1
+\end{array}
+\end{array}.
+\]</span> Now we transform the objective functions and constraint functions by taking log <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(y)=\log {(\sum_{k=1}^{K_0}e^{a^T_{0k}y+b_{0k}})}
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\tilde f_i(y)=\log {(\sum_{k=1}^{K_i}e^{a^T_{ik}y+b_{ik}})}\le0\\
+\tilde h_i(y)=g_i^Ty+h_i=0
+\end{array}
+\end{array}.
+\]</span></p>
 <p>Since <span class="math inline">\(\tilde f_i\)</span> are log-sum-exp functions that are convex and <span class="math inline">\(\tilde h_i\)</span> is affine. This problem is convex.</p>
 <p><strong>Examples</strong></p>
 <p>Frobenius norm diagonal scalling</p>
-<p>Consider a matrix <span class="math inline">\(M\in R^{n\times n}\)</span>. Suppose we scale the coordinates. In the new coordinates, the linear function is given by <span class="math display">\[
+<p>Consider a matrix <span class="math inline">\(M\in \mathbb R^{n\times n}\)</span>. Suppose we scale the coordinates. In the new coordinates, the linear function is given by <span class="math display">\[
 \tilde y=DMD^{-1}\tilde u 
 \]</span> where <span class="math inline">\(D\)</span> is diagonal with <span class="math inline">\(D_{ii}\ge 0\)</span></p>
 <p>Suppose we choose the scaling in such way that the resulting matrix <span class="math inline">\(DMD^{-1}\)</span> is small. We use F norm to measure the size of the matrix. <span class="math display">\[
-||DMD^{-1}||_F^2=tr((DMD^{-1})^T(DMD^{-1}))\\
+||DMD^{-1}||_F^2=\text{tr}((DMD^{-1})^T(DMD^{-1}))\\
 =\sum_{i,j=1}^n(DMD^{-1})^2_{ij}\\
 =\sum_{i,j=1}^nM_{ij}^2d_i^2/d_j^2
 \]</span> This is a geometric programming problem.</p>
 <h2 id="generalized-inequality-constraints">4.6 Generalized inequality constraints</h2>
-<p>One useful generalization of the standard form convex optimization problem is obtained by allowing the inequality functions to be vector valued. $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p>$$ where <span class="math inline">\(f_0:R^n\rightarrow R\)</span>, <span class="math inline">\(K_i\subseteq R^{k_i}\)</span> are proper cones and <span class="math inline">\(f_i:R^n\rightarrow R^{k_i}\)</span> are <span class="math inline">\(K_i-\)</span>convex .</p>
+<p>One useful generalization of the standard form convex optimization problem is obtained by allowing the inequality functions to be vector valued, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\preceq_{K_i}0\\Ax=b
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(f_0:\mathbb R^n\rightarrow \mathbb R\)</span>, <span class="math inline">\(K_i\subseteq \mathbb R^{k_i}\)</span> are proper cones and <span class="math inline">\(f_i:\mathbb R^n\rightarrow \mathbb R^{k_i}\)</span> are <span class="math inline">\(K_i\)</span>-convex .</p>
 <h3 id="conic-form-problem">4.6.1 Conic form problem</h3>
-<p>$$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p>$$</p>
-<p>When K is nonnegative orthant, the conic form problem reduces to a linear program.</p>
+<p><span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^T x
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Fx+g\preceq_K0\\
+Ax=b
+\end{array}
+\end{array}.
+\]</span></p>
+<p>When <span class="math inline">\(K\)</span> is nonnegative orthant, the conic form problem reduces to a linear program.</p>
 <h3 id="semidefinite-programming">4.6.2 Semidefinite programming</h3>
-<p>When <span class="math inline">\(K\)</span> is <span class="math inline">\(S_+^k\)</span>, the cone of positive semidefinite <span class="math inline">\(k\times k\)</span> matrices, the associated conic form problem is called a semidefinite program (SDP) $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p><span class="math display">\[
-It is common to refer to a program with linear objective, linear equality and inequality constraints, and several LMI constraints
-\]</span> \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p>$$</p>
+<p>When <span class="math inline">\(K\)</span> is <span class="math inline">\(\mathbb S_+^k\)</span>, the cone of positive semidefinite <span class="math inline">\(k\times k\)</span> matrices, the associated conic form problem is called a semidefinite program (SDP) <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+x_1F_1+x_2F_2+\dotsm+x_nF_n+G\preceq 0\\Ax=b
+\end{array}
+\end{array}.
+\]</span> It is common to refer to a program with linear objective, linear equality and inequality constraints, and several LMI constraints <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+F^{(i)}(x)=x_1F_1^{(i)}+\dotsm+x_nF_n^{(i)}+G^{(i)}\preceq 0\\Gx\preceq h\\
+Ax=b
+\end{array}
+\end{array}.
+\]</span></p>
 <h3 id="second-order-cone-programming-1">4.6.3 Second-order cone programming</h3>
-<p>The SOCP can be expressed as a conic form problem $$ \begin{array}{|l|ll|} &amp; \begin{array}{lll} f_0(x) \end{array}\</p>
-<p>&amp; \begin{array}{lll} f_i(x)0,i=1,,m \h_i(x)=0,i=1,,p \end{array} \end{array}</p>
-
-<p><span class="math display">\[
-in which
-\]</span> K_i{(y,t)R^{n_i+1}|||y||_2t} $$</p>
+<p>The SOCP can be expressed as a conic form problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+-(A_ix+b_i,c_i^Tx+d_i)\preceq_{K_i} 0\\Fx=g
+\end{array}
+\end{array},
+\]</span> in which <span class="math display">\[
+K_i=\{(y,t)\in \mathbb R^{n_i+1}|\space ||y||_2\le t\}.
+\]</span></p>
 <h2 id="vector-optimization">4.7 Vector Optimization</h2>
 
     </div>
@@ -631,7 +768,7 @@ in which
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-optimization-problems"><span class="nav-text">4.3 Linear Optimization problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#examples"><span class="nav-text">4.3.1 Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-fractional-programming"><span class="nav-text">4.3.2 Linear-fractional programming</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quadratic-optimization-problems-to-be-revised"><span class="nav-text">4.4 Quadratic optimization problems (To be revised)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-1"><span class="nav-text">4.4.1 Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#second-order-cone-programming"><span class="nav-text">4.4.2 Second-order cone programming</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geometric-programming"><span class="nav-text">4.5 Geometric Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#monomials-and-posynomials"><span class="nav-text">4.5.1 Monomials and posynomials</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geometric-programming-1"><span class="nav-text">4.5.2 Geometric programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geometric-program-in-convex-form"><span class="nav-text">4.5.3 Geometric program in convex form</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generalized-inequality-constraints"><span class="nav-text">4.6 Generalized inequality constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#conic-form-problem"><span class="nav-text">4.6.1 Conic form problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#semidefinite-programming"><span class="nav-text">4.6.2 Semidefinite programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#second-order-cone-programming-1"><span class="nav-text">4.6.3 Second-order cone programming</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vector-optimization"><span class="nav-text">4.7 Vector Optimization</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-optimization-problems"><span class="nav-text">4.3 Linear Optimization problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#examples"><span class="nav-text">4.3.1 Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-fractional-programming"><span class="nav-text">4.3.2 Linear-fractional programming</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quadratic-optimization-problems"><span class="nav-text">4.4 Quadratic optimization problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#examples-1"><span class="nav-text">4.4.1 Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#second-order-cone-programming"><span class="nav-text">4.4.2 Second-order cone programming</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#geometric-programming"><span class="nav-text">4.5 Geometric Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#monomials-and-posynomials"><span class="nav-text">4.5.1 Monomials and posynomials</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geometric-programming-1"><span class="nav-text">4.5.2 Geometric programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#geometric-program-in-convex-form"><span class="nav-text">4.5.3 Geometric program in convex form</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generalized-inequality-constraints"><span class="nav-text">4.6 Generalized inequality constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#conic-form-problem"><span class="nav-text">4.6.1 Conic form problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#semidefinite-programming"><span class="nav-text">4.6.2 Semidefinite programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#second-order-cone-programming-1"><span class="nav-text">4.6.3 Second-order cone programming</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vector-optimization"><span class="nav-text">4.7 Vector Optimization</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
