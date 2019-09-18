@@ -244,11 +244,19 @@
                 
               
 
-              <time title="Created: 2019-09-14 22:32:04 / Modified: 13:09:16" itemprop="dateCreated datePublished" datetime="2019-09-14T22:32:04+08:00">2019-09-14</time>
+              <time title="Created: 2019-09-14 22:32:04" itemprop="dateCreated datePublished" datetime="2019-09-14T22:32:04+08:00">2019-09-14</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-16 17:39:28" itemprop="dateModified" datetime="2019-09-16T17:39:28+08:00">2019-09-16</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -280,9 +288,9 @@
 <p>This chapter is concerned with the following multi-dimensional general constrained minimization problem, <span class="math display">\[
 \begin{array}{rCll}
 \min &amp; f(x)\\
-s.t.&amp; g_i(x)=0,&amp; i=1,2,\dots,m\\
+\text{subject to}&amp; g_i(x)=0,&amp; i=1,2,\dots,m\\
 &amp;h_j(x)\le0,&amp; j=1,2,\dots,p\\
-&amp;&amp;x\in\mathbb R^n,
+&amp;x\in\mathbb R^n,
 \end{array}
 \]</span> where <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> are continuous functions, for <span class="math inline">\(i=1,2\dots,m\)</span> and <span class="math inline">\(j=1,2,\dots,p\)</span>. The feasible set of the problem is the following subset of <span class="math inline">\(\mathbb R^n\)</span>, <span class="math display">\[
 S=\left\{
@@ -301,7 +309,7 @@ h_j(x)\le0,\;j=1,2\dots,p
 <p>Graphically, if the constraint is active, then the point lies on the boundary defined by the condition <span class="math inline">\(h_j(x)=0\)</span>.</p>
 <p><strong>Definition</strong> (Regular point)</p>
 <p>Let <span class="math inline">\(x^* \in S\)</span> be a feasible point. Let <span class="math display">\[
-J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\}\}
+J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\},
 \]</span> be the index set of active constraints at <span class="math inline">\(x^*\)</span>. Suppose the set of gradient vectors <span class="math display">\[
 \{\nabla g_i(x^*)\;|\; i=1,2,\dotsm,m\}\cup\{\nabla h_j(x^*)\;|\;j\in J(x^*)\}
 \]</span> is linearly independent. Then we say <span class="math inline">\(x^*\)</span> is a regular point or the regularity condition holds at <span class="math inline">\(x^*\)</span>.</p>
@@ -322,7 +330,7 @@ J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\}\}
 <ol type="1">
 <li><p>We say that <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point whenever <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT first order conditions. KKT points are some times also called KKT solutions.</p></li>
 <li><p>The scalar <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> are called Lagrange multipliers.</p></li>
-<li><p>The conditions <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> means that the Lagrange multiplier corresponding to the inactive constraint must be zero. Since <span class="math inline">\(h_j(x^*)&lt;0\;\forall j\notin J(x^*)\)</span> and <span class="math inline">\(h_j(x^*)=0\;\forall j\in J(x^*)\)</span>, the condition <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> is equivalent to <span class="math display">\[
+<li><p>The conditions <span class="math inline">\(\mu_j^*=0,\;\forall j\notin J(x^*)\)</span> means that the Lagrange multiplier corresponding to the inactive constraint must be zero. Since <span class="math inline">\(h_j(x^*)&lt;0\;\forall j\notin J(x^*)\)</span> and <span class="math inline">\(h_j(x^*)=0\;\forall j\in J(x^*)\)</span>, the condition <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> is equivalent to <span class="math display">\[
 \mu_j^*h_j(x^*)=0,\quad \forall j=1,\dotsm,p.
 \]</span> This is called the <strong>complementary slackness condition</strong>.</p></li>
 </ol>
@@ -357,12 +365,12 @@ f(\bar x)-f(x^*)=\frac{1}{2}\left((x_i^*-g_j)^2+(x_j^*-g_i^2)\right)-\frac{1}{2}
 =(g_i-g_j)(x_i^*-x_j^*)\le 0.
 \]</span> Hence <span class="math inline">\(f(\bar x)\le f(x^*)\)</span>.</p></li>
 <li><p>Then we use KKT conditions. The KKT conditions are given by, <span class="math display">\[
-x-g-\mu-\lambda e=0,\quad \mu\ge 0,\;\lambda\in \mathbb R,\; x\ge 0\\
-e^Tx=b\\
-\mu x=0.
-\]</span> The first equation imply that <span class="math inline">\(x=g+\mu+\lambda e\)</span>.</p>
-<p>Now if <span class="math inline">\(g_i+\lambda &gt;0\)</span>, set <span class="math inline">\(x_i=g_i+\lambda\)</span> and <span class="math inline">\(\mu_i=0\)</span>. If <span class="math inline">\(g_i+\lambda \le 0\)</span>, set <span class="math inline">\(x_i=0\)</span> and <span class="math inline">\(\mu_i=-(g_i+\lambda)\)</span>. Now suppose <span class="math inline">\(x_i^*&gt;0\)</span> for <span class="math inline">\(i=1,\dotsm,r\)</span> and <span class="math inline">\(x^*=0\)</span> for <span class="math inline">\(i=r+1,\dotsm,n\)</span>. Then we have <span class="math display">\[
-b=e^Tx=\sum_{i=1}^rx_i=\sum_{i=1}^r g_i+\lambda r\implies \lambda =\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right).
+x^*-g-\mu-\lambda e=0,\quad \mu\ge 0,\;\lambda\in \mathbb R,\; x^*\ge 0\\
+e^Tx^*=b\\
+\mu x^*=0.
+\]</span> The first equation imply that <span class="math inline">\(x^*=g+\mu+\lambda e\)</span>.</p>
+<p>Now if <span class="math inline">\(g_i+\lambda &gt;0\)</span>, set <span class="math inline">\(x_i^*=g_i+\lambda\)</span> and <span class="math inline">\(\mu_i=0\)</span>. If <span class="math inline">\(g_i+\lambda \le 0\)</span>, set <span class="math inline">\(x_i^*=0\)</span> and <span class="math inline">\(\mu_i=-(g_i+\lambda)\)</span>. Now suppose <span class="math inline">\(x_i^*&gt;0\)</span> for <span class="math inline">\(i=1,\dotsm,r\)</span> and <span class="math inline">\(x^*_i=0\)</span> for <span class="math inline">\(i=r+1,\dotsm,n\)</span>. Then we have <span class="math display">\[
+b=e^Tx=\sum_{i=1}^rx^*_i=\sum_{i=1}^r g_i+\lambda r\implies \lambda =\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right).
 \]</span> Now we need to find the largest <span class="math inline">\(r\)</span> denoted as <span class="math inline">\(\bar r\)</span> such that <span class="math display">\[
 \bar r = \max \{r\;|\;x_r\ge 0\},
 \]</span> where <span class="math inline">\(x_r=g_r+\lambda=g_r+\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right)\)</span>.</p>
@@ -371,6 +379,55 @@ x_i^*=\begin{cases} g_i+\lambda &amp; \text{if } i\le \bar r\\0&amp; \text{if }i
 \]</span></p></li>
 <li><p>If the components of <span class="math inline">\(g\)</span> is not sorted in a descending order, we can find a permutation matrix <span class="math inline">\(P\)</span> such that <span class="math inline">\(\hat g=Pg\)</span> has its components arranged in a descending order. Then the optimal solution <span class="math inline">\(x^*\)</span> is given by <span class="math inline">\(x^*=P^T\hat x^*\)</span>.</p></li>
 </ol>
+<h2 id="interpretation-of-the-lagrange-multipliers">5.4 Interpretation of the Lagrange multipliers</h2>
+<p>The Lagrange multipliers <span class="math inline">\(\lambda_i^*(i=1,\dotsm,m)\)</span>, <span class="math inline">\(\mu_j^*(j=1,\dotsm,p)\)</span> associated with the local optimizer <span class="math inline">\(x^*\)</span> in the KKT theorem measures the sensitivity of <span class="math inline">\(f(x^*)\)</span> to a small perturbation of the corresponding constraints <span class="math inline">\(g_i(x)=0\)</span> or <span class="math inline">\(h_j(x)\le 0\)</span>. In this section, we shall justify this interpretation for an equality constrained NLP. Consider the following equality constrained NLP, <span class="math display">\[
+\begin{array}{rll}
+\min&amp;f(x)\\
+\text{subject to} &amp;g_i(x)=0&amp;\forall i=1,2,\dotsm,m.
+\end{array}
+\]</span> Suppose the constraints are relaxed as follows, <span class="math display">\[
+\hat g_i(x;c)=g_i(x)+c_i,\quad i=1,2,\dotsm,m.
+\]</span> Let <span class="math inline">\(C\subseteq \mathbb R^n\)</span> be an open neighborhood of <span class="math inline">\(0\)</span>. For each <span class="math inline">\(c\in C\)</span>, suppose there is a local minimizer <span class="math inline">\(x^*(c)\)</span> of <span class="math inline">\(f\)</span> on the constraint set <span class="math display">\[
+\{x\in\mathbb R^n\;|\; \hat g_i(x;c)=0,\;\forall i=1,\dotsm,m\}.
+\]</span> Note that <span class="math inline">\(x^*(0)=x^*\)</span> and <span class="math inline">\(\lambda^*(0)=\lambda^*\)</span>. Assume the regularity condition holds at each <span class="math inline">\(x^*(c)\)</span>. Now by the KKT theorem, there exists <span class="math inline">\(\lambda^*(c)\in\mathbb R^m\)</span> such that <span class="math display">\[
+\nabla f(x^*(c))+\sum_{i=1}^m\lambda_i^*(c)\nabla \hat g_i(x^*(c))=0.
+\]</span> Note that <span class="math display">\[
+\frac{\partial \hat g_i}{x_l}(x)=\frac{\partial g_i}{x_l}(x),
+\]</span> thus for each <span class="math inline">\(1\le l\le n\)</span>, we have <span class="math display">\[
+\frac{\partial f}{\partial x_l}(x^*(c))+\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))=0.
+\]</span> <strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(F(c)=f(x^*(c))\)</span>. Suppose that <span class="math inline">\(F(c)\)</span> changes smoothly with respect to changes in <span class="math inline">\(c\)</span>. Then <span class="math display">\[
+\frac{\partial F(c)}{\partial c_k}=\lambda^*_k(c),\quad \forall k=1,\dotsm,m.
+\]</span> Proof. <span class="math display">\[
+\frac{\partial F(c)}{\partial c_k}=\sum_{l=1}^n \frac{\partial f}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\\
+=\sum_{l=1}^n\left[-\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))\right]\frac{\partial x_l(c)}{\partial c_k}\\
+=-\sum_{i=1}^m \lambda_i^*(c)\left[\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\right].
+\]</span> Since <span class="math inline">\(g_i(x^*(c))=-c_i\)</span> for all <span class="math inline">\(i=1,\dotsm,m\)</span>, we have <span class="math display">\[
+\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}=-\frac{\partial x_l(c)}{\partial c_k}=\begin{cases}0&amp;\text{if }k\neq i\\-1&amp;\text{if }k=i\end{cases}.
+\]</span> Therefore, we have <span class="math display">\[
+\frac{\partial F(c)}{c_k}=\lambda_k^*(c).
+\]</span> <strong>Remark</strong></p>
+<ol type="1">
+<li>Proposition says that the small change in the <span class="math inline">\(k\)</span>th constraint from <span class="math inline">\(g_k(x)=0\)</span> to <span class="math inline">\(g_k(x)+c_k=0\)</span> will change the optimal objective value <span class="math inline">\(f(x^*)\)</span> at the rate of <span class="math inline">\(\lambda_k^*\)</span>. That is the new optimal objective value is given approximately by <span class="math inline">\(f(x^*)+\lambda_k^*c_k\)</span>.</li>
+<li>It is also applied to the inequality constraints.</li>
+</ol>
+<p><strong>Example</strong></p>
+<p>From the example, the global minimizer <span class="math inline">\(x^*=[0;1]\)</span> with multiplier <span class="math inline">\(\mu_3=\frac{1}{2}\)</span>. Thus relaxing the constraint to <span class="math inline">\(g_i(x)+\epsilon\le 0\)</span> would change the objective value by <span class="math inline">\(\frac{1}{2}\epsilon\)</span>.</p>
+<h2 id="kkt-sufficient-conditions">5.5 KKT sufficient conditions</h2>
+<p>When a KKT point satisfies a stronger second order condition, we obtain a strict local minimizer. Note that the sufficient conditions for a strict local minimizer <strong>do not</strong> require regularity conditions.</p>
+<p><strong>Theorem</strong> (KKT sufficient conditions)</p>
+<p>Let <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span> be functions with continuous second partial derivatives.</p>
+<p>Let <span class="math inline">\(S\)</span> be the feasible set of NLP. Suppose <span class="math inline">\(x^*\in S\)</span> is a KKT point, i.e., there exist <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that <span class="math display">\[
+\begin{array}{rCl}
+\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)=0\\
+g_i(x^*)=0,\;i=1,2,\dotsm,m\\
+\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p,
+\end{array}
+\]</span> where<span class="math inline">\(J(x^*)\)</span> is the index set of active constraints at <span class="math inline">\(x^*\)</span>. Let <span class="math display">\[
+H_L(x^*)=H_f(x^*)+\sum_{i1=}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p\mu_{j}^*H_{h_{j}}(x^*).
+\]</span> Suppose <span class="math display">\[
+y^TH_L(x^*)y&gt;0,\;\forall y\in T(x^*)-\{0\},
+\]</span> where <span class="math inline">\(T(x^*)\)</span> is the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. Then <span class="math inline">\(x^*\)</span> is a <strong>strict local minimizer</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
 
         
       
