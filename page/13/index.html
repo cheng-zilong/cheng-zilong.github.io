@@ -215,6 +215,180 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/" class="post-title-link" itemprop="url">5. Describing Function Analysis</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-10-02 22:33:45" itemprop="dateCreated datePublished" datetime="2018-10-02T22:33:45+08:00">2018-10-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-26 00:26:21" itemprop="dateModified" datetime="2019-08-26T00:26:21+08:00">2019-08-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Applied-Nonlinear-Control/" itemprop="url" rel="index"><span itemprop="name">Applied Nonlinear Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="describing-function-analysis-skip">6.Describing Function Analysis (skip)</h2>
+<h3 id="introduction-to-nyquist-criterion">1. Introduction to Nyquist Criterion</h3>
+<p>==Mapping== <span class="math display">\[
+F(s)=s^2+2s+1 \\
+s=4+j3
+\]</span> s-plane to F-plane <span class="math display">\[
+F(4+j3)=16+j30
+\]</span> ==Contour==</p>
+<p>Consider a collection of points, called contour A.</p>
+<p>Map A into Contour B with function F. <span class="math display">\[
+F(s)=\frac{(s-z_1)(s-z_2) \dotsm}{(s-p_1)(s-p_2) \dotsm}
+\]</span> We assuming clockwise direction for mapping.</p>
+<p>If contour A enclose one zero, then contour B enclose one origin in a clockwise direction.</p>
+<p>If contour A enclose one pole, then contour B enclose one origin in a counterclockwise direction.</p>
+<p>If contour A enclose one zero and one pole, then contour B does not enclose origin.</p>
+<p>Letting <span class="math display">\[
+G(s)=\frac{N_G}{D_G} \quad H(s)=\frac{N_H}{D_H}
+\]</span> for the open loop system, we have <span class="math display">\[
+G(s)H(s)=\frac{N_G N_H}{D_GD_H}
+\]</span> for the closed loop system, we have <span class="math display">\[
+T(s)=\frac{G(s)}{1+G(s)H(s)} \\
+=\frac{N_GD_H}{D_GD_H+N_GN_H}
+\]</span> and we have <span class="math display">\[
+\tag{1.1}
+1+G(s)H(s)=\frac{D_GD_H+N_GN_H}{D_GD_H}
+\]</span> for (1.1), we find the poles are the poles of closed loop system and the zeros are the poles of the open loop system.</p>
+<p>if we have known the number of unstable poles of the open loop system (poles of (1.1) in the right plane) and denote it with P. And we want to know the number of unstable poles of closed loop system (zeros of (1.1) in the right plane). We draw a contour enclosing the whole right plane(from $(0,0) (0,) (,) (,0) (,-) $)</p>
+<p>N is the number of counterclockwise revolution around (-1, j0), we have <span class="math display">\[
+Z=P-N
+\]</span></p>
+<h3 id="describing-function-fundamental">2. Describing Function Fundamental</h3>
+<p>An example of describing function analysis <span class="math display">\[
+\ddot{x}+\alpha(x^2-1)\dot{x}+x=0
+\]</span> we can divide it into two parts. Linear part <span class="math inline">\(\ddot{x}-\alpha \dot x+x\)</span>. Nonlinear part <span class="math inline">\(-x^2 \dot x\)</span></p>
+<p>we assume there is a limit circle <span class="math display">\[
+x(t)=Asin(\omega t) \\
+\dot x(t)=A\omega cos(\omega t)
+\]</span> Through the nonlinear element, <span class="math display">\[
+w=-x^2\dot x=-A^2sin^2(\omega t)A\omega cos(\omega t)=-\frac{A^3\omega}{4}(cos(\omega t)-cos(3 \omega t))
+\]</span> since the linear block has the low pass filter <span class="math display">\[
+w\approx-\frac{A^3\omega}{4}cos(\omega t)=\frac{A^2}{4} \frac{d}{dt}[-x]
+\]</span> therefore, for the nonlinear part <span class="math display">\[
+N=\frac{w}{-x}=\frac{A^2}{4}s \\
+N(A,\omega)=\frac{A^2}{4}(j\omega)
+\]</span></p>
+<p><span class="math display">\[
+x=NG(-x) \\
+1+NG=0 \\
+\]</span></p>
+<p>Finally we have A=2, <span class="math inline">\(\omega\)</span>=1</p>
+<h3 id="application-domain">3. Application Domain</h3>
+<p>The first important class consists of &quot;almost&quot; linear system. e.g. the system with a linear plant and a linear controller but the actuator is nonlinear.</p>
+<p>The second important class is the genuinely nonlinear system like the example.</p>
+<h3 id="basic-assumption">4. Basic Assumption</h3>
+<blockquote>
+<ol type="1">
+<li>there is only a single nonlinear component</li>
+<li>the nonlinear component is time invariant</li>
+<li>corresponding to a sinusoidal input, only the fundamental output is considered</li>
+<li>the nonlinear is odd</li>
+</ol>
+</blockquote>
+<p>1 implies that if there are two nonlinear parts. they should be lumped together or one can be neglected.</p>
+<p>2 implies that we only consider only autonomous nonlinear system</p>
+<p>3 implies that the linear part should be a low pass filter</p>
+<p>4 means that the nonlinearity relation f(x) between input and output is symmetric about the origin for the simplicity of Fourier expansion of the output.</p>
+<h3 id="basic-definitions">5. Basic Definitions</h3>
+<p>Analytical Calculation based on Fourier Transform</p>
+<p>Numerical Integration</p>
+<p>Experimental Evaluation</p>
+<h3 id="common-nonlinearities">6. Common Nonlinearities</h3>
+<p>Saturation</p>
+<p>Dead-Zone</p>
+<p>Backlash</p>
+<h3 id="describing-function-analysis-of-nonlinear-system">7. Describing Function Analysis of Nonlinear System</h3>
+<p>If there is a K before G, K is complex.</p>
+<p>then the point from (-1, 0) to (Re(-1/k), Im(-1/k))</p>
+<p>therefore, if <span class="math inline">\(N(A,\omega)\)</span> substitutes K <span class="math display">\[
+G(j\omega)N(A,\omega)+1=0 \\
+G(j\omega)=-\frac{1}{N(A,\omega)}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -550,278 +724,6 @@ V=v^2 \\
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/3.3 System Analysis Based on Lyapunov's Direct Method/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/10/02/Applied Nonlinear Control/3.3 System Analysis Based on Lyapunov's Direct Method/" class="post-title-link" itemprop="url">3.3 System Analysis Based on Lyapunov's Direct Method</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-10-02 22:30:56" itemprop="dateCreated datePublished" datetime="2018-10-02T22:30:56+08:00">2018-10-02</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:25:41" itemprop="dateModified" datetime="2019-08-26T00:25:41+08:00">2019-08-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Applied-Nonlinear-Control/" itemprop="url" rel="index"><span itemprop="name">Applied Nonlinear Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="lyapunov-analysis-of-lti">1. Lyapunov Analysis of LTI</h2>
-<p>Linear Algebra Knowledge</p>
-<p>A matrix is symmetric if <span class="math inline">\(M=M^T\)</span></p>
-<p>A matrix is skew-symmetric if <span class="math inline">\(M=-M^T\)</span></p>
-<p>every square matrix can be represented as the sum of a symmetric matrix and a skew-symmetric matrix. <span class="math display">\[
-M=\frac{M+M^T}{2}+\frac{M-M^T}{2}
-\]</span> The first part is a symmetric matrix and the second part is a skew-symmetric matrix</p>
-<p>an important property of skew-symmetric matrix is the quadratic function of it is always zero <span class="math display">\[
-f(x)=x^TMx=-x^TM^Tx
-\]</span> because <span class="math inline">\(-x^TM^Tx\)</span> is a scalar, its transpose is <span class="math inline">\(-x^TMx\)</span> <span class="math display">\[
-x^TMx=0 \\
-f(x)=0
-\]</span> therefore, the quadratic function of any square matrix can be represented by a symmetric matrix.</p>
-<p>N is a square matrix. <span class="math display">\[
-\begin{array}{}
-f(x)&amp;=&amp;x^TNx\\
-&amp;=&amp;x^T(\frac{N+N^T}{2}+\frac{N-N^T}{2})x\\
-&amp;=&amp;x^T(\frac{N+N^T}{2})x
-\end{array}
-\]</span> if <span class="math inline">\(M=\frac{N+N^T}{2}\)</span>, <span class="math inline">\(f(x)=x^TMx\)</span></p>
-<p>a square matrix <span class="math inline">\(M\)</span> is positive definite if the quadratic function <span class="math inline">\(x^TMx\)</span> is a positive definite function.</p>
-<p>the same as positive semi-definite, negative definite, negative semi-definite. <span class="math display">\[
-M_1&gt;M_2
-\]</span> means <span class="math display">\[
-M_1-M_2&gt;0
-\]</span> <span class="math inline">\(M_1-M_2\)</span> is positive definite, same as <span class="math inline">\(\ge ,&lt;,\le\)</span> <span class="math display">\[
-\lambda_{min}(M)||x||^2 \le x^TMx \le \lambda_{max}(M)||x||^2
-\]</span></p>
-<h2 id="lyapunov-function-for-lti">2. Lyapunov Function for LTI</h2>
-<p>For a system <span class="math display">\[
-\dot{x}=Ax
-\]</span> we define the Lyapunov Function candidate <span class="math display">\[
-V=x^TPx
-\]</span> P is positive definite and V is also positive definite. <span class="math display">\[
-\dot{V}=\dot{x}^TPx+x^TP\dot{x} =x^TA^TPx+x^TPAx=-x^TQx
-\]</span> we have <span class="math display">\[
-A^TP+PA=-Q
-\]</span> if we first choose P and then get Q, Q may be not positive definite and there is no conclusion can be gained.</p>
-<p>if we first choose Q and then solve the P, and check whether P is positive definite, which always leads to conclusive results for stable linear systems, which is also necessary and sufficient conditions.</p>
-<p>Example</p>
-<p>Consider a second-order linear system whose A matrix is <span class="math display">\[
-A=
-\begin{bmatrix}
-0  &amp; 4\\
--8 &amp; -12\\
-\end{bmatrix}
-\]</span> Then we can choose Q as <span class="math display">\[
-Q=
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}
-\]</span> Then we have equations <span class="math display">\[
-\begin{bmatrix}
-0 &amp; -8\\
-4 &amp; -12\\
-\end{bmatrix}
-\begin{bmatrix}
-p_1 &amp; p_2\\
-p_2 &amp; p_3
-\end{bmatrix}+
-\begin{bmatrix}
-p_1 &amp; p_2\\
-p_2 &amp; p_3
-\end{bmatrix}
-\begin{bmatrix}
-0  &amp; 4\\
--8 &amp; -12\\
-\end{bmatrix}
-=
--\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-P=
-\begin{bmatrix}
-\frac{5}{16} &amp; \frac{1}{16}\\
-\frac{1}{16} &amp; \frac{1}{16}
-\end{bmatrix}
-\]</span> P is positive definite. Therefore, the system is asymptotically stable.</p>
-<h2 id="how-to-choose-lyapunov-function">3. How to choose Lyapunov Function</h2>
-<p>Let us now come back to the problem finding Lyapunov Functions for general nonlinear system. An explicit Lyapunov Function is somehow difficult to find. The question is therefore how to find a Lyapunov Function. Here gives some general methods but there is no general way to find Lyapunov Functions.</p>
-<h3 id="krasovskiis-method">Krasovskii's Method</h3>
-<p>Let <span class="math inline">\(A(x)\)</span> denote the Jacobian matrix of the system. <span class="math display">\[
-A(x)=\frac{\partial f}{\partial x}
-\]</span> If the matrix <span class="math display">\[
-F=A+A^T
-\]</span> is negative definite in a neighborhood <span class="math inline">\(\Omega\)</span> , then the equilibrium point at the origin is asymptotically stable. A Lyapunov Function for the system is</p>
-<p><span class="math display">\[
-V(x)=f^T(x)f(x)
-\]</span> If <span class="math inline">\(\Omega\)</span> is entire state space and in addition, <span class="math inline">\(V(x) \rightarrow \infty\)</span> as $||x|| $, then the equilibrium point is globally asymptotically stable.</p>
-<p>Proof:</p>
-<p>First, let us prove that the negative definiteness of F means <span class="math inline">\(f(x) \neq 0\)</span> for <span class="math inline">\(||x|| \neq 0\)</span></p>
-<p>If <span class="math inline">\(A\)</span> is singular, there is a <span class="math inline">\(y_0\)</span> , we have <span class="math inline">\(Ay_0=0\)</span> .</p>
-<p>Then <span class="math display">\[
-y_0^TFy_0=y_0^TAy_0+y_0^TAy_0=2y_0^TAy_0=0
-\]</span> that means <span class="math inline">\(F\)</span> is not negative definite, which contradicts the assume.</p>
-<p>Then <span class="math display">\[
-\begin{array}{lll}
-\dot{V}(x)&amp;=&amp;\dot{f^T}(x)f(x)+f^T(x)\dot{f}(x) \\
-&amp;=&amp; f^TA^Tf+f^TAf \\
-&amp;=&amp; f^T(A^T+A)f \\
-&amp;=&amp; f^TFf
-\end{array}
-\]</span> That means if F is negative definite, <span class="math inline">\(\dot{V}(x)\)</span> is negative definite.</p>
-<p>Example</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=-6x_1+2x_2\\
-\dot x_2=2x_1-6x_2-2x_2^3
-\]</span> Then we have <span class="math display">\[
-A=\begin{bmatrix}
--6 &amp; 2\\
-2 &amp; -6-6x_2^2
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-F=A+A^T=\begin{bmatrix}
--12 &amp; 4\\
-4 &amp; -12-12x_2^2
-\end{bmatrix}
-\]</span> We can see <span class="math inline">\(F\)</span> is negative definite over the whole state space, therefore the system is asymptotically stable.</p>
-<h3 id="generalized-krasovskii-theorem">Generalized Krasovskii Theorem</h3>
-<p><span class="math display">\[
-F(x)=A^TP+PA+Q \\
-V(x)=f^TPf
-\]</span> <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> are positive definite. F is negative semi-definite. Then <span class="math inline">\(V(x)\)</span> is a Lyapunov function for the system.</p>
-<p>Proof. <span class="math display">\[
-\dot V(x)=f^TA^TPf+f^TPAf=f^T(A^TP+PA)f=f^T(F(x)-Q)f
-\]</span> Then because F(x) is negative definite and Q is positive definite, the system is asymptotically stable.</p>
-<h3 id="the-variable-gradient-method">The Variable Gradient Method</h3>
-<p><span class="math display">\[
-V(x)=\int_0^x\nabla Vdx
-\]</span></p>
-<p><span class="math display">\[
-\nabla V_1 = \frac{\partial V}{\partial x_1}\\
-\nabla V_2 = \frac{\partial V}{\partial x_2}\\
-\vdots \\
-\nabla V_n = \frac{\partial V}{\partial x_n}
-\]</span></p>
-<p>In order to ensure that <span class="math inline">\(V(x)\)</span> is a scalar.</p>
-<p>Curl conditions <span class="math display">\[
-\frac{\partial \nabla V_1}{\partial x_2}=\frac{\partial \nabla V_2}{\partial x_1}
-\]</span> First we assume <span class="math display">\[
-\nabla V_i=\sum_{j=1}^na_{ij}x_j
-\]</span></p>
-<p>Solve for the coefficients <span class="math inline">\(a_{ij}\)</span> so as to satisfy the curl equations.</p>
-<p>Let <span class="math inline">\(\dot{V}(x)\)</span> is negative semi-definite.</p>
-<p>Compute <span class="math inline">\(V\)</span> from <span class="math inline">\(\nabla V\)</span> by integration.</p>
-<p>Check whether <span class="math inline">\(V\)</span> is positive definite. <span class="math display">\[
-V(x)=\int_0^{x_{1}}\nabla V_1(x_1,0,\dots,0)dx_1+\int_0^{x_{2}}\nabla V_1(x_1,x_2,0,\dots,0)dx_2+\\
-\int_0^{x_{n}}\nabla V_1(x_1,x_2,x_3,\dots,x_n)dx_n+
-\]</span></p>
-<p>Example</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=-2x_1\\
-\dot x_2=-2x_2+2x_1x_2^2\\
-\]</span> Then we choose <span class="math display">\[
-\nabla V_1=a_{11}x_1+a_{12}x_2\\
-\nabla V_2=a_{21}x_1+a_{22}x_2\\
-\]</span> We use curl condition <span class="math display">\[
-\frac{\partial \nabla V_1}{\partial x_2}=
-\frac{\partial a_{11}}{\partial x_2}x_1+\frac{\partial a_{12}}{\partial x_2}x_2+a_{12}\\
-\frac{\partial \nabla V_2}{\partial x_1}=
-\frac{\partial a_{21}}{\partial x_1}x_1+a_{21}+\frac{\partial a_{22}}{\partial x_1}x_2\\
-\]</span> The solution is not unique. If we assume all parameter are scalar, then we choose <span class="math display">\[
-a_{11}=a_{22}=1\\
-a_{12}=a_{21}=0\\
-\]</span> Then the Lyapunov Equation is that <span class="math display">\[
-V(x)=\int_0^{x_{1}}\nabla V_1(x_1,0,\dots,0)dx_1+\int_0^{x_{2}}\nabla V_1(x_1,x_2,0,\dots,0)dx_2\\
-=\int_0^{x_1}x_1dx_1+\int_0^{x_2}x_2dx_2\\
-=\frac{x_1^2+x_2^2}{2}
-\]</span> We can also check <span class="math inline">\(\dot V\)</span> is negative definite. Therefore the system is asymptotically stable.</p>
-<h3 id="physically-motivated-lyapunov-functions">Physically Motivated Lyapunov Functions</h3>
-<h2 id="performance-analysis">4. Performance Analysis</h2>
-<p>A simple convergence lemma <span class="math display">\[
-\dot{W}(t)+\alpha W(t) \le 0
-\]</span> we have <span class="math display">\[
-W(t) \le W(0)e^{-\alpha t}
-\]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -871,7 +773,7 @@ W(t) \le W(0)e^{-\alpha t}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

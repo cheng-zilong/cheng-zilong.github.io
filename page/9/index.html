@@ -215,6 +215,341 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/" class="post-title-link" itemprop="url">4. Pole Placement Problem SS Approach</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-12 12:18:04" itemprop="dateCreated datePublished" datetime="2018-11-12T12:18:04+08:00">2018-11-12</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-26 00:02:15" itemprop="dateModified" datetime="2019-08-26T00:02:15+08:00">2019-08-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="pole-placement-for-state-space-model">1. Pole Placement for State Space Model</h2>
+<p>If one matrix is controllable canonical form <span class="math display">\[
+x(k+1)= \Phi x(k)+\Gamma u(k) \\
+y(k)=Cx(k)
+\]</span></p>
+<p><span class="math display">\[
+\Phi=\begin{bmatrix}{}
+-a_1 &amp; -a_2 &amp;\dotsm &amp;-a_{n-1} &amp;-a_n\\
+1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
+0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
+\end{bmatrix}\\\\
+\]</span></p>
+<p>If we choose <span class="math inline">\(u=-Lx(k)\quad L=[l_1\quad l_2\quad \dotsm l_n ] \quad \Gamma=[1 \quad 0 \quad 0 \dotsm]^T\)</span> <span class="math display">\[
+x(k+1)=(\Phi-\Gamma L)x(k)
+\]</span></p>
+<p><span class="math display">\[
+\Phi-\Gamma L=\begin{bmatrix}{}
+-(a_1+l_1) &amp; -(a_2+l_2) &amp;\dotsm &amp;-(a_{n-1}+l_{n-1}) &amp;-(a_n+l_n)\\
+1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
+0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>For any state space model, according to Ackermann's Formula, we have <span class="math display">\[
+L=[0\quad0\quad\dotsm\quad1]M_c^{-1}A_m(\Phi)
+\]</span> For a uncontrollable system, if we use state feedback control, some poles cannot be changed.</p>
+<p>If uncontrollable poles are stable, we can still control some poles.</p>
+<h2 id="observer">2. Observer</h2>
+<p><span class="math display">\[
+\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
+\hat y=C\hat x(k) \\
+e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
+\]</span> Common used observer</p>
+<p>Deadbeat Observer <span class="math display">\[
+A_o(\Phi)=\Phi^n
+\]</span> From Ackerman's Formula <span class="math display">\[
+K=A_o(\Phi)M_o^{-1}[0\quad0\quad\dotsm\quad1]^T
+\]</span> ## 3. Disturbance Rejection</p>
+<p>Augmented state vector <span class="math display">\[
+z(k)=\begin{bmatrix}
+x(k)\\
+\omega(k)
+\end{bmatrix}\\
+z(k+1)=\begin{bmatrix}
+\Phi&amp;\Phi_{\omega x}\\
+0&amp;\Phi_\omega
+\end{bmatrix}z(k)
++\begin{bmatrix}
+\Gamma\\
+0
+\end{bmatrix}u(k)
+\]</span> If we choose <span class="math inline">\(u(k)=-Lx(k)-L_ww(k)\)</span>,</p>
+<p>Then <span class="math display">\[
+x(k+1)=(\Phi-\Gamma L)x(k)+(\Phi_{wx}-\Gamma L_w)w(k)
+\]</span> Therefore, we only need <span class="math display">\[
+\Phi_{wx}-\Gamma L_w=0
+\]</span> If the above cannot be satisfied, we can use the following method,</p>
+<p>if the disturbance is constant <span class="math display">\[
+x(k+1)=\Phi x(k)+\Phi_{x\omega}\omega(k)+\Gamma u(k) \\
+\]</span> If we use state feedback controller, then we will have, <span class="math display">\[
+u(k)=-Lx(k)-L_w\omega(k) \\
+x(k+1)=(\Phi-\Gamma L) x(k)+(\Phi_{x\omega}-\Gamma L_\omega)\omega(k) \\
+(zI-(\Phi-\Gamma L))X(z)=(\Phi_{x\omega}-\Gamma L_\omega)W(z) \\
+G_{x\omega}(z)=(zI-(\Phi-\Gamma L))^{-1}(\Phi_{x\omega}-\Gamma L_\omega) \\
+G_{x\omega}(1)=0
+\]</span> If the disturbance is not constant, then frequency analysis should be used.</p>
+<p>Example <span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+1 &amp; h\\
+0 &amp; 1\\
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+\frac{h^2}{2}\\
+h
+\end{bmatrix}(u(k)+w(k))\\
+w(k+1)=w(k)
+\]</span> We can get the augmented state space model <span class="math display">\[
+z(k+1)=
+\begin{bmatrix}
+1 &amp; h &amp; \frac{h^2}{2}\\
+0 &amp; 1 &amp; h\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}z(k)+
+\begin{bmatrix}
+\frac{h^2}{2}\\
+h\\
+0\\
+\end{bmatrix}u(k)\\
+\]</span> Step1. Disturbance Rejection <span class="math display">\[
+\Phi_{wx}-\Gamma L_{w}=0\\
+\]</span> Then we have <span class="math display">\[
+L_w=1
+\]</span> If not satisfied and the disturbance is constant, we will have <span class="math display">\[
+G_{xw}(1)=0
+\]</span> Step2. Observer <span class="math display">\[
+A_o(\Phi)=\tilde A^n\\
+M_o=\begin{bmatrix}
+\tilde C\\
+\tilde C\tilde\Phi\\
+\tilde C\tilde\Phi^2
+\end{bmatrix}
+\\
+K=A_o(\Phi)M_o^{-1}\begin{bmatrix}
+0\\0\\1
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+\hat z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)+K(y-\tilde C\hat z)
+\]</span> Step3. Pole Placement <span class="math display">\[
+L=
+\begin{bmatrix}
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+M_c^{-1}A_m(\Phi)\\
+u(k)=-L\hat x-L_w\hat w
+\]</span></p>
+<h2 id="ss-feedforward-controller">4. SS Feedforward Controller</h2>
+<p>We can check the transfer function from feedforward input <span class="math inline">\(u_{ff}\)</span> to Output y <span class="math display">\[
+H_{cl}(z)=C(zI-\Phi+\Gamma L)^{-1}\Gamma L_c=L_c\frac{B(z)}{A_m(z)}
+\]</span> Therefore, we can choose <span class="math display">\[
+H_{ff}=L_c=\frac{B_m}{B}
+\]</span></p>
+<p>We can achieve perfect tracking if and only if B is stable. Then the input of the feedforward controller is bounded.</p>
+<h2 id="ss-example">5. SS Example</h2>
+<p><span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+0.5 &amp; 1\\
+0.2 &amp; 0.8\\
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+1\\
+1\\
+\end{bmatrix}u(k)+
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}v(k)\\
+y=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}x(k)
+\]</span></p>
+<p>Where, disturbance v is constant. Design controllers such that influence of v can be eliminated in s.s. in the following cases.</p>
+<ol type="a">
+<li>The state and v can be measured.</li>
+</ol>
+<p>The augmented state space model is <span class="math display">\[
+z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)\\
+z(k+1)=
+\begin{bmatrix}
+x(k+1)\\
+v(k+1)
+\end{bmatrix}=
+\begin{bmatrix}
+0.5 &amp; 1 &amp; 1\\
+0.2 &amp; 0.8 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}
+\begin{bmatrix}
+x(k)\\
+v(k)
+\end{bmatrix}+
+\begin{bmatrix}
+1\\
+1\\
+0\\
+\end{bmatrix}u(k)
+\]</span> We can choose the controller, <span class="math display">\[
+u(k)=-Lx-L_vv
+\]</span> Step 1. Disturbance Rejection. <span class="math display">\[
+\Phi_{vx}-\Gamma L_v=0\\
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}-
+\begin{bmatrix}
+1\\
+1\\
+\end{bmatrix}L_v=0
+\]</span> We cannot get a <span class="math inline">\(L_v\)</span> to solve this equation.</p>
+<p>Step 2. Feedback Controller <span class="math display">\[
+A_m(\Phi)=\Phi^2\\
+M_c=
+\begin{bmatrix}
+1 &amp; 1.5\\
+1 &amp; 1\\
+\end{bmatrix}\\
+L=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}M_c^{-1}A_m(\Phi)=
+\begin{bmatrix}
+0.38 &amp; 0.92
+\end{bmatrix}\\
+\]</span> Then we have <span class="math display">\[
+u(k)=-Lx-L_vv
+\]</span> Then <span class="math display">\[
+H_v(z)=C(zI-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)\\
+H_v(1)=C(I-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)=0\\
+\]</span> We can get <span class="math display">\[
+L_v=0.9333
+\]</span> b) The state can be measured.</p>
+<p>We set k=0. <span class="math display">\[
+x(1)=\Phi x(0)+\Gamma u(0)+\Phi_{vx}v
+\]</span> Because states can be measured, we can solve v</p>
+<p>Then the controller is the same as a).</p>
+<ol start="3" type="a">
+<li>The input can be measured.</li>
+</ol>
+<p>Now we need to design an Deadbeat observer. <span class="math display">\[
+A_o(\tilde\Phi)=\tilde \Phi^3=
+\begin{bmatrix}
+0.485 &amp; 1.49 &amp; 1.95\\
+0.298 &amp; 0.932 &amp; 0.46 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\\
+M_o=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0.5 &amp; 1 &amp; 1\\
+0.45 &amp; 1.3 &amp; 1.5\\
+\end{bmatrix}\\
+K=A_o(\tilde\Phi)M_o^{-1}
+\begin{bmatrix}
+0\\
+0\\
+1\\
+\end{bmatrix}=
+\begin{bmatrix}
+2.3\\
+-2.36\\
+5\\
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+{\hat z(k+1)}=\tilde \Phi \hat z(k)+\tilde \Gamma u(k)+K(y(k)-\tilde C\hat z(k))
+\]</span> Now our controller should be <span class="math display">\[
+u(k)=-L\hat x(k)-L_v\hat v
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/Computer Control/3. Analysis of Discrete Time System/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -499,171 +834,6 @@ zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/Computer Control/1. Computer Control Background/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/07/Computer Control/1. Computer Control Background/" class="post-title-link" itemprop="url">1. Computer Control Background</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-07 18:06:29" itemprop="dateCreated datePublished" datetime="2018-11-07T18:06:29+08:00">2018-11-07</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:00:39" itemprop="dateModified" datetime="2019-08-26T00:00:39+08:00">2019-08-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="laplace-transform">1. Laplace Transform</h2>
-<p>Here we need to talk about Laplace Transform firstly. For the system <span class="math display">\[
-\ddot y-y=u
-\]</span> if <span class="math inline">\(u=e^{st} \quad y=H(s)e^{st}\)</span></p>
-<p>we can build the relationship between u and y. <span class="math display">\[
-s^2H(s)e^{st}-H(s)e^{st}=e^{st}
-\]</span> Then we can get the following equation <span class="math display">\[
-H(s)=\frac{1}{s^2-1}
-\]</span> The meaning of this equation is quite clear. If we choose one input <span class="math display">\[
-u=e^{2t}
-\]</span> Obviously, s=2.</p>
-<p>The output will be <span class="math display">\[
-y=H(2)e^{2t}=\frac{1}{3}e^{2t}
-\]</span> Now we will choose another general tool which has the same properties. <span class="math display">\[
-u(t)=\frac{1}{2\pi i}\int_{a-i\infty}^{a+i\infty}U(s)e^{st}ds
-\]</span> And then we can get U(s) <span class="math display">\[
-U(s)=\int_0^\infty u(t)e^{-st}dt
-\]</span> This is the famous Laplace Transform. Fourier Transform transforms domain form time to frequencies. Laplace transform is another kind of transformation which may not have very clear physical meaning. But it has the very convenient calculate properties.</p>
-<h2 id="stability">2. Stability</h2>
-<p>Stable: small deviation from the equilibrium will remain small.</p>
-<p>Asymptotic Stable: small deviation from the equilibrium point will be completely eliminated.</p>
-<p>Unstable: small deviation from the equilibrium point will result in huge deviation.</p>
-<p>We will introduce a invert pendulum to this introduction part.</p>
-<p>For a invert pendulum, we have the following equations derived from Newton's Second Law. <span class="math display">\[
-ml^2\ddot \theta=u(t)-mlgsin(\theta(t))
-\]</span> To make the problem simple, we have <span class="math display">\[
-ml^2=mgl=1\\
-\ddot \theta+sin(\theta(t))=u(t)
-\]</span> We can find two equilibrium points from physics <span class="math display">\[
-\theta=0,\dot \theta=0\quad\theta=\pi,\dot \theta=0
-\]</span> What is equilibrium in math?</p>
-<p>Equilibrium points are the state of the system if once <span class="math inline">\(x(t)\)</span> is equal to <span class="math inline">\(x^*\)</span> , it remains to <span class="math inline">\(x^*\)</span> for all future time.</p>
-<p>Because of <span class="math display">\[
-\tag{3.1}
-\dot{\mathbf x} = \mathbf f(\mathbf x)
-\]</span> We have <span class="math display">\[
-\mathbf f(\mathbf x^*)= \mathbf 0
-\]</span> For a LTI system <span class="math display">\[
-\dot{\mathbf x}=A\mathbf x\\
-A\mathbf x^*=0
-\]</span> If <span class="math inline">\(A\)</span> is nonsingular, that means there is no nontrivial solution for the equation, there is only trivial solution <span class="math inline">\(\mathbf x^*=0\)</span> , there is only one equilibrium for the system and if <span class="math inline">\(A\)</span> is singular, there are equilibriums same as the solutions for the above equation.​</p>
-<p>And if the equilibrium is not at the origin, we can transfer it to the origin. <span class="math display">\[
-\begin{array}{lll}
-\mathbf y = \mathbf x - \mathbf x^*\\
-\mathbf x= \mathbf y + \mathbf x^* \\
-{(\mathbf y + \mathbf x^*）&#39;}=\mathbf f(\mathbf y + \mathbf x^*) \\
-\dot{\mathbf y}=\mathbf f(\mathbf y + \mathbf x^*)
-\end{array}
-\]</span> Then we can say, for the invert pendulum, we have the following equations to get the equilibrium points. <span class="math display">\[
-\ddot \theta=0\quad\dot\theta=0\quad u=0
-\]</span> How to check whether the point is stable or not. Many methods. Here we talk about linearization.</p>
-<p>With the help of Taylor Series, we can easily find linear equations for a nonlinear system in one point and its close area. Therefore, we will use Taylor Series to expand the invert pendulum system. Then we can get the following form. <span class="math display">\[
-\ddot y(t)-y=u(t)
-\]</span></p>
-<h2 id="section"></h2>
-<p>State space to time domain <span class="math display">\[
-x(t)=e^{At}x(0)+\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau
-\]</span> transfer function to time domain</p>
-<p>look up the table</p>
-<p>State space to transfer function <span class="math display">\[
-\begin{array}{}
-\dot x&amp;=&amp;Ax+Bu \\
-y&amp;=&amp;cx \\
-sX(s)&amp;=&amp;AX(s)+BU(s) \\
-X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
-\end{array}
-\]</span> Transfer function to state space</p>
-<p>(skip)</p>
-<p>==Second Order System==</p>
-<p>rise time <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
-<p>settling time <span class="math inline">\(t_r=\frac{4.6}{\xi\omega_n}\)</span></p>
-<p>overshoot <span class="math inline">\(e^{\frac{-\pi\xi}{\sqrt{1-\xi^2}}}\)</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -713,7 +883,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

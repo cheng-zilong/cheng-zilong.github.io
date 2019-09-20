@@ -215,6 +215,117 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/Applied Nonlinear Control/3.2 Proof of L. Theory and Invariant Set Theorem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/19/Applied Nonlinear Control/3.2 Proof of L. Theory and Invariant Set Theorem/" class="post-title-link" itemprop="url">3.2 Proof of L. Theory and Invariant Set Theorem</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-19 09:24:13" itemprop="dateCreated datePublished" datetime="2018-11-19T09:24:13+08:00">2018-11-19</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-26 00:25:57" itemprop="dateModified" datetime="2019-08-26T00:25:57+08:00">2019-08-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Applied-Nonlinear-Control/" itemprop="url" rel="index"><span itemprop="name">Applied Nonlinear Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="proof-of-lyapunov-stability">Proof of Lyapunov Stability</h2>
+<p>Proof Lyapunov Theorem for Local Stability</p>
+<p>Let us think about the simple case n=2.</p>
+<p>To show the stability, we must show that given any strictly positive number R, there exists a (smaller) strictly positive number r such that any trajectory starting inside the ball <span class="math inline">\(B_r\)</span> remains inside the ball <span class="math inline">\(B_R\)</span> for all future time. We show this in mathematical language. <span class="math display">\[
+\forall R&gt;0, \exist r&gt;0,||x(0)||&lt;r\implies \forall t \ge0, ||x(t)||&lt;R
+\]</span> Now we will prove it.</p>
+<p>Let m be the minimum of V on the sphere <span class="math inline">\(S_R\)</span> , since V is continuous and positive definite, m exists and definitely positive.</p>
+<p>Since <span class="math inline">\(V(0)=0\)</span>, therefore we have a smaller ball <span class="math inline">\(B_r\)</span> around origin such that <span class="math inline">\(V(x)&lt;m\)</span> for any x inside this ball, here m is the minimum of V on the sphere <span class="math inline">\(S_R\)</span> .</p>
+<p>Now consider one point starts inside the ball <span class="math inline">\(B_r\)</span> . Since V is non-increasing along system trajectories, V remain strictly smaller than m and therefore it will never cross the the sphere <span class="math inline">\(S_R\)</span> since m is the minimum of V on the sphere <span class="math inline">\(S_R\)</span> . If the trajectory cross <span class="math inline">\(S_R\)</span>, there will be one point of V greater than m which contradicts with the condition, <span class="math inline">\(\dot V(x)\)</span> is negative semi-definite. Therefore Lyapunov stability is guaranteed.</p>
+<p>Now we assume that <span class="math inline">\(\dot V(x)\)</span> is negative definite, and show asymptotic stability, by contradiction.</p>
+<p>We suppose the trajectory <span class="math inline">\(x(t)\)</span> does not converge to zero, that means <span class="math inline">\(V(x)\)</span> is not converged to zero. But we know <span class="math inline">\(V(x)\)</span> is non-negative and decreasing, therefore it converges to one scalar <span class="math inline">\(\epsilon\)</span> . We have <span class="math display">\[
+\epsilon \le V(x(t))\le V(x(0))
+\]</span> Then we can say <span class="math display">\[
+-\gamma=\max_{\alpha\le||x||\le \beta} \dot V(x)
+\]</span> Clearly <span class="math inline">\(-\gamma&lt;0\)</span> since <span class="math inline">\(\dot V(x)\)</span> is locally negative definite, then we have <span class="math display">\[
+V(x(t))=V(x(0)+\int_0^t\dot V(x(\tau))d\tau\le V(x(0))-\gamma t
+\]</span> If t is greater and greater, then result in contradiction <span class="math inline">\(V(x(t))\)</span> is positive definite.</p>
+<p>Q.E.D</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -483,341 +594,6 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/" class="post-title-link" itemprop="url">4. Pole Placement Problem SS Approach</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-12 12:18:04" itemprop="dateCreated datePublished" datetime="2018-11-12T12:18:04+08:00">2018-11-12</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:02:15" itemprop="dateModified" datetime="2019-08-26T00:02:15+08:00">2019-08-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="pole-placement-for-state-space-model">1. Pole Placement for State Space Model</h2>
-<p>If one matrix is controllable canonical form <span class="math display">\[
-x(k+1)= \Phi x(k)+\Gamma u(k) \\
-y(k)=Cx(k)
-\]</span></p>
-<p><span class="math display">\[
-\Phi=\begin{bmatrix}{}
--a_1 &amp; -a_2 &amp;\dotsm &amp;-a_{n-1} &amp;-a_n\\
-1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
-0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
-\end{bmatrix}\\\\
-\]</span></p>
-<p>If we choose <span class="math inline">\(u=-Lx(k)\quad L=[l_1\quad l_2\quad \dotsm l_n ] \quad \Gamma=[1 \quad 0 \quad 0 \dotsm]^T\)</span> <span class="math display">\[
-x(k+1)=(\Phi-\Gamma L)x(k)
-\]</span></p>
-<p><span class="math display">\[
-\Phi-\Gamma L=\begin{bmatrix}{}
--(a_1+l_1) &amp; -(a_2+l_2) &amp;\dotsm &amp;-(a_{n-1}+l_{n-1}) &amp;-(a_n+l_n)\\
-1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
-0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
-\end{bmatrix}
-\]</span></p>
-<p>For any state space model, according to Ackermann's Formula, we have <span class="math display">\[
-L=[0\quad0\quad\dotsm\quad1]M_c^{-1}A_m(\Phi)
-\]</span> For a uncontrollable system, if we use state feedback control, some poles cannot be changed.</p>
-<p>If uncontrollable poles are stable, we can still control some poles.</p>
-<h2 id="observer">2. Observer</h2>
-<p><span class="math display">\[
-\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
-\hat y=C\hat x(k) \\
-e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
-\]</span> Common used observer</p>
-<p>Deadbeat Observer <span class="math display">\[
-A_o(\Phi)=\Phi^n
-\]</span> From Ackerman's Formula <span class="math display">\[
-K=A_o(\Phi)M_o^{-1}[0\quad0\quad\dotsm\quad1]^T
-\]</span> ## 3. Disturbance Rejection</p>
-<p>Augmented state vector <span class="math display">\[
-z(k)=\begin{bmatrix}
-x(k)\\
-\omega(k)
-\end{bmatrix}\\
-z(k+1)=\begin{bmatrix}
-\Phi&amp;\Phi_{\omega x}\\
-0&amp;\Phi_\omega
-\end{bmatrix}z(k)
-+\begin{bmatrix}
-\Gamma\\
-0
-\end{bmatrix}u(k)
-\]</span> If we choose <span class="math inline">\(u(k)=-Lx(k)-L_ww(k)\)</span>,</p>
-<p>Then <span class="math display">\[
-x(k+1)=(\Phi-\Gamma L)x(k)+(\Phi_{wx}-\Gamma L_w)w(k)
-\]</span> Therefore, we only need <span class="math display">\[
-\Phi_{wx}-\Gamma L_w=0
-\]</span> If the above cannot be satisfied, we can use the following method,</p>
-<p>if the disturbance is constant <span class="math display">\[
-x(k+1)=\Phi x(k)+\Phi_{x\omega}\omega(k)+\Gamma u(k) \\
-\]</span> If we use state feedback controller, then we will have, <span class="math display">\[
-u(k)=-Lx(k)-L_w\omega(k) \\
-x(k+1)=(\Phi-\Gamma L) x(k)+(\Phi_{x\omega}-\Gamma L_\omega)\omega(k) \\
-(zI-(\Phi-\Gamma L))X(z)=(\Phi_{x\omega}-\Gamma L_\omega)W(z) \\
-G_{x\omega}(z)=(zI-(\Phi-\Gamma L))^{-1}(\Phi_{x\omega}-\Gamma L_\omega) \\
-G_{x\omega}(1)=0
-\]</span> If the disturbance is not constant, then frequency analysis should be used.</p>
-<p>Example <span class="math display">\[
-x(k+1)=
-\begin{bmatrix}
-1 &amp; h\\
-0 &amp; 1\\
-\end{bmatrix}x(k)+
-\begin{bmatrix}
-\frac{h^2}{2}\\
-h
-\end{bmatrix}(u(k)+w(k))\\
-w(k+1)=w(k)
-\]</span> We can get the augmented state space model <span class="math display">\[
-z(k+1)=
-\begin{bmatrix}
-1 &amp; h &amp; \frac{h^2}{2}\\
-0 &amp; 1 &amp; h\\
-0 &amp; 0 &amp; 1\\
-\end{bmatrix}z(k)+
-\begin{bmatrix}
-\frac{h^2}{2}\\
-h\\
-0\\
-\end{bmatrix}u(k)\\
-\]</span> Step1. Disturbance Rejection <span class="math display">\[
-\Phi_{wx}-\Gamma L_{w}=0\\
-\]</span> Then we have <span class="math display">\[
-L_w=1
-\]</span> If not satisfied and the disturbance is constant, we will have <span class="math display">\[
-G_{xw}(1)=0
-\]</span> Step2. Observer <span class="math display">\[
-A_o(\Phi)=\tilde A^n\\
-M_o=\begin{bmatrix}
-\tilde C\\
-\tilde C\tilde\Phi\\
-\tilde C\tilde\Phi^2
-\end{bmatrix}
-\\
-K=A_o(\Phi)M_o^{-1}\begin{bmatrix}
-0\\0\\1
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-\hat z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)+K(y-\tilde C\hat z)
-\]</span> Step3. Pole Placement <span class="math display">\[
-L=
-\begin{bmatrix}
-0 &amp; 0 &amp; 1
-\end{bmatrix}
-M_c^{-1}A_m(\Phi)\\
-u(k)=-L\hat x-L_w\hat w
-\]</span></p>
-<h2 id="ss-feedforward-controller">4. SS Feedforward Controller</h2>
-<p>We can check the transfer function from feedforward input <span class="math inline">\(u_{ff}\)</span> to Output y <span class="math display">\[
-H_{cl}(z)=C(zI-\Phi+\Gamma L)^{-1}\Gamma L_c=L_c\frac{B(z)}{A_m(z)}
-\]</span> Therefore, we can choose <span class="math display">\[
-H_{ff}=L_c=\frac{B_m}{B}
-\]</span></p>
-<p>We can achieve perfect tracking if and only if B is stable. Then the input of the feedforward controller is bounded.</p>
-<h2 id="ss-example">5. SS Example</h2>
-<p><span class="math display">\[
-x(k+1)=
-\begin{bmatrix}
-0.5 &amp; 1\\
-0.2 &amp; 0.8\\
-\end{bmatrix}x(k)+
-\begin{bmatrix}
-1\\
-1\\
-\end{bmatrix}u(k)+
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}v(k)\\
-y=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}x(k)
-\]</span></p>
-<p>Where, disturbance v is constant. Design controllers such that influence of v can be eliminated in s.s. in the following cases.</p>
-<ol type="a">
-<li>The state and v can be measured.</li>
-</ol>
-<p>The augmented state space model is <span class="math display">\[
-z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)\\
-z(k+1)=
-\begin{bmatrix}
-x(k+1)\\
-v(k+1)
-\end{bmatrix}=
-\begin{bmatrix}
-0.5 &amp; 1 &amp; 1\\
-0.2 &amp; 0.8 &amp; 0\\
-0 &amp; 0 &amp; 1\\
-\end{bmatrix}
-\begin{bmatrix}
-x(k)\\
-v(k)
-\end{bmatrix}+
-\begin{bmatrix}
-1\\
-1\\
-0\\
-\end{bmatrix}u(k)
-\]</span> We can choose the controller, <span class="math display">\[
-u(k)=-Lx-L_vv
-\]</span> Step 1. Disturbance Rejection. <span class="math display">\[
-\Phi_{vx}-\Gamma L_v=0\\
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}-
-\begin{bmatrix}
-1\\
-1\\
-\end{bmatrix}L_v=0
-\]</span> We cannot get a <span class="math inline">\(L_v\)</span> to solve this equation.</p>
-<p>Step 2. Feedback Controller <span class="math display">\[
-A_m(\Phi)=\Phi^2\\
-M_c=
-\begin{bmatrix}
-1 &amp; 1.5\\
-1 &amp; 1\\
-\end{bmatrix}\\
-L=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}M_c^{-1}A_m(\Phi)=
-\begin{bmatrix}
-0.38 &amp; 0.92
-\end{bmatrix}\\
-\]</span> Then we have <span class="math display">\[
-u(k)=-Lx-L_vv
-\]</span> Then <span class="math display">\[
-H_v(z)=C(zI-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)\\
-H_v(1)=C(I-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)=0\\
-\]</span> We can get <span class="math display">\[
-L_v=0.9333
-\]</span> b) The state can be measured.</p>
-<p>We set k=0. <span class="math display">\[
-x(1)=\Phi x(0)+\Gamma u(0)+\Phi_{vx}v
-\]</span> Because states can be measured, we can solve v</p>
-<p>Then the controller is the same as a).</p>
-<ol start="3" type="a">
-<li>The input can be measured.</li>
-</ol>
-<p>Now we need to design an Deadbeat observer. <span class="math display">\[
-A_o(\tilde\Phi)=\tilde \Phi^3=
-\begin{bmatrix}
-0.485 &amp; 1.49 &amp; 1.95\\
-0.298 &amp; 0.932 &amp; 0.46 \\
-0 &amp; 0 &amp; 1
-\end{bmatrix}\\
-M_o=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-0.5 &amp; 1 &amp; 1\\
-0.45 &amp; 1.3 &amp; 1.5\\
-\end{bmatrix}\\
-K=A_o(\tilde\Phi)M_o^{-1}
-\begin{bmatrix}
-0\\
-0\\
-1\\
-\end{bmatrix}=
-\begin{bmatrix}
-2.3\\
--2.36\\
-5\\
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-{\hat z(k+1)}=\tilde \Phi \hat z(k)+\tilde \Gamma u(k)+K(y(k)-\tilde C\hat z(k))
-\]</span> Now our controller should be <span class="math display">\[
-u(k)=-L\hat x(k)-L_v\hat v
-\]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -867,7 +643,7 @@ u(k)=-L\hat x(k)-L_v\hat v
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
