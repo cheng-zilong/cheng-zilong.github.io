@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ (OP)\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \end{arr">
+  <meta name="description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8. Nonlinear conic programming (Pending)">
 <meta property="og:url" content="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ (OP)\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \end{arr">
+<meta property="og:description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-21T03:45:40.703Z">
+<meta property="og:updated_time" content="2019-09-21T05:14:38.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8. Nonlinear conic programming (Pending)">
-<meta name="twitter:description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ (OP)\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \end{arr">
+<meta name="twitter:description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \">
   <link rel="canonical" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-21 11:45:40" itemprop="dateModified" datetime="2019-09-21T11:45:40+08:00">2019-09-21</time>
+                <time title="Modified: 2019-09-21 13:14:38" itemprop="dateModified" datetime="2019-09-21T13:14:38+08:00">2019-09-21</time>
               </span>
             
           
@@ -290,21 +290,21 @@
       
         <h1 id="nonlinear-conic-programming">8. Nonlinear Conic Programming</h1>
 <p>We consider the following optimization problem, <span class="math display">\[
-(OP)\quad \begin{array}{rCl}
+\text{(OP)}\quad \begin{array}{rCl}
 \min &amp; f(x)\\
 \text{subject to}&amp; h(x)=0\\
 &amp;g(x)\in \mathcal C,
 \end{array}
 \]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,h:\mathcal X\rightarrow \mathbb R^m\)</span>, and <span class="math inline">\(g:\mathcal X\rightarrow \mathcal Z\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X\)</span> and <span class="math inline">\(\mathcal Z\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induce norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\)</span> is a closed convex set in <span class="math inline">\(\mathcal Z\)</span>.</p>
 <p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal Z=\mathbb R^q\)</span>, and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
-(NLP)\quad \begin{array}{rCl}
+\text{(NLP)}\quad \begin{array}{rCl}
 \min &amp; f(x)\\
 \text{subject to}&amp; h(x)=0\\
 &amp;g(x)\ge 0.
 \end{array}
 \]</span> <strong>Example</strong></p>
 <p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(h(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(g(X)=X\)</span> and <span class="math inline">\(C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
-(NLP)\quad \begin{array}{rCl}
+\text{(NLP)}\quad \begin{array}{rCl}
 \min &amp; \langle C,X\rangle\\
 \text{subject to}&amp; \mathcal A(X)-b=0\\
 &amp;X\succeq 0(X\in\mathbb S^n_+),
@@ -344,7 +344,7 @@ L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle
 \end{cases}
 \end{array}
 \]</span> Therefore, the dual problem is given by, <span class="math display">\[
-(D)\quad \begin{array}{rCl}
+\text{(D)}\quad \begin{array}{rCl}
 \min &amp; \langle y,b\rangle\\
 \text{subject to}&amp; C-\mathcal A^*y-Z=0\\
 &amp;Z\succeq 0.
