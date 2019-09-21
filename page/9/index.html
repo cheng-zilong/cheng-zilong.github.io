@@ -215,6 +215,279 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/" class="post-title-link" itemprop="url">5. Pole Placement Problem IO Model</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-12 12:18:05" itemprop="dateCreated datePublished" datetime="2018-11-12T12:18:05+08:00">2018-11-12</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-26 00:02:29" itemprop="dateModified" datetime="2019-08-26T00:02:29+08:00">2019-08-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="io-pole-placement">1. IO Pole Placement</h2>
+<p>For a input-output model</p>
+<p>Plant:<span class="math inline">\(\frac{B(z)}{A(z)}\)</span></p>
+<p>Feedback controller:<span class="math inline">\(\frac{S(z)}{R(z)}\)</span></p>
+<p>Feedforward controller:<span class="math inline">\(\frac{T(z)}{R(z)}\)</span></p>
+<p>For the close loop:,</p>
+<p>We have close loop t.f. <span class="math display">\[
+H_{cl}=\frac{RB}{AR+SB}\frac{T}{R}=\frac{TB}{AR+SB}
+\]</span> We have the c.p. <span class="math display">\[
+A_{cl}(z)=A_m(z)A_o(z)=A(z)R(z)+S(z)B(z)
+\]</span> If the order of the plant is n,</p>
+<p>we will have the following in order to tune all parameters <span class="math display">\[
+Deg \space A_{cl}=2n-1\\
+Deg \space S=n-1\\
+Deg \space R=n-1
+\]</span></p>
+<h2 id="reduce-order-by-pole-zero-cancellation">2.Reduce Order by Pole-Zero Cancellation</h2>
+<p>If we want to cancel out stable zeros, we can choose <span class="math display">\[
+A_{cl}=\bar{A}_{cl}B^+(z)\\
+\]</span> Then <span class="math display">\[
+H_{cl}=\frac{TB^{+}B^{-}}{\bar A_{cl}B^{+}}=\frac{TB^{-}}{\bar A_{cl}}
+\]</span> But we cannot cancel unstable zeros.</p>
+<p>and we can also cancel stable poles by choosing <span class="math display">\[
+T=\bar TA^+
+\]</span> and <span class="math display">\[
+A_{cl}=\bar{A}_{cl}A^+B^+(z)\\
+\]</span> and we can also cancel them at the same time.</p>
+<p>and the equation becomes <span class="math display">\[
+A^+A^-R+SB^+B^-=A_{cl}=\bar{A}_{cl}A^+B^+(z)
+\]</span> in order to cancel <span class="math inline">\(A^+B^+\)</span></p>
+<p>we need to choose <span class="math display">\[
+R=B^+\bar R\\
+S=A^+\bar S\\
+T=\bar TA^+\\
+\]</span> Then we have <span class="math display">\[
+A^-\bar R+\bar SB^-=\bar{A}_{cl}
+\]</span> The order of the equation is becoming less.</p>
+<h2 id="disturbance-rejection">3. Disturbance Rejection</h2>
+<p>we find the transfer function between disturbance and output is <span class="math display">\[
+H_{v}=\frac{Y(z)}{V(z)}=\frac{\frac{B}{A}}{1+\frac{SB}{RA}}=\frac{RB}{AR+SB}
+\]</span> if the disturbance is constant, we just need <span class="math inline">\(H_v(1)=0 \quad R(1)=0\)</span>.</p>
+<p>therefore, we just need <span class="math display">\[
+R(z)=(z-1)R&#39;
+\]</span> Tracking Problem</p>
+<p><span class="math inline">\(B(z)\)</span> is stable, i.e. the system has stable inverse.</p>
+<h2 id="design-steps">4. Design Steps</h2>
+<p>First build feedback controller and then build feedforward controller.</p>
+<p>how to build feedback controller</p>
+<ol type="1">
+<li>Design R, if zero cancelled, R needs to contain zero. if disturbance is cancelled, R needs to contain z-1.</li>
+<li>Design R and S by solving <span class="math inline">\(AR+BS=A_{cl}\)</span></li>
+<li>Choose T or <span class="math inline">\(H_{ff}\)</span> at the final stage.</li>
+</ol>
+<h2 id="io-example">5. IO Example</h2>
+<p>The Plant <span class="math display">\[
+G(z)=\frac{0.00058}{z-0.942}
+\]</span> The Desired Model <span class="math display">\[
+H_d(z)=\frac{0.0952z+0.0755}{z^2-1.331z+0.5016}
+\]</span> We need disturbance rejection <span class="math display">\[
+R=z-1\\
+S=s_0z+s_1\\
+A_{cl}=z^2-1.331z+0.5016\\
+AR+SB=(z-0.942)(z-1)+\\(s_0z+s_1)(0.00058)\\=z^2-1.331z+0.5016
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=1053.448\\
+s_1=-759.31
+\end{cases}
+\]</span> Then we have <span class="math display">\[
+R=z-1\\
+S=1053.448z-759.31
+\]</span> Then the feedback close loop system is <span class="math display">\[
+H_{fbc}=\frac{(z-1)0.00058}{z^2-1.331z+0.5016}
+\]</span> Now we will design the feedforward controller, <span class="math display">\[
+H_{fbc}H_{ff}=H_d\\
+H_{ff}=\frac{0.0952z+0.0755}{(z-1)0.00058}\\=\frac{16.41z+130.17}{z-1}
+\]</span> Therefore the controller is <span class="math display">\[
+U(z)=-H_{fb}(z)Y(z)+H_{ff}(z)U_c(z)\\
+H_{fb}=\frac{1053.448z-759.31}{z-1}\\
+H_{ff}=\frac{16.41z+130.17}{z-1}
+\]</span> Example</p>
+<p>Plant <span class="math display">\[
+H(z)=\frac{z+0.9}{z^2-2.5z+1}
+\]</span> The desired <span class="math display">\[
+A_m(z)=z^2-1.
+8z+0.9
+\]</span> a) The process zero is canceled</p>
+<p>The order of the plant is 2. <span class="math display">\[
+R=(z+0.9)\\
+S=s_0z+s_1\\
+A_{cl}=(z+0.9)(z^2-1.8z+0.9)
+\]</span> Then we have Diophantine Equation <span class="math display">\[
+AR+SB=(z^2-2.5z+1)(z+0.9)+(s_0z+s_1)(z+0.9)\\
+=A_{cl}=(z+0.9)(z^2-1.8z+0.9)\\
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=0.7\\
+s_1=-0.1\\
+\end{cases}
+\]</span> Then the close loop system is <span class="math display">\[
+H_{ff}=\frac{T}{R}
+\\H_{cl}=\frac{RB}{AR+SB}H_{ff}\\=\frac{TB}{AR+SB}\\=\frac{T}{z^2-1.8z+0.9}
+\]</span> We know <span class="math display">\[
+H_{cl}(1)=1
+\]</span> Then we have <span class="math display">\[
+T=0.1
+\]</span> Therefore <span class="math display">\[
+U(z)=-\frac{S}{R}Y(z)+\frac{T}{R}U(z)\\=-\frac{0.7z-0.1}{z+0.9}Y(z)+\frac{0.1}{z+0.9}U_c(z)
+\]</span></p>
+<ol start="2" type="a">
+<li>The process zero is not canceled <span class="math display">\[
+A_{cl}=zA_m=z^3-1.8z^2+0.9z\\
+S=s_0z+s_1\\
+R=z+r_1
+\]</span> Then we have Diophantine Equation <span class="math display">\[
+AR+SB=A_{cl}\\
+(z^2-2.5z+1)(z+r_1)+\\(s_0z+s_1)(z+0.9)=\\z^3-1.8z^2+0.9z
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+r_1=0.1618\\
+s_0=0.5382\\
+s_1=-0.1798
+\end{cases}
+\]</span> Then we design the feedforward controller. <span class="math display">\[
+H_{cl}=\frac{TB}{AR+SB}\\
+H_{cl}(1)=1\\
+T=0.05263\\
+\]</span></li>
+</ol>
+<p>Therefore, the controller is <span class="math display">\[
+U(z)=-\frac{0.5382z-0.1798}{z+0.1618}Y(z)\\+\frac{0.05263}{z+0.1618}U_c(z)
+\]</span></p>
+<p>Example <span class="math display">\[
+H(z)=\frac{z-0.5}{z^2-1}\\
+H_m(z)=\frac{1}{z^2}\\
+\]</span> (a)Desgin a controller in the form <span class="math inline">\(R(q)u(k)=T(q)u_c(k)-S(q)y(k)\)</span>. Match the reference model and reject disturbance. <span class="math display">\[
+R(z)=(z-1)(z-0.5)\\
+S(z)=s_0z^2+s_1z+s_2\\
+A_{cl}=A_oA_m=z^3(z-0.5)\\
+AR+SB=A_{cl}\\
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=1\\
+s_1=1\\
+s_2=-1\\
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+\frac{RB}{AR+SB}\frac{T}{R}=H_m(z)\\
+\frac{zt_0}{z^3}=\frac{1}{z^2}\\
+t_0=1\\
+\]</span></p>
+<p><span class="math display">\[
+U(z)=-\frac{z^2+z-1}{(z-1)(z-0.5)}Y(z)+\frac{z}{(z-1)(z-0.5)}U_c(z)\\
+(z^2-1.5z+0.5)U(z)=-(z^2+z-1)Y(z)+zU_c(z)\\
+u(k+2)-1.5u(k+1)+0.5u(k)=\\-y(k+2)-y(k+1)+y(k)+u_c(k+1)\\
+u(k)=1.5u(k-1)-0.5u(k-2)\\-y(k)-y(k-1)+y(k-2)+u_c(k-1)
+\]</span></p>
+<ol start="2" type="a">
+<li>Design controller in the form of <span class="math inline">\(u(k)=u_{fb}(k)+u_{ff}(k)\)</span> <span class="math display">\[
+R(z)=(z-1)(z+r_1)\\
+S(z)=s_0z^2+s_1z+s_2\\
+A_{cl}=A_oA_m=z^4\\
+AR+SB=\\(z^2-1)(z-1)(z+r_1)\\+(s_0z^2+s_1z+s_2)(z-0.5)\\
+=z^4\\
+\]</span> We can get the result <span class="math display">\[
+\begin{cases}
+r_1=-\frac{1}{3}\\
+s_0=\frac{4}{3}\\
+s_1=\frac{4}{3}\\
+s_2=-\frac{2}{3}\\
+\end{cases}
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+\frac{RB}{AR+SB}H_{ff}\\=\frac{(z-1)(z-\frac{1}{3})(z-0.5)}{z^4}H_{ff}\\
+=\frac{1}{z^2}\\
+H_{ff}(z)=\frac{z^2}{(z-1)(z-\frac{1}{3})(z-0.5)}\\
+U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H_{ff}U_c(z)
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -545,300 +818,11 @@ u(k)=-L\hat x(k)-L_v\hat v
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/Computer Control/3. Analysis of Discrete Time System/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/09/Computer Control/3. Analysis of Discrete Time System/" class="post-title-link" itemprop="url">3. Analysis of Discrete Time System</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-09 15:43:37" itemprop="dateCreated datePublished" datetime="2018-11-09T15:43:37+08:00">2018-11-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:04:46" itemprop="dateModified" datetime="2019-08-26T00:04:46+08:00">2019-08-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="stability">1. Stability</h2>
-<p>Jury's Stability Test</p>
-<p>For the system <span class="math display">\[
-\frac{1}{z^2+a_1z+a_2}
-\]</span> Using Jury's Stability Test <span class="math display">\[
-\begin{array}{ccc}
-1 &amp; a_1 &amp; a_2\\
-a_2 &amp; a_1 &amp; 1 &amp; \times -a_2\\ \hline
-1-a_2^2 &amp; a_1-a_1a_2\\ 
-a_1-a_1a_2 &amp; 1-a_2^2 &amp;  &amp; \times-\frac{a_1}{1+a_2}\\ \hline
-\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}
-\end{array}
-\]</span> If the system is stable, we have <span class="math display">\[
-1-a_2^2 &gt;0\\
-\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}&gt;0
-\]</span></p>
-<h2 id="controllability">2. Controllability</h2>
-<p>Controllable: The system can be driven from any initial state to any other destination in finite time.</p>
-<p>For the system <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y(k)=Cx(k)\\
-\]</span> We have the initial state <span class="math inline">\(x(0)\)</span></p>
-<p>Then <span class="math display">\[
-x(1)=\Phi x(0)+\Gamma u(0)\\
-x(2)=\Phi x(1)+\Gamma u(1)=\Phi(\Phi x(0)+\Gamma u(0))+\Gamma u(1)\\
-=\Phi^2 x(0)+\Phi\Gamma u(0)+\Gamma u(1)\\
-\vdots\\
-x(n)=\Phi^nx(0)+\Phi^{n-1}\Gamma u(0)+\Phi^{n-2}\Gamma u(1)+\dotsm+\Gamma u(n-1)
-\]</span> If the system can be driven to any state in finite steps, we just need to ensure <span class="math display">\[
-W_c=\begin{bmatrix}
-\Gamma &amp; \Phi\Gamma &amp; \Phi^2\Gamma &amp; \dotsm &amp; \Phi^{n-1}\Gamma
-\end{bmatrix}
-\]</span> is NONSINGULAR.</p>
-<p>If we cannot get to one state with n-1 steps, we cannot to get to one state with n steps.</p>
-<p>Proof <span class="math display">\[
-A(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\dotsm+\ a_n \\
-\]</span> Then we have <span class="math display">\[
-A(\Phi)=\Phi^n+a_1\Phi^{n-1}+a_2\Phi^{n-2}+\dotsm+\ a_nI \\
-\]</span> Similarly,</p>
-<p>We know <span class="math inline">\(\Phi^n\)</span> is linear combination of <span class="math inline">\(\Phi^0, \quad \Phi,\quad\dotsm\quad\Phi^{n-1}\)</span>.</p>
-<p>Therefore, we still cannot get to arbitrary desired state.</p>
-<p>Controllable Canonical Form <span class="math display">\[
-\Phi=
-\begin{bmatrix}
--a_{n} &amp; -a_{n-1} &amp; \dotsm &amp; -a_{2} &amp; -a_1\\
-1 &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-1\\
-0\\
-0\\
-\vdots\\
-0\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-b_n &amp; b_{n-1} &amp; \dotsm &amp; b_1
-\end{bmatrix}
-\]</span></p>
-<h2 id="observability">3. Observability</h2>
-<p>Observer <span class="math display">\[
-\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
-\hat y=C\hat x(k) \\
-e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
-\]</span> Observability Matrix <span class="math display">\[
-M_o^{-1}=\begin{bmatrix}
-C\\C\Phi\\C\Phi^2\\\vdots\\C\Phi^{n-1}
-\end{bmatrix}
-\]</span> Observable Canonical Form <span class="math display">\[
-\Phi=
-\begin{bmatrix}
--a_{n} &amp; 1 &amp; 0 &amp; \dotsm &amp; 0\\
--a_{n-1} &amp; 0 &amp; 1 &amp; \dotsm  &amp; 0\\
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
--a_{2} &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
--a_{1} &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-b_n\\
-b_{n-1}\\
-b_{n-2}\\
-\vdots\\
-b_1\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; \dotsm &amp; 0
-\end{bmatrix}
-\]</span></p>
-<h2 id="how-to-create-state-space-from-difference-equation">4. How to Create State Space From Difference Equation</h2>
-<p>Example <span class="math display">\[
-y(k+1)=-a_1y(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
-\]</span> First, we choose <span class="math display">\[
-x_1(k)=y(k)
-\]</span> Then we have <span class="math display">\[
-x_1(k+1)=y(k+1)=-a_1x_1(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
-\]</span> Then we choose <span class="math display">\[
-x_2(k)=-a_2y(k-1)-a_3y(k-2)+b_2u(k-1)+b_3u(k-2)\\
-x_2(k+1)=-a_2y(k)-a_3y(k-1)+b_2u(k)+b_3u(k-1)\\
-x_3(k)=-a_3y(k-1)+b_3u(k-1)\\
-x_3(k+1)=-a_3y(k)+b_3u(k)
-\]</span> Therefore, we have <span class="math display">\[
-x_1(k+1)=-a_1x_1+x_2(k)+b_1u(k)\\
-x_2(k+1)=-a_2x_1(k)+x_3(k)+b_2u(k)\\
-x_3(k+1)=-a_3x_1(k)+b_3u(k)\\
-\]</span> Therefore, <span class="math display">\[
-\Phi=\begin{bmatrix}
--a_1 &amp; 1 &amp; 0\\
--a_2 &amp; 0 &amp; 1\\
--a_3 &amp; 0 &amp; 0
-\end{bmatrix}
-\Gamma=\begin{bmatrix}
-b_1\\b_2\\b_3
-\end{bmatrix}
-C=\begin{bmatrix}
-1 &amp; 0 &amp; 0
-\end{bmatrix}
-\]</span></p>
-<h2 id="some-useful-conclusions">5. Some Useful Conclusions</h2>
-<ol type="1">
-<li>The minimal realization has the same order as that of the transfer function. If higher, it is called non-minimal realization.</li>
-<li>The minimal realization can be always cast into the form of observable canonical form. Therefore, the minimal realization is always observable.</li>
-<li>If there are common zeros and poles, uncontrollable, otherwise, controllable.</li>
-</ol>
-<h2 id="example">6. Example</h2>
-<p>Example 1 <span class="math display">\[
-y(k+1)=3y(k)-2y(k-1)+u(k-1)+2u(k-2)
-\]</span> a) What is the Transfer Function? <span class="math display">\[
-zY(z)=3Y(z)-2z^{-1}Y(z)+z^{-1}U(z)+2z^{-2}U(z)\\
-\frac{Y(z)}{U(z)}=\frac{z^{-1}+2z^{-2}}{z-3+2z^{-1}}=\frac{z+2}{z^3-3z^2+2z}=\frac{z+2}{z(z-1)(z-2)}
-\]</span> b) is it possible to realize the system such that it is observable but not controllable.</p>
-<p>It is not controllable, therefore, it should have common zeros and poles. <span class="math display">\[
-G(z)=\frac{(z+2)(z+1)}{z(z-1)(z-2)(z+1)}=\frac{z^2+3z+2}{z^4-2z^3-z^2+2z}\\
-\]</span> The system is observable, therefore, we realize the system in observable canonical form. <span class="math display">\[
-\Phi=
-\begin{bmatrix}
-2 &amp; 1 &amp; 0 &amp; 0\\
-1 &amp; 0 &amp; 1 &amp; 0\\
--2 &amp; 0 &amp; 0 &amp; 1\\
-0 &amp; 0 &amp; 0 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-0\\
-1\\
-3\\
-2\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0
-\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-M_C=
-\begin{bmatrix}
-0 &amp; 1 &amp; 5 &amp; 13\\
-1 &amp; 3 &amp; 3 &amp; 3\\
-3 &amp; 2 &amp; -2 &amp; -10\\
-2 &amp; 0 &amp; 0 &amp; 0\\
-\end{bmatrix}
-M_o=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-2 &amp; 1 &amp; 0 &amp; 0\\
-5 &amp; 2 &amp; 1 &amp; 0\\
-10 &amp; 5 &amp; 2 &amp; 1
-\end{bmatrix}\\
-\]</span></p>
-<p>Therefore, the system is observable but not controllable.</p>
-<p>However, we need to check if this space state is that transfer function. It is easy to find that it is exactly the G(z) instead of the transfer function in the question. Therefore, it is <strong>impossible</strong> to realize this system in observable but not controllable form.</p>
-<ol start="3" type="a">
-<li>is it possible to realize the system such that it is controllable but not observable.</li>
-</ol>
-<p>Same as the above, it is possible to realize.</p>
-<ol start="4" type="a">
-<li>is it possible to realize the system such that it is both controllable and observable.</li>
-</ol>
-<p>Obviously, it is possible.</p>
-<p>Example 2. <span class="math display">\[
-y(k+1)=3y(k-1)-2y(k-2)+u(k)-2u(k-1)+u(k-2)\\
-\]</span> The questions are same as the above.</p>
-<ol type="a">
-<li><span class="math display">\[
-zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
-\frac{Y(z)}{U(z)}=\frac{z^2-2z+1}{z^3-3z-2}=\frac{(z-1)^2}{(z-1)^2(z+2)}
-\]</span></li>
-<li><p>it is possible observable but not controllable</p></li>
-<li><p>it is not possible controllable but not observable</p></li>
-<li><p>it is not possible controllable and observable</p></li>
-</ol>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -883,7 +867,7 @@ zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

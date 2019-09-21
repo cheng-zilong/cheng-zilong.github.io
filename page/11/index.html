@@ -215,6 +215,304 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/Computer Control/2. Computer Control and Discrete-Time Systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/07/Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-title-link" itemprop="url">2. Computer Control and Discrete-Time Systems</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-07 17:36:35" itemprop="dateCreated datePublished" datetime="2018-11-07T17:36:35+08:00">2018-11-07</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-26 00:04:50" itemprop="dateModified" datetime="2019-08-26T00:04:50+08:00">2019-08-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="pole-cancellation">1. Pole Cancellation</h2>
+<p>If the whole system is stable, then the poles and zeros can be cancelled out each other, then the reduced transfer function is good approximation of the original one.</p>
+<p>If the common factors are related to the same variables, they must cancel out.</p>
+<p>If the common factors are related to different variables, they should remain.</p>
+<p>The best tools to check whether they can be cancelled out or not is time domain. Proof is omitted.</p>
+<p>Example</p>
+<p>---u------G1------v------G2------y <span class="math display">\[
+G_1=\frac{s-1}{s^2+s+1}\\
+G_2=\frac{1}{s-1}\\
+\]</span> Then <span class="math display">\[
+G_1G_2=\frac{s-1}{(s^2+s+1)(s-1)}\\
+\]</span> ---u------G2------v------G1------y <span class="math display">\[
+G_2G_1=\frac{1}{s^2+s+1}\\
+\]</span></p>
+<h2 id="zero-order-hold-discrete-instead-of-first-order-hold">2. Zero-order Hold Discrete instead of First Order Hold</h2>
+<p>Because you will never know what will happen in the next time. So we can only choose zero-order hold for the computer control system.</p>
+<h2 id="how-to-solve-the-differential-equation">3. How to Solve the Differential Equation</h2>
+<p><span class="math display">\[
+x(t)=\underbrace{e^{At}x(0)}_{\text{zero input response}}+\underbrace{\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau}_{\text{zero-state response}}\\
+\]</span></p>
+<p>For continuous time, we have differential equation, differentiation operator, Laplace Transform, continuous state space.</p>
+<p>For discrete time, we have difference equation, shift operator, Z Transform, discrete state space.</p>
+<h2 id="discrete-with-zero-order-hold">4. Discrete with Zero-Order Hold</h2>
+<p>For a constant in the whole interval <span class="math inline">\([t_k,t_{k+1})\)</span> <span class="math display">\[
+x(t)=e^{A(t-t_k)}x(t_k)+\int_{t_k}^{t}e^{A(t-\tau)}d\tau Bu(t_k)\\
+\]</span> For the second part we have <span class="math inline">\(v=t-\tau\)</span> <span class="math display">\[
+\int_{t_k}^{t}e^{A(t-\tau)}d\tau=\int_0^{t-t_k}e^{Av}dv\\
+\]</span> If the sampling time is h, we have <span class="math display">\[
+x(kh+h)=e^{Ah}x(kh)+\int_0^he^{Av}dvBu(kh)=\Phi x(kh)+\Gamma u(kh)\\
+\]</span> To be simple <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y=Cx\\
+\]</span> where <span class="math display">\[
+\Phi=e^{Ah} \\
+\Gamma=\int_0^he^{Av}dvB\\
+\]</span></p>
+<p>Difference Equation <span class="math display">\[
+y(k+1)=a_1y(k)+a_2y(k-1)+b_0u(k)+b_1u(k-1)\\
+y(k+1)-a_1y(k)-a_2y(k-1)=b_0u(k)+b_1u(k-1)\\
+\]</span> We define shift-operator q <span class="math display">\[
+qf(k)=f(k+1)\\
+q^{-1}f(k)=f(k-1)\\
+\]</span> Then we will have <span class="math display">\[
+qy(k)-a_1y(k)-a_2q^{-1}y(k)=b_0u(k)+b_1q^{-1}u(k)\\
+\frac{y(k)}{u(k)}=\frac{b_0+b_1q^{-1}}{q-a_1-a_2q^{-1}}=\frac{b_0q+b_1}{q^2-a_1q-a_2}=\frac{B(q)}{A(q)}\\
+\]</span></p>
+<h2 id="z-transform">5. Z Transform</h2>
+<p>In continuous time domain, we have <span class="math display">\[
+u=e^{st}\quad y=H(s)e^{st}\\
+\]</span> In discrete time domain, we have <span class="math display">\[
+e^{st\quad\underrightarrow{t\rightarrow kh}}\quad e^{skh\quad\underrightarrow{e^{sh}\rightarrow a}} \quad a^k\\
+\]</span> Therefore, <span class="math display">\[
+u(k)=a^k\quad y(k)=H(a)a^k\\
+\]</span> Then we have the following calculation which has the same properties. <span class="math display">\[
+F(z)=\sum^\infty_{k=0}f(k)z^{-k}\\
+\]</span> Which is Z transform.</p>
+<p>For impulse signal, we have <span class="math inline">\(U(z)=1\)</span>.</p>
+<p>For <span class="math inline">\(u=a^k\)</span>, we have <span class="math inline">\(U(z)=\frac{1}{z-a}\)</span>.</p>
+<p>Inverse Z Transform e.g. <span class="math display">\[
+z^2Y(z)-Y(z)=zU(z)+2U \\
+\frac{Y}{U}=G(z)=\frac{z+2}{z^2-1}\\
+\frac{G(z)}{z}=\frac{z+2}{z(z+1)(z-1)}=\frac{A_1}{z}+\frac{A_2}{z+1}+\frac{A_3}{z-1} \\
+G(Z)=\frac{z+2}{z(z+1)(z-1)}=-1+\frac{0.5z}{z+1}+\frac{0.5z}{z-1} \\
+\]</span> After inverse z transform <span class="math display">\[
+y(k)=-\delta(k)+0.5(-1)^k+0.5 (1)^k
+\]</span> Apply z transform to state space equation <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k) = cx(k) \\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z) \\
+(zI-\Phi)X(z)=x(0)+\Gamma U(z) \\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z) \\
+Y(z)=cX(Z)=c(zI-\Phi)^{-1}x(0)+c(zI-\Phi)^{-1}\Gamma U(z)\\
+\]</span></p>
+<p>For s domain, steady state gain(SSG) is H(0).</p>
+<p>For z domain, SSG is H(1).</p>
+<p>Poles in continuous time domain(CTD) is <span class="math inline">\(\lambda\)</span> , in the discrete time is <span class="math inline">\(e^{h\lambda }\)</span></p>
+<p>In CTD, if <span class="math inline">\(\lambda = \sigma+j\omega\)</span> , <span class="math inline">\(e^{\sigma+j\omega}=e^{\sigma}(cos (\omega)+jsin(\omega))\)</span></p>
+<p>In DTD, <span class="math inline">\(e^{h\lambda}=e^{h(\sigma+jw)}=e^{h\sigma}e^{jhw}\)</span></p>
+<p>Therefore, we can map poles from continuous time domain to discrete time domain.</p>
+<h2 id="example">6. Example</h2>
+<p>We have one electrical system <span class="math inline">\(L=C=R=1\)</span> <span class="math display">\[
+L\frac{di}{dt}+Ri+\frac{1}{C}\int idt=e_i\\
+\frac{1}{C}\int idi=e_o
+\]</span> a) Derive transfer function. Input is <span class="math inline">\(e_i\)</span>. Output is <span class="math inline">\(e_o\)</span>. <span class="math display">\[
+s^2Y(s)+sY(s)+Y(s)=U(s)\\
+\frac{Y(s)}{U(s)}=\frac{1}{s^2+s+1}\\
+\]</span> b) Define <span class="math inline">\(x_1=e_o,x_2=\dot e_o\)</span>, derive state space representation. <span class="math display">\[
+\dot x_1=x_2\\
+\dot x_2=-x_2-x_1+u\\
+x=Ax+Bu\\
+y=Cx\\
+A=
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}x+
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}u\\
+y=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}x\\
+\]</span> c) Discrete this system with h=1. <span class="math display">\[
+x(k+1)=\Phi x+\Gamma u\\
+y=Cx\\
+\Phi=e^{Ah}\\
+\]</span> According to Caley-Hamilton Equation <span class="math display">\[
+f(\lambda)=e^{\lambda t}\\
+h(\lambda)=\beta_0+\beta_1\lambda\\
+\lambda_1=-0.5+\frac{\sqrt3}{2}i\\
+\lambda_2=-0.5-\frac{\sqrt3}{2}i\\
+f(\lambda_1)=e^{(-0.5+\frac{\sqrt3}{2}i)t}=h(\lambda_1)=\beta_0+\beta_1(-0.5+\frac{\sqrt3}{2}i)\\
+f(\lambda_2)=e^{(-0.5-\frac{\sqrt3}{2}i)t}=h(\lambda_2)=\beta_0+\beta_1(-0.5-\frac{\sqrt3}{2}i)\\
+\]</span> Then we can solve that <span class="math display">\[
+\beta_0=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\\
+\beta_1=\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+\]</span> Then we have <span class="math display">\[
+f(A)=h(A)=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}+
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}\\
+=\begin{bmatrix}
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]&amp;
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}&amp;
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t-\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\end{bmatrix}\\
+\]</span> Then we have <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+0.6597 &amp; 0.5335\\
+-0.5335 &amp; 0.1262\\
+\end{bmatrix}\\
+\Gamma=A^{-1}[e^{Ah}-I]B=
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}\\
+C=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\\
+\]</span> d) Apply z-transform to c), and obtain input-output model <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k)=Cx(k)\\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z)\\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z)\\
+Y(z)=C(zI-\Phi)^{-1}x(0)+C(zI-\Phi)^{-1}\Gamma U(z)\\
+=\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}x(0)+\\
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}U(z)=\\
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}x(0)+\\
+\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+\]</span> We assume initial state is zero. <span class="math display">\[
+Y(z)=\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+y(k+2)-0.7859y(k+1)+0.3679y(k)=0.3403u(k+1)+0.2417u(k)\\
+y(k+1)=0.7859y(k)-0.3679y(k-1)+0.3403u(k)+0.2419u(k-1)\\
+\]</span> e) Assuming initial condition is <span class="math inline">\(x_1(0)=1,x_2(0)=0\)</span> , with step input, calculate the output <span class="math inline">\(y(k)\)</span>. <span class="math display">\[
+Y(z)=
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}
+(
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}z+
+\begin{bmatrix}
+0.3403\\
+0.5335\\
+\end{bmatrix}\frac{z}{z-1}
+)\\
+=\frac{z}{z-1}\\
+\]</span></p>
+<p>Therefore, <span class="math inline">\(y(z)=1\)</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/13/Computer Control/8. MPC with Constraint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -528,274 +826,11 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/Computer Control/7. Model Predictive Control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/10/12/Computer Control/7. Model Predictive Control/" class="post-title-link" itemprop="url">7. Model Predictive Control</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-10-12 14:56:52" itemprop="dateCreated datePublished" datetime="2018-10-12T14:56:52+08:00">2018-10-12</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:02:49" itemprop="dateModified" datetime="2019-08-26T00:02:49+08:00">2019-08-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="model-predictive-control">Model Predictive Control</h2>
-<h3 id="state-space-model-augmented-with-an-integrator">1. State Space Model Augmented with an Integrator</h3>
-<p>We give a definition <span class="math display">\[
-\Delta u(k)=u(k)-u(k-1) \\
-\Delta x(k)=x(k)-x(k-1)
-\]</span></p>
-<p>Consider the input-output model <span class="math display">\[
-x_p(k+1)=A_px_p(k)+B_pu(k) \\
-y(k)=C_px_p(k)
-\]</span> Therefore, <span class="math display">\[
-\Delta x(k+1)=A_p\Delta x_p(k)+B_p\Delta u(k)\\
-\Delta y(k)=C_p \Delta x_p(k) \\
-y(k+1)=y(k)+C_p \Delta x_p(k+1)
-\]</span> Now we can build the augmented state-space model <span class="math display">\[
-\overbrace{\begin{bmatrix}
-\Delta x_p(k+1)\\
-y(k+1)
-\end{bmatrix}}^{x(k+1)}=
-\overbrace{\begin{bmatrix}
-A_p&amp;o_p^T\\
-C_pA_p&amp;1
-\end{bmatrix}}^{A}
-\overbrace{\begin{bmatrix}
-\Delta x_p(k)\\
-y(k)
-\end{bmatrix}}^{x(k)}+
-\overbrace{\begin{bmatrix}
-B_p\\
-C_pB_p
-\end{bmatrix}}^{B}
-\Delta u(k) \\
-y(k)=\overbrace{[o_p \quad 1]}^{C}
-\overbrace{\begin{bmatrix}
-\Delta x_p(k)\\
-y(k)
-\end{bmatrix}}^{x(k)}
-\]</span> where <span class="math display">\[
-o_p=\underbrace {[0\quad0\quad\dotsm\quad0]}_{n_p}
-\]</span> For now, we can calculate y(k). <span class="math display">\[
-\begin{array}{rcl}
-y(k+1) &amp;=&amp; Cx(k+1)=CAx(k)+CB\Delta u(k)\\
-y(k+2) &amp;=&amp; Cx(k+2)=CAx(k+1)+CB\Delta u(k+1) \\
-       &amp;=&amp; CA^2x(k)+CAB\Delta u(k)+CB\Delta u(k+1) \\
-y(k+3) &amp;=&amp; CA^3x(k)+CA^2B\Delta u(k)+CAB\Delta u(k+1)+CB\Delta u(k+2) \\
-&amp;\vdots\\
-y(k+N_p) &amp;=&amp; CA^{N_p}x(k)+CA^{N_{p}-1}B\Delta u(k)+CA^{N_{p}-2}B\Delta u(k+1)+\dotsm+
-+CA^{N_{p}-N_p}B\Delta u(k+N_p-1)
-\end{array}
-\]</span> We can denote this in matrix form <span class="math display">\[
-\Delta U=[\Delta u(k)\quad\Delta u(k+1)\quad\dotsm\quad\Delta u(k+N_c-1)]^T \\
-Y=[y(k+1)\quad y(k+2)\quad y(k+N_p)]^T
-\]</span> Then we have <span class="math display">\[
-Y=Fx(k)+\Phi \Delta U
-\]</span> From the above equations, we can find <span class="math display">\[
-F=\begin{bmatrix}
-CA \\ CA^2 \\ CA^3 \\ \vdots \\CA^{N_P}
-\end{bmatrix} \\
-\Phi=\begin{bmatrix}
-CB &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
-CAB &amp; CB &amp; 0 &amp; 0 &amp; 0  \\  
-CA^2B &amp; CAB &amp; CB &amp; 0 &amp; 0 \\ 
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-CA^{N_P-2}B &amp; CA^{N_P-3}B &amp;CA^{N_P-4}B &amp; \dotsm &amp; CA^{N_P-N_c-1}B\\
-CA^{N_P-1}B &amp; CA^{N_P-2}B &amp;CA^{N_P-3}B &amp; \dotsm &amp; CA^{N_P-N_c}B
-\end{bmatrix}
-\]</span> P.S. in order to reduce the complexity of calculation, we can ignore the control of high order future state and also we can reduce the steps of future prediction. Here gives the concept of control horizon <span class="math inline">\(N_c\)</span> , which means we can ignore the input after <span class="math inline">\(N_c\)</span> steps. It will be shown in the following example. <span class="math inline">\(N_p\)</span> is called prediction horizon.</p>
-<p>For now we give the reference <span class="math display">\[
-R_s^T=\overbrace{[1 \quad 1 \quad\dotsm\quad 1]}^{N_p}r(k)
-\]</span> We can introduce the cost function <span class="math display">\[
-J=\frac{1}{2}[(R_s-Y)^T(R_s-Y)+\Delta U^T\bar R\Delta U]
-\]</span> <span class="math inline">\(\bar R\)</span> is used to restrict the input. <span class="math display">\[
-\bar R=r_wI_{N_c\times N_c}
-\]</span> Now we get <span class="math display">\[
-J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))+\frac{1}{2}(R_s-Fx(k))^T(R_s-Fx(k))
-\]</span> For the last part of the above equation, it is a constant. Therefore, we need to minimize the first and the second parts <span class="math display">\[
-J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
-\]</span> the necessary of get the minimum of J is <span class="math display">\[
-\frac{\part J}{\part \Delta U}=0
-\]</span> We know the quadratic matrix form derivative is <span class="math display">\[
-f(x)=x^TAx\\
-f&#39;(x)=x^T(A+A^T)\\
-\]</span> And we know Transpose Matrix Derivative is <span class="math display">\[
-f(x)=x^TAB\\
-f&#39;(x)=(AB)^T=B^TA^T
-\]</span> Then we have <span class="math display">\[
-\frac{\part J}{\part \Delta U}=\frac{1}{2}\Delta U^{T}(\Phi^T\Phi+\bar R+\Phi^T\Phi+\bar R^T)-(R_s-Fx(k))^T\Phi=0\\
-\]</span> Transpose both sizes of the above equation <span class="math display">\[
-(\Phi^T\Phi+\bar R)\Delta U-\Phi^T(R_s-Fx(k))=0
-\]</span> For this linear equation, there must be one minimum point. So the above condition is also a sufficient condition.</p>
-<p>Finally we get <span class="math display">\[
-\Delta U=(\Phi^T\Phi+\bar R)^{-1}\Phi^T(R(s)-Fx(k))
-\]</span> <span class="math inline">\(\Delta U\)</span> contains the control input of many steps but we only need the first step. $$ \begin{array}{} u(k)&amp;=&amp;<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>T(R(s)-Fx(k)) \</p>
-<p>&amp;=&amp; K_rr(k)-K_{mpc}x(k) \end{array} <span class="math display">\[
-where
-\]</span> K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TR_s\ K_{mpc}=K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TF \ R_s = ^{N_p} <span class="math display">\[
-Note that this is a kind of LTI state feedback control. We can analysis its pole by
-\]</span> =0 $$ ### 2. Example</p>
-<p>We have a discrete state space model <span class="math display">\[
-x_p(k+1)=0.8x_p(k)+0.1u(k) \\
-y(k)=x(k)
-\]</span> We hope that <span class="math display">\[
-r(k)=1 \quad \forall k\ge0 \quad r_w=0.01
-\]</span> First we build the augmented state space model <span class="math display">\[
-A= \begin{bmatrix}
-0.8 &amp; 0 \\
-0.8 &amp; 1
-\end{bmatrix}
-B= \begin{bmatrix}
-0.1 \\
-0.1
-\end{bmatrix}
-C= \begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-\]</span> We also have <span class="math display">\[
-R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
-F=\begin{bmatrix}
-0.8 &amp; 1 \\
-1.44 &amp; 1 \\
-1.952 &amp; 1 \\
-\end{bmatrix}
-\Phi=\begin{bmatrix}
-0.1 &amp; 0 &amp; 0 \\
-0.18 &amp; 0.1 &amp; 0 \\
-0.244 &amp; 0.18 &amp; 0.1\\
-\end{bmatrix} \\
-\bar R=0.01\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 1\\
-\end{bmatrix}
-=\begin{bmatrix}
-0.01 &amp; 0 &amp; 0 \\
-0 &amp; 0.01 &amp; 0 \\
-0 &amp; 0 &amp; 0.01 \\
-\end{bmatrix}
-\]</span></p>
-<p>And then <span class="math display">\[
-K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 5.0519
-\\
-K_{mpc}=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.879 \quad 5.0519]\\
-\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
-\Delta u(k)= K_rr(k)-K_{mpc}x(k)
-\]</span> If control horizon is taken into consideration, e.g. <span class="math inline">\(N_c=2\)</span> , we solve this example again <span class="math display">\[
-R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
-F=\begin{bmatrix}
-0.8 &amp; 1 \\
-1.44 &amp; 1 \\
-1.952 &amp; 1 \\
-\end{bmatrix}
-\Phi=\begin{bmatrix}
-0.1 &amp; 0\\
-0.18 &amp; 0.1\\
-0.244 &amp; 0.18\\
-\end{bmatrix} \\
-\bar R=0.01\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}
-=\begin{bmatrix}
-0.01 &amp; 0\\
-0 &amp; 0.01\\
-\end{bmatrix}
-\]</span> Finally we get, <span class="math display">\[
-K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 4.9819
-\\
-K_{mpc}=K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.9364 \quad 4.9819]\\
-\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
-\Delta u(k)= K_rr(k)-K_{mpc}x(k)
-\]</span> Therefore, you can compare the two results.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -840,7 +875,7 @@ K_{mpc}=K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

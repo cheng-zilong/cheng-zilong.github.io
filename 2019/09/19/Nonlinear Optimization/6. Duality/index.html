@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="Basic Lagrange Duality and Saddle Point Optimality Conditions Given an NLP, there is another NLP closely associated with it defined via the Lagrangian function. The former is called the primal proble">
+  <meta name="description" content="Thanks for the module MA5268 NUS and Prof. Toh Basic Lagrange Duality and Saddle Point Optimality Conditions Given an nonlinear programming problem, there is another nonlinear programming problem cl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="6. Basic Lagrange Duality and Saddle Point Optimality Conditions">
 <meta property="og:url" content="http://yoursite.com/2019/09/19/Nonlinear Optimization/6. Duality/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="Basic Lagrange Duality and Saddle Point Optimality Conditions Given an NLP, there is another NLP closely associated with it defined via the Lagrangian function. The former is called the primal proble">
+<meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh Basic Lagrange Duality and Saddle Point Optimality Conditions Given an nonlinear programming problem, there is another nonlinear programming problem cl">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-19T16:06:34.907Z">
+<meta property="og:updated_time" content="2019-09-20T08:57:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="6. Basic Lagrange Duality and Saddle Point Optimality Conditions">
-<meta name="twitter:description" content="Basic Lagrange Duality and Saddle Point Optimality Conditions Given an NLP, there is another NLP closely associated with it defined via the Lagrangian function. The former is called the primal proble">
+<meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh Basic Lagrange Duality and Saddle Point Optimality Conditions Given an nonlinear programming problem, there is another nonlinear programming problem cl">
   <link rel="canonical" href="http://yoursite.com/2019/09/19/Nonlinear Optimization/6. Duality/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-20 00:06:34" itemprop="dateModified" datetime="2019-09-20T00:06:34+08:00">2019-09-20</time>
+                <time title="Modified: 2019-09-20 16:57:51" itemprop="dateModified" datetime="2019-09-20T16:57:51+08:00">2019-09-20</time>
               </span>
             
           
@@ -288,8 +288,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
-<p>Given an NLP, there is another NLP closely associated with it defined via the Lagrangian function. The former is called the primal problem and the latter is called the Lagrangian dual problem.</p>
+        <h1 id="thanks-for-the-module-ma5268-nus-and-prof.-toh">Thanks for the module MA5268 NUS and Prof. Toh</h1>
+<h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
+<p>Given an nonlinear programming problem, there is another nonlinear programming problem closely associated with it via the Lagrangian function. The former is called the <strong>primal problem</strong> and the latter is called the <strong>Lagrangian dual problem</strong>.</p>
 <h2 id="lagrangian-dual-problem">6.1 Lagrangian dual problem</h2>
 <p>Consider the following general nonlinear programming problem, which is known as a primal problem, <span class="math display">\[
 (P)\quad \begin{array}{rCl}
@@ -319,7 +320,7 @@ L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_
 <ol type="1">
 <li><p>Each equality constraint <span class="math inline">\(g_i(x)=0\)</span> is replaced by a term <span class="math inline">\(\lambda_ig_i(x)\)</span>, where <span class="math inline">\(\lambda_i\in \mathbb R,i=1,2,\dotsm,m\)</span>. This term gives a non-zero value whenever this equality is violated.</p></li>
 <li><p>Each inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is replaced by a term <span class="math inline">\(\mu_jh_j(x)\)</span>, where <span class="math inline">\(\mu_j\ge 0,j=1,2,\dotsm,p\)</span>. If an inequality constraint is violated, i.e., <span class="math inline">\(h_j(x)&gt;0\)</span>, then it is reflected by a positive value.</p></li>
-<li><p>In evaluating <span class="math inline">\(\theta (\lambda,\mu)\)</span> for each <span class="math inline">\(\lambda,\mu\)</span>, the following unconstrained problem <span class="math display">\[
+<li><p>In evaluating <span class="math inline">\(\theta (\lambda,\mu)\)</span> for each <span class="math inline">\(\lambda,\mu\)</span>, the following unconstrained problem (Lagrangian dual subproblem) <span class="math display">\[
 \begin{array}{rCl}
 \min &amp; f(x)+\lambda^Tg(x)+\mu^T h(x)\\
 \text{subject to} &amp;x\in X,
@@ -329,7 +330,7 @@ L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_
 <p>Suppose <span class="math inline">\(x^*\)</span> is an optimal solution of <span class="math inline">\((P)\)</span>. Then <span class="math inline">\(g_i(x^*)=0\)</span> and <span class="math inline">\(h_j(x^*)\le 0\)</span>. Therefore, <span class="math display">\[
 \theta(\lambda,\mu)\le f(x^*)+\mu^T h(x^*)\le f(x^*).
 \]</span> This implies for any <span class="math inline">\(\lambda,\mu\)</span>, <span class="math inline">\(\theta(\lambda,\mu)\)</span> is the lower bound of the optimal objective value <span class="math inline">\(f^*(x)\)</span>.</p>
-<p>We hope to derive the greatest lower bound for <span class="math inline">\(f(x^*)\)</span>. This leads to the following nonlinear programming problem which is called the Lagrangian dual problem <span class="math inline">\((D)\)</span>. <span class="math display">\[
+<p>We hope to derive the greatest lower bound for <span class="math inline">\(f(x^*)\)</span>. This leads to the following nonlinear programming problem which is called the <strong>Lagrangian dual problem</strong> <span class="math inline">\((D)\)</span>, <span class="math display">\[
 (D)\quad \begin{array}{rCl}
 \max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
 \text{subject to}&amp; \lambda\in \mathbb R^m\\
@@ -356,10 +357,36 @@ L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_
 <li>For general nonlinear programming problems, it is <strong>not true</strong> that one has an optimal solution, then the other will have an optimal solution. However, this is true for convex programming problems.</li>
 <li>Under certain convexity assumptions and suitable constraint qualifications, the primal and dual problems have equal optimal objective value and hence it is possible to solve the primal problem indirectly by solving the dual problem. The dual problem is sometimes easier.</li>
 </ol>
+<p><strong>Remark</strong></p>
+<p>In general, the dual function of a primal problem cannot be obtained explicitly. In this situation, the dual problem may include primal variables <span class="math inline">\((x)\)</span> as well as the dual variables <span class="math inline">\((\lambda,\mu)\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>Consider the problem <span class="math display">\[
+(P)\quad \begin{array}{rCl}
+\min &amp; f(x)=\exp (x)\\
+\text{subject to}&amp; x^2-1\le 0.
+\end{array}
+\]</span> For <span class="math inline">\(\mu\ge 0\)</span>, the Lagrangian dual function is <span class="math display">\[
+\theta(\mu)=\inf_{x}\left(\exp(x)+\mu(x^2-1)\right),
+\]</span> which is convex on <span class="math inline">\(\mathbb R\)</span>. Therefore, any stationary point will be a global minimizer. Then we have if <span class="math inline">\(\mu&gt;0\)</span>, <span class="math display">\[
+\exp (x^*)+2\mu x^*=0,
+\]</span> otherwise <span class="math inline">\((\mu=0)\)</span>, <span class="math display">\[
+\theta(0)=0.
+\]</span> Therefore, we have <span class="math display">\[
+\theta(\mu)=
+\begin{cases}
+\exp(x)+\mu(x^2-1)&amp; \text{and}&amp;\exp(x)+2\mu x=0,&amp; \mu&gt;0\\
+0&amp;&amp;&amp;\mu=0.
+\end{cases}
+\]</span> Therefore, the dual problem is <span class="math display">\[
+(D)\quad \begin{array}{rCl}
+\max &amp; \theta(\mu)=\exp (x)+\mu(x^2-1)\\
+\text{subject to}&amp; \exp(x)+2\mu x=0\\&amp;\mu&gt;0\\&amp;x\in\mathbb R.
+\end{array}
+\]</span></p>
 <h2 id="weak-and-strong-duality-theorems">6.2 Weak and strong duality theorems</h2>
-<p>We shall discuss the relationship between an NLP and its Lagrangian dual problem for a primal minimization problem.</p>
+<p>We shall discuss the relationship between an nonlinear programming problem and its Lagrangian dual problem for a primal minimization problem.</p>
 <p><strong>Theorem</strong> (Weak Duality Theorem)</p>
-<p>Consider the primal NLP <span class="math inline">\((P)\)</span>. Let <span class="math inline">\(x\)</span> be a feasible point to <span class="math inline">\((P)\)</span> and <span class="math inline">\((\lambda,\mu)\)</span> be a feasible solution to <span class="math inline">\((D)\)</span>. Then <span class="math display">\[
+<p>Consider the primal nonlinear programming problem <span class="math inline">\((P)\)</span>. Let <span class="math inline">\(x\)</span> be a feasible point to <span class="math inline">\((P)\)</span> and <span class="math inline">\((\lambda,\mu)\)</span> be a feasible solution to <span class="math inline">\((D)\)</span>. Then <span class="math display">\[
 f(x)\ge \theta(\lambda,\mu).
 \]</span> <strong>Corollary</strong></p>
 <ol type="1">
@@ -374,7 +401,7 @@ f(x^*)=\theta(\lambda^*,\mu^*),
 \min\{f(x)\;|\; x\in S\}-\max \{\theta(\lambda,\mu)\;|\; \mu \in \mathbb R_+^p\},
 \]</span> is called the duality gap.</p>
 <p><strong>Theorem</strong> (Strong Duality Theorem)</p>
-<p>Consider the primal NLP. Suppose <span class="math inline">\(X\)</span> is a convex set, <span class="math inline">\(f,h_i,\;\forall i=1,\dotsm,p\)</span> are convex functions, and <span class="math inline">\(g_i,\;\forall i=1,\dotsm,m\)</span> are affine functions. If there exists <span class="math inline">\(\hat x\in X\)</span> such that <span class="math inline">\(h(\hat x)&lt;0\)</span>, <span class="math inline">\(g(\hat x)=0\)</span>, and <span class="math inline">\(0\in \text{int}(g(X))\)</span> where <span class="math inline">\(g(X)=\{g(x)\;|\; x\in X\}\)</span>. Then <span class="math display">\[
+<p>Consider the primal nonlinear programming problem. Suppose <span class="math inline">\(X\)</span> is a convex set, <span class="math inline">\(f,h_i,\;\forall i=1,\dotsm,p\)</span> are convex functions, and <span class="math inline">\(g_i,\;\forall i=1,\dotsm,m\)</span> are affine functions. If there exists <span class="math inline">\(\hat x\in X\)</span> such that <span class="math inline">\(h(\hat x)&lt;0\)</span>, <span class="math inline">\(g(\hat x)=0\)</span>, and <span class="math inline">\(0\in \text{int}(g(X))\)</span> where <span class="math inline">\(g(X)=\{g(x)\;|\; x\in X\}\)</span>. Then <span class="math display">\[
 \inf \{f(x)\;|\;g(x)=0,h(x)\le 0,x\in X\}=\sup\{\theta(\lambda,\mu)\;|\; \mu \in\mathbb R^p_+,\lambda\in \mathbb R^m\}.
 \]</span> Furthermore, if inf is finite, then sup is attained at some <span class="math inline">\(\lambda_*,\mu_*\)</span>. If inf is attained at <span class="math inline">\(x^*\)</span>, then <span class="math inline">\(\mu_*^Th(x^*)=0\)</span>.</p>
 <h2 id="saddle-point-optimality-condition-and-kkt-conditions">6.3 Saddle point optimality condition and KKT conditions</h2>
@@ -419,6 +446,10 @@ L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^Th(x).
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" rel="prev" title="8. Nonlinear conic programming (Pending)">
+                  8. Nonlinear conic programming (Pending) <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -467,7 +498,7 @@ L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^Th(x).
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-lagrange-duality-and-saddle-point-optimality-conditions"><span class="nav-text">Basic Lagrange Duality and Saddle Point Optimality Conditions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrangian-dual-problem"><span class="nav-text">6.1 Lagrangian dual problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak-and-strong-duality-theorems"><span class="nav-text">6.2 Weak and strong duality theorems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#saddle-point-optimality-condition-and-kkt-conditions"><span class="nav-text">6.3 Saddle point optimality condition and KKT conditions</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-lagrange-duality-and-saddle-point-optimality-conditions"><span class="nav-text">Basic Lagrange Duality and Saddle Point Optimality Conditions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrangian-dual-problem"><span class="nav-text">6.1 Lagrangian dual problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak-and-strong-duality-theorems"><span class="nav-text">6.2 Weak and strong duality theorems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#saddle-point-optimality-condition-and-kkt-conditions"><span class="nav-text">6.3 Saddle point optimality condition and KKT conditions</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -482,7 +513,7 @@ L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^Th(x).
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

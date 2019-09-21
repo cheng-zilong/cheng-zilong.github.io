@@ -215,6 +215,161 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" class="post-title-link" itemprop="url">8. Nonlinear conic programming (Pending)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-20 16:13:29" itemprop="dateCreated datePublished" datetime="2019-09-20T16:13:29+08:00">2019-09-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-21 11:10:39" itemprop="dateModified" datetime="2019-09-21T11:10:39+08:00">2019-09-21</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="nonlinear-conic-programming">8. Nonlinear Conic Programming</h1>
+<p>We consider the following optimization problem, <span class="math display">\[
+(OP)\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; h(x)=0\\
+&amp;g(x)\in \mathcal C,
+\end{array}
+\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,h:\mathcal X\rightarrow \mathbb R^m\)</span>, and <span class="math inline">\(g:\mathcal X\rightarrow \mathcal Z\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X\)</span> and <span class="math inline">\(\mathcal Z\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induce norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\)</span> is a closed convex set in <span class="math inline">\(\mathcal Z\)</span>.</p>
+<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal Z=\mathbb R^q\)</span>, and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
+(NLP)\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; h(x)=0\\
+&amp;g(x)\ge 0.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(h(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(g(X)=X\)</span> and <span class="math inline">\(C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
+(NLP)\quad \begin{array}{rCl}
+\min &amp; \langle C,X\rangle\\
+\text{subject to}&amp; \mathcal A(X)-b=0\\
+&amp;X\succeq 0(X\in\mathbb S^n_+),
+\end{array}
+\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
+\mathcal A(X)=
+\begin{bmatrix}
+\langle A_1,X\rangle \\ \vdots \\
+\langle A_m,X\rangle
+\end{bmatrix},\quad 
+X\in\mathbb S^n,
+\]</span></p>
+<p>where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
+\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
+\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j \\
+\bold 1^T\mathcal A^*yX \bold1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \bold1^TA_iX\bold1\\
+&amp;=&amp; \bold1^T\displaystyle\sum_{i=1}^m y_i A_iX\bold1,
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
+<p>We have Lyapunov function, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
+&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
+\end{array}
+\]</span> Then <span class="math display">\[
+\begin{array}{rcl}
+\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Therefore, the dual problem is given by, <span class="math display">\[
+(D)\quad \begin{array}{rCl}
+\min &amp; \langle y,b\rangle\\
+\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
+&amp;Z\succeq 0.
+\end{array}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/Nonlinear Optimization/6. Duality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -255,7 +410,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-20 00:06:34" itemprop="dateModified" datetime="2019-09-20T00:06:34+08:00">2019-09-20</time>
+                <time title="Modified: 2019-09-20 16:57:51" itemprop="dateModified" datetime="2019-09-20T16:57:51+08:00">2019-09-20</time>
               </span>
             
           
@@ -284,8 +439,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
-<p>Given an NLP, there is another NLP closely associated with it defined via the Lagrangian function. The former is called the primal problem and the latter is called the Lagrangian dual problem.</p>
+          <h1 id="thanks-for-the-module-ma5268-nus-and-prof.-toh">Thanks for the module MA5268 NUS and Prof. Toh</h1>
+<h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
+<p>Given an nonlinear programming problem, there is another nonlinear programming problem closely associated with it via the Lagrangian function. The former is called the <strong>primal problem</strong> and the latter is called the <strong>Lagrangian dual problem</strong>.</p>
 <h2 id="lagrangian-dual-problem">6.1 Lagrangian dual problem</h2>
 <p>Consider the following general nonlinear programming problem, which is known as a primal problem, <span class="math display">\[
 (P)\quad \begin{array}{rCl}
@@ -315,7 +471,7 @@ L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_
 <ol type="1">
 <li><p>Each equality constraint <span class="math inline">\(g_i(x)=0\)</span> is replaced by a term <span class="math inline">\(\lambda_ig_i(x)\)</span>, where <span class="math inline">\(\lambda_i\in \mathbb R,i=1,2,\dotsm,m\)</span>. This term gives a non-zero value whenever this equality is violated.</p></li>
 <li><p>Each inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is replaced by a term <span class="math inline">\(\mu_jh_j(x)\)</span>, where <span class="math inline">\(\mu_j\ge 0,j=1,2,\dotsm,p\)</span>. If an inequality constraint is violated, i.e., <span class="math inline">\(h_j(x)&gt;0\)</span>, then it is reflected by a positive value.</p></li>
-<li><p>In evaluating <span class="math inline">\(\theta (\lambda,\mu)\)</span> for each <span class="math inline">\(\lambda,\mu\)</span>, the following unconstrained problem <span class="math display">\[
+<li><p>In evaluating <span class="math inline">\(\theta (\lambda,\mu)\)</span> for each <span class="math inline">\(\lambda,\mu\)</span>, the following unconstrained problem (Lagrangian dual subproblem) <span class="math display">\[
 \begin{array}{rCl}
 \min &amp; f(x)+\lambda^Tg(x)+\mu^T h(x)\\
 \text{subject to} &amp;x\in X,
@@ -325,7 +481,7 @@ L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_
 <p>Suppose <span class="math inline">\(x^*\)</span> is an optimal solution of <span class="math inline">\((P)\)</span>. Then <span class="math inline">\(g_i(x^*)=0\)</span> and <span class="math inline">\(h_j(x^*)\le 0\)</span>. Therefore, <span class="math display">\[
 \theta(\lambda,\mu)\le f(x^*)+\mu^T h(x^*)\le f(x^*).
 \]</span> This implies for any <span class="math inline">\(\lambda,\mu\)</span>, <span class="math inline">\(\theta(\lambda,\mu)\)</span> is the lower bound of the optimal objective value <span class="math inline">\(f^*(x)\)</span>.</p>
-<p>We hope to derive the greatest lower bound for <span class="math inline">\(f(x^*)\)</span>. This leads to the following nonlinear programming problem which is called the Lagrangian dual problem <span class="math inline">\((D)\)</span>. <span class="math display">\[
+<p>We hope to derive the greatest lower bound for <span class="math inline">\(f(x^*)\)</span>. This leads to the following nonlinear programming problem which is called the <strong>Lagrangian dual problem</strong> <span class="math inline">\((D)\)</span>, <span class="math display">\[
 (D)\quad \begin{array}{rCl}
 \max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
 \text{subject to}&amp; \lambda\in \mathbb R^m\\
@@ -352,10 +508,36 @@ L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_
 <li>For general nonlinear programming problems, it is <strong>not true</strong> that one has an optimal solution, then the other will have an optimal solution. However, this is true for convex programming problems.</li>
 <li>Under certain convexity assumptions and suitable constraint qualifications, the primal and dual problems have equal optimal objective value and hence it is possible to solve the primal problem indirectly by solving the dual problem. The dual problem is sometimes easier.</li>
 </ol>
+<p><strong>Remark</strong></p>
+<p>In general, the dual function of a primal problem cannot be obtained explicitly. In this situation, the dual problem may include primal variables <span class="math inline">\((x)\)</span> as well as the dual variables <span class="math inline">\((\lambda,\mu)\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>Consider the problem <span class="math display">\[
+(P)\quad \begin{array}{rCl}
+\min &amp; f(x)=\exp (x)\\
+\text{subject to}&amp; x^2-1\le 0.
+\end{array}
+\]</span> For <span class="math inline">\(\mu\ge 0\)</span>, the Lagrangian dual function is <span class="math display">\[
+\theta(\mu)=\inf_{x}\left(\exp(x)+\mu(x^2-1)\right),
+\]</span> which is convex on <span class="math inline">\(\mathbb R\)</span>. Therefore, any stationary point will be a global minimizer. Then we have if <span class="math inline">\(\mu&gt;0\)</span>, <span class="math display">\[
+\exp (x^*)+2\mu x^*=0,
+\]</span> otherwise <span class="math inline">\((\mu=0)\)</span>, <span class="math display">\[
+\theta(0)=0.
+\]</span> Therefore, we have <span class="math display">\[
+\theta(\mu)=
+\begin{cases}
+\exp(x)+\mu(x^2-1)&amp; \text{and}&amp;\exp(x)+2\mu x=0,&amp; \mu&gt;0\\
+0&amp;&amp;&amp;\mu=0.
+\end{cases}
+\]</span> Therefore, the dual problem is <span class="math display">\[
+(D)\quad \begin{array}{rCl}
+\max &amp; \theta(\mu)=\exp (x)+\mu(x^2-1)\\
+\text{subject to}&amp; \exp(x)+2\mu x=0\\&amp;\mu&gt;0\\&amp;x\in\mathbb R.
+\end{array}
+\]</span></p>
 <h2 id="weak-and-strong-duality-theorems">6.2 Weak and strong duality theorems</h2>
-<p>We shall discuss the relationship between an NLP and its Lagrangian dual problem for a primal minimization problem.</p>
+<p>We shall discuss the relationship between an nonlinear programming problem and its Lagrangian dual problem for a primal minimization problem.</p>
 <p><strong>Theorem</strong> (Weak Duality Theorem)</p>
-<p>Consider the primal NLP <span class="math inline">\((P)\)</span>. Let <span class="math inline">\(x\)</span> be a feasible point to <span class="math inline">\((P)\)</span> and <span class="math inline">\((\lambda,\mu)\)</span> be a feasible solution to <span class="math inline">\((D)\)</span>. Then <span class="math display">\[
+<p>Consider the primal nonlinear programming problem <span class="math inline">\((P)\)</span>. Let <span class="math inline">\(x\)</span> be a feasible point to <span class="math inline">\((P)\)</span> and <span class="math inline">\((\lambda,\mu)\)</span> be a feasible solution to <span class="math inline">\((D)\)</span>. Then <span class="math display">\[
 f(x)\ge \theta(\lambda,\mu).
 \]</span> <strong>Corollary</strong></p>
 <ol type="1">
@@ -370,7 +552,7 @@ f(x^*)=\theta(\lambda^*,\mu^*),
 \min\{f(x)\;|\; x\in S\}-\max \{\theta(\lambda,\mu)\;|\; \mu \in \mathbb R_+^p\},
 \]</span> is called the duality gap.</p>
 <p><strong>Theorem</strong> (Strong Duality Theorem)</p>
-<p>Consider the primal NLP. Suppose <span class="math inline">\(X\)</span> is a convex set, <span class="math inline">\(f,h_i,\;\forall i=1,\dotsm,p\)</span> are convex functions, and <span class="math inline">\(g_i,\;\forall i=1,\dotsm,m\)</span> are affine functions. If there exists <span class="math inline">\(\hat x\in X\)</span> such that <span class="math inline">\(h(\hat x)&lt;0\)</span>, <span class="math inline">\(g(\hat x)=0\)</span>, and <span class="math inline">\(0\in \text{int}(g(X))\)</span> where <span class="math inline">\(g(X)=\{g(x)\;|\; x\in X\}\)</span>. Then <span class="math display">\[
+<p>Consider the primal nonlinear programming problem. Suppose <span class="math inline">\(X\)</span> is a convex set, <span class="math inline">\(f,h_i,\;\forall i=1,\dotsm,p\)</span> are convex functions, and <span class="math inline">\(g_i,\;\forall i=1,\dotsm,m\)</span> are affine functions. If there exists <span class="math inline">\(\hat x\in X\)</span> such that <span class="math inline">\(h(\hat x)&lt;0\)</span>, <span class="math inline">\(g(\hat x)=0\)</span>, and <span class="math inline">\(0\in \text{int}(g(X))\)</span> where <span class="math inline">\(g(X)=\{g(x)\;|\; x\in X\}\)</span>. Then <span class="math display">\[
 \inf \{f(x)\;|\;g(x)=0,h(x)\le 0,x\in X\}=\sup\{\theta(\lambda,\mu)\;|\; \mu \in\mathbb R^p_+,\lambda\in \mathbb R^m\}.
 \]</span> Furthermore, if inf is finite, then sup is attained at some <span class="math inline">\(\lambda_*,\mu_*\)</span>. If inf is attained at <span class="math inline">\(x^*\)</span>, then <span class="math inline">\(\mu_*^Th(x^*)=0\)</span>.</p>
 <h2 id="saddle-point-optimality-condition-and-kkt-conditions">6.3 Saddle point optimality condition and KKT conditions</h2>
@@ -409,300 +591,11 @@ L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^Th(x).
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/Nonlinear Optimization/5. Basic nonlinear programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/14/Nonlinear Optimization/5. Basic nonlinear programming/" class="post-title-link" itemprop="url">5. Basic Nonlinear Programming</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-09-14 22:32:04" itemprop="dateCreated datePublished" datetime="2019-09-14T22:32:04+08:00">2019-09-14</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-19 21:48:20" itemprop="dateModified" datetime="2019-09-19T21:48:20+08:00">2019-09-19</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="basic-nonlinear-programming">5. Basic Nonlinear Programming</h1>
-<p>This chapter is concerned with the following multi-dimensional general constrained minimization problem, <span class="math display">\[
-\begin{array}{rCll}
-\min &amp; f(x)\\
-\text{subject to}&amp; g_i(x)=0,&amp; i=1,2,\dots,m\\
-&amp;h_j(x)\le0,&amp; j=1,2,\dots,p\\
-&amp;x\in\mathbb R^n,
-\end{array}
-\]</span> where <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> are continuous functions, for <span class="math inline">\(i=1,2\dots,m\)</span> and <span class="math inline">\(j=1,2,\dots,p\)</span>. The feasible set of the problem is the following subset of <span class="math inline">\(\mathbb R^n\)</span>, <span class="math display">\[
-S=\left\{
-x\in\mathbb R^n\;\; 
-\begin{array}{|l}
-g_i(x)=0,\;i=1,2,\dots,m
-\\
-h_j(x)\le0,\;j=1,2,\dots,p
-\end{array}
-\right\}.
-\]</span> <span class="math inline">\(S\)</span> is a closed set.</p>
-<p>The KKT necessary conditions are very useful in locating possible candidates for a global minimizer.</p>
-<h2 id="regular-point">5.1 Regular point</h2>
-<p><strong>Definition</strong> (Active constraint)</p>
-<p>Let <span class="math inline">\(x^*\in S\)</span>. An inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is said to be active at <span class="math inline">\(x^*\)</span> if <span class="math inline">\(h_j(x^*)=0\)</span>. Otherwise, it is said to be inactive at <span class="math inline">\(x^*\)</span>.</p>
-<p>Graphically, if the constraint is active, then the point lies on the boundary defined by the condition <span class="math inline">\(h_j(x)=0\)</span>.</p>
-<p><strong>Definition</strong> (Regular point)</p>
-<p>Let <span class="math inline">\(x^* \in S\)</span> be a feasible point. Let <span class="math display">\[
-J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\},
-\]</span> be the index set of active constraints at <span class="math inline">\(x^*\)</span>. Suppose the set of gradient vectors <span class="math display">\[
-\{\nabla g_i(x^*)\;|\; i=1,2,\dotsm,m\}\cup\{\nabla h_j(x^*)\;|\;j\in J(x^*)\}
-\]</span> is linearly independent. Then we say <span class="math inline">\(x^*\)</span> is a regular point or the regularity condition holds at <span class="math inline">\(x^*\)</span>.</p>
-<p>The above condition is called constraint qualification at <span class="math inline">\(x^*\in S\)</span>. There are other types of constraint qualifications. In this chapter, we shall only consider the above linearly independence constraint qualification (LICQ).</p>
-<p>In particular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\O\)</span>. We shall call a point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\O\)</span> a regular point.</p>
-<h2 id="karush-kuhn-tucker-necessary-conditions">5.2 Karush-Kuhn-Tucker necessary conditions</h2>
-<p>We state the KKT necessary conditions for a local minimizer <span class="math inline">\(x^*\)</span> at which the regularity condition holds.</p>
-<p><strong>Theorem</strong> (KKT first order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span>, where <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, has continuous first partial derivatives on the feasible set <span class="math inline">\(S\)</span>.</p>
-<p>Suppose <span class="math inline">\(x^*\in S\)</span> is a <strong>regular point</strong>.</p>
-<p>If <span class="math inline">\(x^*\)</span> is a local minimizer, then there exists (unique) scalars <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> such that the following conditions hold, <span class="math display">\[
-\begin{array}{rCl}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)&amp;=&amp;0\\
-\mu_j^*\ge 0 &amp;&amp; \forall j=1,\dotsm,p\\
-\mu_j^*=0&amp;&amp;\forall j\notin J(x^*),
-\end{array}
-\]</span> where <span class="math inline">\(J(x^*)\)</span> is the index set of active inequality constraints at <span class="math inline">\(x^*\)</span>.</p>
-<p><strong>Theorem</strong> (KKT second order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,\)</span> and <span class="math inline">\(h_j\)</span> have continuous second partial derivatives on <span class="math inline">\(S\)</span>. Let <span class="math display">\[
-H_L(x^*)=H_f(x^*)+\sum_{i=1}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p \mu_j^*H_{h_j}(x^*).
-\]</span> If <span class="math inline">\(x^*\)</span> is a local minimizer, then <span class="math display">\[
-y^TH_L(x^*)y\ge 0,
-\]</span> for all <span class="math inline">\(y\in T(x^*)\)</span>, where $$ T(x^*)= { yR^n</p>
-<p>\begin{array}{|rl} g_i(x<sup><em>)^Ty=0, &amp;i=1,2,m\ h_j(x^</em>)</sup>T y=0, &amp; jJ(x^*). \end{array} }. $$ <strong>Remark</strong> (On the KKT necessary conditions)</p>
-<ol type="1">
-<li><p>We say that <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point whenever <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT first order conditions. KKT points are some times also called KKT solutions.</p></li>
-<li><p>The scalar <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> are called <strong>Lagrange multipliers</strong>.</p></li>
-<li><p>The conditions <span class="math inline">\(\mu_j^*=0,\;\forall j\notin J(x^*)\)</span> means that the Lagrange multiplier corresponding to the inactive constraint must be zero. Since <span class="math inline">\(h_j(x^*)&lt;0\;\forall j\notin J(x^*)\)</span> and <span class="math inline">\(h_j(x^*)=0\;\forall j\in J(x^*)\)</span>, the condition <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> is equivalent to <span class="math display">\[
-\mu_j^*h_j(x^*)=0,\quad \forall j=1,\dotsm,p.
-\]</span> This is called the <strong>complementary slackness condition</strong>.</p></li>
-<li><p>The set <span class="math inline">\(T(x^*)\)</span> consists of vectors in the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. To see this, note that the normal space <span class="math inline">\(N(x^*)\)</span> to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace spanned by the set of normal vectors <span class="math display">\[
-\nabla g_1(x^*),\nabla g_1(x^*),\dotsm\nabla g_m(x^*),\quad \nabla h_j(x^*)\;\forall j\in J(x^*).
-\]</span> Now the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace of vectors that are orthogonal to all the normal vectors at <span class="math inline">\(x^*\)</span>. <span class="math display">\[
-\text{Tangent} (x^*)=\{y\in\mathbb R^n\;|\; u^Ty=0,\forall u\in N(x^*)\}
-\]</span></p></li>
-<li><p>In deciding whether <span class="math inline">\(x^*\)</span> is a local optimizer, the definiteness of <span class="math inline">\(H_L(x)\)</span> is tested only for vectors in <span class="math inline">\(T(x^*)\)</span>.</p></li>
-</ol>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(S\)</span> be the feasible set. Suppose <span class="math inline">\(x^*\in S\)</span> and <span class="math inline">\(J(x^*)\)</span> is the index set of active constraints at <span class="math inline">\(x^*\)</span>.</p>
-<p>Consider the matrix <span class="math display">\[
-\mathcal D(x^*)=\left(\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*),[\nabla h_j(x^*)\;|\;j\in J(x^*)]\right).
-\]</span> Then <span class="math display">\[
-y^TH_L(x^*)y\ge 0,\quad \forall y\in T(x^*)\iff Z(x^*)^TH_L(x^*)Z(x^*)\in \mathbb S_+^n,
-\]</span> where <span class="math inline">\(Z(x^*)\in \mathbb R^{n\times q}\)</span> is a matrix whose columns form a basis of the null space of <span class="math inline">\(\mathcal D(x^*)^T\)</span>.</p>
-<h2 id="examples-to-illustrate-the-kkt-necessary-conditions.">5.3 Examples to illustrate the KKT necessary conditions.</h2>
-<p><strong>Corollary</strong></p>
-<p>Suppose the following two conditions hold,</p>
-<ol type="1">
-<li>A global minimizer <span class="math inline">\(x^*\)</span> is known to exist.</li>
-<li><span class="math inline">\(x^*\)</span> is a regular point.</li>
-</ol>
-<p>Then <span class="math inline">\(x^*\)</span> is a KKT point, i.e. there exists <span class="math inline">\(\lambda^*\in \mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that the following conditions hold <span class="math display">\[
-\begin{array}{rCl}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)=0\\
-g_i(x^*)=0,\;i=1,2,\dotsm,m\\
-\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p.
-\end{array}
-\]</span> <strong>Example</strong> (Projection onto a simplex)</p>
-<p>Given <span class="math inline">\(g\in\mathbb R^n\)</span> and <span class="math inline">\(b&gt;0\)</span>. Consider the problem, <span class="math display">\[
-\min\left\{f(x)=\frac{1}{2}||x-g||^2\;|\; e^Tx=b,x\ge 0 \right\},
-\]</span> where <span class="math inline">\(e\)</span> is the vector of all ones. Its optimal solution <span class="math inline">\(x^*\)</span> can be computed analytically.</p>
-<p><strong>Solution</strong></p>
-<p>Assume <span class="math inline">\(g_1\ge g_2\ge \dotsm\ge g_n\)</span>.</p>
-<ol type="1">
-<li><p>First we prove that the optimal solution <span class="math inline">\(x^*\)</span> must also satisfy the condition <span class="math inline">\(x_1^*\ge x_2^*\ge\dotsm\ge x_n^*\)</span>. Suppose on the contrary that there exists indices <span class="math inline">\(i&lt;j\)</span> such that with <span class="math inline">\(x_i^*&lt;x_j^*\)</span>. Consider a new point <span class="math inline">\(\bar x\)</span> defined by (Just switch two elements) <span class="math display">\[
-\bar x=\begin{cases}
-x_k^*&amp;\text{if }k\neq i,j\\
-x_j^*&amp;\text{if }k=i\\
-x_i^*&amp;\text{if }k=j
-\end{cases}.
-\]</span> Then we have <span class="math display">\[
-f(\bar x)-f(x^*)=\frac{1}{2}\left((x_i^*-g_j)^2+(x_j^*-g_i^2)\right)-\frac{1}{2}\left((x_i^*-g_i)^2+(x_j^*-g_j^2)\right)\\
-=(g_i-g_j)(x_i^*-x_j^*)\le 0.
-\]</span> Hence <span class="math inline">\(f(\bar x)\le f(x^*)\)</span>.</p></li>
-<li><p>Then we use KKT conditions. The KKT conditions are given by, <span class="math display">\[
-x^*-g-\mu-\lambda e=0,\quad \mu\ge 0,\;\lambda\in \mathbb R,\; x^*\ge 0\\
-e^Tx^*=b\\
-\mu x^*=0.
-\]</span> The first equation imply that <span class="math inline">\(x^*=g+\mu+\lambda e\)</span>.</p>
-<p>Now if <span class="math inline">\(g_i+\lambda &gt;0\)</span>, set <span class="math inline">\(x_i^*=g_i+\lambda\)</span> and <span class="math inline">\(\mu_i=0\)</span>. If <span class="math inline">\(g_i+\lambda \le 0\)</span>, set <span class="math inline">\(x_i^*=0\)</span> and <span class="math inline">\(\mu_i=-(g_i+\lambda)\)</span>. Now suppose <span class="math inline">\(x_i^*&gt;0\)</span> for <span class="math inline">\(i=1,\dotsm,r\)</span> and <span class="math inline">\(x^*_i=0\)</span> for <span class="math inline">\(i=r+1,\dotsm,n\)</span>. Then we have <span class="math display">\[
-b=e^Tx=\sum_{i=1}^rx^*_i=\sum_{i=1}^r g_i+\lambda r\implies \lambda =\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right).
-\]</span> Now we need to find the largest <span class="math inline">\(r\)</span> denoted as <span class="math inline">\(\bar r\)</span> such that <span class="math display">\[
-\bar r = \max \{r\;|\;x_r\ge 0\},
-\]</span> where <span class="math inline">\(x_r=g_r+\lambda=g_r+\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right)\)</span>.</p>
-<p>Finally, we have <span class="math display">\[
-x_i^*=\begin{cases} g_i+\lambda &amp; \text{if } i\le \bar r\\0&amp; \text{if }i&gt;\bar r.\end{cases}
-\]</span></p></li>
-<li><p>If the components of <span class="math inline">\(g\)</span> is not sorted in a descending order, we can find a permutation matrix <span class="math inline">\(P\)</span> such that <span class="math inline">\(\hat g=Pg\)</span> has its components arranged in a descending order. Then the optimal solution <span class="math inline">\(x^*\)</span> is given by <span class="math inline">\(x^*=P^T\hat x^*\)</span>.</p></li>
-</ol>
-<h2 id="interpretation-of-the-lagrange-multipliers">5.4 Interpretation of the Lagrange multipliers</h2>
-<p>The Lagrange multipliers <span class="math inline">\(\lambda_i^*(i=1,\dotsm,m)\)</span>, <span class="math inline">\(\mu_j^*(j=1,\dotsm,p)\)</span> associated with the local optimizer <span class="math inline">\(x^*\)</span> in the KKT theorem measures the sensitivity of <span class="math inline">\(f(x^*)\)</span> to a small perturbation of the corresponding constraints <span class="math inline">\(g_i(x)=0\)</span> or <span class="math inline">\(h_j(x)\le 0\)</span>. In this section, we shall justify this interpretation for an equality constrained NLP. Consider the following equality constrained NLP, <span class="math display">\[
-\begin{array}{rll}
-\min&amp;f(x)\\
-\text{subject to} &amp;g_i(x)=0&amp;\forall i=1,2,\dotsm,m.
-\end{array}
-\]</span> Suppose the constraints are relaxed as follows, <span class="math display">\[
-\hat g_i(x;c)=g_i(x)+c_i,\quad i=1,2,\dotsm,m.
-\]</span> Let <span class="math inline">\(C\subseteq \mathbb R^n\)</span> be an open neighborhood of <span class="math inline">\(0\)</span>. For each <span class="math inline">\(c\in C\)</span>, suppose there is a local minimizer <span class="math inline">\(x^*(c)\)</span> of <span class="math inline">\(f\)</span> on the constraint set <span class="math display">\[
-\{x\in\mathbb R^n\;|\; \hat g_i(x;c)=0,\;\forall i=1,\dotsm,m\}.
-\]</span> Note that <span class="math inline">\(x^*(0)=x^*\)</span> and <span class="math inline">\(\lambda^*(0)=\lambda^*\)</span>. Assume the regularity condition holds at each <span class="math inline">\(x^*(c)\)</span>. Now by the KKT theorem, there exists <span class="math inline">\(\lambda^*(c)\in\mathbb R^m\)</span> such that <span class="math display">\[
-\nabla f(x^*(c))+\sum_{i=1}^m\lambda_i^*(c)\nabla \hat g_i(x^*(c))=0.
-\]</span> Note that <span class="math display">\[
-\frac{\partial \hat g_i}{x_l}(x)=\frac{\partial g_i}{x_l}(x),
-\]</span> thus for each <span class="math inline">\(1\le l\le n\)</span>, we have <span class="math display">\[
-\frac{\partial f}{\partial x_l}(x^*(c))+\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))=0.
-\]</span> <strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(F(c)=f(x^*(c))\)</span>. Suppose that <span class="math inline">\(F(c)\)</span> changes smoothly with respect to changes in <span class="math inline">\(c\)</span>. Then <span class="math display">\[
-\frac{\partial F(c)}{\partial c_k}=\lambda^*_k(c),\quad \forall k=1,\dotsm,m.
-\]</span> Proof. <span class="math display">\[
-\frac{\partial F(c)}{\partial c_k}=\sum_{l=1}^n \frac{\partial f}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\\
-=\sum_{l=1}^n\left[-\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))\right]\frac{\partial x_l(c)}{\partial c_k}\\
-=-\sum_{i=1}^m \lambda_i^*(c)\left[\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\right].
-\]</span> Since <span class="math inline">\(g_i(x^*(c))=-c_i\)</span> for all <span class="math inline">\(i=1,\dotsm,m\)</span>, we have <span class="math display">\[
-\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}=-\frac{\partial x_l(c)}{\partial c_k}=\begin{cases}0&amp;\text{if }k\neq i\\-1&amp;\text{if }k=i\end{cases}.
-\]</span> Therefore, we have <span class="math display">\[
-\frac{\partial F(c)}{c_k}=\lambda_k^*(c).
-\]</span> <strong>Remark</strong></p>
-<ol type="1">
-<li>Proposition says that the small change in the <span class="math inline">\(k\)</span>th constraint from <span class="math inline">\(g_k(x)=0\)</span> to <span class="math inline">\(g_k(x)+c_k=0\)</span> will change the optimal objective value <span class="math inline">\(f(x^*)\)</span> at the rate of <span class="math inline">\(\lambda_k^*\)</span>. That is the new optimal objective value is given approximately by <span class="math inline">\(f(x^*)+\lambda_k^*c_k\)</span>.</li>
-<li>It is also applied to the inequality constraints.</li>
-</ol>
-<p><strong>Example</strong></p>
-<p>From the example, the global minimizer <span class="math inline">\(x^*=[0;1]\)</span> with multiplier <span class="math inline">\(\mu_3=\frac{1}{2}\)</span>. Thus relaxing the constraint to <span class="math inline">\(g_i(x)+\epsilon\le 0\)</span> would change the objective value by <span class="math inline">\(\frac{1}{2}\epsilon\)</span>.</p>
-<h2 id="kkt-sufficient-conditions">5.5 KKT sufficient conditions</h2>
-<p>When a KKT point satisfies a stronger second order condition, we obtain a strict local minimizer. Note that the sufficient conditions for a strict local minimizer <strong>do not</strong> require regularity conditions.</p>
-<p><strong>Theorem</strong> (KKT sufficient conditions)</p>
-<p>Let <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span> be functions with continuous second partial derivatives.</p>
-<p>Let <span class="math inline">\(S\)</span> be the feasible set of NLP. Suppose <span class="math inline">\(x^*\in S\)</span> is a KKT point, i.e., there exist <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that <span class="math display">\[
-\begin{array}{rCl}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)=0\\
-g_i(x^*)=0,\;i=1,2,\dotsm,m\\
-\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p,
-\end{array}
-\]</span> where<span class="math inline">\(J(x^*)\)</span> is the index set of active constraints at <span class="math inline">\(x^*\)</span>. Let <span class="math display">\[
-H_L(x^*)=H_f(x^*)+\sum_{i1=}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p\mu_{j}^*H_{h_{j}}(x^*).
-\]</span> Suppose <span class="math display">\[
-y^TH_L(x^*)y&gt;0,\;\forall y\in T(x^*)-\{0\},
-\]</span> where <span class="math inline">\(T(x^*)\)</span> is the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. Then <span class="math inline">\(x^*\)</span> is a <strong>strict local minimizer</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>Suppose <span class="math display">\[
-y^TH_L(x^*)y&lt;0,\;\forall y\in T(x^*)-\{0\},
-\]</span> where <span class="math inline">\(T(x^*)\)</span> is the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. Then <span class="math inline">\(x^*\)</span> is a <strong>strict local maximizer</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<h2 id="kkt-conditions-for-constrained-convex-programming-problems">5.6 KKT conditions for constrained convex programming problems</h2>
-<p>Convexity is a very strong condition. In fact, for a convex problem, a feasible point <span class="math inline">\(x^*\)</span> is a KKT point implies it is a global minimizer.</p>
-<p>Consider the following convex programming problem, $$ \begin{array}{rCl} &amp;f(x)\  &amp; g_i(x)=a_i^Tx-b_i=0,&amp;i=1,,m\ &amp;h_j(x)0,&amp;j=1,,p</p>
-<p>\end{array} <span class="math display">\[
-where $f,h_j:\mathbb R^n\rightarrow \mathbb R$ are convex function. It can be expressed as
-\]</span> \begin{array}{rCl} &amp;f(x)\  &amp; Ax-b=0\ &amp;h_j(x)0,&amp;j=1,,p</p>
-<p>\end{array} $$ <strong>Theorem</strong> (KKT point is an optimal solution under convexity)</p>
-<p>Suppose <span class="math inline">\(f,h_j:\mathbb R^n\rightarrow \mathbb R,\;j=1,\dotsm,p\)</span> are <strong>differentiable convex functions</strong>, and <span class="math inline">\(g_i(x)=a_i^Tx-b_i,\;i=1,\dotsm,m\)</span>. Let <span class="math inline">\(S\)</span> be the feasible region of NLP. If <span class="math inline">\(x^*\in S\)</span> is a KKT point, then <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>Proof.</p>
-<p>If <span class="math inline">\(x^*\)</span> is a KKT point, then we need to prove <span class="math inline">\(f(x)\ge f(x^*)\)</span>.</p>
-<p>Since we have <span class="math display">\[
-f(y)\ge f(x)+\nabla f(x)^T(y-x)\implies \\
-f(x)\ge f(x^*)+\nabla f(x^*)(x-x^*)
-\]</span> Therefore, we only need to prove <span class="math display">\[
-\nabla f(x^*)(x-x^*)\ge 0.
-\]</span> <span class="math inline">\(x^*\in S\)</span> is a KKT point implies <span class="math inline">\(\exists \lambda \in \mathbb R^m\)</span> and <span class="math inline">\(\mu_j^*\ge 0,\;\forall j\in J(x^*)\)</span> such that <span class="math display">\[
-\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*a_i+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)=0\\
-\implies\\
-\nabla f(x^*)(x-x^*)+\sum_{i=1}^m \lambda_i^*a_i(x-x^*)+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*)=0\\
-\implies\\
-\nabla f(x^*)(x-x^*)=-\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*).
-\]</span> Since <span class="math inline">\(h_j\)</span> is convex, we have <span class="math display">\[
-0\ge h_j(x)\ge h_j(x^*)+\nabla h_j(x^*)(x-x^*)=\nabla h_j(x^*)(x-x^*).
-\]</span> Then we have <span class="math display">\[
-\nabla f(x^*)(x-x^*)\ge 0.
-\]</span> <strong>Remark</strong></p>
-<p>The converse of the Theorem is not true without additional assumption, i.e. a global minimizer of a convex program may not be a KKT point. With regularity condition, a global minimizer is a KKT point. For convex programming problem with at least one inequality constraints, the <strong>Slater's condition</strong> ensures that a global minimizer is a KKT point.</p>
-<p><strong>Theorem</strong> (Conversely)</p>
-<p>Suppose <span class="math inline">\(f,h_j:\mathbb R^n\rightarrow \mathbb R,\;j=1,\dotsm,p\)</span> are <strong>differentiable convex functions</strong>, and <span class="math inline">\(g_i(x)=a_i^Tx-b_i,\;i=1,\dotsm,m\)</span>. Suppose <span class="math inline">\(p\ge 1\)</span> and that the <strong>Slater's condition</strong> holds, i.e., there exists <span class="math inline">\(\hat x\in\mathbb R^n\)</span> such that <span class="math inline">\(g_i(\hat x)=0,\;\forall i=1,\dotsm,m\)</span> and <span class="math inline">\(h_j(\hat x)&lt;0,\;\forall j=1,\dotsm,p\)</span>. Let <span class="math inline">\(S\)</span> be the feasible region. Suppose <span class="math inline">\(x^*\in S\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>. Then <span class="math inline">\(x^*\)</span> is a KKT point.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -747,7 +640,7 @@ f(x)\ge f(x^*)+\nabla f(x^*)(x-x^*)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
