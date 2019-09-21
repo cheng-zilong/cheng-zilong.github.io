@@ -454,7 +454,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-20 12:55:41" itemprop="dateModified" datetime="2019-09-20T12:55:41+08:00">2019-09-20</time>
+                <time title="Modified: 2019-09-21 17:26:35" itemprop="dateModified" datetime="2019-09-21T17:26:35+08:00">2019-09-21</time>
               </span>
             
           
@@ -841,6 +841,21 @@ g(\lambda,v)=\inf_{x\in\mathcal D}\left(\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^
 \]</span> is feasible. Then the primal problem is infeasible. If the primal problem is feasible, then the dual problem is infeasible. Two systems of inequalities (equalities) are called weak alternatives if at most one of the two is feasible.</p>
 <h3 id="strong-alternatives">5.8.2 Strong alternatives</h3>
 <h2 id="generalized-inequalities">5.9 Generalized inequalities</h2>
+<p>In this section, we examine how Lagrange duality extends to a problem with generalized inequality constraints, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(K_i\subseteq \mathbb R^{k_i}\)</span> are proper cones.</p>
+<h3 id="the-lagrange-dual">5.9.1 The Lagrange dual</h3>
+<p>With the generalized inequality <span class="math inline">\(f_i(x)\preceq_{k_i}0\)</span>, we associate a Lagrange multiplier vector <span class="math inline">\(\lambda_i\in\mathbb R^{k_i}\)</span> and define the associated Lagrangian as</p>
 
         
       
