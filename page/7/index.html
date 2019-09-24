@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-08 21:29:48" itemprop="dateModified" datetime="2019-09-08T21:29:48+08:00">2019-09-08</time>
+                <time title="Modified: 2019-09-21 19:43:34" itemprop="dateModified" datetime="2019-09-21T19:43:34+08:00">2019-09-21</time>
               </span>
             
           
@@ -510,23 +510,37 @@ g(x)=\int f(x,y)dy
 <h2 id="convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</h2>
 <p>We now consider generalizations of notions of monotonicity and convexity, using generalized inequalities instead of the usual ordering on <span class="math inline">\(\mathbb R\)</span>.</p>
 <h3 id="monotonicity-with-respect-to-a-generalized-inequality">3.6.1 Monotonicity with respect to a generalized inequality</h3>
-<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called K-nondecreasing if <span class="math display">\[
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>K-nondecreasing</strong> if <span class="math display">\[
 x\preceq_K y\implies f(x)\le f(y),
-\]</span> and K-increasing if <span class="math display">\[
+\]</span> and <strong>K-increasing</strong> if <span class="math display">\[
 x\preceq_K y, x\neq y \implies f(x)&lt;f(y).
-\]</span> K-nonincreasing and K-decreasing functions are defined in a similar way.</p>
-<p>Gradient conditions for monotonicity</p>
-<p>A differentiable function <span class="math inline">\(f\)</span>, with convex domain, is K-nondecreasing if and only if <span class="math display">\[
-\nabla f(x)\succeq_{K^*}0
-\]</span> The function is increasing if (converse is not true) <span class="math display">\[
+\]</span> <strong>K-nonincreasing</strong> and <strong>K-decreasing</strong> functions are defined in a similar way.</p>
+<p><strong>Example</strong> (Matrix monotone function)</p>
+<p>A function <span class="math inline">\(f:\mathbb S^n\rightarrow \mathbb R\)</span> is called matrix monotone if it is monotone with respect to the positive semidefinite cone.</p>
+<ol type="1">
+<li><span class="math inline">\(\text{tr}(WX)\)</span>, where <span class="math inline">\(w\in\mathbb S^n\)</span>, is matrix nondecreasing if <span class="math inline">\(W\succeq 0\)</span> and the matrix increasing if <span class="math inline">\(W\succ 0\)</span>.</li>
+<li><span class="math inline">\(\text{tr}(X^{-1})\)</span> is matrix decreasing on <span class="math inline">\(\mathbb S^n_{++}\)</span>.</li>
+<li><span class="math inline">\(\text{det}(X)\)</span> is matrix increasing on <span class="math inline">\(\mathbb S^n_{++}\)</span> and matrix nondecreasing on <span class="math inline">\(\mathbb S^n_+\)</span>.</li>
+</ol>
+<p><strong>Gradient conditions for monotonicity</strong></p>
+<p>A differentiable function <span class="math inline">\(f\)</span>, with convex domain, is <strong>K-nondecreasing</strong> if and only if <span class="math display">\[
+\nabla f(x)\succeq_{K^*}0.
+\]</span> The function is <strong>K-increasing</strong> if (converse is not true) <span class="math display">\[
 \nabla f(x)\succ_{K^*}0.
 \]</span></p>
 <h3 id="convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</h3>
-<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^n\)</span> is called K-convex if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, <span class="math display">\[
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> is called K-convex if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, <span class="math display">\[
 f(\theta x+(1-\theta)y) \preceq_K \theta f(x)+(1-\theta)f(y)
 \]</span> Strict convex if <span class="math display">\[
 f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y).
 \]</span></p>
+<p><strong>Example</strong> (Convexity with respect to componentwise inequality)</p>
+<p>A function is convex with respect to componentwise inequality (the generalized inequality is induced by <span class="math inline">\(\mathbb R^n_+\)</span>) if and only if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y).
+\]</span> <strong>Example</strong> (Matrix Convexity)</p>
+<p>suppose <span class="math inline">\(f\)</span> is a symmetric matrix valued function, i.e. <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^n\)</span>. The function <span class="math inline">\(f\)</span> is convex with respect to matrix inequality if <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y)
+\]</span> for any <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>.</p>
 
         
       

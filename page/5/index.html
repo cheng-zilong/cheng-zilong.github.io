@@ -476,7 +476,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-21 17:26:35" itemprop="dateModified" datetime="2019-09-21T17:26:35+08:00">2019-09-21</time>
+                <time title="Modified: 2019-09-21 19:48:00" itemprop="dateModified" datetime="2019-09-21T19:48:00+08:00">2019-09-21</time>
               </span>
             
           
@@ -899,7 +899,40 @@ h_i(x)=0 &amp; i=1,\dotsm,p
 \end{array},
 \]</span> where <span class="math inline">\(K_i\subseteq \mathbb R^{k_i}\)</span> are proper cones.</p>
 <h3 id="the-lagrange-dual">5.9.1 The Lagrange dual</h3>
-<p>With the generalized inequality <span class="math inline">\(f_i(x)\preceq_{k_i}0\)</span>, we associate a Lagrange multiplier vector <span class="math inline">\(\lambda_i\in\mathbb R^{k_i}\)</span> and define the associated Lagrangian as</p>
+<p>With the generalized inequality <span class="math inline">\(f_i(x)\preceq_{k_i}0\)</span>, we associate a Lagrange multiplier vector <span class="math inline">\(\lambda_i\in\mathbb R^{k_i}\)</span> and define the associated Lagrangian as <span class="math display">\[
+L(x,\lambda,\mu)=f_0(x)+\lambda_1^Tf_1(x)+\dotsm+\lambda_m^T f_m(x)+v_1h_1(x)+\dotsm+v_ph_p(x),
+\]</span> where <span class="math inline">\(\lambda=(\lambda_1,\dotsm,\lambda_m)\)</span> and <span class="math inline">\(v=(v_1,\dotsm,v_p)\)</span>. The dual function is defined as <span class="math display">\[
+g(\lambda,v)=\inf_{x\in\mathcal D}L(x,\lambda,v).
+\]</span> As in a problem with scalar inequalities, the dual function gives the lower bounds on <span class="math inline">\(p^*\)</span>, the optimal value of the primal problem. For a problem with scalar inequalities, we require <span class="math inline">\(\lambda_i\ge 0\)</span>. Here the nonnegativity requirement on the dual variables is replaced by the condition, <span class="math display">\[
+\lambda_i\succeq_{K_i^*} 0,\quad \forall i=1,\dotsm,m,
+\]</span> where <span class="math inline">\(K_{i}^*\)</span> denotes the dual cone of <span class="math inline">\(K_i\)</span>. In other words, the Lagrange multipliers associated with the inequalities must be <strong>dual nonnegative</strong>.</p>
+<p><strong>Weak duality</strong> follows immediately from the definition of dual cone. If <span class="math inline">\(\lambda_i\succeq_{k_i^*}0\)</span> and <span class="math inline">\(f_i(\tilde x)\preceq_{k_i}0\)</span>, then <span class="math inline">\(\lambda_if_i(\tilde x)\le 0\)</span>.</p>
+<p>The Lagrange dual optimization problem is <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{maximize}\quad &amp; 
+\begin{array}{lll}
+g(\lambda,v)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\lambda_i\succeq_{k_i^*}0,&amp;i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span> We always have weak duality whether or not the primal problem is convex.</p>
+<p><strong>Slater’s condition and strong duality</strong></p>
+<p>Strong duality holds when the primal problem is convex and satisfies an appropriate constraint problem. For example, a generalized version of Slater’s condition for the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(f_0(x)\)</span> is convex and <span class="math inline">\(f_i\)</span> is <span class="math inline">\(K_i\)</span>-convex, is that there exists an <span class="math inline">\(x\in\text{relint}\mathcal D\)</span> with <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(f_i(x)\prec_{k_i}0,\forall i=1,\dotsm,m\)</span>. This condition implies strong duality.</p>
 
         
       

@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh 5. Basic Nonlinear Programming This chapter is concerned with the following multi-dimensional general constrained minimization problem, \[ \begin{arra">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-20T08:04:11.000Z">
+<meta property="og:updated_time" content="2019-09-24T04:20:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5. Basic Nonlinear Programming">
 <meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh 5. Basic Nonlinear Programming This chapter is concerned with the following multi-dimensional general constrained minimization problem, \[ \begin{arra">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-20 16:04:11" itemprop="dateModified" datetime="2019-09-20T16:04:11+08:00">2019-09-20</time>
+                <time title="Modified: 2019-09-24 12:20:02" itemprop="dateModified" datetime="2019-09-24T12:20:02+08:00">2019-09-24</time>
               </span>
             
           
@@ -322,14 +322,13 @@
 \]</span> where <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> are continuous functions, for <span class="math inline">\(i=1,2\dots,m\)</span> and <span class="math inline">\(j=1,2,\dots,p\)</span>. The feasible set of the problem is the following subset of <span class="math inline">\(\mathbb R^n\)</span>, <span class="math display">\[
 S=\left\{
 x\in\mathbb R^n\;\; 
-\begin{array}{|l}
-g_i(x)=0,\;i=1,2,\dots,m
+\begin{array}{|rl}
+\;g_i(x)=0,&amp;i=1,2,\dots,m
 \\
-h_j(x)\le0,\;j=1,2,\dots,p
+h_j(x)\le0,&amp;j=1,2,\dots,p
 \end{array}
 \right\}.
-\]</span> <span class="math inline">\(S\)</span> is a closed set.</p>
-<p>The KKT necessary conditions are very useful in locating possible candidates for a global minimizer.</p>
+\]</span> <span class="math inline">\(S\)</span> is a closed set. The KKT necessary conditions are very useful in locating possible candidates for a global minimizer.</p>
 <h2 id="regular-point">5.1 Regular point</h2>
 <p><strong>Definition</strong> (Active constraint)</p>
 <p>Let <span class="math inline">\(x^*\in S\)</span>. An inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is said to be active at <span class="math inline">\(x^*\)</span> if <span class="math inline">\(h_j(x^*)=0\)</span>. Otherwise, it is said to be inactive at <span class="math inline">\(x^*\)</span>.</p>
@@ -339,41 +338,49 @@ h_j(x)\le0,\;j=1,2,\dots,p
 J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\},
 \]</span> be the index set of active constraints at <span class="math inline">\(x^*\)</span>. Suppose the set of gradient vectors <span class="math display">\[
 \{\nabla g_i(x^*)\;|\; i=1,2,\dotsm,m\}\cup\{\nabla h_j(x^*)\;|\;j\in J(x^*)\}
-\]</span> is linearly independent. Then we say <span class="math inline">\(x^*\)</span> is a regular point or the regularity condition holds at <span class="math inline">\(x^*\)</span>.</p>
-<p>The above condition is called constraint qualification at <span class="math inline">\(x^*\in S\)</span>. There are other types of constraint qualifications. In this chapter, we shall only consider the above linearly independence constraint qualification (LICQ).</p>
-<p>In particular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\O\)</span>. We shall call a point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\O\)</span> a regular point.</p>
+\]</span> is linearly independent. Then we say <span class="math inline">\(x^*\)</span> is a regular point, or the regularity condition holds at <span class="math inline">\(x^*\)</span>.</p>
+<p>The above condition is called <strong>constraint qualification</strong> at <span class="math inline">\(x^*\in S\)</span>. There are other types of constraint qualifications. In this chapter, we shall only consider the above linearly independence constraint qualification (LICQ).</p>
+<p>In particular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\emptyset\)</span>. We shall call a point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\emptyset\)</span> a regular point.</p>
 <h2 id="karush-kuhn-tucker-necessary-conditions">5.2 Karush-Kuhn-Tucker necessary conditions</h2>
-<p>We state the KKT necessary conditions for a local minimizer <span class="math inline">\(x^*\)</span> at which the regularity condition holds.</p>
+<p>We state the <strong>KKT necessary conditions</strong> for a local minimizer <span class="math inline">\(x^*\)</span> at which the regularity condition holds.</p>
 <p><strong>Theorem</strong> (KKT first order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span>, where <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, has continuous first partial derivatives on the feasible set <span class="math inline">\(S\)</span>.</p>
-<p>Suppose <span class="math inline">\(x^*\in S\)</span> is a <strong>regular point</strong>.</p>
+<p>Suppose <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> for all <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, has continuous first partial derivatives on the feasible set <span class="math inline">\(S\)</span>. Suppose <span class="math inline">\(x^*\in S\)</span> is a <strong>regular point</strong>.</p>
 <p>If <span class="math inline">\(x^*\)</span> is a local minimizer, then there exists (unique) scalars <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> such that the following conditions hold, <span class="math display">\[
 \begin{array}{rCl}
 \nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)&amp;=&amp;0\\
-\mu_j^*\ge 0 &amp;&amp; \forall j=1,\dotsm,p\\
-\mu_j^*=0&amp;&amp;\forall j\notin J(x^*),
+\mu_j^*\ge0, &amp;&amp; \forall j=1,\dotsm,p\\
+\mu_j^*=0,&amp;&amp;\forall j\notin J(x^*),
 \end{array}
 \]</span> where <span class="math inline">\(J(x^*)\)</span> is the index set of active inequality constraints at <span class="math inline">\(x^*\)</span>.</p>
 <p><strong>Theorem</strong> (KKT second order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,\)</span> and <span class="math inline">\(h_j\)</span> have continuous second partial derivatives on <span class="math inline">\(S\)</span>. Let <span class="math display">\[
+<p>Suppose <span class="math inline">\(f,g_i,\)</span> and <span class="math inline">\(h_j\)</span>, for all <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, have continuous second partial derivatives on <span class="math inline">\(S\)</span>. Let <span class="math display">\[
 H_L(x^*)=H_f(x^*)+\sum_{i=1}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p \mu_j^*H_{h_j}(x^*).
 \]</span> If <span class="math inline">\(x^*\)</span> is a local minimizer, then <span class="math display">\[
 y^TH_L(x^*)y\ge 0,
-\]</span> for all <span class="math inline">\(y\in T(x^*)\)</span>, where $$ T(x^*)= { yR^n</p>
-<p>\begin{array}{|rl} g_i(x<sup><em>)^Ty=0, &amp;i=1,2,m\ h_j(x^</em>)</sup>T y=0, &amp; jJ(x^*). \end{array} }. $$ <strong>Remark</strong> (On the KKT necessary conditions)</p>
+\]</span> for all <span class="math inline">\(y\in T(x^*)\)</span>, where <span class="math display">\[
+T(x^*)=
+\left\{
+y\in\mathbb R^n \;
+\begin{array}{|rl}
+\nabla g_i(x^*)^Ty=0, &amp;i=1,2,\dotsm,m\\
+\; \nabla h_j(x^*)^T y=0, &amp; j\in J(x^*).
+\end{array}
+\right\}.
+\]</span> <strong>Remark</strong> (On the KKT necessary conditions)</p>
 <ol type="1">
 <li><p>We say that <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point whenever <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT first order conditions. KKT points are some times also called KKT solutions.</p></li>
 <li><p>The scalar <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> are called <strong>Lagrange multipliers</strong>.</p></li>
 <li><p>The conditions <span class="math inline">\(\mu_j^*=0,\;\forall j\notin J(x^*)\)</span> means that the Lagrange multiplier corresponding to the inactive constraint must be zero. Since <span class="math inline">\(h_j(x^*)&lt;0\;\forall j\notin J(x^*)\)</span> and <span class="math inline">\(h_j(x^*)=0\;\forall j\in J(x^*)\)</span>, the condition <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> is equivalent to <span class="math display">\[
 \mu_j^*h_j(x^*)=0,\quad \forall j=1,\dotsm,p.
-\]</span> This is called the <strong>complementary slackness condition</strong>.</p></li>
+\]</span> This is called the <strong>complementary slackness condition</strong>. The name is derived from the fact that for each <span class="math inline">\(j\)</span>, whenever the constraint <span class="math inline">\(h_j(x^*)\le 0\)</span> is slack, i.e., <span class="math inline">\(h_j(x^*)&lt;0\)</span>, the constraint <span class="math inline">\(\mu_j^*\ge 0\)</span> must not be slack, and vice versa.</p></li>
 <li><p>The set <span class="math inline">\(T(x^*)\)</span> consists of vectors in the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. To see this, note that the normal space <span class="math inline">\(N(x^*)\)</span> to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace spanned by the set of normal vectors <span class="math display">\[
 \nabla g_1(x^*),\nabla g_1(x^*),\dotsm\nabla g_m(x^*),\quad \nabla h_j(x^*)\;\forall j\in J(x^*).
 \]</span> Now the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace of vectors that are orthogonal to all the normal vectors at <span class="math inline">\(x^*\)</span>. <span class="math display">\[
 \text{Tangent} (x^*)=\{y\in\mathbb R^n\;|\; u^Ty=0,\forall u\in N(x^*)\}
 \]</span></p></li>
-<li><p>In deciding whether <span class="math inline">\(x^*\)</span> is a local optimizer, the definiteness of <span class="math inline">\(H_L(x)\)</span> is tested only for vectors in <span class="math inline">\(T(x^*)\)</span>.</p></li>
+<li><p>In deciding whether <span class="math inline">\(x^*\)</span> is a local optimizer, the definiteness of <span class="math inline">\(H_L(x)\)</span> is tested <strong>only</strong> for vectors in <span class="math inline">\(T(x^*)\)</span>.</p></li>
 </ol>
+<p>The next result provides an easier check for the KKT second order conditions.</p>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(S\)</span> be the feasible set. Suppose <span class="math inline">\(x^*\in S\)</span> and <span class="math inline">\(J(x^*)\)</span> is the index set of active constraints at <span class="math inline">\(x^*\)</span>.</p>
 <p>Consider the matrix <span class="math display">\[
@@ -381,6 +388,14 @@ y^TH_L(x^*)y\ge 0,
 \]</span> Then <span class="math display">\[
 y^TH_L(x^*)y\ge 0,\quad \forall y\in T(x^*)\iff Z(x^*)^TH_L(x^*)Z(x^*)\in \mathbb S_+^n,
 \]</span> where <span class="math inline">\(Z(x^*)\in \mathbb R^{n\times q}\)</span> is a matrix whose columns form a basis of the null space of <span class="math inline">\(\mathcal D(x^*)^T\)</span>.</p>
+<p>Proof.</p>
+<p>Note that <span class="math inline">\(T(x^*)\)</span> is the null space of the matrix <span class="math inline">\(\mathcal D(x^*)^T\)</span>. So we have <span class="math inline">\(T(x^*)=\{Z(x^*)u\;|\; y\in\mathbb R^q\}\)</span>. Thus <span class="math display">\[
+\begin{array}{rlc}
+y^TH_L(x^*)y\ge 0,&amp;\forall y\in T(x^*)&amp;\iff\\
+u^TZ(x^*)^TH_L(x^*)Z(x^*)u\ge 0, &amp; \forall u\in\mathbb R^q&amp;\iff\\
+Z(x^*)^TH_L(x^*)Z(x^*)\in\mathbb S_+^N.
+\end{array}
+\]</span></p>
 <h2 id="examples-to-illustrate-the-kkt-necessary-conditions.">5.3 Examples to illustrate the KKT necessary conditions.</h2>
 <p><strong>Corollary</strong></p>
 <p>Suppose the following two conditions hold,</p>
@@ -461,16 +476,16 @@ x_i^*=\begin{cases} g_i+\lambda &amp; \text{if } i\le \bar r\\0&amp; \text{if }i
 <p><strong>Example</strong></p>
 <p>From the example, the global minimizer <span class="math inline">\(x^*=[0;1]\)</span> with multiplier <span class="math inline">\(\mu_3=\frac{1}{2}\)</span>. Thus relaxing the constraint to <span class="math inline">\(g_i(x)+\epsilon\le 0\)</span> would change the objective value by <span class="math inline">\(\frac{1}{2}\epsilon\)</span>.</p>
 <h2 id="kkt-sufficient-conditions">5.5 KKT sufficient conditions</h2>
-<p>When a KKT point satisfies a stronger second order condition, we obtain a strict local minimizer. Note that the sufficient conditions for a strict local minimizer <strong>do not</strong> require regularity conditions.</p>
+<p>When a KKT point satisfies a stronger second order condition, we obtain a strict local minimizer. Note that the sufficient conditions for a strict local minimizer <strong>do not</strong> require any regularity conditions.</p>
 <p><strong>Theorem</strong> (KKT sufficient conditions)</p>
 <p>Let <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span> be functions with continuous second partial derivatives.</p>
 <p>Let <span class="math inline">\(S\)</span> be the feasible set of NLP. Suppose <span class="math inline">\(x^*\in S\)</span> is a KKT point, i.e., there exist <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that <span class="math display">\[
 \begin{array}{rCl}
 \nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)=0\\
 g_i(x^*)=0,\;i=1,2,\dotsm,m\\
-\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p,
+\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p.
 \end{array}
-\]</span> where<span class="math inline">\(J(x^*)\)</span> is the index set of active constraints at <span class="math inline">\(x^*\)</span>. Let <span class="math display">\[
+\]</span> Let <span class="math display">\[
 H_L(x^*)=H_f(x^*)+\sum_{i1=}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p\mu_{j}^*H_{h_{j}}(x^*).
 \]</span> Suppose <span class="math display">\[
 y^TH_L(x^*)y&gt;0,\;\forall y\in T(x^*)-\{0\},
@@ -489,15 +504,17 @@ where $f,h_j:\mathbb R^n\rightarrow \mathbb R$ are convex function. It can be ex
 <p>Proof.</p>
 <p>If <span class="math inline">\(x^*\)</span> is a KKT point, then we need to prove <span class="math inline">\(f(x)\ge f(x^*)\)</span>.</p>
 <p>Since we have <span class="math display">\[
-f(y)\ge f(x)+\nabla f(x)^T(y-x)\implies \\
-f(x)\ge f(x^*)+\nabla f(x^*)(x-x^*)
+\begin{array}{rcll}
+f(y)&amp;\ge&amp; f(x)+\nabla f(x)^T(y-x)\;\forall x,y\in\mathbb R^n&amp;\implies \\
+f(x)&amp;\ge&amp; f(x^*)+\nabla f(x^*)(x-x^*).
+\end{array}
 \]</span> Therefore, we only need to prove <span class="math display">\[
 \nabla f(x^*)(x-x^*)\ge 0.
 \]</span> <span class="math inline">\(x^*\in S\)</span> is a KKT point implies <span class="math inline">\(\exists \lambda \in \mathbb R^m\)</span> and <span class="math inline">\(\mu_j^*\ge 0,\;\forall j\in J(x^*)\)</span> such that <span class="math display">\[
-\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*a_i+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)=0\\
-\implies\\
-\nabla f(x^*)(x-x^*)+\sum_{i=1}^m \lambda_i^*a_i(x-x^*)+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*)=0\\
-\implies\\
+\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*a_i+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)=0
+\quad\implies\\
+\nabla f(x^*)(x-x^*)+\sum_{i=1}^m \lambda_i^*a_i(x-x^*)+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*)=0
+\quad\implies\\
 \nabla f(x^*)(x-x^*)=-\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*).
 \]</span> Since <span class="math inline">\(h_j\)</span> is convex, we have <span class="math display">\[
 0\ge h_j(x)\ge h_j(x^*)+\nabla h_j(x^*)(x-x^*)=\nabla h_j(x^*)(x-x^*).
@@ -505,8 +522,176 @@ f(x)\ge f(x^*)+\nabla f(x^*)(x-x^*)
 \nabla f(x^*)(x-x^*)\ge 0.
 \]</span> <strong>Remark</strong></p>
 <p>The converse of the Theorem is not true without additional assumption, i.e. a global minimizer of a convex program may not be a KKT point. With regularity condition, a global minimizer is a KKT point. For convex programming problem with at least one inequality constraints, the <strong>Slater's condition</strong> ensures that a global minimizer is a KKT point.</p>
-<p><strong>Theorem</strong> (Conversely)</p>
+<p><strong>Theorem</strong> (Converse of the theorem under Slater’s condition)</p>
 <p>Suppose <span class="math inline">\(f,h_j:\mathbb R^n\rightarrow \mathbb R,\;j=1,\dotsm,p\)</span> are <strong>differentiable convex functions</strong>, and <span class="math inline">\(g_i(x)=a_i^Tx-b_i,\;i=1,\dotsm,m\)</span>. Suppose <span class="math inline">\(p\ge 1\)</span> and that the <strong>Slater's condition</strong> holds, i.e., there exists <span class="math inline">\(\hat x\in\mathbb R^n\)</span> such that <span class="math inline">\(g_i(\hat x)=0,\;\forall i=1,\dotsm,m\)</span> and <span class="math inline">\(h_j(\hat x)&lt;0,\;\forall j=1,\dotsm,p\)</span>. Let <span class="math inline">\(S\)</span> be the feasible region. Suppose <span class="math inline">\(x^*\in S\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>. Then <span class="math inline">\(x^*\)</span> is a KKT point.</p>
+<h3 id="linear-equality-constrained-convex-program">5.6.1 Linear equality constrained convex program</h3>
+<p>Consider the following linear equality constrained NLP, <span class="math display">\[
+\text{(ENLP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; Ax=b, &amp; x\in\mathbb R^n,
+\end{array}
+\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(f;\mathbb R^n\rightarrow \mathbb R\)</span> is a differentiable function on the feasible region <span class="math inline">\(S\)</span>. Note that a feasible solution <span class="math inline">\(x^*\)</span> is a KKT point if there exists <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> such that <span class="math display">\[
+\nabla f(x^*)+\sum_{i=1}^m \lambda_i^* a_i=0 \iff \nabla f(x^*)+A^T\lambda^*=0.
+\]</span> <strong>Theorem</strong> (Linear equality constrained convex program)</p>
+<p>Consider the following linear equality constrained convex NLP, <span class="math display">\[
+\text{(ECP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; Ax=b, &amp; x\in\mathbb R^n,
+\end{array}
+\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is a differentiable convex function. Suppose the feasible region <span class="math inline">\(S\)</span> is non-empty. Then a point <span class="math inline">\(x^*\in S\)</span> is a KKT point if and only if <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
+<p><strong>Remark</strong></p>
+<p>No singularity or Slater’s condition is needed.</p>
+<h3 id="linear-and-convex-quadratic-programming-problems">5.6.2 Linear and convex quadratic programming problems</h3>
+<p><span class="math display">\[
+\text{(ECP)}\quad \begin{array}{rCl}
+\min &amp; f(x)=c^Tx\\
+\text{subject to}&amp; b-Ax=0\\
+&amp; x\in\mathbb R^n_+,
+\end{array}
+\]</span></p>
+<p>where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(b\in \mathbb R^m\)</span>.</p>
+<p>Note the linear constraints can be rewritten as, <span class="math display">\[
+\begin{array}{rcl}
+g_i(x)=b_i-a_i^Tx&amp;=&amp;0,&amp;i=1,\dotsm,m\\
+h_j(x)=-e_i^Tx&amp;\le&amp; 0,&amp; j=1,\dotsm,n,
+\end{array}
+\]</span> with <span class="math inline">\(\nabla g_i(x)=-a_i\)</span> and <span class="math inline">\(\nabla h_j(x)=-e_j\)</span>.</p>
+<p>KKT conditions become <span class="math display">\[
+\begin{array}{rcl}
+c-\displaystyle\sum_{i=1}^m\lambda_ia_i-\sum_{j=1}^n\mu_je_j=0,\\
+b_i-a_i^Tx=0,&amp;i=1,2,\dotsm,m\\
+\mu_j\ge 0,\;-x_i\le 0,\;\mu_jx_j=0,&amp; j=1,2,\dotsm ,n.
+\end{array}\\
+\iff\\
+\begin{array}{rcl}
+c-A^T\lambda-\mu=0,\\
+b-A^Tx=0,\\
+\mu\ge 0,\;x\ge 0,\;\mu\circ x=0,
+\end{array}
+\]</span> where <span class="math display">\[
+\mu\circ x=\begin{bmatrix}\mu_1x_1\\\mu_2x_2\\\vdots\\\mu_nx_n \end{bmatrix}.
+\]</span> <strong>Convex quadratic programming problem</strong> <span class="math display">\[
+\text{(ECP)}\quad \begin{array}{rCl}
+\min &amp; f(x)=\frac{1}{2}x^TQx+c^Tx\\
+\text{subject to}&amp; Ax-b\le 0\\
+&amp; x\in\mathbb R^n_+,
+\end{array}
+\]</span> where <span class="math inline">\(Q\)</span> is positive semidefinite, <span class="math inline">\(b\in\mathbb R^m\)</span> and <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span>.</p>
+<p>KKT conditions become, <span class="math display">\[
+\begin{array}{rcl}
+Qx+c+\displaystyle\sum_{i=1}^m\mu_ia_i+\sum_{j=1}^n \hat \mu_j(-e_j)=0,\\
+\mu_i\ge 0,\;a_i^Tx-b_i\le 0,\;\mu_i(a_i^Tx-b_i)=0,&amp; i=1,2,\dotsm ,n.\\
+\hat \mu_j\ge 0,\;x_i\ge 0,\;\hat \mu_jx_j=0,&amp; j=1,2,\dotsm ,n.
+\end{array}\\
+\iff\\
+\begin{array}{rcl}
+Qx+c+A^T\mu-\hat \mu=0,\\
+\mu\ge 0,\;Ax-b\le 0,\;\mu\circ (Ax-b)=0,\\
+\hat \mu\ge 0,\;x\ge 0,\;\hat \mu\circ x=0.
+\end{array}
+\]</span> <strong>Sparse regression problem</strong></p>
+<p>Recall the sparse regression problem <span class="math display">\[
+\frac{1}{2}||Ax-b||^2+\rho||x||_1,
+\]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter. To derive the KKT conditions for this problem, we first reformulate it to the following form, <span class="math display">\[
+\quad \begin{array}{rCl}
+\min &amp; f(x,u^{(1)}),u^{(2)})=\frac{1}{2}||Ax-b||^2+\rho\langle e,u^{(1)}+u^{(2)}\rangle\\
+\text{subject to}&amp; g(x,u^{(1)},u^{(2)})=x-u^{(1)}+u^{(2)}=0\\
+&amp; h_1(x,u^{(1)},u^{(2)})=-u^{(1)}\le 0\\
+&amp; h_2(x,u^{(1)},u^{(2)})=-u^{(2)}\le 0.
+\end{array}
+\]</span> We can see that <span class="math inline">\(u^{(1)}=\max (x,0),u^{(2)}=\max (-x,0)\)</span>, and therefore <span class="math inline">\(x=u^{(1)}-u^{(2)}\)</span>.</p>
+<p>Then KKT conditions are given as follows, <span class="math display">\[
+\left(
+\begin{array}{c}
+A^T(Ax-b)\\\rho e\\\rho e
+\end{array}
+\right)+
+\left(
+\begin{array}{c}
+I\\-I\\I
+\end{array}
+\right)\lambda+
+\left(
+\begin{array}{c}
+0\\-I\\0
+\end{array}
+\right)\mu^{(1)}+
+\left(
+\begin{array}{c}
+0\\0\\-I
+\end{array}
+\right)\mu^{(2)}=
+\left(
+\begin{array}{c}
+0\\0\\0
+\end{array}
+\right)\\
+x-u^{(1)}+u^{(2)}=0\\
+\mu^{(1)}\circ u^{(1)}=0,\;\mu^{(2)}\circ u^{(2)}=0\\
+u^{(1)},u^{(2)},\mu^{(1)},\mu^{(2)}\ge0.
+\]</span> From the first equation, we have <span class="math display">\[
+\rho e- \lambda-\mu^{(1)}=0\\
+\rho e+ \lambda-\mu^{(2)}=0,
+\]</span> which can be expressed as <span class="math display">\[
+\mu^{(1)}=\rho e-\lambda \\
+\mu^{(2)}=\rho e+\lambda .
+\]</span> Then we have <span class="math display">\[
+A^T(Ax-b)+ \lambda=0\\
+(\rho e-\lambda)\circ \max (x,0)=0\\(\rho e+\lambda)\circ \max (-x,0)=0\\
+-\rho e\le\lambda \le\rho e.
+\]</span> Then we have <span class="math display">\[
+\lambda_i=
+\begin{cases}
+\{\rho_i\},&amp;\text{if }x_i&gt;0\\
+\ [-\rho_i,\rho_i] &amp; \text{if }x_i=0\\
+\{-\rho_i\},&amp;\text{if }x_i&lt;0
+\end{cases}\quad i=1,\dotsm,n.
+\]</span></p>
+<h2 id="proof-of-the-kkt-first-order-necessary-conditions">5.7 Proof of the KKT first order necessary conditions</h2>
+<p><strong>Theorem</strong> (KKT necessary conditions for equality constrained NLP)</p>
+<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> and <span class="math inline">\(g_i:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,\dotsm,m\)</span> be functions with continuous first partial derivatives. Suppose <span class="math inline">\(x^*\)</span> is a local minimizer of <span class="math inline">\(f\)</span> on the feasible set <span class="math display">\[
+S=\{x\in\mathbb R^n\;|\; g_i(x)=0,i=1,\dotsm,m\}.
+\]</span> Suppose that <span class="math inline">\(x^*\)</span> is singular. Then there exists a unique vector <span class="math inline">\(\lambda^*\in\mathbb R^n\)</span> such that <span class="math display">\[
+\nabla f(x^*)+\sum_{i=1}^m\lambda_i^* \nabla g_i(x^*)=0.
+\]</span> Proof.</p>
+<p>We approximate the original constrained problem by a sequence of unconstrained optimization that involves a penalty for violation of the constraints.</p>
+<p>Let <span class="math inline">\(x^*\)</span> be a local minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
+<p>For each positive integer <span class="math inline">\(k\)</span>, let <span class="math display">\[
+F^k(x)=f(x)+\frac{k}{2}||g(x)||^2+\frac{\alpha}{2}||x-x^*||^2,
+\]</span> where <span class="math inline">\(g(x)=[g_1(x),g_2(x),\dotsm,g_m(x)]\)</span>, and <span class="math inline">\(\alpha\)</span> is a positive scalar.</p>
+<p>Since <span class="math inline">\(x^*\)</span> is a local minimizer, <span class="math inline">\(\exists \epsilon &gt;0\)</span>, such that <span class="math inline">\(f(x^*)\le f(x)\)</span> for all feasible <span class="math inline">\(x\)</span> in the closed ball <span class="math inline">\(B\)</span>.</p>
+<p>Consider the penalized problem, <span class="math display">\[
+\begin{array}{rl}
+\min &amp; F^k(x)\\
+\text{subject to } &amp; x\in B.
+\end{array}
+\]</span> Since <span class="math inline">\(B\)</span> is compact and <span class="math inline">\(F^k(x)\)</span> is continuous on <span class="math inline">\(B\)</span>, there is a global minimizer <span class="math inline">\(x^{(k)}\in B\)</span> for <span class="math inline">\(F^k\)</span>. We have <span class="math display">\[
+F^k(x^{(k)})\le F^k(x^*)=f(x^*).
+\]</span> <span class="math inline">\(f\)</span> is continuous on the compact set <span class="math inline">\(B\)</span> implies <span class="math inline">\(\{f(x^{(k)})\}_{k=1}^\infty\)</span> is bounded.</p>
+<p>Since we have <span class="math display">\[
+f(x^{(k)})\le F^k(x^{(k)})\le f(x^*),
+\]</span> therefore <span class="math inline">\(F^k(x^{(k)})\)</span> is also bounded. Therefore, <span class="math inline">\(\lim_{k\rightarrow \infty}||g(x^{(k)})||=0\)</span>, otherwise <span class="math inline">\(F^k(x^{(k)})\)</span> is not bounded.</p>
+<p><strong>Claim</strong> The sequence <span class="math inline">\(\{x^{(k)}\}\)</span> converges to <span class="math inline">\(x^*\)</span>.</p>
+<p>We denote <span class="math inline">\(\bar x=\lim_{k\rightarrow \infty} x^{(k)}\)</span>. We have known that <span class="math inline">\(g(\bar x)=0\)</span>. Then we have <span class="math display">\[
+F^k(\bar x)=f(\bar x)+\frac{\alpha}{2}||\bar x-x^*||^2\le f(x^*).
+\]</span> Since <span class="math inline">\(x^*\)</span> is the local minimizer, we also have <span class="math display">\[
+f(x^*)\le f(\bar x).
+\]</span> Therefore, <span class="math inline">\(\bar x=x^*\)</span>.</p>
+<p>Since <span class="math inline">\(x^{(k)}\)</span> is the global optimal point for <span class="math inline">\(F^k(x)\)</span>, it is a stationary point of <span class="math inline">\(F^k(x)\)</span>, i.e., <span class="math display">\[
+\nabla F^k(x^{(k)})=0.
+\]</span> This is equivalent to <span class="math display">\[
+\nabla f(x^{(k)})+kG_kg(x^{(k)})+\alpha (x^{(k)}-x^*)=0,
+\]</span> where <span class="math display">\[
+G_k=\left[\nabla g_1(x^{(k)}),\nabla g_2(x^{(k)}),\dotsm,\nabla g_m(x^{(k)})\right].
+\]</span> Since <span class="math inline">\(x^*\)</span> is a regular point, this implies that the matrix <span class="math display">\[
+G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
+\]</span> has rank <span class="math inline">\(m\)</span>. We have <span class="math display">\[
+(G_k^TG_k)^{-1}G_k^T\nabla f(x^{(k)})+kg(x^{(k)})+\alpha (G_k^TG_k)^{-1}G_k^T(x^{(k)}-x^*)=0.
+\]</span> Define <span class="math inline">\(\lambda_k=kg(x^{(k)})\)</span>. Then when <span class="math inline">\(k\rightarrow \infty\)</span>, we have <span class="math display">\[
+\lambda^*=\lim_{k\rightarrow \infty} kg(x^{(k)})=(G_*^TG_*)^{-1}G_*^T\nabla f(x^*).
+\]</span> Therefore, we obtain the first order condition <span class="math display">\[
+\nabla f(x^*)+G_*\lambda^*=0.
+\]</span> Q.E.D.</p>
 
     </div>
 
@@ -587,7 +772,7 @@ f(x)\ge f(x^*)+\nabla f(x^*)(x-x^*)
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-nonlinear-programming"><span class="nav-text">5. Basic Nonlinear Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#regular-point"><span class="nav-text">5.1 Regular point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#karush-kuhn-tucker-necessary-conditions"><span class="nav-text">5.2 Karush-Kuhn-Tucker necessary conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#examples-to-illustrate-the-kkt-necessary-conditions."><span class="nav-text">5.3 Examples to illustrate the KKT necessary conditions.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interpretation-of-the-lagrange-multipliers"><span class="nav-text">5.4 Interpretation of the Lagrange multipliers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kkt-sufficient-conditions"><span class="nav-text">5.5 KKT sufficient conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kkt-conditions-for-constrained-convex-programming-problems"><span class="nav-text">5.6 KKT conditions for constrained convex programming problems</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-nonlinear-programming"><span class="nav-text">5. Basic Nonlinear Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#regular-point"><span class="nav-text">5.1 Regular point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#karush-kuhn-tucker-necessary-conditions"><span class="nav-text">5.2 Karush-Kuhn-Tucker necessary conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#examples-to-illustrate-the-kkt-necessary-conditions."><span class="nav-text">5.3 Examples to illustrate the KKT necessary conditions.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interpretation-of-the-lagrange-multipliers"><span class="nav-text">5.4 Interpretation of the Lagrange multipliers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kkt-sufficient-conditions"><span class="nav-text">5.5 KKT sufficient conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kkt-conditions-for-constrained-convex-programming-problems"><span class="nav-text">5.6 KKT conditions for constrained convex programming problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-equality-constrained-convex-program"><span class="nav-text">5.6.1 Linear equality constrained convex program</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-and-convex-quadratic-programming-problems"><span class="nav-text">5.6.2 Linear and convex quadratic programming problems</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#proof-of-the-kkt-first-order-necessary-conditions"><span class="nav-text">5.7 Proof of the KKT first order necessary conditions</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
