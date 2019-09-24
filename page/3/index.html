@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-24 23:10:32" itemprop="dateModified" datetime="2019-09-24T23:10:32+08:00">2019-09-24</time>
+                <time title="Modified: 2019-09-24 23:18:52" itemprop="dateModified" datetime="2019-09-24T23:18:52+08:00">2019-09-24</time>
               </span>
             
           
@@ -463,7 +463,7 @@ z-\Pi_C(z)=\Pi_{C^o}(z).
 <p><strong>Definition</strong> (Normal cone)</p>
 <p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x\in C\)</span>. The normal cone of <span class="math inline">\(C\)</span> at <span class="math inline">\(\bar x\in C\)</span> is defined by <span class="math display">\[
 N_c(\bar x)=\{z\in \mathcal E\;|\;\langle z,x-\bar x\rangle\le 0\quad \forall x\in C\}
-\]</span> By convention, we let <span class="math inline">\(N_C(\bar x)=\emptyset\)</span> if <span class="math inline">\(\bar x\notin C\)</span>.</p>
+\]</span> By convention, we let <span class="math inline">\(N_C(\bar x)=\O\)</span> if <span class="math inline">\(\bar x\notin C\)</span>.</p>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x \in C\)</span>. Then</p>
 <ol type="1">
@@ -501,7 +501,7 @@ u\in N_C(y)\iff y=\Pi_C(y+u)
 <li>If the following relative interior condition holds</li>
 </ol>
 <p><span class="math display">\[
-\text{ri}(C_1)\cap \text{ri}(C_2)\neq \emptyset
+\text{ri}(C_1)\cap \text{ri}(C_2)\neq \O
 \]</span></p>
 <p>​ then we also have <span class="math display">\[
 N_{C_1\cap C_2}(\bar x)\subset N_{c_1}(\bar x)+N_{c_2}(\bar x)
@@ -520,7 +520,7 @@ x_2\in N_{C_2}(\bar x)\iff \langle x_2,x-\bar x\rangle \le 0\;\forall x\in C_2
 <p><strong>Definition</strong></p>
 <p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a convex function. A vector <span class="math inline">\(v\)</span> is a subgradient of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\in\text{dom}(f)\)</span> if <span class="math display">\[
 f(z)\ge f(x)+\langle v,z-x\rangle \;\forall z\in\mathcal E.
-\]</span> The set of all subgradients at <span class="math inline">\(x\)</span> is called the subdifferential of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, and denoted as <span class="math inline">\(\partial f(x)\)</span>. By convention, <span class="math inline">\(\partial f(x)=\emptyset\)</span> for any <span class="math inline">\(x\notin\text{dom} (f)\)</span>.</p>
+\]</span> The set of all subgradients at <span class="math inline">\(x\)</span> is called the subdifferential of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, and denoted as <span class="math inline">\(\partial f(x)\)</span>. By convention, <span class="math inline">\(\partial f(x)=\O\)</span> for any <span class="math inline">\(x\notin\text{dom} (f)\)</span>.</p>
 <p><strong>Proposition</strong></p>
 <p><span class="math inline">\(\partial f:\mathcal E\rightarrow \mathcal E\)</span> is a monotone mapping. That is <span class="math display">\[
 \langle v-u,y-x\rangle \ge 0\;\forall u\in \partial f(x),v\in \partial f(y).
@@ -534,7 +534,7 @@ f(x)\ge f(y)-\langle v,y-x\rangle.
 <li><p>If <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(x\)</span>, then <span class="math inline">\(\partial f(x)=\{\nabla f(x)\}\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(C\)</span> be a convex subset of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math display">\[
 \partial \delta_C(x)=
-\begin{cases}\emptyset&amp;\text{if }x\notin C\\ N_C(x)&amp;\text{if }x\in C \end{cases}
+\begin{cases}\O&amp;\text{if }x\notin C\\ N_C(x)&amp;\text{if }x\in C \end{cases}
 \]</span></p></li>
 <li><p>Let <span class="math inline">\(f(x)=||x||_1\)</span> for <span class="math inline">\(x\in \mathbb R^n\)</span>. Show that <span class="math display">\[
 \partial f(0)=\{y\in\mathbb R^n\;|\; ||y||_\infty\le 1\}
@@ -581,11 +581,11 @@ f(z)\ge f(0)+\langle y,z-0\rangle\;\forall z\in\mathbb R^n\\
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(f\)</span> be an extended real-valued convex function on <span class="math inline">\(\mathcal E\)</span>. Then</p>
 <ol type="1">
-<li><p>If <span class="math inline">\(f\)</span> is proper, then <span class="math inline">\(\text{ri}(\text{dom}(f))\neq \emptyset\)</span> and <span class="math inline">\(\partial f(x)\neq \emptyset\)</span> for any <span class="math inline">\(x\in \text{ri}(\text{dom}(f))\)</span>. Moreover, <span class="math inline">\(\partial f(x)\)</span> is bounded if and only if <span class="math inline">\(x\in\text{int}(\text{dom}(f))\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f\)</span> is proper, then <span class="math inline">\(\text{ri}(\text{dom}(f))\neq \O\)</span> and <span class="math inline">\(\partial f(x)\neq \O\)</span> for any <span class="math inline">\(x\in \text{ri}(\text{dom}(f))\)</span>. Moreover, <span class="math inline">\(\partial f(x)\)</span> is bounded if and only if <span class="math inline">\(x\in\text{int}(\text{dom}(f))\)</span>.</p></li>
 <li><p><span class="math inline">\(\partial f\)</span> is monotone, i.e., for any <span class="math inline">\(x,y\in\mathcal E\)</span>, <span class="math display">\[
 \langle u-v,x-y\rangle \ge 0\;\forall u\in \partial f(x),v\in\partial f(y).
 \]</span></p></li>
-<li><p>Let <span class="math inline">\(f,g\)</span> be proper convex functions on <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(\text{ri}(\text{dom}(f))\cap\text{ri}(\text{dom}(g))\neq \emptyset\)</span>, then <span class="math display">\[
+<li><p>Let <span class="math inline">\(f,g\)</span> be proper convex functions on <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(\text{ri}(\text{dom}(f))\cap\text{ri}(\text{dom}(g))\neq \O\)</span>, then <span class="math display">\[
 \partial(f+g)(x)=\partial f(x)+\partial g(x)\;\forall x\in\mathcal E.
 \]</span></p></li>
 <li><p>If <span class="math inline">\(f\)</span> is closed and proper, then <span class="math inline">\(\min_{z\in\mathcal E}f(z)\)</span> is attained at <span class="math inline">\(x\)</span> if and only if <span class="math inline">\(0\in \partial f(x)\)</span>.</p></li>
@@ -637,11 +637,11 @@ S=\partial f(0)=\{x\in\mathbb R^n\;|\; \sum_{i=1}^nx_i=1,x\ge 0\}.
 \]</span></p>
 <h2 id="semismoothness-of-convex-functions">3.13 Semismoothness of convex functions</h2>
 <p><strong>Definition 3.14</strong> (Semismoothness)</p>
-<p>Let <span class="math inline">\(\emptysetmega\)</span> be an open subset of <span class="math inline">\(\mathcal E\)</span>. Let <span class="math inline">\(f:\emptysetmega\rightarrow \mathbb R\)</span> be a locally Lipschitz continuous function (not necessarily convex).</p>
+<p>Let <span class="math inline">\(\Omega\)</span> be an open subset of <span class="math inline">\(\mathcal E\)</span>. Let <span class="math inline">\(f:\Omega\rightarrow \mathbb R\)</span> be a locally Lipschitz continuous function (not necessarily convex).</p>
 <ol type="1">
 <li><p><span class="math inline">\(f\)</span> is said to be semismooth at <span class="math inline">\(x\)</span> if it is directionally differentiable at <span class="math inline">\(x\)</span> and <span class="math display">\[
 f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||)\;\forall h\rightarrow 0,x+h\in \mathcal D_f
-\]</span> where <span class="math inline">\(\mathcal D_f = \{y\in\emptysetmega\;|\; f \text{ is differentiable at }y\}\)</span>.</p></li>
+\]</span> where <span class="math inline">\(\mathcal D_f = \{y\in\Omega\;|\; f \text{ is differentiable at }y\}\)</span>.</p></li>
 <li><p>Moreover, <span class="math inline">\(f\)</span> is said to be strongly semismooth at <span class="math inline">\(x\)</span> if <span class="math display">\[
 f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||^2)\;\forall h\rightarrow 0,x+h\in \mathcal D_f
 \]</span></p></li>
