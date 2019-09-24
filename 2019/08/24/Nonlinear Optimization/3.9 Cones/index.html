@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh 3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically eq">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-24T12:53:59.373Z">
+<meta property="og:updated_time" content="2019-09-24T14:49:55.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3. Basic Convex Analysis (2)">
 <meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh 3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically eq">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-24 20:53:59" itemprop="dateModified" datetime="2019-09-24T20:53:59+08:00">2019-09-24</time>
+                <time title="Modified: 2019-09-24 22:49:55" itemprop="dateModified" datetime="2019-09-24T22:49:55+08:00">2019-09-24</time>
               </span>
             
           
@@ -653,16 +653,30 @@ f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||^2)\;\forall h\rightarrow 0,
 <p><strong>Theorem</strong></p>
 <p>Any convex function <span class="math inline">\(f:\mathcal E\rightarrow \mathbb R\)</span> is semismooth.</p>
 <p><strong>Remark</strong> Piecewise smooth functions are semismooth functions.</p>
-<h2 id="moreau-yosida-regularization-and-proximal-mapping">3.14 Moreau-Yosida regularization and proximal mapping</h2>
+<h2 id="moreau-yosida-my-regularization-and-proximal-mapping">3.14 Moreau-Yosida (MY) regularization and proximal mapping</h2>
 <p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a closed proper convex function function.</p>
-<p>MY regularization of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
+<p><strong>MY regularization</strong> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
 M_f(x)=\min_{y\in \mathcal E}\left\{f(y)+\frac{1}{2}||y-x||^2\right\}.
-\]</span> Proximal mapping of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
+\]</span> <strong>Proximal mapping</strong> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
 P_f(x)=\arg\min_{y\in\mathcal E} \left\{f(y)+\frac{1}{2}||y-x||^2\right\}
-\]</span> We also have, <span class="math display">\[
+\]</span> We also have <span class="math display">\[
 P_{\lambda f}(x)=\arg\min_{y\in\mathcal E}\left\{f(y)+\frac{1}{2\lambda}||y-x||^2\right\}.
-\]</span> The definition indicates that <span class="math inline">\(P_f(x)\)</span> is a point that compromises between minimizing <span class="math inline">\(f\)</span> and being near to <span class="math inline">\(x\)</span>. For this reason, <span class="math inline">\(P_f(x)\)</span> is sometimes called a <strong>proximal point</strong> of <span class="math inline">\(x\)</span> with respect to <span class="math inline">\(f\)</span>. In <span class="math inline">\(P_{\lambda f}\)</span>, the parameter <span class="math inline">\(\lambda\)</span> can be interpreted as a relative weight or trade-off parameter between these terms.</p>
+\]</span> And <span class="math display">\[
+M_{\lambda f}(x)=\min_{y\in \mathcal E}\left\{f(y)+\frac{1}{2\lambda}||y-x||^2\right\}.
+\]</span> This is also referred to as the <strong>Moreau envelope</strong> of <span class="math inline">\(f\)</span> with parameter <span class="math inline">\(\lambda\)</span>.</p>
+<p>The Moreau envelope <span class="math inline">\(M_f\)</span> is essentially a <strong>smoothed</strong> or <strong>regularized</strong> form of <span class="math inline">\(f\)</span>, it has <strong>domain</strong> <span class="math inline">\(\mathbb R^n\)</span> even when <span class="math inline">\(f\)</span> does not, and it is <strong>continuously differentiable</strong>, even when <span class="math inline">\(f\)</span> is not. In addition, the sets of minimizer of <span class="math inline">\(f\)</span> and <span class="math inline">\(M_f\)</span> are the same. The problems of minimizing <span class="math inline">\(f\)</span> and <span class="math inline">\(M_f\)</span> are thus equivalent, and the latter is always a smooth optimization problem (<span class="math inline">\(M_f\)</span> may be difficult to evaluate). To see why <span class="math inline">\(M_f\)</span> is a smoothed form of <span class="math inline">\(f\)</span>, we have <span class="math display">\[
+M_f=(f^*+(1/2)||\cdot||^2_2)^*.
+\]</span> Because we have <span class="math inline">\(M_f^{**}=M_f\)</span>, it can be interpreted as obtaining a smooth approximation to a function by taking its conjugate, adding regularization, and then taking the conjugate again. With no regularization, it would simply give the original function; with the quadratic regularization, it gives a smooth approximation.</p>
+<p>The <strong>proximal operator</strong> and <strong>Moreau envelope</strong> of <span class="math inline">\(f\)</span> share many relationships. For example, <span class="math inline">\(P_f\)</span> returns the (unique) point that actually achieves the infimum that defines <span class="math inline">\(M_f\)</span>, i.e., <span class="math display">\[
+M_f(x)=f(P_f(x))+(1/2)||x-P_f(x)||_2^2.
+\]</span> In addition, the gradient of Moreau envelope is given by <span class="math display">\[
+\nabla M_{\lambda f}(x)=(1/\lambda)(x-P_{\lambda f}(x)).
+\]</span> This can be rewritten as <span class="math display">\[
+P_{\lambda f}(x)=x-\nabla M_{\lambda f}(x),
+\]</span> which shows that <span class="math inline">\(P_{\lambda f}\)</span> can be viewed as a gradient step, with step size <span class="math inline">\(\lambda\)</span>, for minimizing <span class="math inline">\(M_{\lambda f}\)</span> (which has the same minimizers as <span class="math inline">\(f\)</span>).</p>
+<p>The definition indicates that <span class="math inline">\(P_f(x)\)</span> is a point that compromises between minimizing <span class="math inline">\(f\)</span> and being near to <span class="math inline">\(x\)</span>. For this reason, <span class="math inline">\(P_f(x)\)</span> is sometimes called a <strong>proximal point</strong> of <span class="math inline">\(x\)</span> with respect to <span class="math inline">\(f\)</span>. In <span class="math inline">\(P_{\lambda f}\)</span>, the parameter <span class="math inline">\(\lambda\)</span> can be interpreted as a relative weight or trade-off parameter between these terms.</p>
 <p>There are many useful properties for the proximal operator.</p>
+<p><strong>Separable sum</strong></p>
 <p>If <span class="math inline">\(f\)</span> is separable across two variables, so <span class="math inline">\(f(x,y)=\varphi(x)+\psi(y)\)</span>, then <span class="math display">\[
 P_f(v,w)=(P_\varphi(v),P_\psi(w)).
 \]</span> The point <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(f\)</span> if and only if <span class="math display">\[
@@ -685,6 +699,31 @@ x^{k+1}=P_{\lambda f} (x^k),
 <p>Let <span class="math inline">\(f_1,f_2,\dotsm,f_m\)</span> be closed proper convex functions. Then we have that <span class="math display">\[
 \frac{1}{m}\sum_{i=1}^m P_{f_i}=P_g,
 \]</span> where <span class="math inline">\(g\)</span> is a function called the <strong>proximal average</strong> of <span class="math inline">\(f_1,f_2,\dotsm,f_m\)</span>. In the other words, the average of the proximal operators of a set of functions is itself the proximal operator of some function, and this function is called the <strong>proximal average</strong>.</p>
+<p><strong>Resolvent of subdifferential operator</strong></p>
+<p>We can view the subdifferential operator <span class="math inline">\(\partial f\)</span> of a closed proper convex function <span class="math inline">\(f\)</span> as a <strong>point-to-set mapping</strong> or a <strong>relation</strong> on <span class="math inline">\(\mathbb R^n\)</span>, i.e., <span class="math inline">\(\partial f\)</span> takes each point <span class="math inline">\(x\in\text{dom}f\)</span> to the set <span class="math inline">\(\partial f(x)\)</span>. Any point <span class="math inline">\(y\in\partial f(x)\)</span> is called a subgradient of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>. We refer to the (point-to-point) mapping <span class="math inline">\(\nabla f\)</span> from <span class="math inline">\(x\in \text{dom} f\)</span> as the <strong>gradient mapping</strong>.</p>
+<p><strong>Proposition</strong></p>
+<p>The proximal operator <span class="math inline">\(P_{\lambda f}\)</span> and the differential operator <span class="math inline">\(\partial f\)</span> are related as follows, <span class="math display">\[
+P_{\lambda f}=(I+\lambda \partial f)^{-1}.
+\]</span> The (point-to-point) mapping <span class="math inline">\((I+\lambda \partial f)^{-1}\)</span> is called the resolvent of the operator <span class="math inline">\(\partial f\)</span> with parameter <span class="math inline">\(\lambda &gt;0\)</span>, so the proximal operator is the resolvent of the subdifferential operator. This relation has domain <span class="math inline">\(\mathbb R^n\)</span>, is single-valued, and so is a <strong>function</strong>, even though <span class="math inline">\(\partial f\)</span> is not.</p>
+<p>Proof.</p>
+<p>We assume that <span class="math inline">\(f\)</span> is subdifferentiable on its domain. By definition if <span class="math inline">\(z\in(I+\lambda \partial f)^{-1}(x)\)</span>, then <span class="math display">\[
+x\in(I+\lambda \partial f)(z)=z+\lambda \partial f(z).
+\]</span> This can be expressed as <span class="math display">\[
+0\in \partial f(z)+(1/\lambda )(z-x),
+\]</span> which can be rewritten as <span class="math display">\[
+0\in\partial_z\left(f(z)+(1/2\lambda)||z-x||_2^2\right).
+\]</span> This is the necessary and sufficient condition for <span class="math inline">\(z\)</span> to minimize the strongly convex function, which is <span class="math display">\[
+z=\arg\min_u\left(f(u)+(1/2\lambda)||u-x||_2^2\right).
+\]</span> Therefore, we have <span class="math inline">\(z=P_{\lambda f}(x)\)</span> and, in particular, that <span class="math inline">\((I+\lambda \partial f)^{-1}\)</span> is single-valued.</p>
+<p><strong>Modified gradient step</strong></p>
+<p>We have already seen that <span class="math display">\[
+P_{\lambda f}(x)=x-\lambda \nabla M_{\lambda f}(x),
+\]</span> i.e., <span class="math inline">\(P_{\lambda f}\)</span> is a gradient step for minimizing the Moreau envelope of <span class="math inline">\(f\)</span> with step size <span class="math inline">\(\lambda\)</span>.</p>
+<p>If <span class="math inline">\(f\)</span> is twice differentiable at <span class="math inline">\(x\)</span>, with <span class="math inline">\(\nabla f(x)\succ0\)</span>, then as <span class="math inline">\(\lambda \rightarrow 0\)</span>, we have <span class="math display">\[
+P_{\lambda f}(x)=(I+\lambda \nabla f)^{-1}(x)=x-\lambda \nabla f(x)+o(\lambda).
+\]</span> In other words, for small <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(P_{\lambda f}(x)\)</span> converges to a gradient step in <span class="math inline">\(f\)</span> with step length <span class="math inline">\(\lambda\)</span>.</p>
+<p><strong>Trust region problem</strong></p>
+<p>Solution of the trust region problem can be transferred to a solution of the proximal problem. (See &quot;Proximal Algorithm&quot; - Boyd).</p>
 <p><strong>Proposition</strong></p>
 <ol type="1">
 <li><span class="math inline">\(P_f(x)\)</span> exists and is unique.</li>
@@ -833,7 +872,7 @@ f&#39;(d_i)&amp; d_i=d_j
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cones"><span class="nav-text">3.9 Cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#normal-cones"><span class="nav-text">3.10 Normal cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subgradients"><span class="nav-text">3.11 Subgradients</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fenchel-conjugate"><span class="nav-text">3.12 Fenchel conjugate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#semismoothness-of-convex-functions"><span class="nav-text">3.13 Semismoothness of convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#moreau-yosida-regularization-and-proximal-mapping"><span class="nav-text">3.14 Moreau-Yosida regularization and proximal mapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#directional-derivatives-of-matrix-valued-functions"><span class="nav-text">3.15 Directional derivatives of matrix-valued functions</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cones"><span class="nav-text">3.9 Cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#normal-cones"><span class="nav-text">3.10 Normal cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subgradients"><span class="nav-text">3.11 Subgradients</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fenchel-conjugate"><span class="nav-text">3.12 Fenchel conjugate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#semismoothness-of-convex-functions"><span class="nav-text">3.13 Semismoothness of convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#moreau-yosida-my-regularization-and-proximal-mapping"><span class="nav-text">3.14 Moreau-Yosida (MY) regularization and proximal mapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#directional-derivatives-of-matrix-valued-functions"><span class="nav-text">3.15 Directional derivatives of matrix-valued functions</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
