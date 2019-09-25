@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation \[ \begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \begin{array}{lll} f_0(x) \end{array}\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4. Convex Optimization Problem (1)">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation \[ \begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \begin{array}{lll} f_0(x) \end{array}\">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-15T17:00:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4. Convex Optimization Problem (1)">
+<meta name="twitter:description" content="4. Convex Optimization Problem 4.1 Optimization Problems 4.1.1 Basic terminology We use the notation \[ \begin{array}{|l|ll|} \text{minimize}\quad &amp;amp;  \begin{array}{lll} f_0(x) \end{array}\">
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>4. Convex Optimization Problem (1) | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">4. Convex Optimization Problem (1)
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-03-28 11:35:39" itemprop="dateCreated datePublished" datetime="2019-03-28T11:35:39+08:00">2019-03-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-16 01:00:06" itemprop="dateModified" datetime="2019-09-16T01:00:06+08:00">2019-09-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/" class="post-meta-item leancloud_visitors" data-flag-title="4. Convex Optimization Problem (1)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/03/28/Convex Optimization/4.1 Convex Optimization Problems/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="convex-optimization-problem">4. Convex Optimization Problem</h1>
+<h2 id="optimization-problems">4.1 Optimization Problems</h2>
+<h3 id="basic-terminology">4.1.1 Basic terminology</h3>
+<p>We use the notation <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le0,\quad i=1,\dotsm,m \\h_i(x)=0,\quad i=1,\dotsm,p
+\end{array}
+\end{array}
+\]</span> to describe the problem of finding an <span class="math inline">\(x\)</span> that minimize <span class="math inline">\(f_0(x)\)</span> among all <span class="math inline">\(x\)</span> that satisfy the conditions <span class="math inline">\(f_i(x)\le 0,i=1,\dotsm,m\)</span> and <span class="math inline">\(h_i(x)=0,i=1,\dotsm,p\)</span>. We call <span class="math inline">\(x\in \mathbb R^n\)</span> the <strong>optimization variable</strong> and the function <span class="math inline">\(f_0: \mathbb R^n\rightarrow \mathbb R\)</span> the <strong>objective function</strong> or <strong>cost function</strong>. The inequalities <span class="math inline">\(f_i(x)\le 0\)</span> is called <strong>inequality constraints</strong> and the corresponding functions are called <strong>inequality constraints functions</strong>. The equations <span class="math inline">\(h_i(x)=0\)</span> are called <strong>equality constraints</strong> and the functions are called <strong>equality constraints functions</strong>. If there is no constraint, we say the problem is <strong>unconstraint</strong>.</p>
+<p>The set of points for which the objective and all constraint functions are defined, <span class="math display">\[
+\mathcal D=\bigcap_{i=0}^m \text{dom} (f_i)\cap\bigcap_{i=1}^p \text{dom}(h_i)
+\]</span> is called the <strong>domain</strong> of the optimization problem. A point <span class="math inline">\(x\in \mathcal D\)</span> is <strong>feasible</strong> if it satisfies the constraints <span class="math inline">\(f_i(x)\le 0\)</span> and <span class="math inline">\(h_i(x)=0\)</span> . The problem is said to be <strong>feasible</strong> if there exists at least one feasible point. The set of all feasible points is called a <strong>feasible set</strong> of the <strong>constraint set</strong>. The optimal value <span class="math inline">\(p^\star\)</span> of the problem is defined as <span class="math display">\[
+p^\star = \inf \left\{f_0(x)\;\Bigg|\;
+\begin{array}{rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\end{array}\right\}.
+\]</span> If the problem is infeasible, <span class="math inline">\(p^\star = \infty\)</span>. If there are feasible points <span class="math inline">\(x_k\)</span> with <span class="math inline">\(f_0(x_k)\rightarrow \infty\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span>, then <span class="math inline">\(p^\star = - \infty\)</span> , and we say the problem is <strong>unbounded below</strong>.</p>
+<p><strong>Optimal and locally optimal points</strong></p>
+<p>We say <span class="math inline">\(x^\star\)</span> is an <strong>optimal point</strong> if <span class="math inline">\(x^\star\)</span> is feasible and <span class="math inline">\(f_0(x^\star)=p^\star\)</span> . The set of all optimal points is the optimal set, denoted <span class="math display">\[
+X_{opt}=\left\{f_0(x)\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
+\;f_0(x^\star)&amp;=&amp;p^\star\end{array}\right\}.
+\]</span> If there exits an optimal point for the problem, we say the optimal value is <strong>attained</strong> or <strong>achieved</strong>, and the problem is <strong>solvable</strong>. If <span class="math inline">\(X_{opt}\)</span> is empty, we say the optimal point is <strong>not attained</strong> or <strong>not achieved</strong>. This always occurs when the problem is unbounded below. A feasible point <span class="math inline">\(x\)</span> with <span class="math inline">\(f_0(x) \le p^\star +\epsilon\)</span> is called <span class="math inline">\(\epsilon\)</span>-suboptimal and the set of all <span class="math inline">\(\epsilon\)</span>-suboptimal points is called the <span class="math inline">\(\epsilon\)</span>-suboptimal set for the problem.</p>
+<p>We say feasible point <span class="math inline">\(x\)</span> is locally optimal (local minimizer) if there is an <span class="math inline">\(R&gt;0\)</span> such that <span class="math display">\[
+f_0(x)=\inf \left\{f_0(x)\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
+\;||z-x||_2&amp;\le&amp; R\end{array}\right\}.
+\]</span> Roughly speaking, this means <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(f_0\)</span> over nearby points in the feasible set. Throughout the book, optimal will mean globally optimal.</p>
+<p>If <span class="math inline">\(x\)</span> is feasible and <span class="math inline">\(f_i(x)=0\)</span>, we say that <span class="math inline">\(i\)</span>th inequality constraint <span class="math inline">\(f_i(x)\le 0\)</span> is <strong>active</strong>. otherwise it is <strong>inactive</strong>. We say that a constraint is redundant if deleting it does not change the feasible set.</p>
+<p><strong>Feasibility problem</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0,\quad i=1,\dotsm,m\\
+h_i(x)=0,\quad i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> The feasibility problem is to determine whether the constraints are consistent, and if so, find a point that satisfies them.</p>
+<h3 id="expressing-problems-in-standard-form">4.1.2 Expressing problems in standard form</h3>
+<p><span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le0,\quad i=1,\dotsm,m \\
+h_i(x)=0,\quad i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span></p>
+<p><strong>Maximization problems</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+-f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le0,\quad i=1,\dotsm,m \\
+h_i(x)=0,\quad i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span></p>
+<h3 id="equivalent-problems">4.1.3 Equivalent problems</h3>
+<p>We call two problems <strong>equivalent</strong> if from a solution of one, a solution of the other is readily found. (informal definition)</p>
+<p>We now describe some general transformations that yield equivalent problems.</p>
+<p><strong>Change of variables</strong></p>
+<p>Suppose <span class="math inline">\(\phi:\mathbb R^n\rightarrow \mathbb R^n\)</span> is <strong>one-to-one</strong>, with image covering the problem domain <span class="math inline">\(\mathcal D\)</span> , that means <span class="math inline">\(\mathcal D\subseteq \phi(\text{dom} \phi)\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as <span class="math display">\[
+\tilde f_i(z)=f_i(\phi(z)),i=0,\dotsm,m\\
+\tilde h_i(z)=h_i(\phi(z)),i=1,\dotsm,p.
+\]</span> Now consider the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(z)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\tilde f_i(z)\le 0, i=1,\dotsm, m\\
+\tilde h_i(z)=0,i=1,\dots,p
+\end{array}
+\end{array}.
+\]</span> Then the problem is related to the original problem by <span class="math inline">\(x=\phi(z)\)</span> . If <span class="math inline">\(z\)</span> solves the problem, then <span class="math inline">\(x=\phi(z)\)</span> solves the original problem.</p>
+<p><strong>Transformation of objective and constraint functions</strong></p>
+<p>Suppose <span class="math inline">\(\varphi_0:\mathbb R\rightarrow \mathbb R\)</span> is <strong>monotone increasing</strong>, <span class="math inline">\(\varphi_1,\dots,\varphi_m: \mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(u)\le 0\)</span> if and only if <span class="math inline">\(u\le 0\)</span>, and <span class="math inline">\(\varphi_{m+1},\dotsm,\varphi_{m+p}:\mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(0)=0\)</span> if and only if <span class="math inline">\(u=0\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as the compositions <span class="math display">\[
+\tilde f_i(x)=\varphi_i(f_i(x)),i=0,\dotsm,m\\\quad \tilde h_i(x)=\varphi_{m+i}(h_i(x)),i=1,\dotsm,p.
+\]</span> The associated problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\tilde f_i(x)\le 0\quad i=1,\dotsm,m\\
+\tilde h_i(x)=0\quad i=1,\dotsm,p
+\end{array}
+\end{array},
+\]</span> and the standard form problem are equivalent; indeed the feasible sets are identical, and the optimal points are identical.</p>
+<p><strong>Slack variables</strong></p>
+<p>One simple transformation is based on the observation that <span class="math inline">\(f_i(x)\le 0\)</span> if and only if there is an <span class="math inline">\(s_i\ge 0\)</span> that satisfies <span class="math inline">\(f_i(x)+s_i=0\)</span>. Using this transformation we obtain the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+s_i\ge0 &amp; i=1,\dotsm,m\\
+f_i(x)+s_i=0 &amp; i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> The new variable <span class="math inline">\(s_i\)</span> is called slack variable associated with the original inequality constraints. Indeed, if <span class="math inline">\((x,s)\)</span> is feasible for the above problem, then <span class="math inline">\(x\)</span> is feasible for the original problem. Conversely, if <span class="math inline">\(x\)</span> is feasible for the original problem, then <span class="math inline">\((x,s)\)</span> is feasible for the above problem. Thant means <span class="math inline">\(x\)</span> is optimal for the original problem if and only if <span class="math inline">\((x,s)\)</span> is optimal for the above problem.</p>
+<p><strong>Eliminating equality constraints</strong></p>
+<p>If we can explicitly parametrize all solutions of the equality constraints <span class="math display">\[
+h_i(x)=0,\quad i=1,\dotsm,p,
+\]</span> using some parameters <span class="math inline">\(z\in \mathbb R^k\)</span>. That means suppose the function <span class="math inline">\(\phi:\mathbb R^k\rightarrow \mathbb R^n\)</span> is such that <span class="math inline">\(x\)</span> satisfies the above if and only if there is some <span class="math inline">\(z\in \mathbb R^k\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> . The optimization problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(z)=f_0(\phi(z))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\tilde f_i(z)=f_i(\phi(z))\le0 &amp; i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span> is equivalent to the original problem. If <span class="math inline">\(z\)</span> is optimal for the transformed problem, then <span class="math inline">\(x=\phi(z)\)</span> is optimal for the original problem. Conversely, if <span class="math inline">\(x\)</span> is optimal for the original problem, then there is at least one <span class="math inline">\(z\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> which is optimal for the transformed problem.</p>
+<p><strong>Eliminating linear equality constraints</strong></p>
+<p>When the constraints are all linear, i.e. <span class="math inline">\(Ax=b\)</span>. if <span class="math inline">\(b\notin \mathcal R(A)\)</span> then the problem is infeasible. Let <span class="math inline">\(F\in \mathbb R^{n\times k}\)</span> be any matrix with <span class="math inline">\(\mathcal R(F)=\mathcal N(A)\)</span>, so the general solution of the linear equations <span class="math inline">\(Ax=b\)</span> is given by <span class="math inline">\(Fz+x_0\)</span> .</p>
+<p>Then the original problem is equivalent to <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(Fz+x_0)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(Fz+x_0)\le 0 &amp; i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span> <strong>Introducing equality constraints</strong></p>
+<p>Consider the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(A_0 x+b_0)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(A_ix+b_i)\le 0 &amp; i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> Then the problem is equivalent to <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(y_0)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(y_i)\le0 &amp; i=1,\dotsm,m\\
+y_i=A_ix+b_i &amp; i=0,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> <strong>Optimizing over some variables</strong></p>
+<p>We always have <span class="math display">\[
+\inf_{x,y}f(x,y)=\inf_x \tilde f(x)
+\]</span> where <span class="math display">\[
+\tilde f(x)=\inf_y f(x,y)
+\]</span> That means we can minimize a function by first minimizing over some of the variables and then minimizing over the remaining ones.</p>
+<p>For the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x_1,x_2)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x_1)\le0 &amp; i=1,\dotsm,m_1\\
+\tilde f_i(x_2)\le 0 &amp; i=1,\dotsm,m_2
+\end{array}
+\end{array}.
+\]</span> We first minimize over <span class="math inline">\(x_2\)</span> . Define the function <span class="math inline">\(\tilde f_0\)</span> of <span class="math inline">\(x_1\)</span> by <span class="math display">\[
+\tilde f_0(x_1)=\inf \{f_0(x_1,z)|\tilde f_i(z)\le 0,i=1,\dotsm,m_2\}.
+\]</span> Then we have the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(x_1)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x_1)\le 0 &amp; i=1,\dotsm,m_1
+\end{array}
+\end{array}.
+\]</span> <strong>Epigraph problem form</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+t
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_0(x)-t\le 0\\
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> <strong>Implicit and explicit constraints</strong></p>
+<p>We can make the implicit constraint explicit which will be clear for solution.</p>
+<p>The implicit problem <span class="math display">\[
+\text {minimize}\quad f(x)
+\]</span> where the function <span class="math inline">\(f(x)\)</span> is given by <span class="math display">\[
+f(x)=
+\begin{cases}
+x^Tx\quad Ax=b\\
+\infty\quad otherwise
+\end{cases}
+\]</span> We can make the problem constraint explicit by <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}.
+\]</span></p>
+<h2 id="convex-optimization">4.2 Convex Optimization</h2>
+<h3 id="convex-optimization-problems-in-standard-form">4.2.1 Convex optimization problems in standard form</h3>
+<p>A convex optimization problem is one of the form <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+a_i^Tx=b_i &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> where <span class="math inline">\(f_0,\dotsm,f_m\)</span> are convex functions. There are three additional requirements,</p>
+<ol type="1">
+<li>The objective function must be <strong>convex</strong>.</li>
+<li>The inequality constraint functions must be <strong>convex</strong>.</li>
+<li>The equality constraint functions <span class="math inline">\(h_i(x)=a_i^Tx-b_i\)</span> must be <strong>affine</strong>.</li>
+</ol>
+<p>We immediately note a important property: The feasible set of a convex optimization problem is convex since it is the intersection of the domain of the problem <span class="math display">\[
+\mathcal D=\bigcap_{i=0}^m \text{dom} (f_{i}),
+\]</span> which is a convex set with <span class="math inline">\(m\)</span> sublevel sets <span class="math inline">\(\{x\;|\;f_i(x)\le 0\}\)</span> and <span class="math inline">\(p\)</span> hyperplanes <span class="math inline">\(\{x\;|\;a_i^T x=b_i\}\)</span>.</p>
+<p>If <span class="math inline">\(f_0\)</span> is quasiconvex instead of convex, we say the above problem is <strong>quasiconvex optimization problem</strong>.</p>
+<p>If the objective function is strictly convex, then the optimal set contains at most one point.</p>
+<p><strong>Concave maximization problems</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+-f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+a_i^Tx=b_i &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> <strong>Abstract form convex optimization problem</strong></p>
+<p>This book consider the convex problems without the standard form (Abstract convex optimization problem) as not convex problems.</p>
+<h3 id="local-and-global-optima">4.2.2 Local and global optima</h3>
+<p>A fundamental property of convex optimization problem is that any locally optimal point is also (globally) optimal.</p>
+<h3 id="an-optimality-criterion-for-differentiable-f_0">4.2.3 An optimality criterion for differentiable <span class="math inline">\(f_0\)</span></h3>
+<p>Suppose that the objective <span class="math inline">\(f_0\)</span> in a convex optimization problem is differentiable, so that for all <span class="math inline">\(x,y \in \text{dom} (f_0)\)</span>, <span class="math display">\[
+f_0(y)\ge f_0(x)+\nabla f_0(x)^T(y-x).
+\]</span> Let <span class="math inline">\(X\)</span> denote the feasible set <span class="math display">\[
+X=\left\{x\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp;0,&amp;i=1,\dotsm,m\\
+\;h_i(x)&amp;=&amp;0,&amp;i=1,\dotsm,p\end{array}\right\}.
+\]</span> Then <span class="math inline">\(x\)</span> is optimal if and only if <span class="math inline">\(x\in X\)</span> and <span class="math display">\[
+\nabla f_0(x)^T(y-x)\ge 0,
+\]</span> for all <span class="math inline">\(y \in X\)</span>.</p>
+<p>For unconstrained problems, <span class="math inline">\(x\)</span> is optimal if and only if <span class="math display">\[
+\nabla f_0(x)=0.
+\]</span> <strong>Problems with equality constraints only</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}.
+\]</span> For the convex optimal, for the optimal point <span class="math inline">\(x\)</span>, we have <span class="math display">\[
+\nabla f_0(x)^T(y-x)\ge 0,
+\]</span> for all <span class="math inline">\(y\)</span> satisfying <span class="math inline">\(Ay=b\)</span> and <span class="math inline">\(Ax=b\)</span>. Then we have <span class="math inline">\(y=x+v\)</span> and <span class="math inline">\(v\in \mathcal N(A)\quad(Av=0)\)</span>.</p>
+<p>Then the problem becomes <span class="math display">\[
+\nabla f_0(x)^Tv\ge0\quad \forall v\in \mathcal N(A).
+\]</span> If a linear function is nonnegative on a subspace, then it must be zero on the subspace. That means <span class="math display">\[
+\nabla f_0(x)^Tv=0\quad \forall v\in \mathcal N(A)\\
+\nabla f_0(x)\perp \mathcal N(A)\\
+\mathcal R(A^T)\perp\mathcal N(A)\\
+\nabla f_0(x) \in \mathcal R(A^T).
+\]</span> Therefore, there exists <span class="math inline">\(v\in \mathbb R^P\)</span> such that <span class="math display">\[
+\nabla f_0(x)+A^Tv=0,
+\]</span> Together with the constraints <span class="math inline">\(Ax=b\)</span>.</p>
+<p>There exists a <span class="math inline">\(v\in \mathbb R^p\)</span> such that <span class="math display">\[
+\begin{array}{rcl}
+\nabla f_0(x)+A^Tv&amp;=&amp;0\\
+Ax&amp;=&amp;b,
+\end{array}
+\]</span> This is actually the classical Lagrange multiplier optimality condition.</p>
+<p><strong>Minimization over the nonnegative orthant</strong></p>
+<p>We consider the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+x\succeq 0
+\end{array}
+\end{array}.
+\]</span> We have optimality condition <span class="math display">\[
+x\succeq0 \quad \nabla f_0(x)^T(y-x)\ge 0\quad \forall y\succeq 0
+\]</span> We see the linear function of <span class="math inline">\(y\)</span>, <span class="math inline">\(\nabla f_0(x)^Ty-\nabla f_0(x)^T x\)</span> is greater than or equal to zero for all <span class="math inline">\(y\)</span> only when <span class="math display">\[
+\nabla f_0(x)\succeq 0\\
+-\nabla f_0(x)^Tx\ge 0.
+\]</span> But <span class="math inline">\(x\succeq 0\)</span> and <span class="math inline">\(\nabla f_0(x)\succeq 0\)</span>, and therefore <span class="math inline">\(\nabla f_0(x)^Tx=0\)</span></p>
+<p>The optimality condition can be expressed as <span class="math display">\[
+x\succeq 0\quad \nabla f_0(x)\succeq 0\quad x_i(\nabla f_0(x))_i=0 \space(\text{complementary condition})
+\]</span></p>
+<h3 id="equivalent-convex-problems">4.2.4 Equivalent Convex problems</h3>
+<ol type="1">
+<li><p>Eliminating equality constraints</p></li>
+<li><p>Introducing equality constraints</p></li>
+<li><p>Slack variables</p></li>
+<li><p>Epigraph problem form</p></li>
+<li><p>Minimizing over some variables</p></li>
+</ol>
+<h3 id="quasiconvex-optimization">4.2.5 Quasiconvex Optimization</h3>
+<p>Recall that a quasiconvex optimization problem has the standard form <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+Ax=b
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(f_0\)</span> is quasiconvex and <span class="math inline">\(f_i\)</span> are convex.</p>
+<p><strong>Locally optimal solutions and optimality conditions</strong></p>
+<p>The most important difference between the convex and quasiconvex optimization is that quasiconvex optimization problems can have locally optimal solutions.</p>
+<p>It follows from the first order condition for quasiconvex optimization problem that <span class="math inline">\(x\)</span> is optimal if <span class="math display">\[
+x\in X,\quad \nabla f_0(x)^T(y-x)&gt;0\text{ for all }y\in X /\{x\}
+\]</span> There are two differences between this criterion and the analogous one for convex optimization.</p>
+<ol type="1">
+<li>This condition is only sufficient for optimality.</li>
+<li>This condition requires the gradient of <span class="math inline">\(f_0\)</span> to be nonzero.</li>
+</ol>
+<p><strong>Quasiconvex optimization via convex feasibility problems</strong></p>
+<p>One general approach to quasiconvex optimization relies on the representation of the sublevel sets of a quasiconvex function via a family of convex inequalities. <span class="math display">\[
+f_0(x)\le t \iff \phi_t(x)\le 0
+\]</span> Let <span class="math inline">\(p^\star\)</span> denote the optimal value of the quasiconvex function. If the feasibility problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\phi_t(x)\le 0\\f_i(x)\le 0\\Ax=b
+\end{array}
+\end{array},
+\]</span> is feasible. Then <span class="math inline">\(p^\star \le t\)</span>.</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/03/28/Convex Optimization/3.2 Convex Functions/" rel="next" title="3. Convex Functions (2)">
+                  <i class="fa fa-chevron-left"></i> 3. Convex Functions (2)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/05/25/Convex Optimization/4.2 Convex Optimization Problems/" rel="prev" title="4. Convex Optimization Problem (2)">
+                  4. Convex Optimization Problem (2) <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#convex-optimization-problem"><span class="nav-text">4. Convex Optimization Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#optimization-problems"><span class="nav-text">4.1 Optimization Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-terminology"><span class="nav-text">4.1.1 Basic terminology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#expressing-problems-in-standard-form"><span class="nav-text">4.1.2 Expressing problems in standard form</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equivalent-problems"><span class="nav-text">4.1.3 Equivalent problems</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-optimization"><span class="nav-text">4.2 Convex Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convex-optimization-problems-in-standard-form"><span class="nav-text">4.2.1 Convex optimization problems in standard form</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#local-and-global-optima"><span class="nav-text">4.2.2 Local and global optima</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#an-optimality-criterion-for-differentiable-f_0"><span class="nav-text">4.2.3 An optimality criterion for differentiable \(f_0\)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equivalent-convex-problems"><span class="nav-text">4.2.4 Equivalent Convex problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#quasiconvex-optimization"><span class="nav-text">4.2.5 Quasiconvex Optimization</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Model Predictive Control 1. State Space Model Augmented with an Integrator We give a definition \[ \Delta u(k)=u(k)-u(k-1) \\ \Delta x(k)=x(k)-x(k-1) \] Consider the input-output model \[ x_p(k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7. Model Predictive Control">
+<meta property="og:url" content="http://yoursite.com/2018/10/12/Computer Control/7. Model Predictive Control/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="Model Predictive Control 1. State Space Model Augmented with an Integrator We give a definition \[ \Delta u(k)=u(k)-u(k-1) \\ \Delta x(k)=x(k)-x(k-1) \] Consider the input-output model \[ x_p(k">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-25T16:02:49.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="7. Model Predictive Control">
+<meta name="twitter:description" content="Model Predictive Control 1. State Space Model Augmented with an Integrator We give a definition \[ \Delta u(k)=u(k)-u(k-1) \\ \Delta x(k)=x(k)-x(k-1) \] Consider the input-output model \[ x_p(k">
+  <link rel="canonical" href="http://yoursite.com/2018/10/12/Computer Control/7. Model Predictive Control/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>7. Model Predictive Control | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/Computer Control/7. Model Predictive Control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">7. Model Predictive Control
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-10-12 14:56:52" itemprop="dateCreated datePublished" datetime="2018-10-12T14:56:52+08:00">2018-10-12</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-26 00:02:49" itemprop="dateModified" datetime="2019-08-26T00:02:49+08:00">2019-08-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/10/12/Computer Control/7. Model Predictive Control/" class="post-meta-item leancloud_visitors" data-flag-title="7. Model Predictive Control" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/10/12/Computer Control/7. Model Predictive Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/10/12/Computer Control/7. Model Predictive Control/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="model-predictive-control">Model Predictive Control</h2>
+<h3 id="state-space-model-augmented-with-an-integrator">1. State Space Model Augmented with an Integrator</h3>
+<p>We give a definition <span class="math display">\[
+\Delta u(k)=u(k)-u(k-1) \\
+\Delta x(k)=x(k)-x(k-1)
+\]</span></p>
+<p>Consider the input-output model <span class="math display">\[
+x_p(k+1)=A_px_p(k)+B_pu(k) \\
+y(k)=C_px_p(k)
+\]</span> Therefore, <span class="math display">\[
+\Delta x(k+1)=A_p\Delta x_p(k)+B_p\Delta u(k)\\
+\Delta y(k)=C_p \Delta x_p(k) \\
+y(k+1)=y(k)+C_p \Delta x_p(k+1)
+\]</span> Now we can build the augmented state-space model <span class="math display">\[
+\overbrace{\begin{bmatrix}
+\Delta x_p(k+1)\\
+y(k+1)
+\end{bmatrix}}^{x(k+1)}=
+\overbrace{\begin{bmatrix}
+A_p&amp;o_p^T\\
+C_pA_p&amp;1
+\end{bmatrix}}^{A}
+\overbrace{\begin{bmatrix}
+\Delta x_p(k)\\
+y(k)
+\end{bmatrix}}^{x(k)}+
+\overbrace{\begin{bmatrix}
+B_p\\
+C_pB_p
+\end{bmatrix}}^{B}
+\Delta u(k) \\
+y(k)=\overbrace{[o_p \quad 1]}^{C}
+\overbrace{\begin{bmatrix}
+\Delta x_p(k)\\
+y(k)
+\end{bmatrix}}^{x(k)}
+\]</span> where <span class="math display">\[
+o_p=\underbrace {[0\quad0\quad\dotsm\quad0]}_{n_p}
+\]</span> For now, we can calculate y(k). <span class="math display">\[
+\begin{array}{rcl}
+y(k+1) &amp;=&amp; Cx(k+1)=CAx(k)+CB\Delta u(k)\\
+y(k+2) &amp;=&amp; Cx(k+2)=CAx(k+1)+CB\Delta u(k+1) \\
+       &amp;=&amp; CA^2x(k)+CAB\Delta u(k)+CB\Delta u(k+1) \\
+y(k+3) &amp;=&amp; CA^3x(k)+CA^2B\Delta u(k)+CAB\Delta u(k+1)+CB\Delta u(k+2) \\
+&amp;\vdots\\
+y(k+N_p) &amp;=&amp; CA^{N_p}x(k)+CA^{N_{p}-1}B\Delta u(k)+CA^{N_{p}-2}B\Delta u(k+1)+\dotsm+
++CA^{N_{p}-N_p}B\Delta u(k+N_p-1)
+\end{array}
+\]</span> We can denote this in matrix form <span class="math display">\[
+\Delta U=[\Delta u(k)\quad\Delta u(k+1)\quad\dotsm\quad\Delta u(k+N_c-1)]^T \\
+Y=[y(k+1)\quad y(k+2)\quad y(k+N_p)]^T
+\]</span> Then we have <span class="math display">\[
+Y=Fx(k)+\Phi \Delta U
+\]</span> From the above equations, we can find <span class="math display">\[
+F=\begin{bmatrix}
+CA \\ CA^2 \\ CA^3 \\ \vdots \\CA^{N_P}
+\end{bmatrix} \\
+\Phi=\begin{bmatrix}
+CB &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
+CAB &amp; CB &amp; 0 &amp; 0 &amp; 0  \\  
+CA^2B &amp; CAB &amp; CB &amp; 0 &amp; 0 \\ 
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+CA^{N_P-2}B &amp; CA^{N_P-3}B &amp;CA^{N_P-4}B &amp; \dotsm &amp; CA^{N_P-N_c-1}B\\
+CA^{N_P-1}B &amp; CA^{N_P-2}B &amp;CA^{N_P-3}B &amp; \dotsm &amp; CA^{N_P-N_c}B
+\end{bmatrix}
+\]</span> P.S. in order to reduce the complexity of calculation, we can ignore the control of high order future state and also we can reduce the steps of future prediction. Here gives the concept of control horizon <span class="math inline">\(N_c\)</span> , which means we can ignore the input after <span class="math inline">\(N_c\)</span> steps. It will be shown in the following example. <span class="math inline">\(N_p\)</span> is called prediction horizon.</p>
+<p>For now we give the reference <span class="math display">\[
+R_s^T=\overbrace{[1 \quad 1 \quad\dotsm\quad 1]}^{N_p}r(k)
+\]</span> We can introduce the cost function <span class="math display">\[
+J=\frac{1}{2}[(R_s-Y)^T(R_s-Y)+\Delta U^T\bar R\Delta U]
+\]</span> <span class="math inline">\(\bar R\)</span> is used to restrict the input. <span class="math display">\[
+\bar R=r_wI_{N_c\times N_c}
+\]</span> Now we get <span class="math display">\[
+J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))+\frac{1}{2}(R_s-Fx(k))^T(R_s-Fx(k))
+\]</span> For the last part of the above equation, it is a constant. Therefore, we need to minimize the first and the second parts <span class="math display">\[
+J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
+\]</span> the necessary of get the minimum of J is <span class="math display">\[
+\frac{\part J}{\part \Delta U}=0
+\]</span> We know the quadratic matrix form derivative is <span class="math display">\[
+f(x)=x^TAx\\
+f&#39;(x)=x^T(A+A^T)\\
+\]</span> And we know Transpose Matrix Derivative is <span class="math display">\[
+f(x)=x^TAB\\
+f&#39;(x)=(AB)^T=B^TA^T
+\]</span> Then we have <span class="math display">\[
+\frac{\part J}{\part \Delta U}=\frac{1}{2}\Delta U^{T}(\Phi^T\Phi+\bar R+\Phi^T\Phi+\bar R^T)-(R_s-Fx(k))^T\Phi=0\\
+\]</span> Transpose both sizes of the above equation <span class="math display">\[
+(\Phi^T\Phi+\bar R)\Delta U-\Phi^T(R_s-Fx(k))=0
+\]</span> For this linear equation, there must be one minimum point. So the above condition is also a sufficient condition.</p>
+<p>Finally we get <span class="math display">\[
+\Delta U=(\Phi^T\Phi+\bar R)^{-1}\Phi^T(R(s)-Fx(k))
+\]</span> <span class="math inline">\(\Delta U\)</span> contains the control input of many steps but we only need the first step. $$ \begin{array}{} u(k)&amp;=&amp;<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>T(R(s)-Fx(k)) \</p>
+<p>&amp;=&amp; K_rr(k)-K_{mpc}x(k) \end{array} <span class="math display">\[
+where
+\]</span> K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TR_s\ K_{mpc}=K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TF \ R_s = ^{N_p} <span class="math display">\[
+Note that this is a kind of LTI state feedback control. We can analysis its pole by
+\]</span> =0 $$ ### 2. Example</p>
+<p>We have a discrete state space model <span class="math display">\[
+x_p(k+1)=0.8x_p(k)+0.1u(k) \\
+y(k)=x(k)
+\]</span> We hope that <span class="math display">\[
+r(k)=1 \quad \forall k\ge0 \quad r_w=0.01
+\]</span> First we build the augmented state space model <span class="math display">\[
+A= \begin{bmatrix}
+0.8 &amp; 0 \\
+0.8 &amp; 1
+\end{bmatrix}
+B= \begin{bmatrix}
+0.1 \\
+0.1
+\end{bmatrix}
+C= \begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+\]</span> We also have <span class="math display">\[
+R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
+F=\begin{bmatrix}
+0.8 &amp; 1 \\
+1.44 &amp; 1 \\
+1.952 &amp; 1 \\
+\end{bmatrix}
+\Phi=\begin{bmatrix}
+0.1 &amp; 0 &amp; 0 \\
+0.18 &amp; 0.1 &amp; 0 \\
+0.244 &amp; 0.18 &amp; 0.1\\
+\end{bmatrix} \\
+\bar R=0.01\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}
+=\begin{bmatrix}
+0.01 &amp; 0 &amp; 0 \\
+0 &amp; 0.01 &amp; 0 \\
+0 &amp; 0 &amp; 0.01 \\
+\end{bmatrix}
+\]</span></p>
+<p>And then <span class="math display">\[
+K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 5.0519
+\\
+K_{mpc}=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.879 \quad 5.0519]\\
+\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
+\Delta u(k)= K_rr(k)-K_{mpc}x(k)
+\]</span> If control horizon is taken into consideration, e.g. <span class="math inline">\(N_c=2\)</span> , we solve this example again <span class="math display">\[
+R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
+F=\begin{bmatrix}
+0.8 &amp; 1 \\
+1.44 &amp; 1 \\
+1.952 &amp; 1 \\
+\end{bmatrix}
+\Phi=\begin{bmatrix}
+0.1 &amp; 0\\
+0.18 &amp; 0.1\\
+0.244 &amp; 0.18\\
+\end{bmatrix} \\
+\bar R=0.01\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}
+=\begin{bmatrix}
+0.01 &amp; 0\\
+0 &amp; 0.01\\
+\end{bmatrix}
+\]</span> Finally we get, <span class="math display">\[
+K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 4.9819
+\\
+K_{mpc}=K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.9364 \quad 4.9819]\\
+\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
+\Delta u(k)= K_rr(k)-K_{mpc}x(k)
+\]</span> Therefore, you can compare the two results.</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/10/11/Computer Control/6. Kalman Filter/" rel="next" title="6. Kalman Filter">
+                  <i class="fa fa-chevron-left"></i> 6. Kalman Filter
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/10/13/Computer Control/8. MPC with Constraint/" rel="prev" title="8. MPC with Constraint">
+                  8. MPC with Constraint <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#model-predictive-control"><span class="nav-text">Model Predictive Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state-space-model-augmented-with-an-integrator"><span class="nav-text">1. State Space Model Augmented with an Integrator</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

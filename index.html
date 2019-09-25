@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+  <link rel="canonical" href="http://yoursite.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/Nonlinear Optimization/4.6 Proximal Algorithms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/24/Nonlinear Optimization/4.6 Proximal Algorithms/" class="post-title-link" itemprop="url">4. Gradient Methods (2) - Proximal Algorithms</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-24 23:27:34" itemprop="dateCreated datePublished" datetime="2019-09-24T23:27:34+08:00">2019-09-24</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-25 21:56:21" itemprop="dateModified" datetime="2019-09-25T21:56:21+08:00">2019-09-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/09/24/Nonlinear Optimization/4.6 Proximal Algorithms/" class="post-meta-item leancloud_visitors" data-flag-title="4. Gradient Methods (2) - Proximal Algorithms" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/09/24/Nonlinear Optimization/4.6 Proximal Algorithms/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/24/Nonlinear Optimization/4.6 Proximal Algorithms/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="proximal-algorithms">4.6 Proximal Algorithms</h2>
+<p>In this section, some important algorithms for solving convex optimization problems will rely on the use of proximal operators.</p>
+<h3 id="proximal-minimization">4.6.1 Proximal minimization</h3>
+<p>The <strong>proximal minimization algorithm</strong>, also called proximal iteration or proximal point algorithm, is <span class="math display">\[
+x^{k+1}=P_{\lambda f}(x^k),
+\]</span> where <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R\)</span> is a closed proper convex function, <span class="math inline">\(k\)</span> is the iteration number, and <span class="math inline">\(x^k\)</span> denotes the <span class="math inline">\(k\)</span>th iterate of the algorithm. We have shown that <span class="math inline">\(x^k\)</span> will converge to the optimal value. A variation on this method is to replace the constant <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda^k\)</span>. Convergence is guaranteed provided <span class="math inline">\(\lambda^k&gt;0\)</span> and <span class="math inline">\(\sum_{k=1}^\infty \lambda^k=\infty\)</span>.</p>
+<p><strong>Interpretations</strong></p>
+<p>The proximal minimization algorithm an be interpreted many ways. One simple perspective is that it is the standard gradient method applied to the Moreau envelope <span class="math inline">\(M_f\)</span> rather than <span class="math inline">\(f\)</span>. Another is that it is simple iteration for finding a fixed point of <span class="math inline">\(P_{\lambda f}\)</span>, which works because <span class="math inline">\(P_{\lambda f}\)</span> is firmly nonexpansive.</p>
+<p>Disappearing Tikhonov regularization</p>
+<p>Another simple interpretation is a quadratic regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. In each step, we solve the regularized problem, <span class="math display">\[
+\min f(x)+(1/2\lambda)||x-x^k||_2^2.
+\]</span></p>
+<p>The second term can be interpreted as regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. It is a damping term that encourages <span class="math inline">\(x^{k+1}\)</span> not to be very far from <span class="math inline">\(x^k\)</span>. As the proximal algorithm converges, <span class="math inline">\(x^{k+1}\)</span> gets close to <span class="math inline">\(x^k\)</span>, so the effect of the quadratic regularization goes to zero.</p>
+<p>Gradient flow</p>
+<p>Proximal minimization can be interpreted as a discretized method for solving a differential equation whose equilibrium points are the minimizers of a differentiable convex function <span class="math inline">\(f\)</span>. The differential equation <span class="math display">\[
+\frac{d}{dt}x(t)=-\nabla f(x(t)),
+\]</span> with variable <span class="math inline">\(x:\mathbb R_+\rightarrow \mathbb R^n\)</span>, is called the gradient flow for <span class="math inline">\(f\)</span>. The equilibrium points of the gradient flow are the zeros of <span class="math inline">\(\nabla f\)</span>, which are exactly the minimizers of <span class="math inline">\(f\)</span>.</p>
+<p>My thinking is that <span class="math inline">\(\dot x(t)\)</span> is the velocity in some position <span class="math inline">\(x(t)\)</span>, and the velocity is actually the gradient of the function in the position <span class="math inline">\(x(t)\)</span>. So the next position will go alongside the velocity.</p>
+<p>The idea of the gradient flow can be generalized to cases where <span class="math inline">\(f\)</span> is not differentiable via the subgradient differential inclusion, <span class="math display">\[
+\frac{d}{dt}x(t)\in-\partial f(x(t)).
+\]</span> Let <span class="math inline">\(x^k\)</span> be the approximation of <span class="math inline">\(x(kh)\)</span>, where <span class="math inline">\(h&gt;0\)</span> is a small step size. The simplest discretization is <span class="math display">\[
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k),
+\]</span> known as the <strong>forward Euler discretization</strong>. Then we have <span class="math display">\[
+x^{k+1}=x^k-h\nabla f(x^k).
+\]</span> This is the standard gradient descent iteration with step size <span class="math inline">\(h\)</span>.</p>
+<p>The <strong>backward Euler method</strong> uses the discretization, <span class="math display">\[
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1}).
+\]</span> This method is known to have better approximation properties than forward Euler, especially for differential equations that converge. Its main disadvantage is that it cannot be rewritten as an iteration that gives <span class="math inline">\(x^{k+1}\)</span> explicitly in terms of <span class="math inline">\(x^k\)</span>. For this reason, it is also called implicit method. To find <span class="math inline">\(x^{k+1}\)</span>, we solve the equation, <span class="math display">\[
+x^{k+1}+h\nabla f(x^{k+1})=x^k,
+\]</span> which is equivalent to <span class="math display">\[
+x^{k+1}=P_{h\lambda}(x^k),
+\]</span> by using <span class="math inline">\(P_{\lambda f}=(I+\lambda \partial f)^{-1}\)</span>.</p>
+<p>Thus, the proximal minimization method is the backward Euler method for numerical integration applied to the gradient flow differential equation. The parameter <span class="math inline">\(\lambda\)</span> in the standard proximal minimization method corresponds to the time step used in the discretization.</p>
+<h3 id="proximal-gradient-method">4.6.2 Proximal gradient method</h3>
+<p>Consider the problem <span class="math display">\[
+\min f(x)+g(x),
+\]</span> where <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> and <span class="math inline">\(g:\mathbb R^n\rightarrow \mathbb R\cup\{+\infty\}\)</span> are closed proper convex and <span class="math inline">\(f\)</span> is differentiable. Since <span class="math inline">\(g\)</span> can be extended valued, it can be used to encode constraints on the variable <span class="math inline">\(x\)</span>. The proximal gradient method is <span class="math display">\[
+x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)),
+\]</span> where <span class="math inline">\(\lambda ^k&gt;0\)</span> is a step size.</p>
+<p><strong>Special cases</strong></p>
+<p>The proximal gradient method reduces to other well-known algorithms in various special cases. When <span class="math inline">\(g=\delta_\mathcal C\)</span>, <span class="math inline">\(P_{\lambda g}\)</span> is projection onto <span class="math inline">\(\mathcal C\)</span>, in which cases it reduces to the projected gradient method. When <span class="math inline">\(f=0\)</span>, then it reduces to proximal minimization, and when <span class="math inline">\(g=0\)</span>, it reduces to the standard gradient descent method.</p>
+<p><strong>Interpretations</strong></p>
+<p>Majorization-minimization</p>
+<p>We first interpret the proximal gradient method as an example of a majorization-minimization algorithm, a large class of algorithms that includes the gradient method, Newton’s method, and the EM algorithm as special cases.</p>
+<p>A <strong>majorization-minimization</strong> algorithm for minimizing a function <span class="math inline">\(\varphi:\mathbb R^n\rightarrow \mathbb R\)</span> consists of the iteration, <span class="math display">\[
+x^{k+1}=\arg\min_{x}\hat \varphi (x,x^k),
+\]</span> where <span class="math inline">\(\hat \varphi(\cdot,x^k)\)</span> is a convex upper bound to <span class="math inline">\(\varphi\)</span> that is tight at <span class="math inline">\(x^k\)</span>, i.e., <span class="math inline">\(\hat \varphi(x,x^k)\ge \varphi(x)\)</span> and <span class="math inline">\(\hat \varphi(x,x)= \varphi(x)\)</span> for all <span class="math inline">\(x\)</span>. The reason for the name should be clear, such algorithms involve iteratively majorizing (upper bounding) the objective and then minimizing the majorization.</p>
+<p>For an upper bound of <span class="math inline">\(f\)</span>, consider the function <span class="math inline">\(\hat f_{\lambda }\)</span> given by <span class="math display">\[
+\hat f_{\lambda}(x,y)=f(y)+\nabla f(g)^T(x-y)+(1/2\lambda)||x-y||_2^2,
+\]</span> with <span class="math inline">\(\lambda&gt;0\)</span>. For fixed <span class="math inline">\(y\)</span>, this function is convex, satisfies <span class="math inline">\(\hat f_\lambda (x,x)=f(x)\)</span>, and is an upper bound on <span class="math inline">\(f\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>, where <span class="math inline">\(L\)</span> is a Lipschitz constant of <span class="math inline">\(\nabla f\)</span>. The algorithm <span class="math display">\[
+x^{k+1}=\arg\min_x\hat f_\lambda (x,x^k)
+\]</span> is thus majorization-minimization algorithm. In fact, it is precisely the standard gradient method for minimizing <span class="math inline">\(f\)</span>.</p>
+<p>Then we have the function <span class="math inline">\(q_\lambda\)</span> given by <span class="math display">\[
+q_\lambda(x,y)=\hat f_\lambda(x,y)+g(x)
+\]</span> is similarly a surrogate for <span class="math inline">\(f+g\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>. The majorization-minimization algorithm, <span class="math display">\[
+x^{k+1}=\arg\min_x q_\lambda (x,x^k)
+\]</span> can be shown to be equivalent to the proximal gradient iteration, <span class="math display">\[
+x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)).
+\]</span> Fixed point iteration.</p>
+<p>The proximal gradient algorithm can also be interpreted as a fixed point iteration. A point <span class="math inline">\(x^*\)</span> is a minimizer if and only if <span class="math display">\[
+0\in\nabla f(x^*)+\partial g(x^*).
+\]</span> For any <span class="math inline">\(\lambda &gt;0\)</span>, this optimality condition holds if and only if the following equivalent statements hold, <span class="math display">\[
+\begin{array}{rcl}
+0 &amp;\in&amp; \lambda\nabla f(x^*)+\lambda\partial g(x^*)\\
+0 &amp;\in&amp; \lambda\nabla f(x^*)-x^*+x^*+\lambda\partial g(x^*)\\
+(I+\lambda \partial g)(x^*) &amp;\ni&amp; (I-\lambda\nabla f)(x^*)\\
+x^* &amp;=&amp; (I+\lambda \partial g)^{-1}(I-\lambda\nabla f)(x^*)\\
+x^* &amp;=&amp; P_{\lambda g}(x^*-\lambda\nabla f(x^*)).
+\end{array}
+\]</span> The last two expressions hold with equality because proximal operator is single valued.</p>
+<p>The last two expression says that <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(f+g\)</span> if and only if it is a fixed point of the <strong>forward-backward operator</strong>, <span class="math display">\[
+(I+\lambda \partial g)^{-1}(I-\lambda\nabla f).
+\]</span> Forward-backward integration of gradient flow</p>
+<p>The proximal gradient method can be interpreted using gradient flows. <span class="math display">\[
+\frac{d}{dt}x(t)=-\nabla f(x(t))-\nabla g(x(t)),
+\]</span> assuming that <span class="math inline">\(g\)</span> is also differentiable.</p>
+<p>Then we consider the following discretization, <span class="math display">\[
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k)-\nabla g(x^{k+1}),
+\]</span> Then we have <span class="math display">\[
+x^{k+1} = (I+h \nabla g)^{-1}(I-\lambda\nabla f)x^k.
+\]</span></p>
+<h3 id="accelerated-proximal-gradient-method">4.6.3 Accelerated proximal gradient method</h3>
+<p>So-called accelerated versions of the basic proximal gradient algorithm include an extrapolation step in the algorithm. One simple version is <span class="math display">\[
+y^{k+1}=x^k+w^k(x^k-x^{k-1})\\
+x^{k+1}=P_{\lambda^kg}(y^{k+1}-\lambda^k \nabla f(y^{k+1})).
+\]</span> These parameters must be chosen in specific ways to achieve the convergence acceleration. One simple choice takes <span class="math display">\[
+w^k=\frac{k}{k+3}.
+\]</span> When <span class="math inline">\(\nabla f\)</span> is Lipschitz continuous with constant <span class="math inline">\(L\)</span>, this method can be shown to converge in objective value with rate <span class="math inline">\(\mathcal O(1/k^2)\)</span> when a fixed step size <span class="math inline">\(\lambda^k=\lambda \in(0,1/L]\)</span> is used. If <span class="math inline">\(L\)</span> is not known, the step sizes <span class="math inline">\(\lambda^k\)</span> can be found by a line search.</p>
+<h3 id="alternating-direction-method-of-multipliers">4.6.4 Alternating direction method of multipliers</h3>
+<h3 id="notes-and-references">4.6.5 Notes and references</h3>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" class="post-title-link" itemprop="url">8. Nonlinear conic programming (Pending)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-20 16:13:29" itemprop="dateCreated datePublished" datetime="2019-09-20T16:13:29+08:00">2019-09-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-24 12:25:42" itemprop="dateModified" datetime="2019-09-24T12:25:42+08:00">2019-09-24</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="8. Nonlinear conic programming (Pending)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="nonlinear-conic-programming">8. Nonlinear Conic Programming</h1>
+<p>We consider the following optimization problem, <span class="math display">\[
+\text{(OP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; h(x)=0\\
+&amp;g(x)\in \mathcal C,
+\end{array}
+\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,h:\mathcal X\rightarrow \mathbb R^m\)</span>, and <span class="math inline">\(g:\mathcal X\rightarrow \mathcal Z\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X\)</span> and <span class="math inline">\(\mathcal Z\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induce norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\)</span> is a closed convex set in <span class="math inline">\(\mathcal Z\)</span>.</p>
+<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal Z=\mathbb R^q\)</span>, and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
+\text{(NLP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; h(x)=0\\
+&amp;g(x)\ge 0.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(h(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(g(X)=X\)</span> and <span class="math inline">\(C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
+\text{(NLP)}\quad \begin{array}{rCl}
+\min &amp; \langle C,X\rangle\\
+\text{subject to}&amp; \mathcal A(X)-b=0\\
+&amp;X\succeq 0(X\in\mathbb S^n_+),
+\end{array}
+\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
+\mathcal A(X)=
+\begin{bmatrix}
+\langle A_1,X\rangle \\ \vdots \\
+\langle A_m,X\rangle
+\end{bmatrix},\quad 
+X\in\mathbb S^n,
+\]</span></p>
+<p>where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
+\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
+\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j, \\
+\mathbf 1^T\mathcal A^*yX \mathbf 1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \mathbf 1^TA_iX\mathbf 1\\
+&amp;=&amp; \mathbf 1^T\displaystyle\sum_{i=1}^m y_i A_iX\mathbf 1,
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
+<p>We have the Lagrange function, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
+&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
+\end{array}
+\]</span> Then <span class="math display">\[
+\begin{array}{rcl}
+\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Therefore, the dual problem is given by, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \langle y,b\rangle\\
+\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
+&amp;Z\succeq 0.
+\end{array}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
