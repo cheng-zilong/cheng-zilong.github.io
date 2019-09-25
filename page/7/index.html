@@ -731,7 +731,7 @@ x
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/Convex Optimization/3.2 Convex Functions/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/Convex Optimization/3.1 Convex Functions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -745,7 +745,7 @@ x
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/03/28/Convex Optimization/3.2 Convex Functions/" class="post-title-link" itemprop="url">3. Convex Functions (2)</a>
+            <a href="/2019/03/28/Convex Optimization/3.1 Convex Functions/" class="post-title-link" itemprop="url">3. Convex Functions (1)</a>
           
         </h1>
 
@@ -771,7 +771,7 @@ x
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-21 19:43:34" itemprop="dateModified" datetime="2019-09-21T19:43:34+08:00">2019-09-21</time>
+                <time title="Modified: 2019-09-08 17:45:03" itemprop="dateModified" datetime="2019-09-08T17:45:03+08:00">2019-09-08</time>
               </span>
             
           
@@ -790,7 +790,7 @@ x
           
 
           
-            <span id="/2019/03/28/Convex Optimization/3.2 Convex Functions/" class="post-meta-item leancloud_visitors" data-flag-title="3. Convex Functions (2)" title="Views">
+            <span id="/2019/03/28/Convex Optimization/3.1 Convex Functions/" class="post-meta-item leancloud_visitors" data-flag-title="3. Convex Functions (1)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -808,7 +808,7 @@ x
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/03/28/Convex Optimization/3.2 Convex Functions/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/03/28/Convex Optimization/3.2 Convex Functions/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/03/28/Convex Optimization/3.1 Convex Functions/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/03/28/Convex Optimization/3.1 Convex Functions/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -822,241 +822,184 @@ x
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="operations-that-preserve-convexity">3.2 Operations that Preserve Convexity</h2>
-<p>We describe some operations that preserve convexity or concavity of functions, or allow us to construct new convex and concave functions.</p>
-<h3 id="nonnegative-weighted-sums">3.2.1 Nonnegative weighted sums</h3>
-<p>A nonnegative weighted sum of convex functions <span class="math display">\[
-f=w_1f_1+\dotsm+w_mf_m,
-\]</span> is convex.</p>
-<p>These properties can be extended to infinite sums and integrals. For example, if <span class="math inline">\(f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span> for each <span class="math inline">\(y\in \mathcal A\)</span> and <span class="math inline">\(w(y)&gt;0\)</span>.</p>
-<p>The the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
-g(x)=\int_\mathcal Aw(y)f(x,y)dy
-\]</span> is convex.</p>
-<h3 id="composition-with-an-affine-mapping">3.2.2 Composition with an affine mapping</h3>
-<p>Suppose <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R,A\in \mathbb R^{n\times m}\)</span> and <span class="math inline">\(b\in \mathbb R^n\)</span>. Define <span class="math inline">\(g:\mathbb R^m\rightarrow \mathbb R\)</span> by <span class="math display">\[
-g(x)=f(Ax+b)
-\]</span> Then if <span class="math inline">\(f\)</span> is convex, so is <span class="math inline">\(g\)</span>.</p>
-<h3 id="pointwise-maximum-and-supremum">3.2.3 Pointwise maximum and supremum</h3>
-<p>If <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions then their pointwise maximum <span class="math inline">\(f\)</span>, defined by <span class="math display">\[
-f(x)=\max\{f_1(x),f_2(x)\}
-\]</span> with <span class="math inline">\(\text{dom} f=\text{dom} f_1\cap \text{dom} f_2\)</span> is also convex.</p>
-<p>proof</p>
-<p>if <span class="math inline">\(0\le \theta\le 1\)</span> and <span class="math inline">\(x,y \in \text{dom}f\)</span>, then <span class="math display">\[
-\begin{array}{rCl}
-f(\theta x+(1-\theta)y)
-&amp;=&amp;\max\{f_1(\theta x+(1-\theta)y),f_2(\theta_1x+(1-\theta)y)\}\\
-&amp;\le&amp;\max\{\theta f_1(x)+(1-\theta)f_1(y),\theta f_2(x)+(1-\theta)f_2(y)\}\\
-&amp;\le&amp;\theta\max\{f_1(x),f_2(x)\}+(1-\theta)\max\{f_1(y),f_2(y)\}\\
-&amp;=&amp;\theta f(x)+(1-\theta)f(y)
-\end{array}
-\]</span> <strong>Example</strong></p>
-<p>piecewise-linear functions is convex because every piecewise-linear function is affine, <span class="math display">\[
-f(x)=\max \{a_1^Tx+b_1,\dotsm,a_L^Tx+b_L\}.
-\]</span> The pointwise maximum property extends to pointwise supremum over an infinite set of convex functions. If for each <span class="math inline">\(y\in\mathcal A,f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span>, then the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
-g(x)=\sup_{y\in\mathcal A}f(x,y)
-\]</span> is convex. Here the domain of <span class="math inline">\(g\)</span> is <span class="math display">\[
-\text{dom} g=\{x\;|\;(x,y)\in\text{dom}f,\; \forall y\in\mathcal A,\;\sup_{y\in\mathcal A}f(x,y)&lt; \infty\}
-\]</span> <strong>Example</strong></p>
-<p>Support function of a set <span class="math display">\[
-S_C(x)=\sup\{x^Ty\;|\;y\in C\}
-\]</span> is convex where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> with <span class="math inline">\(C\neq \O\)</span>.</p>
-<p><strong>Example</strong> (Farthest point of a set)</p>
-<p>Distance to the farthest point of a set <span class="math display">\[
-f(x)=\sup_{y\in C}||x-y||
-\]</span> is convex.</p>
-<p><strong>Example</strong> (Least-square cost as a function of weights) <span class="math display">\[
-g(w)=\inf_x \sum_{i=1}^n w_i(a_i^Tx-b_i)^2.
-\]</span> Since <span class="math inline">\(g\)</span> is the infimum of a family of linear functions of <span class="math inline">\(w\)</span>, it is a concave function of <span class="math inline">\(w\)</span>.</p>
-<p>We can derive the solution explicitly. <span class="math display">\[
-g(w)=\inf_x\left((Ax-b)^TW(Ax-b)\right),
-\]</span> where <span class="math inline">\(W=\text{diag}(w)\)</span>.</p>
-<p><strong>Example</strong> (Maximum eigenvalue of a symmetric matrix)</p>
-<p>The function <span class="math inline">\(f(X)=\lambda_{max}(X)\)</span>, with <span class="math inline">\(\text{dom} f=\mathbb S^m\)</span> is convex. <span class="math display">\[
-f(X)=\sup\{y^TXy\;|\;||y||_2=1\}.
-\]</span> <strong>Example</strong></p>
-<p>Norm of a matrix <span class="math inline">\(f(X)=||X||_2\)</span>, we have <span class="math display">\[
-f(X)=\sup\{u^TXv\;|\; ||u||_2=1,||v||_2=1\}.
-\]</span></p>
-<h3 id="composition">2.2.4 Composition</h3>
+          <h1 id="convex-functions">3. Convex Functions</h1>
+<h2 id="basic-properties-and-examples">3.1 Basic properties and examples</h2>
+<h3 id="definition">3.1.1 Definition</h3>
+<p>A function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is convex if <span class="math inline">\(\text{dom} f\)</span> is a convex set and if for all <span class="math inline">\(x,y\in\text{dom} f\)</span>, and for <span class="math inline">\(0\le\theta\le 1\)</span> we have <span class="math display">\[
+f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)
+\]</span> A function is strictly convex if strict inequality holds when ever <span class="math inline">\(x\neq y\)</span> and <span class="math inline">\(0&lt;\theta&lt;1\)</span>. We say <span class="math inline">\(f\)</span> is concave if <span class="math inline">\(-f\)</span> is convex. For an <strong>affine function</strong>, we always have the equality of the above definition, so all affine functions are both <strong>convex and concave</strong>. Conversely, any function that is convex and concave is affine.</p>
+<p>A function is <strong>convex</strong> if and only if it is convex when restricted to any line that intersects its domain. In other words <span class="math inline">\(f\)</span> is convex if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> and all <span class="math inline">\(v\)</span>, the function <span class="math inline">\(g(t)=f(x+tv)\)</span> is convex.</p>
+<h3 id="extended-value-extensions">3.1.2 Extended-value extensions</h3>
+<p>It is often convenient to extend a convex function to all of <span class="math inline">\(\mathbb R^n\)</span> by defining its value to be infinity outside its domain. <span class="math display">\[
+\tilde f(x)=
+\begin{cases}
+f(x)&amp; x\in \text{dom}\space f\\
+\infty&amp; x\notin \text{dom}\space f
+\end{cases}
+\]</span> The extension is defined on all <span class="math inline">\(\mathbb R^n\)</span>, the extension can simplify notation since we do not need to explicitly describe the domain.</p>
+<p><strong>Example</strong> (Indicator function of a convex set)</p>
+<p>Let <span class="math inline">\(C\subseteq \mathbb R^n\)</span> be a convex set, and consider the convex function <span class="math inline">\(I_C\)</span> with domain <span class="math inline">\(C\)</span> and <span class="math inline">\(I_C(x)=0\space \forall x\in C\)</span>. In other words, the function is identically zero on the set <span class="math inline">\(C\)</span>. Its extended value extensions is given by <span class="math display">\[
+\tilde I_C(x)=
+\begin{cases}
+0 &amp; x\in C\\
+\infty &amp; x\notin C
+\end{cases}
+\]</span> We can play several notation tricks with the indicator function <span class="math inline">\(I_C\)</span>. For example, the problem of minimizing a function <span class="math inline">\(f\)</span> on the set <span class="math inline">\(C\)</span> is the same as minimizing the function <span class="math inline">\(f+\tilde I_C\)</span> over all of <span class="math inline">\(\mathbb R^n\)</span>.</p>
+<h3 id="first-order-conditions">3.1.3 First-order conditions</h3>
+<p>Suppose <span class="math inline">\(f\)</span> is differentiable, Then <span class="math inline">\(f\)</span> is convex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)
+\]</span> holds for all <span class="math inline">\(x,y \in \text{dom} f\)</span>.</p>
+<p><strong>Strict convexity</strong> can also be characterized by a first-order condition. <span class="math display">\[
+f(y)&gt; f(x)+\nabla f(x)^T(y-x)
+\]</span> <strong>Proof</strong></p>
+<p>First we prove the <span class="math inline">\(n=1\)</span> case.</p>
+<p>We show that a differentiable function is convex if and only if <span class="math display">\[
+f(y)\ge f(x)+f&#39;(x)(y-x)
+\]</span> for all <span class="math inline">\(x,y \in \text{dom} f\)</span>.</p>
+<p>To prove the necessity, assume <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(x,y \in \text{dom} f\)</span>. Since <span class="math inline">\(\text{dom} f\)</span> is convex, we have for all <span class="math inline">\(0&lt;t\le 1\)</span>, <span class="math inline">\(x+t(y-x) \in dom \space f\)</span>, since <span class="math inline">\(f\)</span> is convex, we have <span class="math display">\[
+f(x+t(y-x))\le tf(y)+(1-t)f(x)
+\]</span> Then we have <span class="math display">\[
+f(y)\ge\frac{f(x+t(y-x))-f(x)}{t}+f(x)
+\]</span> Taking the limit and we have the theorem.</p>
+<p>To show the sufficiency, assume all <span class="math inline">\(x,y \in \text{dom} f\)</span>. Choose any <span class="math inline">\(x\neq y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> and let <span class="math inline">\(z=\theta x+(1-\theta)y\)</span> <span class="math display">\[
+f(x)\ge f(z)+f&#39;(z)(z-x)\quad f(y)\ge f(z)+f&#39;(z)(z-y)
+\]</span> Multiplying the first inequality with <span class="math inline">\(\theta\)</span> and the second with <span class="math inline">\(1-\theta\)</span> and adding them, then we get the proof.</p>
+<p>The same for general case.</p>
+<h3 id="second-order-conditions">3.1.4 Second-order conditions</h3>
+<p>We now assume that <span class="math inline">\(f\)</span> is twice differentiable, that is, its Hessian or second order derivative <span class="math inline">\(\nabla^2 f\)</span> exists at each point in <span class="math inline">\(\text{dom} f\)</span>. Then <span class="math inline">\(f\)</span> is convex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and its Hessian is positive semi definite: <span class="math display">\[
+\nabla^2 f(x)\succeq 0\quad \forall x\in dom \space f
+\]</span> if <span class="math inline">\(\nabla^2 f(x)\succ 0\quad \forall x\in dom \space f\)</span>, then <span class="math inline">\(f\)</span> is strictly convex. The strictly convex converse is not true. i.e. <span class="math display">\[
+f(x)=x^4
+\]</span> is strict convex but it has zero second derivative at <span class="math inline">\(x=0\)</span>.</p>
+<p><strong>Example</strong> (Quadratic functions)</p>
+<p>Consider the quadratic function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span>, with <span class="math inline">\(\text{dom} f=R^n\)</span>, given by <span class="math display">\[
+f(x)=\frac{1}{2}x^TPx+q^T x+r\\
+\nabla^2 f(x)=P\quad \forall x
+\]</span> That means <span class="math inline">\(f\)</span> is convex if and only if <span class="math inline">\(P\succeq0\)</span>.</p>
+<p><strong>Remark</strong> The theorem requirement that <span class="math inline">\(\text{dom} f\)</span> be convex cannot be dropped. For example, <span class="math display">\[
+f(x)=\frac{1}{x^2}
+\]</span> is not convex since the <span class="math inline">\(\text{dom} f\)</span> is not convex, but <span class="math inline">\(f&#39;&#39;(x)&gt;0\)</span></p>
+<h3 id="examples">3.1.5 Examples</h3>
+<ol type="1">
+<li><p>Exponential. <span class="math inline">\(e^{ax}\)</span> is convex on <span class="math inline">\(\mathbb R\)</span> for any <span class="math inline">\(a\in \mathbb R\)</span>.</p></li>
+<li><p>Powers. <span class="math inline">\(x^a\)</span> is convex on <span class="math inline">\(\mathbb R_{++}\)</span> when <span class="math inline">\(a\ge 1\)</span> or <span class="math inline">\(a\le 0.\)</span></p></li>
+<li><p>Powers of absolute value. <span class="math inline">\(|x|^p\)</span> is convex on R for <span class="math inline">\(p\ge1\)</span>.</p></li>
+<li><p>Logarithm. log x is <strong>concave</strong> on <span class="math inline">\(\mathbb R_{++}\)</span>.</p></li>
+<li><p>Negative entropy. $x x $ is convex on <span class="math inline">\(\mathbb R_{++}.\)</span></p></li>
+</ol>
 <p><span class="math display">\[
-f(x)=h(g(x)),\quad \text{dom} f=\{x\in \text{dom} g\;|\;g(x)\in \text{dom} h\}
+f&#39;&#39;(x)=\frac{1}{x}&gt;0
 \]</span></p>
-<p>Scalar composition</p>
-<p>The second derivative of the composition function <span class="math inline">\(f=h\circ g\)</span> is given by <span class="math display">\[
-f&#39;&#39;(x)=h&#39;&#39;(g(x))g&#39;(x)^2+h&#39;(g(x))g&#39;&#39;(x),
-\]</span> that means if <span class="math inline">\(g\)</span> is convex and h is convex and none decreasing, <span class="math inline">\(f\)</span> is convex or <span class="math inline">\(h\)</span> is convex and none increasing, <span class="math inline">\(g\)</span> is concave.</p>
-<p>Vector composition <span class="math display">\[
-f(x)=h(g(x))=h(g_1(x),\dotsm,g_k(x))
-\]</span> Then <span class="math display">\[
-f&#39;&#39;(x)=g&#39;(x)^T\nabla^2h(g(x))g&#39;(x)+\nabla h(g(x))^Tg&#39;&#39;(x)
-\]</span> Then we can derive the following rules.</p>
-<p><span class="math inline">\(f\)</span> is convex if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none decreasing in each argument and <span class="math inline">\(g_i\)</span> are convex or if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none increasing in each argument and <span class="math inline">\(g_i\)</span> are concave.</p>
-<h3 id="minimization">3.2.5 Minimization</h3>
-<p>We haven seen that the maximum or supremum of an arbitrary family of convex functions is convex. Here we consider minimum function.</p>
-<p>If <span class="math inline">\(f\)</span> is convex in <span class="math inline">\((x, y)\)</span> and C is convex nonempty set, then the function <span class="math display">\[
-g(x)=\inf_{y\in C}f(x,y)
-\]</span> is convex in <span class="math inline">\(x\)</span> provided <span class="math inline">\(g(x)&gt;-\infty \space\forall x\)</span>.</p>
-<p>proof</p>
-<p>We have <span class="math inline">\(y_1,y_2\in C\)</span> <span class="math display">\[
-g(\theta x_1+(1-\theta)x_2)=\inf_{y\in C} f(\theta x_1+(1-\theta)x_2,y)\\
-\le f(\theta x_1+(1-\theta)x_2,\theta y_1+(1-\theta)y_2)\\
-\le\theta f(x_1,y_1)+(1-\theta)f(x_2,y_2)\\
-\le\theta g(x_1)+(1-\theta)g(x_2).
+<ol start="6" type="1">
+<li>Norm. Every norm on <span class="math inline">\(\mathbb R^n\)</span> is convex. <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is a norm and <span class="math inline">\(0\le\theta\le1\)</span>, then</li>
+</ol>
+<p><span class="math display">\[
+f(\theta x+(1-\theta)y)\le f(\theta x)+f((1-\theta)y)=\theta f(x)+(1-\theta)f(y).
 \]</span></p>
-<p><strong>Example</strong> (Schur complement)</p>
-<p>Suppose the quadratic function <span class="math display">\[
-f(x,y)=x^TAx+2x^TBy+y^TCy,
-\]</span> is convex in (x,y), which means <span class="math display">\[
+<ol start="7" type="1">
+<li>Max function is convex on <span class="math inline">\(\mathbb R^n\)</span> . <span class="math inline">\(f(x)=\max_i x_i\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span></li>
+</ol>
+<p><span class="math display">\[
+f(\theta x+(1-\theta)y)=\max_i(\theta x_i+(1-\theta)y_i)\le\max_i(\theta x_i)+\max((1-\theta)y_i)=\theta f(x)+(1-\theta)f(y).
+\]</span></p>
+<ol start="8" type="1">
+<li><p>Quadratic-over-linear function. The function <span class="math inline">\(f(x,y)=\frac{x^2}{y}\)</span> is convex on <span class="math inline">\(\mathbb R\times \mathbb R_{++}\)</span>.</p>
+<p>To show the function is convex, we have</p></li>
+</ol>
+<p><span class="math display">\[
+\nabla^2f(x,y)=
 \begin{bmatrix}
-A &amp; B\\B^T &amp; C
+\frac{2}{y} &amp; -\frac{2x}{y^2} \\
+-\frac{2x}{y^2} &amp; \frac{2x^2}{y^3}
+\end{bmatrix}=\frac{2}{y^3}
+\begin{bmatrix}
+y^2 &amp; -xy\\
+-xy &amp; x^2
+\end{bmatrix}\succeq0.
+\]</span></p>
+<ol start="9" type="1">
+<li><p>Log-sum-exp. The function <span class="math inline">\(f(x)=\log(e^{x_1}+\dotsm+e^{x_n})\)</span> is convex on <span class="math inline">\(\mathbb R^n\)</span>.</p>
+<p>Define <span class="math inline">\(z=(e^{x_1},e^{x_2},\dotsm,e^{x_n})\)</span>, then <span class="math inline">\(f(x)=\log (1^T z)\)</span>. <span class="math display">\[
+\frac{\partial f(x)}{\partial x_i}=\frac{1}{1^Tz}z_i\\
+\frac{\partial^2 f}{\partial x_i\partial x_j}=
+\begin{cases}
+-(1^Tz)^{-2}z_jz_i+(1^Tz)^{-1}z_{i=j} &amp; i=j\\
+-(1^Tz)^{-2}z_jz_i &amp; i\neq j
+\end{cases}.
+\]</span> That means <span class="math display">\[
+\nabla^2 f(z)=-(1^Tz)^{-2}zz^T+(1^Tz)^{-1}\text{diag}(z).
+\]</span> To check if it is positive definite <span class="math display">\[
+v^T\nabla^2 f(z) v=-(1^Tz)^{-2}v^Tzz^Tv+(1^Tz)^{-1}v^T\text{diag}(z)v\\
+=(1^Tz)^{-2}[(1^Tz)v^T\text{diag}(z)v-v^Tzz^Tv]\\
+=(1^Tz)^{-2}\left[\left(\sum_{i=1}^n z_i \right) \left(\sum_{i=1}^n v_i^2z_i\right)-\left(\sum_{i=1}^n v_iz_i\right)^2\right].
+\]</span> By Cauchy-Schwarz inequality <span class="math inline">\((a^Ta)(b^Tb)\ge(a^Tb)^2\)</span>, where <span class="math inline">\(a=\sqrt z_i\)</span> and <span class="math inline">\(b=v_i\sqrt z_i\)</span>, we can know the above matrix is positive definite.</p></li>
+<li><p>Geometric mean. <span class="math inline">\(f(x)=(\prod_{i=1}^n x_i)^{1/n}\)</span> is <strong>concave</strong> on <span class="math inline">\(\text{dom} f=\mathbb R^n_{++}\)</span>. <span class="math display">\[
+\frac{\partial f(x)}{\partial x_i}=\frac{1}{n}(\prod_{k=1}^n x_k)^{1/n-1}
+\frac{\prod_{k=1}^{n} x_k}{x_i}=
+\frac{1}{n x_i}(\prod_{k=1}^n x_k)^{1/n}\\
+\frac{\partial f^2(x)}{\partial x_i\partial x_i}=(1-n)\frac{1}{(nx_i)^2} (\prod_{k=1}^n x_k)^{1/n}\\
+\frac{\partial f^2(x)}{\partial x_i\partial x_j}=\frac{1}{n^2x_ix_j}(\prod_{k=1}^n x_k)^{1/n}.
+\]</span> Then we have <span class="math display">\[
+\nabla^2f(x)=\frac{1}{n^2}(\prod_{k=1}^n x_k)^{1/n}\left(qq^T-n\space diag(1/x_1^2,\dotsm,1/x_n^2)\right)
+\]</span> where <span class="math inline">\(q_i=\frac{1}{x_i}\)</span>.</p></li>
+</ol>
+<p>Then for any <span class="math inline">\(v\)</span>, we have <span class="math display">\[
+    v^T \nabla^2 f(x)v =\frac{1}{n^2}(\prod_{k=1}^n x_k)^{1/n}\left(\left(\sum v_iq_i\right)^2-n\sum {v_i^2q_i^2}   \right)\le 0.
+    \]</span></p>
+<ol start="11" type="1">
+<li><p>Log-determinant. For the function <span class="math inline">\(f(X)=\log \det X\)</span> is concave.</p>
+<p>We can verify concavity by considering an arbitrary line, given by <span class="math inline">\(X=Z+tV\)</span> where <span class="math inline">\(Z,V\in \mathbb S^n\)</span>. <span class="math display">\[
+g(t)=f(Z+tV)=\log \det (Z+tV)\\
+=\log\det(Z^{1/2}(I+tZ^{-1/2}VZ^{-1/2})Z^{1/2})\\
+=\log\det(I+tZ^{-1/2}VZ^{-1/2})+\log \det Z\\
+=\sum_i\log(1+t\lambda_i)+\log \det Z\\
+g&#39;(t)=\sum_i\frac{\lambda_i}{1+t\lambda_i}\\
+g&#39;&#39;(t)=-\sum_i\frac{\lambda_i^2}{(1+t\lambda_i)^2}&lt;0,
+\]</span> where <span class="math inline">\(\lambda_i\)</span> is the eigenvalues of the matrix <span class="math inline">\(Z^{-1/2}VZ^{-1/2}\)</span>. Therefore, concave.</p></li>
+</ol>
+<h3 id="sublevel-sets">3.1.6 Sublevel sets</h3>
+<p>The <span class="math inline">\(\alpha\)</span>-sublevel set of a function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is defined as <span class="math display">\[
+C_\alpha=\{x\in \text{dom}\space f\;|\;f(x)\le\alpha\}
+\]</span> The sublevel set of a convex function is convex.</p>
+<h3 id="epigraph">3.1.7 Epigraph</h3>
+<p>The <strong>graph</strong> of a function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is defined as <span class="math inline">\(\{(x,f(x))\;|\;x\in \text{dom} f\}\)</span>.</p>
+<p>The <strong>epigraph</strong> (epi means above) of a function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is defined as <span class="math display">\[
+\text{epi} f=\{(x,t)\;|\;x\in \text{dom} f,f(x)\le t\}.
+\]</span> The link between convex sets and convex functions is via the epigraph: <strong>A function is convex if and only if its epigraph is a convex set.</strong></p>
+<p>A function of concave if and only if its hypograph defined as <span class="math display">\[
+\text{hypo} f=\{(x,t)\;|\;t\le f(x)\}
+\]</span> is a convex set.</p>
+<p><strong>Example</strong> (Matrix fractional function)</p>
+<p>The function <span class="math inline">\(f:\mathbb R^n\times \mathbb S^n\rightarrow \mathbb R\)</span> ,defined as <span class="math display">\[
+f(x,Y)=x^TY^{-1}x
+\]</span> is convex on <span class="math inline">\(\text{dom} f =\mathbb R^n\times \mathbb S^n_{++}\)</span> . This function is the generalized quadratic over linear function, <span class="math display">\[
+\text{epi} f=\{(x,Y,t)\;|\;\space Y\succ 0, x^TY^{-1}x\le t\}\\
+=\{(x,Y,t)\;|\;\space Y\succ 0, t-x^TY^{-1}x\ge 0\}.
+\]</span> By Schur complement <span class="math display">\[
+S=t-x^TY^{-1}x\ge0\iff  X=
+\begin{bmatrix}
+Y &amp; x\\
+x^T &amp; t
 \end{bmatrix}\succeq 0.
-\]</span> We can express <span class="math inline">\(g(x)=\inf _y f(x,y)\)</span> as <span class="math display">\[
-g(x)=x^T(A-BC^{-1}B^T)x.
-\]</span> By the minimization rule, <span class="math inline">\(g(x)\)</span> is also convex.</p>
-<h3 id="perspective-of-a-function">3.2.6 Perspective of a function</h3>
-<p>If <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> , then the perspective of <span class="math inline">\(f\)</span> is the function <span class="math inline">\(g: \mathbb R^{n+1}\rightarrow\mathbb R\)</span> defined by <span class="math display">\[
-g(x,t)=tf(\frac{x}{t})
-\]</span> Then the perspective operation preserves convexity: if <span class="math inline">\(f\)</span> is a convex function, then so is its perspective function <span class="math inline">\(g\)</span>.</p>
-<h2 id="the-conjugate-function">3.3 The conjugate function</h2>
-<h3 id="definition-and-examples">3.3.1 Definition and examples</h3>
-<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span>. The function <span class="math inline">\(f^*:\mathbb R^n\rightarrow\mathbb R\)</span> defined as <span class="math display">\[
-f^*(y)=\sup_{x\in \text{dom} f}(y^Tx-f(x))
-\]</span> is called the conjugate of the function <span class="math inline">\(f\)</span>. The <strong>domain</strong> of the <strong>conjugate function</strong> consists of <span class="math inline">\(y\in \mathbb R^n\)</span> for which the supremum is finite. We see immediately that <span class="math inline">\(f^*\)</span> is convex since it is the pointwise supremum of a family of convex (affine) functions of <span class="math inline">\(y\)</span>. That is true whether or not <span class="math inline">\(f\)</span> is convex.</p>
-<p>Let's start with some simple examples which allows us to derive an analytical expression for the conjugate of many common convex functions.</p>
-<p><strong>Example</strong></p>
-<p><strong>Affine function</strong>. <span class="math inline">\(f(x)=ax+b\)</span> As a function of x, <span class="math inline">\(yx-ax-b\)</span> is bounded if and only if <span class="math inline">\(y=a\)</span>, in which case it is a constant. Therefore, the domain of the convex function is a singleton <span class="math inline">\({a}\)</span> and <span class="math inline">\(f^*(a)=-b\)</span>.</p>
-<p><strong>Negative logarithm</strong>. <span class="math inline">\(f(x)=-\log x\)</span> with <span class="math inline">\(\text{dom} f\)</span> is <span class="math inline">\(\mathbb R_{++}\)</span>. Then the function <span class="math inline">\(xy+\log x\)</span> is unbounded above if <span class="math inline">\(y&gt;0\)</span> and reaches its maximum at <span class="math inline">\(x=-\frac{1}{y}\)</span> otherwise. Then <span class="math inline">\(\text{dom} f^*=-\mathbb R_{++}\)</span> and <span class="math inline">\(f^*(y)=-1-\log(-y)\)</span>.</p>
-<p><strong>Exponential</strong>. <span class="math inline">\(f(x)=e^x\)</span> . <span class="math inline">\(xy-e^x\)</span> is unbounded if <span class="math inline">\(y&lt;0\)</span> . For <span class="math inline">\(y&gt;0\)</span>, <span class="math inline">\(xy-e^x\)</span> reaches its maximum at <span class="math inline">\(x=\log y\)</span>, we have <span class="math inline">\(f^*(y)=y\log y-y\)</span> for <span class="math inline">\(\text{dom}f^*=\mathbb R_{++}\)</span>.</p>
-<p><strong>Negative Entropy</strong> <span class="math inline">\(f(x)=x\log x\)</span> . <span class="math inline">\(xy-x\log x\)</span> is bounded. <span class="math inline">\(f^*(y)=e^{y-1}\)</span>.</p>
-<h3 id="basic-properties">3.3.2 Basic properties</h3>
-<p><strong>Fenchel's inequality</strong> <span class="math display">\[
-f(x)+f^*(y)\ge x^Ty
-\]</span> <strong>Conjugate of the conjugate</strong></p>
-<p>If <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(f\)</span> is closed. Then <span class="math inline">\(f^{**}=f\)</span>.</p>
-<p><strong>Differentiable functions</strong></p>
-<p>Suppose <span class="math inline">\(f\)</span> is convex and differentiable, with <span class="math inline">\(\text{dom} f= \mathbb R^n\)</span>. Any maximizer <span class="math inline">\(x^*\)</span> of <span class="math inline">\(y^Tx-f(x)\)</span> satisfies <span class="math inline">\(y=\nabla f(x^*)\)</span>. Therefore, the conjugate function can be denoted as <span class="math display">\[
-f^*(y)=(x^*)^T\nabla f(x^*)-f(x^*).
-\]</span> <strong>Scaling and composition with affine transformation</strong></p>
-<p>For <span class="math inline">\(a&gt;0\)</span> and <span class="math inline">\(b\in \mathbb R\)</span>, the conjugate of <span class="math inline">\(g(x)=af(x)+b\)</span> is <span class="math inline">\(g^*(y)=af^*(y/a)-b\)</span>.</p>
-<p><strong>Sums of independent functions</strong></p>
-<p>If <span class="math inline">\(f(u,v)=f_1(u)+f_2(v)\)</span> where <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions with conjugates <span class="math inline">\(f_1^*\)</span> and <span class="math inline">\(f_2^*\)</span>. <span class="math display">\[
-f^*(w,z)=f_1^*(w)+f_2^*(z)
+\]</span> We have <span class="math display">\[
+\text{epi} f=\{(x,Y,t)|\space Y\succ 0, \begin{bmatrix}
+Y &amp; x\\x^T &amp; t
+\end{bmatrix}\succeq 0\}.
+\]</span> The conditions are linear matrix inequality in <span class="math inline">\((x,Y,t)\)</span> and therefore, $ f $ is convex.</p>
+<h3 id="jensens-inequality-and-extensions">3.1.8 Jensen's inequality and extensions</h3>
+<p>The basic inequality <span class="math display">\[
+f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)
+\]</span> is sometimes called <strong>Jensen's inequality</strong> . It is easily extended to convex combinations of more than two points. <span class="math display">\[
+f(\theta_1x_1+\dotsm+\theta_nx_n)\le\theta_1f(x_1)+\dotsm+\theta_nf(x_n).
+\]</span> if <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(\theta_1+\dotsm+\theta_n =1\)</span> and <span class="math inline">\(\theta_1,\theta_2,\dotsm,\theta_n\ge0\)</span>.</p>
+<p>This is also correct in continuous cases <span class="math display">\[
+f\left(\int_sp(x)xdx\right)\le\int_sf(x)p(x)dx
+\]</span> if <span class="math inline">\(f\)</span> is convex, <span class="math inline">\(p(x)\ge0\)</span>,<span class="math inline">\(\int_sp(x)dx=1\)</span>.</p>
+<p>In the most general case, we can take any probability measure with support in <span class="math inline">\(\text{dom} f\)</span> and if <span class="math inline">\(f\)</span> is convex, we have <span class="math display">\[
+f(Ex)\le Ef(x).
 \]</span></p>
-<h2 id="quasiconvex-functions">3.4 Quasiconvex functions</h2>
-<h3 id="definition-and-examples-1">3.4.1 Definition and examples</h3>
-<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconvex</strong> if its domain and all its sublevel sets <span class="math display">\[
-S_\alpha=\{x\in \text{dom} f\;|\; f(x)\le \alpha\}
-\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
-<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconcave</strong> if its domain and all its superlevel sets <span class="math display">\[
-S_\alpha=\{x\in \text{dom} f|\space f(x)\ge \alpha\}
-\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
-<p>A function that is both quasiconvex and quasiconcave is called quasilinear. If a function <span class="math inline">\(f\)</span> is quasilinear, then its domain and every level set <span class="math inline">\(\{x\;|\;f(x)=\alpha\}\)</span> is convex.</p>
-<p><strong>Example</strong></p>
-<p>Logarithm is quasiconvex and quasiconcave and therefore is quasilinear.</p>
-<p><strong>Example</strong></p>
-<p>Consider <span class="math inline">\(f:\mathbb R^2\rightarrow \mathbb R\)</span> with <span class="math inline">\(\text{dom} f =\mathbb R_+^2\)</span> and <span class="math inline">\(f(x_1, x_2)=x_1x_2\)</span> . This function is neither convex nor concave since its hessian matrix <span class="math display">\[
-\nabla^2f(x)=
-\begin{bmatrix}
-0 &amp; 1\\
-1 &amp; 0
-\end{bmatrix}.
-\]</span> However the function is quasiconcave since the superlevel sets <span class="math display">\[
-\{x\in \mathbb R_+^2\;|\;x_1x_2\ge \alpha\}
-\]</span> are convex sets for all <span class="math inline">\(\alpha\)</span>.</p>
-<h3 id="basic-properties-1">3.4.2 Basic Properties</h3>
-<p>A function <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for any <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , <span class="math display">\[
-f(\theta x+(1-\theta) y) \le \max \{f(x),f(y)\}.
-\]</span> That means the value of the function does not exceed the maximum of its values of the endpoints.</p>
-<p><span class="math inline">\(f\)</span> is quasiconvex if and only if its restriction to any line intersecting its domain is quasiconvex.</p>
-<p><strong>Quasiconvex Functions on <span class="math inline">\(\mathbb R\)</span></strong></p>
-<p>A continuous function <span class="math inline">\(f:\mathbb R\rightarrow\mathbb R\)</span> is quasiconvex if and only if at least one of the following condition holds:</p>
-<ol type="1">
-<li><span class="math inline">\(f\)</span> is nondecreasing</li>
-<li><span class="math inline">\(f\)</span> is nonincreasing</li>
-<li>there is a point <span class="math inline">\(c\in \text{dom} f\)</span> such that for <span class="math inline">\(t&lt;c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nonincreasing, and for <span class="math inline">\(t\ge c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nondecreasing.</li>
-</ol>
-<p>The point <span class="math inline">\(c\)</span> can be chosen as any point which is a global minimizer of <span class="math inline">\(f\)</span>.</p>
-<h3 id="differentiable-quasiconvex-functions">3.4.3 Differentiable quasiconvex functions</h3>
-<p><strong>First order conditions</strong></p>
-<p>Suppose <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is differentiable. Then <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for all <span class="math inline">\(x,y\in \text{dom} f\)</span> <span class="math display">\[
-f(y)\le f(x)\implies \nabla f(x)^T(y-x)\le 0
-\]</span> <strong>Second order conditions</strong></p>
-<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable. If <span class="math inline">\(f\)</span> is quasiconvex, then for all <span class="math inline">\(x \in \text{dom} f\)</span>, and for all <span class="math inline">\(y \in \mathbb R^n\)</span> we have <span class="math display">\[
-y^T\nabla f(x)=0\implies y^T\nabla^2f(x) y\ge 0.
-\]</span></p>
-<h3 id="operations-that-preserve-quasiconvexity">3.4.4 Operations that preserve quasiconvexity</h3>
-<p><strong>Nonnegative weighted maximum</strong> <span class="math display">\[
-f=\max\{w_1f_1,\dotsm,w_mf_m\}
-\]</span> The property can be expanded to general pointwise supremum. <span class="math display">\[
-f(x)=\sup_{y\in C}(w(y)g(x,y))
-\]</span> where <span class="math inline">\(w(y)\ge 0\)</span> and <span class="math inline">\(g(x,y)\)</span> is quasiconvex in x for each y.</p>
-<p><strong>Composition</strong></p>
-<p>If <span class="math inline">\(g:\mathbb R^n \rightarrow \mathbb R\)</span> is quasiconvex and <span class="math inline">\(h:\mathbb R\rightarrow \mathbb R\)</span> is non decreasing, then $f=g h $ is quasiconvex.</p>
-<p><strong>Minimization</strong></p>
-<p>If <span class="math inline">\(f(x,y)\)</span> is quasiconvex jointly in <span class="math inline">\(x,y\)</span> and <span class="math inline">\(C\)</span> is a convex set. Then the function <span class="math display">\[
-g(x)=\inf_{y\in C}f(x,y)
-\]</span> is quasiconvex.</p>
-<h3 id="representation-via-family-of-convex-functions">3.4.5 Representation via family of convex functions</h3>
-<p>In the sequel, it will be convenient to represent the sublevel sets of a quasiconvex function via inequalities of convex functions. We seek a family of convex functions <span class="math inline">\(\phi(t):\mathbb R^n\rightarrow \mathbb R\)</span> indexed by <span class="math inline">\(t\in \mathbb R\)</span>. <span class="math display">\[
-f(x)\le t \iff \phi_t(x)\le 0
-\]</span></p>
-<h2 id="log-concave-and-log-convex-functions">3.5 Log-concave and log-convex functions</h2>
-<h3 id="definition">3.5.1 Definition</h3>
-<p>A function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is logarithmically concave or log-concave if <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in \text{dom} f\)</span> and <span class="math inline">\(\log f\)</span> is concave. It is said to be logarithmically convex or log-convex if <span class="math inline">\(\log f\)</span> is convex. Thus <span class="math inline">\(f\)</span> is log-convex if and only if <span class="math inline">\(1/f\)</span> is log-concave. It is convenient to allow <span class="math inline">\(f\)</span> to take on the value zero, in which case we take <span class="math inline">\(\log f(x)=-\infty\)</span>. In the case we say <span class="math inline">\(f\)</span> is log-concave if the extended-value function <span class="math inline">\(\log f\)</span> is concave.</p>
-<p>We can express log-concave function directly without logarithms: a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> with convex domain and <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in dom f\)</span> is log-concave if and only if for all <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , we have <span class="math display">\[
-f(\theta x+(1-\theta) y)\ge f(x)^\theta f(y)^{1-\theta}
-\]</span> From the composition rules we know that <span class="math inline">\(e^h\)</span> is convex if <span class="math inline">\(h\)</span> is convex since the function <span class="math inline">\(e^x\)</span> is convex and nondecreasing and function <span class="math inline">\(h\)</span> is convex. So a log-convex function is convex. Similarly , a nonnegative concave function is log-concave since <span class="math inline">\(\log x\)</span> is concave and nondecreasing. It is also clear that a log-convex function is quasiconvex and a log-concave function is quasiconcave since the logarithm is monotone increasing.</p>
-<h3 id="properties">3.5.2 Properties</h3>
-<p>Twice differentiable log-convex/concave functions.</p>
-<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable, with <span class="math inline">\(\text{dom} f\)</span> is convex,so <span class="math display">\[
-\nabla^2 \log f(x)=\frac{1}{f(x)}\nabla^2 f(x)-\frac{1}{f(x)^2}\nabla f(x)\nabla f(x)^T.
-\]</span> We conclude that <span class="math inline">\(f\)</span> is log-convex if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
-f(x)\nabla^2 f(x)\succeq \nabla f(x)\nabla f(x)^T,
-\]</span> and log-concave if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
-f(x)\nabla^2 f(x)\preceq \nabla f(x)\nabla f(x)^T.
-\]</span> <strong>Multiplication, addition and integration</strong></p>
-<p>Log-convexity and log-concavity are closed under multiplication and positive scaling. For example, if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave, then so is the pointwise product. <span class="math inline">\(h(x)=f(x)g(x)\)</span></p>
-<p>Sum of log-concave functions is not in general log-concave. Log-convexity, however, preserved under sums.</p>
-<p>In some special case log-concavity is preserved by integration. If <span class="math inline">\(f: \mathbb R^n \times \mathbb R^m \rightarrow \mathbb R\)</span> is log-concave, then <span class="math display">\[
-g(x)=\int f(x,y)dy
-\]</span> is log-concave function of <span class="math inline">\(x\)</span> on <span class="math inline">\(\mathbb R^n\)</span>.</p>
-<p>Convolution: if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave on <span class="math inline">\(\mathbb R^n\)</span>, then so is the convolution <span class="math display">\[
-(f*g)(x)=\int f(x-y)g(y)dy.
-\]</span></p>
-<h2 id="convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</h2>
-<p>We now consider generalizations of notions of monotonicity and convexity, using generalized inequalities instead of the usual ordering on <span class="math inline">\(\mathbb R\)</span>.</p>
-<h3 id="monotonicity-with-respect-to-a-generalized-inequality">3.6.1 Monotonicity with respect to a generalized inequality</h3>
-<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>K-nondecreasing</strong> if <span class="math display">\[
-x\preceq_K y\implies f(x)\le f(y),
-\]</span> and <strong>K-increasing</strong> if <span class="math display">\[
-x\preceq_K y, x\neq y \implies f(x)&lt;f(y).
-\]</span> <strong>K-nonincreasing</strong> and <strong>K-decreasing</strong> functions are defined in a similar way.</p>
-<p><strong>Example</strong> (Matrix monotone function)</p>
-<p>A function <span class="math inline">\(f:\mathbb S^n\rightarrow \mathbb R\)</span> is called matrix monotone if it is monotone with respect to the positive semidefinite cone.</p>
-<ol type="1">
-<li><span class="math inline">\(\text{tr}(WX)\)</span>, where <span class="math inline">\(w\in\mathbb S^n\)</span>, is matrix nondecreasing if <span class="math inline">\(W\succeq 0\)</span> and the matrix increasing if <span class="math inline">\(W\succ 0\)</span>.</li>
-<li><span class="math inline">\(\text{tr}(X^{-1})\)</span> is matrix decreasing on <span class="math inline">\(\mathbb S^n_{++}\)</span>.</li>
-<li><span class="math inline">\(\text{det}(X)\)</span> is matrix increasing on <span class="math inline">\(\mathbb S^n_{++}\)</span> and matrix nondecreasing on <span class="math inline">\(\mathbb S^n_+\)</span>.</li>
-</ol>
-<p><strong>Gradient conditions for monotonicity</strong></p>
-<p>A differentiable function <span class="math inline">\(f\)</span>, with convex domain, is <strong>K-nondecreasing</strong> if and only if <span class="math display">\[
-\nabla f(x)\succeq_{K^*}0.
-\]</span> The function is <strong>K-increasing</strong> if (converse is not true) <span class="math display">\[
-\nabla f(x)\succ_{K^*}0.
-\]</span></p>
-<h3 id="convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</h3>
-<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> is called K-convex if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, <span class="math display">\[
-f(\theta x+(1-\theta)y) \preceq_K \theta f(x)+(1-\theta)f(y)
-\]</span> Strict convex if <span class="math display">\[
-f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y).
-\]</span></p>
-<p><strong>Example</strong> (Convexity with respect to componentwise inequality)</p>
-<p>A function is convex with respect to componentwise inequality (the generalized inequality is induced by <span class="math inline">\(\mathbb R^n_+\)</span>) if and only if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
-f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y).
-\]</span> <strong>Example</strong> (Matrix Convexity)</p>
-<p>suppose <span class="math inline">\(f\)</span> is a symmetric matrix valued function, i.e. <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^n\)</span>. The function <span class="math inline">\(f\)</span> is convex with respect to matrix inequality if <span class="math display">\[
-f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y)
-\]</span> for any <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>.</p>
+<h3 id="inequalities">3.1.9 Inequalities</h3>
+<p>Many famous inequalities can be derived by applying Jensen's inequality to some appropriate convex function.</p>
 
         
       
