@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \beg">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-26T02:04:43.000Z">
+<meta property="og:updated_time" content="2019-09-29T15:34:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4. Gradient Methods (1)">
 <meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \beg">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-26 10:04:43" itemprop="dateModified" datetime="2019-09-26T10:04:43+08:00">2019-09-26</time>
+                <time title="Modified: 2019-09-29 23:34:24" itemprop="dateModified" datetime="2019-09-29T23:34:24+08:00">2019-09-29</time>
               </span>
             
           
@@ -321,7 +321,7 @@
 \]</span> In the situation where <span class="math inline">\(\nabla f(x)=0\)</span> cannot be solved analytically, we look for an approximate solution via iterative methods.</p>
 <p>General framework of an optimization algorithm.</p>
 <hr>
-<p>For <span class="math inline">\(k=0,1,...,\)</span> if <span class="math inline">\(x^{(k)}\)</span> is optimal stop else determine an improved estimate of the solution <span class="math inline">\(x^{(k+1)}=x^{(k)}+\alpha_{k}\times p^{(k)}\)</span> end end</p>
+<p><strong>For</strong> <span class="math inline">\(k=0,1,...,\)</span> <strong>if</strong> <span class="math inline">\(x^{(k)}\)</span> is optimal stop <strong>else</strong> determine an improved estimate of the solution <span class="math inline">\(x^{(k+1)}=x^{(k)}+\alpha_{k}\times p^{(k)}\)</span> <strong>end</strong> <strong>end</strong></p>
 <hr>
 <p>Here <span class="math inline">\(p^{(k)}\)</span> is a <strong>search direction</strong> that we hope points towards the solution, or that improves our solution in some sense. The scalar <span class="math inline">\(\alpha_k\)</span> is a step length that determines the point <span class="math inline">\(x^{(k+1)}\)</span>. Once the search direction has been solved, the step length can be solved as some auxiliary one-dimensional problems.</p>
 <p><strong>Descent property</strong> At a given point <span class="math inline">\(x^*\)</span>, let <span class="math inline">\(\hat d=-\frac{\nabla f(x^*)}{||\nabla f(x^*)||}\)</span>. The value of <span class="math inline">\(f\)</span> decreases most rapidly along the unit direction <span class="math inline">\(\hat d\)</span> and the rate of change of <span class="math inline">\(f\)</span> at <span class="math inline">\(x^*\)</span> along the direction <span class="math inline">\(\hat d\)</span> is <span class="math inline">\(-||\nabla f(x^*)||\)</span>, i.e., as <span class="math inline">\(x\)</span> moves along <span class="math inline">\(\hat d\)</span> from <span class="math inline">\(x^*\)</span> by a small distance <span class="math inline">\(\delta\)</span>, the value <span class="math inline">\(f(x)\)</span> is changed by the amount <span class="math inline">\(-||\nabla f(x^*)||\delta\)</span>.</p>
@@ -329,11 +329,11 @@
 <p>The direction <span class="math inline">\(-\nabla f(x^*)\)</span> is known as the steepest descent direction since it gives the fastest rate of decrease in <span class="math inline">\(f(x)\)</span> among all directions.</p>
 <p><strong>Steepest descent method with exact line search</strong></p>
 <hr>
-<p><strong>[step 0]</strong> Select an initial point <span class="math inline">\(x^{(0)}\)</span>, and <span class="math inline">\(\epsilon&gt;0\)</span> <strong>[step k]</strong> For <span class="math inline">\(k=0,1,...,\)</span></p>
+<p><strong>[step 0]</strong> Select an initial point <span class="math inline">\(x^{(0)}\)</span>, and <span class="math inline">\(\epsilon&gt;0\)</span> <strong>[step k]</strong> <strong>For</strong> <span class="math inline">\(k=0,1,...,\)</span></p>
 <ol type="1">
 <li><p>evaluate <span class="math inline">\(d^{(k)} = -\nabla f(x^{(k)})\)</span></p></li>
-<li><p>if <span class="math inline">\(||d^{(k)}||&lt;\epsilon\)</span>, stop and <span class="math inline">\(x^{(k)}\)</span> is an approximate solution</p>
-<p>else</p>
+<li><p><strong>if</strong> <span class="math inline">\(||d^{(k)}||&lt;\epsilon\)</span>, stop and <span class="math inline">\(x^{(k)}\)</span> is an approximate solution</p>
+<p><strong>else</strong></p>
 <ol type="1">
 <li><p>find the value <span class="math inline">\(t_k\)</span> that minimizes the one-dimensional function <span class="math display">\[
 g(t)=f(x^{(k)}+td^{(k)})
@@ -341,7 +341,7 @@ g(t)=f(x^{(k)}+td^{(k)})
 <li><p>set <span class="math inline">\(x^{(k+1)}=x^{(k)}+t_kd^{(k)}\)</span>.</p></li>
 </ol></li>
 </ol>
-<p>end</p>
+<p><strong>end</strong></p>
 <hr>
 <p><strong>Remark</strong></p>
 <p>The most difficult part of the steepest descent method usually is to find the <span class="math inline">\(t_k\)</span> that minimizes <span class="math inline">\(f\)</span> along the gradient direction.</p>
@@ -618,7 +618,7 @@ E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

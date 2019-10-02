@@ -215,6 +215,393 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" class="post-title-link" itemprop="url">7. Nonlinear conic programming (Pending)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-10-01 18:28:03" itemprop="dateCreated datePublished" datetime="2019-10-01T18:28:03+08:00">2019-10-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-02 20:02:51" itemprop="dateModified" datetime="2019-10-02T20:02:51+08:00">2019-10-02</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (Pending)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="nonlinear-conic-programming">7. Nonlinear Conic Programming</h1>
+<p>We consider the following optimization problem, <span class="math display">\[
+\text{(OP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g(x)=0\\
+&amp;h(x)\in \mathcal C,
+\end{array}
+\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,g:\mathcal X\rightarrow \mathcal U\)</span>, and <span class="math inline">\(h:\mathcal X\rightarrow \mathcal V\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X,\mathcal U\)</span> and <span class="math inline">\(\mathcal V\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its 0induce norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\subseteq \mathcal V\)</span> is a closed convex set in <span class="math inline">\(\mathcal V\)</span>.</p>
+<p>Let <span class="math inline">\(\mathcal Y=\mathcal U\times \mathcal V\)</span>, <span class="math inline">\(\mathcal K=\{0^\mathcal U\}\times \mathcal C\subset \mathcal Y\)</span>. Define <span class="math inline">\(G:\mathcal X\rightarrow \mathcal Y\)</span> by <span class="math display">\[
+G(X)=(g(X),h(X)),\quad X\in\mathcal X.
+\]</span> The problem can be written as the following compact form, <span class="math display">\[
+\text{(COP)}\quad \begin{array}{rCl}
+\min &amp; f(X)\\
+\text{subject to}&amp; G(X)\in\mathcal K.
+\end{array}
+\]</span> Define the Lagrangian function <span class="math inline">\(L:\mathcal X\times \mathcal Y\rightarrow \mathbb R\)</span> for (COP) by <span class="math display">\[
+L(X,\mu)=f(X)-\langle \mu, G(X)\rangle,\quad X\in\mathcal X,\mu\in\mathcal Y.
+\]</span> There is no constraint on <span class="math inline">\(\mu\)</span> for the general Lagrangian function. Therefore, <span class="math inline">\(\mathcal Y\)</span> here, we will give explanation in the later.</p>
+<p>The <strong>Lagrangian dual function</strong> is defined by <span class="math display">\[
+\theta(\mu)=\inf\left\{L(X,\mu )\;|\; X\in\mathcal X\right\}.
+\]</span> The dual problem is <span class="math display">\[
+\max \{\theta(\mu)\;|\; \mu \in\mathcal K^*\},
+\]</span> where <span class="math inline">\(\mathcal K^* =\mathcal U\times \mathcal C^*\)</span> is the dual cone of <span class="math inline">\(\mathcal K\)</span>. Note that <span class="math inline">\((\{0^\mathcal U\})^*=\mathcal U\)</span> and <span class="math inline">\(\mathbb S_+^n\)</span> is <strong>self-dual</strong>.</p>
+<p>We can see in the conic programming, we only consider <span class="math inline">\(\mu\in \mathcal K^*\)</span> in the dual problem. However, if needed, we can also put this constraint to the Lagrangian dual function and Lagrangian function like what we usually did in basic nonlinear programming.</p>
+<p>We also define the Lagrangian function in the conic programming as <span class="math inline">\(L(x,\mu)=f(x)\textbf{ minus } \langle \mu,G(x)\rangle\)</span> <strong>instead of plus</strong>. This is for convenience because the cone is usually defined as “positive”, which means <span class="math inline">\(h(x)\succeq 0\)</span> in the conic programming <strong>instead of</strong> <span class="math inline">\(h(x)\le 0\)</span> in the basic nonlinear programming is the common case.</p>
+<p><strong>Example</strong></p>
+<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb R^q\)</span> and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
+\text{(NLP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g(x)=0\\
+&amp;h(x)\ge 0.
+\end{array}
+\]</span> If we denote <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb R^n_+\)</span>, there exists <span class="math inline">\(\mu\in\mathbb R^m\times \mathbb R^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
+L(x,\mu)=f(x)-\langle \mu,G(x)\rangle.
+\]</span> The Lagrange dual function is defined as <span class="math display">\[
+\theta(\mu)=\min_x L(x,\mu)=\min_x\left(f(x)-\langle\mu,G(x)\rangle\right),\quad \mu\in\mathbb R^m\times \mathbb R^n.
+\]</span> Since <span class="math inline">\(\left(\mathbb R^n_+\right)^*=\mathbb R^n_+\)</span>, the Lagrange dual problem is defined as <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \theta (\mu)\\
+\text{subject to}&amp; \mu\in\mathcal K^*=\mathbb R^n\times \mathbb R^n_+.
+\end{array}
+\]</span> <strong>Example</strong> (semidefinite linear programming)</p>
+<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb S^n\)</span>, and <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(g(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(h(X)=X\)</span> and <span class="math inline">\(\mathcal C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; \langle C,X\rangle\\
+\text{subject to}&amp; \mathcal A(X)-b=0\\
+&amp;X\succeq 0(X\in\mathbb S^n_+),
+\end{array}
+\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
+\mathcal A(X)=
+\begin{bmatrix}
+\langle A_1,X\rangle \\ \vdots \\
+\langle A_m,X\rangle
+\end{bmatrix},\quad 
+X\in\mathbb S^n,
+\]</span> where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
+\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
+\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j, \\
+\mathbf 1^T\mathcal A^*yX \mathbf 1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \mathbf 1^TA_iX\mathbf 1\\
+&amp;=&amp; \mathbf 1^T\displaystyle\sum_{i=1}^m y_i A_iX\mathbf 1,
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
+<p>We have the Lagrange function, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
+&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
+\end{array}
+\]</span> Then <span class="math display">\[
+\begin{array}{rcl}
+\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Therefore, the dual problem is given by, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \langle y,b\rangle\\
+\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
+&amp;Z\succeq 0.
+\end{array}
+\]</span> Also, we can consider the compact form. If we define <span class="math inline">\(G(X)=(\mathcal A(X)-b, X)\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S^n_+\)</span>, then we have <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; f(X)=\langle C,X\rangle\\
+\text{subject to}&amp; G(X)\in\mathcal K.
+\end{array}
+\]</span> Then there exists <span class="math inline">\(\mu=(y,Z)\in\mathbb R^n\times \mathbb S^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
+\begin{array}{rcl}
+L(X,\mu)=L(X,y,Z)&amp;=&amp;f(X)-\langle \mu, G(X)\rangle\\
+&amp;=&amp;\langle C,X\rangle-\langle y,\mathcal A(X)-b\rangle-\langle  Z,X\rangle\\
+&amp;=&amp;\langle C,X\rangle-\langle \mathcal A^*(y), X\rangle+\langle y,b\rangle-\langle  Z,X\rangle\\
+&amp;=&amp;\langle C-\mathcal A^*(y)-Z,X\rangle+\langle y,b\rangle\\
+\end{array}
+\]</span> The we have the Lagrange dual function, <span class="math display">\[
+\begin{array}{rcl}
+\theta(y,Z)
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Then the Lagrange dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(y,Z)\\
+\text{subject to}&amp; (y,Z)\in\mathcal K^*=\mathbb R^n\times \mathbb S^n_+,
+\end{array}
+\]</span> that is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle\\
+\text{subject to}&amp; Z\in\mathbb S^n_+\\
+&amp;C-\mathcal A^*y-Z=0.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(G\in\mathbb R^{p\times n}\)</span> and <span class="math inline">\(H\in\mathbb R^{q\times n}\)</span> for the linear map <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^{p\times q}\)</span> defined by <span class="math inline">\(\mathcal A(X)=GXH^T\)</span>. Show that the adjoint map <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q} \rightarrow \mathbb S^n\)</span> is given by <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>.</p>
+<p>Proof. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A(X),Y\rangle&amp;=&amp; \langle GXH^T,Y\rangle\\
+&amp;=&amp; \text{tr}(HXG^TY)\\
+&amp;=&amp; \text{tr}(XG^TYH)\\
+&amp;=&amp; \frac{1}{2}\text{tr}\left(X(G^TYH+H^TY^TG)\right)\\
+&amp;=&amp;\langle X,\frac{1}{2}(G^TYH+H^TY^TG)\rangle.
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>. (<strong>ATTENTION</strong>: <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q}\rightarrow \mathbb S^n\)</span>)</p>
+<p><strong>Example</strong> (semidefinite programming least squares problem)</p>
+<p>If <span class="math inline">\(f(x)=\frac{1}{2}||X-B||^2\)</span> where <span class="math inline">\(B\in \mathbb S^n\)</span> is a given matrix. <span class="math display">\[
+\text{(SDPLS)}\quad \begin{array}{rCl}
+\min &amp; \frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; \mathcal A(X)=b\\
+&amp;X\succeq 0.
+\end{array}
+\]</span> In particular, when <span class="math inline">\(\mathcal A(X)=\text{diag} (X)\)</span> and <span class="math inline">\(b=e\)</span>, we get the nearest correlation matrix problem.</p>
+<p><strong>Example</strong> (dual of semidefinite programming least squares problem)</p>
+<p>The problem can be denoted as <span class="math display">\[
+\text{(SDPLS)}\quad \begin{array}{rCl}
+\min &amp; \frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; G(X)\in \mathcal K,
+\end{array}
+\]</span> where <span class="math inline">\(G(X)=(\mathcal A(X)-b,X)\)</span> and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S_+^n\)</span>.</p>
+<p>For <span class="math inline">\(X\in \mathbb S^n\)</span>, <span class="math inline">\(\mu = (y,Z)\in\mathcal Y=\mathbb R^m\times \mathbb S^n\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle y,b-\mathcal A(X)\rangle -\langle Z,X\rangle\\
+&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2+\frac{1}{2}||X||^2-\langle \mathcal A^*(y)+Z+B,X\rangle,
+\end{array}
+\]</span> Thus <span class="math inline">\(\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\)</span> can be found by setting, <span class="math display">\[
+\nabla _XL(X,y,Z)=X-(B+Z+\mathcal A^*(y))=0\implies X=(B+Z+\mathcal A^*(y)).
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+\theta (y,Z)&amp;=&amp;\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\\
+&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2.
+\end{array}
+\]</span> The dual problem is given by <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
+\text{subject to}&amp; (y,Z)\in\mathcal K^*.
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; -\langle y,b\rangle+\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
+\text{subject to}&amp; y\in\mathbb R^n\\
+&amp; Z\in \mathbb S_+^n.
+\end{array}
+\]</span> Since we have <span class="math display">\[
+G=\Pi_{\mathbb S_+^n} (G)-\Pi_{\mathbb S_+^n} (-G),
+\]</span></p>
+<p>then <span class="math display">\[
+\min\left\{||B+Z+\mathcal A^*(y)||\;|\; Z\in\ \mathbb S_+^n\right\}
+\\=||B+\mathcal A^*(y)+\Pi_{\mathcal S_+^n}(-(B+\mathcal A^*(y)))||
+\\=||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||.
+\]</span> Therefore, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \phi(y)=-\langle y,b\rangle+\frac{1}{2}||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||^2\\
+\text{subject to}&amp; y\in\mathbb R^n.
+\end{array}
+\]</span> In this case, the dual problem is unconstrained problem. Therefore, we can solve it by finding the root of the gradient, <span class="math display">\[
+0=\nabla \phi(y)=-b+\mathcal A \Pi_{\mathbb S_+^n}(B+\mathcal A^* (y)).
+\]</span> <strong>Example</strong> (Sparse regression problem) <span class="math display">\[
+\min\{\frac{1}{2}||Ax-b||^2+\lambda ||x||_1\;|\; x\in\mathbb R^n\},
+\]</span> where <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb R^m\)</span> are given data. Let <span class="math inline">\(u=b-Ax\)</span>, then we have <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(u)+g(x)\\
+\text{subject to}&amp; u+Ax=b
+\end{array}
+\]</span> where <span class="math inline">\(f(u)=\frac{1}{2}||u||^2\)</span> and <span class="math inline">\(g(x)=\lambda ||x||_1\)</span>.</p>
+<p>The Lagrangian function is given as <span class="math display">\[
+\begin{array}{rcl}
+L(u,x,\xi)&amp;=&amp;f(u)+g(x)+\langle \xi,b-u-Ax\rangle\\
+&amp;=&amp; f(u)-\langle \xi,u\rangle +g(x)-\langle A^T\xi,x\rangle +\langle \xi,b\rangle.
+\end{array}
+\]</span> The Lagrangian dual function is given as <span class="math display">\[
+\theta(\xi)=\langle \xi,b\rangle+\min_u(f(u)-\langle \xi,u\rangle)+\min_x(g(x)-\langle A^T\xi,x\rangle)\\
+=\langle \xi,b\rangle-\max_u(\langle \xi,u\rangle-f(u))-\max_x(\langle A^T\xi,x\rangle-g(x)).
+\]</span> Both of the last two terms are conjugate functions. Therefore we have <span class="math display">\[
+\theta(\xi)=\langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(A^T\xi).
+\]</span> Therefore, the dual problem is <span class="math display">\[
+-\min -\langle\xi,b\rangle +\frac{1}{2}||\xi||^2+\delta_{B_\lambda}(A^T\xi).
+\]</span> <strong>Definition</strong> (Lagrange Multipliers) <span class="math display">\[
+L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
+\]</span> where <span class="math inline">\(L\)</span> be the Lagrangian function for (COP). Assume that <span class="math inline">\(f\)</span> and <span class="math inline">\(G\)</span> are continuously differentiable. We say that <span class="math inline">\(\bar \mu \in\mathcal Y\)</span> is a Lagrange multiplier of (COP) at a feasible point <span class="math inline">\(\bar x\)</span>, if it satisfies the KKT condition, <span class="math display">\[
+0=\nabla _xL(\bar x,\bar \mu)=\nabla f(\bar x)-\nabla G(\bar x)\bar \mu,\quad 0\in \bar \mu+\mathcal N_\mathcal K(G(\bar x)),
+\]</span> where <span class="math inline">\(\mathcal N_\mathcal K (G(\bar x))\)</span> is the normal cone of <span class="math inline">\(\mathcal K\)</span> at <span class="math inline">\(G(\bar x)\in \mathcal Y\)</span>. We denote the set of all Lagrange multipliers at <span class="math inline">\(\bar x\)</span> as <span class="math inline">\(\mathcal M(\bar x)\)</span>. We call the pair <span class="math inline">\((\bar x,\bar \mu)\)</span> a KKT point.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li><p>If <span class="math inline">\(\mathcal C\)</span> is a closed convex cone, then <span class="math inline">\(\mathcal K = 0^{\mathcal U}\times \mathcal C\)</span> is a closed convex cone. <span class="math display">\[
+\begin{array}{rcl}
+-\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle -\bar \mu,d-G(\bar x)\rangle \le 0,&amp;&amp;\forall d\in\mathcal K
+\end{array}
+\]</span> We Choose <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=G(\bar x)\)</span>. Then we have <span class="math display">\[
+\begin{array}{rcl}
+-\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\langle \bar \mu,d\rangle\ge 0,&amp;\forall d\in\mathcal K\\
+&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\bar \mu\in \mathcal K^*.
+\end{array}
+\]</span> In this case, the KKT conditions can be written as <span class="math display">\[
+(G(\bar x)\in\mathcal K)\perp (\bar \mu \in\mathcal K^*).
+\]</span></p></li>
+<li><p>The set <span class="math inline">\(\mathcal M(\bar x)\)</span> may be <strong>empty</strong> or <strong>unbounded</strong>.</p></li>
+</ol>
+<p><strong>Example</strong></p>
+<p>For basic NLP, let <span class="math inline">\(\bar \mu=(\lambda,\rho)\)</span>, and <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span>, and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, we have KKT conditions, <span class="math display">\[
+\nabla f(\bar x)-\nabla g(\bar x)\lambda -\nabla h(\bar x)\rho=0\\
+G(\bar x)=(g(\bar x),h(\bar x))\in \mathcal K\\
+\langle h(\bar x),\rho\rangle =0\\
+\rho \in \mathcal C^*=\mathbb R_+^p.
+\]</span> <strong>Example</strong></p>
+<p>Given <span class="math inline">\(B\in\mathbb S^n\)</span>, consider the doubly nonnegative projection problem, <span class="math display">\[
+\min \left\{\frac{1}{2}||X-B||^2\;|\; X\in\mathbb S_+^n\cap \mathcal N^n\right\}.
+\]</span> The above problem can be rewritten as <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; f(X)=\frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; G(X)=(X,X)\in\mathcal K=\mathbb S_+^n\times \mathcal N^n.
+\end{array}
+\]</span> The Lagrange function is for <span class="math inline">\(\mu=(Y,Z) \in \mathcal Y=\mathbb S^n\times \mathbb S^n\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
+&amp;=&amp;\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle.
+\end{array}
+\]</span> The Lagrange dual function is <span class="math display">\[
+\begin{array}{rcl}
+\theta(\mu)=\theta(Y,Z)&amp;=&amp;\min_{X\in\mathbb S^n} L(X,\mu)\\
+&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle\right)\\
+&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X||^2-\langle B+Y+Z,X\rangle+\frac{1}{2}||B||^2\right)\\
+&amp;=&amp;\frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right)
+\end{array}
+\]</span></p>
+<p>Therefore the dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right)\\
+\text{subject to}&amp; (Y,Z)\in\mathcal K^*=\mathbb S^n_+\times  \mathcal N^n.
+\end{array}
+\]</span> Therefore, the KKT conditions are given as <span class="math display">\[
+0=\nabla _xL(\bar X,\bar Y,\bar Z)=\nabla f(\bar X)-\nabla G(\bar X)(\bar Y,\bar Z)\\
+\mathcal K\ni G(\bar X)\perp (\bar Y,\bar Z) \in \mathcal K^*.
+\]</span> That is (?????????) <span class="math display">\[
+\bar X- B-\bar Y-\bar Z=0\\
+\langle \bar X,\bar Y\rangle=0\\ 
+\langle \bar X,\bar Z\rangle =0  \\
+\bar X\in \mathbb S^n_+\cap \mathcal N^n\\
+\bar Y\in\mathbb S^n_+\\
+\bar Z\in \mathcal N^n.
+\]</span></p>
+<h2 id="robinsons-constraint-qualification">7.1 Robinson’s constraint qualification</h2>
+<p>In order for the KKT conditions to be necessary for the local minimizer <span class="math inline">\(\bar x\)</span>, we need to introduce some conditions to ensure the existance of Lagrange multipliers and the boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>.</p>
+<p><strong>Definition</strong> (Robinson’s constraint qualification)</p>
+<p>Let <span class="math inline">\(\bar x\)</span> be a feasible solution to COP. Robinson’s constraint qualification is said to hold at <span class="math inline">\(\bar x\)</span> if <span class="math display">\[
+0\in\text{int}\left(G(\bar x)+G&#39;(\bar x)\mathcal X-\mathcal K\right).
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/Nonlinear Optimization/4.6 Proximal Algorithms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -255,7 +642,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-26 12:48:39" itemprop="dateModified" datetime="2019-09-26T12:48:39+08:00">2019-09-26</time>
+                <time title="Modified: 2019-09-27 11:18:59" itemprop="dateModified" datetime="2019-09-27T11:18:59+08:00">2019-09-27</time>
               </span>
             
           
@@ -309,14 +696,15 @@
           <h2 id="proximal-algorithms">4.6 Proximal Algorithms</h2>
 <p>In this section, some important algorithms for solving convex optimization problems will rely on the use of proximal operators.</p>
 <h3 id="proximal-minimization">4.6.1 Proximal minimization</h3>
-<p>The <strong>proximal minimization algorithm</strong>, also called proximal iteration or proximal point algorithm, is <span class="math display">\[
+<p>The <strong>proximal minimization algorithm</strong>, also called <strong>proximal iteration</strong> or <strong>proximal point algorithm</strong>, is <span class="math display">\[
 x^{k+1}=P_{\lambda f}(x^k),
-\]</span> where <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R\)</span> is a closed proper convex function, <span class="math inline">\(k\)</span> is the iteration number, and <span class="math inline">\(x^k\)</span> denotes the <span class="math inline">\(k\)</span>th iterate of the algorithm. We have shown that <span class="math inline">\(x^k\)</span> will converge to the optimal value. A variation on this method is to replace the constant <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda^k\)</span>. Convergence is guaranteed provided <span class="math inline">\(\lambda^k&gt;0\)</span> and <span class="math inline">\(\sum_{k=1}^\infty \lambda^k=\infty\)</span>.</p>
+\]</span> where <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R\cup \{+\infty\}\)</span> is a closed proper convex function, <span class="math inline">\(k\)</span> is the iteration number, and <span class="math inline">\(x^k\)</span> denotes the <span class="math inline">\(k\)</span>th iterate of</p>
+<p>the algorithm. We have shown that <span class="math inline">\(x^k\)</span> will converge to the optimal value. A variation of this method is to replace the constant <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda^k\)</span>. Convergence is guaranteed provided <span class="math inline">\(\lambda^k&gt;0\)</span> and <span class="math inline">\(\sum_{k=1}^\infty \lambda^k=\infty\)</span>.</p>
 <p><strong>Interpretations</strong></p>
 <p>The proximal minimization algorithm an be interpreted many ways. One simple perspective is that it is the standard gradient method applied to the Moreau envelope <span class="math inline">\(M_f\)</span> rather than <span class="math inline">\(f\)</span>. Another is that it is simple iteration for finding a fixed point of <span class="math inline">\(P_{\lambda f}\)</span>, which works because <span class="math inline">\(P_{\lambda f}\)</span> is firmly nonexpansive.</p>
 <p><em>Disappearing Tikhonov regularization</em></p>
 <p>Another simple interpretation is a quadratic regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. In each step, we solve the regularized problem, <span class="math display">\[
-\min f(x)+(1/2\lambda)||x-x^k||_2^2.
+\min_x f(x)+(1/2\lambda)||x-x^k||_2^2.
 \]</span></p>
 <p>The second term can be interpreted as regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. It is a damping term that encourages <span class="math inline">\(x^{k+1}\)</span> not to be very far from <span class="math inline">\(x^k\)</span>. As the proximal algorithm converges, <span class="math inline">\(x^{k+1}\)</span> gets close to <span class="math inline">\(x^k\)</span>, so the effect of the quadratic regularization goes to zero.</p>
 <p><em>Gradient flow</em></p>
@@ -333,7 +721,7 @@ x^{k+1}=x^k-h\nabla f(x^k).
 \]</span> This is the standard gradient descent iteration with step size <span class="math inline">\(h\)</span>.</p>
 <p>The <strong>backward Euler method</strong> uses the discretization, <span class="math display">\[
 \frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1}).
-\]</span> This method is known to have better approximation properties than forward Euler, especially for differential equations that converge. Its main disadvantage is that it cannot be rewritten as an iteration that gives <span class="math inline">\(x^{k+1}\)</span> explicitly in terms of <span class="math inline">\(x^k\)</span>. For this reason, it is also called implicit method. To find <span class="math inline">\(x^{k+1}\)</span>, we solve the equation, <span class="math display">\[
+\]</span> This method is known to have better approximation properties than forward Euler, especially for differential equations that converge. Its main disadvantage is that it cannot be rewritten as an iteration that gives <span class="math inline">\(x^{k+1}\)</span> <strong>explicitly</strong> in terms of <span class="math inline">\(x^k\)</span>. For this reason, it is also called <strong>implicit method</strong>. To find <span class="math inline">\(x^{k+1}\)</span>, we solve the equation, <span class="math display">\[
 x^{k+1}+h\nabla f(x^{k+1})=x^k,
 \]</span> which is equivalent to <span class="math display">\[
 x^{k+1}=P_{h\lambda}(x^k),
@@ -345,8 +733,20 @@ x^{k+1}=P_{h\lambda}(x^k),
 \]</span> where <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> and <span class="math inline">\(g:\mathbb R^n\rightarrow \mathbb R\cup\{+\infty\}\)</span> are closed proper convex and <span class="math inline">\(f\)</span> is differentiable. Since <span class="math inline">\(g\)</span> can be extended valued, it can be used to encode constraints on the variable <span class="math inline">\(x\)</span>. The proximal gradient method is <span class="math display">\[
 x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)),
 \]</span> where <span class="math inline">\(\lambda ^k&gt;0\)</span> is a step size.</p>
+<p>When <span class="math inline">\(\nabla f\)</span> is Lipschitz continuous with constant <span class="math inline">\(L\)</span>, this method can be shown to converge with rate <span class="math inline">\(\mathcal O(1/k)\)</span> when a fixed step size <span class="math inline">\(\lambda^k=\lambda \in (0,1/L]\)</span> is used. If <span class="math inline">\(L\)</span> is not known, the step sizes <span class="math inline">\(\lambda^k\)</span> can be found by a line search, that is, their values are chosen in each step. The simple one is shown in the following (by Beck and Teboulle).</p>
+<hr>
+<p><strong>Given</strong> <span class="math inline">\(x^k\)</span>, <span class="math inline">\(\lambda^{k-1}\)</span>, and parameter <span class="math inline">\(\beta \in (0,1)\)</span>.</p>
+<p><strong>Let</strong> <span class="math inline">\(\lambda = \lambda^{k-1}\)</span>.</p>
+<p><strong>Repeat</strong></p>
+<ol type="1">
+<li>Let <span class="math inline">\(z=P_{\lambda g}(x^k-\lambda \nabla f(x^k))\)</span>.</li>
+<li><strong>Break</strong> if <span class="math inline">\(f(z)\le \hat f_\lambda(z,x^k)\)</span>.</li>
+<li><strong>Update</strong> <span class="math inline">\(\lambda = \beta \lambda\)</span>.</li>
+</ol>
+<p><strong>Return</strong> <span class="math inline">\(\lambda^k=\lambda\)</span>, <span class="math inline">\(x^{k+1}=z\)</span>.</p>
+<hr>
 <p><strong>Special cases</strong></p>
-<p>The proximal gradient method reduces to other well-known algorithms in various special cases. When <span class="math inline">\(g=\delta_\mathcal C\)</span>, <span class="math inline">\(P_{\lambda g}\)</span> is projection onto <span class="math inline">\(\mathcal C\)</span>, in which cases it reduces to the projected gradient method. When <span class="math inline">\(f=0\)</span>, then it reduces to proximal minimization, and when <span class="math inline">\(g=0\)</span>, it reduces to the standard gradient descent method.</p>
+<p>The proximal gradient method reduces to other well-known algorithms in various special cases. When <span class="math inline">\(g=\delta_\mathcal C\)</span>, <span class="math inline">\(P_{\lambda g}\)</span> is projection onto <span class="math inline">\(\mathcal C\)</span>, in which cases it reduces to the <strong>projected gradient method</strong>. When <span class="math inline">\(f=0\)</span>, then it reduces to <strong>proximal minimization</strong>, and when <span class="math inline">\(g=0\)</span>, it reduces to the standard <strong>gradient descent method</strong>.</p>
 <p><strong>Interpretations</strong></p>
 <p><em>Majorization-minimization</em></p>
 <p>We first interpret the proximal gradient method as an example of a majorization-minimization algorithm, a large class of algorithms that includes the gradient method, Newton’s method, and the EM algorithm as special cases.</p>
@@ -354,11 +754,11 @@ x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)),
 x^{k+1}=\arg\min_{x}\hat \varphi (x,x^k),
 \]</span> where <span class="math inline">\(\hat \varphi(\cdot,x^k)\)</span> is a convex upper bound to <span class="math inline">\(\varphi\)</span> that is tight at <span class="math inline">\(x^k\)</span>, i.e., <span class="math inline">\(\hat \varphi(x,x^k)\ge \varphi(x)\)</span> and <span class="math inline">\(\hat \varphi(x,x)= \varphi(x)\)</span> for all <span class="math inline">\(x\)</span>. The reason for the name should be clear, such algorithms involve iteratively majorizing (upper bounding) the objective and then minimizing the majorization.</p>
 <p>For an upper bound of <span class="math inline">\(f\)</span>, consider the function <span class="math inline">\(\hat f_{\lambda }\)</span> given by <span class="math display">\[
-\hat f_{\lambda}(x,y)=f(y)+\nabla f(g)^T(x-y)+(1/2\lambda)||x-y||_2^2,
+\hat f_{\lambda}(x,y)=f(y)+\nabla f(y)^T(x-y)+(1/2\lambda)||x-y||_2^2,
 \]</span> with <span class="math inline">\(\lambda&gt;0\)</span>. For fixed <span class="math inline">\(y\)</span>, this function is convex, satisfies <span class="math inline">\(\hat f_\lambda (x,x)=f(x)\)</span>, and is an upper bound on <span class="math inline">\(f\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>, where <span class="math inline">\(L\)</span> is a Lipschitz constant of <span class="math inline">\(\nabla f\)</span>. The algorithm <span class="math display">\[
 x^{k+1}=\arg\min_x\hat f_\lambda (x,x^k)
 \]</span> is thus majorization-minimization algorithm. In fact, it is precisely the standard gradient method for minimizing <span class="math inline">\(f\)</span>.</p>
-<p>Then we have the function <span class="math inline">\(q_\lambda\)</span> given by <span class="math display">\[
+<p>Then the function <span class="math inline">\(q_\lambda\)</span> given by <span class="math display">\[
 q_\lambda(x,y)=\hat f_\lambda(x,y)+g(x)
 \]</span> is similarly a surrogate for <span class="math inline">\(f+g\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>. The majorization-minimization algorithm, <span class="math display">\[
 x^{k+1}=\arg\min_x q_\lambda (x,x^k)
@@ -379,11 +779,11 @@ x^* &amp;=&amp; P_{\lambda g}(x^*-\lambda\nabla f(x^*)).
 <p>The last two expression says that <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(f+g\)</span> if and only if it is a fixed point of the <strong>forward-backward operator</strong>, <span class="math display">\[
 (I+\lambda \partial g)^{-1}(I-\lambda\nabla f).
 \]</span> <em>Forward-backward integration of gradient flow</em></p>
-<p>The proximal gradient method can be interpreted using gradient flows. <span class="math display">\[
+<p>The proximal gradient method can be interpreted using <strong>gradient flows</strong>. <span class="math display">\[
 \frac{d}{dt}x(t)=-\nabla f(x(t))-\nabla g(x(t)),
 \]</span> assuming that <span class="math inline">\(g\)</span> is also differentiable.</p>
 <p>Then we consider the following discretization, <span class="math display">\[
-\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k)-\nabla g(x^{k+1}),
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k)-\nabla g(x^{k+1}).
 \]</span> Then we have <span class="math display">\[
 x^{k+1} = (I+h \nabla g)^{-1}(I-\lambda\nabla f)x^k.
 \]</span></p>
@@ -417,15 +817,15 @@ u^{k+1}&amp;=&amp; u^k+x^{k+1}-z^{k+1}.
 <p><em>Integral control of a dynamic system</em></p>
 <p>The first two steps in ADMM can be viewed as a discrete-time dynamic system with state <span class="math inline">\(z\)</span> and input or control <span class="math inline">\(u\)</span>, i.e., <span class="math inline">\(z^{k+1}\)</span> is a function of <span class="math inline">\(x^k\)</span> and <span class="math inline">\(u^k\)</span>. The goal is to choose <span class="math inline">\(u\)</span> to achieve <span class="math inline">\(x=z\)</span>, so the residual <span class="math inline">\(x^{k+1}-z^{k+1}\)</span> can be viewed as an error signal.</p>
 <p><em>Augmented Lagrangians</em></p>
-<p>One important interpretation relies on the idea of <strong>augmented lagrangian</strong>. We first write the problem of minimizing <span class="math inline">\(f(g)+g(x)\)</span> as <span class="math display">\[
+<p>One important interpretation relies on the idea of <strong>augmented lagrangian</strong>. We first write the problem of minimizing <span class="math inline">\(f(x)+g(x)\)</span> as <span class="math display">\[
 \begin{array}{rCl}
-\min &amp; f(x)+g(x)\\
+\min &amp; f(x)+g(z)\\
 \text{subject to}&amp; x-z=0,
 \end{array}
 \]</span></p>
 <p>which is called <strong>consensus form</strong>. Here the variable has been split into two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and we have added the consensus constraint they must agree. This is evidently equivalent to minimizing <span class="math inline">\(f+g\)</span>.</p>
 <p>The <strong>augmented Lagrangian</strong> associated with the problem is <span class="math display">\[
-L_\rho(x,z,y)=f(x)+g(x)+y^T(x-z)+(\rho/2)||x-z||_2^2,
+L_\rho(x,z,y)=f(x)+g(z)+y^T(x-z)+(\rho/2)||x-z||_2^2,
 \]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter and <span class="math inline">\(y\in\mathbb R^n\)</span> is a dual variable associated with the consensus constraint. This is the usual Lagrangian augmented with an additional quadratic penality on the equality constraint function. ADMM can be then expressed as <span class="math display">\[
 \begin{array}{rcl}
 x^{k+1}&amp;=&amp;\arg\min_x L_\rho (x,z^k,y^k)\\
@@ -440,15 +840,15 @@ y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
 \end{array}
 \]</span> Pull the linear terms into the quadratic ones, and we get <span class="math display">\[
 \begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+(\rho/2)||x-z^k+(1/\rho)y^k||_2^2\right)\\
-z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)+(\rho/2)||x^{k+1}-z-(1/\rho)y^k||_2^2\right)\\
+x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+(\rho/2)\left\|x-z^k+(1/\rho)y^k\right\|_2^2\right)\\
+z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)+(\rho/2)\left\|x^{k+1}-z-(1/\rho)y^k\right\|_2^2\right)\\
 y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
 \end{array}
 \]</span> If we choose <span class="math inline">\(u^k=(1/\rho)y^k\)</span> and <span class="math inline">\(\lambda = 1/\rho\)</span>, then we get the ADMM.</p>
 <p><em>Flow interpretation</em></p>
 <p>ADMM can also be interpreted as a method for solving a particular system of ordinary differential equations. Assume for simplicity that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are differentiable, the optimality conditions are <span class="math display">\[
 \nabla f(x)+v=0,\quad \nabla g(z)-v=0,\quad x-z=0,
-\]</span> where <span class="math inline">\(v\in\mathbb R^n\)</span> is a dual variable. Now consider the differential equation, <span class="math display">\[
+\]</span> where <span class="math inline">\(v\in\mathbb R^n\)</span> is a dual variable. Now consider the differential equation <span class="math display">\[
 \frac{d}{dt}
 \begin{bmatrix}
 x(t)\\z(t)
@@ -458,7 +858,7 @@ x(t)\\z(t)
 -\nabla g(x(t))+\rho u(t)+\rho r(t)\\
 \end{bmatrix},\quad
 \frac{d}{dt}u(t)=\rho r(t),
-\]</span> where <span class="math inline">\(r(t)=x(t)-z(t)\)</span> is the primal residual and <span class="math inline">\(\rho &gt;0\)</span>. The functions in the differential equation are the primal variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and the dual variable <span class="math inline">\(u\)</span>. It shows all trajectorties of the saddle point flow converge to an equailibrium point. It follows that we can solve the problem by following any trajectory of the flow using numerical integration.</p>
+\]</span> where <span class="math inline">\(r(t)=x(t)-z(t)\)</span> is the primal residual and <span class="math inline">\(\rho &gt;0\)</span>. The functions in the differential equation are the primal variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and the dual variable <span class="math inline">\(u\)</span>. It is easy to see that the equilibrium points of the saddle point flow are the same as the optimality conditions when <span class="math inline">\(v=\rho u\)</span>. It shows all trajectorties of the saddle point flow converge to an equailibrium point. It follows that we can solve the problem by following any trajectory of the flow using numerical integration.</p>
 <p>We use the discretation given by <span class="math display">\[
 \frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1})-\rho (x^k-z^k+u^k)\\
 \frac{z^{k+1}-z^k}{h}=-\nabla g(x^{k+1})+\rho (x^{k+1}-z^k+u^k)\\
@@ -483,185 +883,7 @@ x-u\in x+\lambda \partial f(x),\quad x+u\in x+\lambda\partial g(x).
 x^{k+1}=P_{\mu f}\left(x^k-(\mu/\lambda )A^T(Ax^k-z^k+u^k)\right)\\
 z^{k+1}=P_{\lambda g}\left(Ax^{k+1}+u^k\right)\\
 u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
-\]</span> where the algorithm parameters <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu\)</span> satisfy <span class="math inline">\(0\le \mu\le \lambda /||A||_2^2\)</span>. This reduces to standard ADMM and <span class="math inline">\(A=I\)</span> and <span class="math inline">\(\mu =\lambda\)</span>.</p>
-<h3 id="notes-and-references">4.6.5 Notes and references</h3>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" class="post-title-link" itemprop="url">8. Nonlinear conic programming (Pending)</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-09-20 16:13:29" itemprop="dateCreated datePublished" datetime="2019-09-20T16:13:29+08:00">2019-09-20</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-26 10:55:13" itemprop="dateModified" datetime="2019-09-26T10:55:13+08:00">2019-09-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="8. Nonlinear conic programming (Pending)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="nonlinear-conic-programming">8. Nonlinear Conic Programming</h1>
-<p>We consider the following optimization problem, <span class="math display">\[
-\text{(OP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; h(x)=0\\
-&amp;g(x)\in \mathcal C,
-\end{array}
-\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,h:\mathcal X\rightarrow \mathbb R^m\)</span>, and <span class="math inline">\(g:\mathcal X\rightarrow \mathcal Z\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X\)</span> and <span class="math inline">\(\mathcal Z\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induce norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\)</span> is a closed convex set in <span class="math inline">\(\mathcal Z\)</span>.</p>
-<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal Z=\mathbb R^q\)</span>, and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
-\text{(NLP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; h(x)=0\\
-&amp;g(x)\ge 0.
-\end{array}
-\]</span> <strong>Example</strong></p>
-<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(h(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(g(X)=X\)</span> and <span class="math inline">\(C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
-\text{(NLP)}\quad \begin{array}{rCl}
-\min &amp; \langle C,X\rangle\\
-\text{subject to}&amp; \mathcal A(X)-b=0\\
-&amp;X\succeq 0(X\in\mathbb S^n_+),
-\end{array}
-\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
-\mathcal A(X)=
-\begin{bmatrix}
-\langle A_1,X\rangle \\ \vdots \\
-\langle A_m,X\rangle
-\end{bmatrix},\quad 
-X\in\mathbb S^n,
-\]</span></p>
-<p>where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
-\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
-\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
-\begin{array}{rcl}
-\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
-&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
-&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j, \\
-\mathbf 1^T\mathcal A^*yX \mathbf 1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \mathbf 1^TA_iX\mathbf 1\\
-&amp;=&amp; \mathbf 1^T\displaystyle\sum_{i=1}^m y_i A_iX\mathbf 1,
-\end{array}
-\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
-<p>We have the Lagrange function, <span class="math display">\[
-\begin{array}{rcl}
-L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
-&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
-\end{array}
-\]</span> Then <span class="math display">\[
-\begin{array}{rcl}
-\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
-&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
-&amp;=&amp; 
-\begin{cases}
-\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
--\infty &amp; \text{otherwise.}
-\end{cases}
-\end{array}
-\]</span> Therefore, the dual problem is given by, <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\min &amp; \langle y,b\rangle\\
-\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
-&amp;Z\succeq 0.
-\end{array}
-\]</span></p>
+\]</span> where the algorithm parameters <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu\)</span> satisfy <span class="math inline">\(0\le \mu\le \lambda /||A||_2^2\)</span>. This reduces to standard ADMM when <span class="math inline">\(A=I\)</span> and <span class="math inline">\(\mu =\lambda\)</span>.</p>
 
         
       
@@ -685,7 +907,7 @@ L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -730,7 +952,7 @@ L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
