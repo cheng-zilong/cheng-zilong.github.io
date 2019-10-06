@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \">
+  <meta name="description" content="7.1 Robinson’s constraint qualification In order for the KKT conditions to be necessary for the local minimizer \(\bar x\), we need to introduce some conditions to ensure the existence of Lagrange mu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="8. Nonlinear conic programming (Pending)">
-<meta property="og:url" content="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/index.html">
+<meta property="og:title" content="8. Nonlinear conic programming (2)">
+<meta property="og:url" content="http://yoursite.com/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \">
+<meta property="og:description" content="7.1 Robinson’s constraint qualification In order for the KKT conditions to be necessary for the local minimizer \(\bar x\), we need to introduce some conditions to ensure the existence of Lagrange mu">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-26T02:55:13.000Z">
+<meta property="og:updated_time" content="2019-10-06T16:11:38.558Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="8. Nonlinear conic programming (Pending)">
-<meta name="twitter:description" content="8. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; h(x)=0\\ &amp;amp;g(x)\in \mathcal C, \">
-  <link rel="canonical" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/">
+<meta name="twitter:title" content="8. Nonlinear conic programming (2)">
+<meta name="twitter:description" content="7.1 Robinson’s constraint qualification In order for the KKT conditions to be necessary for the local minimizer \(\bar x\), we need to introduce some conditions to ensure the existence of Lagrange mu">
+  <link rel="canonical" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/">
 
 
 <script id="page-configurations">
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>8. Nonlinear conic programming (Pending) | Orandragon's Blog</title>
+  <title>8. Nonlinear conic programming (2) | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -220,7 +220,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">8. Nonlinear conic programming (Pending)
+        <h1 class="post-title" itemprop="name headline">8. Nonlinear conic programming (2)
 
           
         </h1>
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-26 10:55:13" itemprop="dateModified" datetime="2019-09-26T10:55:13+08:00">2019-09-26</time>
+                <time title="Modified: 2019-10-07 00:11:38" itemprop="dateModified" datetime="2019-10-07T00:11:38+08:00">2019-10-07</time>
               </span>
             
           
@@ -278,7 +278,7 @@
           
 
           
-            <span id="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="8. Nonlinear conic programming (Pending)" title="Views">
+            <span id="/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="8. Nonlinear conic programming (2)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -296,7 +296,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/20/Nonlinear Optimization/8. Nonlinear conic programming/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -310,68 +310,99 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="nonlinear-conic-programming">8. Nonlinear Conic Programming</h1>
-<p>We consider the following optimization problem, <span class="math display">\[
-\text{(OP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; h(x)=0\\
-&amp;g(x)\in \mathcal C,
+        <h2 id="robinsons-constraint-qualification">7.1 Robinson’s constraint qualification</h2>
+<p>In order for the KKT conditions to be necessary for the local minimizer <span class="math inline">\(\bar x\)</span>, we need to introduce some conditions to ensure the existence of Lagrange multipliers and the boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>. This is the generalization of the linear independent constraint qualification (LICQ) in chapter 5.</p>
+<p><strong>Definition</strong> (Robinson’s constraint qualification)</p>
+<p>Let <span class="math inline">\(\bar x\)</span> be a feasible solution to COP. Robinson’s constraint qualification is said to hold at <span class="math inline">\(\bar x\)</span> if <span class="math display">\[
+0\in\text{int}\left(G(\bar x)+G&#39;(\bar x)\mathcal X-\mathcal K\right).
+\]</span> Note that <span class="math inline">\(G&#39;(\bar x)\)</span> is the Jacobian of <span class="math inline">\(G\)</span>, and we have <span class="math inline">\(\nabla G=(G&#39;)^T\)</span>.</p>
+<p><strong>Remark</strong></p>
+<p>If <span class="math inline">\(A:\mathbb R^n\rightarrow \mathbb R^m\)</span>, then <span class="math inline">\(0\in\text{int }(A\mathbb R^n)\)</span> means <span class="math inline">\(\text{Range}(A)=\mathbb R^m\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>For the nonlinear programming, Robinson's CQ can be written as <span class="math display">\[
+0\in \text{int}\left(\begin{bmatrix}g(\bar x)\\h(\bar x)\end{bmatrix}
++\begin{bmatrix}g&#39;(\bar x)\\h&#39;(\bar x)\end{bmatrix}\mathbb R^n
+-\begin{bmatrix}\{0^m\}\\\mathbb R^p_+\end{bmatrix}\right).
+\]</span> This is the Mangasarian-Fromovitz constraint qualification (MFCQ) given explicitly as <span class="math display">\[
+\begin{array}{l}
+\exists d\in \mathbb R^n\text{ such that }\\
+\langle \nabla g_i(\bar x),d\rangle=0,\quad \forall i=1,2,\dotsm,m\\
+\langle \nabla h_j(\bar x),d\rangle&gt;0,\quad \forall j\in J(\bar x).
 \end{array}
-\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,h:\mathcal X\rightarrow \mathbb R^m\)</span>, and <span class="math inline">\(g:\mathcal X\rightarrow \mathcal Z\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X\)</span> and <span class="math inline">\(\mathcal Z\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induce norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\)</span> is a closed convex set in <span class="math inline">\(\mathcal Z\)</span>.</p>
-<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal Z=\mathbb R^q\)</span>, and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
-\text{(NLP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; h(x)=0\\
-&amp;g(x)\ge 0.
+\]</span> If we define <span class="math display">\[
+B_g(\bar x)=[\nabla g_1(\bar x),\dotsm,\nabla g_m(\bar x)]\\
+B_h(\bar x)=\{\nabla h_j(\bar x)\;|\;j\in J(\bar x)\}\\
+B(\bar x)=[B_g(\bar x),B_h(\bar x)]\in\mathbb R^{n\times (m+|J|)}.
+\]</span> The above condition is equivalent to saying that <span class="math inline">\(B_g(\bar x)\)</span> has full column rank and the systems <span class="math display">\[
+B_g(\bar x)^Td=0^m,\quad B_h(\bar x)^Td&gt;0
+\]</span> have a solution. It is easy to show that LICQ implies MFCQ.</p>
+<p><strong>Proposition</strong></p>
+<p>Assume that <span class="math inline">\(G(\bar x)\in\mathcal K\)</span>. Then the following conditions are equivalent to each other and to Robinson's CQ.</p>
+<ol type="1">
+<li><span class="math inline">\(G&#39;(\bar x)\mathcal X+T_{\mathcal K}(G(\bar x))=\mathcal Y\)</span></li>
+<li><span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))=\{0\}\)</span>.</li>
+</ol>
+<p>Proof is omitted.</p>
+<p>For a set <span class="math inline">\(S\)</span> in <span class="math inline">\(\mathcal Y\)</span> and a point <span class="math inline">\(y\in S\)</span>, the tangent cone to <span class="math inline">\(S\)</span> at <span class="math inline">\(y\)</span> is defined by <span class="math display">\[
+T_S(y)=\{d\in\mathcal Y\;|\; \exists t_k\downarrow0,\text{dist}(y+t_kd,S)=o(t_k)\}.
+\]</span> It is saying that every direction that converges to the point <span class="math inline">\(y\)</span> faster than linear.</p>
+<p>Note that if <span class="math inline">\(S\)</span> is a nonempty convex subset of <span class="math inline">\(\mathcal Y\)</span>, then <span class="math display">\[
+T_S(y)=\text{closure} (t(x-y)\;|\; x\in S,t\ge 0).
+\]</span> <strong>Remark</strong></p>
+<ol type="1">
+<li><p>For <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span> and <span class="math inline">\(y\in\mathcal C\)</span>. Let <span class="math inline">\(J(y)=\{j\;|\; y_j=0\}\)</span>. We have <span class="math display">\[
+T_\mathcal C(y)=\{d\in\mathbb R^p\;|\;d_j\ge 0,j\in J(y)\}.
+\]</span></p></li>
+<li><p>For NLP, it follows from the above proposition that Robinson's CQ is equivalent to the following, <span class="math display">\[
+\begin{bmatrix}g&#39;(\bar x)\\h&#39;(\bar x)\end{bmatrix}\mathbb R^n
++
+\begin{bmatrix}\{0^m\}\\T_{\mathbb R^p_+}(h(\bar x))\end{bmatrix}=
+\begin{bmatrix}\mathbb R^m\\ \mathbb R^p\end{bmatrix}.
+\]</span></p></li>
+</ol>
+<p><strong>Proposition</strong></p>
+<p>Assume that <span class="math inline">\(G(\bar x)\in\mathcal K\)</span>. If <span class="math inline">\(\mathcal K\)</span> has a nonempty interior, then the Robinson's CQ is equivalent to <span class="math display">\[
+\exists d\in\mathcal X\text{ such that }\\
+G(\bar x)+G&#39;(\bar x)d\in\text{int}(\mathcal K).
+\]</span> Proof.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>If there exists <span class="math inline">\(d\in\mathcal X\)</span> such that <span class="math inline">\(y= G(\bar x)+G&#39;(\bar x)d\in \text{int}(\mathcal K)\)</span>, then there exists an open ball <span class="math inline">\(B_\epsilon(y)\in \text{int}(\mathcal K)\)</span>, which means <span class="math inline">\(B_\epsilon(0)\in \text{int}(\mathcal K-y)\)</span>. This means <span class="math inline">\(0\in \text{int}(G(\bar x)+G&#39;(\bar x)d-\mathcal K)\)</span>, which is the Robinson's CQ.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p><strong>Proposition</strong></p>
+<p>Suppose that <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, and <span class="math inline">\(G(\bar x)\in \mathcal K\)</span>. If <span class="math inline">\(\mathcal C\)</span> has a nonempty interior, then Robinson's CQ is equivalent to</p>
+<ol type="1">
+<li><span class="math inline">\(g&#39;(x)\)</span> is onto and,</li>
+<li><span class="math inline">\(\exists d\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)d=0,h(\bar x)+h&#39;(\bar x)d\in \text{int}(\mathcal C)\)</span>.</li>
+</ol>
+<h2 id="first-order-necessary-conditions">7.2 First order necessary conditions</h2>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(\bar x\)</span> be a locally optimal solution of (COP). Then the point <span class="math inline">\(d=0\)</span> is an optimal solution of the following problem <span class="math display">\[
+\quad \begin{array}{rCl}
+\min &amp; f&#39;(\bar x)d\\
+\text{subject to}&amp; d\in T_\mathcal F(\bar x),
 \end{array}
-\]</span> <strong>Example</strong></p>
-<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(h(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(g(X)=X\)</span> and <span class="math inline">\(C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
-\text{(NLP)}\quad \begin{array}{rCl}
-\min &amp; \langle C,X\rangle\\
-\text{subject to}&amp; \mathcal A(X)-b=0\\
-&amp;X\succeq 0(X\in\mathbb S^n_+),
-\end{array}
-\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
-\mathcal A(X)=
-\begin{bmatrix}
-\langle A_1,X\rangle \\ \vdots \\
-\langle A_m,X\rangle
-\end{bmatrix},\quad 
-X\in\mathbb S^n,
-\]</span></p>
-<p>where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
-\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
-\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
-\begin{array}{rcl}
-\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
-&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
-&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j, \\
-\mathbf 1^T\mathcal A^*yX \mathbf 1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \mathbf 1^TA_iX\mathbf 1\\
-&amp;=&amp; \mathbf 1^T\displaystyle\sum_{i=1}^m y_i A_iX\mathbf 1,
-\end{array}
-\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
-<p>We have the Lagrange function, <span class="math display">\[
-\begin{array}{rcl}
-L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
-&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
-\end{array}
-\]</span> Then <span class="math display">\[
-\begin{array}{rcl}
-\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
-&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
-&amp;=&amp; 
-\begin{cases}
-\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
--\infty &amp; \text{otherwise.}
-\end{cases}
-\end{array}
-\]</span> Therefore, the dual problem is given by, <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\min &amp; \langle y,b\rangle\\
-\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
-&amp;Z\succeq 0.
-\end{array}
-\]</span></p>
+\]</span> where <span class="math inline">\(\mathcal F=\{x\in\mathcal X\;|\; G(x)\in\mathcal K\}\)</span> is the feasible region of COP.</p>
+<p><strong>Lemma</strong> (IMPORTANT)</p>
+<p>If Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>, then for all <span class="math inline">\(x\)</span> in a neighborhood of <span class="math inline">\(\bar x\)</span>, one has <span class="math display">\[
+\text{dist}(x,\mathcal F)=O(\text{dist}(G(x),\mathcal K)).
+\]</span> This lemma is very important because it can be used to measure the distance from the current point to the feasible point. For example, if we have the constraint <span class="math inline">\(Ax=b\)</span>, it is difficult to know the distance <span class="math inline">\(\text{dist}(x^c,\mathcal F)\)</span>, but it is easy to calculate <span class="math inline">\(||b-Ax^c||\)</span>. Since <span class="math inline">\(\text{dist}(x^c,\mathcal F)\)</span> is bounded by <span class="math inline">\(||b-Ax^c||\)</span>, we can use <span class="math inline">\(||b-Ax^c||\)</span> to estimate the distance.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(\bar x\)</span> be a locally optimal solution of COP. If Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>, then it holds that <span class="math display">\[
+T_\mathcal F(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_\mathcal K(G(\bar x))\}.
+\]</span> Hence <span class="math inline">\(d=0\)</span> is an optimal solution of the following problem, <span class="math display">\[
+\text{(LOCP)}\quad \min_{d\in\mathcal X}\{f&#39;(\bar x)d\;|\; G&#39;(\bar x)d\in T_{\mathcal K}(\bar x)\}.
+\]</span> <strong>Theorem</strong> (Main Theorem)</p>
+<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Then, <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span> <strong>if and only if</strong> Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>.</p>
+<p><strong>Proposition</strong> (Uniqueness of Lagrange Multipliers)</p>
+<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution to COP and <span class="math inline">\(\mathcal M(\bar x)\neq \emptyset\)</span>. Let <span class="math inline">\(\mu_0\in\mathcal M(\bar x)\)</span>.</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mathcal M(\bar x)\)</span> is a singleton if and only if <span class="math display">\[
+[G&#39;(\bar x)\mathcal X]^\perp\cap R_D(-\mu_0)=\{0\}
+\]</span> where <span class="math inline">\(D=N_\mathcal K(G(\bar x))\)</span>.</p></li>
+<li><p>Then the following condition is sufficient for the uniqueness of <span class="math inline">\(\mu_0\)</span>, <span class="math display">\[
+[G&#39;(\bar x)\mathcal X]+(T_\mathcal K(G(\bar x))\cap[-\mu_0]^\perp)=\mathcal Y.
+\]</span></p></li>
+</ol>
 
     </div>
 
@@ -452,7 +483,7 @@ L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nonlinear-conic-programming"><span class="nav-text">8. Nonlinear Conic Programming</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#robinsons-constraint-qualification"><span class="nav-text">7.1 Robinson’s constraint qualification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#first-order-necessary-conditions"><span class="nav-text">7.2 First order necessary conditions</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

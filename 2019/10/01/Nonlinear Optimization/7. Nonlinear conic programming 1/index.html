@@ -58,14 +58,14 @@
 
   <meta name="description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
 <meta property="og:type" content="article">
-<meta property="og:title" content="7. Nonlinear conic programming (Pending)">
+<meta property="og:title" content="7. Nonlinear conic programming (1)">
 <meta property="og:url" content="http://yoursite.com/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-02T12:02:51.000Z">
+<meta property="og:updated_time" content="2019-10-06T14:33:03.721Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="7. Nonlinear conic programming (Pending)">
+<meta name="twitter:title" content="7. Nonlinear conic programming (1)">
 <meta name="twitter:description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
   <link rel="canonical" href="http://yoursite.com/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/">
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>7. Nonlinear conic programming (Pending) | Orandragon's Blog</title>
+  <title>7. Nonlinear conic programming (1) | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">7. Nonlinear conic programming (Pending)
+        <h1 class="post-title" itemprop="name headline">7. Nonlinear conic programming (1)
 
           
         </h1>
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-02 20:02:51" itemprop="dateModified" datetime="2019-10-02T20:02:51+08:00">2019-10-02</time>
+                <time title="Modified: 2019-10-06 22:33:03" itemprop="dateModified" datetime="2019-10-06T22:33:03+08:00">2019-10-06</time>
               </span>
             
           
@@ -278,7 +278,7 @@
           
 
           
-            <span id="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (Pending)" title="Views">
+            <span id="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (1)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -327,13 +327,14 @@ G(X)=(g(X),h(X)),\quad X\in\mathcal X.
 \end{array}
 \]</span> Define the Lagrangian function <span class="math inline">\(L:\mathcal X\times \mathcal Y\rightarrow \mathbb R\)</span> for (COP) by <span class="math display">\[
 L(X,\mu)=f(X)-\langle \mu, G(X)\rangle,\quad X\in\mathcal X,\mu\in\mathcal Y.
-\]</span> There is no constraint on <span class="math inline">\(\mu\)</span> for the general Lagrangian function. Therefore, <span class="math inline">\(\mathcal Y\)</span> here, we will give explanation in the later.</p>
+\]</span> There is no constraint on <span class="math inline">\(\mu\)</span> for the general Lagrangian function. Therefore, here is <span class="math inline">\(y\in\mathcal Y\)</span>. We will give further explanation in the later.</p>
 <p>The <strong>Lagrangian dual function</strong> is defined by <span class="math display">\[
-\theta(\mu)=\inf\left\{L(X,\mu )\;|\; X\in\mathcal X\right\}.
-\]</span> The dual problem is <span class="math display">\[
+\theta(\mu)=\inf\left\{L(X,\mu )\;|\; X\in\mathcal X\right\},
+\]</span> which is an unconstrained function.</p>
+<p>The dual problem is <span class="math display">\[
 \max \{\theta(\mu)\;|\; \mu \in\mathcal K^*\},
 \]</span> where <span class="math inline">\(\mathcal K^* =\mathcal U\times \mathcal C^*\)</span> is the dual cone of <span class="math inline">\(\mathcal K\)</span>. Note that <span class="math inline">\((\{0^\mathcal U\})^*=\mathcal U\)</span> and <span class="math inline">\(\mathbb S_+^n\)</span> is <strong>self-dual</strong>.</p>
-<p>We can see in the conic programming, we only consider <span class="math inline">\(\mu\in \mathcal K^*\)</span> in the dual problem. However, if needed, we can also put this constraint to the Lagrangian dual function and Lagrangian function like what we usually did in basic nonlinear programming.</p>
+<p>We can see in the conic programming, we only consider <span class="math inline">\(\mu\in \mathcal K^*\)</span> in the dual problem. However, if needed, we can also put this constraint to the Lagrangian dual function and Lagrangian function like what we usually do in the basic nonlinear programming.</p>
 <p>We also define the Lagrangian function in the conic programming as <span class="math inline">\(L(x,\mu)=f(x)\textbf{ minus } \langle \mu,G(x)\rangle\)</span> <strong>instead of plus</strong>. This is for convenience because the cone is usually defined as “positive”, which means <span class="math inline">\(h(x)\succeq 0\)</span> in the conic programming <strong>instead of</strong> <span class="math inline">\(h(x)\le 0\)</span> in the basic nonlinear programming is the common case.</p>
 <p><strong>Example</strong></p>
 <p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb R^q\)</span> and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
@@ -407,7 +408,7 @@ L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle
 L(X,\mu)=L(X,y,Z)&amp;=&amp;f(X)-\langle \mu, G(X)\rangle\\
 &amp;=&amp;\langle C,X\rangle-\langle y,\mathcal A(X)-b\rangle-\langle  Z,X\rangle\\
 &amp;=&amp;\langle C,X\rangle-\langle \mathcal A^*(y), X\rangle+\langle y,b\rangle-\langle  Z,X\rangle\\
-&amp;=&amp;\langle C-\mathcal A^*(y)-Z,X\rangle+\langle y,b\rangle\\
+&amp;=&amp;\langle C-\mathcal A^*(y)-Z,X\rangle+\langle y,b\rangle.
 \end{array}
 \]</span> The we have the Lagrange dual function, <span class="math display">\[
 \begin{array}{rcl}
@@ -448,7 +449,6 @@ L(X,\mu)=L(X,y,Z)&amp;=&amp;f(X)-\langle \mu, G(X)\rangle\\
 &amp;X\succeq 0.
 \end{array}
 \]</span> In particular, when <span class="math inline">\(\mathcal A(X)=\text{diag} (X)\)</span> and <span class="math inline">\(b=e\)</span>, we get the nearest correlation matrix problem.</p>
-<p><strong>Example</strong> (dual of semidefinite programming least squares problem)</p>
 <p>The problem can be denoted as <span class="math display">\[
 \text{(SDPLS)}\quad \begin{array}{rCl}
 \min &amp; \frac{1}{2}||X-B||^2\\
@@ -461,7 +461,7 @@ L(X,y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle y,b-\mathcal A(X)\rangle -\langl
 &amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2+\frac{1}{2}||X||^2-\langle \mathcal A^*(y)+Z+B,X\rangle,
 \end{array}
 \]</span> Thus <span class="math inline">\(\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\)</span> can be found by setting, <span class="math display">\[
-\nabla _XL(X,y,Z)=X-(B+Z+\mathcal A^*(y))=0\implies X=(B+Z+\mathcal A^*(y)).
+\nabla _XL(X,y,Z)=X-(B+Z+\mathcal A^*(y))=0\implies X=B+Z+\mathcal A^*(y).
 \]</span> Then we have <span class="math display">\[
 \begin{array}{rcl}
 \theta (y,Z)&amp;=&amp;\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\\
@@ -535,10 +535,12 @@ L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
 </ol>
 <p><strong>Example</strong></p>
 <p>For basic NLP, let <span class="math inline">\(\bar \mu=(\lambda,\rho)\)</span>, and <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span>, and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, we have KKT conditions, <span class="math display">\[
-\nabla f(\bar x)-\nabla g(\bar x)\lambda -\nabla h(\bar x)\rho=0\\
-G(\bar x)=(g(\bar x),h(\bar x))\in \mathcal K\\
-\langle h(\bar x),\rho\rangle =0\\
-\rho \in \mathcal C^*=\mathbb R_+^p.
+\begin{array}{rcl}
+\nabla f(\bar x)-\nabla g(\bar x)\lambda -\nabla h(\bar x)\rho&amp;=&amp;0\\
+G(\bar x)=(g(\bar x),h(\bar x))&amp;\in&amp; \mathcal K\\
+\langle h(\bar x),\rho\rangle &amp;=&amp;0\\
+\rho \in \mathcal C^*&amp;=&amp;\mathbb R_+^p.
+\end{array}
 \]</span> <strong>Example</strong></p>
 <p>Given <span class="math inline">\(B\in\mathbb S^n\)</span>, consider the doubly nonnegative projection problem, <span class="math display">\[
 \min \left\{\frac{1}{2}||X-B||^2\;|\; X\in\mathbb S_+^n\cap \mathcal N^n\right\}.
@@ -557,7 +559,7 @@ L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
 \theta(\mu)=\theta(Y,Z)&amp;=&amp;\min_{X\in\mathbb S^n} L(X,\mu)\\
 &amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle\right)\\
 &amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X||^2-\langle B+Y+Z,X\rangle+\frac{1}{2}||B||^2\right)\\
-&amp;=&amp;\frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right)
+&amp;=&amp;\frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right).
 \end{array}
 \]</span></p>
 <p>Therefore the dual problem is <span class="math display">\[
@@ -566,18 +568,16 @@ L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
 \text{subject to}&amp; (Y,Z)\in\mathcal K^*=\mathbb S^n_+\times  \mathcal N^n.
 \end{array}
 \]</span> Therefore, the KKT conditions are given as <span class="math display">\[
-0=\nabla _xL(\bar X,\bar Y,\bar Z)=\nabla f(\bar X)-\nabla G(\bar X)(\bar Y,\bar Z)\\
+0=\nabla _xL(\bar X,\bar Y,\bar Z)=\nabla f(\bar X)-\langle\nabla G(\bar X),(\bar Y,\bar Z)\rangle\\
 \mathcal K\ni G(\bar X)\perp (\bar Y,\bar Z) \in \mathcal K^*.
 \]</span> That is (?????????) <span class="math display">\[
 \bar X- B-\bar Y-\bar Z=0\\
-\langle \bar X,\bar Y\rangle=0\\ 
-\langle \bar X,\bar Z\rangle =0  \\
+\langle \bar X,\bar Y\rangle+\langle \bar X,\bar Z\rangle=0\\ 
 \bar X\in \mathbb S^n_+\cap \mathcal N^n\\
-\bar Y\in\mathbb S^n_+\\
-\bar Z\in \mathcal N^n.
+(\bar Y,\bar Z)\in\mathbb S^n_+\times\mathcal N^n.
 \]</span></p>
 <h2 id="robinsons-constraint-qualification">7.1 Robinson’s constraint qualification</h2>
-<p>In order for the KKT conditions to be necessary for the local minimizer <span class="math inline">\(\bar x\)</span>, we need to introduce some conditions to ensure the existance of Lagrange multipliers and the boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>.</p>
+<p>In order for the KKT conditions to be necessary for the local minimizer <span class="math inline">\(\bar x\)</span>, we need to introduce some conditions to ensure the existence of Lagrange multipliers and the boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>.</p>
 <p><strong>Definition</strong> (Robinson’s constraint qualification)</p>
 <p>Let <span class="math inline">\(\bar x\)</span> be a feasible solution to COP. Robinson’s constraint qualification is said to hold at <span class="math inline">\(\bar x\)</span> if <span class="math display">\[
 0\in\text{int}\left(G(\bar x)+G&#39;(\bar x)\mathcal X-\mathcal K\right).

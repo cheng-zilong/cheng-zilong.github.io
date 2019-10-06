@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \beg">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-29T15:34:24.000Z">
+<meta property="og:updated_time" content="2019-10-05T03:40:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4. Gradient Methods (1)">
 <meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \beg">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-29 23:34:24" itemprop="dateModified" datetime="2019-09-29T23:34:24+08:00">2019-09-29</time>
+                <time title="Modified: 2019-10-05 11:40:25" itemprop="dateModified" datetime="2019-10-05T11:40:25+08:00">2019-10-05</time>
               </span>
             
           
@@ -433,7 +433,7 @@ q(x;\bar x)= f(\bar x)+\langle \nabla f(\bar x),x-\bar x\rangle +\frac{1}{2}\lan
 \hat x =\arg \min \{g(x)+q(x;\bar x)\;|\;x\in \mathbb R^n\}.
 \]</span> <strong>Accelerated proximal gradient (APG) method</strong></p>
 <p>Given a positive sequence <span class="math inline">\(\{t_k\}\)</span> such that <span class="math inline">\(t_{k+1}^2-t_{k+1}\le t_k^2\)</span> starting with <span class="math inline">\(t_0=1\)</span>, <span class="math inline">\(t_1=1\)</span>. Given <span class="math inline">\(x^0\)</span>. For <span class="math inline">\(k=0,1,\dots\)</span>, do the following iterations.</p>
-<p><strong>[Step 1]</strong> Set <span class="math inline">\(\beta_k=(t_k-1)/t_{k+1}\)</span> and <span class="math inline">\(\bar x^k=x^k+\beta(x^k-x^{k-1})\)</span>.</p>
+<p><strong>[Step 1]</strong> Set <span class="math inline">\(\beta_k=(t_k-1)/t_{k+1}\)</span> and <span class="math inline">\(\bar x^k=x^k+\beta_k(x^k-x^{k-1})\)</span>.</p>
 <p><strong>[Step 2]</strong> Compute <span class="math display">\[
 x^{k+1}=\arg \min \{g(x)+q(x;\bar x^k)\;|\;x\in \mathbb R^n\}.
 \]</span> When <span class="math inline">\(t_k=1\)</span> for all <span class="math inline">\(k\)</span>, then <span class="math inline">\(\bar x^k=x^k\)</span> for all <span class="math inline">\(k\)</span>, and the method is the standard <strong>proximal gradient method</strong>.</p>
