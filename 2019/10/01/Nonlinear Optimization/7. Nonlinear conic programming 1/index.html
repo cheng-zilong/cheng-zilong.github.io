@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-06T14:33:03.721Z">
+<meta property="og:updated_time" content="2019-10-07T08:25:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="7. Nonlinear conic programming (1)">
 <meta name="twitter:description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-06 22:33:03" itemprop="dateModified" datetime="2019-10-06T22:33:03+08:00">2019-10-06</time>
+                <time title="Modified: 2019-10-07 16:25:47" itemprop="dateModified" datetime="2019-10-07T16:25:47+08:00">2019-10-07</time>
               </span>
             
           
@@ -515,8 +515,8 @@ L(u,x,\xi)&amp;=&amp;f(u)+g(x)+\langle \xi,b-u-Ax\rangle\\
 \]</span> <strong>Definition</strong> (Lagrange Multipliers) <span class="math display">\[
 L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
 \]</span> where <span class="math inline">\(L\)</span> be the Lagrangian function for (COP). Assume that <span class="math inline">\(f\)</span> and <span class="math inline">\(G\)</span> are continuously differentiable. We say that <span class="math inline">\(\bar \mu \in\mathcal Y\)</span> is a Lagrange multiplier of (COP) at a feasible point <span class="math inline">\(\bar x\)</span>, if it satisfies the KKT condition, <span class="math display">\[
-0=\nabla _xL(\bar x,\bar \mu)=\nabla f(\bar x)-\nabla G(\bar x)\bar \mu,\quad 0\in \bar \mu+\mathcal N_\mathcal K(G(\bar x)),
-\]</span> where <span class="math inline">\(\mathcal N_\mathcal K (G(\bar x))\)</span> is the normal cone of <span class="math inline">\(\mathcal K\)</span> at <span class="math inline">\(G(\bar x)\in \mathcal Y\)</span>. We denote the set of all Lagrange multipliers at <span class="math inline">\(\bar x\)</span> as <span class="math inline">\(\mathcal M(\bar x)\)</span>. We call the pair <span class="math inline">\((\bar x,\bar \mu)\)</span> a KKT point.</p>
+0=\nabla _xL(\bar x,\bar \mu)=\nabla f(\bar x)-\nabla G(\bar x)\bar \mu,\quad 0\in \bar \mu+N_\mathcal K(G(\bar x)),
+\]</span> where <span class="math inline">\(N_\mathcal K (G(\bar x))\)</span> is the normal cone of <span class="math inline">\(\mathcal K\)</span> at <span class="math inline">\(G(\bar x)\in \mathcal Y\)</span>. We denote the set of all Lagrange multipliers at <span class="math inline">\(\bar x\)</span> as <span class="math inline">\(\mathcal M(\bar x)\)</span>. We call the pair <span class="math inline">\((\bar x,\bar \mu)\)</span> a KKT point.</p>
 <p><strong>Remark</strong></p>
 <ol type="1">
 <li><p>If <span class="math inline">\(\mathcal C\)</span> is a closed convex cone, then <span class="math inline">\(\mathcal K = 0^{\mathcal U}\times \mathcal C\)</span> is a closed convex cone. <span class="math display">\[
@@ -575,12 +575,6 @@ L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
 \langle \bar X,\bar Y\rangle+\langle \bar X,\bar Z\rangle=0\\ 
 \bar X\in \mathbb S^n_+\cap \mathcal N^n\\
 (\bar Y,\bar Z)\in\mathbb S^n_+\times\mathcal N^n.
-\]</span></p>
-<h2 id="robinsons-constraint-qualification">7.1 Robinson’s constraint qualification</h2>
-<p>In order for the KKT conditions to be necessary for the local minimizer <span class="math inline">\(\bar x\)</span>, we need to introduce some conditions to ensure the existence of Lagrange multipliers and the boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>.</p>
-<p><strong>Definition</strong> (Robinson’s constraint qualification)</p>
-<p>Let <span class="math inline">\(\bar x\)</span> be a feasible solution to COP. Robinson’s constraint qualification is said to hold at <span class="math inline">\(\bar x\)</span> if <span class="math display">\[
-0\in\text{int}\left(G(\bar x)+G&#39;(\bar x)\mathcal X-\mathcal K\right).
 \]</span></p>
 
     </div>
@@ -658,7 +652,7 @@ L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nonlinear-conic-programming"><span class="nav-text">7. Nonlinear Conic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#robinsons-constraint-qualification"><span class="nav-text">7.1 Robinson’s constraint qualification</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nonlinear-conic-programming"><span class="nav-text">7. Nonlinear Conic Programming</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

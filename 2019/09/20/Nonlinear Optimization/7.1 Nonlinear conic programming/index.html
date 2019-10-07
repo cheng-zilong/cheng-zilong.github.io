@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="7.1 Robinson’s constraint qualification In order for the KKT conditions to be necessary for the local minimizer \(\bar x\), we need to introduce some conditions to ensure the existence of Lagrange mu">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-06T16:11:38.558Z">
+<meta property="og:updated_time" content="2019-10-07T11:07:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8. Nonlinear conic programming (2)">
 <meta name="twitter:description" content="7.1 Robinson’s constraint qualification In order for the KKT conditions to be necessary for the local minimizer \(\bar x\), we need to introduce some conditions to ensure the existence of Lagrange mu">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-07 00:11:38" itemprop="dateModified" datetime="2019-10-07T00:11:38+08:00">2019-10-07</time>
+                <time title="Modified: 2019-10-07 19:07:22" itemprop="dateModified" datetime="2019-10-07T19:07:22+08:00">2019-10-07</time>
               </span>
             
           
@@ -364,16 +364,42 @@ T_\mathcal C(y)=\{d\in\mathbb R^p\;|\;d_j\ge 0,j\in J(y)\}.
 <p>Assume that <span class="math inline">\(G(\bar x)\in\mathcal K\)</span>. If <span class="math inline">\(\mathcal K\)</span> has a nonempty interior, then the Robinson's CQ is equivalent to <span class="math display">\[
 \exists d\in\mathcal X\text{ such that }\\
 G(\bar x)+G&#39;(\bar x)d\in\text{int}(\mathcal K).
-\]</span> Proof.</p>
+\]</span> This proposition says that there exists linearization <span class="math inline">\(G(\bar x+d)\approx G(\bar x)+G&#39;(\bar x)d\)</span>, which is in the interior of the set <span class="math inline">\(\mathcal K\)</span>.</p>
+<p>Proof.</p>
 <p><span class="math inline">\(\implies\)</span></p>
 <p>If there exists <span class="math inline">\(d\in\mathcal X\)</span> such that <span class="math inline">\(y= G(\bar x)+G&#39;(\bar x)d\in \text{int}(\mathcal K)\)</span>, then there exists an open ball <span class="math inline">\(B_\epsilon(y)\in \text{int}(\mathcal K)\)</span>, which means <span class="math inline">\(B_\epsilon(0)\in \text{int}(\mathcal K-y)\)</span>. This means <span class="math inline">\(0\in \text{int}(G(\bar x)+G&#39;(\bar x)d-\mathcal K)\)</span>, which is the Robinson's CQ.</p>
 <p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>We will prove the necessity by contradiction. Suppose <span class="math inline">\(\forall d\in\mathcal X\)</span> such that <span class="math inline">\(G(\bar x)+G&#39;(\bar x)d\notin\text{int}(\mathcal K)\)</span>, which means <span class="math display">\[
+\left(G(\bar x)+G&#39;(\bar x)\mathcal X\right) \cap \text{int}(\mathcal K)=\emptyset.
+\]</span> Then by the proper separation theorem, there exists a nonzero <span class="math inline">\(\lambda\in\mathcal Y\)</span>, such that <span class="math display">\[
+\langle \lambda,G(\bar x)+G&#39;(\bar x) d\rangle\ge \langle \lambda ,k\rangle\implies 
+\langle \lambda,G(\bar x)+G&#39;(\bar x)d-k\rangle \ge 0,
+\]</span> for all <span class="math inline">\(d\in \mathcal X\)</span> and <span class="math inline">\(k\in\mathcal K\)</span>.</p>
+<p>Let <span class="math inline">\(y\in\mathcal Y\)</span>, such that <span class="math inline">\(\langle \lambda,y\rangle &lt;0\)</span>. Then for any <span class="math inline">\(t&gt;0\)</span>, we have <span class="math inline">\(\langle \lambda,ty\rangle&lt;0\)</span>, which means <span class="math inline">\(ty\notin G(\bar x)+G&#39;(\bar x)\mathcal X-K\)</span>. This means <span class="math inline">\(G(\bar x)+G&#39;(\bar x)\mathcal X-K\)</span> cannot contain an open ball centered at origin.</p>
 <p><strong>Proposition</strong></p>
 <p>Suppose that <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, and <span class="math inline">\(G(\bar x)\in \mathcal K\)</span>. If <span class="math inline">\(\mathcal C\)</span> has a nonempty interior, then Robinson's CQ is equivalent to</p>
 <ol type="1">
 <li><span class="math inline">\(g&#39;(x)\)</span> is onto and,</li>
 <li><span class="math inline">\(\exists d\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)d=0,h(\bar x)+h&#39;(\bar x)d\in \text{int}(\mathcal C)\)</span>.</li>
 </ol>
+<p>Proof.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Robinson’s CQ is saying that there exists <span class="math inline">\(\epsilon_1,\epsilon_2&gt;0\)</span>, for all <span class="math inline">\(y\in\mathbb R^m\)</span> such that <span class="math inline">\(||y||\le \epsilon_1\)</span> and for all <span class="math inline">\(z\in \mathcal V\)</span> such that <span class="math inline">\(||z||\le \epsilon_2\)</span>, such that there exists <span class="math inline">\(d\in\mathcal X\)</span> satisfying <span class="math display">\[
+y\in g(\bar x)+g&#39;(\bar x)d-\{0^m\},\\
+z\in h(\bar x)+h&#39;(\bar x)d-\mathcal C.
+\]</span> From the first equation, it is obvious to show that <span class="math inline">\(g&#39;(\bar x)\)</span> is onto. (Since <span class="math inline">\(g(\bar x)=0\)</span>, <span class="math inline">\(y\in g&#39;(\bar x)\mathcal X\)</span>)</p>
+<p>We can take <span class="math inline">\(y=0\)</span>, then we have <span class="math inline">\(d \in \text{null}(g&#39;(\bar x))\)</span>. Therefore, we have <span class="math display">\[
+z\in h(\bar x)+h&#39;(\bar x) \text{null}(g&#39;(\bar x))-\mathcal C.
+\]</span> Since <span class="math inline">\(\mathcal C\)</span> has nonempty interior, there exists <span class="math inline">\(d\in\mathcal X\)</span>, such that <span class="math inline">\(g&#39;(\bar x) d=0\)</span>, and then we have <span class="math display">\[
+h(\bar x)+h&#39;(\bar x)d\in\mathcal C+z\implies h(\bar x)+h&#39;(\bar x)d\in \text{int}(\mathcal C).
+\]</span> <span class="math inline">\(\implies\)</span></p>
+<p>The proposition is equivalent to <span class="math display">\[
+g&#39;(\bar x)\text{ is onto and }0\in \text{int}(h(\bar x)+h&#39;(\bar x)\text{Null}(g&#39;(\bar x))-\mathcal C).
+\]</span> Then there exists <span class="math inline">\(\epsilon &gt;0\)</span> such that the open ball <span class="math inline">\(B_\epsilon (0)\subset \text{int}(h(\bar x)+h&#39;(\bar x)\text{Null}(g&#39;(\bar x))-\mathcal C)\)</span>, and <span class="math inline">\(g&#39;(\bar x)\)</span> is onto implies there exists <span class="math inline">\(M&gt;0\)</span>, and there exists <span class="math inline">\(d_1\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)d_1=y\)</span> and <span class="math inline">\(||d_1||\le M||y||\)</span>.</p>
+<p>Assume there exists <span class="math inline">\(\epsilon_1,\epsilon_2&gt;0\)</span>, for all <span class="math inline">\(y\in\mathbb R^m\)</span> such that <span class="math inline">\(||y||\le \epsilon_1\)</span> and for all <span class="math inline">\(z\in \mathcal V\)</span> such that <span class="math inline">\(||z||\le \epsilon_2\)</span>. Then there exists <span class="math inline">\(d\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)d=y\)</span> and <span class="math inline">\(B_\epsilon (0)\subset \text{int}(h(\bar x)+h&#39;(\bar x)d-\mathcal C)\)</span> (This is the Robinson’s CQ) if and only if there exists <span class="math inline">\(d_2=d-d_1\)</span> such that <span class="math inline">\(g&#39;(\bar x)d_2=0\)</span>, and <span class="math display">\[
+z\in h(\bar x)+h&#39;(\bar x)(d_1+d_2)-\mathcal C \iff z-h&#39;(\bar x)d_1\in h(\bar x)+h&#39;(\bar x)d_2-\mathcal C.
+\]</span> This can be checked easily by the following. Since we have <span class="math inline">\(||d_1||\le M||y||\)</span>, by choosing sufficient small <span class="math inline">\(\epsilon_1\)</span> and <span class="math inline">\(\epsilon_2\)</span>, we have <span class="math inline">\(B_\epsilon (0)\subset \text{int}(h(\bar x)+h&#39;(\bar x)\mathcal X-\mathcal C)\)</span>.</p>
+<p>Therefore, there exists <span class="math inline">\(\bar d\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)\bar d=0\)</span> and <span class="math inline">\(z-h&#39;(\bar x)d_1\in h(\bar x)+h&#39;(\bar x)\bar d-\mathcal C\)</span>. Let <span class="math inline">\(d=\bar d+d_1\)</span>. Then Robinson’s CQ holds.</p>
 <h2 id="first-order-necessary-conditions">7.2 First order necessary conditions</h2>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(\bar x\)</span> be a locally optimal solution of (COP). Then the point <span class="math inline">\(d=0\)</span> is an optimal solution of the following problem <span class="math display">\[
@@ -382,6 +408,10 @@ G(\bar x)+G&#39;(\bar x)d\in\text{int}(\mathcal K).
 \text{subject to}&amp; d\in T_\mathcal F(\bar x),
 \end{array}
 \]</span> where <span class="math inline">\(\mathcal F=\{x\in\mathcal X\;|\; G(x)\in\mathcal K\}\)</span> is the feasible region of COP.</p>
+<p>Proof.</p>
+<p>Let <span class="math inline">\(d\in T_\mathcal K(\bar x)\)</span>. By the definition of the tangent cone, there exists <span class="math inline">\(t_k\downarrow 0\)</span> and <span class="math inline">\(x^k=\bar x+t_kd+o(t_k)\)</span> such that <span class="math inline">\(x^k\in \mathcal F\)</span>. Since <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP, it follows that <span class="math display">\[
+0\le \lim_{k\rightarrow \infty}\frac{f(x^k)-f(\bar x)}{t_k}=\lim_{k\rightarrow \infty}\frac{f(\bar x+t_kd+o(t_k))-f(\bar x)}{t_k}=f&#39;(\bar x)d
+\]</span> This completes the proof.</p>
 <p><strong>Lemma</strong> (IMPORTANT)</p>
 <p>If Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>, then for all <span class="math inline">\(x\)</span> in a neighborhood of <span class="math inline">\(\bar x\)</span>, one has <span class="math display">\[
 \text{dist}(x,\mathcal F)=O(\text{dist}(G(x),\mathcal K)).
@@ -392,7 +422,33 @@ T_\mathcal F(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_\mathcal K(G(\ba
 \]</span> Hence <span class="math inline">\(d=0\)</span> is an optimal solution of the following problem, <span class="math display">\[
 \text{(LOCP)}\quad \min_{d\in\mathcal X}\{f&#39;(\bar x)d\;|\; G&#39;(\bar x)d\in T_{\mathcal K}(\bar x)\}.
 \]</span> <strong>Theorem</strong> (Main Theorem)</p>
-<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Then, <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span> <strong>if and only if</strong> Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>.</p>
+<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Then, <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (which means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span> <strong>if and only if</strong> Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Suppose Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>. We need to prove <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (which means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span>.</p>
+<p>Firstly, we define the set <span class="math display">\[
+\bar N=\{s\in\mathcal X\;|\; s=\nabla G(\bar x)\mu,-\mu\in N_\mathcal K(G(\bar x))\}.
+\]</span> <span class="math inline">\(\bar N\)</span> is obvious a convex cone since the normal cone is always convex.</p>
+<p>Then we will show <span class="math inline">\(\bar N\)</span> is always closed. That is to show that for any <span class="math inline">\(z\in \text{cl}(\bar N)\)</span>, there exists <span class="math inline">\(\{z^k\}\subset \bar N\)</span>, such that <span class="math inline">\(z^k\rightarrow z\)</span>. For any sequence <span class="math inline">\(\{-\mu^k\}\subset N_\mathcal K(G(\bar x))\)</span>, we have <span class="math inline">\(\mu^k\rightarrow \mu\)</span> (converge) or <span class="math inline">\(\sigma^k\mu^k\rightarrow \mu\neq 0\)</span> (not converge), where <span class="math inline">\(\sigma^k = 1/||\mu_k||\rightarrow 0\)</span>. In both cases we have <span class="math inline">\(-\mu\in N_\mathcal K(G(\bar x))\)</span> since normal cone is closed. For the first case, <span class="math inline">\(\mu^k\rightarrow \mu\)</span>, we have <span class="math inline">\(z\in \bar N\)</span> since <span class="math inline">\(-\mu \in N_\mathcal K(G(\bar x))\)</span>. For the second case, we have <span class="math inline">\(\sigma ^k\mu^k\rightarrow\mu\neq 0\)</span>. We obtain from <span class="math inline">\(\sigma^k z^k=\nabla G(\bar x)\sigma^k \mu^k\)</span>. The left hand side is zero since <span class="math inline">\(\sigma^k\rightarrow 0\)</span> and <span class="math inline">\(z^k\rightarrow z\)</span>. Then we have <span class="math inline">\(0=\nabla G(\bar x)\mu\)</span>. We also have <span class="math inline">\(0\neq -\mu\in N_\mathcal K(G(\bar x))\)</span>, which contradicts that <span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))=\{0\}\)</span>. Therefore, we only have the first case, which means <span class="math inline">\(\bar N\)</span> is closed.</p>
+<p>Then we will show that <span class="math inline">\(\nabla f(\bar x)\in \bar N\)</span> by contradiction. Suppose <span class="math inline">\(\nabla f(\bar x)\notin \bar N\)</span>.Then we have <span class="math inline">\(\bar d=\Pi_\bar N(\nabla f(\bar x))-\nabla f(\bar x)\neq 0\)</span>. Then we have <span class="math inline">\(\bar d = \Pi_{\bar N^*}(\nabla f(\bar x))\)</span>. <span class="math display">\[
+0\le||\bar d||^2=\langle d,d\rangle=\langle\Pi_\bar N(\nabla f(\bar x))-\nabla f(\bar x),\Pi_{\bar N^*}(\nabla f(\bar x))\rangle=-f&#39;(\bar x)\bar d.
+\]</span> By the property of projection, we also have <span class="math display">\[
+\langle \bar d,s-\Pi_\bar N(\nabla f(\bar x))\rangle \ge 0,\forall s\in\bar N.
+\]</span> It follows that <span class="math display">\[
+\langle \bar d,\nabla G(\bar x)\mu-\Pi_\bar N(\nabla f(\bar x))\rangle \ge 0,\forall -\mu\in N_\mathcal K(G(\bar x))\iff\\
+\langle \bar d,\nabla G(\bar x)\mu-\bar d+\nabla f(\bar x)\rangle \ge 0,\forall -\mu\in N_\mathcal K(G(\bar x))\iff\\
+\langle \bar d,\nabla G(\bar x)\mu\rangle \ge ||\bar d||^2-\langle \bar d,\nabla f(\bar x)\rangle\ge 0,\forall -\mu\in N_\mathcal K(G(\bar x)).
+\]</span> Then <span class="math display">\[
+\langle G&#39;(\bar x)\bar d,-\mu\rangle \le 0\quad \forall -\mu\in N_\mathcal K(G(\bar x)),
+\]</span> which means <span class="math display">\[
+G&#39;(\bar x)\bar d\in (N_\mathcal K(G(\bar x)))^o = T_\mathcal K(G(\bar x)).
+\]</span> This yields a contradiction to the proposition.</p>
+<p>Similar method can be used to prove the closeness and boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>We will prove necessity by contradiction.</p>
+<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Suppose Robinson's CQ <strong>does not</strong> hold at <span class="math inline">\(\bar x\)</span>. Suppose <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (which means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span>. We need to find contradiction.</p>
+<p>By the proposition, we know that Robinson’s CQ holds if and only if <span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))=\{0\}\)</span>. If Robinson’s CQ does not hold, which means <span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))\neq\{0\}\)</span>. Then we have <span class="math inline">\((-\mu_0\neq0)\in N_\mathcal K(G(\bar x))\)</span> such that <span class="math inline">\(\nabla G(\bar x)\mu_0=0\)</span>. Since <span class="math inline">\(\mathcal M(\bar x)\)</span> is nonempty, let <span class="math inline">\(\mu\in\mathcal M(\bar x)\)</span>. Then for any <span class="math inline">\(t&gt;0\)</span>, we have <span class="math display">\[
+\nabla f(\bar x)-\nabla G(\bar x)(\mu+t\mu_0)=0,
+\]</span> which means <span class="math inline">\(\mu+t\mu_0\in \mathcal M(\bar x)\)</span>.</p>
 <p><strong>Proposition</strong> (Uniqueness of Lagrange Multipliers)</p>
 <p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution to COP and <span class="math inline">\(\mathcal M(\bar x)\neq \emptyset\)</span>. Let <span class="math inline">\(\mu_0\in\mathcal M(\bar x)\)</span>.</p>
 <ol type="1">
