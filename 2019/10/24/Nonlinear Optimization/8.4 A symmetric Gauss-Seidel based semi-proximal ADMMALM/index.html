@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="8.4 A symmetric Gauss-Seidel based semi-proximal ADMM/ALM Let us consider the following convex composite quadratic programming, \[ \text{(P)}\quad \begin{array}{rCl} \min &amp;amp; \theta(y_1)+f(y_1,y_">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-31T13:52:58.069Z">
+<meta property="og:updated_time" content="2019-10-31T13:55:27.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Orandragon&#39;s Blog">
 <meta name="twitter:description" content="8.4 A symmetric Gauss-Seidel based semi-proximal ADMM/ALM Let us consider the following convex composite quadratic programming, \[ \text{(P)}\quad \begin{array}{rCl} \min &amp;amp; \theta(y_1)+f(y_1,y_">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-31 21:52:58" itemprop="dateModified" datetime="2019-10-31T21:52:58+08:00">2019-10-31</time>
+                <time title="Modified: 2019-10-31 21:55:27" itemprop="dateModified" datetime="2019-10-31T21:55:27+08:00">2019-10-31</time>
               </span>
             
           
@@ -400,7 +400,15 @@ y^{k+1}&amp;=&amp; \arg\min_y\left\{\theta(y_1)+\frac{1}{2}\langle y,(\mathcal P
 0 &amp; 0 &amp; \dotsm &amp; \sigma^{-1}\mathcal P_{2p}+ \mathcal A_2\mathcal A_p^*\\
 \vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; 0
 \end{array}\right).
-\]</span> If we choose <span class="math inline">\(\mathcal S_i=\mathcal F_i-\sigma^{-1}\mathcal P_{ii}-\mathcal A_i\mathcal A_i^*\succeq 0,\quad i=1,\dotsm,p\)</span>, then we have</p>
+\]</span> If we choose <span class="math inline">\(\mathcal S_i=\mathcal F_i-\sigma^{-1}\mathcal P_{ii}-\mathcal A_i\mathcal A_i^*\succeq 0,\quad i=1,\dotsm,p\)</span>, then we have <span class="math display">\[
+\mathcal D=
+\begin{bmatrix}
+\mathcal F_1 &amp; 0 &amp; \dotsm &amp; 0\\
+0 &amp; \mathcal F_2 &amp; \dotsm &amp; 0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+0 &amp; 0 &amp; \dotsm &amp; \mathcal F_p
+\end{bmatrix}.
+\]</span> Then we have <span class="math inline">\(\mathcal S_\mathcal M=\mathcal U\mathcal D^{-1}\mathcal U^*\)</span>, and the subproblems we need to solve can be denoted as</p>
 <p><strong>Proposition</strong></p>
 <p>For any <span class="math inline">\(k\ge 0\)</span>, the point <span class="math inline">\((x^{k+1},y^{k+1},z^{k+1})\)</span> obtained by sGS-sPADMM for solving the problem can be generated exactly according to the following iteration, <span class="math display">\[
 \begin{array}{rcl}
