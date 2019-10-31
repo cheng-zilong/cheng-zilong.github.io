@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="8.4 A symmetric Gauss-Seidel based semi-proximal ADMM/ALM Let us consider the following convex composite quadratic programming, \[ \text{(P)}\quad \begin{array}{rCl} \min &amp;amp; \theta(y_1)+f(y_1,y_">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-31T13:55:27.368Z">
+<meta property="og:updated_time" content="2019-10-31T14:07:42.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Orandragon&#39;s Blog">
 <meta name="twitter:description" content="8.4 A symmetric Gauss-Seidel based semi-proximal ADMM/ALM Let us consider the following convex composite quadratic programming, \[ \text{(P)}\quad \begin{array}{rCl} \min &amp;amp; \theta(y_1)+f(y_1,y_">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-31 21:55:27" itemprop="dateModified" datetime="2019-10-31T21:55:27+08:00">2019-10-31</time>
+                <time title="Modified: 2019-10-31 22:07:42" itemprop="dateModified" datetime="2019-10-31T22:07:42+08:00">2019-10-31</time>
               </span>
             
           
@@ -408,7 +408,12 @@ y^{k+1}&amp;=&amp; \arg\min_y\left\{\theta(y_1)+\frac{1}{2}\langle y,(\mathcal P
 \vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
 0 &amp; 0 &amp; \dotsm &amp; \mathcal F_p
 \end{bmatrix}.
-\]</span> Then we have <span class="math inline">\(\mathcal S_\mathcal M=\mathcal U\mathcal D^{-1}\mathcal U^*\)</span>, and the subproblems we need to solve can be denoted as</p>
+\]</span> Then we have <span class="math inline">\(\mathcal S_\mathcal M=\mathcal U\mathcal D^{-1}\mathcal U^*\)</span>, and the subproblems we need to solve can be denoted as <span class="math display">\[
+\begin{array}{rcl}
+\bar y_i^k &amp;=&amp;\arg\min _{y_i}\mathcal L_\sigma ((y^k_{\le i-1},y_i,\bar y^k_{\ge i+1}),z^k;x^k)+\frac{\sigma}{2}||y_i-y_i^k||_{\mathcal S_i}^2\\
+y_1^{k+1}&amp;=&amp;\arg\min_{y_1}\mathcal L_\sigma((y_1,\bar y^k_{\ge 2},z_k;x^k)+\frac{\sigma}{2}||y_1-y_1^k||_{\mathcal S_1}^2. 
+\end{array}
+\]</span></p>
 <p><strong>Proposition</strong></p>
 <p>For any <span class="math inline">\(k\ge 0\)</span>, the point <span class="math inline">\((x^{k+1},y^{k+1},z^{k+1})\)</span> obtained by sGS-sPADMM for solving the problem can be generated exactly according to the following iteration, <span class="math display">\[
 \begin{array}{rcl}
