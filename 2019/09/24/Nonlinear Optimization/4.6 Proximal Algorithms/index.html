@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="4.6 Proximal Algorithms In this section, some important algorithms for solving convex optimization problems will rely on the use of proximal operators. 4.6.1 Proximal minimization The proximal mini">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-27T03:18:59.000Z">
+<meta property="og:updated_time" content="2019-10-31T11:37:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4. Gradient Methods (2) - Proximal Algorithms">
 <meta name="twitter:description" content="4.6 Proximal Algorithms In this section, some important algorithms for solving convex optimization problems will rely on the use of proximal operators. 4.6.1 Proximal minimization The proximal mini">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-27 11:18:59" itemprop="dateModified" datetime="2019-09-27T11:18:59+08:00">2019-09-27</time>
+                <time title="Modified: 2019-10-31 19:37:15" itemprop="dateModified" datetime="2019-10-31T19:37:15+08:00">2019-10-31</time>
               </span>
             
           
@@ -315,8 +315,7 @@
 <h3 id="proximal-minimization">4.6.1 Proximal minimization</h3>
 <p>The <strong>proximal minimization algorithm</strong>, also called <strong>proximal iteration</strong> or <strong>proximal point algorithm</strong>, is <span class="math display">\[
 x^{k+1}=P_{\lambda f}(x^k),
-\]</span> where <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R\cup \{+\infty\}\)</span> is a closed proper convex function, <span class="math inline">\(k\)</span> is the iteration number, and <span class="math inline">\(x^k\)</span> denotes the <span class="math inline">\(k\)</span>th iterate of</p>
-<p>the algorithm. We have shown that <span class="math inline">\(x^k\)</span> will converge to the optimal value. A variation of this method is to replace the constant <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda^k\)</span>. Convergence is guaranteed provided <span class="math inline">\(\lambda^k&gt;0\)</span> and <span class="math inline">\(\sum_{k=1}^\infty \lambda^k=\infty\)</span>.</p>
+\]</span> where <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R\cup \{+\infty\}\)</span> is a closed proper convex function, <span class="math inline">\(k\)</span> is the iteration number, and <span class="math inline">\(x^k\)</span> denotes the <span class="math inline">\(k\)</span>th iterate of the algorithm. We have shown that <span class="math inline">\(x^k\)</span> will converge to the optimal value. A variation of this method is to replace the constant <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda^k\)</span>. Convergence is guaranteed provided <span class="math inline">\(\lambda^k&gt;0\)</span> and <span class="math inline">\(\sum_{k=1}^\infty \lambda^k=\infty\)</span>.</p>
 <p><strong>Interpretations</strong></p>
 <p>The proximal minimization algorithm an be interpreted many ways. One simple perspective is that it is the standard gradient method applied to the Moreau envelope <span class="math inline">\(M_f\)</span> rather than <span class="math inline">\(f\)</span>. Another is that it is simple iteration for finding a fixed point of <span class="math inline">\(P_{\lambda f}\)</span>, which works because <span class="math inline">\(P_{\lambda f}\)</span> is firmly nonexpansive.</p>
 <p><em>Disappearing Tikhonov regularization</em></p>
@@ -414,17 +413,17 @@ w^k=\frac{k}{k+3}.
 <h3 id="alternating-direction-method-of-multipliers">4.6.4 Alternating direction method of multipliers</h3>
 <p>Consider the problem, <span class="math display">\[
 \min f(g)+g(x)
-\]</span> where <span class="math inline">\(f,g:\mathbb R^n\rightarrow \mathbb R\cup \{+\infty\}\)</span> are closed proper convex functions. Both <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be nonsmooth. Then the <strong>alternating diretion method of multipliers (ADMM)</strong> also known as <strong>Douglas-Rachford splitting</strong> is <span class="math display">\[
+\]</span> where <span class="math inline">\(f,g:\mathbb R^n\rightarrow \mathbb R\cup \{+\infty\}\)</span> are closed proper convex functions. Both <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be nonsmoothed. Then the <strong>alternating direction method of multipliers (ADMM)</strong> also known as <strong>Douglas-Rachford splitting</strong> is <span class="math display">\[
 \begin{array}{rcl}
 x^{k+1}&amp;=&amp;P_{\lambda f} (z^k-u^k)\\
 z^{k+1}&amp;=&amp; P_{\lambda g}(x^{k+1}+u^k)\\
 u^{k+1}&amp;=&amp; u^k+x^{k+1}-z^{k+1}.
 \end{array}
 \]</span> This method converges under more or less the most general possible conditions.</p>
-<p>While <span class="math inline">\(x^k\)</span> and <span class="math inline">\(z^k\)</span> converge to each orther, and to optimality, they have slightly different properties. For example, <span class="math inline">\(x^k\in \text{dom}f\)</span> while <span class="math inline">\(z^k\in \text{dom}g\)</span>, so if <span class="math inline">\(g\)</span> encodes constraints, the iterates <span class="math inline">\(z^k\)</span> satisfy the constraints while the iterates <span class="math inline">\(x^k\)</span> satisfy the constraints only in the limit. If <span class="math inline">\(g=||\cdot||_2\)</span>, then <span class="math inline">\(z^k\)</span> will be spase because <span class="math inline">\(P_{\lambda g}\)</span> is soft thresholding, while <span class="math inline">\(x^k\)</span> will only be close to <span class="math inline">\(z^k\)</span> (close to sparse).</p>
+<p>While <span class="math inline">\(x^k\)</span> and <span class="math inline">\(z^k\)</span> converge to each other, and to optimality, they have slightly different properties. For example, <span class="math inline">\(x^k\in \text{dom}f\)</span> while <span class="math inline">\(z^k\in \text{dom}g\)</span>, so if <span class="math inline">\(g\)</span> encodes constraints, the iterates <span class="math inline">\(z^k\)</span> satisfy the constraints while the iterates <span class="math inline">\(x^k\)</span> satisfy the constraints only in the limit. If <span class="math inline">\(g=||\cdot||_2\)</span>, then <span class="math inline">\(z^k\)</span> will be sparse because <span class="math inline">\(P_{\lambda g}\)</span> is soft thresholding, while <span class="math inline">\(x^k\)</span> will only be close to <span class="math inline">\(z^k\)</span> (close to sparse).</p>
 <p>The advantage of ADMM is that the objective terms (which can both include constraints, since they can take on infinite values) are handle completely separately, the functions are accessed only through their proximal operators. ADMM is most useful when the proximal operators of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be efficiently evaluated but the proximal operator for <span class="math inline">\(f+g\)</span> is not easy to evaluate.</p>
 <p><strong>Special cases</strong></p>
-<p>When <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span>, its proximal operator <span class="math inline">\(P_{\lambda g}\)</span> reduces to projection onto <span class="math inline">\(\mathcal C\)</span>. In this case, ADMM is a method for solving the generic convex constrained problem of minimizing <span class="math inline">\(f\)</span> over <span class="math inline">\(\mathcal C\)</span>, that only uses the proximal operator of the objective and projection onto the constraint set. As further specilization, suppose that <span class="math inline">\(f\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span> and <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal D\)</span>. The problem of minimizing <span class="math inline">\(f+g\)</span> is then equivalent to the convex feasibility problem of finding a point <span class="math inline">\(x\in\mathcal C\cap \mathcal D\)</span>. Both proximal operators reduce to projections, so the ADMM algorithm for this problem becomes, <span class="math display">\[
+<p>When <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span>, its proximal operator <span class="math inline">\(P_{\lambda g}\)</span> reduces to projection onto <span class="math inline">\(\mathcal C\)</span>. In this case, ADMM is a method for solving the generic convex constrained problem of minimizing <span class="math inline">\(f\)</span> over <span class="math inline">\(\mathcal C\)</span>, that only uses the proximal operator of the objective and projection onto the constraint set. As further specialization, suppose that <span class="math inline">\(f\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span> and <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal D\)</span>. The problem of minimizing <span class="math inline">\(f+g\)</span> is then equivalent to the convex feasibility problem of finding a point <span class="math inline">\(x\in\mathcal C\cap \mathcal D\)</span>. Both proximal operators reduce to projections, so the ADMM algorithm for this problem becomes, <span class="math display">\[
 \begin{array}{rcl}
 x^{k+1}&amp;=&amp;\Pi_\mathcal C (z^k-u^k)\\
 z^{k+1}&amp;=&amp; \Pi_\mathcal D (x^{k+1}+u^k)\\
@@ -442,17 +441,18 @@ u^{k+1}&amp;=&amp; u^k+x^{k+1}-z^{k+1}.
 \]</span></p>
 <p>which is called <strong>consensus form</strong>. Here the variable has been split into two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and we have added the consensus constraint they must agree. This is evidently equivalent to minimizing <span class="math inline">\(f+g\)</span>.</p>
 <p>The <strong>augmented Lagrangian</strong> associated with the problem is <span class="math display">\[
-L_\rho(x,z,y)=f(x)+g(z)+y^T(x-z)+(\rho/2)||x-z||_2^2,
-\]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter and <span class="math inline">\(y\in\mathbb R^n\)</span> is a dual variable associated with the consensus constraint. This is the usual Lagrangian augmented with an additional quadratic penality on the equality constraint function. ADMM can be then expressed as <span class="math display">\[
+L_\rho(x,z;y)=f(x)+g(z)+y^T(x-z)+(\rho/2)||x-z||_2^2,
+\]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter and <span class="math inline">\(y\in\mathbb R^n\)</span> is a dual variable associated with the consensus constraint. This is the usual Lagrangian augmented with an additional quadratic penalty on the equality constraint function. ADMM can be then expressed as <span class="math display">\[
 \begin{array}{rcl}
 x^{k+1}&amp;=&amp;\arg\min_x L_\rho (x,z^k,y^k)\\
 z^{k+1}&amp;=&amp;\arg\min_z L_\rho (x^{k+1},z,y^k)\\
 y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
 \end{array}
-\]</span> In each of the <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> steps, <span class="math inline">\(L_\rho\)</span> is minimized over the variable, using the most rescent value of the other primal variable and dual variable. The dual variable is the scaled running sum of the consensus errors. To see how it reduces to the proximal version, we start from <span class="math display">\[
+\]</span> (<strong>My thinking</strong>) The intuitive explanation of ADMM can be interpreted here. <span class="math inline">\(y^k\)</span> is actually the weighting parameter for the ALM, which balances the error between the parameter <span class="math inline">\(x\)</span> and the parameter <span class="math inline">\(z\)</span>. If <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> are not the same, the weighting of the error will grow up since the value of the <span class="math inline">\(y^k\)</span> can be accumulated. Therefore, the ADMM system will finally converge to the point where the error between <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> is zero, and the value of the ALM is minimized.</p>
+<p>In each of the <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> steps, <span class="math inline">\(L_\rho\)</span> is minimized over the variable, using the most resent value of the other primal variable and dual variable. The dual variable is the scaled running sum of the consensus errors. To see how it reduces to the proximal version, we start from <span class="math display">\[
 \begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+y^{kT}x+(\rho/2)||x-z^k||_2^2\right)\\
-z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)-y^{kT}z+(\rho/2)||x^{k+1}-z||_2^2\right)\\
+x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+\langle y^{k},x\rangle +(\rho/2)||x-z^k||_2^2\right)\\
+z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)-\langle y^{k},z\rangle+(\rho/2)||x^{k+1}-z||_2^2\right)\\
 y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
 \end{array}
 \]</span> Pull the linear terms into the quadratic ones, and we get <span class="math display">\[
@@ -475,12 +475,12 @@ x(t)\\z(t)
 -\nabla g(x(t))+\rho u(t)+\rho r(t)\\
 \end{bmatrix},\quad
 \frac{d}{dt}u(t)=\rho r(t),
-\]</span> where <span class="math inline">\(r(t)=x(t)-z(t)\)</span> is the primal residual and <span class="math inline">\(\rho &gt;0\)</span>. The functions in the differential equation are the primal variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and the dual variable <span class="math inline">\(u\)</span>. It is easy to see that the equilibrium points of the saddle point flow are the same as the optimality conditions when <span class="math inline">\(v=\rho u\)</span>. It shows all trajectorties of the saddle point flow converge to an equailibrium point. It follows that we can solve the problem by following any trajectory of the flow using numerical integration.</p>
-<p>We use the discretation given by <span class="math display">\[
+\]</span> where <span class="math inline">\(r(t)=x(t)-z(t)\)</span> is the primal residual and <span class="math inline">\(\rho &gt;0\)</span>. The functions in the differential equation are the primal variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and the dual variable <span class="math inline">\(u\)</span>. It is easy to see that the equilibrium points of the saddle point flow are the same as the optimality conditions when <span class="math inline">\(v=\rho u\)</span>. It shows all trajectories of the saddle point flow converge to an equilibrium point. It follows that we can solve the problem by following any trajectory of the flow using numerical integration.</p>
+<p>We use the discretization given by <span class="math display">\[
 \frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1})-\rho (x^k-z^k+u^k)\\
 \frac{z^{k+1}-z^k}{h}=-\nabla g(x^{k+1})+\rho (x^{k+1}-z^k+u^k)\\
 \frac{u^{k+1}-u^k}{h}=\rho(x^{k+1}-z^{k+1}).
-\]</span> Chooseing <span class="math inline">\(h=\lambda\)</span> and <span class="math inline">\(\rho=1/\lambda\)</span>, the discretization reduces directly to the proximal form of ADMM.</p>
+\]</span> Choosing <span class="math inline">\(h=\lambda\)</span> and <span class="math inline">\(\rho=1/\lambda\)</span>, the discretization reduces directly to the proximal form of ADMM.</p>
 <p><em>Fixed point iteration</em></p>
 <p>ADMM can be viewed as a fixed point iteration for finding a point <span class="math inline">\(x^*\)</span> satisfying the optimality condition <span class="math display">\[
 0\in\partial f(x^*)+\partial g(x^*).
@@ -517,8 +517,8 @@ u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/" rel="next" title="8. Nonlinear conic programming (2)">
-                  <i class="fa fa-chevron-left"></i> 8. Nonlinear conic programming (2)
+                <a href="/2019/09/19/Nonlinear Optimization/6. Duality/" rel="next" title="6. Basic Lagrange Duality and Saddle Point Optimality Conditions">
+                  <i class="fa fa-chevron-left"></i> 6. Basic Lagrange Duality and Saddle Point Optimality Conditions
                 </a>
               
             </div>
@@ -527,7 +527,7 @@ u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" rel="prev" title="7. Nonlinear conic programming (1)">
+                <a href="/2019/10/01/Nonlinear Optimization/7.1 Nonlinear conic programming/" rel="prev" title="7. Nonlinear conic programming (1)">
                   7. Nonlinear conic programming (1) <i class="fa fa-chevron-right"></i>
                 </a>
               
@@ -596,7 +596,7 @@ u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

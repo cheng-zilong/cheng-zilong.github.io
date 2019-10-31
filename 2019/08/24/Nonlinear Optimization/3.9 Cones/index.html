@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="Thanks for the module MA5268 NUS and Prof. Toh 3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically eq">
+  <meta name="description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3. Basic Convex Analysis (2)">
 <meta property="og:url" content="http://yoursite.com/2019/08/24/Nonlinear Optimization/3.9 Cones/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh 3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically eq">
+<meta property="og:description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-02T11:13:21.000Z">
+<meta property="og:updated_time" content="2019-10-31T13:18:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3. Basic Convex Analysis (2)">
-<meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh 3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically eq">
+<meta name="twitter:description" content="3.9 Cones Definition Consider \(p:\mathcal E\rightarrow (-\infty,\infty]\).  \(p\) is said to be a proper function if \(p(x)\) is not identically equal to \(\infty\). \(p\) is said to be closed i">
   <link rel="canonical" href="http://yoursite.com/2019/08/24/Nonlinear Optimization/3.9 Cones/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-02 19:13:21" itemprop="dateModified" datetime="2019-10-02T19:13:21+08:00">2019-10-02</time>
+                <time title="Modified: 2019-10-31 21:18:12" itemprop="dateModified" datetime="2019-10-31T21:18:12+08:00">2019-10-31</time>
               </span>
             
           
@@ -310,8 +310,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="thanks-for-the-module-ma5268-nus-and-prof.-toh">Thanks for the module MA5268 NUS and Prof. Toh</h1>
-<h2 id="cones">3.9 Cones</h2>
+        <h2 id="cones">3.9 Cones</h2>
 <p><strong>Definition</strong></p>
 <p>Consider <span class="math inline">\(p:\mathcal E\rightarrow (-\infty,\infty]\)</span>.</p>
 <ol type="1">
@@ -338,7 +337,7 @@
 \]</span> The polar cone of <span class="math inline">\(S\)</span> is <span class="math inline">\(S^o=-S^*\)</span>.</p>
 <ol start="3" type="1">
 <li><p><strong>Self-dual</strong></p>
-<p>Let C be a cone in <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C^*=C\)</span>, then <span class="math inline">\(C\)</span> is said to be self-dual.</p></li>
+<p>Let <span class="math inline">\(C\)</span> be a cone in <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C^*=C\)</span>, then <span class="math inline">\(C\)</span> is said to be self-dual.</p></li>
 </ol>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(C\)</span> be a cone in <span class="math inline">\(\mathcal E\)</span>.</p>
@@ -364,7 +363,7 @@
 <li><p>Let <span class="math inline">\(\mathcal E=\mathbb S^n\)</span> be the space of <span class="math inline">\(n\times n\)</span> real symmetric matrices. Then the space <span class="math inline">\(\mathbb S_+^n\)</span> of <span class="math inline">\(n\times n\)</span> symmetric positive semidefinite matrices is a closed convex cone in <span class="math inline">\(\mathbb S^n\)</span>.</p>
 <p>Proof of convexity.</p>
 <p>For any <span class="math inline">\(X,Y\in \mathbb S_+^n\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>, we have <span class="math inline">\(\alpha X+\beta Y\in \mathbb S_+^n\)</span>.</p></li>
-<li><p>Let <span class="math inline">\(\mathcal E =\mathbb R^n\)</span>. The set <span class="math display">\[
+<li><p><strong>second-order cone</strong>. Let <span class="math inline">\(\mathcal E =\mathbb R^n\)</span>. The set <span class="math display">\[
  C=\{(x_1;\bar x)\in \mathbb R^n\;|\; ||\bar x||\le x_1\}
  \]</span> is a cone, which is known as a <strong>second-order cone</strong>.</p>
 <p>Proof of convexity.</p>
@@ -373,16 +372,17 @@
 \]</span> Then we check <span class="math display">\[
     ||\alpha \bar x+\beta \bar y||\le \alpha||\bar x||+\beta ||\bar y||\le \alpha x_1+\beta y_1.
 \]</span> Q.E.D.</p>
-<p>Since <span class="math inline">\(f(x)=||x||\)</span> is convex, <span class="math inline">\(C\)</span> is its epigraph and therefore convex. Q.E.D.</p></li>
-<li><p>A cone that is formed by the intersection of finitely many half space is known as a <strong>polyhedral cone</strong>, and it has the form: <span class="math inline">\(\{x\in\mathbb R^n\;|\;Ax\le 0\}\)</span>, where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>.</p>
+<p>Since <span class="math inline">\(f(x)=||x||\)</span> is convex, <span class="math inline">\(C\)</span> is its epigraph and therefore convex.</p>
+<p>Q.E.D.</p></li>
+<li><p><strong>polyhedral cone</strong>. A cone that is formed by the intersection of finitely many half space is known as a <strong>polyhedral cone</strong>, and it has the form: <span class="math inline">\(\{x\in\mathbb R^n\;|\;Ax\le 0\}\)</span>, where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>.</p>
 <p>Proof of convexity.</p>
-<p>It is straightforward to show the convexity.</p></li>
+<p>It is straightforward to show the convexity. (Intersection of finite (infinite) convex set is convex)</p></li>
 <li><p><strong>Exponential cone</strong>. Consider the set <span class="math display">\[
     K=\{(x,y,z)\in\mathbb R^3\;|\;y\exp(x/y)\le z,y&gt;0\}.
  \]</span> The exponential cone is <span class="math inline">\(C=\text{cl }(K)\)</span>.</p>
 <p>Proof convexity.</p>
 <p>We define <span class="math inline">\(f(x,y)=y\exp(x/y)\)</span>, then we find the Hessian matrix is positive definite for all <span class="math inline">\(y&gt;0\)</span>.</p>
-<p>Since <span class="math inline">\(y\exp(x/y)\le z\)</span> is the epigraph of the convex function, and closure of a convex set is convex. Then we finish the proof.</p></li>
+<p>Since <span class="math inline">\(y\exp(x/y)\le z\)</span> is the epigraph of the convex function, and the closure of a convex set is convex. Then we finish the proof.</p></li>
 <li><p><strong>Power cone</strong>. For <span class="math inline">\(\alpha =(\alpha_1;\dotsm,\alpha_n)&gt;0\)</span> and <span class="math inline">\(\sum_{i=1}^n\alpha_i=1\)</span>, <span class="math display">\[
  K_\alpha = \{(x;y)\in\mathbb R_+^n\times \mathbb R\;|\;|y|\le x_1^{\alpha_1}\dotsm x_n^{\alpha_n}\}.
  \]</span></p></li>
@@ -412,7 +412,7 @@ X=U[\Sigma, 0]V^T
 <p>Conversely, we will prove <span class="math inline">\(\mathcal K^*\subseteq \mathcal C\)</span>. We will prove this by contradiction. Assume <span class="math inline">\((y,Y)\in\mathcal K^*\)</span>, and define <span class="math inline">\(Y=U_y[\Sigma_y,0]V_y^T\)</span>, where <span class="math inline">\(U_y\)</span> and <span class="math inline">\(V_y\)</span> are unitary matrices and <span class="math inline">\(\Sigma_y=\text{diag}(\sigma_{y1},\dots,\sigma_{ym})\)</span> with <span class="math inline">\(\sigma_{y1}\ge \dotsm\ge \sigma_{ym}\ge 0\)</span>. Then for any <span class="math inline">\((x,X)\in \mathcal K\)</span>, i.e., <span class="math inline">\(||X||_*\le x\)</span>, we have <span class="math display">\[
  0\le xy+\langle X,Y\rangle.
 \]</span></p>
-<p>Assume there exists <span class="math inline">\((y,Y)\notin \mathcal C\)</span>, i.e., <span class="math inline">\(||Y||_2&gt;y\)</span>. We choose <span class="math inline">\(X^*=-[\text{diag}\{1,0,0\dotsm\},0]\)</span> and <span class="math inline">\(x^*=1\)</span>. It is straightforward to see that <span class="math display">\[
+<p>Assume <span class="math inline">\((y,Y)\notin \mathcal C\)</span>, i.e., <span class="math inline">\(||Y||_2&gt;y\)</span>. We choose <span class="math inline">\(X^*=-[\text{diag}\{1,0,0\dotsm\},0]\)</span> and <span class="math inline">\(x^*=1\)</span>. It is straightforward to see that <span class="math display">\[
  ||X^*||_2=1=x^*,
 \]</span> which means <span class="math inline">\((x^*,X^*)\in \mathcal K\)</span>. Then we have <span class="math display">\[
 \begin{array}{rcl}
@@ -423,7 +423,8 @@ x^*y+\text{Tr}\left((X^*)^TY\right)&amp;=&amp;x^*y-\text{Tr}([\text{diag}\{1,0,0
  &amp;=&amp;y-||Y||_2\\
  &amp;&lt;&amp; 0,
  \end{array}
-\]</span> which contradicts that <span class="math inline">\(0\le xy+\langle X,Y\rangle\)</span> for any <span class="math inline">\((x,X)\in \mathcal K\)</span>. Q.E.D.</p></li>
+\]</span> which contradicts that <span class="math inline">\(0\le xy+\langle X,Y\rangle\)</span> for any <span class="math inline">\((x,X)\in \mathcal K\)</span>.</p>
+<p>Q.E.D.</p></li>
 <li><p><strong>Copositive and completely positive cones</strong>.</p>
 <ol type="1">
 <li><p>Copositive cone: <span class="math inline">\(\text{COP}_n=\{X\in\mathbb S^n\;|\; v^TXv\ge 0\;\forall v\in \mathbb R_+^n\}\)</span></p></li>
@@ -431,30 +432,32 @@ x^*y+\text{Tr}\left((X^*)^TY\right)&amp;=&amp;x^*y-\text{Tr}([\text{diag}\{1,0,0
 </ol>
 <p><span class="math display">\[
 \begin{array}{rcl}
-CPP_n&amp;=&amp;\{X\in\mathbb S^n\;|\; X=VV^T\;\exists V\in\mathbb R_+^n\}\\
-&amp;=&amp;\left\{\sum_{i=1}^r v_iv_i^T\;|\;v_i\in\mathbb R_+^n\;\forall i=1,\dotsm,r,\;r\in Z_+ \right\}
+\text{CPP}_n&amp;=&amp;\{X\in\mathbb S^n\;|\; X=VV^T\;\exists V\in\mathbb R_+^n\}\\
+&amp;=&amp;\left\{\sum_{i=1}^r v_iv_i^T\;|\;v_i\in\mathbb R_+^n\;\forall i=1,\dotsm,r,\;r\in Z_+ \right\}.
 \end{array}
 \]</span></p>
-<p>Proof of (<span class="math inline">\(CPP_n^*=COP_n\)</span>)</p>
+<p>Proof of (<span class="math inline">\(\text{CPP}_n^*=\text{COP}_n\)</span>)</p>
 <p><span class="math display">\[
-CPP_n^* =\{Y\in\mathbb S^n\;|\;\langle X,Y\rangle\ge 0\;\forall X\in CPP_n\}
-\]</span> We first prove that <span class="math inline">\(COP_n\subseteq CPP_n^*\)</span>, <span class="math display">\[
-    v^TYv\ge0\iff\langle Y,vv^T\rangle\ge 0\iff\langle Y,X\rangle \ge 0,\forall X\in CPP_n.
-\]</span> That means <span class="math inline">\(Y\in CPP_n^*\)</span>. Since every step we have equal conditions, Q.E.D.</p></li>
-<li><p>Doubly nonnegative cone.</p>
+\text{CPP}_n^* =\{Y\in\mathbb S^n\;|\;\langle X,Y\rangle\ge 0\;\forall X\in \text{CPP}_n\}
+\]</span> We first prove that <span class="math inline">\(\text{COP}_n\subseteq \text{CPP}_n^*\)</span>. Assume <span class="math inline">\(Y\in \text{COP}_n\)</span>. Then for any <span class="math inline">\(v\in\mathbb R^n_+\)</span>, it follows <span class="math display">\[
+v^TYv\ge0\iff\langle Y,vv^T\rangle\ge 0\iff\langle Y,X\rangle \ge 0,\forall X\in \text{CPP}_n.
+\]</span> That means <span class="math inline">\(Y\in \text{CPP}_n^*\)</span>. Every step we have equal conditions.</p>
+<p>Q.E.D.</p></li>
+<li><p><strong>Doubly nonnegative cone</strong>.</p>
 <p><span class="math inline">\(\mathbb D_n=\mathbb S_+^n\cap \mathcal N^n\)</span> where <span class="math inline">\(\mathcal N^n\)</span> is the set of symmetric <span class="math inline">\(n\times n\)</span> nonnegative matrices (a matrix in which all the elements are equal to or greater than zero). We can also define <span class="math inline">\(\mathbb D_n\)</span> as <span class="math display">\[
 \mathbb D_n=\{X|X=X^T,\forall d\in \mathbb R^n,d^TXd\ge 0,X\ge 0\}.
 \]</span> Proof. (<span class="math inline">\(\mathbb D_n^*=\mathbb S_+^n+\mathcal N^n\)</span>)</p>
 <p>Firstly we prove that <span class="math inline">\(\mathbb S_+^n+\mathcal N^n\subseteq \mathbb D_n^*\)</span>.</p>
 <p>If <span class="math inline">\(Y_1\in \mathbb S_+^n\)</span> and <span class="math inline">\(Y_2 \in \mathcal N^n\)</span>, then we have <span class="math inline">\(Y=Y_1+Y_2\in\mathbb S_+^n+\mathcal N^n\)</span>.</p>
-<p>Then we have <span class="math display">\[
+<p>Then for any <span class="math inline">\(X\in\mathbb D_n\)</span>, it follows <span class="math display">\[
 \langle X,Y\rangle=\langle X,Y_1+Y_2\rangle=\langle X,Y_1\rangle+\langle X,Y_2\rangle\ge 0.
 \]</span> Therefore, <span class="math inline">\(\mathbb S_+^n+\mathcal N^n\subseteq \mathbb D_n^*\)</span>.</p>
 <p>Then we prove $D_n^*S_+<sup>n+N</sup>n $.</p>
 <p>If <span class="math inline">\(Y\in \mathbb D_n^*\)</span>, then we have <span class="math display">\[
 \langle X,Y\rangle\ge 0,d^TXd\ge 0,X\ge0\\
 \langle X,Y_1\rangle+ \langle X,Y_2\rangle\ge 0,d^TXd\ge 0,X\ge0.
-\]</span> Since we have <span class="math inline">\(X\)</span> is positive definite, we can choose any <span class="math inline">\(Y_1\in \mathcal N^n\)</span> and any <span class="math inline">\(Y_2\in S_+^n\)</span>. Q.E.D.</p></li>
+\]</span> Since we have <span class="math inline">\(X\)</span> is positive definite, we can choose any <span class="math inline">\(Y_1\in \mathcal N^n\)</span> and any <span class="math inline">\(Y_2\in S_+^n\)</span>.</p>
+<p>Q.E.D.</p></li>
 </ol>
 <p><strong>Example</strong></p>
 <p>Let <span class="math inline">\(C\)</span> be a closed convex cone in <span class="math inline">\(\mathcal E\)</span>. Show that for any <span class="math inline">\(z\in\mathcal E\)</span>, <span class="math display">\[
@@ -466,7 +469,7 @@ z-\Pi_C(z)=\Pi_{C^o}(z).
 <h2 id="normal-cones">3.10 Normal cones</h2>
 <p><strong>Definition</strong> (Normal cone)</p>
 <p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x\in C\)</span>. The normal cone of <span class="math inline">\(C\)</span> at <span class="math inline">\(\bar x\in C\)</span> is defined by <span class="math display">\[
-N_c(\bar x)=\{z\in \mathcal E\;|\;\langle z,x-\bar x\rangle\le 0\quad \forall x\in C\}
+N_C(\bar x)=\{z\in \mathcal E\;|\;\langle z,x-\bar x\rangle\le 0\quad \forall x\in C\}
 \]</span> By convention, we let <span class="math inline">\(N_C(\bar x)=\O\)</span> if <span class="math inline">\(\bar x\notin C\)</span>.</p>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x \in C\)</span>. Then</p>
@@ -544,16 +547,13 @@ f(x)\ge f(y)-\langle v,y-x\rangle.
 \partial f(0)=\{y\in\mathbb R^n\;|\; ||y||_\infty\le 1\}
 \]</span> Proof.</p>
 <p><span class="math inline">\(\implies\)</span></p>
-<p>Assume <span class="math inline">\(||y||_\infty \le 1\)</span>. Then we need to prove <span class="math display">\[
-f(z)\ge f(0)+\langle y,z-0\rangle\;\forall z\in\mathbb R^n\\
-\iff\\
+<p>Assume <span class="math inline">\(||y||_\infty \le 1\)</span>. Then we need to prove <span class="math inline">\(f(z)\ge f(0)+\langle y,z-0\rangle=\langle y,z\rangle\;\forall z\in\mathbb R^n\)</span>, i.e., <span class="math display">\[
 ||z||_1\ge \langle y,z\rangle\;\forall z\in\mathbb R^n.
 \]</span> Then <span class="math display">\[
 \langle y,z\rangle =y_1z_1+\dotsm+y_nz_n\le |y_1z_1|+\dotsm|y_nz_n|\\
 \le |y_1||z_1|+\dotsm+|y_n||z_n|\le |z_1|+\dotsm+|z_n|=||z||_1.
 \]</span> <span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Assume <span class="math inline">\(||z||_1\ge \langle y,z\rangle\;\forall z\in \mathbb R^n\)</span>. We need to prove <span class="math inline">\(||y||_\infty\le 1\)</span>. We will prove by contradiction. Assume <span class="math inline">\(||y||_\infty &gt;1\)</span>.</p>
-<p>(draft) Let <span class="math inline">\(z\)</span> be a set, the <span class="math inline">\(i\)</span>th element be <span class="math inline">\(\max (y)\)</span> where <span class="math inline">\(i\)</span> is the index of the max element in <span class="math inline">\(y\)</span>. Then we have contradiction.</p>
+<p>Assume <span class="math inline">\(||z||_1\ge \langle y,z\rangle\;\forall z\in \mathbb R^n\)</span>. We need to prove <span class="math inline">\(||y||_\infty\le 1\)</span>. We will prove by contradiction. Assume <span class="math inline">\(||y||_\infty &gt;1\)</span>. Let <span class="math inline">\(i\)</span> be the index of the largest value of <span class="math inline">\(y\)</span>. Choose <span class="math inline">\(z\)</span> such that the <span class="math inline">\(i\)</span>th entry is one, and the others are zero. Then it follows <span class="math inline">\(||z||_1=1\)</span> and <span class="math inline">\(\langle y,z\rangle &gt;1\)</span>, which contradicts <span class="math inline">\(||z||_1\ge \langle y,z\rangle\;\forall z\in \mathbb R^n\)</span>.</p>
 <p>Q.E.D.</p></li>
 </ol>
 <p><strong>Definition</strong></p>
@@ -748,10 +748,12 @@ P_{\lambda f}(x)=(I+\lambda \nabla f)^{-1}(x)=x-\lambda \nabla f(x)+o(\lambda).
 <p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a closed proper convex function. Then <span class="math display">\[
 \arg\min\{f(x)\;|\; x\in\mathcal E\}=\arg\min\{M_f(x)\;|\; x\in\mathcal E\}.
 \]</span> Proof.</p>
-<p>Suppose <span class="math inline">\(x^*\)</span> is a minimizer of <span class="math inline">\(f\)</span>. Then <span class="math inline">\(f(x^*)\le f(x)\)</span> for all <span class="math inline">\(x\in\mathcal E\)</span>. Thus for any <span class="math inline">\(x\mathcal \in E\)</span>, <span class="math display">\[
-M_f(x^*)=\min_{y\in \mathcal E}\{f(y)+\frac{1}{2}||y-x^*||^2\}\\
-\le f(x^*)\;\;(y=x^*)\\
-\le f(y)+\frac{1}{2}||y-x||^2\;\forall y\in\mathcal E 
+<p>Suppose <span class="math inline">\(x^*\)</span> is a minimizer of <span class="math inline">\(f\)</span>. Then <span class="math inline">\(f(x^*)\le f(x)\)</span> for all <span class="math inline">\(x\in\mathcal E\)</span>. Thus for any <span class="math inline">\(x\in \mathcal E\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+M_f(x^*)&amp;=&amp;\min_{y\in \mathcal E}\{f(y)+\frac{1}{2}||y-x^*||^2\}\\
+&amp;\le&amp; f(x^*)\;\;(y=x^*)\\
+&amp;\le&amp; f(y)+\frac{1}{2}||y-x||^2\;\forall y\in\mathcal E
+\end{array}
 \]</span> That means <span class="math inline">\(M_f(x^*)\le \min_{y\in\mathcal E }\{f(y)+\frac{1}{2}||y-x||^2\}=M_f(x)\)</span>.</p>
 <p>Conversely, suppose <span class="math inline">\(x^*\)</span> is a minimizer of <span class="math inline">\(M_f\)</span>. Then <span class="math display">\[
 f(P_f(x^*))+\frac{1}{2}||P_f(x^*)-x^*||^2=M_f(x^*)\le M_f(x)\le f(x).
@@ -767,14 +769,14 @@ x=P_{tf}(x)+tP_{f^*/t}(x/t)\quad \forall x\in\mathcal E\\
 <p>Let <span class="math inline">\(f(x)=\lambda ||x||_1\)</span> for <span class="math inline">\(x\in\mathbb R^n\)</span>. Then <span class="math inline">\(f^*(z)=\delta_C(z)\)</span> where <span class="math inline">\(C=\partial f(0)=\{z\in\mathbb R^n\;|\;||z||_\infty\le \lambda\}\)</span>.</p>
 <p>Proof.</p>
 <p><span class="math inline">\(f(x)\)</span> is a closed proper convex function, positively homogeneous and <span class="math inline">\(f(0)=0\)</span>, then <span class="math display">\[
-f^*=\delta_C,\;where\; C=\partial f(0).
+f^*=\delta_C,\;\text{where}\; C=\partial f(0).
 \]</span> For any <span class="math inline">\(v\in\partial f(0)\)</span>, we have <span class="math display">\[
-f(z)\ge f(0)+\langle v,z-0\rangle \;\forall z\\
-=\langle v,z\rangle \;\forall z\\
-\iff\\
-\lambda ||z||_1\ge \langle v,z\rangle\;\forall z\\
-\iff\\
-||v||_\infty \le \lambda.
+\begin{array}{rcl}
+f(z)&amp;\ge&amp; f(0)+\langle v,z-0\rangle \;\forall z\\
+&amp;=&amp;\langle v,z\rangle \;\forall z\iff\\
+\lambda ||z||_1&amp;\ge&amp; \langle v,z\rangle\;\forall z\iff\\
+||v||_\infty &amp;\le&amp; \lambda.
+\end{array}
 \]</span> <strong>Example</strong></p>
 <p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be closed and convex. For <span class="math inline">\(f=\delta _C\)</span>, <span class="math display">\[
 P_{\delta _C}(x)=\arg\min_{y\in\mathcal E}\{\delta_C(y)+\frac{1}{2}||y-x||\}=\arg\min_{y\in C}\frac{1}{2}||y-x||^2=\Pi_C(x).
@@ -789,7 +791,8 @@ P_{\delta _C}(x)=\arg\min_{y\in\mathcal E}\{\delta_C(y)+\frac{1}{2}||y-x||\}=\ar
 <li><span class="math inline">\(M_f\)</span> is continuously differentiable and <span class="math inline">\(\nabla M_f(x)=x-P_f(x)\;\forall x\in\mathcal E\)</span>.</li>
 <li><p><span class="math inline">\(\nabla M_{tf}(x)=tP_{f^*/t}(x/t)\)</span> and <span class="math inline">\(\nabla M_{f^*/t}(x)=t^{-1}P_{tf}(tx)\)</span>.</p></li>
 </ol>
-<p><strong>Proposition</strong> Let <span class="math inline">\(f\)</span> be a closed proper convex function on <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\in\mathcal E\)</span>, <span class="math inline">\(\partial P_f(x)\)</span> has the following properties,</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(f\)</span> be a closed proper convex function on <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\in\mathcal E\)</span>, <span class="math inline">\(\partial P_f(x)\)</span> has the following properties,</p>
 <ol type="1">
 <li>Any <span class="math inline">\(V\in\partial P_f(x)\)</span> is self-adjoint.</li>
 <li><span class="math inline">\(\langle Vd,d\rangle \ge ||Vd||^2\)</span> for any <span class="math inline">\(V\in\partial P_f(x)\)</span> and <span class="math inline">\(d\in\mathcal E\)</span>.</li>
@@ -799,13 +802,44 @@ P_{\delta _C}(x)=\arg\min_{y\in\mathcal E}\{\delta_C(y)+\frac{1}{2}||y-x||\}=\ar
 F(X)=\bar P\text{diag}(f(\lambda_1),\dots,f(\lambda_2))\bar P^T.
 \]</span> <strong>Proposition</strong></p>
 <p>The Lowner operator <span class="math inline">\(F(\cdot)\)</span> is differentiable at <span class="math inline">\(X\)</span> if and only if <span class="math inline">\(f(\cdot)\)</span> is differentiable at each <span class="math inline">\(\lambda_i (X)\)</span>. In this case, the Fréchet derivative is given by <span class="math display">\[
-F&#39;(X)[H]=\bar P[f^{[1]}(\Lambda)\circ (\bar P^TH\bar P)]\bar P^T\quad \forall H\in \mathbb S^n.
-\]</span> Here given <span class="math inline">\(D=\text{diag}(d)\)</span>, <span class="math inline">\(f^{[1]}(D)\in \mathbb S^n\)</span> is defined by <span class="math display">\[
+F&#39;(X)[H]=\bar P[f^{[1]}(\Lambda)\circ (\bar P^TH\bar P)]\bar P^T\quad \forall H\in \mathbb S^n,
+\]</span> where <span class="math inline">\(\circ\)</span> denote the Schur product (elementwise product). Here given <span class="math inline">\(D=\text{diag}(d)\)</span>, <span class="math inline">\(f^{[1]}(D)\in \mathbb S^n\)</span> is defined by <span class="math display">\[
 (f^{[1]}(D))_{ij}=
 \begin{cases}
 \frac{f(d_i)-f(d_j)}{d_i-d_j}&amp; d_i \neq d_j\\
-f&#39;(d_i)&amp; d_i=d_j
+f&#39;(d_i)&amp; d_i=d_j.
 \end{cases}
+\]</span></p>
+<p>Proof.</p>
+<p>Here we only give the proof for the case where <span class="math inline">\(f(t)=t^p\)</span> where <span class="math inline">\(p\)</span> is a positive integer. The general case for an arbitrary continuously differentiable function can be proved by a continuity argument and approximation by polynomials.</p>
+<p>We have for any <span class="math inline">\(H\in \mathbb S^n\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+F(\Lambda+H)-F(\Lambda)&amp;=&amp;(\Lambda+H)^p-\Lambda^p\\
+&amp;=&amp;\sum_{k=1}^p\Lambda^{k-1}H\Lambda^{p-k}+O(||H||^2)\\
+&amp;=&amp;f^{[1]}(\Lambda)\circ H.
+\end{array}
+\]</span> Further explanations, as for the matrix <span class="math inline">\((i,j)\)</span> entry for the matrix <span class="math inline">\(\Gamma = \sum_{k=1}^p\Lambda^{k-1}H\Lambda^{p-k}\)</span>, since the matrix <span class="math inline">\(\Lambda\)</span> is diagonal, we have <span class="math inline">\(\Gamma_{ij}=\sum_{k=1}^p \lambda_i^{k-1}\lambda_j^{p-k}h_{ij}\)</span>. We also check the <span class="math inline">\((i,j)\)</span> entry for <span class="math inline">\(f^{[1]}(\Lambda)\)</span>. <span class="math display">\[
+(f^{[1]}(\Lambda))_{ij}=
+\begin{cases}
+\frac{f(\lambda_i)-f(\lambda_j)}{\lambda_i-\lambda_j}=\frac{\lambda_i^p-\lambda_j^p}{\lambda_i-\lambda_j}=\Gamma _{ij},&amp; d_i \neq d_j\\
+f&#39;(\lambda_i)=p\lambda_i^{p-1}=\Gamma_{ij},&amp; \lambda_i=\lambda_j.
+\end{cases}
+\]</span> The remaining proof is very simple.</p>
+<p><strong>Example</strong></p>
+<p>Suppose <span class="math inline">\(f(t)=t^+=\max \{0,t\}\)</span>. Suppose that <span class="math display">\[
+\lambda_1\ge \lambda _2\ge \dotsm\ge \lambda_r&gt; 0\ge \lambda_{r+1}\ge \dotsm\ge \lambda _n.
+\]</span> Then we have <span class="math display">\[
+F(X)=\bar P\text{diag}(\lambda_1,\lambda_2,\dotsm,\lambda_r,0,\dotsm,0)\bar P^T.
+\]</span> Then we have <span class="math display">\[
+F&#39;(X)[H]=\bar P[\Omega\circ(\bar P^TH\bar P)]\bar P^T,
+\]</span> where <span class="math display">\[
+\Omega=\begin{cases}
+1 &amp; i,j=1,\dotsm,r\\
+\frac{\lambda_i}{\lambda_i+|\lambda_j|}&amp; i=1,\dotsm,r,j=r+1,\dotsm,n\\
+0&amp;i,j=r+1,\dotsm,n.
+\end{cases}
+\]</span> That is <span class="math display">\[
+\Omega=\begin{bmatrix}1_r1_r^T&amp;\Omega_{12}\\ \Omega_{12}^T&amp; 0_{(n-r)\times(n-r)}\end{bmatrix}.
 \]</span></p>
 
     </div>
@@ -887,7 +921,7 @@ f&#39;(d_i)&amp; d_i=d_j
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cones"><span class="nav-text">3.9 Cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#normal-cones"><span class="nav-text">3.10 Normal cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subgradients"><span class="nav-text">3.11 Subgradients</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fenchel-conjugate"><span class="nav-text">3.12 Fenchel conjugate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#semismoothness-of-convex-functions"><span class="nav-text">3.13 Semismoothness of convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#moreau-yosida-my-regularization-and-proximal-mapping"><span class="nav-text">3.14 Moreau-Yosida (MY) regularization and proximal mapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#directional-derivatives-of-matrix-valued-functions"><span class="nav-text">3.15 Directional derivatives of matrix-valued functions</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cones"><span class="nav-text">3.9 Cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#normal-cones"><span class="nav-text">3.10 Normal cones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subgradients"><span class="nav-text">3.11 Subgradients</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fenchel-conjugate"><span class="nav-text">3.12 Fenchel conjugate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#semismoothness-of-convex-functions"><span class="nav-text">3.13 Semismoothness of convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#moreau-yosida-my-regularization-and-proximal-mapping"><span class="nav-text">3.14 Moreau-Yosida (MY) regularization and proximal mapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#directional-derivatives-of-matrix-valued-functions"><span class="nav-text">3.15 Directional derivatives of matrix-valued functions</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -902,7 +936,7 @@ f&#39;(d_i)&amp; d_i=d_j
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

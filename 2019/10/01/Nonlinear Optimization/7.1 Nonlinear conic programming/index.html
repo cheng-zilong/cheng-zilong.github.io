@@ -59,15 +59,15 @@
   <meta name="description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7. Nonlinear conic programming (1)">
-<meta property="og:url" content="http://yoursite.com/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/10/01/Nonlinear Optimization/7.1 Nonlinear conic programming/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-07T08:25:47.000Z">
+<meta property="og:updated_time" content="2019-10-31T12:42:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="7. Nonlinear conic programming (1)">
 <meta name="twitter:description" content="7. Nonlinear Conic Programming We consider the following optimization problem, \[ \text{(OP)}\quad \begin{array}{rCl} \min &amp;amp; f(x)\\ \text{subject to}&amp;amp; g(x)=0\\ &amp;amp;h(x)\in \mathcal C, \">
-  <link rel="canonical" href="http://yoursite.com/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/01/Nonlinear Optimization/7.1 Nonlinear conic programming/">
 
 
 <script id="page-configurations">
@@ -220,7 +220,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/01/Nonlinear Optimization/7.1 Nonlinear conic programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-07 16:25:47" itemprop="dateModified" datetime="2019-10-07T16:25:47+08:00">2019-10-07</time>
+                <time title="Modified: 2019-10-31 20:42:01" itemprop="dateModified" datetime="2019-10-31T20:42:01+08:00">2019-10-31</time>
               </span>
             
           
@@ -278,7 +278,7 @@
           
 
           
-            <span id="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (1)" title="Views">
+            <span id="/2019/10/01/Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (1)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -296,7 +296,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/01/Nonlinear Optimization/7. Nonlinear conic programming 1/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/10/01/Nonlinear Optimization/7.1 Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/01/Nonlinear Optimization/7.1 Nonlinear conic programming/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -317,7 +317,7 @@
 \text{subject to}&amp; g(x)=0\\
 &amp;h(x)\in \mathcal C,
 \end{array}
-\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,g:\mathcal X\rightarrow \mathcal U\)</span>, and <span class="math inline">\(h:\mathcal X\rightarrow \mathcal V\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X,\mathcal U\)</span> and <span class="math inline">\(\mathcal V\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its 0induce norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\subseteq \mathcal V\)</span> is a closed convex set in <span class="math inline">\(\mathcal V\)</span>.</p>
+\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,g:\mathcal X\rightarrow \mathcal U\)</span>, and <span class="math inline">\(h:\mathcal X\rightarrow \mathcal V\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X,\mathcal U\)</span> and <span class="math inline">\(\mathcal V\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induced norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\subseteq \mathcal V\)</span> is a closed convex set in <span class="math inline">\(\mathcal V\)</span>.</p>
 <p>Let <span class="math inline">\(\mathcal Y=\mathcal U\times \mathcal V\)</span>, <span class="math inline">\(\mathcal K=\{0^\mathcal U\}\times \mathcal C\subset \mathcal Y\)</span>. Define <span class="math inline">\(G:\mathcal X\rightarrow \mathcal Y\)</span> by <span class="math display">\[
 G(X)=(g(X),h(X)),\quad X\in\mathcal X.
 \]</span> The problem can be written as the following compact form, <span class="math display">\[
@@ -478,13 +478,29 @@ L(X,y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle y,b-\mathcal A(X)\rangle -\langl
 \text{subject to}&amp; y\in\mathbb R^n\\
 &amp; Z\in \mathbb S_+^n.
 \end{array}
-\]</span> Since we have <span class="math display">\[
-G=\Pi_{\mathbb S_+^n} (G)-\Pi_{\mathbb S_+^n} (-G),
+\]</span> We claim <strong>(This claim is very useful)</strong> <span class="math display">\[
+G=\Pi_{\mathbb S_+^n} (G)-\Pi_{\mathbb S_+^n} (-G).
 \]</span></p>
-<p>then <span class="math display">\[
+<p>This property can be easily checked by the property of proximal operator. Since we have <span class="math inline">\(\delta_K^*(x)=\delta_{K^*}(-x)\)</span>, let us check the proximal. <span class="math display">\[
+\begin{array}{rcl}
+P_{\delta_K^*}(y)&amp;=&amp;\arg\min_x\{\delta_K^*(x)+\frac{1}{2}||x-y||^2\}\\
+&amp;=&amp;\arg\min_x\{\delta_{K^*}(-x)+\frac{1}{2}||x-y||^2\}\\
+&amp;=&amp;-\arg\min_x\{\delta_{K^*}(x)+\frac{1}{2}||x-(-y)||^2\}\\
+&amp;=&amp; -\Pi_{\delta_{K^*}}(-y).
+\end{array}
+\]</span> Therefore <span class="math display">\[
+\begin{array}{rcl}
+G&amp;=&amp;P_{\delta_{\mathbb S^n_+}}(G)+P_{(\delta_{\mathbb S^n_+})^*}(G)\\
+&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{(\mathbb S^n_+)^*}(-G)\\
+&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{\mathbb S^n_+}(-G).
+\end{array}
+\]</span></p>
+<p>Then by using this claim, we have <span class="math display">\[
+\begin{array}{l}
 \min\left\{||B+Z+\mathcal A^*(y)||\;|\; Z\in\ \mathbb S_+^n\right\}
-\\=||B+\mathcal A^*(y)+\Pi_{\mathcal S_+^n}(-(B+\mathcal A^*(y)))||
-\\=||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||.
+\\\quad =||B+\mathcal A^*(y)+\Pi_{\mathcal S_+^n}(-(B+\mathcal A^*(y)))||
+\\\quad=||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||.
+\end{array}
 \]</span> Therefore, <span class="math display">\[
 \text{(D)}\quad \begin{array}{rCl}
 \min &amp; \phi(y)=-\langle y,b\rangle+\frac{1}{2}||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||^2\\
@@ -497,7 +513,7 @@ G=\Pi_{\mathbb S_+^n} (G)-\Pi_{\mathbb S_+^n} (-G),
 \]</span> where <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb R^m\)</span> are given data. Let <span class="math inline">\(u=b-Ax\)</span>, then we have <span class="math display">\[
 \text{(P)}\quad \begin{array}{rCl}
 \min &amp; f(u)+g(x)\\
-\text{subject to}&amp; u+Ax=b
+\text{subject to}&amp; u+Ax=b,
 \end{array}
 \]</span> where <span class="math inline">\(f(u)=\frac{1}{2}||u||^2\)</span> and <span class="math inline">\(g(x)=\lambda ||x||_1\)</span>.</p>
 <p>The Lagrangian function is given as <span class="math display">\[
@@ -523,7 +539,7 @@ L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
 \begin{array}{rcl}
 -\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle -\bar \mu,d-G(\bar x)\rangle \le 0,&amp;&amp;\forall d\in\mathcal K
 \end{array}
-\]</span> We Choose <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=G(\bar x)\)</span>. Then we have <span class="math display">\[
+\]</span> We choose <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=G(\bar x)\)</span>. Then we have <span class="math display">\[
 \begin{array}{rcl}
 -\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\langle \bar \mu,d\rangle\ge 0,&amp;\forall d\in\mathcal K\\
 &amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\bar \mu\in \mathcal K^*.
@@ -531,7 +547,7 @@ L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
 \]</span> In this case, the KKT conditions can be written as <span class="math display">\[
 (G(\bar x)\in\mathcal K)\perp (\bar \mu \in\mathcal K^*).
 \]</span></p></li>
-<li><p>The set <span class="math inline">\(\mathcal M(\bar x)\)</span> may be <strong>empty</strong> or <strong>unbounded</strong>.</p></li>
+<li><p>The set of multipliers <span class="math inline">\(\mathcal M(\bar x)\)</span> may be <strong>empty</strong> or <strong>unbounded</strong>.</p></li>
 </ol>
 <p><strong>Example</strong></p>
 <p>For basic NLP, let <span class="math inline">\(\bar \mu=(\lambda,\rho)\)</span>, and <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span>, and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, we have KKT conditions, <span class="math display">\[
@@ -570,7 +586,7 @@ L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
 \]</span> Therefore, the KKT conditions are given as <span class="math display">\[
 0=\nabla _xL(\bar X,\bar Y,\bar Z)=\nabla f(\bar X)-\langle\nabla G(\bar X),(\bar Y,\bar Z)\rangle\\
 \mathcal K\ni G(\bar X)\perp (\bar Y,\bar Z) \in \mathcal K^*.
-\]</span> That is (?????????) <span class="math display">\[
+\]</span> That is <span class="math display">\[
 \bar X- B-\bar Y-\bar Z=0\\
 \langle \bar X,\bar Y\rangle+\langle \bar X,\bar Z\rangle=0\\ 
 \bar X\in \mathbb S^n_+\cap \mathcal N^n\\
@@ -601,6 +617,10 @@ L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/13/Nonlinear Optimization/7.2 Nonlinear conic programming/" rel="prev" title="8. Nonlinear conic programming (2)">
+                  8. Nonlinear conic programming (2) <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -667,7 +687,7 @@ L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

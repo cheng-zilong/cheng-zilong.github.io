@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="Thanks for the module MA5268 NUS and Prof. Toh Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \beg">
+  <meta name="description" content="4. Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="4. Gradient Methods (1)">
 <meta property="og:url" content="http://yoursite.com/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \beg">
+<meta property="og:description" content="4. Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-05T03:40:25.000Z">
+<meta property="og:updated_time" content="2019-10-31T12:41:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4. Gradient Methods (1)">
-<meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \beg">
+<meta name="twitter:description" content="4. Gradient methods 4.1 Gradient methods for unconstrained optimization problem Consider the multidimensional unconstrained minimization problem \[ \begin{array}{rCl} \text{minimize} &amp;amp; f(x)\\">
   <link rel="canonical" href="http://yoursite.com/2019/09/06/Nonlinear Optimization/4.1 Gradient methods/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-05 11:40:25" itemprop="dateModified" datetime="2019-10-05T11:40:25+08:00">2019-10-05</time>
+                <time title="Modified: 2019-10-31 20:41:43" itemprop="dateModified" datetime="2019-10-31T20:41:43+08:00">2019-10-31</time>
               </span>
             
           
@@ -310,8 +310,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="thanks-for-the-module-ma5268-nus-and-prof.-toh">Thanks for the module MA5268 NUS and Prof. Toh</h1>
-<h1 id="gradient-methods">Gradient methods</h1>
+        <h1 id="gradient-methods">4. Gradient methods</h1>
 <h2 id="gradient-methods-for-unconstrained-optimization-problem">4.1 Gradient methods for unconstrained optimization problem</h2>
 <p>Consider the multidimensional unconstrained minimization problem <span class="math display">\[
 \begin{array}{rCl}
@@ -319,7 +318,7 @@
 \text{subject to}&amp; x\in S.
 \end{array}
 \]</span> In the situation where <span class="math inline">\(\nabla f(x)=0\)</span> cannot be solved analytically, we look for an approximate solution via iterative methods.</p>
-<p>General framework of an optimization algorithm.</p>
+<p><strong>General framework of an optimization algorithm</strong></p>
 <hr>
 <p><strong>For</strong> <span class="math inline">\(k=0,1,...,\)</span> <strong>if</strong> <span class="math inline">\(x^{(k)}\)</span> is optimal stop <strong>else</strong> determine an improved estimate of the solution <span class="math inline">\(x^{(k+1)}=x^{(k)}+\alpha_{k}\times p^{(k)}\)</span> <strong>end</strong> <strong>end</strong></p>
 <hr>
@@ -355,7 +354,7 @@ g(t)=f(x^{(k)}+td^{(k)})
 </ol>
 <h3 id="convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</h3>
 <p>Here we consider <span class="math display">\[
-\text{minimize}_{x\in\mathbb R^n}\; q(x)=\frac{1}{2}x^TQx,
+\min_{x\in\mathbb R^n}\; q(x)=\frac{1}{2}x^TQx,
 \]</span> where <span class="math inline">\(Q\)</span> is symmetric positive definite.</p>
 <p><strong>Proposition</strong></p>
 <p>For a symmetric positive definite <span class="math inline">\(Q\)</span>, suppose that <span class="math inline">\(\{x^{(k)}\}\)</span> is a sequence obtained from the steepest descent method with exact line search applied to the function <span class="math inline">\(q(x)\)</span>. Then</p>
@@ -419,7 +418,9 @@ k\ge \frac{\log \epsilon ^{-1}}{\log\rho^{-1}}\approx \frac{m}{M}\log \epsilon^{
 <p>Let <span class="math inline">\(\sigma\in(0,0.5)\)</span> and <span class="math inline">\(\beta\in (0,1)\)</span>. Start with <span class="math inline">\(\bar\alpha\)</span> and continue with $=,,$ until the following inequality is satisfied, <span class="math display">\[
 f(x^k+\alpha d^k)\le f(x^k)+\alpha\sigma\langle \nabla f(x^k),d^k\rangle.
 \]</span> Let <span class="math inline">\(r\)</span> be the first integer satisfying the inequality. Set <span class="math inline">\(\alpha_k=\beta^r\bar \alpha\)</span>.</p></li>
-<li><p>Non-monotone line search.</p></li>
+<li><p>Non-monotone line search. <span class="math display">\[
+f(x^k+\alpha d^k)\le \max \{f(x^{k-l}),\dotsm,f(x^k)\}+\alpha \sigma \langle \nabla f(x^k),d^k\rangle.
+\]</span></p></li>
 </ol>
 <h2 id="accelerated-proximal-gradient-method-for-convex-programming">4.3 Accelerated proximal gradient method for convex programming</h2>
 <p>Consider a smooth convex function <span class="math inline">\(f\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. We are interested in solving <span class="math display">\[
@@ -476,7 +477,7 @@ kE(x^k)+\frac{1}{2}||x^k-x^*||_H^2\le E(x^1)+\frac{1}{2}||x^1-x^*||_H^2\le \frac
 \]</span> That is, the iteration complexity of the proximal gradient method is <span class="math inline">\(O(1/k)\)</span>.</p>
 <p><strong>Example</strong></p>
 <p>Consider the sparse regression problem, <span class="math display">\[
-\min \{\frac{1}{2}||Ax-b||^2+\rho||x||_1\;|\; x\in\mathbb R^n\},
+\min \left\{\frac{1}{2}||Ax-b||^2+\rho||x||_1\;|\; x\in\mathbb R^n\right\},
 \]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>, <span class="math inline">\(b\in \mathbb R^m\)</span> and <span class="math inline">\(\rho\)</span> are given data. Let <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2\)</span> and <span class="math inline">\(g(x)=\rho||x||_1\)</span>. Then <span class="math inline">\(\nabla f(x)=A^T(Ax-b)\)</span> is Lipschitz continuous with modulus <span class="math inline">\(L=\lambda_\max(AA^T)\)</span>. Pick <span class="math inline">\(H=LI_n\)</span>, the APG subproblem is given by <span class="math display">\[
 \begin{array}{rCl}
 x^{k+1}&amp;=&amp;\arg\min_{x}\left\{g(x)+\langle \nabla f(\bar x^k),x-\bar x^k\rangle +\frac{L}{2}||x-\bar x^k||^2\;|\; x\in\mathbb R^n\right\}\\
@@ -485,22 +486,52 @@ x^{k+1}&amp;=&amp;\arg\min_{x}\left\{g(x)+\langle \nabla f(\bar x^k),x-\bar x^k\
 \end{array}
 \]</span> Then if we define <span class="math inline">\(y^k=\bar x^k-\frac{2}{L}\nabla f(\bar x^k)\)</span>, we have <span class="math display">\[
 \begin{array}{rCl}
-x^{k+1}&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}(x-y^k)^2\right\}.
+x^{k+1}&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}||x-y^k||^2\right\}\\
+&amp;=&amp; P_{\lambda f}\left(\bar x^k-\lambda\nabla f(\bar x^k)\right).
 \end{array}
-\]</span> To be done.............</p>
-<p><strong>Example</strong></p>
-<p>Given <span class="math inline">\(G\in \mathbb S^n\)</span>, consider the projection problem onto the closed convex cone <span class="math inline">\(DNN_n^*=S_+^N+\mathcal N^n\)</span>. This problem can be formulated as, <span class="math display">\[
-\min\left\{\frac{1}{2}||S+Z-G||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
-=\min\left\{\frac{1}{2}||Z-(G-S)||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
-=\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\;|\;S\in\mathbb S^n_+\right\}\\
-=\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2+\delta_{\mathbb S_+^n}(S)\right\}\\
-\]</span> We define <span class="math inline">\(f(S)=\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\)</span>. From the optimality condition, we have <span class="math display">\[
-0\in\nabla f(\bar S)+\partial \delta_{\mathbb S_+^n}\quad \text{$f(\bar S)$ is differentiable}.\\
--\nabla f(\bar S)\in \delta_{\mathbb S_+^n}(S)\\
-\bar S-\nabla f(\bar S)\in (I+\delta_{\mathbb S_+^n})(\bar S)
+\]</span> where <span class="math inline">\(\lambda = 2/L\)</span> and <span class="math inline">\(f=\rho||x||_1\)</span>. It is easy to see that <span class="math display">\[
+P_{\lambda f}(x)=\text{sign}(x)\circ \max \{|x|-\lambda,0\}.
+\]</span> <strong>Example</strong></p>
+<p>Given <span class="math inline">\(G\in \mathbb S^n\)</span>, consider the projection problem onto the closed convex cone <span class="math inline">\(DNN_n^*=\mathbb S_+^N+\mathcal N^n\)</span>. This problem can be formulated as, <span class="math display">\[
+\begin{array}{rcl}
+&amp;&amp;\min\left\{\frac{1}{2}||S+Z-G||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
+&amp;=&amp;\min\left\{\frac{1}{2}||Z-(G-S)||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
+&amp;=&amp;\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\;|\;S\in\mathbb S^n_+\right\}\\
+&amp;=&amp;\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2+\delta_{\mathbb S_+^n}(S)\right\}.
+\end{array}
+\]</span> This can be shown by <span class="math display">\[
+\begin{array}{rcl}
+&amp;&amp;\min \left\{\frac{1}{2}||Z-A||^2\;|\; Z\in\mathcal N^n\right\}\\
+&amp;=&amp;\min \left\{\delta_{\mathcal N^n}(Z)+\frac{1}{2}||Z-A||^2\right\}\\
+&amp;=&amp;P_f(A)\\
+&amp;=&amp; \Pi_{\mathcal N^n}(A).
+\end{array}
+\]</span> Or by checking the following property <span class="math display">\[
+\begin{array}{rcl}
+A&amp;=&amp;P_f(A)+P_{f^*}(A)\\
+&amp;=&amp;\Pi_{\mathcal N^n}(A)+\Pi_{-\mathcal N^n}(A)\\
+&amp;=&amp;\Pi_{\mathcal N^n}(A)-\Pi_{\mathcal N^n}(-A).
+\end{array}
+\]</span> We can also obtain the same result.</p>
+<p>We define <span class="math inline">\(f(S)=\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\)</span>. From the optimality condition, we have <span class="math display">\[
+\begin{array}{rcl}
+0&amp;\in&amp;\nabla f(\bar S)+\partial \delta_{\mathbb S_+^n}\quad \text{$f(\bar S)$ is differentiable}.\\
+-\nabla f(\bar S)&amp;\in&amp; \delta_{\mathbb S_+^n}(S)\\
+\bar S-\nabla f(\bar S)&amp;\in&amp; (I+\delta_{\mathbb S_+^n})(\bar S)
+\end{array}
 \]</span> Then we have <span class="math display">\[
 \bar S=(I+\delta_{\mathbb S_+^n})^{-1}(\bar S-\nabla f(\bar S))=\Pi_{\mathbb S_+^n}(\bar S-\nabla f(\bar S)).
-\]</span> To be done..........</p>
+\]</span> We have <span class="math display">\[
+\nabla f(S)=\Pi_{\mathcal N^n}(S-G),
+\]</span> and <span class="math display">\[
+\begin{array}{rcl}
+||\nabla f(S)-\nabla f(S&#39;)||&amp;=&amp;||\Pi_{\mathcal N^n}(S-G)-\Pi_{\mathcal N^n}(S&#39;-G)||\\
+&amp;\le &amp; ||(S-G)-(S&#39;-G)||\\
+&amp;=&amp; ||S-S&#39;||.
+\end{array}
+\]</span> Therefore <span class="math inline">\(\nabla f(\cdot)\)</span> is Lipschitz continuous with modulus <span class="math inline">\(L=1\)</span>. Pick <span class="math inline">\(H=LI_n\)</span>, the APG subproblem is given by <span class="math display">\[
+S^{k+1}=\Pi\left(\bar S-\nabla f(\bar S)\right).
+\]</span></p>
 <h2 id="gradient-projection-method">4.4 Gradient projection method</h2>
 <p>Let <span class="math inline">\(f:Q\rightarrow \mathbb R\)</span> be a continuously differentiable function (not necessarily convex) defined on a closed convex subset <span class="math inline">\(Q\)</span> of <span class="math inline">\(\mathbb R^n\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. Consider <span class="math display">\[
 \min\{f(x)\;|\; x\in Q\}.
@@ -603,7 +634,7 @@ E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gradient-methods"><span class="nav-text">Gradient methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-methods-for-unconstrained-optimization-problem"><span class="nav-text">4.1 Gradient methods for unconstrained optimization problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem"><span class="nav-text">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-for-the-steepest-descent-method-for-strongly-convex-function"><span class="nav-text">4.1.2 Convergence rate for the steepest descent method for strongly convex function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#line-search-strategies"><span class="nav-text">4.2 Line search strategies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accelerated-proximal-gradient-method-for-convex-programming"><span class="nav-text">4.3 Accelerated proximal gradient method for convex programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-projection-method"><span class="nav-text">4.4 Gradient projection method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stochastic-gradient-descent-method"><span class="nav-text">4.5 Stochastic gradient descent method</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gradient-methods"><span class="nav-text">4. Gradient methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-methods-for-unconstrained-optimization-problem"><span class="nav-text">4.1 Gradient methods for unconstrained optimization problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem"><span class="nav-text">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convergence-rate-for-the-steepest-descent-method-for-strongly-convex-function"><span class="nav-text">4.1.2 Convergence rate for the steepest descent method for strongly convex function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#line-search-strategies"><span class="nav-text">4.2 Line search strategies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#accelerated-proximal-gradient-method-for-convex-programming"><span class="nav-text">4.3 Accelerated proximal gradient method for convex programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-projection-method"><span class="nav-text">4.4 Gradient projection method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stochastic-gradient-descent-method"><span class="nav-text">4.5 Stochastic gradient descent method</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -618,7 +649,7 @@ E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

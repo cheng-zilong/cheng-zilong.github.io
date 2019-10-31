@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/Convex Optimization/3.2 Convex Functions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/" class="post-title-link" itemprop="url">5. Pole Placement Problem IO Model</a>
+            <a href="/2019/03/28/Convex Optimization/3.2 Convex Functions/" class="post-title-link" itemprop="url">3. Convex Functions (2)</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2018-11-12 12:18:05" itemprop="dateCreated datePublished" datetime="2018-11-12T12:18:05+08:00">2018-11-12</time>
+              <time title="Created: 2019-03-28 09:38:47" itemprop="dateCreated datePublished" datetime="2019-03-28T09:38:47+08:00">2019-03-28</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:02:29" itemprop="dateModified" datetime="2019-08-26T00:02:29+08:00">2019-08-26</time>
+                <time title="Modified: 2019-09-21 19:43:34" itemprop="dateModified" datetime="2019-09-21T19:43:34+08:00">2019-09-21</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/" class="post-meta-item leancloud_visitors" data-flag-title="5. Pole Placement Problem IO Model" title="Views">
+            <span id="/2019/03/28/Convex Optimization/3.2 Convex Functions/" class="post-meta-item leancloud_visitors" data-flag-title="3. Convex Functions (2)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/12/Computer Control/5. Pole Placement Problem IO Model/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/03/28/Convex Optimization/3.2 Convex Functions/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/03/28/Convex Optimization/3.2 Convex Functions/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,186 +306,241 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="io-pole-placement">1. IO Pole Placement</h2>
-<p>For a input-output model</p>
-<p>Plant:<span class="math inline">\(\frac{B(z)}{A(z)}\)</span></p>
-<p>Feedback controller:<span class="math inline">\(\frac{S(z)}{R(z)}\)</span></p>
-<p>Feedforward controller:<span class="math inline">\(\frac{T(z)}{R(z)}\)</span></p>
-<p>For the close loop:,</p>
-<p>We have close loop t.f. <span class="math display">\[
-H_{cl}=\frac{RB}{AR+SB}\frac{T}{R}=\frac{TB}{AR+SB}
-\]</span> We have the c.p. <span class="math display">\[
-A_{cl}(z)=A_m(z)A_o(z)=A(z)R(z)+S(z)B(z)
-\]</span> If the order of the plant is n,</p>
-<p>we will have the following in order to tune all parameters <span class="math display">\[
-Deg \space A_{cl}=2n-1\\
-Deg \space S=n-1\\
-Deg \space R=n-1
+          <h2 id="operations-that-preserve-convexity">3.2 Operations that Preserve Convexity</h2>
+<p>We describe some operations that preserve convexity or concavity of functions, or allow us to construct new convex and concave functions.</p>
+<h3 id="nonnegative-weighted-sums">3.2.1 Nonnegative weighted sums</h3>
+<p>A nonnegative weighted sum of convex functions <span class="math display">\[
+f=w_1f_1+\dotsm+w_mf_m,
+\]</span> is convex.</p>
+<p>These properties can be extended to infinite sums and integrals. For example, if <span class="math inline">\(f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span> for each <span class="math inline">\(y\in \mathcal A\)</span> and <span class="math inline">\(w(y)&gt;0\)</span>.</p>
+<p>The the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
+g(x)=\int_\mathcal Aw(y)f(x,y)dy
+\]</span> is convex.</p>
+<h3 id="composition-with-an-affine-mapping">3.2.2 Composition with an affine mapping</h3>
+<p>Suppose <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R,A\in \mathbb R^{n\times m}\)</span> and <span class="math inline">\(b\in \mathbb R^n\)</span>. Define <span class="math inline">\(g:\mathbb R^m\rightarrow \mathbb R\)</span> by <span class="math display">\[
+g(x)=f(Ax+b)
+\]</span> Then if <span class="math inline">\(f\)</span> is convex, so is <span class="math inline">\(g\)</span>.</p>
+<h3 id="pointwise-maximum-and-supremum">3.2.3 Pointwise maximum and supremum</h3>
+<p>If <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions then their pointwise maximum <span class="math inline">\(f\)</span>, defined by <span class="math display">\[
+f(x)=\max\{f_1(x),f_2(x)\}
+\]</span> with <span class="math inline">\(\text{dom} f=\text{dom} f_1\cap \text{dom} f_2\)</span> is also convex.</p>
+<p>proof</p>
+<p>if <span class="math inline">\(0\le \theta\le 1\)</span> and <span class="math inline">\(x,y \in \text{dom}f\)</span>, then <span class="math display">\[
+\begin{array}{rCl}
+f(\theta x+(1-\theta)y)
+&amp;=&amp;\max\{f_1(\theta x+(1-\theta)y),f_2(\theta_1x+(1-\theta)y)\}\\
+&amp;\le&amp;\max\{\theta f_1(x)+(1-\theta)f_1(y),\theta f_2(x)+(1-\theta)f_2(y)\}\\
+&amp;\le&amp;\theta\max\{f_1(x),f_2(x)\}+(1-\theta)\max\{f_1(y),f_2(y)\}\\
+&amp;=&amp;\theta f(x)+(1-\theta)f(y)
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>piecewise-linear functions is convex because every piecewise-linear function is affine, <span class="math display">\[
+f(x)=\max \{a_1^Tx+b_1,\dotsm,a_L^Tx+b_L\}.
+\]</span> The pointwise maximum property extends to pointwise supremum over an infinite set of convex functions. If for each <span class="math inline">\(y\in\mathcal A,f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span>, then the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
+g(x)=\sup_{y\in\mathcal A}f(x,y)
+\]</span> is convex. Here the domain of <span class="math inline">\(g\)</span> is <span class="math display">\[
+\text{dom} g=\{x\;|\;(x,y)\in\text{dom}f,\; \forall y\in\mathcal A,\;\sup_{y\in\mathcal A}f(x,y)&lt; \infty\}
+\]</span> <strong>Example</strong></p>
+<p>Support function of a set <span class="math display">\[
+S_C(x)=\sup\{x^Ty\;|\;y\in C\}
+\]</span> is convex where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> with <span class="math inline">\(C\neq \O\)</span>.</p>
+<p><strong>Example</strong> (Farthest point of a set)</p>
+<p>Distance to the farthest point of a set <span class="math display">\[
+f(x)=\sup_{y\in C}||x-y||
+\]</span> is convex.</p>
+<p><strong>Example</strong> (Least-square cost as a function of weights) <span class="math display">\[
+g(w)=\inf_x \sum_{i=1}^n w_i(a_i^Tx-b_i)^2.
+\]</span> Since <span class="math inline">\(g\)</span> is the infimum of a family of linear functions of <span class="math inline">\(w\)</span>, it is a concave function of <span class="math inline">\(w\)</span>.</p>
+<p>We can derive the solution explicitly. <span class="math display">\[
+g(w)=\inf_x\left((Ax-b)^TW(Ax-b)\right),
+\]</span> where <span class="math inline">\(W=\text{diag}(w)\)</span>.</p>
+<p><strong>Example</strong> (Maximum eigenvalue of a symmetric matrix)</p>
+<p>The function <span class="math inline">\(f(X)=\lambda_{max}(X)\)</span>, with <span class="math inline">\(\text{dom} f=\mathbb S^m\)</span> is convex. <span class="math display">\[
+f(X)=\sup\{y^TXy\;|\;||y||_2=1\}.
+\]</span> <strong>Example</strong></p>
+<p>Norm of a matrix <span class="math inline">\(f(X)=||X||_2\)</span>, we have <span class="math display">\[
+f(X)=\sup\{u^TXv\;|\; ||u||_2=1,||v||_2=1\}.
 \]</span></p>
-<h2 id="reduce-order-by-pole-zero-cancellation">2.Reduce Order by Pole-Zero Cancellation</h2>
-<p>If we want to cancel out stable zeros, we can choose <span class="math display">\[
-A_{cl}=\bar{A}_{cl}B^+(z)\\
+<h3 id="composition">2.2.4 Composition</h3>
+<p><span class="math display">\[
+f(x)=h(g(x)),\quad \text{dom} f=\{x\in \text{dom} g\;|\;g(x)\in \text{dom} h\}
+\]</span></p>
+<p>Scalar composition</p>
+<p>The second derivative of the composition function <span class="math inline">\(f=h\circ g\)</span> is given by <span class="math display">\[
+f&#39;&#39;(x)=h&#39;&#39;(g(x))g&#39;(x)^2+h&#39;(g(x))g&#39;&#39;(x),
+\]</span> that means if <span class="math inline">\(g\)</span> is convex and h is convex and none decreasing, <span class="math inline">\(f\)</span> is convex or <span class="math inline">\(h\)</span> is convex and none increasing, <span class="math inline">\(g\)</span> is concave.</p>
+<p>Vector composition <span class="math display">\[
+f(x)=h(g(x))=h(g_1(x),\dotsm,g_k(x))
 \]</span> Then <span class="math display">\[
-H_{cl}=\frac{TB^{+}B^{-}}{\bar A_{cl}B^{+}}=\frac{TB^{-}}{\bar A_{cl}}
-\]</span> But we cannot cancel unstable zeros.</p>
-<p>and we can also cancel stable poles by choosing <span class="math display">\[
-T=\bar TA^+
-\]</span> and <span class="math display">\[
-A_{cl}=\bar{A}_{cl}A^+B^+(z)\\
-\]</span> and we can also cancel them at the same time.</p>
-<p>and the equation becomes <span class="math display">\[
-A^+A^-R+SB^+B^-=A_{cl}=\bar{A}_{cl}A^+B^+(z)
-\]</span> in order to cancel <span class="math inline">\(A^+B^+\)</span></p>
-<p>we need to choose <span class="math display">\[
-R=B^+\bar R\\
-S=A^+\bar S\\
-T=\bar TA^+\\
-\]</span> Then we have <span class="math display">\[
-A^-\bar R+\bar SB^-=\bar{A}_{cl}
-\]</span> The order of the equation is becoming less.</p>
-<h2 id="disturbance-rejection">3. Disturbance Rejection</h2>
-<p>we find the transfer function between disturbance and output is <span class="math display">\[
-H_{v}=\frac{Y(z)}{V(z)}=\frac{\frac{B}{A}}{1+\frac{SB}{RA}}=\frac{RB}{AR+SB}
-\]</span> if the disturbance is constant, we just need <span class="math inline">\(H_v(1)=0 \quad R(1)=0\)</span>.</p>
-<p>therefore, we just need <span class="math display">\[
-R(z)=(z-1)R&#39;
-\]</span> Tracking Problem</p>
-<p><span class="math inline">\(B(z)\)</span> is stable, i.e. the system has stable inverse.</p>
-<h2 id="design-steps">4. Design Steps</h2>
-<p>First build feedback controller and then build feedforward controller.</p>
-<p>how to build feedback controller</p>
+f&#39;&#39;(x)=g&#39;(x)^T\nabla^2h(g(x))g&#39;(x)+\nabla h(g(x))^Tg&#39;&#39;(x)
+\]</span> Then we can derive the following rules.</p>
+<p><span class="math inline">\(f\)</span> is convex if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none decreasing in each argument and <span class="math inline">\(g_i\)</span> are convex or if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none increasing in each argument and <span class="math inline">\(g_i\)</span> are concave.</p>
+<h3 id="minimization">3.2.5 Minimization</h3>
+<p>We haven seen that the maximum or supremum of an arbitrary family of convex functions is convex. Here we consider minimum function.</p>
+<p>If <span class="math inline">\(f\)</span> is convex in <span class="math inline">\((x, y)\)</span> and C is convex nonempty set, then the function <span class="math display">\[
+g(x)=\inf_{y\in C}f(x,y)
+\]</span> is convex in <span class="math inline">\(x\)</span> provided <span class="math inline">\(g(x)&gt;-\infty \space\forall x\)</span>.</p>
+<p>proof</p>
+<p>We have <span class="math inline">\(y_1,y_2\in C\)</span> <span class="math display">\[
+g(\theta x_1+(1-\theta)x_2)=\inf_{y\in C} f(\theta x_1+(1-\theta)x_2,y)\\
+\le f(\theta x_1+(1-\theta)x_2,\theta y_1+(1-\theta)y_2)\\
+\le\theta f(x_1,y_1)+(1-\theta)f(x_2,y_2)\\
+\le\theta g(x_1)+(1-\theta)g(x_2).
+\]</span></p>
+<p><strong>Example</strong> (Schur complement)</p>
+<p>Suppose the quadratic function <span class="math display">\[
+f(x,y)=x^TAx+2x^TBy+y^TCy,
+\]</span> is convex in (x,y), which means <span class="math display">\[
+\begin{bmatrix}
+A &amp; B\\B^T &amp; C
+\end{bmatrix}\succeq 0.
+\]</span> We can express <span class="math inline">\(g(x)=\inf _y f(x,y)\)</span> as <span class="math display">\[
+g(x)=x^T(A-BC^{-1}B^T)x.
+\]</span> By the minimization rule, <span class="math inline">\(g(x)\)</span> is also convex.</p>
+<h3 id="perspective-of-a-function">3.2.6 Perspective of a function</h3>
+<p>If <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> , then the perspective of <span class="math inline">\(f\)</span> is the function <span class="math inline">\(g: \mathbb R^{n+1}\rightarrow\mathbb R\)</span> defined by <span class="math display">\[
+g(x,t)=tf(\frac{x}{t})
+\]</span> Then the perspective operation preserves convexity: if <span class="math inline">\(f\)</span> is a convex function, then so is its perspective function <span class="math inline">\(g\)</span>.</p>
+<h2 id="the-conjugate-function">3.3 The conjugate function</h2>
+<h3 id="definition-and-examples">3.3.1 Definition and examples</h3>
+<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span>. The function <span class="math inline">\(f^*:\mathbb R^n\rightarrow\mathbb R\)</span> defined as <span class="math display">\[
+f^*(y)=\sup_{x\in \text{dom} f}(y^Tx-f(x))
+\]</span> is called the conjugate of the function <span class="math inline">\(f\)</span>. The <strong>domain</strong> of the <strong>conjugate function</strong> consists of <span class="math inline">\(y\in \mathbb R^n\)</span> for which the supremum is finite. We see immediately that <span class="math inline">\(f^*\)</span> is convex since it is the pointwise supremum of a family of convex (affine) functions of <span class="math inline">\(y\)</span>. That is true whether or not <span class="math inline">\(f\)</span> is convex.</p>
+<p>Let's start with some simple examples which allows us to derive an analytical expression for the conjugate of many common convex functions.</p>
+<p><strong>Example</strong></p>
+<p><strong>Affine function</strong>. <span class="math inline">\(f(x)=ax+b\)</span> As a function of x, <span class="math inline">\(yx-ax-b\)</span> is bounded if and only if <span class="math inline">\(y=a\)</span>, in which case it is a constant. Therefore, the domain of the convex function is a singleton <span class="math inline">\({a}\)</span> and <span class="math inline">\(f^*(a)=-b\)</span>.</p>
+<p><strong>Negative logarithm</strong>. <span class="math inline">\(f(x)=-\log x\)</span> with <span class="math inline">\(\text{dom} f\)</span> is <span class="math inline">\(\mathbb R_{++}\)</span>. Then the function <span class="math inline">\(xy+\log x\)</span> is unbounded above if <span class="math inline">\(y&gt;0\)</span> and reaches its maximum at <span class="math inline">\(x=-\frac{1}{y}\)</span> otherwise. Then <span class="math inline">\(\text{dom} f^*=-\mathbb R_{++}\)</span> and <span class="math inline">\(f^*(y)=-1-\log(-y)\)</span>.</p>
+<p><strong>Exponential</strong>. <span class="math inline">\(f(x)=e^x\)</span> . <span class="math inline">\(xy-e^x\)</span> is unbounded if <span class="math inline">\(y&lt;0\)</span> . For <span class="math inline">\(y&gt;0\)</span>, <span class="math inline">\(xy-e^x\)</span> reaches its maximum at <span class="math inline">\(x=\log y\)</span>, we have <span class="math inline">\(f^*(y)=y\log y-y\)</span> for <span class="math inline">\(\text{dom}f^*=\mathbb R_{++}\)</span>.</p>
+<p><strong>Negative Entropy</strong> <span class="math inline">\(f(x)=x\log x\)</span> . <span class="math inline">\(xy-x\log x\)</span> is bounded. <span class="math inline">\(f^*(y)=e^{y-1}\)</span>.</p>
+<h3 id="basic-properties">3.3.2 Basic properties</h3>
+<p><strong>Fenchel's inequality</strong> <span class="math display">\[
+f(x)+f^*(y)\ge x^Ty
+\]</span> <strong>Conjugate of the conjugate</strong></p>
+<p>If <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(f\)</span> is closed. Then <span class="math inline">\(f^{**}=f\)</span>.</p>
+<p><strong>Differentiable functions</strong></p>
+<p>Suppose <span class="math inline">\(f\)</span> is convex and differentiable, with <span class="math inline">\(\text{dom} f= \mathbb R^n\)</span>. Any maximizer <span class="math inline">\(x^*\)</span> of <span class="math inline">\(y^Tx-f(x)\)</span> satisfies <span class="math inline">\(y=\nabla f(x^*)\)</span>. Therefore, the conjugate function can be denoted as <span class="math display">\[
+f^*(y)=(x^*)^T\nabla f(x^*)-f(x^*).
+\]</span> <strong>Scaling and composition with affine transformation</strong></p>
+<p>For <span class="math inline">\(a&gt;0\)</span> and <span class="math inline">\(b\in \mathbb R\)</span>, the conjugate of <span class="math inline">\(g(x)=af(x)+b\)</span> is <span class="math inline">\(g^*(y)=af^*(y/a)-b\)</span>.</p>
+<p><strong>Sums of independent functions</strong></p>
+<p>If <span class="math inline">\(f(u,v)=f_1(u)+f_2(v)\)</span> where <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions with conjugates <span class="math inline">\(f_1^*\)</span> and <span class="math inline">\(f_2^*\)</span>. <span class="math display">\[
+f^*(w,z)=f_1^*(w)+f_2^*(z)
+\]</span></p>
+<h2 id="quasiconvex-functions">3.4 Quasiconvex functions</h2>
+<h3 id="definition-and-examples-1">3.4.1 Definition and examples</h3>
+<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconvex</strong> if its domain and all its sublevel sets <span class="math display">\[
+S_\alpha=\{x\in \text{dom} f\;|\; f(x)\le \alpha\}
+\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
+<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconcave</strong> if its domain and all its superlevel sets <span class="math display">\[
+S_\alpha=\{x\in \text{dom} f|\space f(x)\ge \alpha\}
+\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
+<p>A function that is both quasiconvex and quasiconcave is called quasilinear. If a function <span class="math inline">\(f\)</span> is quasilinear, then its domain and every level set <span class="math inline">\(\{x\;|\;f(x)=\alpha\}\)</span> is convex.</p>
+<p><strong>Example</strong></p>
+<p>Logarithm is quasiconvex and quasiconcave and therefore is quasilinear.</p>
+<p><strong>Example</strong></p>
+<p>Consider <span class="math inline">\(f:\mathbb R^2\rightarrow \mathbb R\)</span> with <span class="math inline">\(\text{dom} f =\mathbb R_+^2\)</span> and <span class="math inline">\(f(x_1, x_2)=x_1x_2\)</span> . This function is neither convex nor concave since its hessian matrix <span class="math display">\[
+\nabla^2f(x)=
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}.
+\]</span> However the function is quasiconcave since the superlevel sets <span class="math display">\[
+\{x\in \mathbb R_+^2\;|\;x_1x_2\ge \alpha\}
+\]</span> are convex sets for all <span class="math inline">\(\alpha\)</span>.</p>
+<h3 id="basic-properties-1">3.4.2 Basic Properties</h3>
+<p>A function <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for any <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , <span class="math display">\[
+f(\theta x+(1-\theta) y) \le \max \{f(x),f(y)\}.
+\]</span> That means the value of the function does not exceed the maximum of its values of the endpoints.</p>
+<p><span class="math inline">\(f\)</span> is quasiconvex if and only if its restriction to any line intersecting its domain is quasiconvex.</p>
+<p><strong>Quasiconvex Functions on <span class="math inline">\(\mathbb R\)</span></strong></p>
+<p>A continuous function <span class="math inline">\(f:\mathbb R\rightarrow\mathbb R\)</span> is quasiconvex if and only if at least one of the following condition holds:</p>
 <ol type="1">
-<li>Design R, if zero cancelled, R needs to contain zero. if disturbance is cancelled, R needs to contain z-1.</li>
-<li>Design R and S by solving <span class="math inline">\(AR+BS=A_{cl}\)</span></li>
-<li>Choose T or <span class="math inline">\(H_{ff}\)</span> at the final stage.</li>
+<li><span class="math inline">\(f\)</span> is nondecreasing</li>
+<li><span class="math inline">\(f\)</span> is nonincreasing</li>
+<li>there is a point <span class="math inline">\(c\in \text{dom} f\)</span> such that for <span class="math inline">\(t&lt;c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nonincreasing, and for <span class="math inline">\(t\ge c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nondecreasing.</li>
 </ol>
-<h2 id="io-example">5. IO Example</h2>
-<p>The Plant <span class="math display">\[
-G(z)=\frac{0.00058}{z-0.942}
-\]</span> The Desired Model <span class="math display">\[
-H_d(z)=\frac{0.0952z+0.0755}{z^2-1.331z+0.5016}
-\]</span> We need disturbance rejection <span class="math display">\[
-R=z-1\\
-S=s_0z+s_1\\
-A_{cl}=z^2-1.331z+0.5016\\
-AR+SB=(z-0.942)(z-1)+\\(s_0z+s_1)(0.00058)\\=z^2-1.331z+0.5016
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=1053.448\\
-s_1=-759.31
-\end{cases}
-\]</span> Then we have <span class="math display">\[
-R=z-1\\
-S=1053.448z-759.31
-\]</span> Then the feedback close loop system is <span class="math display">\[
-H_{fbc}=\frac{(z-1)0.00058}{z^2-1.331z+0.5016}
-\]</span> Now we will design the feedforward controller, <span class="math display">\[
-H_{fbc}H_{ff}=H_d\\
-H_{ff}=\frac{0.0952z+0.0755}{(z-1)0.00058}\\=\frac{16.41z+130.17}{z-1}
-\]</span> Therefore the controller is <span class="math display">\[
-U(z)=-H_{fb}(z)Y(z)+H_{ff}(z)U_c(z)\\
-H_{fb}=\frac{1053.448z-759.31}{z-1}\\
-H_{ff}=\frac{16.41z+130.17}{z-1}
-\]</span> Example</p>
-<p>Plant <span class="math display">\[
-H(z)=\frac{z+0.9}{z^2-2.5z+1}
-\]</span> The desired <span class="math display">\[
-A_m(z)=z^2-1.
-8z+0.9
-\]</span> a) The process zero is canceled</p>
-<p>The order of the plant is 2. <span class="math display">\[
-R=(z+0.9)\\
-S=s_0z+s_1\\
-A_{cl}=(z+0.9)(z^2-1.8z+0.9)
-\]</span> Then we have Diophantine Equation <span class="math display">\[
-AR+SB=(z^2-2.5z+1)(z+0.9)+(s_0z+s_1)(z+0.9)\\
-=A_{cl}=(z+0.9)(z^2-1.8z+0.9)\\
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=0.7\\
-s_1=-0.1\\
-\end{cases}
-\]</span> Then the close loop system is <span class="math display">\[
-H_{ff}=\frac{T}{R}
-\\H_{cl}=\frac{RB}{AR+SB}H_{ff}\\=\frac{TB}{AR+SB}\\=\frac{T}{z^2-1.8z+0.9}
-\]</span> We know <span class="math display">\[
-H_{cl}(1)=1
-\]</span> Then we have <span class="math display">\[
-T=0.1
-\]</span> Therefore <span class="math display">\[
-U(z)=-\frac{S}{R}Y(z)+\frac{T}{R}U(z)\\=-\frac{0.7z-0.1}{z+0.9}Y(z)+\frac{0.1}{z+0.9}U_c(z)
+<p>The point <span class="math inline">\(c\)</span> can be chosen as any point which is a global minimizer of <span class="math inline">\(f\)</span>.</p>
+<h3 id="differentiable-quasiconvex-functions">3.4.3 Differentiable quasiconvex functions</h3>
+<p><strong>First order conditions</strong></p>
+<p>Suppose <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is differentiable. Then <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for all <span class="math inline">\(x,y\in \text{dom} f\)</span> <span class="math display">\[
+f(y)\le f(x)\implies \nabla f(x)^T(y-x)\le 0
+\]</span> <strong>Second order conditions</strong></p>
+<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable. If <span class="math inline">\(f\)</span> is quasiconvex, then for all <span class="math inline">\(x \in \text{dom} f\)</span>, and for all <span class="math inline">\(y \in \mathbb R^n\)</span> we have <span class="math display">\[
+y^T\nabla f(x)=0\implies y^T\nabla^2f(x) y\ge 0.
 \]</span></p>
-<ol start="2" type="a">
-<li>The process zero is not canceled <span class="math display">\[
-A_{cl}=zA_m=z^3-1.8z^2+0.9z\\
-S=s_0z+s_1\\
-R=z+r_1
-\]</span> Then we have Diophantine Equation <span class="math display">\[
-AR+SB=A_{cl}\\
-(z^2-2.5z+1)(z+r_1)+\\(s_0z+s_1)(z+0.9)=\\z^3-1.8z^2+0.9z
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-r_1=0.1618\\
-s_0=0.5382\\
-s_1=-0.1798
-\end{cases}
-\]</span> Then we design the feedforward controller. <span class="math display">\[
-H_{cl}=\frac{TB}{AR+SB}\\
-H_{cl}(1)=1\\
-T=0.05263\\
-\]</span></li>
+<h3 id="operations-that-preserve-quasiconvexity">3.4.4 Operations that preserve quasiconvexity</h3>
+<p><strong>Nonnegative weighted maximum</strong> <span class="math display">\[
+f=\max\{w_1f_1,\dotsm,w_mf_m\}
+\]</span> The property can be expanded to general pointwise supremum. <span class="math display">\[
+f(x)=\sup_{y\in C}(w(y)g(x,y))
+\]</span> where <span class="math inline">\(w(y)\ge 0\)</span> and <span class="math inline">\(g(x,y)\)</span> is quasiconvex in x for each y.</p>
+<p><strong>Composition</strong></p>
+<p>If <span class="math inline">\(g:\mathbb R^n \rightarrow \mathbb R\)</span> is quasiconvex and <span class="math inline">\(h:\mathbb R\rightarrow \mathbb R\)</span> is non decreasing, then $f=g h $ is quasiconvex.</p>
+<p><strong>Minimization</strong></p>
+<p>If <span class="math inline">\(f(x,y)\)</span> is quasiconvex jointly in <span class="math inline">\(x,y\)</span> and <span class="math inline">\(C\)</span> is a convex set. Then the function <span class="math display">\[
+g(x)=\inf_{y\in C}f(x,y)
+\]</span> is quasiconvex.</p>
+<h3 id="representation-via-family-of-convex-functions">3.4.5 Representation via family of convex functions</h3>
+<p>In the sequel, it will be convenient to represent the sublevel sets of a quasiconvex function via inequalities of convex functions. We seek a family of convex functions <span class="math inline">\(\phi(t):\mathbb R^n\rightarrow \mathbb R\)</span> indexed by <span class="math inline">\(t\in \mathbb R\)</span>. <span class="math display">\[
+f(x)\le t \iff \phi_t(x)\le 0
+\]</span></p>
+<h2 id="log-concave-and-log-convex-functions">3.5 Log-concave and log-convex functions</h2>
+<h3 id="definition">3.5.1 Definition</h3>
+<p>A function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is logarithmically concave or log-concave if <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in \text{dom} f\)</span> and <span class="math inline">\(\log f\)</span> is concave. It is said to be logarithmically convex or log-convex if <span class="math inline">\(\log f\)</span> is convex. Thus <span class="math inline">\(f\)</span> is log-convex if and only if <span class="math inline">\(1/f\)</span> is log-concave. It is convenient to allow <span class="math inline">\(f\)</span> to take on the value zero, in which case we take <span class="math inline">\(\log f(x)=-\infty\)</span>. In the case we say <span class="math inline">\(f\)</span> is log-concave if the extended-value function <span class="math inline">\(\log f\)</span> is concave.</p>
+<p>We can express log-concave function directly without logarithms: a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> with convex domain and <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in dom f\)</span> is log-concave if and only if for all <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , we have <span class="math display">\[
+f(\theta x+(1-\theta) y)\ge f(x)^\theta f(y)^{1-\theta}
+\]</span> From the composition rules we know that <span class="math inline">\(e^h\)</span> is convex if <span class="math inline">\(h\)</span> is convex since the function <span class="math inline">\(e^x\)</span> is convex and nondecreasing and function <span class="math inline">\(h\)</span> is convex. So a log-convex function is convex. Similarly , a nonnegative concave function is log-concave since <span class="math inline">\(\log x\)</span> is concave and nondecreasing. It is also clear that a log-convex function is quasiconvex and a log-concave function is quasiconcave since the logarithm is monotone increasing.</p>
+<h3 id="properties">3.5.2 Properties</h3>
+<p>Twice differentiable log-convex/concave functions.</p>
+<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable, with <span class="math inline">\(\text{dom} f\)</span> is convex,so <span class="math display">\[
+\nabla^2 \log f(x)=\frac{1}{f(x)}\nabla^2 f(x)-\frac{1}{f(x)^2}\nabla f(x)\nabla f(x)^T.
+\]</span> We conclude that <span class="math inline">\(f\)</span> is log-convex if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
+f(x)\nabla^2 f(x)\succeq \nabla f(x)\nabla f(x)^T,
+\]</span> and log-concave if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
+f(x)\nabla^2 f(x)\preceq \nabla f(x)\nabla f(x)^T.
+\]</span> <strong>Multiplication, addition and integration</strong></p>
+<p>Log-convexity and log-concavity are closed under multiplication and positive scaling. For example, if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave, then so is the pointwise product. <span class="math inline">\(h(x)=f(x)g(x)\)</span></p>
+<p>Sum of log-concave functions is not in general log-concave. Log-convexity, however, preserved under sums.</p>
+<p>In some special case log-concavity is preserved by integration. If <span class="math inline">\(f: \mathbb R^n \times \mathbb R^m \rightarrow \mathbb R\)</span> is log-concave, then <span class="math display">\[
+g(x)=\int f(x,y)dy
+\]</span> is log-concave function of <span class="math inline">\(x\)</span> on <span class="math inline">\(\mathbb R^n\)</span>.</p>
+<p>Convolution: if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave on <span class="math inline">\(\mathbb R^n\)</span>, then so is the convolution <span class="math display">\[
+(f*g)(x)=\int f(x-y)g(y)dy.
+\]</span></p>
+<h2 id="convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</h2>
+<p>We now consider generalizations of notions of monotonicity and convexity, using generalized inequalities instead of the usual ordering on <span class="math inline">\(\mathbb R\)</span>.</p>
+<h3 id="monotonicity-with-respect-to-a-generalized-inequality">3.6.1 Monotonicity with respect to a generalized inequality</h3>
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>K-nondecreasing</strong> if <span class="math display">\[
+x\preceq_K y\implies f(x)\le f(y),
+\]</span> and <strong>K-increasing</strong> if <span class="math display">\[
+x\preceq_K y, x\neq y \implies f(x)&lt;f(y).
+\]</span> <strong>K-nonincreasing</strong> and <strong>K-decreasing</strong> functions are defined in a similar way.</p>
+<p><strong>Example</strong> (Matrix monotone function)</p>
+<p>A function <span class="math inline">\(f:\mathbb S^n\rightarrow \mathbb R\)</span> is called matrix monotone if it is monotone with respect to the positive semidefinite cone.</p>
+<ol type="1">
+<li><span class="math inline">\(\text{tr}(WX)\)</span>, where <span class="math inline">\(w\in\mathbb S^n\)</span>, is matrix nondecreasing if <span class="math inline">\(W\succeq 0\)</span> and the matrix increasing if <span class="math inline">\(W\succ 0\)</span>.</li>
+<li><span class="math inline">\(\text{tr}(X^{-1})\)</span> is matrix decreasing on <span class="math inline">\(\mathbb S^n_{++}\)</span>.</li>
+<li><span class="math inline">\(\text{det}(X)\)</span> is matrix increasing on <span class="math inline">\(\mathbb S^n_{++}\)</span> and matrix nondecreasing on <span class="math inline">\(\mathbb S^n_+\)</span>.</li>
 </ol>
-<p>Therefore, the controller is <span class="math display">\[
-U(z)=-\frac{0.5382z-0.1798}{z+0.1618}Y(z)\\+\frac{0.05263}{z+0.1618}U_c(z)
+<p><strong>Gradient conditions for monotonicity</strong></p>
+<p>A differentiable function <span class="math inline">\(f\)</span>, with convex domain, is <strong>K-nondecreasing</strong> if and only if <span class="math display">\[
+\nabla f(x)\succeq_{K^*}0.
+\]</span> The function is <strong>K-increasing</strong> if (converse is not true) <span class="math display">\[
+\nabla f(x)\succ_{K^*}0.
 \]</span></p>
-<p>Example <span class="math display">\[
-H(z)=\frac{z-0.5}{z^2-1}\\
-H_m(z)=\frac{1}{z^2}\\
-\]</span> (a)Desgin a controller in the form <span class="math inline">\(R(q)u(k)=T(q)u_c(k)-S(q)y(k)\)</span>. Match the reference model and reject disturbance. <span class="math display">\[
-R(z)=(z-1)(z-0.5)\\
-S(z)=s_0z^2+s_1z+s_2\\
-A_{cl}=A_oA_m=z^3(z-0.5)\\
-AR+SB=A_{cl}\\
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=1\\
-s_1=1\\
-s_2=-1\\
-\end{cases}
+<h3 id="convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</h3>
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> is called K-convex if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, <span class="math display">\[
+f(\theta x+(1-\theta)y) \preceq_K \theta f(x)+(1-\theta)f(y)
+\]</span> Strict convex if <span class="math display">\[
+f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y).
 \]</span></p>
-<p><span class="math display">\[
-\frac{RB}{AR+SB}\frac{T}{R}=H_m(z)\\
-\frac{zt_0}{z^3}=\frac{1}{z^2}\\
-t_0=1\\
-\]</span></p>
-<p><span class="math display">\[
-U(z)=-\frac{z^2+z-1}{(z-1)(z-0.5)}Y(z)+\frac{z}{(z-1)(z-0.5)}U_c(z)\\
-(z^2-1.5z+0.5)U(z)=-(z^2+z-1)Y(z)+zU_c(z)\\
-u(k+2)-1.5u(k+1)+0.5u(k)=\\-y(k+2)-y(k+1)+y(k)+u_c(k+1)\\
-u(k)=1.5u(k-1)-0.5u(k-2)\\-y(k)-y(k-1)+y(k-2)+u_c(k-1)
-\]</span></p>
-<ol start="2" type="a">
-<li>Design controller in the form of <span class="math inline">\(u(k)=u_{fb}(k)+u_{ff}(k)\)</span> <span class="math display">\[
-R(z)=(z-1)(z+r_1)\\
-S(z)=s_0z^2+s_1z+s_2\\
-A_{cl}=A_oA_m=z^4\\
-AR+SB=\\(z^2-1)(z-1)(z+r_1)\\+(s_0z^2+s_1z+s_2)(z-0.5)\\
-=z^4\\
-\]</span> We can get the result <span class="math display">\[
-\begin{cases}
-r_1=-\frac{1}{3}\\
-s_0=\frac{4}{3}\\
-s_1=\frac{4}{3}\\
-s_2=-\frac{2}{3}\\
-\end{cases}
-\]</span></li>
-</ol>
-<p><span class="math display">\[
-\frac{RB}{AR+SB}H_{ff}\\=\frac{(z-1)(z-\frac{1}{3})(z-0.5)}{z^4}H_{ff}\\
-=\frac{1}{z^2}\\
-H_{ff}(z)=\frac{z^2}{(z-1)(z-\frac{1}{3})(z-0.5)}\\
-U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H_{ff}U_c(z)
-\]</span></p>
+<p><strong>Example</strong> (Convexity with respect to componentwise inequality)</p>
+<p>A function is convex with respect to componentwise inequality (the generalized inequality is induced by <span class="math inline">\(\mathbb R^n_+\)</span>) if and only if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y).
+\]</span> <strong>Example</strong> (Matrix Convexity)</p>
+<p>suppose <span class="math inline">\(f\)</span> is a symmetric matrix valued function, i.e. <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^n\)</span>. The function <span class="math inline">\(f\)</span> is convex with respect to matrix inequality if <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y)
+\]</span> for any <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>.</p>
 
         
       
@@ -510,7 +565,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/Convex Optimization/2. Convex Set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -524,7 +579,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/" class="post-title-link" itemprop="url">4. Pole Placement Problem SS Approach</a>
+            <a href="/2019/03/24/Convex Optimization/2. Convex Set/" class="post-title-link" itemprop="url">2. Convex Sets</a>
           
         </h1>
 
@@ -539,7 +594,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
                 
               
 
-              <time title="Created: 2018-11-12 12:18:04" itemprop="dateCreated datePublished" datetime="2018-11-12T12:18:04+08:00">2018-11-12</time>
+              <time title="Created: 2019-03-24 11:53:58" itemprop="dateCreated datePublished" datetime="2019-03-24T11:53:58+08:00">2019-03-24</time>
             </span>
           
             
@@ -550,7 +605,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:02:15" itemprop="dateModified" datetime="2019-08-26T00:02:15+08:00">2019-08-26</time>
+                <time title="Modified: 2019-08-25 23:48:53" itemprop="dateModified" datetime="2019-08-25T23:48:53+08:00">2019-08-25</time>
               </span>
             
           
@@ -560,7 +615,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Computer-Control/" itemprop="url" rel="index"><span itemprop="name">Computer Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -569,7 +624,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
           
 
           
-            <span id="/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/" class="post-meta-item leancloud_visitors" data-flag-title="4. Pole Placement Problem SS Approach" title="Views">
+            <span id="/2019/03/24/Convex Optimization/2. Convex Set/" class="post-meta-item leancloud_visitors" data-flag-title="2. Convex Sets" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -587,7 +642,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/12/Computer Control/4. Pole Placement Problem SS Approach/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/03/24/Convex Optimization/2. Convex Set/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/03/24/Convex Optimization/2. Convex Set/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -601,248 +656,327 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="pole-placement-for-state-space-model">1. Pole Placement for State Space Model</h2>
-<p>If one matrix is controllable canonical form <span class="math display">\[
-x(k+1)= \Phi x(k)+\Gamma u(k) \\
-y(k)=Cx(k)
+          <h1 id="convex-sets">2. Convex Sets</h1>
+<h2 id="affine-and-convex-sets">2.1 Affine and Convex Sets</h2>
+<h3 id="lines-and-line-segments">2.1.1 Lines and line segments</h3>
+<p>Suppose <span class="math inline">\(x_1 \neq x_2\)</span> are two points in <span class="math inline">\(\mathbb R^n\)</span>. Points of the form <span class="math display">\[
+y=\theta x_1+(1-\theta)x_2,
+\]</span> where <span class="math inline">\(\theta\in \mathbb R\)</span>, form a line passing <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</p>
+<p>If <span class="math inline">\(0\le\theta\le 1\)</span>, the line is restricted between the two points, which is therefore a line segment.</p>
+<h3 id="affine-sets">2.1.2 Affine sets</h3>
+<p>A set <span class="math inline">\(C \subseteq \mathbb R^n\)</span> is <strong>affine</strong> if the line through any two distinct points in C lies in C, i.e. for any <span class="math inline">\(x_1, x_2\in C\)</span> and <span class="math inline">\(\theta\in R\)</span>, we have <span class="math inline">\(\theta x_1+(1-\theta)x_2 \in C\)</span>. We refer to a point of the form <span class="math inline">\(y=\theta_1 x_1 +\theta_2 x_2 +\dotsm+\theta_k x_k\)</span>, where <span class="math inline">\(\theta_1 + \theta_2+\dotsm+\theta_k=1\)</span> as an <strong>affine combination</strong> of the points <span class="math inline">\(x_1,x_2,\dotsm,x_k\)</span>. An <strong>affine set</strong> contains every <strong>affine combination</strong> of its points.</p>
+<p>If <span class="math inline">\(C\)</span> is an affine set and we have <span class="math inline">\(x_0 \in C\)</span>, then the set <span class="math display">\[
+V=C-x_0=\{x-x_0|x\in C\},
+\]</span> is a subspace (a set that is closed under sums and multiplication).</p>
+<p><strong>proof</strong></p>
+<p>If <span class="math inline">\(C\)</span> is an affine set and define <span class="math inline">\(V=C-x_0\)</span>, assume <span class="math inline">\(v_1, v_2 \in V\)</span>, <span class="math inline">\(\alpha, \beta \in \mathbb R\)</span>, and <span class="math inline">\(\alpha+\beta = 1\)</span>, <span class="math inline">\(x_0\in C\)</span>.</p>
+<p>Then we have <span class="math inline">\(v_1 + x_0 \in C\)</span> and <span class="math inline">\(v_2 + x_0 \in C\)</span>.</p>
+<p>To complete the proof, we need to prove $v_1+v_2 V $, that means we need to prove <span class="math inline">\(\alpha v_1+\beta v_2 + x_0 \in C\)</span>. <span class="math display">\[
+\alpha (v_1+x_0)+\beta(v_2+x_0)=\alpha v_1+\beta v_2+(\alpha+\beta)x_0\in C.
+\]</span> That means <span class="math inline">\(V\)</span> is a subset. <strong>Q.E.D.</strong></p>
+<p>Thus an affine set can be expressed as (a subspace plus an offset) <span class="math display">\[
+C=V+x_0=\{v+x_0|v\in V\}.
+\]</span> The set of all affine combinations of points in some set <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is called the affine hull of C, and denoted as <span class="math inline">\(\text{aff } C\)</span>. <span class="math display">\[
+\text{aff }C=\{\theta_1x_1+\dotsm+\theta_kx_k\;|\; x_1,\dotsm,x_k\in \mathbb R^n,\theta_1+\dotsm+\theta_k=1\}
 \]</span></p>
+<h3 id="affine-dimension-and-relative-interior">2.1.3 Affine dimension and relative interior</h3>
+<p>We define the <strong>affine dimension</strong> of a set <span class="math inline">\(C\)</span> as the dimension of its <strong>affine hull</strong>.</p>
+<p>We define the <strong>relative interior</strong> of the set <span class="math inline">\(C\)</span>, denoted as <span class="math inline">\(\text{relint }C\)</span>, as its interior relative to <span class="math inline">\(\text{aff }C\)</span>.</p>
+<p><strong>Difference between the interior and relative interior</strong>. Consider <span class="math inline">\(\mathbb R^3\)</span> with the standard Euclidean metric, and look at the set of points <span class="math inline">\((x,y,0)\)</span> such that <span class="math inline">\(x^2+y^2\le1\)</span> . A point is in the interior of a set if you can draw a small open ball around it which is itself contained in the set. But for any point in our set, any open ball around any point in it will contain points outside the <span class="math inline">\(x−y\)</span> plane, and so it has empty interior. That's technically correct, but it's undesirable behavior. The relative interior of a set is obtained by looking at the affine hull of the set, which in this case is <span class="math inline">\(\mathbb R^2\)</span>, and using the appropriate metric there. So while our set has empty interior, its relative interior is the interior of the unit disc, which is what it &quot;really should be&quot;. (From Quora)</p>
+<p>We can then define the <strong>relative boundary</strong> of a set <span class="math inline">\(C\)</span> as <span class="math inline">\(\text{cl }C\backslash \text{relint }C\)</span>, where <span class="math inline">\(\text{cl } C\)</span> is the closure of <span class="math inline">\(C\)</span>.</p>
+<h3 id="convex-sets-1">2.1.4 Convex sets</h3>
+<p>A set <span class="math inline">\(C\)</span> is <strong>convex</strong> if the line segment between any two points in <span class="math inline">\(C\)</span> lies in <span class="math inline">\(C\)</span>.</p>
+<p>If for any <span class="math inline">\(x_1,x_2 \in C\)</span> and any <span class="math inline">\(\theta\)</span> with <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
+\theta x_1+(1-\theta)x_2\in C.
+\]</span> We call a point of the form <span class="math inline">\(\theta_1 x_1+\dotsm+\theta_kx_k\)</span>, where <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span> and <span class="math inline">\(\theta_i\ge 0\;\forall i\)</span>, a <strong>convex combination</strong> of the points <span class="math inline">\(x_1,\dotsm,x_k\)</span>. As with affine sets, it can be shown that a set is convex if and only if it contains every convex combination of its points.</p>
+<p>The <strong>convex hull</strong> of a set <span class="math inline">\(C\)</span>, denoted as <span class="math inline">\(\text{conv }C\)</span> or <span class="math inline">\(\text{co }C\)</span>, is the set of all convex combinations of points in <span class="math inline">\(C\)</span>. <span class="math display">\[
+\text{conv }C=\{\theta_1x_1+\dotsm+\theta_kx_k\;|\; x_1,\dotsm,x_k\in \mathbb R^n,\theta_1+\dotsm+\theta_k=1,\theta_i\ge 0\;\forall i\}
+\]</span> <strong>Attention: every affine set is convex.</strong></p>
+<p>The idea of convex combination can be generalized to include infinite sums, integrals and, in the most general form, probability distributions.</p>
+<p>Suppose <span class="math inline">\(p:\mathbb R^n \rightarrow \mathbb R\)</span> satisfies <span class="math inline">\(p(x)&gt;0\)</span> for all <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\int_Cp(x)dx =1\)</span>, where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is convex, then <span class="math display">\[
+\int_Cp(x)x dx\in C.
+\]</span></p>
+<h3 id="cones">2.1.5 Cones</h3>
+<p>A set <span class="math inline">\(C\)</span> is called <strong>cone</strong>, if for every <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\theta\ge0\)</span> ,we have <span class="math inline">\(\theta x\in C\)</span>.</p>
+<p>A set <span class="math inline">\(C\)</span> is called <strong>convex cone</strong> if it is convex and a cone, which means that for any <span class="math inline">\(x_1,x_2 \in C\)</span> and <span class="math inline">\(\theta_1,\theta_2\ge 0\)</span> (We do <strong>not</strong> need <span class="math inline">\(\theta_1+\theta_2=1\)</span> here), we have <span class="math display">\[
+\theta_1x_1+\theta_2 x_2 \in C.
+\]</span> We call a point of the form <span class="math inline">\(\theta_1 x_1+\dotsm+\theta_kx_k\)</span>, where <span class="math inline">\(\theta_i\ge 0\;\forall i\)</span>, a <strong>conic combination</strong> of the points <span class="math inline">\(x_1,\dotsm,x_k\)</span>.</p>
+<p>The <strong>conic hull</strong> of a set <span class="math inline">\(C\)</span> is the set of all <strong>conic combinations</strong> of points in C, i.e. <span class="math display">\[
+\{\theta_1x_1+\dotsm+\theta_kx_k|x_i\in C,\theta_i\ge0,i=1,\dotsm,k\}.
+\]</span></p>
+<hr>
+<p>We can do a summary here.</p>
+<p>We define three kinds of sets and combinations in this section: affine set (combination), convex set (combination), and cone (conic combination).</p>
+<ol type="1">
+<li>Affine combination: we need <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>, but we do not care about <span class="math inline">\(\theta_i\ge 0\)</span>.</li>
+<li>Conic combination: we need <span class="math inline">\(\theta_i\ge 0\)</span>, but we do not care about <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
+<li>Convex combination: we need <span class="math inline">\(\theta_i\ge 0\)</span> and <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
+</ol>
+<h2 id="some-important-examples">2.2 Some Important Examples</h2>
+<ol type="1">
+<li>The single point set, empty set, and the whole space set are both convex and affine.</li>
+<li>Any line is affine, and also hence convex.</li>
+<li>A line segment is convex but not affine.</li>
+<li>A ray is convex but not affine. It is a cone.</li>
+<li>Any subspace is affine, and therefore convex.</li>
+</ol>
+<h3 id="hyperplanes-and-halfspaces">2.2.1 Hyperplanes and halfspaces</h3>
+<p>A <strong>hyperplane</strong> is the set of the form <span class="math display">\[
+\{x|a^Tx=b\},
+\]</span> where <span class="math inline">\(a\in \mathbb R^n,a\neq0,b\in \mathbb R\)</span>.</p>
+<p>Geometrically, <span class="math inline">\(a\)</span> is the <strong>normal vector</strong>, <span class="math inline">\(b\)</span> determines the offset of the hyperplane from the origin. That can be understood by showing the form <span class="math display">\[
+\{x|a^T(x-x_0)=0\}.
+\]</span> A hyperplane divides <span class="math inline">\(\mathbb R^n\)</span> into two <strong>halfspaces</strong>. A (closed) halfspace is a set of the form, <span class="math display">\[
+\{x|a^Tx\le b\}.
+\]</span> Halfspaces are convex but not affine.</p>
+<p>The set <span class="math inline">\(\{x|a^Tx&lt; b\}\)</span> which is the interior of the (closed) halfspace is called an <strong>open halfspace</strong>.</p>
+<h3 id="euclidean-balls-and-ellipsoids">2.2.2 Euclidean balls and ellipsoids</h3>
+<p>A <strong>Euclidean ball</strong> in <span class="math inline">\(\mathbb R^n\)</span> has the form <span class="math display">\[
+B(x_c,r)=\{x\;|\;||x-x_c||_2\le r\}=\{x\;|\;\space(x-x_c)^T(x-x_c)\le r^2\}
+\]</span> A Euclidean ball is obviously a convex set, and it can be proved by, if <span class="math inline">\(||x_1-x_c||_2\le r\)</span> and <span class="math inline">\(||x_2-x_c||_2\le r\)</span> and <span class="math inline">\(0\le\theta\le 1\)</span>, then we check the point <span class="math inline">\(\theta x_1+(1-\theta)x_2\)</span></p>
 <p><span class="math display">\[
-\Phi=\begin{bmatrix}{}
--a_1 &amp; -a_2 &amp;\dotsm &amp;-a_{n-1} &amp;-a_n\\
-1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
-0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
-\end{bmatrix}\\\\
-\]</span></p>
-<p>If we choose <span class="math inline">\(u=-Lx(k)\quad L=[l_1\quad l_2\quad \dotsm l_n ] \quad \Gamma=[1 \quad 0 \quad 0 \dotsm]^T\)</span> <span class="math display">\[
-x(k+1)=(\Phi-\Gamma L)x(k)
-\]</span></p>
-<p><span class="math display">\[
-\Phi-\Gamma L=\begin{bmatrix}{}
--(a_1+l_1) &amp; -(a_2+l_2) &amp;\dotsm &amp;-(a_{n-1}+l_{n-1}) &amp;-(a_n+l_n)\\
-1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
-0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
+||\theta x_1+(1-\theta)x_2-x_c||_2=||\theta(x_1-x_c)+(1-\theta)(x_2-x_c)||_2\\
+\le\theta||x_1-x_c||_2+(1-\theta)||x_2-x_c||_2\\
+\le r
+\]</span> That means the point is also in the set.</p>
+<hr>
+<p>A another common representation for the Euclidean ball is <span class="math display">\[
+B(x_c,r)=\{x_c+ru|\space||u||_2\le1\}.
+\]</span> A related family of convex sets is the <strong>ellipsoids</strong>, which have the form <span class="math display">\[
+\epsilon=\{x|\space(x-x_c)^TP^{-1}(x-x_c)\le r^2\},
+\]</span> where <span class="math inline">\(P\)</span> is symmetric and positive definite, i.e. <span class="math inline">\(P=P^T\succ 0\)</span>.</p>
+<p>Another common representation of an ellipsoid is <span class="math display">\[
+\varepsilon=\{x_c+Au\;|\;||u||_2\le1\},
+\]</span> where <span class="math inline">\(A\)</span> is square and nonsingular. It can be seen that <span class="math inline">\(A=P^{\frac{1}{2}}\)</span>. If <span class="math inline">\(A\)</span> is <strong>singular</strong>, then it is a degenerate ellipsoid which is also convex.</p>
+<h3 id="norm-balls-and-norm-cones">2.2.3 Norm balls and norm cones</h3>
+<p>Suppose <span class="math inline">\(||\cdot||\)</span> is any norm on <span class="math inline">\(\mathbb R^n\)</span>. From the general properties it can be seen the <strong>norm ball</strong> given by <span class="math display">\[
+\{x\;|\;||x-x_c||\le r\},
+\]</span> is convex.</p>
+<p>The norm cone is given by <span class="math display">\[
+\{(x,t)\;|\;||x||\le t\} \subseteq \mathbb R^{n+1},
+\]</span> is a convex cone.</p>
+<h3 id="polyhedra">2.2.4 Polyhedra</h3>
+<p>A <strong>polyhedron</strong> is defined as the solution set of a finite number of linear equalities and inequalities, i.e. <span class="math display">\[
+\mathcal P=\{x\;|\;a_j^Tx\le b_j,j=1,\dotsm,m,c_j^Tx=d_j,j=1,\dotsm,p\}.
+\]</span> Therefore, a polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes. Affine sets, rays, line segments, and halfspaces are all polyhedra. It is easily shown that polyhedra are convex sets (just use the definition). A <strong>bounded polyhedron</strong> is called <strong>polytope</strong>. It is convenient to use the compact notation <span class="math display">\[
+\mathcal P=\{x|Ax\preceq b,Cx=d\},
+\]</span> where <span class="math display">\[
+A=
+\begin{bmatrix}
+a_1^T\\a_2^T\\\vdots\\a_m^T
 \end{bmatrix}
-\]</span></p>
-<p>For any state space model, according to Ackermann's Formula, we have <span class="math display">\[
-L=[0\quad0\quad\dotsm\quad1]M_c^{-1}A_m(\Phi)
-\]</span> For a uncontrollable system, if we use state feedback control, some poles cannot be changed.</p>
-<p>If uncontrollable poles are stable, we can still control some poles.</p>
-<h2 id="observer">2. Observer</h2>
-<p><span class="math display">\[
-\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
-\hat y=C\hat x(k) \\
-e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
-\]</span> Common used observer</p>
-<p>Deadbeat Observer <span class="math display">\[
-A_o(\Phi)=\Phi^n
-\]</span> From Ackerman's Formula <span class="math display">\[
-K=A_o(\Phi)M_o^{-1}[0\quad0\quad\dotsm\quad1]^T
-\]</span> ## 3. Disturbance Rejection</p>
-<p>Augmented state vector <span class="math display">\[
-z(k)=\begin{bmatrix}
-x(k)\\
-\omega(k)
-\end{bmatrix}\\
-z(k+1)=\begin{bmatrix}
-\Phi&amp;\Phi_{\omega x}\\
-0&amp;\Phi_\omega
-\end{bmatrix}z(k)
-+\begin{bmatrix}
-\Gamma\\
-0
-\end{bmatrix}u(k)
-\]</span> If we choose <span class="math inline">\(u(k)=-Lx(k)-L_ww(k)\)</span>,</p>
-<p>Then <span class="math display">\[
-x(k+1)=(\Phi-\Gamma L)x(k)+(\Phi_{wx}-\Gamma L_w)w(k)
-\]</span> Therefore, we only need <span class="math display">\[
-\Phi_{wx}-\Gamma L_w=0
-\]</span> If the above cannot be satisfied, we can use the following method,</p>
-<p>if the disturbance is constant <span class="math display">\[
-x(k+1)=\Phi x(k)+\Phi_{x\omega}\omega(k)+\Gamma u(k) \\
-\]</span> If we use state feedback controller, then we will have, <span class="math display">\[
-u(k)=-Lx(k)-L_w\omega(k) \\
-x(k+1)=(\Phi-\Gamma L) x(k)+(\Phi_{x\omega}-\Gamma L_\omega)\omega(k) \\
-(zI-(\Phi-\Gamma L))X(z)=(\Phi_{x\omega}-\Gamma L_\omega)W(z) \\
-G_{x\omega}(z)=(zI-(\Phi-\Gamma L))^{-1}(\Phi_{x\omega}-\Gamma L_\omega) \\
-G_{x\omega}(1)=0
-\]</span> If the disturbance is not constant, then frequency analysis should be used.</p>
-<p>Example <span class="math display">\[
-x(k+1)=
+\quad
+C=
 \begin{bmatrix}
-1 &amp; h\\
-0 &amp; 1\\
-\end{bmatrix}x(k)+
-\begin{bmatrix}
-\frac{h^2}{2}\\
-h
-\end{bmatrix}(u(k)+w(k))\\
-w(k+1)=w(k)
-\]</span> We can get the augmented state space model <span class="math display">\[
-z(k+1)=
-\begin{bmatrix}
-1 &amp; h &amp; \frac{h^2}{2}\\
-0 &amp; 1 &amp; h\\
-0 &amp; 0 &amp; 1\\
-\end{bmatrix}z(k)+
-\begin{bmatrix}
-\frac{h^2}{2}\\
-h\\
-0\\
-\end{bmatrix}u(k)\\
-\]</span> Step1. Disturbance Rejection <span class="math display">\[
-\Phi_{wx}-\Gamma L_{w}=0\\
+c_1^T\\c_2^T\\\vdots\\c_p^T
+\end{bmatrix}.\\
+\]</span> <strong>Simplexes</strong> are important family of polyhedra. Suppose <span class="math inline">\(k+1\)</span> points <span class="math inline">\(v_0,v_1,\dotsm,v_k\in \mathbb R^n\)</span> are <strong>affinely independent</strong> that means <span class="math inline">\(v_1-v_0,v_2-v_0,\dotsm,v_k-v_0\)</span> are linearly independent. Then the simplex is determined by <span class="math display">\[
+C=\text{conv }\{v_0,\dotsm,v_k\}=\{\theta_0v_0+\dotsm+\theta_k v_k\;|\;\theta\succeq0,1^T\theta=1\}.
+\]</span> <strong>Notation</strong></p>
+<p>Roughly speaking, affine independence is like linear independence but without the restriction that the subset of lower dimension the points lie in contains the origin. So three points in space are affinely independent if the smallest flat thing containing them is a plane. They're affinely dependent if they lie on a line (or are the same point).</p>
+<p>To describe the simplex as polyhedron, we define <span class="math display">\[
+y=(\theta_1,\dotsm,\theta_k)\\
+B=[v_1-v_0,\dotsm,v_k-v_0].
+\]</span> Then <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(x=v_0+By\)</span>, <span class="math inline">\(y\succeq0\)</span>, and <span class="math inline">\(1^T y\le 1\)</span>.</p>
+<p>Then we define <span class="math display">\[
+A_1B=I\quad A_2B=0.
+\]</span> Because B is linear independent, we have a nonsingular matrix, <span class="math display">\[
+A=\begin{bmatrix}
+A_1\\A_2
+\end{bmatrix}\in \mathbb R^{n\times n}.
 \]</span> Then we have <span class="math display">\[
-L_w=1
-\]</span> If not satisfied and the disturbance is constant, we will have <span class="math display">\[
-G_{xw}(1)=0
-\]</span> Step2. Observer <span class="math display">\[
-A_o(\Phi)=\tilde A^n\\
-M_o=\begin{bmatrix}
-\tilde C\\
-\tilde C\tilde\Phi\\
-\tilde C\tilde\Phi^2
-\end{bmatrix}
+x=v_0+By\\ \iff\\
+Ax=Av_0+ \begin{bmatrix}
+I\\0
+\end{bmatrix} y \\\iff
 \\
-K=A_o(\Phi)M_o^{-1}\begin{bmatrix}
-0\\0\\1
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-\hat z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)+K(y-\tilde C\hat z)
-\]</span> Step3. Pole Placement <span class="math display">\[
-L=
-\begin{bmatrix}
-0 &amp; 0 &amp; 1
-\end{bmatrix}
-M_c^{-1}A_m(\Phi)\\
-u(k)=-L\hat x-L_w\hat w
+\begin{cases}
+A_1 x=A_1 v_0+y\\
+A_2 x=A_2 v_0
+\end{cases}
+\]</span> Then, <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(A_2 x=A_2 v_0\)</span>, and the vector <span class="math inline">\(y=A_1x-A_1v_0\)</span> satisfies <span class="math inline">\(y\succeq 0\)</span> and <span class="math inline">\(1^Ty\le 1\)</span> , that is same to <span class="math display">\[
+A_2x=A_2v_0\quad A_1x\succeq A_1v_0\quad 1^TA_1x\le1+1^TA_1v_0
 \]</span></p>
-<h2 id="ss-feedforward-controller">4. SS Feedforward Controller</h2>
-<p>We can check the transfer function from feedforward input <span class="math inline">\(u_{ff}\)</span> to Output y <span class="math display">\[
-H_{cl}(z)=C(zI-\Phi+\Gamma L)^{-1}\Gamma L_c=L_c\frac{B(z)}{A_m(z)}
-\]</span> Therefore, we can choose <span class="math display">\[
-H_{ff}=L_c=\frac{B_m}{B}
+<h3 id="positive-semi-definite-cone">2.2.5 Positive semi-definite cone</h3>
+<p>The set <span class="math inline">\(\mathbb S_+^n\)</span> is a convex cone, if <span class="math inline">\(\theta_1, \theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>. Then <span class="math inline">\(\theta_1 A+\theta_2B \in \mathbb S_+^n\)</span>. That can be easily checked by for any <span class="math inline">\(x\in \mathbb R^n\)</span> , if <span class="math inline">\(\theta_1,\theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>, <span class="math display">\[
+x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\ge0.
+\]</span> That means <span class="math inline">\((\theta_1A+\theta_2B) \in \mathbb S_+^n\)</span>.</p>
+<h2 id="operations-that-preserve-convexity">2.3 Operations That Preserve Convexity</h2>
+<p>In this section, we describe some operations that preserve convexity of sets, or allow us to construct convex set from others.</p>
+<h3 id="intersection">2.3.1 Intersection</h3>
+<p>Convexity is preserved under intersection. If <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, then <span class="math inline">\(S_1 \cap S_2\)</span> is convex. Every closed convex set is an intersection of halfspaces.</p>
+<h3 id="affine-function">2.3.2 Affine Function</h3>
+<p>Recall that a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R^m\)</span> is <strong>affine</strong> if it is a sum of linear function and a constant. That means it has the form <span class="math display">\[
+f(x)=Ax+b.
+\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in \mathbb R^m\)</span>.</p>
+<p>Suppose <span class="math inline">\(S\subseteq \mathbb R^n\)</span> is convex and <span class="math inline">\(f\)</span> is an affine function. Then the image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is convex. Similarly, the inverse image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is also convex. This affine function can be considered as a translation of a convex set.</p>
+<p>The <strong>projection</strong> of a convex set onto some of its coordinates is convex. if <span class="math inline">\(S\subseteq \mathbb R^m\times \mathbb R^n\)</span> is convex, that means the following is convex. <span class="math display">\[
+T=\{x_1\in \mathbb R^m\;|\;(x_1,x_2)\in S\text{ for some }x_2\in \mathbb R^n\}
+\]</span> The <strong>sum</strong> of two convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, the following set is also convex, <span class="math display">\[
+S_1+S_2=\{x+y\;|\; x\in S_1,y\in S_2\}.
+\]</span> The <strong>partial sum</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
+S=\{(x,y_1+y_2)|\space (x,y_1)\in S_1,(x,y_2)\in S_2\}.
+\]</span> The <strong>Cartesian product</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
+S_1\times S_2=\{(x_1,x_2)\;|\;x_1\in S_1,x_2\in S_2\}.
+\]</span> <strong>Example</strong> Polyhedron</p>
+<p>The polyhedron can be expressed as the inverse image of the Cartesian product of the nonnegative orthant and the origin under the affine function <span class="math inline">\(f(x)=(b-Ax,d-Cx)\)</span>: <span class="math display">\[
+\{x\;|\;Ax\preceq b,Cx=d\}=\{x\;|\;f(x)\in \mathbb R^m_+\times\{0\}\}.
+\]</span> The inverse image of S under the function <span class="math inline">\(f\)</span> means <span class="math display">\[
+f^{-1}(S)=\{x\;|\;f(x)\in S\}.
+\]</span> <strong>Example</strong> Solution set of linear matrix inequality (LMI), The condition <span class="math display">\[
+A(x)=x_1A_1+\dotsm+x_nA_n\preceq B
+\]</span> where <span class="math inline">\(B,A_i \in \mathbb S^m\)</span>, is called the linear matrix inequality (LMI) in <span class="math inline">\(x\)</span>.</p>
+<p>The solution set of a LMI <span class="math inline">\(\{x\;|\;A(x)\preceq B\}\)</span> is convex. Since it is the inverse image of the positive definite cone (2.2.5) under the affine function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^m\)</span> given by <span class="math display">\[
+f(x)=B-A(x).
+\]</span> That means the solution set is <span class="math display">\[
+\{x\;|\;f(x)=B-A(x)\in S_+^m\}.
+\]</span> <strong>Example</strong> Hyperbolic cone</p>
+<p>The set <span class="math display">\[
+\mathcal N=\{x\;|\;x^T Px\le(c^Tx)^2,c^Tx\ge0\}
+\]</span> where <span class="math inline">\(P\in \mathbb S_+^n\)</span> and <span class="math inline">\(c\in \mathbb R^n\)</span> is convex, since it is the inverse image of the second-order cone <span class="math display">\[
+\mathcal M=\{(z,t)\;|\;z^Tz\le t^2,t\ge 0 \},
+\]</span> under the affine function <span class="math inline">\(f(x)=(P^{1/2} x,c^Tx)\)</span>.</p>
+<p>That means the set <span class="math inline">\(\mathcal N\)</span> should be <span class="math display">\[
+\{x\;|\;f(x)\in\mathcal M\}=\{x\;|\;(P^{1/2} x,c^Tx)\in\mathcal M\}=\{x\;|\;x^TP^{1/2}P^{1/2}x\le(c^Tx)^2,c^Tx\ge 0\}=\mathcal N.
+\]</span> <strong>Example</strong> Ellipsoid</p>
+<p>The ellipsoid <span class="math display">\[
+\varepsilon = \{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\},
+\]</span> where <span class="math inline">\(P\in \mathbb S_{++}^n\)</span>, is the image of the unit Euclidean ball <span class="math inline">\(\{u|\space ||u||_2\le 1\}\)</span> under the affine mapping <span class="math display">\[
+f(u)=P^{1/2}u+x_c.
+\]</span> We can check <span class="math display">\[
+f(x)\in\{P^{1/2}u+x_c|\space||u||_2\le 1\}=\{x|\space||P^{-1/2}(x-x_c)||\le1\}\\=\{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\}=\varepsilon.
 \]</span></p>
-<p>We can achieve perfect tracking if and only if B is stable. Then the input of the feedforward controller is bounded.</p>
-<h2 id="ss-example">5. SS Example</h2>
-<p><span class="math display">\[
-x(k+1)=
+<h3 id="linear-fractional-and-perspective-functions">2.3.3 Linear-fractional and perspective functions</h3>
+<p>In this section, we explores a class of functions, called linear-fractional, that is more general than affine function but still preserve convexity.</p>
+<p><strong>Perspective Function</strong></p>
+<p>We define the perspective function <span class="math inline">\(P:\mathbb R^{n+1}\rightarrow \mathbb R^{n}\)</span>, with domain <span class="math inline">\(\text{dom }P=\mathbb R^n\times \mathbb R_{++}\)</span> as <span class="math inline">\(P(z,t)=z/t\)</span>.</p>
+<p>If <span class="math inline">\(C\subseteq \text{dom } P\)</span> is convex, then its image <span class="math display">\[
+P(C)=\{P(x)\;|\;x\in C\},
+\]</span> is convex.</p>
+<p>We consider <span class="math inline">\((\tilde x,x_{n+1}), (\tilde y,y_{n+1})\in \mathbb R^{n+1}\)</span> with <span class="math inline">\(x_{n+1}&gt;0\)</span> and <span class="math inline">\(y_{n+1} &gt; 0\)</span>, then for $01 $, we have <span class="math display">\[
+P(\theta x+(1-\theta)y)=\frac{\theta \tilde x+(1-\theta)\tilde y}{\theta x_{n+1}+(1-\theta) y_{n+1}}=\mu P(x)+(1-\mu)P(y)
+\]</span> where <span class="math inline">\(0\le\mu=\frac{\theta x_{n+1}}{\theta x_{n+1}+(1-\theta)y_{n+1}}\le1, P(x)=\frac{\tilde x}{x_{n+1}},P(y)=\frac{\tilde y}{y_{n+1}}\)</span>. This also shows that <span class="math inline">\(P([x,y])=[P(x),P(y)]\)</span>.</p>
+<p>The inverse image of a convex set under the perspective function is also convex.</p>
+<p>Proof is skipped.</p>
+<p><strong>Linear-fractional Function</strong></p>
+<p>A linear fractional function is formed by composing the perspective function with an affine function.</p>
+<p>Suppose <span class="math inline">\(g:\mathbb R^n\rightarrow \mathbb R^{m+1}\)</span> is affine, where <span class="math display">\[
+g(x)=
 \begin{bmatrix}
-0.5 &amp; 1\\
-0.2 &amp; 0.8\\
-\end{bmatrix}x(k)+
+A\\c^T
+\end{bmatrix}x+
 \begin{bmatrix}
-1\\
-1\\
-\end{bmatrix}u(k)+
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}v(k)\\
-y=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}x(k)
-\]</span></p>
-<p>Where, disturbance v is constant. Design controllers such that influence of v can be eliminated in s.s. in the following cases.</p>
-<ol type="a">
-<li>The state and v can be measured.</li>
+b\\d
+\end{bmatrix}.
+\]</span> The function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> given by <span class="math inline">\(f(x)=p\circ g\)</span>, <span class="math display">\[
+f(x)=\frac{Ax+b}{c^Tx+d},
+\]</span> where <span class="math inline">\(c^Tx+d&gt;0\)</span>, is called a linear fractional function, which preserve convexity. If <span class="math inline">\(C\)</span> is convex and lies in the <span class="math inline">\(\text{dom }f\)</span>, then its image <span class="math inline">\(f(C)\)</span> is also convex.</p>
+<p><strong>Example</strong> Conditional probabilities</p>
+<p>Suppose <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are random variables that take on values in <span class="math inline">\((1,\dotsm,m)\)</span> and <span class="math inline">\((1,\dotsm,n)\)</span> respectively. Let <span class="math inline">\(p_{ij}\)</span> denote probability of <span class="math inline">\(u=i, v=j\)</span>. Then the conditional probability is <span class="math display">\[
+\text{prob}(u=i|v=j)=\frac{p_{ij}}{\sum_{k=1}^np_{kj}}
+\]</span> Denote <span class="math inline">\(x=[p_{1j},p_{2j},\dotsm,p_{mj}]^T,A=I_{m\times m},b=0,c=1^T_m,d=0\)</span>. Thus <span class="math inline">\(f\)</span> is obtained by a linear fractional mapping from <span class="math inline">\(p\)</span>. Therefore, if the joint probabilities for <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> is convex, the conditional probability is also convex.</p>
+<h2 id="generalized-inequalities">2.4 Generalized Inequalities</h2>
+<h3 id="proper-cones-and-generalized-inequalities">2.4.1 Proper cones and generalized inequalities</h3>
+<p>A cone <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is called a <strong>proper cone</strong> if it satisfies the following</p>
+<ol type="1">
+<li>K is convex</li>
+<li>K is closed</li>
+<li>K is solid, which means it has nonempty interior</li>
+<li>K is pointed. It means there are no 2 points inside it which creates a line (not line segment) and the whole line is contained by the cone. (<span class="math inline">\(x\in K,-x\in K\implies x=0\)</span>) or (<span class="math inline">\(Q \cap -Q = \{0\}\)</span>).</li>
 </ol>
-<p>The augmented state space model is <span class="math display">\[
-z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)\\
-z(k+1)=
-\begin{bmatrix}
-x(k+1)\\
-v(k+1)
-\end{bmatrix}=
-\begin{bmatrix}
-0.5 &amp; 1 &amp; 1\\
-0.2 &amp; 0.8 &amp; 0\\
-0 &amp; 0 &amp; 1\\
-\end{bmatrix}
-\begin{bmatrix}
-x(k)\\
-v(k)
-\end{bmatrix}+
-\begin{bmatrix}
-1\\
-1\\
-0\\
-\end{bmatrix}u(k)
-\]</span> We can choose the controller, <span class="math display">\[
-u(k)=-Lx-L_vv
-\]</span> Step 1. Disturbance Rejection. <span class="math display">\[
-\Phi_{vx}-\Gamma L_v=0\\
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}-
-\begin{bmatrix}
-1\\
-1\\
-\end{bmatrix}L_v=0
-\]</span> We cannot get a <span class="math inline">\(L_v\)</span> to solve this equation.</p>
-<p>Step 2. Feedback Controller <span class="math display">\[
-A_m(\Phi)=\Phi^2\\
-M_c=
-\begin{bmatrix}
-1 &amp; 1.5\\
-1 &amp; 1\\
-\end{bmatrix}\\
-L=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}M_c^{-1}A_m(\Phi)=
-\begin{bmatrix}
-0.38 &amp; 0.92
-\end{bmatrix}\\
-\]</span> Then we have <span class="math display">\[
-u(k)=-Lx-L_vv
+<p>A proper cone can be used to define a generalized inequality, which is a partial ordering on <span class="math inline">\(\mathbb R^n\)</span> that has many of the properties of standard ordering on <span class="math inline">\(\mathbb R\)</span>. <span class="math display">\[
+x\preceq_K y \iff y-x\in K\\
+x\prec_K y \iff y-x\in \text{int } K
+\]</span></p>
+<p>The similar thing for <span class="math inline">\(\succ_K,\succeq_K\)</span>.</p>
+<p><strong>Example</strong> Nonnegative orthant and componentwise inequality</p>
+<p>When <span class="math inline">\(K=\mathbb R^m_+\)</span>. The associated generalized inequality <span class="math inline">\(x\preceq y\)</span> means that <span class="math inline">\(x_i\le y_i\)</span> for all elements.</p>
+<p><strong>Example</strong> Positive semidefinite cone and matrix inequality</p>
+<p>When <span class="math inline">\(K=\mathbb S^n_+\)</span>. The associated generalized inequality <span class="math inline">\(X\preceq Y\)</span> means <span class="math inline">\(Y-X\)</span> is positive semidefinite.</p>
+<p><strong>Properties of generalized inequalities</strong></p>
+<ol type="1">
+<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(u\preceq_K v\)</span>, then <span class="math inline">\(x+u\preceq_K y+v\)</span></li>
+<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(y\preceq_K z\)</span>, then $x_K $ z</li>
+<li>if <span class="math inline">\(\alpha\ge 0\)</span> and <span class="math inline">\(x\preceq_K y\)</span>, then <span class="math inline">\(\alpha x\preceq_K \alpha y\)</span></li>
+<li><span class="math inline">\(x\preceq_K x\)</span></li>
+<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(y\preceq_K x\)</span>, then <span class="math inline">\(x=y\)</span></li>
+<li>if <span class="math inline">\(x_i\preceq_K y_i\)</span>, <span class="math inline">\(\lim_{i\rightarrow \infty} x_i =x\)</span> and <span class="math inline">\(\lim_{i\rightarrow \infty} y_i =y\)</span> , then <span class="math inline">\(x\preceq_K y\)</span></li>
+<li>if <span class="math inline">\(x\prec_K y\)</span> then <span class="math inline">\(x\preceq_K y\)</span></li>
+</ol>
+<h3 id="minimum-and-minimal-elements">2.4.2 Minimum and minimal elements</h3>
+<p>We say that <span class="math inline">\(x\in S\)</span> is the <strong>minimum element</strong> of <span class="math inline">\(S\)</span> (with respect to the general inequality) if for every <span class="math inline">\(y\in S\)</span> we have <span class="math inline">\(x\preceq_K y\)</span>. A point <span class="math inline">\(x\in S\)</span> is the minimum element if and only if <span class="math display">\[
+S\subseteq x+K.
+\]</span> Something is <strong>minimum</strong> if it is the <strong>unique</strong> minimal element. (From Quora)</p>
+<p>We say that <span class="math inline">\(x\in S\)</span> is the minimal element of <span class="math inline">\(S\)</span> if <span class="math inline">\(y \in S, y\preceq_K x\)</span> only if <span class="math inline">\(y=x\)</span>. A point <span class="math inline">\(x\in S\)</span> is the minimal element if and only if <span class="math display">\[
+(x-K)\cap S=\{x\}.
+\]</span> Something is <strong>minimal</strong> if <strong>nothing is smaller</strong>. (From Quora)</p>
+<h2 id="separating-and-supporting-hyperplanes">2.5 Separating and Supporting hyperplanes</h2>
+<h3 id="separating-hyperplane-theorem">2.5.1 Separating hyperplane theorem</h3>
+<p>In this section, we describe an idea that will be important later. The use of hyperplanes or affine functions to separate convex set that do not intersect. The basic result is the <strong>separating hyperplane theorem</strong>: suppose <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> are two convex sets that do not intersect, then there exist $a0 $ and <span class="math inline">\(b\)</span> such that <span class="math inline">\(a^Tx\le b\)</span> for all <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(a^Tx\ge b\)</span> for all <span class="math inline">\(x\in D\)</span>.</p>
+<p>Proof is skipped.</p>
+<p><strong>Strict separation</strong> is the stronger condition on the separation, which means <span class="math inline">\(a^Tx&lt;b\;\forall x\in C\)</span> and <span class="math inline">\(a^Tx&gt;b\;\forall x\in D\)</span>.</p>
+<p><strong>Converse separating hyperplane theorems</strong></p>
+<p>Existence of a separating hyperplane implies that C and D do not intersect is <strong>NOT</strong> true. Consider the set <span class="math inline">\(C=D=\{0\}\)</span></p>
+<p>But we have the following theorem. Any two convex sets <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span>, at least one of which is <strong>open</strong>, are disjoint if and only if there exists a separating hyperplane.</p>
+<h3 id="supporting-hyperplanes">2.5.2 Supporting hyperplanes</h3>
+<p>Suppose <span class="math inline">\(C\subseteq \mathbb R^n\)</span>, <span class="math inline">\(x_0\)</span> is a point in this <strong>boundary</strong> <span class="math inline">\(\text{bd } C\)</span>, i.e. <span class="math inline">\(x_0\in\text{bd }C=\text{cl }C\backslash\text{int }C\)</span>. If <span class="math inline">\(a\neq0\)</span> satisfies <span class="math inline">\(a^Tx\le a^T x_0\)</span> for all <span class="math inline">\(x\in C\)</span> , then the hyperplane <span class="math inline">\(\{x\;|\;a^Tx=a^T x_0\}\)</span> is called a supporting hyperplane to <span class="math inline">\(C\)</span> at the point <span class="math inline">\(x_0\)</span>.</p>
+<p><strong>Supporting hyperplanes theorem</strong></p>
+<p>For any nonempty convex set <span class="math inline">\(C\)</span>, and any <span class="math inline">\(x_0\in \text{bd } C\)</span>, there exists a supporting hyperplane to <span class="math inline">\(C\)</span> at <span class="math inline">\(x_0\)</span>.</p>
+<p>There is also a partial converse of the supporting hyperplane theorem: If a set is <strong>closed</strong>, has <strong>nonempty interior</strong>, and has a supporting hyperplane at every point in its boundary, then it is convex.</p>
+<h2 id="dual-cones-and-generalized-inequalities">2.6 Dual Cones and Generalized Inequalities</h2>
+<h3 id="dual-cones">2.6.1 Dual cones</h3>
+<p>Let <span class="math inline">\(K\)</span> be a cone. The set <span class="math display">\[
+K^*=\{y\;|\;x^Ty\ge0\text{ for all }x\in K\}
+\]</span> is called a dual cone of <span class="math inline">\(K\)</span>. As the name suggests, <span class="math inline">\(K^*\)</span> is a cone, and is always convex even when the original cone <span class="math inline">\(K\)</span> is not. Geometrically, <span class="math inline">\(y\in K^*\)</span> if and only if <span class="math inline">\(-y\)</span> is the normal of a hyperplane that supports <span class="math inline">\(K\)</span> at the origin.</p>
+<p><strong>Example</strong> Nonnegative orthant. The cone <span class="math inline">\(\mathbb R_+^n\)</span> is its own dual (<strong>self-dual</strong>) <span class="math display">\[
+y^Tx\ge 0\space\forall x\succeq 0 \iff y\succeq 0.
+\]</span> <strong>Example</strong> Positive semidefinite cone. We use the <strong>standard inner product</strong> <span class="math display">\[
+\langle X,Y\rangle=\text{tr}(X^TY)=\text{tr}(XY)=\sum_{i,j=1}^n X_{ij}Y_{ij}.
+\]</span> The positive semidefinite cone is <strong>self-dual</strong> that means for <span class="math inline">\(X,Y \in \mathbb S^n\)</span> <span class="math display">\[
+\text{tr}(XY)\ge0 \space\forall X\succeq 0 \iff Y\succeq 0
+\]</span> To prove sufficiency</p>
+<p>We need to prove if <span class="math inline">\(Y\notin \mathbb S_+^n\)</span>, $ X0(XY)0$.</p>
+<p>Suppose <span class="math inline">\(Y\notin \mathbb S_+^n\)</span>. Then there exists <span class="math inline">\(q\in \mathbb R^n\)</span> with <span class="math display">\[
+q^TYq=\text{tr}(qq^TY)&lt; 0 \quad\text{trace property: }\text{tr}(AB)=\text{tr}(BA).
+\]</span> Then let <span class="math inline">\(X=qq^T\)</span> <span class="math display">\[
+q^TXYq=tr(q^Tqq^TYq)=q^Tqtr(q^TYq)&lt;0.
+\]</span> Sufficiency proved.</p>
+<p>To prove necessity, we need to prove, if <span class="math inline">\(Y\succeq 0\)</span>, <span class="math inline">\(\forall X\succeq 0 \;\text{tr}(XY)\ge0\)</span>.</p>
+<p>Suppose <span class="math inline">\(X, Y\in \mathbb S_+^n\)</span>. Then we can express <span class="math inline">\(X\)</span> in terms of it eigenvalue decomposition <span class="math display">\[
+X=\sum_{i=1}^n\lambda_i q_i q^T_i.
 \]</span> Then <span class="math display">\[
-H_v(z)=C(zI-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)\\
-H_v(1)=C(I-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)=0\\
-\]</span> We can get <span class="math display">\[
-L_v=0.9333
-\]</span> b) The state can be measured.</p>
-<p>We set k=0. <span class="math display">\[
-x(1)=\Phi x(0)+\Gamma u(0)+\Phi_{vx}v
-\]</span> Because states can be measured, we can solve v</p>
-<p>Then the controller is the same as a).</p>
-<ol start="3" type="a">
-<li>The input can be measured.</li>
+\text{tr}(YX)=\text{tr}\left(Y\sum_{i=1}^n\lambda_i q_i q^T_i\right)\\
+=\sum_{i=1}^n\lambda_i\text{tr}\left(Y q_i q^T_i\right)\quad (\text{tr}(A+B)=\text{tr}(A)+\text{tr}(B))\\
+=\sum_{i=1}^n\lambda_iq_i^TYq_i\ge 0.
+\]</span> Necessity proved.</p>
+<p><strong>Example</strong> Dual of a norm cone. Let <span class="math inline">\(||\cdot||\)</span> be a norm on <span class="math inline">\(\mathbb R^n\)</span>. The dual of the associated cone <span class="math display">\[
+K=\{(x,t)\in \mathbb R^{n+1}\;|\; ||x||\le t\}
+\]</span> is the cone defined by the dual norm <span class="math display">\[
+K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
+\]</span> where the dual norm is given by <span class="math inline">\(||u||_* = \sup\{u^Tx\;|\; ||x|| \le 1\}\)</span>. The dual norm of the second norm is the second norm itself.</p>
+<p>Proof skipped.</p>
+<p>Dual cones satisfy several properties such as</p>
+<ol type="1">
+<li><span class="math inline">\(K^*\)</span> is closed and convex.</li>
+<li><span class="math inline">\(K_1 \subseteq K_2\)</span> implies <span class="math inline">\(K_2^*\subseteq K_1^*\)</span>.</li>
+<li>If <span class="math inline">\(K\)</span> has nonempty interior, then <span class="math inline">\(K^*\)</span> is pointed.</li>
+<li>If the closure of <span class="math inline">\(K\)</span> is pointed, then <span class="math inline">\(K^*\)</span> has nonempty interior.</li>
+<li>If <span class="math inline">\(K\)</span> is convex and closed, <span class="math inline">\(K^{**}=K\)</span>.</li>
 </ol>
-<p>Now we need to design an Deadbeat observer. <span class="math display">\[
-A_o(\tilde\Phi)=\tilde \Phi^3=
-\begin{bmatrix}
-0.485 &amp; 1.49 &amp; 1.95\\
-0.298 &amp; 0.932 &amp; 0.46 \\
-0 &amp; 0 &amp; 1
-\end{bmatrix}\\
-M_o=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-0.5 &amp; 1 &amp; 1\\
-0.45 &amp; 1.3 &amp; 1.5\\
-\end{bmatrix}\\
-K=A_o(\tilde\Phi)M_o^{-1}
-\begin{bmatrix}
-0\\
-0\\
-1\\
-\end{bmatrix}=
-\begin{bmatrix}
-2.3\\
--2.36\\
-5\\
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-{\hat z(k+1)}=\tilde \Phi \hat z(k)+\tilde \Gamma u(k)+K(y(k)-\tilde C\hat z(k))
-\]</span> Now our controller should be <span class="math display">\[
-u(k)=-L\hat x(k)-L_v\hat v
-\]</span></p>
+<h3 id="dual-generalized-inequalities">2.6.2 Dual generalized inequalities</h3>
+<p>Now suppose that the convex cone <span class="math inline">\(K\)</span> is proper. Then it induces a generalized inequality <span class="math inline">\(\preceq_K\)</span>. Then its dual cone <span class="math inline">\(K^*\)</span> is also proper, and therefore induces a generalized inequality.</p>
+<ol type="1">
+<li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x\le \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span></li>
+<li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x&lt; \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span>, <span class="math inline">\(\lambda \neq 0\)</span></li>
+</ol>
+<h3 id="minimum-and-minimal-elements-via-dual-inequalities">2.6.3 Minimum and minimal elements via dual inequalities</h3>
+<p>We can use dual generalized inequalities to charaterize minimum and minimal elements of a (possitively nonconvex) set <span class="math inline">\(S\subseteq \mathbb R^n\)</span> with respect to the generalized inequality induced by a proper cone <span class="math inline">\(K\)</span>.</p>
+<p><strong>Dual characterization of minimum element</strong> (Unique)</p>
+<p><span class="math inline">\(x\)</span> is the minimum element of <span class="math inline">\(S\)</span>, with respect to the generalized inequality <span class="math inline">\(\preceq_K\)</span>, if and only if for all <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, <span class="math inline">\(x\)</span> is the unique minimizer of <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>. Geometrically, this means that for any <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, the hyperplane <span class="math display">\[
+\{z\;|\;\lambda^T(z-x)=0\}
+\]</span> is strict supporting hyperplane to <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>. (By <strong>strict supporting plane</strong>, we mean the hyperplane only intersects <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>)</p>
+<p><strong>Dual characterization of minimal elements</strong> (Maybe many)</p>
+<p>We now turn to a similar characterization of minimal elements. Here there is a gap between the necessary and sufficient conditions. If <span class="math inline">\(\lambda\succeq_{K^*}0\)</span> and <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>, then <span class="math inline">\(x\)</span> is minimal. The converse is ingeneral false.</p>
 
         
       
@@ -866,7 +1000,7 @@ u(k)=-L\hat x(k)-L_v\hat v
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -911,7 +1045,7 @@ u(k)=-L\hat x(k)-L_v\hat v
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

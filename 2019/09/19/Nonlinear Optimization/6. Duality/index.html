@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="Thanks for the module MA5268 NUS and Prof. Toh You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/ Basic Lagrange Duality and Saddle Point Optimality Co">
+  <meta name="description" content="You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/ Basic Lagrange Duality and Saddle Point Optimality Conditions Given an nonlinear programming problem">
 <meta property="og:type" content="article">
 <meta property="og:title" content="6. Basic Lagrange Duality and Saddle Point Optimality Conditions">
 <meta property="og:url" content="http://yoursite.com/2019/09/19/Nonlinear Optimization/6. Duality/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/ Basic Lagrange Duality and Saddle Point Optimality Co">
+<meta property="og:description" content="You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/ Basic Lagrange Duality and Saddle Point Optimality Conditions Given an nonlinear programming problem">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-24T04:15:10.000Z">
+<meta property="og:updated_time" content="2019-10-31T12:41:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="6. Basic Lagrange Duality and Saddle Point Optimality Conditions">
-<meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/ Basic Lagrange Duality and Saddle Point Optimality Co">
+<meta name="twitter:description" content="You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/ Basic Lagrange Duality and Saddle Point Optimality Conditions Given an nonlinear programming problem">
   <link rel="canonical" href="http://yoursite.com/2019/09/19/Nonlinear Optimization/6. Duality/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-24 12:15:10" itemprop="dateModified" datetime="2019-09-24T12:15:10+08:00">2019-09-24</time>
+                <time title="Modified: 2019-10-31 20:41:57" itemprop="dateModified" datetime="2019-10-31T20:41:57+08:00">2019-10-31</time>
               </span>
             
           
@@ -310,8 +310,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="thanks-for-the-module-ma5268-nus-and-prof.-toh">Thanks for the module MA5268 NUS and Prof. Toh</h1>
-<p>You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/</p>
+        <p>You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/</p>
 <h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
 <p>Given an nonlinear programming problem, there is another nonlinear programming problem closely associated with it via the Lagrangian function. The former is called the <strong>primal problem</strong> and the latter is called the <strong>Lagrangian dual problem</strong>.</p>
 <h2 id="lagrangian-dual-problem">6.1 Lagrangian dual problem</h2>
@@ -322,7 +321,7 @@
 &amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
 &amp;x\in X,
 \end{array}
-\]</span> where <span class="math inline">\(x\subseteq \mathbb R^n\)</span>.</p>
+\]</span> where <span class="math inline">\(X\subseteq \mathbb R^n\)</span>.</p>
 <p><strong>Remark</strong></p>
 <p><span class="math inline">\(x\in X\)</span> is to impose additional requirements that we may wish to handle separately. Some examples are</p>
 <ol type="1">
@@ -381,6 +380,30 @@ L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_
 <li>Under certain convexity assumptions and suitable constraint qualifications, the primal and dual problems have equal optimal objective value and hence it is possible to solve the primal problem indirectly by solving the dual problem. The dual problem is sometimes easier.</li>
 </ol>
 <p><strong>Example</strong></p>
+<p>Obtain the Lagrangian dual problem of the following nonlinear programming problem (P), <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)=x_1x_2x_3\\
+\text{subject to}&amp; x_1-x_2+5x_3=6\\
+&amp; x_1+2x_2^3\le 4\\
+&amp;(x_1-3)^3-4x_2^2+x_3\le 0\\
+&amp;x_1^2+x_2^2-x_3\le 4.
+\end{array}
+\]</span> The Lagrangian function is given by <span class="math display">\[
+\begin{array}{rcl}
+L(x,\lambda,\mu)&amp;=&amp;x_1x_2x_3\\
+&amp;&amp;+\lambda (x_1-x_2+5x_3-6)\\
+&amp;&amp;+\mu_1(x_1+2x_2^3-4)\\
+&amp;&amp;+\mu_2[(x_1-3)^3-4x_2^2+x_3]\\
+&amp;&amp;+\mu_3(x_1^2+x_2^2-x_3-4).
+\end{array}
+\]</span> The Lagrangian dual function is given by <span class="math display">\[
+\theta (\lambda,\mu)=\min_x L(x,\lambda,\mu).
+\]</span> The Lagrangian dual problem is given by <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \min_x L(x,\lambda,\mu)\\
+\text{subject to}&amp; \mu\ge 0.
+\end{array}
+\]</span> <strong>Example</strong></p>
 <p>Solve the following convex program and its Lagrangian dual problem. <span class="math display">\[
 \text{(P)}\quad \begin{array}{rCl}
 \min &amp; f(x)=x_1^2+x_2^2\\
@@ -540,8 +563,8 @@ L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/09/20/Nonlinear Optimization/7.1 Nonlinear conic programming/" rel="prev" title="8. Nonlinear conic programming (2)">
-                  8. Nonlinear conic programming (2) <i class="fa fa-chevron-right"></i>
+                <a href="/2019/09/24/Nonlinear Optimization/4.6 Proximal Algorithms/" rel="prev" title="4. Gradient Methods (2) - Proximal Algorithms">
+                  4. Gradient Methods (2) - Proximal Algorithms <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -594,7 +617,7 @@ L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-lagrange-duality-and-saddle-point-optimality-conditions"><span class="nav-text">Basic Lagrange Duality and Saddle Point Optimality Conditions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrangian-dual-problem"><span class="nav-text">6.1 Lagrangian dual problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak-and-strong-duality-theorems"><span class="nav-text">6.2 Weak and strong duality theorems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#saddle-point-optimality-condition-and-kkt-conditions"><span class="nav-text">6.3 Saddle point optimality condition and KKT conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-program"><span class="nav-text">6.4 Convex Program</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-lagrange-duality-and-saddle-point-optimality-conditions"><span class="nav-text">Basic Lagrange Duality and Saddle Point Optimality Conditions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrangian-dual-problem"><span class="nav-text">6.1 Lagrangian dual problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#weak-and-strong-duality-theorems"><span class="nav-text">6.2 Weak and strong duality theorems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#saddle-point-optimality-condition-and-kkt-conditions"><span class="nav-text">6.3 Saddle point optimality condition and KKT conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-program"><span class="nav-text">6.4 Convex Program</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -609,7 +632,7 @@ L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

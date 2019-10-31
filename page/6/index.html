@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/Convex Optimization/9. Unconstraint Minimization/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/Nonlinear Optimization/3.1 Basic Convex Analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/05/28/Convex Optimization/9. Unconstraint Minimization/" class="post-title-link" itemprop="url">9. Unconstraint Minimization</a>
+            <a href="/2019/08/23/Nonlinear Optimization/3.1 Basic Convex Analysis/" class="post-title-link" itemprop="url">3. Basic Convex Analysis (1)</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2019-05-28 09:34:37" itemprop="dateCreated datePublished" datetime="2019-05-28T09:34:37+08:00">2019-05-28</time>
+              <time title="Created: 2019-08-23 17:28:12" itemprop="dateCreated datePublished" datetime="2019-08-23T17:28:12+08:00">2019-08-23</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 23:23:18" itemprop="dateModified" datetime="2019-08-25T23:23:18+08:00">2019-08-25</time>
+                <time title="Modified: 2019-10-31 20:41:28" itemprop="dateModified" datetime="2019-10-31T20:41:28+08:00">2019-10-31</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">Nonlinear Optimization</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2019/05/28/Convex Optimization/9. Unconstraint Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="9. Unconstraint Minimization" title="Views">
+            <span id="/2019/08/23/Nonlinear Optimization/3.1 Basic Convex Analysis/" class="post-meta-item leancloud_visitors" data-flag-title="3. Basic Convex Analysis (1)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/05/28/Convex Optimization/9. Unconstraint Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/28/Convex Optimization/9. Unconstraint Minimization/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/08/23/Nonlinear Optimization/3.1 Basic Convex Analysis/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/08/23/Nonlinear Optimization/3.1 Basic Convex Analysis/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,112 +306,492 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="unconstrained-minimization">9. Unconstrained minimization</h1>
-<h2 id="unconstrained-minimization-problem">9.1 Unconstrained minimization problem</h2>
-<p>In this chapter, we discuss methods for solving the unconstrained optimization problem <span class="math display">\[
-\text{minimize } f(x)
-\]</span> where <span class="math inline">\(f\)</span> is convex and twice differentiable.</p>
-<p>We denote the optimal value <span class="math inline">\(\inf_x f(x)=f(x^\star)\)</span>, and we know that <span class="math inline">\(\nabla f(x^\star)=0\)</span></p>
-<p>Sometimes we can solve the problem analytically, but most of the time, we need to use iterative method.</p>
-<p><strong>Initial point and sublevel set</strong></p>
-<p>The method described in this chapter require a suitable starting point <span class="math inline">\(x^{(0)}\)</span>. The starting point must lie in <span class="math inline">\(dom f\)</span>, and in addition the sublevel set <span class="math display">\[
-S=\{x\in dom f| f(x)\le f(x^{(0)})\}
-\]</span> must be closed.</p>
-<h3 id="examples">9.1.1 Examples</h3>
-<p><strong>Quadratic minimization and least-squares</strong> <span class="math display">\[
-\text{minimize } (1/2)x^TPx+q^Tx+r
-\]</span> For the optimal value, we have <span class="math display">\[
-Px^\star+q=0
-\]</span> <strong>Unconstrained geometric programming</strong> <span class="math display">\[
-\text{minimize }f(x)=\log \left(\sum_{i=1}^m \exp (a_i^Tx+b_i)\right)
-\]</span> The optimality condition is <span class="math display">\[
-\nabla f(x^\star)=\frac{1}{\sum_{i=1}^m \exp(a_i^Tx^\star+b_i)}\sum_{i=1}^m \exp (a_i^Tx^\star+b_i)a_i=0
-\]</span> The above in general has no analytical solution, therefore we need to use iterative method.</p>
-<p><strong>Analytic center of linear inequalities</strong></p>
-<p>We consider the optimization problem <span class="math display">\[
-\text{minimize }f(x)=-\sum_{i=1}^m \log (b_i-a_ix^T)
-\]</span> The objective function <span class="math inline">\(f\)</span> in this problem is called logarithmic barrier for the inequalities. The solution if exists, is called analytic center of the inequalities.</p>
-<p><strong>Analytic center of a linear matrix inequality</strong> <span class="math display">\[
-\text{minimize } f(x)=\log\det F(x)^{-1}\\
-F(x)=F_0+x_1F_1+\dotsm+x_nF_n
-\]</span></p>
-<h3 id="strong-convexity-and-implications">9.1.2 Strong convexity and implications</h3>
-<p>In much of this chapter, we assume the objective function is strongly convex <span class="math display">\[
-\nabla^2f(x)\succeq m I
-\]</span> As the same, we have for <span class="math inline">\(x,y \in S\)</span> <span class="math display">\[
-f(y)=f(x)+\nabla f(x)^T(y-x)+\frac{1}{2} (y-x)^T \nabla^2f(z)(y-x)
-\]</span> where <span class="math inline">\(z\)</span> is on the line segment <span class="math inline">\([x,y]\)</span>.</p>
-<p>By the strong convexity, we have <span class="math display">\[
-f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{m}{2}||y-x||_2^2
-\]</span> We find that <span class="math inline">\(\tilde y= x-(1/m)\nabla f(x)\)</span> minimizes the right hand side, therefore, we have <span class="math display">\[
-f(y)\ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
-\]</span> And we have <span class="math display">\[
-p^\star \ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
-\]</span> That means <span class="math display">\[
-||\nabla f(x)||_2\le (2m\epsilon)^{1/2} \implies f(x)-p^\star \le \epsilon
-\]</span> The inequality shows that when the gradient is small, then the point is nearly optimal. We can also derive a bound on <span class="math inline">\(||x-x^*||_2\)</span>, the distance between <span class="math inline">\(x\)</span> and any optimal point <span class="math inline">\(x^\star\)</span>, in terms of <span class="math inline">\(||\nabla f(x)||_2\)</span>: <span class="math display">\[
-||x-x^\star||_2\le \frac{2}{m}||\nabla f(x)||_2
-\]</span></p>
-<p><strong>Upper bound on <span class="math inline">\(\nabla^2f(x)\)</span></strong> There exists a constant <span class="math inline">\(M\)</span> such that <span class="math display">\[
-\nabla^2 f(x)\preceq MI
-\]</span></p>
-<p>Then we have <span class="math display">\[
-f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{M}{2}||y-x||_2^2
+          <h1 id="basic-convex-analysis-1">3. Basic Convex Analysis (1)</h1>
+<h2 id="convex-sets">3.1 Convex sets</h2>
+<p><strong>Definition</strong> (Convex set)</p>
+<p>A set <span class="math inline">\(D\subseteq \mathbb R^n\)</span> is said to be convex if for any two points <span class="math inline">\(x,y\in D\)</span>, the linear segment joining <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> also lies in <span class="math inline">\(D\)</span>. That is, <span class="math display">\[
+\lambda x+(1-\lambda )y \in D \quad\forall \lambda \in[0,1],\forall x,y\in D.
+\]</span> <strong>Notation</strong></p>
+<p>To prove a given set <span class="math inline">\(C\)</span> is convex, we use the following procedures,</p>
+<ol type="1">
+<li>Choose two arbitrary points <span class="math inline">\(x,y\in C\)</span> and any <span class="math inline">\(\lambda \in [0,1]\)</span>.</li>
+<li>Argue that <span class="math inline">\(\lambda x+(1-\lambda )y\in C\)</span>.</li>
+</ol>
+<p><strong>Example</strong> (Half space)</p>
+<p>Given <span class="math inline">\(a\in \mathbb R^n\)</span>, the half space <span class="math inline">\(H=\{x\in \mathbb R^n\;|\;a^Tx\le \alpha\}\)</span> is a convex set.</p>
+<p>Proof.</p>
+<p>Consider <span class="math inline">\(x,y\in H\)</span>, and choose <span class="math inline">\(\lambda \in [0,1]\)</span>, we have <span class="math display">\[
+a^T(\lambda x+(1-\lambda )y)=\lambda a^Tx+(1-\lambda)a^Ty\le \lambda \alpha+(1-\lambda)\alpha=\alpha.
+\]</span> <strong>Example</strong> (n-ball)</p>
+<p>Given <span class="math inline">\(a\in \mathbb R^n\)</span>, <span class="math inline">\(\alpha &gt;0\)</span>. The n-ball <span class="math display">\[
+\bar B(a,\alpha)=\{x\in \mathbb R^n\,|\,||x-a||\le \alpha\}
+\]</span> is a convex set.</p>
+<p>Proof.</p>
+<p>Consider <span class="math inline">\(x,y\in \bar B\)</span>, and choose <span class="math inline">\(\lambda \in [0,1]\)</span>, we have <span class="math display">\[
+\begin{array}{rCl}
+||\lambda x+(1-\lambda )y-a||&amp;=&amp;||\lambda x+(1-\lambda)y-\lambda a-(1-\lambda)a||\\
+&amp;=&amp;||\lambda(x-a)+(1-\lambda)(y-a)||\\
+&amp;\le&amp; \lambda ||x-a||+(1-\lambda )||y-a||\\
+&amp;\le&amp; \lambda \alpha +(1-\lambda)\alpha\\ 
+&amp;=&amp;\alpha.
+\end{array}
+\]</span> It is not very easy to prove the convexity by definition.</p>
+<p><strong>Proposition</strong></p>
+<p>(Finite or Infinite) intersection of convex sets is a convex set, i.e. if <span class="math inline">\(C_1,C_2,\dots,C_m\)</span> are convex sets in <span class="math inline">\(\mathbb R^n\)</span>, then <span class="math inline">\(C=\bigcap_{i=1}^m C_i\)</span> is also convex.</p>
+<p>Proof.</p>
+<p>Choose <span class="math inline">\(x,y \in \bigcap_{i=1}^k C_i\)</span> and <span class="math inline">\(\lambda\in [0,1]\)</span>. Since <span class="math inline">\(x,y \in C_i\)</span> and <span class="math inline">\(C_i\)</span> is a convex set. We have <span class="math inline">\(\lambda x+(1-\lambda)y\in C_i\;\forall i=1,\dotsm k\)</span>. That means <span class="math inline">\(\lambda x+(1-\lambda)y\in \bigcap_{i=1}^k C_i\)</span>. Q.E.D.</p>
+<p><strong>Example</strong> (Polyhedron or polyhedral set)</p>
+<p>The polyhedron or polyhedral sets <span class="math inline">\(\{x\in\mathbb R^n\;|\;Ax\le b\}\)</span> are convex.</p>
+<h2 id="convex-and-concave-functions">3.2 Convex and concave functions</h2>
+<p><strong>Definition</strong> (Convex function and strictly convex function)</p>
+<p>Let <span class="math inline">\(D\subseteq \mathbb R^n\)</span> be a <strong>convex set</strong>. Consider a function <span class="math inline">\(f:D\rightarrow \mathbb R\)</span>.</p>
+<ol type="a">
+<li>The function is said to be convex if <span class="math display">\[
+f(\lambda x+(1-\lambda )y)\le \lambda f(x)+(1-\lambda )f(y)\quad \forall x,y\in D,\lambda\in[0,1].
+\]</span></li>
+<li>The function is said to be strictly convex if <span class="math display">\[
+f(\lambda x+(1-\lambda )y)&lt; \lambda f(x)+(1-\lambda )f(y)\quad \forall x,y\in D,\lambda\in[0,1].
+\]</span> <strong>Notation</strong></li>
+</ol>
+<p><span class="math inline">\(-f\)</span> is convex $$ <span class="math inline">\(f\)</span> is concave.</p>
+<p>To prove that a given function <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is convex, we use the following procedures,</p>
+<ol type="1">
+<li>Choose two arbitrary points <span class="math inline">\(x,y\in D\)</span> and any <span class="math inline">\(\lambda \in [0,1]\)</span></li>
+<li>Argue that <span class="math inline">\(f(\lambda x+(1-\lambda )y)\le \lambda f(x)+(1-\lambda)f(y)\)</span>.</li>
+</ol>
+<p><strong>Example</strong></p>
+<p>Let <span class="math inline">\(f:\mathbb R^2\rightarrow \mathbb R\)</span> where <span class="math inline">\(f(x)=||x||=(x_1^2+x_2^2)^\frac{1}{2}\)</span>, show that <span class="math inline">\(f\)</span> is convex in <span class="math inline">\(\mathbb R^2\)</span>.</p>
+<p>Proof.</p>
+<p>Choose <span class="math inline">\(x,y\in \mathbb R^2\)</span>, and <span class="math inline">\(\lambda \in [0,1]\)</span>, then we have <span class="math display">\[
+f(\lambda x+(1-\lambda)y)=||\lambda x+(1-\lambda )y||\le \lambda ||x||+(1-\lambda)||y||.
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(a\in \mathbb R^n\)</span> and <span class="math inline">\(\alpha \in \mathbb R\)</span>. Consider <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R,f(x)=a^Tx+\alpha\)</span>. Prove that <span class="math inline">\(f\)</span> is convex.</p>
+<p>Proof.</p>
+<p>Choose <span class="math inline">\(x,y\in \mathbb R^2\)</span>, and <span class="math inline">\(\lambda \in [0,1]\)</span>, then we have <span class="math display">\[
+f(\lambda x+(1-\lambda)y)=a^T(\lambda x+(1-\lambda)y)+\alpha =\lambda f(x)+(1-\lambda)f(y).
+\]</span> <strong>Example</strong></p>
+<p>Show that <span class="math inline">\(f:\mathbb R^2\rightarrow \mathbb R\)</span> defined by <span class="math inline">\(f(x)=x_1^2-4x_2\)</span> is convex.</p>
+<p>Proof.</p>
+<p>Choose <span class="math inline">\(x,y\in \mathbb R^2\)</span> and <span class="math inline">\(\lambda \in [0,1]\)</span>, then we have <span class="math display">\[
+\begin{array}{rCl}
+f(\lambda x+(1-\lambda)y)&amp;=&amp;(\lambda x_1+(1-\lambda)y_1)^2-4(\lambda x_2+(1-\lambda)y_2)\\
+&amp;=&amp;\lambda^2x_1^2+2\lambda x_1(1-\lambda)y_1+(1-\lambda)^2y_1^2-4\lambda x_2-4(1-\lambda)y_2\\
+&amp;\le&amp; \lambda^2x_1^2+\lambda (1-\lambda)(x_1^2+y_1^2)+(1-\lambda)^2y_1^2-4\lambda x_2-4(1-\lambda)y_2\\
+&amp;=&amp;\lambda f(x)+(1-\lambda)f(y).
+\end{array}
+\]</span> <strong>Proposition</strong></p>
+<p>If <span class="math inline">\(f_1,f_2:D\rightarrow \mathbb R\)</span> are convex function on a convex set <span class="math inline">\(D\subseteq \mathbb R^n\)</span>, then</p>
+<ol type="1">
+<li><span class="math inline">\(f_1+f_2\)</span> is a convex function on <span class="math inline">\(D\)</span>.</li>
+<li><span class="math inline">\(\alpha f_1\)</span> is a convex function on D for <span class="math inline">\(\alpha \ge 0\)</span>.</li>
+</ol>
+<p>Proof.</p>
+<p>Let <span class="math inline">\(g=f_1+f_2\)</span>. For <span class="math inline">\(x,y\in D\)</span> and <span class="math inline">\(\lambda \in [0,1]\)</span>, we have <span class="math display">\[
+\begin{array}{rCl}
+g(\lambda x+(1-\lambda)y)&amp;=&amp;f_1(\lambda x+(1-\lambda)y)+f_2(\lambda x+(1-\lambda)y)\\
+&amp;\le&amp; \lambda g+(1-\lambda)g.
+\end{array}
+\]</span> Proof of 2. is straightforward.</p>
+<p><strong>Corollary</strong></p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm,f_k:D\rightarrow \mathbb R\)</span> are convex functions on a convex set <span class="math inline">\(D\subseteq \mathbb R^n\)</span>. Then <span class="math display">\[
+f(x)=\sum_{j=1}^k\alpha_jf_j(x),
+\]</span> where <span class="math inline">\(\alpha_j\ge 0\)</span>, is also a convex function. If one of the functions is strictly convex, then <span class="math inline">\(f(x)\)</span> is strictly convex.</p>
+<p>Proof.</p>
+<p>It is straightforward to use the previous proposition.</p>
+<p><strong>Example</strong></p>
+<p>The objective function <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2+\lambda ||x||_1\)</span>, where <span class="math inline">\(x\in\mathbb R^n\)</span> for the sparse regression problem is a convex function.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(h:D\rightarrow \mathbb R\)</span> be convex function and <span class="math inline">\(g:\mathcal X\rightarrow \mathbb R\)</span> be a <strong>nondecreasing convex</strong> function with <span class="math inline">\(h(D)\subset \mathcal X\)</span>. Then the composition function <span class="math inline">\(f=g\circ h:D\rightarrow \mathbb R\)</span> is a convex function.</p>
+<p>Proof. <span class="math display">\[
+\begin{array}{rCl}
+f(\lambda x+(1-\lambda )y)&amp;=&amp;g(h(\lambda x+(1-\lambda)y))\\
+&amp;\le&amp; g(\lambda h(x)+(1-\lambda)h(y))\text{ (Since $h$ is convex and $g$ is non-decreasing)}\\
+&amp;\le&amp; \lambda g(h(x))+(1-\lambda)g(h(y)) \text{ (Since $g$ is convex)}.
+\end{array}
+\]</span> <strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(h:D\rightarrow \mathbb R\)</span> be convex function and <span class="math inline">\(g:\mathcal X\rightarrow \mathbb R\)</span> be a <strong>nonincreasing concave</strong> function with <span class="math inline">\(h(D)\subset \mathcal X\)</span>. Then the composition function <span class="math inline">\(f=g\circ h:D\rightarrow \mathbb R\)</span> is a concave function.</p>
+<p>Proof. Same as the previous proposition.</p>
+<p>The next result depicts a useful relationship between convex function and convex set.</p>
+<p><strong>Proposition</strong></p>
+<p>Suppose <span class="math inline">\(D\subset \mathbb R^n\)</span> is convex. If <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is convex, then for any <span class="math inline">\(\alpha \in \mathbb R\)</span>, the set <span class="math display">\[
+S_\alpha=\{x\in D\;|\;f(x)\le \alpha\},
+\]</span> is convex.</p>
+<p>Proof.</p>
+<p>Assume any <span class="math inline">\(x,y\in S_\alpha\)</span>, and any <span class="math inline">\(\lambda \in [0,1]\)</span>. Then we have <span class="math display">\[
+f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda )f(y)\le \lambda \alpha +(1-\lambda )\alpha = \alpha.
+\]</span> That means the point <span class="math inline">\(\lambda x+(1-\lambda)y\)</span> is also in the set. Q.E.D.</p>
+<p><strong>Proposition</strong> (Epigraph theorem)</p>
+<p>Suppose <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is a function defined on a convex set <span class="math inline">\(D\subset \mathbb R^n\)</span>. The <strong>epigraph</strong> of <span class="math inline">\(f\)</span> is the following subset of <span class="math inline">\(\mathbb R^{n+1}\)</span>, <span class="math display">\[
+E_f=\{[x;\alpha]\;|\; x\in D,\alpha\in \mathbb R,f(x)\le \alpha\}.
+\]</span> The epigraph <span class="math inline">\(E_f\)</span> is a convex set if and only if <span class="math inline">\(f\)</span> is convex function.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>If the epigraph <span class="math inline">\(E_f\)</span> is a convex set, then for any <span class="math inline">\([x,f(x)],[y,f(y)]\in E_f\)</span>, and for any <span class="math inline">\(\lambda \in [0,1]\)</span>, we have <span class="math display">\[
+\lambda [x;f(x)]+(1-\lambda)[y;f(y)]\in E_f\\
+\lambda [x;f(x)]+(1-\lambda)[y;f(y)]=[\lambda x+(1-\lambda )y;\lambda f(x)+(1-\lambda )f(y)].
+\]</span> Then by definition, we have <span class="math inline">\(f(\lambda x+(1-\lambda )y)\le \lambda f(x)+(1-\lambda )f(y)\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>If the function <span class="math inline">\(f\)</span> is a convex function, then for every <span class="math inline">\([x;\alpha],[y;\beta]\in E_f\)</span>, which means <span class="math inline">\(f(x)\le \alpha\)</span> and <span class="math inline">\(f(y)\le \beta\)</span>, we choose <span class="math inline">\(\lambda \in [0,1]\)</span>. We have <span class="math display">\[
+\lambda [x;\alpha]+(1-\lambda )[y;\beta]=[\lambda x+(1-\lambda)y;\lambda \alpha+(1-\lambda)\beta].
+\]</span> We need to prove <span class="math inline">\(f(\lambda x+(1-\lambda )y)\le \lambda \alpha +(1-\lambda)\beta\)</span>.</p>
+<p>Then we find <span class="math display">\[
+f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)\le \lambda \alpha+(1-\lambda)\beta,
+\]</span> which means <span class="math display">\[
+[\lambda x+(1-\lambda)y;\lambda \alpha+(1-\lambda)\beta]\in E_f.
+\]</span> Q.E.D.</p>
+<p><strong>Proposition</strong> (Jensen's inequality)</p>
+<p>Suppose <span class="math inline">\(f:S\rightarrow \mathbb R\)</span> is a convex function on a convex set <span class="math inline">\(S\subseteq \mathbb R^n\)</span>, and <span class="math inline">\(x_1,x_2,\dotsm,x_n\in S\)</span>. Let <span class="math display">\[
+x=\sum_{j=1}^k \lambda_j x_j,\quad \sum_{j=1}^k\lambda_j=1,\quad \lambda_j\ge 0.
 \]</span> Then <span class="math display">\[
-p^\star \le f(x)-\frac{1}{2M}||\nabla f(x)||^2_2
-\]</span> <strong>Condition number of sublevel sets</strong></p>
-<p>From the strong convexity inequality, we have <span class="math display">\[
-mI\preceq \nabla^2f(x)\preceq MI
-\]</span> for all <span class="math inline">\(x\in S\)</span>. The ratio <span class="math inline">\(k=M/m\)</span> is thus an upper bound on the condition number of the matrix <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. the ratio of its largest eigenvalue to its smallest eigenvalue.</p>
-<p><strong>The Strong Convexity constants</strong></p>
-<p>It must be kept in mind that the constants <span class="math inline">\(m\)</span> and <span class="math inline">\(M\)</span> are known only in rare cases.</p>
-<h2 id="descent-method">9.2 Descent Method</h2>
-<p>The algorithm described in this chapter produce a minimizing sequence <span class="math inline">\(x^{(k)}\)</span> , where <span class="math display">\[
-x^{(k+1)}=x^{(k)}+t \Delta x^{(k)}
-\]</span> All methods we study are descent methods, which means <span class="math display">\[
-f(x^{(k+1)})&lt; f(x^{(k)})
+f(x)\le \sum_{j=1}^k\lambda_k f(x_k).
 \]</span></p>
-<p>except when <span class="math inline">\(x^{(k)}\)</span> is optimal.</p>
-<p>From convexity, we know that <span class="math inline">\(\nabla f(x^{(k)})^T(y-x^{(k)})\ge 0\)</span> implies <span class="math inline">\(f(y)\ge f(x^{(k)})\)</span>, so the search direction must be made as an acute angle with the negative gradient. <span class="math display">\[
-\nabla f(x^{(k)})^T\Delta x^{(k)}&lt; 0
-\]</span> <strong>Exact line search</strong></p>
-<p>One line search method sometimes used in practice is exact line search, in which <span class="math inline">\(t\)</span> is chosen to minimize <span class="math inline">\(f\)</span> along the ray <span class="math inline">\(\{x+t\Delta x|t \ge 0\}\)</span>: <span class="math display">\[
-t=\arg\min_{s\ge 0} f(x+s\Delta x)
-\]</span> An exact line search is used when the cost of the minimization problem with one variable, require in the above equation, is low compared to the cost of computing the search direction itself.</p>
-<p><strong>Backtracking line search</strong></p>
-<p>Most line search used in practice are inexact: the step length is chose to appropriately minimize <span class="math inline">\(f\)</span> along the ray.</p>
-<p>Backtracking line search based on two variables <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, with <span class="math inline">\(0&lt;\alpha&lt;0.5\)</span>, <span class="math inline">\(0&lt;\beta&lt;1\)</span>.</p>
-<h2 id="gradient-descent-method">9.3 Gradient Descent Method</h2>
-<p>A natural choice for the search direction is the negative gradient <span class="math inline">\(\Delta x=-\nabla f(x)\)</span>.</p>
-<h2 id="steepest-descent-method">9.4 Steepest descent method</h2>
-<p>The first order Taylor approximation of the function <span class="math inline">\(f(x+v)\)</span> around <span class="math inline">\(x\)</span> is <span class="math display">\[
-f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x) v
+<p><strong>Example</strong></p>
+<p>Use the Jensen’s inequality and the convex function <span class="math inline">\(f(x)=-\log x\)</span> to prove <span class="math display">\[
+(a_1\dotsm a_k)^{1/k} \le \frac{1}{k}\sum_{j=1}^k a_j.
+\]</span> Proof.</p>
+<p>Choose <span class="math inline">\(\lambda_1=\lambda_2=\dotsm =\lambda_k=\frac{1}{k}\)</span>. It follows, <span class="math inline">\(x=\frac{1}{k}\sum_{j=1}^k x_j\)</span>. Then we have <span class="math display">\[
+-\log x\le -\frac{1}{k}\sum_{j=1}^k \log (x_j)=-\log [(x_1\dotsm x_k)^{\frac{1}{k}}]\\
+\log x\ge\log [(x_1\dotsm x_k)^{\frac{1}{k}}]\\
+(x_1\dotsm x_k)^{\frac{1}{k}}\le \frac{1}{k}\sum_{j=1}^k x_j.
 \]</span></p>
-<p>Now the question is how we choose <span class="math inline">\(v\)</span> to make the second term as negative as possible. Since the directional derivative <span class="math inline">\(\nabla f(x)^Tv\)</span> is linear in <span class="math inline">\(v\)</span>, it can be negative as we like by taking <span class="math inline">\(v\)</span> large. To make the question sensible, we have to limit the size of <span class="math inline">\(v\)</span>, or normalize by the length of <span class="math inline">\(v\)</span>. We define the normalized steepest descent direction as <span class="math display">\[
-\Delta x_{nsd}= \arg\min \{\nabla f(x)^Tv| \space ||v||=1\}
+<h2 id="differentiable-convex-functions">3.3 Differentiable convex functions</h2>
+<p>If the function is twice differentiable, we can check the convexity of the function much more easily.</p>
+<p><strong>Theorem</strong> (Tangent plane characterization)</p>
+<p>Suppose that <span class="math inline">\(f(x)\)</span> has continuous first partial derivatives on an open convex set <span class="math inline">\(S\)</span> in <span class="math inline">\(\mathbb R^n\)</span>. Then,</p>
+<ol type="1">
+<li>the function is convex if and only if</li>
+</ol>
+<p><span class="math display">\[
+f(x)+\nabla f(x)(y-x)\le f(y)\quad \forall x,y\in S.
 \]</span></p>
-<p>It is also convenient to consider a steepest descent step <span class="math inline">\(\Delta x_{sd}\)</span> is unnormalized, by scaling the normalized steepest descent direction in a particular way: <span class="math display">\[
-\Delta x_{sd}=||\nabla f(x)||_* \Delta x_{nsd}
+<ol start="2" type="1">
+<li>the function is strictly convex if and only if</li>
+</ol>
+<p><span class="math display">\[
+f(x)+\nabla f(x)(y-x)&lt; f(y)\quad \forall x,y\in S.
 \]</span></p>
-<h2 id="newtons-method">9.5 Newton's Method</h2>
-<p>For <span class="math inline">\(x\in dom f\)</span>, the vector <span class="math display">\[
-\Delta x_{nt}=-\nabla^2f(x)^{-1}\nabla f(x)
-\]</span> is called the newton step. Positive definiteness of <span class="math inline">\(\nabla^2f(x)\)</span> implies the Newton step is a decent direction.</p>
-<p><strong>Minimizer of the second-order approximation</strong> The second-order Taylor approximation <span class="math inline">\(\hat f\)</span> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> is <span class="math display">\[
-f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x)^Tv+\frac{1}{2}v^T \nabla^2 f(x) v
-\]</span> which is a convex quadratic function of <span class="math inline">\(v\)</span>, and is minimized when <span class="math inline">\(v=\Delta x_{nt}\)</span>.</p>
-<p><strong>Steepest descent direction in Hessian norm</strong> The Newton Step is also the steepest descent direction at <span class="math inline">\(x\)</span>, for the quadratic norm defined by the Hessian <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. <span class="math display">\[
-||u||_{\nabla^2f(x)} =(u^T\nabla^2f(x)u)^{1/2}
+<p>Proof of 1.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>Suppose <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is convex, then we have <span class="math display">\[
+f(\lambda y+(1-\lambda )x)\le \lambda f(y)+(1-\lambda )f(x)\quad \forall x,y\in D,\lambda \in [0,1]
+\]</span> Then we have <span class="math display">\[
+\frac{f(x +\lambda (y-x))-f(x)}{\lambda}\le f(y)-f(x)
+\]</span> When <span class="math inline">\(\lambda \rightarrow 0\)</span>, the left hand side is <span class="math inline">\(\nabla f(x) ^T(y-x)\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Assume <span class="math inline">\(f(x)+\nabla f(x)(y-x)\le f(y)\)</span>. Let <span class="math inline">\(u,v\in S\)</span> and <span class="math inline">\(\lambda \in [0,1]\)</span>, and define <span class="math inline">\(w=u+(1-\lambda )v\)</span>. Then we have</p>
+<p><span class="math display">\[
+f(w)+\nabla f(w)(u-w)\le f(u)\\
+f(w)+\nabla f(w)(v-w)\le f(v).
+\]</span> Since we have <span class="math inline">\(v-w=-\frac{\lambda}{1-\lambda}(u-w)\)</span>, we can cancel <span class="math inline">\(\nabla f(\cdot)\)</span>. Q.E.D.</p>
+<p><strong>Remark</strong></p>
+<p>The equation <span class="math inline">\(z=f(x)+\nabla f(x)^T(y-x)\)</span> define the tangent plane to the surface <span class="math inline">\(z=f(x)\)</span> at <span class="math inline">\(y=x\)</span>. Thus this theorem shows that the tangent plane is below the convex function.</p>
+<p><strong>Proposition</strong> (Monotone gradient condition)</p>
+<p>Let <span class="math inline">\(f:S\rightarrow \mathbb R\)</span> be differentiable function on the open convex subset <span class="math inline">\(S\)</span> of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(f\)</span> is convex on <span class="math inline">\(S\)</span> if and only if <span class="math display">\[
+\left\langle \nabla f(x)-\nabla f(y),x-y\right\rangle\ge 0\quad \forall x,y\in S
+\]</span> Proof.</p>
+<p><span class="math inline">\(\implies\)</span> <span class="math display">\[
+f(x)+\nabla f(x)^T(y-x)\le f(y)\\
+f(y)-\nabla f(y)^T(y-x)\le f(x).
+\]</span> By doing the summation, Q.E.D.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Suppose we have <span class="math inline">\(\left\langle \nabla f(x)-\nabla f(y),x-y\right\rangle\ge 0\quad \forall x,y\in S\)</span>.</p>
+<p>Define <span class="math inline">\(g(t)=f(x+t(y-x))\)</span>. Then we have <span class="math display">\[
+g&#39;(t)=\langle \nabla f(x+t(y-x)),y-x\rangle.
+\]</span> Then we have <span class="math display">\[
+g&#39;(t)-g&#39;(0)=\langle \nabla f(x+t(y-x))-\nabla f(x),y-x\rangle\ge 0\quad \forall t\in[0,1].
+\]</span> Then we have <span class="math display">\[
+g(1)=f(y)=g(0)+\int _0^1 g&#39;(t)dt\ge g(0)+g&#39;(0)=f(x)+\langle \nabla f(x),y-x\rangle.
+\]</span> Q.E.D.</p>
+<p><strong>Theorem</strong> (Test for convexity of a differentiable function)</p>
+<ol type="1">
+<li><p>Suppose that <span class="math inline">\(f(x)\)</span> has continuous second partial derivatives on an open convex set <span class="math inline">\(D\subset \mathbb R^n\)</span>, the function is convex on <span class="math inline">\(D\)</span> <strong>if and only if</strong> the Hessian matrix is positive semidefinite.</p></li>
+<li><p>If the Hessian matrix is positive definite, then <span class="math inline">\(f\)</span> is strictly convex. (Converse is not true)</p></li>
+<li><p>If the Hessian matrix is indefinite, then <span class="math inline">\(f\)</span> is not a convex nor a concave function on <span class="math inline">\(D\)</span>.</p></li>
+</ol>
+<h2 id="strongly-convex-functions">3.4 Strongly convex functions</h2>
+<p><strong>Definition</strong></p>
+<p>Let <span class="math inline">\(D\subseteq \mathbb R^n\)</span> be a convex set. A function <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is said to be strongly convex if there exists a constant <span class="math inline">\(c&gt;0\)</span> such that for all <span class="math inline">\(x,y\in D\)</span>, and <span class="math inline">\(\lambda \in[0,1]\)</span>, <span class="math display">\[
+f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)-\frac{c}{2}\lambda(1-\lambda)||x-y||^2.
+\]</span> <strong>Theorem</strong></p>
+<p>Suppose <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is a differentiable function. Then the following statements are equivalent,</p>
+<ol type="1">
+<li><p><span class="math inline">\(f(y)\ge f(x)+\langle \nabla f(x),y-x\rangle+(c/2)||y-x||^2\)</span></p></li>
+<li><span class="math inline">\(g(x)=f(x)-(c/2)||x||^2\)</span> is convex</li>
+<li><p><span class="math inline">\(\langle\nabla f(x)-\nabla f(y),x-y\rangle\ge c||x-y||^2\)</span></p></li>
+<li><p><span class="math inline">\(f\)</span> is strongly convex.</p></li>
+</ol>
+<p>Proof. (<span class="math inline">\(1\iff 2\)</span>)</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>If <span class="math inline">\(g(x)=f(x)-(c/2)||x||^2\)</span> is convex, then we have <span class="math display">\[
+\begin{array}{rcl}
+g(y)&amp;\ge&amp; g(x)+\nabla g(x)(y-x)\implies\\
+f(y)-(c/2)||y||^2&amp;\ge&amp; f(x)-(c/2)||x||^2+\nabla f(x)^T(y-x)-cx^T(y-x)\implies\\
+f(y)&amp;\ge&amp; f(x)+\nabla f(x)^T(y-x)+(c/2)\left(||y||^2-2x^Ty+||x||^2\right)\implies\\
+f(y)&amp;\ge&amp; f(x)+\nabla f(x)^T(y-x)+(c/2)||y-x||^2
+\end{array}
+\]</span> <span class="math inline">\(\implies\)</span></p>
+<p>By Tangent plane characterization in Section 3.3.</p>
+<p>(<span class="math inline">\(2\iff 3\)</span>) Monotone gradient.</p>
+<p>(<span class="math inline">\(1\iff 4\)</span>) Straightforward. Q.E.D.</p>
+<p>The following conditions are implied by the strong convexity of <span class="math inline">\(f\)</span>. Let <span class="math inline">\(x^*\)</span> be a minimizer of <span class="math inline">\(f\)</span> over <span class="math inline">\(D\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\((1/2c)||\nabla f(x)||^2\ge f(x)-f(x^*)\)</span>.</li>
+<li><span class="math inline">\(||\nabla f(x)-\nabla f(y)||\ge c||x-y||\)</span>.</li>
+<li><span class="math inline">\(f(y)\le f(x)+\langle \nabla f(x),y-x\rangle +(1/2c)||\nabla f(y)-\nabla f(x)||^2\)</span>.</li>
+<li><span class="math inline">\(\langle \nabla f(x)-\nabla f(y),x-y\rangle \le (1/c)||\nabla f(x)-\nabla f(y)||^2\)</span>.</li>
+</ol>
+<p>Proof.</p>
+<ol type="1">
+<li><p>Since we have <span class="math inline">\(f(y)\ge f(x)+\langle\nabla f(x),y-x\rangle+(c/2)||y-x||^2\)</span>, for any fixed point <span class="math inline">\(x\)</span>, we can derive the minimal value of the right hand side. <span class="math inline">\(f(x)+\langle \nabla f(x),y-x\rangle+(c/2)||y-x||^2\ge f(x)-(1/2c)||\nabla f(x)||^2\)</span>. Then we have <span class="math display">\[
+f(y)\ge f(x)-(1/2c)||\nabla f(x)||^2 \quad \forall x,y \in \mathbb R^n.
+\]</span> Then we let <span class="math inline">\(y=x^*\)</span>. Q.E.D.</p>
+<p>By this condition, we can see that if the gradient is getting smaller, that means the current value of the cost function is getting to the optimal value.</p></li>
+<li><p>From the condition 3 in the Theorem 3.3</p></li>
+<li><p>We define the function <span class="math inline">\(\phi_x(z)=f(z)-\langle \nabla f(x),z\rangle\)</span>. We can find the analytical minimizer of this function as <span class="math display">\[
+\nabla \phi_x(z)=\nabla f(z)-\nabla f(x)=0\implies z^* =x.
+\]</span> Then we use the condition 1, <span class="math display">\[
+(1/2c)||\nabla f(y)-\nabla f(x)||^2\ge f(y)-\langle \nabla f(x),x-y\rangle-f(x).
+\]</span></p></li>
+<li><p>By doing summary of the following two inequalities, <span class="math display">\[
+f(y)\le f(x)+\langle \nabla f(x),y-x\rangle +(1/2c)||\nabla f(y)-\nabla f(x)||^2\\
+f(x)\le f(y)+\langle \nabla f(y),y-x\rangle +(1/2c)||\nabla f(x)-\nabla f(y)||^2.
+\]</span></p></li>
+</ol>
+<p>Q.E.D.</p>
+<h2 id="unconstrained-convex-programming-problem">3.5 Unconstrained convex programming problem</h2>
+<p>A convex programming problem is a minimization problem whose objective function is convex and the feasible set is convex. In general, a local minimizer is not a global minimizer. However, for a convex minimization problem, a local minimizer is also a global minimizer.</p>
+<p>An <strong>unconstrained convex nonlinear programming problem</strong> is the following, <span class="math display">\[
+\begin{array}{rl}
+\text{minimize}&amp;f(x)\\ 
+\text{subject to}&amp;x\in D,
+\end{array}
+\]</span> where <span class="math inline">\(D\)</span> is an open convex set, and the function <span class="math inline">\(f\)</span> is convex on <span class="math inline">\(D\)</span>.</p>
+<p><strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(D\)</span> be a nonempty open convex subset of <span class="math inline">\(\mathbb R^n\)</span>, and <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is a convex function. Consider the convex minimization problem. Suppose <span class="math inline">\(x^* \in D\)</span> is a local minimizer to the problem, then</p>
+<ol type="1">
+<li><span class="math inline">\(x^*\)</span> is a global minimizer</li>
+<li>If <span class="math inline">\(f\)</span> is strictly convex, then <span class="math inline">\(x^*\)</span> is the unique global minimizer.</li>
+</ol>
+<p>Proof.</p>
+<ol type="1">
+<li><p>We assume <span class="math inline">\(x^*\in D\)</span> is a local minimizer, which means there exists a ball <span class="math inline">\(B_\epsilon(x^*)\)</span>, such that for all points <span class="math inline">\(x\in B_\epsilon(x^*)\)</span>, <span class="math inline">\(f(x)\ge f(x^*)\)</span>.</p>
+<p>Then we need to prove that <span class="math inline">\(x^*\)</span> is a global minimizer, which means for all points <span class="math inline">\(y\in D\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>.</p>
+<p>We consider the point <span class="math inline">\(\lambda y+(1-\lambda )x^* \in D\)</span>. If $$ is enough small, then the point is also in the ball. That means we have <span class="math display">\[
+\lambda f(y)+(1-\lambda)f(x^*)\ge f(\lambda y+(1-\lambda)x^*)\ge f(x^*).
+\]</span> Q.E.D.</p></li>
+<li><p>Assume <span class="math inline">\(x^* \in D\)</span> is the global optimizer. If there is another global minimizer <span class="math inline">\(\bar x\)</span>, for which we have <span class="math inline">\(f(\bar x)=f(x^*)\)</span>.</p>
+<p>Then we choose <span class="math inline">\(w=(1/2)x^*+(1/2)\bar x\)</span>. <span class="math display">\[
+f(w)=f((1/2)x^*+(1/2)\bar x)&lt; (1/2)f(x^*)+(1/2)f(\bar x)=f(x^*),
+\]</span> which contradicts that the point <span class="math inline">\(x^*\)</span> is the global optimal point.</p>
+<p>Q.E.D.</p></li>
+</ol>
+<p><strong>Corollary</strong></p>
+<p>If <span class="math inline">\(f\)</span> is a convex function with continuous first partial derivatives on some open convex set <span class="math inline">\(D\)</span>, then any stationary point of <span class="math inline">\(f\)</span> is a global minimizer of <span class="math inline">\(f\)</span>.</p>
+<p>Proof.</p>
+<p>Suppose <span class="math inline">\(x^*\)</span> is the stationary point, i.e., <span class="math inline">\(\nabla f(x^*)=0\)</span>.</p>
+<p>We need to prove <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span>, i.e., for all <span class="math inline">\(y\in D\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>.</p>
+<p>Since <span class="math inline">\(f\)</span> is a convex function, we have <span class="math display">\[
+f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)=f(x^*).
+\]</span> Q.E.D.</p>
+<h2 id="unconstrained-convex-quadratic-programming">3.6 Unconstrained convex quadratic programming</h2>
+<p><strong>Definition</strong> (Quadratic function)</p>
+<p>A quadratic function <span class="math inline">\(q:\mathbb R^n\rightarrow \mathbb R\)</span> is defined by <span class="math display">\[
+q(x)=\frac{1}{2}x^TQx+c^Tx.
+\]</span> The quadratic function is a convex function if <span class="math inline">\(Q\)</span> is positive semidefinite.</p>
+<p>The point <span class="math inline">\(x^* \in S\)</span> is a global minimizer of the problem if and only if <span class="math inline">\(Qx^* =-c\)</span>.</p>
+<h2 id="projection-onto-a-closed-convex-set">3.7 Projection onto a closed convex set</h2>
+<p><strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(f:C\rightarrow \mathbb R\)</span> be a convex and continuously differentiable function on the convex set <span class="math inline">\(C\subset \mathcal E\)</span>. Consider the constrained minimization problem, <span class="math display">\[
+\min\left\{f(x)\;|\;x\in C\right\}.
+\]</span> Then <span class="math inline">\(x^*\in C\)</span> is a global minimizer if and only if <span class="math display">\[
+\langle \nabla f(x^*),x-x^*\rangle\ge 0,\;\forall x\in C.
+\]</span> Proof.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Suppose there is a <span class="math inline">\(x^*\in C\)</span> satisfying <span class="math inline">\(\langle \nabla f(x^*),x-x^*\rangle\ge 0,\;\forall x\in C\)</span>.</p>
+<p>We need to prove <span class="math inline">\(x^*\in C\)</span> is a global minimizer, i.e., for all <span class="math inline">\(y\in C\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>.</p>
+<p>Since <span class="math inline">\(f\)</span> is convex, we have <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x),\;\forall x,y\in C.
+\]</span> Then we have <span class="math display">\[
+f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)\ge f(x^*),\;\forall y\in C.
+\]</span> That means <span class="math inline">\(x^*\)</span> is the global minimizer.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>We will approve the sufficient condition by contradiction.</p>
+<p>Suppose <span class="math inline">\(x^*\)</span> is a global minimizer, i.e., for all <span class="math inline">\(y\in C\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>. Suppose that there exists <span class="math inline">\(\bar x\in C\)</span> such that <span class="math inline">\(\langle \nabla f(x^*),\bar x-x^*\rangle&lt; 0\)</span>.</p>
+<p>Consider the point <span class="math inline">\(w=t\bar x+(1-t)x^*\)</span>. Note that <span class="math inline">\(f(w)-f(x^*)\le \nabla f(w)^T(w-x^*)\)</span>. Then <span class="math display">\[
+\begin{array}{rcl}
+0&amp;\le&amp; f(w)-f(x^*)\le \nabla f(w)^T(w-x^*)\\
+&amp;=&amp;\langle \nabla f(t\bar x+(1-t)x^*),(t\bar x+(1-t)x^*-x^*)\rangle\\
+&amp;=&amp;\langle \nabla f(t\bar x+(1-t)x^*),t(\bar x-x^*)\rangle\\
+&amp;=&amp;\langle \nabla f(t(\bar x-x^*)+x^*),t(\bar x-x^*)\rangle.
+\end{array}
+\]</span> Let <span class="math inline">\(t\downarrow 0\)</span>, we have <span class="math inline">\(\langle \nabla f(x^*),\bar x-x^*\rangle \ge 0\)</span>.</p>
+<p>Q.E.D.</p>
+<p><strong>Remark</strong></p>
+<p>Using the concept of the <strong>normal cone</strong>, we can rephrase the theorem as follows,</p>
+<p><span class="math inline">\(x^*\)</span> is a global minimizer of the problem <span class="math inline">\(\min\{f(x)\;|\;x\in C\}\)</span> if and only if <span class="math inline">\(-\nabla f(x^*)\in N_C(x^*)\)</span>.</p>
+<p><strong>Theorem</strong> (Projection theorem)</p>
+<p>Let <span class="math inline">\(C\)</span> be a closed convex set in <span class="math inline">\(\mathcal E\)</span>,</p>
+<ol type="1">
+<li><p>For every <span class="math inline">\(z\in \mathcal E\)</span>, there exists a unique minimizer (denoted as <span class="math inline">\(\Pi_C(z)\)</span> and called as the <strong>projection</strong> of <span class="math inline">\(z\)</span> onto <span class="math inline">\(C\)</span>) of <span class="math display">\[
+\min\left\{\frac{1}{2}||x-z||^2\;|\; x\in C\right\},
+\]</span> where <span class="math inline">\(||\cdot||\)</span> is the Euclidean norm.</p></li>
+<li><p><span class="math inline">\(x^*=\Pi_C(z)\)</span> is the projection of <span class="math inline">\(z\)</span> onto <span class="math inline">\(C\)</span> if and only if <span class="math display">\[
+\langle z-x^*,x-x^*\rangle\le 0\quad\forall x\in C.
+\]</span></p></li>
+<li><p>(Firmly non-expansive property) For any <span class="math inline">\(z,w\in \mathcal E\)</span>, <span class="math display">\[
+||\Pi_C(z)-\Pi_C(w)||^2\le \langle z-w,\Pi_C(z)-\Pi_C(w)\rangle.
+\]</span> Firmly non-expansive property implies non-expansive property, which means <span class="math inline">\(||\Pi_C(z)-\Pi_C(w)||\le ||z-w||\)</span>. That is, <span class="math inline">\(\Pi_C(\cdot)\)</span> is <strong>Lipschitz continuous</strong> with modulus 1.</p></li>
+</ol>
+<p>Proof.</p>
+<ol type="1">
+<li><p>Choose <span class="math inline">\(\bar x\in C\)</span>. Define the set <span class="math inline">\(S=\{x\in C\;|\;f(x)\le f(\bar x)\}\)</span>. It can be proved that the set <span class="math inline">\(S\)</span> is closed and bounded. By Weierstrass Theorem, there exists <span class="math inline">\(x^* \in S\)</span> such that <span class="math inline">\(f(x^*)\le f(x)\quad\forall x\in S\)</span>. And we also have <span class="math display">\[
+f(x)&gt;f(\bar x)\ge f(x^*)\quad\forall x\in C\backslash S.
+\]</span> Thus we have shown for all <span class="math inline">\(x\in C\backslash S\cup S=C\)</span>, <span class="math inline">\(f(x^* )\le f(x)\)</span>.</p>
+<p>Since the function <span class="math inline">\(f(x)=\frac{1}{2}||x-z||^2\)</span> is strictly convex on <span class="math inline">\(C\)</span>, the minimizer is unique.</p></li>
+<li><p>From the above theorem, we have <span class="math display">\[
+\langle \nabla f(x^*),x-x^*\rangle\ge 0.
+\]</span> Q.E.D.</p></li>
+<li>From condition 2, we have <span class="math inline">\(w,z\in \mathcal E\)</span>. Since <span class="math inline">\(\Pi_C(w)\in \mathcal E\)</span> and <span class="math inline">\(\Pi_C(z)\in \mathcal E\)</span>. Then we have <span class="math display">\[
+\begin{array}{rcl}
+\langle z-\Pi_C(z),\Pi_C(w)-\Pi_C(z)\rangle&amp;\le&amp;  0\quad (1)\\
+\langle w-\Pi_C(w),\Pi_C(z)-\Pi_C(w)\rangle&amp;\le&amp;  0\\
+\langle\Pi_C(w)-w,\Pi_C(w)-\Pi_C(z)\rangle&amp;\le&amp;  0\quad (2).
+\end{array}
+\]</span>
+<ol type="1">
+<li><ul>
+<li>(2), <span class="math display">\[
+\langle z-w-\Pi_C(z)+\Pi_C(w),\Pi_C(w)-\Pi_C(z)\rangle\le 0.
+\]</span></li>
+</ul></li>
+</ol>
+<p>Q.E.D.</p></li>
+</ol>
+<p><strong>Remark</strong></p>
+<p>If <span class="math inline">\(C\)</span> is a linear subspace of <span class="math inline">\(\mathbb R^n\)</span>, then <span class="math inline">\(z-x^* \perp C\)</span>. Thus <span class="math inline">\(z\)</span> can be decomposed into two perpendicular components, <span class="math display">\[
+z=\Pi_C(z)+(z-\Pi_C(z)),\quad \text{where}\quad \langle\Pi_C(z),z-\Pi_C(z)\rangle=0.
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(C=\mathbb R_+^n\)</span>. Then for any <span class="math inline">\(z\in \mathbb R^n\)</span>, <span class="math inline">\(\Pi_C(z)=\max\{z,0\}\)</span>.</p>
+<p>Proof. <span class="math display">\[
+\min\left\{\frac{1}{2}||x-z||^2\;|\; x\in \mathbb R^n_+\right\}
+\]</span> Since we have <span class="math display">\[
+||x-z||^2=(x^2_1-2z_1x_1+z^2_1)+\dotsm+(x^2_n-2z_nx_1+z^2_n)
+\]</span> Every part should be minimized.</p>
+<p><strong>Example</strong></p>
+<p><span class="math inline">\(C=\{x\in\ \mathbb R^n\;|\; \sum_{i=1}^n x_i=1,x\ge0\}\)</span> is a simplex. Suppose <span class="math inline">\(z\in \mathbb R^n\)</span> satisfies the condition that <span class="math inline">\(z_1\ge z_2\ge \dotsm\ge z_n\)</span>. Let <span class="math inline">\(k\)</span> be the maximum index in the set <span class="math inline">\(\{1\le j\le n\;|\; z_j+(1-\sum_{i=1}^j z_j)&gt;0\}\)</span>. Set <span class="math display">\[
+\lambda = \frac{1}{k}\left(1-\sum_{i=1}^k z_i\right).
+\]</span> Then the projection onto the simplex <span class="math inline">\(C\)</span> is given by <span class="math display">\[
+\Pi_C(z)=\max\{z+\lambda e,0\}.
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(C=\mathbb S_+^n\)</span> is the positive semidefinite matrices space. For a given <span class="math inline">\(A\in\mathbb S_n\)</span>, let the eigenvalue decomposition of <span class="math inline">\(A\)</span> be <span class="math inline">\(A=U\text{diag}(d)U^T\)</span>, then we have <span class="math inline">\(\Pi_C(A)=U(\text{diag}(\max\{d,0\}))U^T\)</span>.</p>
+<p>Not that <span class="math inline">\(U\)</span> is orthogonal. Then we have <span class="math display">\[
+\begin{array}{rcl}
+\min\{\frac{1}{2}||X-A||^2_F\;|\; X\in\mathbb  S^n_+\}&amp;=&amp;\min\{\frac{1}{2}||U(U^TXU-\text{diag}(d))U^T||^2_F\;|\; X\in\mathbb  S^n_+\}\\
+&amp;=&amp;\min\{\frac{1}{2}||U^TXU-\text{diag}(d)||^2_F\;|\; X\in\mathbb  S^n_+\}\text{ (Trace Property)}\\
+&amp;=&amp;\min\{\frac{1}{2}||\bar X-\text{diag}(d)||^2_F\;|\; \bar X\in\mathbb  S^n_+\}\\
+&amp;=&amp;\min\{\frac{1}{2}||\text{diag}(x)-\text{diag}(d)||^2_F\;|\; x\ge0\}\\
+&amp;=&amp;\min\{\frac{1}{2}||x-d||^2\;|\; x\ge0\}.
+\end{array}
+\]</span> Then we have <span class="math inline">\(x^* =\max\{0,d\}\)</span>.</p>
+<p><strong>Definition</strong> (Fréchet differentiable)</p>
+<p>Let <span class="math inline">\(\mathcal E_1,\mathcal E_2\)</span> be two differentiable finite-dimensional real Euclidean spaces. A function <span class="math inline">\(f:\mathcal E_1\rightarrow \mathcal E_2\)</span> is said to be Fréchet differentiable at <span class="math inline">\(\mathcal x\in E_1\)</span> if there exists a linear map <span class="math inline">\(f&#39;(x):\mathcal E_1\rightarrow \mathcal E_2\)</span> such that for any <span class="math inline">\(h\rightarrow 0\)</span>, <span class="math display">\[
+f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
+\]</span> This can be explained by <span class="math display">\[
+\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}=f&#39;(x)\\ \iff\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)-f&#39;(x)[h]}{h}=0\\ \iff f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
+\]</span> <strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(C\)</span> be a nonempty closed convex set in <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\)</span>, let <span class="math display">\[
+\theta(x)=\frac{1}{2}||x-\Pi_C(x)||^2.
+\]</span> The <span class="math inline">\(\theta(\cdot)\)</span> is a continuously differentiable convex function and <span class="math display">\[
+\nabla \theta(x)=x-\Pi_C(x).
 \]</span></p>
-<p><strong>Solution of linearized optimality condition</strong> Since we know the optimality condition is <span class="math inline">\(\nabla f(x^\star) =0\)</span>, if we linearize <span class="math inline">\(\nabla f(x)\)</span> near <span class="math inline">\(x\)</span> we have <span class="math display">\[
-\nabla f(x+v) \approx \nabla f(x)+\nabla^2 f(x)v=0
-\]</span> Then we can use first-order numerical method to solve this equation.</p>
-<p><strong>Affine invariance of the Newton step</strong> An important feature of the Newton step is that it is independent of linear changes of the coordinates.</p>
-<p><strong>The Newton decrement</strong> The quantity <span class="math display">\[
-\lambda (x)=(\nabla f(x)^T\nabla^2f(x)\nabla f(x))^{1/2}
-\]</span> is called Newton decrement at <span class="math inline">\(x\)</span>. We will see that the Newton decrement plays an important role in the analysis of Newton's method, and is also useful as a stopping criterion. We can relate the Newton decrement to the quantity <span class="math inline">\(f(x)-\inf_y\hat f(y)\)</span>, where <span class="math inline">\(\hat f\)</span> is the second-order approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[
-f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
-\]</span> Thus <span class="math inline">\(\lambda^2/2\)</span> is the estimate of <span class="math inline">\(f(x)-p^\star\)</span>, based on the quadratic approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>.</p>
+<h2 id="convex-separation">3.8 Convex Separation</h2>
+<p>In this section, some propositions will be given without proof.</p>
+<p><strong>Definition</strong></p>
+<ol type="1">
+<li><p>The <strong>affine hull</strong> <span class="math inline">\(\text{aff(S)}\)</span> of a set S in <span class="math inline">\(\mathcal E\)</span> is the smallest affine set containing <span class="math inline">\(S\)</span>, i.e. in intersection of all affine set containing <span class="math inline">\(S\)</span>. That can be shown by <span class="math display">\[
+\text{aff(S)}=\left\{\sum_{i=1}^k\alpha_ix_i\;|\; \sum_{i=1}^k \alpha_i=1,x_i\in S,k&gt;0\right\}.
+\]</span></p></li>
+<li><p>The <strong>convex hull</strong> <span class="math inline">\(\text{conv(S)}\)</span> or <span class="math inline">\(\text{co(S)}\)</span> of a set <span class="math inline">\(S\)</span> in <span class="math inline">\(\mathcal E\)</span> is the smallest convex set containing <span class="math inline">\(S\)</span>, i.e. the intersection of all convex set containing <span class="math inline">\(S\)</span>, <span class="math display">\[
+\text{conv(S)}=\left\{\sum_{i=1}^k\alpha_ix_i\;|\; \sum_{i=1}^k \alpha_i=1,x_i\in S,\alpha_i\ge 0,k&gt;0\right\}.
+\]</span></p></li>
+<li><p>A point <span class="math inline">\(x\)</span> is a <strong>relative interior point</strong> of <span class="math inline">\(S\)</span> if <span class="math inline">\(x\)</span> is an interior point relative to <span class="math inline">\(\text{aff(S)}\)</span>. The set of all relative interior points of <span class="math inline">\(S\)</span> is denoted as <span class="math inline">\(\text{relint(S)}\)</span> or <span class="math inline">\(\text{ri(S)}\)</span> <span class="math display">\[
+\text{ri(S)}=\{x\in \text{aff(S)}\;|\; \exists \varepsilon &gt;0, B_{\varepsilon}(x)\cap \text{aff(S)}\subset S\}.
+\]</span></p></li>
+</ol>
+<p><strong>Examples</strong></p>
+<ol type="1">
+<li>The affine hull of the singleton (a set made of one single element) is the singleton itself.</li>
+<li>The affine hull of a set of two different points is the line through them.</li>
+<li>The affine hull of a set of three points not on one line is the plane going through them.</li>
+<li>The affine hull of a set of four points not in a plane in <span class="math inline">\(\mathbb R^3\)</span> is the entire space <span class="math inline">\(\mathbb R^3\)</span>.</li>
+<li><span class="math inline">\(\text{aff}(\mathbb R_+^n)=\mathbb R^n\)</span>.</li>
+</ol>
+<p><strong>Proposition</strong> Let <span class="math inline">\(C\)</span> be a subset of a Euclidean space <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C\)</span> is convex, then <span class="math inline">\(\text{aff(ri C)}=\text{aff(C)}=\text{aff(cl(C))}\)</span></p>
+<p>In the next proposition we will prove that any point outside a closed convex set can be separated from that set with a hyperplane.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(\Omega \in \mathbb R^n\)</span> be a nonempty closed convex set and let <span class="math inline">\(\bar x\notin \Omega\)</span>. Then there exists a nonzero vector <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
+\sup\{\langle v,x\rangle \;|\;x\in \Omega\}&lt;\langle v,\bar x\rangle
+\]</span> Proof.</p>
+<p>Denote <span class="math inline">\(\bar w=\Pi_C(\bar x)\)</span>. let <span class="math inline">\(v=\bar x-\bar w\)</span>. For any <span class="math inline">\(x\in \Omega\)</span> we know that <span class="math display">\[
+\langle v,x-\bar w\rangle=\langle \bar x-\bar w,x-\bar w\rangle\le 0\\
+\langle v,x-\bar x+\bar x-\bar w\rangle\\
+\langle v,x-\bar x+v\rangle=\\
+\langle v,x\rangle-\langle v,\bar x\rangle+||v||^2\le 0
+\]</span> Q.E.D.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be nonempty, closed, convex subsets of <span class="math inline">\(\mathbb R^n\)</span> with <span class="math inline">\(\Omega_1\cap \Omega_2=\emptyset\)</span>. If <span class="math inline">\(\Omega_1\)</span> or <span class="math inline">\(\Omega_2\)</span> is bounded, then there is a nonzero element <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
+\sup\{\langle v,x\rangle\;|\;x\in \Omega_1\}&lt;\inf\{\langle v,y\rangle\;|\;y\in \Omega_2\}.
+\]</span> Proof.</p>
+<p>Define <span class="math inline">\(\Omega=\Omega_1-\Omega_2\)</span>. Then <span class="math inline">\(\Omega\)</span> is nonempty closed convex set and <span class="math inline">\(0\notin \Omega\)</span>. Then we choose the point <span class="math inline">\(0\)</span> and use the previous proposition. Q.E.D.</p>
+<p><strong>Proposition</strong> (Separation in a subspace)</p>
+<p>Let <span class="math inline">\(L\)</span> be a subspace of <span class="math inline">\(\mathbb R^n\)</span> and let <span class="math inline">\(\Omega \subset L\)</span> be a nonempty convex set with <span class="math inline">\(\bar x\in L\)</span> and <span class="math inline">\(\bar x\notin \bar \Omega\)</span> (<span class="math inline">\(\bar \Omega\)</span> is the closure of <span class="math inline">\(\Omega\)</span>). Then there exists <span class="math inline">\(w\in L,w\neq 0\)</span> such that <span class="math display">\[
+\sup\{\langle w,x\rangle\;|\; x\in \Omega\}&lt;\langle w,\bar x\rangle.
+\]</span> <strong>Definition</strong></p>
+<p>We say that two empty convex set <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if there exists a nonzero vector <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
+\sup\{\langle v,x\rangle\;|\; x\in\Omega_1\}\le \inf\{\langle v,y\rangle\;|\; y\in\Omega_2\}\\
+\inf\{\langle v,x\rangle\;|\; x\in\Omega_1\}&lt; \sup\{\langle v,y\rangle\;|\; y\in\Omega_2\}.
+\]</span> <strong>Proposition</strong></p>
+<p>The following assertions hold for affine.</p>
+<ol type="1">
+<li>A set <span class="math inline">\(\Omega\subset \mathbb R\)</span> is affine if and only if <span class="math inline">\(\Omega\)</span> contains all affine combinations of its elements.</li>
+<li>If <span class="math inline">\(\Omega_1\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\)</span> and <span class="math inline">\(\Omega_2\)</span> is an affine subsets of <span class="math inline">\(\mathbb R^m\)</span>, then <span class="math inline">\(\Omega_1\times \Omega_2\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\times \mathbb R^m\)</span>.</li>
+<li>Let <span class="math inline">\(B:\mathbb R^n\rightarrow \mathbb R^m\)</span> be an affine mapping if <span class="math inline">\(\Omega\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\)</span> and <span class="math inline">\(\Theta\)</span> is an affine subset of <span class="math inline">\(\mathbb R^m\)</span>. Then the image <span class="math inline">\(B(\Omega)\)</span> is an affine subset of <span class="math inline">\(\mathbb R^m\)</span> and the inverse image <span class="math inline">\(B^{-1}(\Theta)\)</span> is an affine subset of <span class="math inline">\(\mathbb R^n\)</span>.</li>
+<li>Let <span class="math inline">\(\Omega,\Omega_1,\Omega_2\)</span> are affine subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then the sum <span class="math inline">\(\Omega_1+\Omega_2\)</span> and the scalar product <span class="math inline">\(\lambda \Omega\)</span> for any <span class="math inline">\(\lambda \in \mathbb R\)</span> are also affine subsets of <span class="math inline">\(\mathbb R^n\)</span>.</li>
+<li>Given <span class="math inline">\(\Omega\subset \mathbb R^n\)</span>, its affine hull is the smallest affine set containing <span class="math inline">\(\Omega\)</span>.</li>
+<li>A set <span class="math inline">\(\Omega\)</span> is a linear subspace of <span class="math inline">\(\mathbb R^n\)</span> if and only if <span class="math inline">\(\Omega\)</span> is an affine set containing the origin.</li>
+</ol>
+<p><strong>Definition</strong> (Affine independence)</p>
+<p>The elements <span class="math inline">\(v_0,\dotsm,v_m\)</span> in <span class="math inline">\(\mathbb R^m\)</span>, <span class="math inline">\(m\ge 1\)</span> are affinely independent if <span class="math display">\[
+\sum_{i=1}^m \lambda_i v_i=0,\quad \sum_{i=1}^m \lambda_i=0\implies \lambda_i=0\quad \forall i=0,\dotsm,m.
+\]</span> Roughly speaking, affine independence is like linear independence but without the restriction that the subset of lower dimension the points lie in contains the origin. So three points in space are affinely independent if the smallest flat thing containing them is a plane. They're affinely dependent if they lie on a line (or are the same point).</p>
+<p><strong>Definition</strong> (Simplex)</p>
+<p>Let <span class="math inline">\(v_0,\dotsm,v_m\)</span> be affinely independent in <span class="math inline">\(\mathbb R^n\)</span>. Then the set <span class="math display">\[
+\Delta_m:\text{conv}\{v_i\;|\; i=0,\dotsm,m\}
+\]</span> is called an m-simplex in <span class="math inline">\(\mathbb R^n\)</span> with the vertices <span class="math inline">\(v_0,\dotsm,v_m\)</span>.</p>
+<p><strong>Lemma</strong></p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty, convex set in <span class="math inline">\(\mathbb R^n\)</span> of dimension <span class="math inline">\(m\ge 1\)</span>. Then there exists <span class="math inline">\(m+1\)</span> affinely independent elements <span class="math inline">\(v_0,\dotsm,v_m\)</span> in <span class="math inline">\(\Omega\)</span>.</p>
+<p><strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(\Omega \subset \mathbb R^n\)</span> be a nonempty, convex set. The following assertions hold</p>
+<ol type="1">
+<li>We always have <span class="math inline">\(\text{ri } (\Omega)\neq \emptyset\)</span></li>
+<li>We have <span class="math inline">\([a,b)\subset \text{ri }(\Omega)\)</span> for any <span class="math inline">\(a\in \text{ri }(\Omega)\)</span> and <span class="math inline">\(b\in\bar \Omega\)</span>.</li>
+</ol>
+<p><strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(\Omega_1, \Omega_2\)</span> be nonempty convex subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then we have <span class="math display">\[
+\text{ri }(\Omega_1-\Omega_2)=\text{ri }(\Omega_1)-\text{ri }(\Omega_2).
+\]</span> <strong>Lemma</strong></p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex subset of <span class="math inline">\(\mathbb R^n\)</span>. Suppose that <span class="math inline">\(0\in \bar \Omega\backslash \text{ri }(\Omega)\)</span>. Then <span class="math inline">\(\text{aff }(\Omega)\)</span> is a subspace of <span class="math inline">\(\mathbb R^n\)</span>.</p>
+<p><strong>Lemma</strong></p>
+<p>A nonempty subset <span class="math inline">\(\Omega\)</span> of <span class="math inline">\(\mathbb R^n\)</span> is affine if and only if <span class="math inline">\(\Omega-\omega\)</span> is a subspace of <span class="math inline">\(\mathbb R^n\)</span> for any <span class="math inline">\(\omega\in \Omega\)</span>.</p>
+<p><strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set. Suppose that <span class="math inline">\(\bar x\in \text{ri }(\Omega)\)</span> and <span class="math inline">\(\bar y\in \Omega\)</span>. Then there exists <span class="math inline">\(t&gt;0\)</span> such that <span class="math display">\[
+\bar x+t(\bar x-\bar y)\in \Omega.
+\]</span> <strong>Proposition</strong></p>
+<p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set in <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(0\notin \text{ri }(\Omega)\)</span> if and only if the sets <span class="math inline">\(\Omega\)</span> and <span class="math inline">\(\{0\}\)</span> can be properly separated, i.e. there exists <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
+\sup\{\langle v,x\rangle\;|\;x\in \Omega\}\le 0\\
+\inf\{\langle v,x\rangle\;|\;x\in \Omega\}&lt;0.
+\]</span> <strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be two nonempty convex subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if and only if <span class="math inline">\(\text{ri }(\Omega_1)\cap \text{ri }(\Omega_2)=\emptyset\)</span>.</p>
 
         
       
@@ -436,7 +816,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/Convex Optimization/5. Duality/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/Convex Optimization/11. Interior-Point Methods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -450,7 +830,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/05/25/Convex Optimization/5. Duality/" class="post-title-link" itemprop="url">5. Duality</a>
+            <a href="/2019/07/24/Convex Optimization/11. Interior-Point Methods/" class="post-title-link" itemprop="url">11. Interior-point methods</a>
           
         </h1>
 
@@ -465,7 +845,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
                 
               
 
-              <time title="Created: 2019-05-25 22:24:30" itemprop="dateCreated datePublished" datetime="2019-05-25T22:24:30+08:00">2019-05-25</time>
+              <time title="Created: 2019-07-24 21:58:01" itemprop="dateCreated datePublished" datetime="2019-07-24T21:58:01+08:00">2019-07-24</time>
             </span>
           
             
@@ -476,7 +856,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-21 19:48:00" itemprop="dateModified" datetime="2019-09-21T19:48:00+08:00">2019-09-21</time>
+                <time title="Modified: 2019-08-25 23:23:28" itemprop="dateModified" datetime="2019-08-25T23:23:28+08:00">2019-08-25</time>
               </span>
             
           
@@ -495,7 +875,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
           
 
           
-            <span id="/2019/05/25/Convex Optimization/5. Duality/" class="post-meta-item leancloud_visitors" data-flag-title="5. Duality" title="Views">
+            <span id="/2019/07/24/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="11. Interior-point methods" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -513,7 +893,7 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/05/25/Convex Optimization/5. Duality/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/25/Convex Optimization/5. Duality/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/07/24/Convex Optimization/11. Interior-Point Methods/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/24/Convex Optimization/11. Interior-Point Methods/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -527,412 +907,117 @@ f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="duality">5. Duality</h1>
-<h2 id="the-lagrange-dual-function">5.1 The Lagrange dual function</h2>
-<h3 id="the-lagrangian">5.1.1 The Lagrangian</h3>
-<p>We consider the optimization problem (we do not assume convex) in the standard form <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0\\h_i(x)=0
-\end{array}
-\end{array}.
-\]</span> The basic idea in Lagrangian duality is to take the constraints in (5.1) into account by augmenting the objective function with a weighted sum of the constraint functions. <span class="math display">\[
-L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^p v_i h_i(x).
-\]</span> The vectors <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(v\)</span> are called <strong>dual variables</strong> or <strong>Lagrange Multiplier vectors</strong>.</p>
-<h3 id="the-lagrange-dual-function-1">5.1.2 The Lagrange dual function</h3>
-<p>We define the Lagrange dual function as the minimum value of the Lagrangian over x <span class="math display">\[
-g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right).
-\]</span> Since the dual function is the pointwise infimum of a family of affine functions of <span class="math inline">\((\lambda,v)\)</span>, it is concave even when the original problem is not convex.</p>
-<h3 id="lower-bounds-on-optimal-value">5.1.3 Lower bounds on optimal value</h3>
-<p>The dual function yields the lower bounds on the optimal value <span class="math inline">\(p^\star\)</span> of the problem. For any <span class="math inline">\(\lambda \succeq 0\)</span> and any <span class="math inline">\(v\)</span> we have <span class="math display">\[
-g(\lambda,v)\le p^\star
-\]</span> This important property is easily verified, suppose <span class="math inline">\(\tilde x\)</span> is a feasible point for the problem, i.e. <span class="math inline">\(f_i(\tilde x)\le 0\)</span> and <span class="math inline">\(h_i(\tilde x)=0\)</span>. Then we have <span class="math display">\[
-\sum_{i=1}^m \lambda_if_i(\tilde x)+\sum_{i=1}^p v_ih_i(\tilde x)\le 0.
-\]</span> Then we have <span class="math display">\[
-g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right)\le L(\tilde x,\lambda,v)\le f_0(\tilde x).
-\]</span> The equality holds, but is vacuous when <span class="math inline">\(g(\lambda,v) = -\infty\)</span>. The dual function gives a nontrivial lower bound on <span class="math inline">\(p^\star\)</span> only when <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \text{dom} g\)</span>.</p>
-<p>We refer to a pair <span class="math inline">\((\lambda, v)\)</span> with <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \text{dom} g\)</span> as dual feasible to let <span class="math inline">\(g(\lambda,v)&gt; -\infty\)</span>.</p>
-<h3 id="linear-approximation-interpretation">5.1.4 Linear approximation interpretation</h3>
-<p>The Lagrangian and lower bound property can be given a simple interpretation.</p>
-<p>We first rewrite the origin problem as an unconstrained problem <span class="math display">\[
-\text{minimize }f_0(x)+\sum_{i=1}^mI_-(f_i(x))+\sum_{i=1}^pI_0(h_i(x))
-\]</span> where <span class="math display">\[
-I_-(u)=\begin{cases}0&amp;u\le 0\\\infty &amp;u&gt;0\end{cases}
-\]</span> and similar for <span class="math inline">\(I_0(u)\)</span>.The two indicator functions can be interpreted as expressing out displeasure associated with a constraint function. Then we can use <span class="math inline">\(\lambda_if_i(x)\)</span> and <span class="math inline">\(v_ih_i(x)\)</span> to replace the indicator functions to show the displeasure. Then the objective becomes the Lagrangian <span class="math display">\[
-\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)
-\]</span> and the dual function value <span class="math inline">\(g(\lambda,v)\)</span> is the optimal value of the problem.</p>
-<h3 id="examples">5.1.5 Examples</h3>
-<p><strong>Least-squares solution of linear equations</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-x^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}.
-\]</span> Then the Lagrangian <span class="math inline">\(L(x,v)=x^Tx +v^T(Ax-b)\)</span>.</p>
-<p>The dual function <span class="math inline">\(g(v)=\inf_x L(x,v)=\inf_x {(x^Tx +v^T(Ax-b))}\)</span>.</p>
-<p>We hope to derive the analytical expression <span class="math display">\[
-\nabla_xL(x,v)=2x+A^Tv=0\\
-x=-\frac{1}{2}A^Tv\\
-g(v)=\frac{1}{4}v^TAA^Tv+v^T(-\frac{1}{2}AA^Tv-b)=-\frac{1}{4}v^TAA^Tv-v^Tb,
-\]</span> which is a concave quadratic function.</p>
-<p><strong>Standard form LP</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-c^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b\\x\succeq 0
-\end{array}
-\end{array}.
-\]</span> The Lagrangian <span class="math inline">\(L(x,\lambda,v)= c^Tx -\lambda^T x+v^T(Ax-b)\)</span>.</p>
-<p>The dual function <span class="math inline">\(g(\lambda,v) = \inf_x L(x,\lambda,v)\)</span>, <span class="math display">\[
-\inf_x(c^Tx -\lambda^T x+v^T(Ax-b))=-v^Tb+\inf_x(c^T-\lambda^T+v^TA)x.
-\]</span> Therefore <span class="math display">\[
-g(\lambda,v)=
-\begin{cases}
--v^Tb&amp;c^T-\lambda^T+v^TA=0\\
--\infty&amp;\text{otherwise.}
-\end{cases}
-\]</span></p>
-<h3 id="the-lagrange-dual-function-and-conjugate-functions">5.1.6 The Lagrange dual function and conjugate functions</h3>
-<p>Recall that the conjugate <span class="math inline">\(f^*\)</span> of a function <span class="math inline">\(f\)</span> is given by <span class="math display">\[
-f^*(y)=\sup_{x\in domf}(y^Tx-f(x)).
-\]</span> The conjugate function and Lagrange dual function are closely related.</p>
-<p>Consider an optimization problem with linear inequality and equality constraints, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax\preceq b\\Cx=d
-\end{array}
-\end{array}.
-\]</span> We can write the dual function as <span class="math display">\[
-g(\lambda,v)=\inf _x(f_0(x)+\lambda^T(Ax-b)+v^T(Cx-d))\\
-=-b^T\lambda-d^Tv+\inf_x(f_0(x)+(A^T\lambda+C^Tv)^Tx)\\
-=-b^T\lambda-d^Tv-f_0^*(-A^T\lambda-C^Tv).
-\]</span></p>
-<h2 id="the-lagrange-dual-problem">5.2 The Lagrange dual problem</h2>
-<p>For each pair <span class="math inline">\((\lambda,v)\)</span> with <span class="math inline">\(\lambda\ge 0\)</span>, the Lagrange dual function gives us a lower bound on the optimal value <span class="math inline">\(p^\star\)</span> of the optimization problem. We hope to know the best lower bound , <span class="math display">\[
-\begin{array}{rl}
-\text{maxmize} &amp;g(\lambda,v)\\
-\text{subject to}&amp;\lambda\succeq 0.
-\end{array}
-\]</span> This problem is called <strong>Lagrange dual problem</strong>. The original problem is sometimes called the <strong>primal problem</strong>. We refer to <span class="math inline">\((\lambda^\star,v^\star)\)</span> as dual optimal or optimal Lagrange multipliers.</p>
-<h3 id="making-dual-constraint-explicit">5.2.1 Making dual constraint explicit</h3>
-<p>We have known that the Lagrange dual function for the standard form LP <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-c^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b\\x\succeq0
-\end{array}
-\end{array},
-\]</span> is given by <span class="math display">\[
-g(\lambda,v)=\begin{cases}-b^Tv&amp;A^Tv-\lambda+c=0\\-\infty &amp; \text{otherwise}.\end{cases}
-\]</span> We can form an equivalent problem by making these equality constraints explicit <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-b^Tv
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-A^Tv-\lambda+c=0\\ \lambda\succeq 0
-\end{array}
-\end{array}.
-\]</span> The problem can be further simplified as <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-b^Tv
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-A^Tv+c\succeq 0
-\end{array}
-\end{array}.
-\]</span></p>
-<h3 id="weak-duality">5.2.2 Weak duality</h3>
-<p>The optimal value of the Lagrange dual problem, which we denote as <span class="math inline">\(d^\star\)</span>. We have the simple but important inequality <span class="math display">\[
-d^\star \le p^\star
-\]</span> which holds even if the original problem is not convex. This property is called <strong>weak duality</strong>.</p>
-<p>The weak duality inequality holds when <span class="math inline">\(d^\star\)</span> and <span class="math inline">\(p^\star\)</span> are infinite. For example, if the primal problem is unbounded below, so that <span class="math inline">\(p^\star=-\infty\)</span>, we must have <span class="math inline">\(d^\star =-\infty\)</span>, i.e. the Lagrange dual problem is infeasible. Conversely, if the dual problem is unbounded above, the primal problem is infeasible.</p>
-<p>We refer to the difference <span class="math inline">\(p^\star -d^\star\)</span> as the optimal <strong>duality gap</strong>.</p>
-<h3 id="strong-duality-and-slaters-constraint-qualification">5.2.3 Strong duality and Slater's constraint qualification</h3>
-<p>If the equality <span class="math display">\[
-d^\star=p^\star 
-\]</span> holds, we say that strong duality holds.</p>
-<p>Strong duality does not hold in general. But if the primal problem is convex, we usually have strong duality. There are many results that establish conditions on the problem under which strong duality holds. These conditions are called constraint qualifications.</p>
-<p><strong>Slater's Condition</strong></p>
-<p>There exists an <span class="math inline">\(x\in \text{relint }\mathcal D\)</span> such that if the first <span class="math inline">\(k\)</span> constraint functions <span class="math inline">\(f_1,\dotsm,f_k\)</span> are affine, then <span class="math display">\[
+          <h1 id="interior-point-methods">11. Interior-point methods</h1>
+<h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
+<p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
+\coo[f_0(x)]{f_i(x)\le 0\\Ax=b}
+\]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
 \begin{array}{rcl}
-f_i(x)&amp;\le&amp;0,&amp;i=1,\dotsm,k\\
-f_i(x)&amp;&lt;&amp;0,&amp;i=k+1,\dotsm,m\\
-Ax&amp;=&amp;b.
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;0
 \end{array}
-\]</span> Slater's theorem states that strong duality holds if Slater's condition holds.</p>
-<h3 id="examples-1">5.2.4 Examples</h3>
-<p>Least-squares solution of equations, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-x^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}.
-\]</span> The associated dual problem is <span class="math display">\[
-\text{maxmize }-(1/4)v^TAA^Tv-b^Tv.
-\]</span> We have <span class="math display">\[
-p^\star=d^\star.
 \]</span></p>
-<h3 id="mixed-strategies-for-matrix-games">5.2.5 Mixed strategies for matrix games</h3>
-<p>In this section, we use strong duality to derive a basic result for zero-sum matrix games. The players use randomized strategies, then the expected payoff from player 1 to player 2 is then <span class="math display">\[
-\sum_{k=1}^n\sum_{l=1}^m u_kv_lP_{kl}=u^TPv.
-\]</span> Player 1 wishes to choose u to minimize <span class="math inline">\(u^TPv\)</span> while the player 2 wishes to maximize.</p>
-<p>If player 1 knows the strategy of player 2, (player 2 will choose <span class="math inline">\(v\)</span> to maximize <span class="math inline">\(u^TPv\)</span>, which results in the following) <span class="math display">\[
-\sup\{u^TPv| v\succeq 0,1^Tv=1\}=\max_{i=1,\dotsm,m} (P^Tu)_i.
-\]</span> The best thing player 1 can do is to minimize the worst case, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\max_{i=1,\dotsm,m} (P^Tu)_i
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-u\succeq 0&amp;1^Tu=1
-\end{array}
-\end{array}.
-\]</span> Similarly, if player 2 knows the strategy of player 1, we have <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\min_{i=1,\dotsm,m} (Pv)_i
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-v\succeq 0&amp;1^Tv=1
-\end{array}
-\end{array}.
-\]</span></p>
-<p>It can be shown that the dual gap is zero.</p>
-<h2 id="geometric-interpretation">5.3 Geometric interpretation</h2>
-<h3 id="weak-and-strong-duality-via-set-of-values">5.3.1 Weak and strong duality via set of values</h3>
-<p>We can give a simple geometric interpretation of the dual function in terms of the set <span class="math display">\[
-\mathcal G=\{f_1(x),\dotsm,f_m(x),h_1(x),\dotsm,h_p(x),f_0(x)\in\mathbb R^m\times \mathbb R^p\times \mathbb R\;|\;x\in \mathcal D\},
-\]</span> which is the set of values taken on by the constraint and objective functions. The optimal value <span class="math inline">\(p^*\)</span> can be expressed in terms of <span class="math inline">\(\mathcal G\)</span> as <span class="math display">\[
-p^*=\inf\{t\;|\; (u,v,t)\in \mathcal G,\; u\preceq 0,\; v=0\}.
-\]</span> If we only consider one inequality constraint, we have the Lagrangian function, <span class="math display">\[
-L(\lambda,x)=t(x)+\lambda u(x),\quad u(x)\le 0,\lambda\ge0.
-\]</span> Then the primal problem is to minimize <span class="math inline">\(t(x)\)</span>. The dual problem is to maximize <span class="math inline">\(g(\lambda)=\inf\{\lambda u+t\}\)</span>=<span class="math inline">\(\inf ((\lambda,1)^T(u,t))\)</span>, which is a supporting plane with slope <span class="math inline">\(-\lambda\)</span>. <span class="math inline">\(u=0\)</span> gives <span class="math inline">\(g(\lambda)\)</span>.</p>
-<h3 id="proof-of-strong-duality-under-constraint-qualification">5.3.2 Proof of strong duality under constraint qualification</h3>
-<h3 id="multicriterion-interpretation">5.3.3 Multicriterion interpretation</h3>
-<h2 id="saddle-point-interpretation">5.4 Saddle-point interpretation</h2>
-<p>You can refer to the notes for <strong>Nonlinear Optimization</strong>.</p>
-<h2 id="optimality-conditions">5.5 Optimality conditions</h2>
-<h3 id="certificate-of-suboptimality-and-stopping-criteria">5.5.1 Certificate of suboptimality and stopping criteria</h3>
-<p>If we can find a dual feasible <span class="math inline">\((\lambda,v)\)</span>, we establish a lower bound on the optimal value of the primal problem: <span class="math inline">\(p^\star \ge g(\lambda,v)\)</span>. Dual feasible points allow us to bound how suboptimal a given feasible point is, without knowing the exact value of <span class="math inline">\(p^\star\)</span> <span class="math display">\[
-f_0(x)-p^\star\le f_0(x)-g(\lambda,v).
-\]</span> In particular, this establishes that <span class="math inline">\(x\)</span> is <span class="math inline">\(\epsilon-\)</span>suboptimal with <span class="math inline">\(\epsilon= f_0(x)-g(\lambda,v)\)</span>.</p>
-<p>This can be used as a stop criteria.</p>
-<h3 id="complementary-slackness">5.5.2 Complementary slackness</h3>
-<p>If the strong duality holds, Let <span class="math inline">\(x^\star\)</span> be a primal optimal and <span class="math inline">\((\lambda^\star, v^\star)\)</span> be a dual optimal point. This means that <span class="math display">\[
-\begin{array}{rcl}
-f_0(x^\star)&amp;=&amp;g(\lambda^\star,v^\star)\\
-&amp;=&amp;\displaystyle{\inf_x(f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x)}\\
-&amp;\le&amp; \displaystyle{f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star f_i(x^\star)+\sum_{i=1}^pv_i^\star h_i(x^\star)}\\
-&amp;\le&amp; f_0(x^\star).
-\end{array}
-\]</span> We conclude that two inequalities in this chain hold with equality.</p>
-<p>That means <span class="math display">\[
-\begin{array}{rcl}
-h_i(x^\star)&amp;=&amp;0\\
-\displaystyle\sum_{i=1}^m \lambda_i^\star f_i(x^\star)&amp;=&amp;0.
-\end{array}
-\]</span> The second equality means <span class="math display">\[
-\lambda_i^\star &gt;0\implies f_i(x^\star)=0\\
-f_i(x^\star)&lt;0 \implies \lambda_i^\star=0
-\]</span></p>
-<h3 id="kkt-optimality-conditions">5.5.3 KKT optimality conditions</h3>
-<p>We now assume that the functions are differentiable, but we make no assumptions yet about convexity.</p>
-<p><strong>KKT condition for problems</strong></p>
-<p>Since <span class="math inline">\(x^\star\)</span> minimizes <span class="math inline">\(L(x,\lambda^\star,v^\star)\)</span>, the gradient must vanish. Thus we have <span class="math display">\[
-\begin{array}{rcl}
-f_i(x^\star)&amp;\le&amp; 0\\
-h_i(x^\star) &amp;=&amp;0\\
-\lambda_i^\star&amp;\ge&amp; 0\\
-\lambda_i^\star f_i(x^\star)&amp;=&amp;0\\
-\nabla f_0(x^\star)+\sum_{i=1}^m \lambda_i^\star \nabla f_i(x^\star)+\sum_{i=1}^p v_i^\star \nabla h_i(x^\star)&amp;=&amp;0
-\end{array}
-\]</span> which are called the Karush-Kuhn-Tucker (KKT) conditions.</p>
-<p>To summarize, for any optimization problem with differentiable objective and constraint functions for which strong duality obtains, any pair of primal and dual optimal points must satisfy the KKT conditions.</p>
-<p>When the primal problem is convex, the KKT conditions are also sufficient for the points to be primal and dual optimal.</p>
-<h3 id="mechanic-interpretation-of-kkt-conditions">5.5.4 Mechanic interpretation of KKT conditions</h3>
-<p>The potential energy in the springs as a function of the block positions, is given by <span class="math display">\[
-f_0(x_1,x_2)=\frac{1}{2}k_1x_1^2+\frac{1}{2}k_2(x_2-x_1)^2+\frac{1}{2}k_3(l-x_2)^2.
-\]</span> The equilibrium position <span class="math inline">\(x^\star\)</span> is the position that minimizes the potential energy subject to the inequalities <span class="math display">\[
-w/2-x_1\le 0\\
-w+x_1-x_2\le 0\\
-w/2-l+x_2\le 0.
-\]</span> The KKT conditions for the problem consist of the constraints, <span class="math inline">\(\lambda_i\ge 0\)</span>, the complementary slackness conditions <span class="math display">\[
-\lambda_1(w/2-x_1)= 0\\
-\lambda_2(w+x_1-x_2)= 0\\
-\lambda_3(w/2-l+x_2)= 0,
-\]</span> and the zero gradient condition <span class="math display">\[
-\begin{bmatrix}
-k_1x_1-k_2(x_2-x_1)\\k_2(x_2-x_1)-k_3(l-x_2)
-\end{bmatrix}+
-\lambda_1
-\begin{bmatrix}
--1\\0
-\end{bmatrix}+
-\lambda_2
-\begin{bmatrix}
-1\\-1
-\end{bmatrix}+
-\lambda_3
-\begin{bmatrix}
-0\\1
-\end{bmatrix}=0.
-\]</span> The gradient condition can be interpreted as the force balance equations for the two blocks.</p>
-<p><span class="math inline">\(\lambda_1\)</span> is the force from the left wall, <span class="math inline">\(\lambda_2\)</span> is the force between two blocks' contact, <span class="math inline">\(\lambda_3\)</span> is the force from the right wall. If no contact, the force will be zero, which is decided by the slackness conditions.</p>
-<h3 id="solving-the-primal-problem-via-the-dual">5.5.5 Solving the primal problem via the dual</h3>
-<p>Suppose we have strong duality and an optimal <span class="math inline">\((\lambda^\star, v^\star)\)</span> is known. Suppose the solution of <span class="math display">\[
-\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x),
-\]</span> is unique. Then if the solution is primal feasible, it must be primal optimal. If it is not primal feasible, then no primal optimal point can exist.</p>
-<h2 id="perturbation-and-sensitivity-analysis">5.6 Perturbation and sensitivity analysis</h2>
-<p>You can refer to the notes for <strong>Nonlinear Optimization</strong>.</p>
-<h2 id="examples-2">5.7 Examples</h2>
-<p>In this section, we show by examples that simple equivalent reformulations of a problem can lead to very different dual problems. We will consider the following reformulations.</p>
+<p>Interior-point method solve the problem by applying newton’s method to a sequence of equality constrained problem. We will concentrate on a particular interior-point method, called the barrier method, for which we give a proof of convergence and a complexity analysis. We also describe the primal-dual interior point method, but do note give analysis.</p>
+<p>We can view interior-point methods as another level in the hierarchy of convex optimization algorithms.</p>
 <ol type="1">
-<li>Introducing new variables and associated equality constraints.</li>
-<li>Replacing the objective with an increasing function of the original objective.</li>
-<li>Making explicit constraints implicit.</li>
+<li>Linear equality constrained quadratic problems are the simplest.</li>
+<li>Newton’s method is the next level.</li>
+<li>Interior-point method form the next level.</li>
 </ol>
-<h3 id="introducing-new-variables">5.7.1 Introducing new variables</h3>
-<p>Consider an unconstrained problem of the form <span class="math display">\[
-\text{minimize}\quad f_0(Ax+b).
-\]</span> Its Lagrange dual function is the constant <span class="math inline">\(p^*\)</span>. So while we do have the strong duality, the Lagrangian dual is neither useful nor interesting.</p>
-<p>Now reformulate the problem as <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; f_0(y)\\
-\text{subject to}&amp; Ax+b=y.
-\end{array}
-\]</span> Then the Lagrangian of the reformulated problem is <span class="math display">\[
-L(x,y,v)=f_0(y)+v^T(Ax+b-y).
-\]</span> To find the dual function, we minimize <span class="math inline">\(L\)</span> over <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. <span class="math display">\[
-\begin{array}{rcl}
-g(v)&amp;=&amp;b^Tv+\inf_{x,y} \{f_0(y)+v^T(Ax-y)\}\\
-&amp;=&amp;b^Tv+\inf_{y}\{f_0(y)-v^Ty\}\quad(v^TA=0)\\
-&amp;=&amp;b^Tv-f_0^*(v)\quad(v^TA=0)\\
-\end{array}
-\]</span> Therefore, the dual problem is <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; b^Tv-f_0^*(v)\\
-\text{subject to}&amp; A^Tv=0.
-\end{array}
-\]</span> Thus, the dual problem of the reformulated problem is considerably more useful than the dual of the original problem.</p>
-<p>This idea of introducing new equality constraints can be applied to the constraint functions as well.</p>
-<h3 id="transforming-the-objective">5.7.2 Transforming the objective</h3>
-<p>We consider the minimum norm problem <span class="math display">\[
-\text{minimize}\quad ||Ax+b||.
-\]</span> We reformulate the problem as <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; \frac{1}{2}||y||^2\\
-\text{subject to}&amp; Ax-b=y.
-\end{array}
-\]</span> Then the dual of the problem is <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; -\frac{1}{2}||v||_*^2+b^Tv\\
-\text{subject to}&amp; A^Tv=0.
-\end{array}
+<h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
+<p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
+\coo[f_0(x)+\sum_{i=1}^mI_-(f_i(x))]{Ax=b}
+\]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
+<h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
+<p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
+\hat I_-(u)=-\frac{1}{t}\log (-u)
+\]</span> Then the problem becomes <span class="math display">\[
+\coo[f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))]{Ax=b}
+\]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
+<p>The function <span class="math display">\[
+\phi(x)=-\sum_{i=1}^m \log(-f_i(x))
+\]</span> is called the logarithmic barrier or log barrier for the problem.</p>
+<p>Of course, the problem is only an approximation of the original problem, so one may wondering how well. Intuitive suggests, the approximation improves as the parameter <span class="math inline">\(t\)</span> grows. One the other hand, when the parameter <span class="math inline">\(t\)</span> is large, the function <span class="math inline">\(f_0+(1/t)\phi\)</span> is difficult to minimize by Newton’ method, since the Hessian varies rapidly near the boundary feasible set. We will see that this problem can be circumvented by solving a sequence of problems, increasing the parameter <span class="math inline">\(t\)</span> (and therefore, accuracy of the approximation) at each step, and starting each Newton minimization at the solution of the problem for the previous value of <span class="math inline">\(t\)</span>.</p>
+<p>For future reference, we note that the gradient and Hessian of the logarithmic barrier function <span class="math inline">\(\phi\)</span> are given by <span class="math display">\[
+\nabla \phi(x)=\sum_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
+\nabla^2 \phi(x)=\sum_{i=1}^{m} \frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\sum_{i=1}^m  \frac{1}{-f_i(x)}\nabla^2 f_i(x)
 \]</span></p>
-<h3 id="implicit-constraints">5.7.3 Implicit constraints</h3>
-<h2 id="theorems-of-alternatives">5.8 Theorems of alternatives</h2>
-<h3 id="weak-alternatives-via-the-dual-function">5.8.1 Weak alternatives via the dual function</h3>
-<p>In this section, we apply Lagrange duality theory to the problem of determining feasibility of a system of inequalities and equalities. We can think of this problem as the standard problem with objective function <span class="math inline">\(f_0=0\)</span>, <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; 0\\
-\text{subject to}&amp; f_i(x)\le 0, &amp;i=1,\dotsm,m\\
-&amp;h_i(x)=0,&amp;i=1,\dotsm,p.
+<h3 id="central-path">11.2.2 Central path</h3>
+<p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
+\coo[tf_0(x)+\phi(x)]{Ax=b}
+\]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
+<p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
+Ax^\star(t)=b\\
+f_i(x^\star (t))&lt;0
+\]</span> and there exists a <span class="math inline">\(\hat v\)</span> such that <span class="math display">\[
+0=t\nabla f_0(x^\star(t))+\nabla \phi(x^\star(t))+A^T\hat v\\
+=t\nabla f_0(x^\star(t))+\sum_{i=1}^m \frac{1}{-f_i(x^\star(t))}\nabla f_i(x^\star(t))+A^T\hat v
+\]</span> <strong>Dual points from central path</strong></p>
+<p>From the above, we can derive an important property of the central path: every central point yields a dual feasible point, and hence a lower bound on the optimal <span class="math inline">\(p^\star\)</span>. We define <span class="math inline">\(\lambda_i^\star (t)=-\frac{1}{tf_i(x^\star(t))}\)</span>, <span class="math inline">\(v^\star(t)=\hat v/t\)</span></p>
+<p>Then we have <span class="math display">\[
+\nabla f_0(x^\star(t))+\sum_{i=1}^m\lambda_i^\star (t)\nabla f_i(x^\star(t))+A^Tv^\star (t)=0
+\]</span> We see the optimal point <span class="math inline">\(x^\star(t)\)</span> minimizes the Lagrangian, <span class="math display">\[
+L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+v^T(Ax-b)
+\]</span> <strong>Interpretation via KKT conditions</strong> <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;1/t
 \end{array}
-\]</span> This problem has optimal value <span class="math display">\[
-p^*=\begin{cases}0&amp;\text{feasible}\\ \infty&amp;\text{infeasible}.\end{cases}
-\]</span> <strong>The dual function</strong> <span class="math display">\[
-g(\lambda,v)=\inf_{x\in\mathcal D}\left(\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^pv_ih_i(x)\right),
-\]</span> If the inequality system <span class="math display">\[
-\lambda \succeq 0,\quad g(\lambda,v)&gt;0,
-\]</span> is feasible. Then the primal problem is infeasible. If the primal problem is feasible, then the dual problem is infeasible. Two systems of inequalities (equalities) are called weak alternatives if at most one of the two is feasible.</p>
-<h3 id="strong-alternatives">5.8.2 Strong alternatives</h3>
-<h2 id="generalized-inequalities">5.9 Generalized inequalities</h2>
-<p>In this section, we examine how Lagrange duality extends to a problem with generalized inequality constraints, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array},
-\]</span> where <span class="math inline">\(K_i\subseteq \mathbb R^{k_i}\)</span> are proper cones.</p>
-<h3 id="the-lagrange-dual">5.9.1 The Lagrange dual</h3>
-<p>With the generalized inequality <span class="math inline">\(f_i(x)\preceq_{k_i}0\)</span>, we associate a Lagrange multiplier vector <span class="math inline">\(\lambda_i\in\mathbb R^{k_i}\)</span> and define the associated Lagrangian as <span class="math display">\[
-L(x,\lambda,\mu)=f_0(x)+\lambda_1^Tf_1(x)+\dotsm+\lambda_m^T f_m(x)+v_1h_1(x)+\dotsm+v_ph_p(x),
-\]</span> where <span class="math inline">\(\lambda=(\lambda_1,\dotsm,\lambda_m)\)</span> and <span class="math inline">\(v=(v_1,\dotsm,v_p)\)</span>. The dual function is defined as <span class="math display">\[
-g(\lambda,v)=\inf_{x\in\mathcal D}L(x,\lambda,v).
-\]</span> As in a problem with scalar inequalities, the dual function gives the lower bounds on <span class="math inline">\(p^*\)</span>, the optimal value of the primal problem. For a problem with scalar inequalities, we require <span class="math inline">\(\lambda_i\ge 0\)</span>. Here the nonnegativity requirement on the dual variables is replaced by the condition, <span class="math display">\[
-\lambda_i\succeq_{K_i^*} 0,\quad \forall i=1,\dotsm,m,
-\]</span> where <span class="math inline">\(K_{i}^*\)</span> denotes the dual cone of <span class="math inline">\(K_i\)</span>. In other words, the Lagrange multipliers associated with the inequalities must be <strong>dual nonnegative</strong>.</p>
-<p><strong>Weak duality</strong> follows immediately from the definition of dual cone. If <span class="math inline">\(\lambda_i\succeq_{k_i^*}0\)</span> and <span class="math inline">\(f_i(\tilde x)\preceq_{k_i}0\)</span>, then <span class="math inline">\(\lambda_if_i(\tilde x)\le 0\)</span>.</p>
-<p>The Lagrange dual optimization problem is <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{maximize}\quad &amp; 
-\begin{array}{lll}
-g(\lambda,v)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-\lambda_i\succeq_{k_i^*}0,&amp;i=1,\dotsm,m
-\end{array}
-\end{array}.
-\]</span> We always have weak duality whether or not the primal problem is convex.</p>
-<p><strong>Slater’s condition and strong duality</strong></p>
-<p>Strong duality holds when the primal problem is convex and satisfies an appropriate constraint problem. For example, a generalized version of Slater’s condition for the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array},
-\]</span> where <span class="math inline">\(f_0(x)\)</span> is convex and <span class="math inline">\(f_i\)</span> is <span class="math inline">\(K_i\)</span>-convex, is that there exists an <span class="math inline">\(x\in\text{relint}\mathcal D\)</span> with <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(f_i(x)\prec_{k_i}0,\forall i=1,\dotsm,m\)</span>. This condition implies strong duality.</p>
+\]</span> <strong>Force field interpretation</strong></p>
+<h2 id="the-barrier-method">11.3 The barrier method</h2>
+<p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
+\coo[(m/\epsilon)f_0(x)+\phi(x)]{Ax=b}
+\]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
+<h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
+<p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
+<p>In other words, we compute <span class="math inline">\(x^\star(t)\)</span> for a sequence of increasing values of <span class="math inline">\(t\)</span>, until <span class="math inline">\(t\ge m/\epsilon\)</span>, which guarantee that we have an $-suboptimal $ solution of the original problem. When the method is proposed firstly, it is called sequential unconstrained minimization technique. Today, the method is usually called the <strong>barrier method</strong> or <strong>path-following</strong> method.</p>
+<h3 id="examples">11.3.2 Examples</h3>
+<h3 id="convergence-analysis">11.3.3 Convergence Analysis</h3>
+<h3 id="newton-step-for-modified-kkt-conditions">11.3.4 Newton step for modified KKT conditions</h3>
+<p>In the barrier method, the newton step <span class="math inline">\(\Delta x_{nt}\)</span>, and associated dual variables are given by the linear equations, <span class="math display">\[
+\begin{bmatrix}
+t\nabla^2f_0(x)+\nabla^2 \phi(x)&amp;A^T\\A&amp;0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{nt}\\v_{nt}
+\end{bmatrix}=-
+\begin{bmatrix}
+t\nabla f_0(x)+\nabla \phi(x)\\0
+\end{bmatrix}
+\]</span> In this section, we will show how these newton steps for the centering problem can be interpreted as Newton steps for directly solving the modified KKT equations, <span class="math display">\[
+\nabla f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+A^Tv=0\\
+-\lambda_if_i(x)=1/t\\
+Ax=b
+\]</span> in a particular way.</p>
+<h2 id="feasibility-and-phase-i-methods">11.4 Feasibility and phase I methods</h2>
+<h2 id="complexity-analysis-via-self-concordance">11.5 Complexity analysis via self-concordance</h2>
+<h2 id="problems-with-generalized-inequalities">11.6 Problems with generalized inequalities</h2>
+<h2 id="primal-dual-interior-point-methods">11.7 Primal-dual Interior-point methods</h2>
+<p>In this section, we describe a basic primal-dual interior-point method. Primal-dual interior-point methods are very similar to the barrier method, with some differences.</p>
+<ol type="1">
+<li><strong>There is only one loop or iteration</strong>, i.e. there is no distinction between inner and outer iterations as in the barrier method. At each iteration, both the primal and dual variables are updated.</li>
+<li>The search direction in a primal-dual interior-point method are obtained from Newton’s method, applied to the <strong>modified KKT equations.</strong></li>
+<li>In a primal-dual interior-point method, the primal-dual iterates are not necessarily feasible.</li>
+</ol>
+<p>Primal-dual interior-point methods are often more efficient than the barrier method, especially when high accuracy is required, since they can exhibit better than linear convergence.</p>
+<h3 id="primal-dual-search-direction">11.7.1 Primal-dual search direction</h3>
+<p>As in the barrier method, we start with the modified KKT conditions, expressed as <span class="math inline">\(r_t(x,\lambda,v)=0\)</span>, where we define <span class="math display">\[
+r_t(x,\lambda,v)=
+\begin{bmatrix}
+\nabla f_0(x)+Df(x)^T\lambda+A^Tv\\
+-diag(\lambda)f(x)-(1/t)1\\
+Ax-b
+\end{bmatrix}
+\]</span> If <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> satisfy <span class="math inline">\(r_t(x,\lambda,v)=0\)</span> (and <span class="math inline">\(f_i(x)&lt;0\)</span>), then <span class="math inline">\(x=x^\star (t)\)</span>, <span class="math inline">\(\lambda = \lambda^\star (t)\)</span>, <span class="math inline">\(v=v^\star (t)\)</span>. In particular, <span class="math inline">\(x\)</span> is primal feasible, and <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> are dual feasible, with duality gap <span class="math inline">\(m/t\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(r_{dual}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>dual residual</strong>.</li>
+<li><span class="math inline">\(r_{pri}=Ax-b\)</span> is called the <strong>primal residual</strong>.</li>
+<li><span class="math inline">\(r_{cent}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>centrality residual</strong>.</li>
+</ol>
 
         
       
@@ -956,7 +1041,7 @@ h_i(x)=0 &amp; i=1,\dotsm,p
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1001,7 +1086,7 @@ h_i(x)=0 &amp; i=1,\dotsm,p
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

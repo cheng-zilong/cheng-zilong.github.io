@@ -56,17 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="Thanks for the module MA5268 NUS and Prof. Toh 3. Basic Convex Analysis (1) 3.1 Convex sets Definition (Convex set) A set \(D\subseteq \mathbb R^n\) is said to be convex if for any two points \(x,">
+  <meta name="description" content="3. Basic Convex Analysis (1) 3.1 Convex sets Definition (Convex set) A set \(D\subseteq \mathbb R^n\) is said to be convex if for any two points \(x,y\in D\), the linear segment joining \(x\) and \">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3. Basic Convex Analysis (1)">
 <meta property="og:url" content="http://yoursite.com/2019/08/23/Nonlinear Optimization/3.1 Basic Convex Analysis/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="Thanks for the module MA5268 NUS and Prof. Toh 3. Basic Convex Analysis (1) 3.1 Convex sets Definition (Convex set) A set \(D\subseteq \mathbb R^n\) is said to be convex if for any two points \(x,">
+<meta property="og:description" content="3. Basic Convex Analysis (1) 3.1 Convex sets Definition (Convex set) A set \(D\subseteq \mathbb R^n\) is said to be convex if for any two points \(x,y\in D\), the linear segment joining \(x\) and \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-24T04:39:02.000Z">
+<meta property="og:updated_time" content="2019-10-31T12:41:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3. Basic Convex Analysis (1)">
-<meta name="twitter:description" content="Thanks for the module MA5268 NUS and Prof. Toh 3. Basic Convex Analysis (1) 3.1 Convex sets Definition (Convex set) A set \(D\subseteq \mathbb R^n\) is said to be convex if for any two points \(x,">
+<meta name="twitter:description" content="3. Basic Convex Analysis (1) 3.1 Convex sets Definition (Convex set) A set \(D\subseteq \mathbb R^n\) is said to be convex if for any two points \(x,y\in D\), the linear segment joining \(x\) and \">
   <link rel="canonical" href="http://yoursite.com/2019/08/23/Nonlinear Optimization/3.1 Basic Convex Analysis/">
 
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-24 12:39:02" itemprop="dateModified" datetime="2019-09-24T12:39:02+08:00">2019-09-24</time>
+                <time title="Modified: 2019-10-31 20:41:28" itemprop="dateModified" datetime="2019-10-31T20:41:28+08:00">2019-10-31</time>
               </span>
             
           
@@ -310,8 +310,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="thanks-for-the-module-ma5268-nus-and-prof.-toh">Thanks for the module MA5268 NUS and Prof. Toh</h1>
-<h1 id="basic-convex-analysis-1">3. Basic Convex Analysis (1)</h1>
+        <h1 id="basic-convex-analysis-1">3. Basic Convex Analysis (1)</h1>
 <h2 id="convex-sets">3.1 Convex sets</h2>
 <p><strong>Definition</strong> (Convex set)</p>
 <p>A set <span class="math inline">\(D\subseteq \mathbb R^n\)</span> is said to be convex if for any two points <span class="math inline">\(x,y\in D\)</span>, the linear segment joining <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> also lies in <span class="math inline">\(D\)</span>. That is, <span class="math display">\[
@@ -403,6 +402,8 @@ f(x)=\sum_{j=1}^k\alpha_jf_j(x),
 \]</span> where <span class="math inline">\(\alpha_j\ge 0\)</span>, is also a convex function. If one of the functions is strictly convex, then <span class="math inline">\(f(x)\)</span> is strictly convex.</p>
 <p>Proof.</p>
 <p>It is straightforward to use the previous proposition.</p>
+<p><strong>Example</strong></p>
+<p>The objective function <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2+\lambda ||x||_1\)</span>, where <span class="math inline">\(x\in\mathbb R^n\)</span> for the sparse regression problem is a convex function.</p>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(h:D\rightarrow \mathbb R\)</span> be convex function and <span class="math inline">\(g:\mathcal X\rightarrow \mathbb R\)</span> be a <strong>nondecreasing convex</strong> function with <span class="math inline">\(h(D)\subset \mathcal X\)</span>. Then the composition function <span class="math inline">\(f=g\circ h:D\rightarrow \mathbb R\)</span> is a convex function.</p>
 <p>Proof. <span class="math display">\[
@@ -429,16 +430,17 @@ E_f=\{[x;\alpha]\;|\; x\in D,\alpha\in \mathbb R,f(x)\le \alpha\}.
 \]</span> The epigraph <span class="math inline">\(E_f\)</span> is a convex set if and only if <span class="math inline">\(f\)</span> is convex function.</p>
 <p>Proof.</p>
 <p><span class="math inline">\(\implies\)</span></p>
-<p>If the epigraph <span class="math inline">\(E_f\)</span> is a convex set, then for any <span class="math inline">\([x,\alpha],[y,\beta]\in E_f\)</span>, and for any <span class="math inline">\(\lambda \in [0,1]\)</span>, we have <span class="math display">\[
-\lambda [x;\alpha]+(1-\lambda)[y;\beta]\in E_f\\
-\lambda [x;\alpha]+(1-\lambda)[y;\beta]=[\lambda x+(1-\lambda )y;\lambda \alpha+(1-\lambda )\beta].
-\]</span> Then by definition, we have <span class="math inline">\(f(\lambda x+(1-\lambda )y)\le \lambda \alpha+(1-\lambda )\beta\)</span>. Let <span class="math inline">\(\alpha =f(x)\)</span> and <span class="math inline">\(\beta =f(y)\)</span>. Q.E.D.</p>
+<p>If the epigraph <span class="math inline">\(E_f\)</span> is a convex set, then for any <span class="math inline">\([x,f(x)],[y,f(y)]\in E_f\)</span>, and for any <span class="math inline">\(\lambda \in [0,1]\)</span>, we have <span class="math display">\[
+\lambda [x;f(x)]+(1-\lambda)[y;f(y)]\in E_f\\
+\lambda [x;f(x)]+(1-\lambda)[y;f(y)]=[\lambda x+(1-\lambda )y;\lambda f(x)+(1-\lambda )f(y)].
+\]</span> Then by definition, we have <span class="math inline">\(f(\lambda x+(1-\lambda )y)\le \lambda f(x)+(1-\lambda )f(y)\)</span>.</p>
 <p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>If the function <span class="math inline">\(f\)</span> is a convex function, then we choose <span class="math inline">\([x;\alpha],[y;\beta]\in E_f\)</span>, and choose <span class="math inline">\(\lambda \in [0,1]\)</span>. We have <span class="math display">\[
+<p>If the function <span class="math inline">\(f\)</span> is a convex function, then for every <span class="math inline">\([x;\alpha],[y;\beta]\in E_f\)</span>, which means <span class="math inline">\(f(x)\le \alpha\)</span> and <span class="math inline">\(f(y)\le \beta\)</span>, we choose <span class="math inline">\(\lambda \in [0,1]\)</span>. We have <span class="math display">\[
 \lambda [x;\alpha]+(1-\lambda )[y;\beta]=[\lambda x+(1-\lambda)y;\lambda \alpha+(1-\lambda)\beta].
-\]</span> Then we find <span class="math display">\[
-f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)\le \lambda \alpha+(1-\lambda)\beta.
-\]</span> That mean <span class="math display">\[
+\]</span> We need to prove <span class="math inline">\(f(\lambda x+(1-\lambda )y)\le \lambda \alpha +(1-\lambda)\beta\)</span>.</p>
+<p>Then we find <span class="math display">\[
+f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)\le \lambda \alpha+(1-\lambda)\beta,
+\]</span> which means <span class="math display">\[
 [\lambda x+(1-\lambda)y;\lambda \alpha+(1-\lambda)\beta]\in E_f.
 \]</span> Q.E.D.</p>
 <p><strong>Proposition</strong> (Jensen's inequality)</p>
@@ -446,6 +448,15 @@ f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)\le \lambda \alpha+(1-\
 x=\sum_{j=1}^k \lambda_j x_j,\quad \sum_{j=1}^k\lambda_j=1,\quad \lambda_j\ge 0.
 \]</span> Then <span class="math display">\[
 f(x)\le \sum_{j=1}^k\lambda_k f(x_k).
+\]</span></p>
+<p><strong>Example</strong></p>
+<p>Use the Jensen’s inequality and the convex function <span class="math inline">\(f(x)=-\log x\)</span> to prove <span class="math display">\[
+(a_1\dotsm a_k)^{1/k} \le \frac{1}{k}\sum_{j=1}^k a_j.
+\]</span> Proof.</p>
+<p>Choose <span class="math inline">\(\lambda_1=\lambda_2=\dotsm =\lambda_k=\frac{1}{k}\)</span>. It follows, <span class="math inline">\(x=\frac{1}{k}\sum_{j=1}^k x_j\)</span>. Then we have <span class="math display">\[
+-\log x\le -\frac{1}{k}\sum_{j=1}^k \log (x_j)=-\log [(x_1\dotsm x_k)^{\frac{1}{k}}]\\
+\log x\ge\log [(x_1\dotsm x_k)^{\frac{1}{k}}]\\
+(x_1\dotsm x_k)^{\frac{1}{k}}\le \frac{1}{k}\sum_{j=1}^k x_j.
 \]</span></p>
 <h2 id="differentiable-convex-functions">3.3 Differentiable convex functions</h2>
 <p>If the function is twice differentiable, we can check the convexity of the function much more easily.</p>
@@ -477,7 +488,7 @@ f(w)+\nabla f(w)(u-w)\le f(u)\\
 f(w)+\nabla f(w)(v-w)\le f(v).
 \]</span> Since we have <span class="math inline">\(v-w=-\frac{\lambda}{1-\lambda}(u-w)\)</span>, we can cancel <span class="math inline">\(\nabla f(\cdot)\)</span>. Q.E.D.</p>
 <p><strong>Remark</strong></p>
-<p>The equation <span class="math inline">\(z=f(x)+\nabla f(x)^T(y-x)\)</span> define the tangent plane to the surface <span class="math inline">\(z=f(x)\)</span> at <span class="math inline">\(y=x\)</span>. Thus the theorem shows that the tangent plane is below the convex function.</p>
+<p>The equation <span class="math inline">\(z=f(x)+\nabla f(x)^T(y-x)\)</span> define the tangent plane to the surface <span class="math inline">\(z=f(x)\)</span> at <span class="math inline">\(y=x\)</span>. Thus this theorem shows that the tangent plane is below the convex function.</p>
 <p><strong>Proposition</strong> (Monotone gradient condition)</p>
 <p>Let <span class="math inline">\(f:S\rightarrow \mathbb R\)</span> be differentiable function on the open convex subset <span class="math inline">\(S\)</span> of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(f\)</span> is convex on <span class="math inline">\(S\)</span> if and only if <span class="math display">\[
 \left\langle \nabla f(x)-\nabla f(y),x-y\right\rangle\ge 0\quad \forall x,y\in S
@@ -487,10 +498,11 @@ f(x)+\nabla f(x)^T(y-x)\le f(y)\\
 f(y)-\nabla f(y)^T(y-x)\le f(x).
 \]</span> By doing the summation, Q.E.D.</p>
 <p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Suppose we have <span class="math inline">\(\left\langle \nabla f(x)-\nabla f(y),x-y\right\rangle\ge 0\quad \forall x,y\in S\)</span>. Define <span class="math inline">\(g(t)=f(x+t(y-x))\)</span>. Then we have <span class="math display">\[
+<p>Suppose we have <span class="math inline">\(\left\langle \nabla f(x)-\nabla f(y),x-y\right\rangle\ge 0\quad \forall x,y\in S\)</span>.</p>
+<p>Define <span class="math inline">\(g(t)=f(x+t(y-x))\)</span>. Then we have <span class="math display">\[
 g&#39;(t)=\langle \nabla f(x+t(y-x)),y-x\rangle.
 \]</span> Then we have <span class="math display">\[
-g&#39;(t)-g&#39;(0)=\langle \nabla f(x+t(y-x))-\nabla f(x),t(y-x)\rangle\ge 0\quad \forall t\in[0,1].
+g&#39;(t)-g&#39;(0)=\langle \nabla f(x+t(y-x))-\nabla f(x),y-x\rangle\ge 0\quad \forall t\in[0,1].
 \]</span> Then we have <span class="math display">\[
 g(1)=f(y)=g(0)+\int _0^1 g&#39;(t)dt\ge g(0)+g&#39;(0)=f(x)+\langle \nabla f(x),y-x\rangle.
 \]</span> Q.E.D.</p>
@@ -503,7 +515,7 @@ g(1)=f(y)=g(0)+\int _0^1 g&#39;(t)dt\ge g(0)+g&#39;(0)=f(x)+\langle \nabla f(x),
 <h2 id="strongly-convex-functions">3.4 Strongly convex functions</h2>
 <p><strong>Definition</strong></p>
 <p>Let <span class="math inline">\(D\subseteq \mathbb R^n\)</span> be a convex set. A function <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is said to be strongly convex if there exists a constant <span class="math inline">\(c&gt;0\)</span> such that for all <span class="math inline">\(x,y\in D\)</span>, and <span class="math inline">\(\lambda \in[0,1]\)</span>, <span class="math display">\[
-f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)-\frac{c}{2}\lambda(1-\lambda)||x-y||^2
+f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)-\frac{c}{2}\lambda(1-\lambda)||x-y||^2.
 \]</span> <strong>Theorem</strong></p>
 <p>Suppose <span class="math inline">\(f:D\rightarrow \mathbb R\)</span> is a differentiable function. Then the following statements are equivalent,</p>
 <ol type="1">
@@ -515,9 +527,12 @@ f(\lambda x+(1-\lambda)y)\le \lambda f(x)+(1-\lambda)f(y)-\frac{c}{2}\lambda(1-\
 <p>Proof. (<span class="math inline">\(1\iff 2\)</span>)</p>
 <p><span class="math inline">\(\Longleftarrow\)</span></p>
 <p>If <span class="math inline">\(g(x)=f(x)-(c/2)||x||^2\)</span> is convex, then we have <span class="math display">\[
-g(y)\ge g(x)+\nabla g(x)(y-x)\\
-\implies f(y)-(c/2)||y||^2\ge f(x)-(c/2)||x||^2+\nabla f(x)^T(y-x)-cx^T(y-x)\\
-\implies f(y)\ge f(x)+\nabla f(x)^T(y-x)+(c/2)\left(||y||^2-2x^Ty+||x||^2\right)
+\begin{array}{rcl}
+g(y)&amp;\ge&amp; g(x)+\nabla g(x)(y-x)\implies\\
+f(y)-(c/2)||y||^2&amp;\ge&amp; f(x)-(c/2)||x||^2+\nabla f(x)^T(y-x)-cx^T(y-x)\implies\\
+f(y)&amp;\ge&amp; f(x)+\nabla f(x)^T(y-x)+(c/2)\left(||y||^2-2x^Ty+||x||^2\right)\implies\\
+f(y)&amp;\ge&amp; f(x)+\nabla f(x)^T(y-x)+(c/2)||y-x||^2
+\end{array}
 \]</span> <span class="math inline">\(\implies\)</span></p>
 <p>By Tangent plane characterization in Section 3.3.</p>
 <p>(<span class="math inline">\(2\iff 3\)</span>) Monotone gradient.</p>
@@ -531,7 +546,7 @@ g(y)\ge g(x)+\nabla g(x)(y-x)\\
 </ol>
 <p>Proof.</p>
 <ol type="1">
-<li><p>Since we have <span class="math inline">\(f(y)\ge f(x)+&lt;\nabla f(x),y-x&gt;+(c/2)||y-x||^2\)</span>, for any fixed point <span class="math inline">\(x\)</span>, we can derive the minimal value of the right hand side. <span class="math inline">\(f(x)+&lt;\nabla f(x),y-x&gt;+(c/2)||y-x||^2\ge f(x)-(1/2c)||\nabla (f)||^2\)</span>. Then we have <span class="math display">\[
+<li><p>Since we have <span class="math inline">\(f(y)\ge f(x)+\langle\nabla f(x),y-x\rangle+(c/2)||y-x||^2\)</span>, for any fixed point <span class="math inline">\(x\)</span>, we can derive the minimal value of the right hand side. <span class="math inline">\(f(x)+\langle \nabla f(x),y-x\rangle+(c/2)||y-x||^2\ge f(x)-(1/2c)||\nabla f(x)||^2\)</span>. Then we have <span class="math display">\[
 f(y)\ge f(x)-(1/2c)||\nabla f(x)||^2 \quad \forall x,y \in \mathbb R^n.
 \]</span> Then we let <span class="math inline">\(y=x^*\)</span>. Q.E.D.</p>
 <p>By this condition, we can see that if the gradient is getting smaller, that means the current value of the cost function is getting to the optimal value.</p></li>
@@ -543,7 +558,7 @@ f(y)\ge f(x)-(1/2c)||\nabla f(x)||^2 \quad \forall x,y \in \mathbb R^n.
 \]</span></p></li>
 <li><p>By doing summary of the following two inequalities, <span class="math display">\[
 f(y)\le f(x)+\langle \nabla f(x),y-x\rangle +(1/2c)||\nabla f(y)-\nabla f(x)||^2\\
-f(x)\le f(y)+\langle \nabla f(y),y-x\rangle +(1/2c)||\nabla f(x)-\nabla f(y)||^2.Q.E.D.
+f(x)\le f(y)+\langle \nabla f(y),y-x\rangle +(1/2c)||\nabla f(x)-\nabla f(y)||^2.
 \]</span></p></li>
 </ol>
 <p>Q.E.D.</p>
@@ -563,17 +578,25 @@ f(x)\le f(y)+\langle \nabla f(y),y-x\rangle +(1/2c)||\nabla f(x)-\nabla f(y)||^2
 </ol>
 <p>Proof.</p>
 <ol type="1">
-<li><p>We assume <span class="math inline">\(x^*\in D\)</span> is a local minimizer, which means there exists a ball <span class="math inline">\(B_\epsilon(x^*)\)</span>, such that for all points <span class="math inline">\(x\in B_\epsilon(x^*)\)</span>, <span class="math inline">\(f(x)\ge f(x^*)\)</span>. Then we need to prove <span class="math inline">\(x^*\)</span> is a global minimizer, which means for all points <span class="math inline">\(y\in D\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>.</p>
+<li><p>We assume <span class="math inline">\(x^*\in D\)</span> is a local minimizer, which means there exists a ball <span class="math inline">\(B_\epsilon(x^*)\)</span>, such that for all points <span class="math inline">\(x\in B_\epsilon(x^*)\)</span>, <span class="math inline">\(f(x)\ge f(x^*)\)</span>.</p>
+<p>Then we need to prove that <span class="math inline">\(x^*\)</span> is a global minimizer, which means for all points <span class="math inline">\(y\in D\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>.</p>
 <p>We consider the point <span class="math inline">\(\lambda y+(1-\lambda )x^* \in D\)</span>. If $$ is enough small, then the point is also in the ball. That means we have <span class="math display">\[
 \lambda f(y)+(1-\lambda)f(x^*)\ge f(\lambda y+(1-\lambda)x^*)\ge f(x^*).
 \]</span> Q.E.D.</p></li>
 <li><p>Assume <span class="math inline">\(x^* \in D\)</span> is the global optimizer. If there is another global minimizer <span class="math inline">\(\bar x\)</span>, for which we have <span class="math inline">\(f(\bar x)=f(x^*)\)</span>.</p>
 <p>Then we choose <span class="math inline">\(w=(1/2)x^*+(1/2)\bar x\)</span>. <span class="math display">\[
 f(w)=f((1/2)x^*+(1/2)\bar x)&lt; (1/2)f(x^*)+(1/2)f(\bar x)=f(x^*),
-\]</span> which contradicts that the point <span class="math inline">\(x^*\)</span> is the global optimal point. Q.E.D.</p></li>
+\]</span> which contradicts that the point <span class="math inline">\(x^*\)</span> is the global optimal point.</p>
+<p>Q.E.D.</p></li>
 </ol>
 <p><strong>Corollary</strong></p>
 <p>If <span class="math inline">\(f\)</span> is a convex function with continuous first partial derivatives on some open convex set <span class="math inline">\(D\)</span>, then any stationary point of <span class="math inline">\(f\)</span> is a global minimizer of <span class="math inline">\(f\)</span>.</p>
+<p>Proof.</p>
+<p>Suppose <span class="math inline">\(x^*\)</span> is the stationary point, i.e., <span class="math inline">\(\nabla f(x^*)=0\)</span>.</p>
+<p>We need to prove <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span>, i.e., for all <span class="math inline">\(y\in D\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>.</p>
+<p>Since <span class="math inline">\(f\)</span> is a convex function, we have <span class="math display">\[
+f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)=f(x^*).
+\]</span> Q.E.D.</p>
 <h2 id="unconstrained-convex-quadratic-programming">3.6 Unconstrained convex quadratic programming</h2>
 <p><strong>Definition</strong> (Quadratic function)</p>
 <p>A quadratic function <span class="math inline">\(q:\mathbb R^n\rightarrow \mathbb R\)</span> is defined by <span class="math display">\[
@@ -583,19 +606,21 @@ q(x)=\frac{1}{2}x^TQx+c^Tx.
 <h2 id="projection-onto-a-closed-convex-set">3.7 Projection onto a closed convex set</h2>
 <p><strong>Theorem</strong></p>
 <p>Let <span class="math inline">\(f:C\rightarrow \mathbb R\)</span> be a convex and continuously differentiable function on the convex set <span class="math inline">\(C\subset \mathcal E\)</span>. Consider the constrained minimization problem, <span class="math display">\[
-\min\{f(x)\;|\;x\in C\}.
+\min\left\{f(x)\;|\;x\in C\right\}.
 \]</span> Then <span class="math inline">\(x^*\in C\)</span> is a global minimizer if and only if <span class="math display">\[
 \langle \nabla f(x^*),x-x^*\rangle\ge 0,\;\forall x\in C.
 \]</span> Proof.</p>
 <p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Suppose <span class="math inline">\(\langle \nabla f(x^*),x-x^*\rangle\ge 0,\;\forall x\in C\)</span>.Since <span class="math inline">\(f\)</span> is convex, we have <span class="math display">\[
-f(y)\ge f(x)+\nabla f(x)^T(y-x)\;\forall x,y\in C.
-\]</span> Then <span class="math display">\[
-f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)\ge f(x^*)\;\forall y\in C.
+<p>Suppose there is a <span class="math inline">\(x^*\in C\)</span> satisfying <span class="math inline">\(\langle \nabla f(x^*),x-x^*\rangle\ge 0,\;\forall x\in C\)</span>.</p>
+<p>We need to prove <span class="math inline">\(x^*\in C\)</span> is a global minimizer, i.e., for all <span class="math inline">\(y\in C\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>.</p>
+<p>Since <span class="math inline">\(f\)</span> is convex, we have <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x),\;\forall x,y\in C.
+\]</span> Then we have <span class="math display">\[
+f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)\ge f(x^*),\;\forall y\in C.
 \]</span> That means <span class="math inline">\(x^*\)</span> is the global minimizer.</p>
 <p><span class="math inline">\(\implies\)</span></p>
 <p>We will approve the sufficient condition by contradiction.</p>
-<p>Suppose <span class="math inline">\(x^*\)</span> is the global minimizer and suppose that there exists <span class="math inline">\(\bar x\in C\)</span> such that <span class="math inline">\(\langle \nabla f(x^*),\bar x-x^*\rangle&lt; 0\)</span>.</p>
+<p>Suppose <span class="math inline">\(x^*\)</span> is a global minimizer, i.e., for all <span class="math inline">\(y\in C\)</span>, we have <span class="math inline">\(f(y)\ge f(x^*)\)</span>. Suppose that there exists <span class="math inline">\(\bar x\in C\)</span> such that <span class="math inline">\(\langle \nabla f(x^*),\bar x-x^*\rangle&lt; 0\)</span>.</p>
 <p>Consider the point <span class="math inline">\(w=t\bar x+(1-t)x^*\)</span>. Note that <span class="math inline">\(f(w)-f(x^*)\le \nabla f(w)^T(w-x^*)\)</span>. Then <span class="math display">\[
 \begin{array}{rcl}
 0&amp;\le&amp; f(w)-f(x^*)\le \nabla f(w)^T(w-x^*)\\
@@ -603,7 +628,8 @@ f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)\ge f(x^*)\;\forall y\in C.
 &amp;=&amp;\langle \nabla f(t\bar x+(1-t)x^*),t(\bar x-x^*)\rangle\\
 &amp;=&amp;\langle \nabla f(t(\bar x-x^*)+x^*),t(\bar x-x^*)\rangle.
 \end{array}
-\]</span> Let <span class="math inline">\(t\rightarrow 0\)</span>, we have <span class="math inline">\(\langle \nabla f(x^*),\bar x-x^*\rangle = 0\)</span>. Q.E.D.</p>
+\]</span> Let <span class="math inline">\(t\downarrow 0\)</span>, we have <span class="math inline">\(\langle \nabla f(x^*),\bar x-x^*\rangle \ge 0\)</span>.</p>
+<p>Q.E.D.</p>
 <p><strong>Remark</strong></p>
 <p>Using the concept of the <strong>normal cone</strong>, we can rephrase the theorem as follows,</p>
 <p><span class="math inline">\(x^*\)</span> is a global minimizer of the problem <span class="math inline">\(\min\{f(x)\;|\;x\in C\}\)</span> if and only if <span class="math inline">\(-\nabla f(x^*)\in N_C(x^*)\)</span>.</p>
@@ -611,14 +637,14 @@ f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)\ge f(x^*)\;\forall y\in C.
 <p>Let <span class="math inline">\(C\)</span> be a closed convex set in <span class="math inline">\(\mathcal E\)</span>,</p>
 <ol type="1">
 <li><p>For every <span class="math inline">\(z\in \mathcal E\)</span>, there exists a unique minimizer (denoted as <span class="math inline">\(\Pi_C(z)\)</span> and called as the <strong>projection</strong> of <span class="math inline">\(z\)</span> onto <span class="math inline">\(C\)</span>) of <span class="math display">\[
-\min\{\frac{1}{2}||x-z||^2\;|\; x\in C\},
+\min\left\{\frac{1}{2}||x-z||^2\;|\; x\in C\right\},
 \]</span> where <span class="math inline">\(||\cdot||\)</span> is the Euclidean norm.</p></li>
 <li><p><span class="math inline">\(x^*=\Pi_C(z)\)</span> is the projection of <span class="math inline">\(z\)</span> onto <span class="math inline">\(C\)</span> if and only if <span class="math display">\[
 \langle z-x^*,x-x^*\rangle\le 0\quad\forall x\in C.
 \]</span></p></li>
 <li><p>(Firmly non-expansive property) For any <span class="math inline">\(z,w\in \mathcal E\)</span>, <span class="math display">\[
 ||\Pi_C(z)-\Pi_C(w)||^2\le \langle z-w,\Pi_C(z)-\Pi_C(w)\rangle.
-\]</span> Firmly non-expansive property implies non-expansive property, which means <span class="math inline">\(||\Pi_C(z)-\Pi_C(w)||\le ||z-w||\)</span>. That is, <span class="math inline">\(\Pi_c(\cdot)\)</span> is <strong>Lipschitz continuous</strong> with modulus 1.</p></li>
+\]</span> Firmly non-expansive property implies non-expansive property, which means <span class="math inline">\(||\Pi_C(z)-\Pi_C(w)||\le ||z-w||\)</span>. That is, <span class="math inline">\(\Pi_C(\cdot)\)</span> is <strong>Lipschitz continuous</strong> with modulus 1.</p></li>
 </ol>
 <p>Proof.</p>
 <ol type="1">
@@ -626,32 +652,32 @@ f(y)\ge f(x^*)+\nabla f(x^*)^T(y-x^*)\ge f(x^*)\;\forall y\in C.
 f(x)&gt;f(\bar x)\ge f(x^*)\quad\forall x\in C\backslash S.
 \]</span> Thus we have shown for all <span class="math inline">\(x\in C\backslash S\cup S=C\)</span>, <span class="math inline">\(f(x^* )\le f(x)\)</span>.</p>
 <p>Since the function <span class="math inline">\(f(x)=\frac{1}{2}||x-z||^2\)</span> is strictly convex on <span class="math inline">\(C\)</span>, the minimizer is unique.</p></li>
-<li><p>By monotone of the gradient, we have <span class="math display">\[
-\langle \nabla f(x^*),x-x^*\rangle\ge 0
+<li><p>From the above theorem, we have <span class="math display">\[
+\langle \nabla f(x^*),x-x^*\rangle\ge 0.
 \]</span> Q.E.D.</p></li>
 <li>From condition 2, we have <span class="math inline">\(w,z\in \mathcal E\)</span>. Since <span class="math inline">\(\Pi_C(w)\in \mathcal E\)</span> and <span class="math inline">\(\Pi_C(z)\in \mathcal E\)</span>. Then we have <span class="math display">\[
-\langle z-\Pi_C(z),\Pi_C(w)-\Pi_C(z)\rangle\le  0\quad (1)\\
-\langle w-\Pi_C(w),\Pi_C(z)-\Pi_C(w)\rangle\le  0\\
-\langle\Pi_C(w)-w,\Pi_C(w)-\Pi_C(z)\rangle\le  0\quad (2).
+\begin{array}{rcl}
+\langle z-\Pi_C(z),\Pi_C(w)-\Pi_C(z)\rangle&amp;\le&amp;  0\quad (1)\\
+\langle w-\Pi_C(w),\Pi_C(z)-\Pi_C(w)\rangle&amp;\le&amp;  0\\
+\langle\Pi_C(w)-w,\Pi_C(w)-\Pi_C(z)\rangle&amp;\le&amp;  0\quad (2).
+\end{array}
 \]</span>
 <ol type="1">
 <li><ul>
-<li><ol start="2" type="1">
-<li><span class="math display">\[
-\langle z-w-\Pi_C(z)+\Pi_C(w),\Pi_C(w)-\Pi_C(z)\rangle\le 0
+<li>(2), <span class="math display">\[
+\langle z-w-\Pi_C(z)+\Pi_C(w),\Pi_C(w)-\Pi_C(z)\rangle\le 0.
 \]</span></li>
-</ol></li>
 </ul></li>
-</ol></li>
 </ol>
-<p>Q.E.D.</p>
+<p>Q.E.D.</p></li>
+</ol>
 <p><strong>Remark</strong></p>
 <p>If <span class="math inline">\(C\)</span> is a linear subspace of <span class="math inline">\(\mathbb R^n\)</span>, then <span class="math inline">\(z-x^* \perp C\)</span>. Thus <span class="math inline">\(z\)</span> can be decomposed into two perpendicular components, <span class="math display">\[
-z=\Pi_C(z)+(z-\Pi_C(z)),\quad where\quad &lt;\Pi_C(z),z-\Pi_C(z)&gt;=0
+z=\Pi_C(z)+(z-\Pi_C(z)),\quad \text{where}\quad \langle\Pi_C(z),z-\Pi_C(z)\rangle=0.
 \]</span> <strong>Example</strong></p>
 <p>Let <span class="math inline">\(C=\mathbb R_+^n\)</span>. Then for any <span class="math inline">\(z\in \mathbb R^n\)</span>, <span class="math inline">\(\Pi_C(z)=\max\{z,0\}\)</span>.</p>
 <p>Proof. <span class="math display">\[
-\min\{\frac{1}{2}||x-z||^2\;|\; x\in \mathbb R^n_+\}
+\min\left\{\frac{1}{2}||x-z||^2\;|\; x\in \mathbb R^n_+\right\}
 \]</span> Since we have <span class="math display">\[
 ||x-z||^2=(x^2_1-2z_1x_1+z^2_1)+\dotsm+(x^2_n-2z_nx_1+z^2_n)
 \]</span> Every part should be minimized.</p>
@@ -675,7 +701,7 @@ z=\Pi_C(z)+(z-\Pi_C(z)),\quad where\quad &lt;\Pi_C(z),z-\Pi_C(z)&gt;=0
 <p>Let <span class="math inline">\(\mathcal E_1,\mathcal E_2\)</span> be two differentiable finite-dimensional real Euclidean spaces. A function <span class="math inline">\(f:\mathcal E_1\rightarrow \mathcal E_2\)</span> is said to be Fréchet differentiable at <span class="math inline">\(\mathcal x\in E_1\)</span> if there exists a linear map <span class="math inline">\(f&#39;(x):\mathcal E_1\rightarrow \mathcal E_2\)</span> such that for any <span class="math inline">\(h\rightarrow 0\)</span>, <span class="math display">\[
 f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
 \]</span> This can be explained by <span class="math display">\[
-\lim_{n\rightarrow 0}\frac{f(x+h)-f(x)}{h}=f&#39;(x)\\ \iff\lim_{n\rightarrow 0}\frac{f(x+h)-f(x)-f&#39;(x)[h]}{h}=0\\ \iff f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
+\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}=f&#39;(x)\\ \iff\lim_{h\rightarrow 0}\frac{f(x+h)-f(x)-f&#39;(x)[h]}{h}=0\\ \iff f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
 \]</span> <strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(C\)</span> be a nonempty closed convex set in <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\)</span>, let <span class="math display">\[
 \theta(x)=\frac{1}{2}||x-\Pi_C(x)||^2.
@@ -709,24 +735,25 @@ f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(\Omega \in \mathbb R^n\)</span> be a nonempty closed convex set and let <span class="math inline">\(\bar x\notin \Omega\)</span>. Then there exists a nonzero vector <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
 \sup\{\langle v,x\rangle \;|\;x\in \Omega\}&lt;\langle v,\bar x\rangle
-\]</span> Denote <span class="math inline">\(\bar w=\Pi_C(\bar x)\)</span>. let <span class="math inline">\(v=\bar x-\bar w\)</span>. For any <span class="math inline">\(x\in \Omega\)</span> we know that <span class="math display">\[
-&lt;v,x-\bar w&gt;=&lt;\bar x-\bar w,x-\bar w&gt;\le 0\\
-&lt;v,x-\bar x+\bar x-\bar w&gt;\\
-&lt;v,x-\bar x+v&gt;=\\
-&lt;v,x&gt;-&lt;v,\bar x&gt;+||v||^2\le 0
+\]</span> Proof.</p>
+<p>Denote <span class="math inline">\(\bar w=\Pi_C(\bar x)\)</span>. let <span class="math inline">\(v=\bar x-\bar w\)</span>. For any <span class="math inline">\(x\in \Omega\)</span> we know that <span class="math display">\[
+\langle v,x-\bar w\rangle=\langle \bar x-\bar w,x-\bar w\rangle\le 0\\
+\langle v,x-\bar x+\bar x-\bar w\rangle\\
+\langle v,x-\bar x+v\rangle=\\
+\langle v,x\rangle-\langle v,\bar x\rangle+||v||^2\le 0
 \]</span> Q.E.D.</p>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be nonempty, closed, convex subsets of <span class="math inline">\(\mathbb R^n\)</span> with <span class="math inline">\(\Omega_1\cap \Omega_2=\emptyset\)</span>. If <span class="math inline">\(\Omega_1\)</span> or <span class="math inline">\(\Omega_2\)</span> is bounded, then there is a nonzero element <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
-\sup\{&lt;v,x&gt;\;|\;x\in \Omega_1\}&lt;\inf\{&lt;v,y&gt;\;|\;y\in \Omega_2\}.
+\sup\{\langle v,x\rangle\;|\;x\in \Omega_1\}&lt;\inf\{\langle v,y\rangle\;|\;y\in \Omega_2\}.
 \]</span> Proof.</p>
 <p>Define <span class="math inline">\(\Omega=\Omega_1-\Omega_2\)</span>. Then <span class="math inline">\(\Omega\)</span> is nonempty closed convex set and <span class="math inline">\(0\notin \Omega\)</span>. Then we choose the point <span class="math inline">\(0\)</span> and use the previous proposition. Q.E.D.</p>
 <p><strong>Proposition</strong> (Separation in a subspace)</p>
 <p>Let <span class="math inline">\(L\)</span> be a subspace of <span class="math inline">\(\mathbb R^n\)</span> and let <span class="math inline">\(\Omega \subset L\)</span> be a nonempty convex set with <span class="math inline">\(\bar x\in L\)</span> and <span class="math inline">\(\bar x\notin \bar \Omega\)</span> (<span class="math inline">\(\bar \Omega\)</span> is the closure of <span class="math inline">\(\Omega\)</span>). Then there exists <span class="math inline">\(w\in L,w\neq 0\)</span> such that <span class="math display">\[
 \sup\{\langle w,x\rangle\;|\; x\in \Omega\}&lt;\langle w,\bar x\rangle.
 \]</span> <strong>Definition</strong></p>
-<p>We say that two empty convex set <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if there exists a nonzero vector <span class="math inline">\(v\in R^n\)</span> such that <span class="math display">\[
-\sup\{&lt;v,x&gt;\;|\; x\in\Omega_1\}\le \inf\{&lt;v,y&gt;\;|\; y\in\Omega_2\}\\
-\inf\{&lt;v,x&gt;\;|\; x\in\Omega_1\}&lt; \sup\{&lt;v,y&gt;\;|\; y\in\Omega_2\}
+<p>We say that two empty convex set <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if there exists a nonzero vector <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
+\sup\{\langle v,x\rangle\;|\; x\in\Omega_1\}\le \inf\{\langle v,y\rangle\;|\; y\in\Omega_2\}\\
+\inf\{\langle v,x\rangle\;|\; x\in\Omega_1\}&lt; \sup\{\langle v,y\rangle\;|\; y\in\Omega_2\}.
 \]</span> <strong>Proposition</strong></p>
 <p>The following assertions hold for affine.</p>
 <ol type="1">
@@ -762,13 +789,13 @@ f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
 <p>A nonempty subset <span class="math inline">\(\Omega\)</span> of <span class="math inline">\(\mathbb R^n\)</span> is affine if and only if <span class="math inline">\(\Omega-\omega\)</span> is a subspace of <span class="math inline">\(\mathbb R^n\)</span> for any <span class="math inline">\(\omega\in \Omega\)</span>.</p>
 <p><strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set. Suppose that <span class="math inline">\(\bar x\in \text{ri }(\Omega)\)</span> and <span class="math inline">\(\bar y\in \Omega\)</span>. Then there exists <span class="math inline">\(t&gt;0\)</span> such that <span class="math display">\[
-\bar x+t(\bar x-\bar y)\in \Omega
+\bar x+t(\bar x-\bar y)\in \Omega.
 \]</span> <strong>Proposition</strong></p>
 <p>Let <span class="math inline">\(\Omega\)</span> be a nonempty convex set in <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(0\notin \text{ri }(\Omega)\)</span> if and only if the sets <span class="math inline">\(\Omega\)</span> and <span class="math inline">\(\{0\}\)</span> can be properly separated, i.e. there exists <span class="math inline">\(v\in \mathbb R^n\)</span> such that <span class="math display">\[
 \sup\{\langle v,x\rangle\;|\;x\in \Omega\}\le 0\\
-\inf\{\langle v,x\rangle\;|\;x\in \Omega\}&lt;0
+\inf\{\langle v,x\rangle\;|\;x\in \Omega\}&lt;0.
 \]</span> <strong>Theorem</strong></p>
-<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be two nonempty convex subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if and only if <span class="math inline">\(\text{ri }(\Omega_1)\cap \text{ri }(\Omega_2)=\emptyset\)</span></p>
+<p>Let <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> be two nonempty convex subsets of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math inline">\(\Omega_1\)</span> and <span class="math inline">\(\Omega_2\)</span> can be properly separated if and only if <span class="math inline">\(\text{ri }(\Omega_1)\cap \text{ri }(\Omega_2)=\emptyset\)</span>.</p>
 
     </div>
 
@@ -849,7 +876,7 @@ f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#thanks-for-the-module-ma5268-nus-and-prof.-toh"><span class="nav-text">Thanks for the module MA5268 NUS and Prof. Toh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-convex-analysis-1"><span class="nav-text">3. Basic Convex Analysis (1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-sets"><span class="nav-text">3.1 Convex sets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-and-concave-functions"><span class="nav-text">3.2 Convex and concave functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#differentiable-convex-functions"><span class="nav-text">3.3 Differentiable convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strongly-convex-functions"><span class="nav-text">3.4 Strongly convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unconstrained-convex-programming-problem"><span class="nav-text">3.5 Unconstrained convex programming problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unconstrained-convex-quadratic-programming"><span class="nav-text">3.6 Unconstrained convex quadratic programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#projection-onto-a-closed-convex-set"><span class="nav-text">3.7 Projection onto a closed convex set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-separation"><span class="nav-text">3.8 Convex Separation</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-convex-analysis-1"><span class="nav-text">3. Basic Convex Analysis (1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-sets"><span class="nav-text">3.1 Convex sets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-and-concave-functions"><span class="nav-text">3.2 Convex and concave functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#differentiable-convex-functions"><span class="nav-text">3.3 Differentiable convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strongly-convex-functions"><span class="nav-text">3.4 Strongly convex functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unconstrained-convex-programming-problem"><span class="nav-text">3.5 Unconstrained convex programming problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unconstrained-convex-quadratic-programming"><span class="nav-text">3.6 Unconstrained convex quadratic programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#projection-onto-a-closed-convex-set"><span class="nav-text">3.7 Projection onto a closed convex set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convex-separation"><span class="nav-text">3.8 Convex Separation</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -864,7 +891,7 @@ f(x+h)-f(x)-f&#39;(x)[h]=o(||h||).
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/3.1 Fundamental of Lyapunov Theory/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/10/02/Applied Nonlinear Control/3.1 Fundamental of Lyapunov Theory/" class="post-title-link" itemprop="url">3.1 Fundamental of Lyapunov Theory</a>
+            <a href="/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/" class="post-title-link" itemprop="url">5. Describing Function Analysis</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2018-10-02 22:29:37" itemprop="dateCreated datePublished" datetime="2018-10-02T22:29:37+08:00">2018-10-02</time>
+              <time title="Created: 2018-10-02 22:33:45" itemprop="dateCreated datePublished" datetime="2018-10-02T22:33:45+08:00">2018-10-02</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:25:23" itemprop="dateModified" datetime="2019-08-26T00:25:23+08:00">2019-08-26</time>
+                <time title="Modified: 2019-08-26 00:26:21" itemprop="dateModified" datetime="2019-08-26T00:26:21+08:00">2019-08-26</time>
               </span>
             
           
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2018/10/02/Applied Nonlinear Control/3.1 Fundamental of Lyapunov Theory/" class="post-meta-item leancloud_visitors" data-flag-title="3.1 Fundamental of Lyapunov Theory" title="Views">
+            <span id="/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/" class="post-meta-item leancloud_visitors" data-flag-title="5. Describing Function Analysis" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/10/02/Applied Nonlinear Control/3.1 Fundamental of Lyapunov Theory/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/10/02/Applied Nonlinear Control/3.1 Fundamental of Lyapunov Theory/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/10/02/Applied Nonlinear Control/5. Describing Function Analysis/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,300 +306,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="nonlinear-system-and-equilibrium-points">1. Nonlinear System and Equilibrium Points</h2>
+          <h2 id="describing-function-analysis-skip">6.Describing Function Analysis (skip)</h2>
+<h3 id="introduction-to-nyquist-criterion">1. Introduction to Nyquist Criterion</h3>
+<p>==Mapping== <span class="math display">\[
+F(s)=s^2+2s+1 \\
+s=4+j3
+\]</span> s-plane to F-plane <span class="math display">\[
+F(4+j3)=16+j30
+\]</span> ==Contour==</p>
+<p>Consider a collection of points, called contour A.</p>
+<p>Map A into Contour B with function F. <span class="math display">\[
+F(s)=\frac{(s-z_1)(s-z_2) \dotsm}{(s-p_1)(s-p_2) \dotsm}
+\]</span> We assuming clockwise direction for mapping.</p>
+<p>If contour A enclose one zero, then contour B enclose one origin in a clockwise direction.</p>
+<p>If contour A enclose one pole, then contour B enclose one origin in a counterclockwise direction.</p>
+<p>If contour A enclose one zero and one pole, then contour B does not enclose origin.</p>
+<p>Letting <span class="math display">\[
+G(s)=\frac{N_G}{D_G} \quad H(s)=\frac{N_H}{D_H}
+\]</span> for the open loop system, we have <span class="math display">\[
+G(s)H(s)=\frac{N_G N_H}{D_GD_H}
+\]</span> for the closed loop system, we have <span class="math display">\[
+T(s)=\frac{G(s)}{1+G(s)H(s)} \\
+=\frac{N_GD_H}{D_GD_H+N_GN_H}
+\]</span> and we have <span class="math display">\[
+\tag{1.1}
+1+G(s)H(s)=\frac{D_GD_H+N_GN_H}{D_GD_H}
+\]</span> for (1.1), we find the poles are the poles of closed loop system and the zeros are the poles of the open loop system.</p>
+<p>if we have known the number of unstable poles of the open loop system (poles of (1.1) in the right plane) and denote it with P. And we want to know the number of unstable poles of closed loop system (zeros of (1.1) in the right plane). We draw a contour enclosing the whole right plane(from $(0,0) (0,) (,) (,0) (,-) $)</p>
+<p>N is the number of counterclockwise revolution around (-1, j0), we have <span class="math display">\[
+Z=P-N
+\]</span></p>
+<h3 id="describing-function-fundamental">2. Describing Function Fundamental</h3>
+<p>An example of describing function analysis <span class="math display">\[
+\ddot{x}+\alpha(x^2-1)\dot{x}+x=0
+\]</span> we can divide it into two parts. Linear part <span class="math inline">\(\ddot{x}-\alpha \dot x+x\)</span>. Nonlinear part <span class="math inline">\(-x^2 \dot x\)</span></p>
+<p>we assume there is a limit circle <span class="math display">\[
+x(t)=Asin(\omega t) \\
+\dot x(t)=A\omega cos(\omega t)
+\]</span> Through the nonlinear element, <span class="math display">\[
+w=-x^2\dot x=-A^2sin^2(\omega t)A\omega cos(\omega t)=-\frac{A^3\omega}{4}(cos(\omega t)-cos(3 \omega t))
+\]</span> since the linear block has the low pass filter <span class="math display">\[
+w\approx-\frac{A^3\omega}{4}cos(\omega t)=\frac{A^2}{4} \frac{d}{dt}[-x]
+\]</span> therefore, for the nonlinear part <span class="math display">\[
+N=\frac{w}{-x}=\frac{A^2}{4}s \\
+N(A,\omega)=\frac{A^2}{4}(j\omega)
+\]</span></p>
+<p><span class="math display">\[
+x=NG(-x) \\
+1+NG=0 \\
+\]</span></p>
+<p>Finally we have A=2, <span class="math inline">\(\omega\)</span>=1</p>
+<h3 id="application-domain">3. Application Domain</h3>
+<p>The first important class consists of &quot;almost&quot; linear system. e.g. the system with a linear plant and a linear controller but the actuator is nonlinear.</p>
+<p>The second important class is the genuinely nonlinear system like the example.</p>
+<h3 id="basic-assumption">4. Basic Assumption</h3>
+<blockquote>
 <ol type="1">
-<li><p>There are two methods to solve the stability of a system proposed by Lyapunov. Linearization method and direct method.</p></li>
-<li><p>Nonlinear system can be represented by <span class="math display">\[
-\dot{\mathbf x} = \mathbf f(\mathbf x,t)
-\]</span> and if there is input <span class="math inline">\(u\)</span> <span class="math display">\[
-\dot{\mathbf x}= \mathbf f(\mathbf x,\mathbf u,t) \\
-u=g(\mathbf x,t)
-\]</span> and if <span class="math inline">\(u\)</span> depends on <span class="math inline">\(x\)</span> and <span class="math inline">\(t\)</span> ,we have <span class="math display">\[
-\dot{\mathbf x}= \mathbf f(\mathbf x,\mathbf g(\mathbf x,t),t)
-\]</span> if there is no control signal, the first differential equation is used.</p></li>
+<li>there is only a single nonlinear component</li>
+<li>the nonlinear component is time invariant</li>
+<li>corresponding to a sinusoidal input, only the fundamental output is considered</li>
+<li>the nonlinear is odd</li>
 </ol>
-<h2 id="autonomous-and-non-autonomous-systems">2. Autonomous and Non-Autonomous Systems</h2>
-<p>The system is said to be autonomous if <span class="math inline">\(\mathbf f(x)\)</span> does not depend explicitly on time <span class="math inline">\(t\)</span> <span class="math display">\[
-\dot{\mathbf x} = \mathbf{f}(\mathbf x)
-\]</span> Otherwise, the system is called non-autonomous.</p>
-<p>Obviously, LTI systems are autonomous and LTV are non-autonomous system</p>
-<p>Autonomous systems and non-autonomous systems, time-varying systems and time invariant systems are the definition on the closed-loop dynamics. Therefore, they can be due to the plant of the control law.</p>
-<p>The fundamental difference between autonomous system and non-autonomous systems is the former is independent of the initial time.</p>
-<h2 id="equilibrium-points">3. Equilibrium Points</h2>
-<p>==Equilibrium points== are the state of the system if once <span class="math inline">\(x(t)\)</span> is equal to <span class="math inline">\(x^*\)</span> , it remains to <span class="math inline">\(x^*\)</span> for all future time.</p>
-<p>Because of <span class="math display">\[
-\tag{3.1}
-\dot{\mathbf x} = \mathbf f(\mathbf x)
-\]</span> We have <span class="math display">\[
-\mathbf f(\mathbf x^*)= \mathbf 0
-\]</span> For a LTI system <span class="math display">\[
-\dot{\mathbf x}=A\mathbf x\\
-A\mathbf x^*=0
-\]</span> If <span class="math inline">\(A\)</span> is nonsingular, that means there is no nontrivial solution for the equation, there is only trivial solution <span class="math inline">\(\mathbf x^*=0\)</span> , there is only one equilibrium for the system and if <span class="math inline">\(A\)</span> is singular, there are equilibriums same as the solutions for the above equation.​</p>
-<p>And if the equilibrium is not at the origin, we can change transfer it to the origin. <span class="math display">\[
-\begin{array}{lll}
-\mathbf y = \mathbf x - \mathbf x^*\\
-\mathbf x= \mathbf y + \mathbf x^* \\
-{(\mathbf y + \mathbf x^*）&#39;}=\mathbf f(\mathbf y + \mathbf x^*) \\
-\dot{\mathbf y}=\mathbf f(\mathbf y + \mathbf x^*)
-\end{array}
-\]</span></p>
-<p>==Nominal Motion==</p>
-<p>In some practical problems, we are not concerned with stability around the equilibrium point but rather with the stability of the motion such as whether a system will remain close to its original motion trajectory if slightly perturbed away from it. We can show that this kind of motion stability problem around an equilibrium point, although the equivalent system is now non-autonomous.</p>
-<p>$x^<em>(t) $ is the solution of (3.1) corresponding to the initial value $x^</em>(0)=x_0 $, and if there is a small disturbance let the $x(0)=x_0+x_0 $ and the solution of (3.1) is <span class="math inline">\(x(t)\)</span> . <span class="math display">\[
-\begin{array}{}
-e = x(t)-x^*(t)\\
-\dot{x^*}=f(x^*)&amp; x(0)=x_0\\
-\dot{x}=f(x) &amp; x(0)=x_0+\delta x_0 \\
-\dot{e}=f(x^*+e)-f(x^*) =g(e,t)&amp; e(0)=\delta x_0
-\end{array}
-\]</span> We note that <span class="math inline">\(g(0,t)=0\)</span> , therefore <span class="math display">\[
-\dot{e}=g(e,t)
-\]</span> is a new system with state <span class="math inline">\(e\)</span> and function <span class="math inline">\(g\)</span></p>
-<p>Because of <span class="math inline">\(g(0,t)=0\)</span> ,the origin is a equilibrium point.</p>
-<p>Because of the <span class="math inline">\(x^*(t)\)</span> on the right hand side, the system is non-autonomous and the equations are <span class="math display">\[
-\dot{e}=g(e,t)
-\]</span> Instead of <span class="math display">\[
-\dot{e}=g(e)
-\]</span> This will be discussed in the chapter 4 (according to the book), because it is difficult to analyze a non-autonomous system.</p>
-<p>Example <span class="math display">\[
-m\ddot x+k_1x+k_2x^3=0\\
-x_1=x\\
-x_2=\dot x\\
-\]</span> Then we have <span class="math display">\[
-\dot x_1=x_2\\
-m\dot x_2+k_1x_1+k_2x_1^3=0
-\]</span> Rearrange the equations we have <span class="math display">\[
-\dot x_1=x_2\\
-\dot x_2=-\frac{k_1}{m}x_1-\frac{k_2}{m}x_1^3
-\]</span> Let us study the stability of the motion <span class="math inline">\(x^*(t)\)</span> which starts from initial position <span class="math inline">\(x_0\)</span> .</p>
-<p>Then <span class="math display">\[
-\dot x_1^*=x_2^*\\
-\dot x_2^*=-\frac{k_1}{m}x_1^*-\frac{k_2}{m}(x_1^*)^3\\
-\]</span> The above equations with initial position <span class="math inline">\(x_0\)</span> <span class="math display">\[
-\dot x_1=x_2\\
-\dot x_2=-\frac{k_1}{m}x_1-\frac{k_2}{m}x_1^3
-\]</span> The above equations with initial position <span class="math inline">\(x_0+\delta x_0\)</span> <span class="math display">\[
-\dot e_1=e_2\\
-\dot e_2=-\frac{k_1}{m}e_1-\frac{k_2}{m}(e_1+x_1^*(t))^3+\frac{k_2}{m}(x_1^*)^3
-\]</span> If systems are LTI systems, the nominal motion can be shown as <span class="math display">\[
-\dot{e}=Ae
-\]</span></p>
-<h2 id="concepts-of-stability">4. Concepts of Stability</h2>
-<p>Let <span class="math inline">\(B_R\)</span> denote the spherical region defined by <span class="math inline">\(||x||&lt;R\)</span></p>
-<p>Let <span class="math inline">\(S_R\)</span> denote the sphere itself defined by <span class="math inline">\(||x||=R\)</span></p>
-<p>==Stability== <span class="math display">\[
-\forall R&gt;0, \exist r&gt;0,||x(0)||&lt;r\implies \forall t \ge0, ||x(t)||&lt;R
-\]</span> The system is stable.</p>
-<p>Negation <span class="math display">\[
-\forall R&gt;0, \exist r&gt;0,||x(0)||&lt;r\implies \exist t \ge0, ||x(t)|| \ge R
-\]</span> The system is unstable.</p>
-<p>==Asymptotic Stability==</p>
-<p><strong>The system must be stable</strong> and <span class="math display">\[
-\forall R&gt;0,\exist r&gt;0, ||x(0)||&lt;r \implies t \rightarrow \infty ,x(t)\rightarrow 0
-\]</span> State converge does not imply stability, the above only prove the converge, but may not be stable.</p>
-<p>==Exponential Stability== <span class="math display">\[
-\forall R&gt;0,\exist r&gt;0, ||x(0)||&lt;r \implies\forall t&gt;0, \exist \alpha\space\lambda,||x(t)||\le\alpha||x(0)||e^{-\lambda t}
-\]</span> Exponential stability implies asymptotic stability</p>
-<p>==Global Stability==</p>
-<p>If the asymptotically (exponentially) stable holds for any initial states, it is called globally asymptotically (exponentially) stable.</p>
-<h2 id="linearization-and-local-stability">5. Linearization and Local Stability</h2>
-<p><span class="math display">\[
-\begin{array}{}
-\dot{x}&amp;=&amp;(\frac{\partial f}{\partial x})_{x=0}x+O(f(x)) \\
-A &amp;=&amp; (\frac{\partial f}{\partial x})_{x=0} \\
-\tag{3.2}
-\dot{x}&amp;=&amp;Ax
-\end{array}
-\]</span></p>
-<p>That is called the linearization (linear approximation) of the original nonlinear system.</p>
-<p>and for <span class="math display">\[
-\begin{array}{}
-\dot{x}=f(x,u) \\
-\dot{x}=(\frac{\partial f}{\partial x})_{x=0,u=0}x+(\frac{\partial f}{\partial u})_{x=0,u=0}u+O(f(x,u))\\
-A = (\frac{\partial f}{\partial x})_{x=0,u=0} \\
-B = (\frac{\partial f}{\partial u})_{x=0,u=0}
-\end{array}
-\]</span> If the control law of the system is <span class="math inline">\(u=u(x)\)</span>, which is autonomous, and <span class="math inline">\(u(0)=0\)</span> <span class="math display">\[
-\begin{array}{}
-u=u(x)=\frac{\partial u}{\partial x}\vert_{x=0}u=Gx \\
-G = \frac{\partial u}{\partial x}_{x=0}u\\
-\dot{x}=f(x,u)=(A+BG)x
-\end{array}
-\]</span> ==Lyapunov's Linearization Method==</p>
-<p>If the linearized system is strictly stable, then the equilibrium point is asymptotic stable</p>
-<p>If the linearized system is strictly unstable, then the equilibrium point is unstable</p>
-<p>If the linearized system is marginally stable, one cannot make any conclusion. The nonlinear system can be stable and also can be unstable.</p>
-<p>Example</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=x_2^2+x_1\cos x_2\\
-\dot x_2=x_2+(x_1+1)x_1+x_1\sin x_2\\
-\]</span> We hope to check the equilibrium point <span class="math inline">\(x=0\)</span> .</p>
-<p>First, linearize the system <span class="math display">\[
-\begin{array}{rcl}
-\frac{df_1}{x_1}|_{x=0} &amp; = &amp; (\cos x_2)|_{x=0}=1\\
-\frac{df_1}{x_2}|_{x=0} &amp; = &amp; (2x_2-x_1\sin x_2)|_{x=0}=0\\
-\frac{df_2}{x_1}|_{x=0} &amp; = &amp; (2x_1+1+\sin x_2)|_{x=0}=1\\
-\frac{df_2}{x_2}|_{x=0} &amp; = &amp; (1-x_1\cos x_2)|_{x=0}=1\\
-\end{array}
-\]</span> Then we have <span class="math display">\[
-A=
-\begin{bmatrix}
-1&amp;0\\
-1&amp;1\\ 
-\end{bmatrix}\quad
-\]</span> Example</p>
-<p>Consider the following system <span class="math display">\[
-\dot x=ax+bx^5
-\]</span> After linearization <span class="math display">\[
-\dot x=ax
-\]</span> Then we can say</p>
-<ol type="1">
-<li>a&lt;0, asymptotically stable</li>
-<li>a&gt;0, unstable</li>
-<li>a=0, none conclusion</li>
-</ol>
-<p>If the third case, we need to use direct method.</p>
-<h2 id="lyapunovs-direct-method">6. Lyapunov's Direct Method</h2>
-<p>If the total energy of the system is continuously dissipated, then the system will eventually settle down to an equilibrium point.</p>
-<p>Example</p>
-<p>Consider the mass-damper-spring system <span class="math display">\[
-m\ddot x+b\dot x|\dot x|+k_0x+k_1x^3=0
-\]</span> Then the energy of the system is the summarization of kinetic energy and potential energy. <span class="math display">\[
-V=\overbrace{\frac{1}{2}m\dot x^2}^{\text{Kinetic Energy}}+\overbrace{\int_0^{x}(k_0x+k_1x^3)dx}^{\text{Potential Energy}}
-\]</span> Then we derivative the energy function with respect to t <span class="math display">\[
-\dot V=m\dot x\ddot x+(k_0x+k_1x^3)\dot x=-b|\dot x|^3\le0
-\]</span> Some conclusions</p>
-<blockquote>
-<p>Zero energy corresponds to the equilibrium point</p>
-<p>Asymptotic stability implies the convergence of mechanical energy to zero</p>
-<p>Instability is related to the growth of energy</p>
 </blockquote>
-<p>Positive definite functions and Lyapunov Functions</p>
-<p>The energy functions have two properties.</p>
-<blockquote>
-<p>1&gt; It is strictly positive unless all state variables are zero. (Positive definite functions)</p>
-<p>2&gt; The function is monotonically decreasing when the states varying according to the state functions. (Lyapunov Functions)</p>
-</blockquote>
-<p>Locally Positive Definite, if <span class="math inline">\(V(0)=0\)</span> and in a ball <span class="math inline">\(B_{R_{0}}\)</span> <span class="math display">\[
-   x \neq 0 \implies V(x)&gt;0
-\]</span> Globally Positive Definite, if the above property holds for the whole state space.</p>
-<blockquote>
-<p><span class="math inline">\(V(x)\)</span> is negative definite if <span class="math inline">\(-V(x)\)</span> is positive definite</p>
-<p><span class="math inline">\(V(x)\)</span> is positive semi-definite if $V(x) 0 $ for <span class="math inline">\(x \neq 0\)</span></p>
-<p><span class="math inline">\(V(x)\)</span> is negative semi-definite if <span class="math inline">\(-V(x)\)</span> is positive semi-definite.</p>
-</blockquote>
-<p><span class="math display">\[
-   \dot{V}=\frac{dV(x)}{dt}=\frac{\partial V}{\partial x}\frac{dx}{dt}=\frac{\partial V}{\partial x}f(x)
-\]</span> If in a ball <span class="math inline">\(B_{R_{0}}\)</span> , the function <span class="math inline">\(V(x)\)</span> is positive definite and has continuous partial derivatives, and if derivative along any state trajectory of system is negative semi-definite <span class="math display">\[
-\dot{V}(x) \le 0
-\]</span> Then <span class="math inline">\(V(x)\)</span> is said to be ==Lyapunov Function== for the system.</p>
-<p>==Equilibrium Point Theorems==</p>
-<p>Lyapunov Theorem for local stability</p>
-<blockquote>
-<p>if, in a ball <span class="math inline">\(B_{R_{0}}\)</span> ,there exists a scalar function V(x) with continuous first partial derivatives such that</p>
-<p><span class="math inline">\(V(x)\)</span> is positive definite</p>
-<p><span class="math inline">\(\dot{V}(x)\)</span> is negative semi-definite</p>
-<p>then the equilibrium is stable.</p>
-</blockquote>
-<p>If <span class="math inline">\(\dot{V}(x)\)</span> is negative definite, then the equilibrium is asymptotically stable.</p>
-<p>Proof is in another note.</p>
-<p>Example: Local Stability</p>
-<p>A simple pendulum with viscous damping is described by <span class="math display">\[
-\ddot \theta+\dot \theta+\sin \theta=0
-\]</span> Then we have state space equations <span class="math display">\[
-\dot x_1=x_2\\
-\dot x_2=-x_2-\sin x_1
-\]</span> We choose a Lyapunov Function <span class="math display">\[
-V(x)=(1-\cos x_1)+\frac{x_2^2}{2}
-\]</span> It can be easily verified that it is locally positive definite. <span class="math display">\[
-\dot V(x)=
-\begin{bmatrix}
-\frac{\partial V}{\partial x_1}
- &amp; \frac{\partial V}{\partial x_2}
-\end{bmatrix}
-\begin{bmatrix}
-\frac{\partial x_1}{\partial t}
- \\ \frac{\partial x_2}{\partial t}
-\end{bmatrix}
-=\begin{bmatrix}
-\sin x_1
- &amp; x_2
-\end{bmatrix}
-\begin{bmatrix}
-x_2
- \\ 
--x_2-\sin x_1
-\end{bmatrix}=-x_2^2&lt;0
-\]</span> Actually, for this question, <span class="math inline">\(\dot V(x)\)</span> consists two Jacobi Matrices.</p>
-<p>Example: Asymptotic Stability</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=x_1(x_1^2+x_2^2-2)-4x_1x_2^2\\
-\dot x_2=4x_1^2x_2+x_2(x_1^2+x_2^2-2)\\
+<p>1 implies that if there are two nonlinear parts. they should be lumped together or one can be neglected.</p>
+<p>2 implies that we only consider only autonomous nonlinear system</p>
+<p>3 implies that the linear part should be a low pass filter</p>
+<p>4 means that the nonlinearity relation f(x) between input and output is symmetric about the origin for the simplicity of Fourier expansion of the output.</p>
+<h3 id="basic-definitions">5. Basic Definitions</h3>
+<p>Analytical Calculation based on Fourier Transform</p>
+<p>Numerical Integration</p>
+<p>Experimental Evaluation</p>
+<h3 id="common-nonlinearities">6. Common Nonlinearities</h3>
+<p>Saturation</p>
+<p>Dead-Zone</p>
+<p>Backlash</p>
+<h3 id="describing-function-analysis-of-nonlinear-system">7. Describing Function Analysis of Nonlinear System</h3>
+<p>If there is a K before G, K is complex.</p>
+<p>then the point from (-1, 0) to (Re(-1/k), Im(-1/k))</p>
+<p>therefore, if <span class="math inline">\(N(A,\omega)\)</span> substitutes K <span class="math display">\[
+G(j\omega)N(A,\omega)+1=0 \\
+G(j\omega)=-\frac{1}{N(A,\omega)}
 \]</span></p>
-<p><span class="math display">\[
-V(x)=x_1^2+x_2^2
-\]</span></p>
-<p>Then we have <span class="math display">\[
-\dot V(x)=
-\begin{bmatrix}
-2x_1 &amp; 2x_2
-\end{bmatrix}
-\begin{bmatrix}
-\dot x_1\\
-\dot x_2\\
-\end{bmatrix}=
-2(x_1^2+x_2^2)(x_1^2+x_2^2-2)
-\]</span> <span class="math inline">\(\dot V(x)\)</span> is locally negative definite, therefore the system is locally asymptotically stable.</p>
-<p>Lyapunov Theorem for global stability</p>
-<p><span class="math inline">\(V(x)\)</span> is positive definite</p>
-<p><span class="math inline">\(\dot{V}(x)\)</span> is negative definite</p>
-<p><span class="math inline">\(V(x) \rightarrow \infty\)</span> as <span class="math inline">\(||x|| \rightarrow \infty\)</span></p>
-<p>Then the system is globally asymptotically stable. The last one condition is to ensure the closed contour of <span class="math inline">\(V(x)\)</span></p>
-<p>Example: Globally Asymptotic Stability</p>
-<p>Consider the system <span class="math display">\[
-\dot x_1=x_2-x_1(x_1^2+x_2^2)\\
-\dot x_2=-x_1-x_2(x_1^2+x_2^2)\\
-\]</span> We choose the positive definite function <span class="math display">\[
-V(x)=x_1^2+x_2^2
-\]</span> Then we have <span class="math display">\[
-\dot V(x)=2x_1\dot x_1+2x_2\dot x_2^2=-2(x_1^2+x_2^2)^2
-\]</span> V(x) goes to infinity when x goes to infinity.</p>
-<p>Therefore, the system is globally asymptotically stable.</p>
-<p>Many Lyapunov Functions exist for the same system. e.g.</p>
-<p>If V is an energy function for this system, then <span class="math display">\[
-V_1=\rho V^\alpha
-\]</span> <span class="math inline">\(\rho\)</span> is strictly positive definite and <span class="math inline">\(\alpha\)</span> is a scalar. Then all of these energy functions are for this system.</p>
-<p>==Invariant set theorems==</p>
-<p>Asymptotic stability of a control system is usually very important property to be determined. However, the equilibrium point theorem just described are often difficult to apply to assert this property. The reason is that it often happens that <span class="math inline">\(\dot V\)</span> is only semi-definite. That is the reason of existence of invariant set theorem. It can be used to determine the asymptotic stability of a control system with semi-definite <span class="math inline">\(\dot V\)</span>.</p>
-<p>A set is an invariant set for a dynamic system if every system trajectory which starts from a point in G remains in G for all future time.</p>
-<p>Local invariant set theorem</p>
-<p>The invariant set theorem reflect the intuition that the decrease of a Lyapunov function V has to gradually vanish.</p>
-<p>Assume</p>
-<p>For some <span class="math inline">\(l&gt;0\)</span> , the region <span class="math inline">\(\Omega _l\)</span> defined by <span class="math inline">\(V(x)&lt;l\)</span> is bounded</p>
-<p><span class="math inline">\(\dot{V}(x)\le 0\)</span> for all <span class="math inline">\(x\)</span> in <span class="math inline">\(\Omega_l\)</span></p>
-<p>Let R be the set of all points in <span class="math inline">\(\Omega_l\)</span> where <span class="math inline">\(\dot{V}(x)= 0\)</span> , and <span class="math inline">\(M\)</span> be the largest invariant set in <span class="math inline">\(R\)</span> . Then every solution <span class="math inline">\(x(t)\)</span> originating in <span class="math inline">\(\Omega_l\)</span> tends to <span class="math inline">\(M\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span> .</p>
-<p>(if $(x)=0 $ for all future <span class="math inline">\(t\)</span>, then <span class="math inline">\(M=R\)</span> )</p>
-<p>That means, if M only contains the origin, then states will be converged to the origin. Therefore, the system is locally asymptotic stable. It is summarized in the following</p>
-<blockquote>
-<p><span class="math inline">\(V(x)\)</span> is locally positive definite</p>
-<p><span class="math inline">\(\dot{V}\)</span> is negative semi-definite</p>
-<p>The set <span class="math inline">\(R\)</span> defined by <span class="math inline">\(\dot{V}(x)=0\)</span> only contains the origin.</p>
-</blockquote>
-<p>Then the equilibrium is asymptotically stable.</p>
-<p>Furthermore, the largest connected region of the <span class="math inline">\(\Omega_l\)</span> (defined by <span class="math inline">\(V(x)&lt;l\)</span>) is a domain of attraction.</p>
-<p>Globally invariant set theorem</p>
-<p><span class="math inline">\(\dot{V}(x) \le 0\)</span> over the whole state space</p>
-<p><span class="math inline">\(V(x) \rightarrow \infty\)</span> as <span class="math inline">\(||x|| \rightarrow \infty\)</span></p>
-<p>Let R be the set of all points where <span class="math inline">\(\dot{V}(x) = 0\)</span> , and M be the largest invariant set in R. Then all solutions globally asymptotically converge to M as <span class="math inline">\(t\rightarrow \infty\)</span> .</p>
-<p>Proof omitted needs knowledge of topology.</p>
-<p>Example</p>
-<p>mass-damper-spring system introduced in the beginning is marginally stable if we use Lyapunov Theory. We have <span class="math display">\[
-\dot V=m\dot x\ddot x+(k_0x+k_1x^3)\dot x=-b|\dot x|^3\le0
-\]</span> Then <span class="math inline">\(\dot x=0\)</span> and <span class="math inline">\(x\)</span> is free</p>
-<p>Then we will use Invariant Set Theorem to prove that it is asymptotically stable.</p>
-<p>We know that states will goes to largest invariant set M. We only need to show that only origin is in this set.</p>
-<p>If there is another none zero point in this set, then <span class="math inline">\(x\neq0\)</span> and <span class="math inline">\(\dot x=0\)</span>. If we check the acceleration, it is zero only when <span class="math inline">\(x=0\)</span>, which means none zero point is not in invariant set. Therefore, the system is asymptotically stable.</p>
 
         
       
@@ -624,7 +411,7 @@ V_1=\rho V^\alpha
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/2. Phase Plane Analysis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -638,7 +425,7 @@ V_1=\rho V^\alpha
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/10/02/Applied Nonlinear Control/2. Phase Plane Analysis/" class="post-title-link" itemprop="url">2. Phase Plane Analysis</a>
+            <a href="/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/" class="post-title-link" itemprop="url">4. Advanced Stability Theory</a>
           
         </h1>
 
@@ -653,7 +440,7 @@ V_1=\rho V^\alpha
                 
               
 
-              <time title="Created: 2018-10-02 22:28:13" itemprop="dateCreated datePublished" datetime="2018-10-02T22:28:13+08:00">2018-10-02</time>
+              <time title="Created: 2018-10-02 22:32:34" itemprop="dateCreated datePublished" datetime="2018-10-02T22:32:34+08:00">2018-10-02</time>
             </span>
           
             
@@ -664,7 +451,7 @@ V_1=\rho V^\alpha
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:27:38" itemprop="dateModified" datetime="2019-08-26T00:27:38+08:00">2019-08-26</time>
+                <time title="Modified: 2019-08-26 00:26:08" itemprop="dateModified" datetime="2019-08-26T00:26:08+08:00">2019-08-26</time>
               </span>
             
           
@@ -683,7 +470,7 @@ V_1=\rho V^\alpha
           
 
           
-            <span id="/2018/10/02/Applied Nonlinear Control/2. Phase Plane Analysis/" class="post-meta-item leancloud_visitors" data-flag-title="2. Phase Plane Analysis" title="Views">
+            <span id="/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/" class="post-meta-item leancloud_visitors" data-flag-title="4. Advanced Stability Theory" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -701,7 +488,7 @@ V_1=\rho V^\alpha
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/10/02/Applied Nonlinear Control/2. Phase Plane Analysis/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/10/02/Applied Nonlinear Control/2. Phase Plane Analysis/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/10/02/Applied Nonlinear Control/4. Advanced Stability Theory/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -715,64 +502,253 @@ V_1=\rho V^\alpha
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="concepts-of-phase-plane-analysis">1. Concepts of Phase Plane Analysis</h2>
-<p><span class="math display">\[
-\dot{x}_1=f_1(x_1,x_2)\\\dot{x}_2=f_2(x_1,x_2)
+          <h2 id="concepts-of-stability-for-non-autonomous-systems">1. concepts of stability for non-autonomous systems</h2>
+<p>For non-autonomous system <span class="math display">\[
+\dot{x} = f(x,t)
+\]</span> equilibrium points are defined as <span class="math display">\[
+f(x^*,t)=0
+\]</span> for <span class="math inline">\(t \in [t_0,\infty]\)</span> .</p>
+<p>Example <span class="math display">\[
+\dot x=-\frac{a(t)x}{1+x^2}
+\]</span> Then the equilibrium point is <span class="math inline">\(x=0\)</span>.</p>
+<p>==Stability== <span class="math display">\[
+\forall R&gt;0 \quad \exist r(t_0)&gt;0 \quad||x(t_0)||&lt;r \implies ||x(t)||&lt; R \quad \forall t\ge t_0
+\]</span> ==Asymptotically Stable==</p>
+<p>it is stable and <span class="math display">\[
+\exist r(t_0) &gt; 0
+\]</span> such that $$ \begin{array}{} ||x(t_0)||&lt;r(t_0) &amp; &amp; ||x(t)|| 0 &amp; as &amp; t </p>
+<p>\end{array} <span class="math display">\[
+==Exponentially Stable==
+\]</span> \begin{array}{} ||x(t)|| ||x_0||e^{-(t-t_0)} &amp; t t_0</p>
+<p>\end{array} $$</p>
+<p>==Globally Asymptotically Stable== <span class="math display">\[
+x(t) \rightarrow0 \space as \space t\rightarrow \infty
+\]</span> ==Uniformity== in stability concepts</p>
+<p>the equilibrium is uniformly stable if the scalar <span class="math inline">\(r\)</span> can be chosen independently of <span class="math inline">\(t_0\)</span> <span class="math display">\[
+r=r(R)
+\]</span> ==Uniformly Asymptotically Stable== <span class="math display">\[
+r=r(R)
 \]</span></p>
-<p>These two differential equations can be solved graphically and plot with <span class="math inline">\(x_1\)</span> being horizontal axis and $ x_2 $ being vertical axis.</p>
-<p>Example:</p>
-<p>For the system <span class="math display">\[
-\begin{array}{rcl}
-\dot x_1&amp;=&amp;x_2\\
-\dot x_2&amp;=&amp;-0.6x_2-3x_1+x_1^2\\
+<p>Non-uniformity means less and less stable and longer and longer converge time with large <span class="math inline">\(t_0\)</span> .</p>
+<p>exponentially stable usually means uniformly asymptotically stable.</p>
+<h2 id="lyapunov-analysis-of-non-autonomous-system">2. Lyapunov Analysis of Non-Autonomous system</h2>
+<p>==Locally Positive Definite== <span class="math display">\[
+\forall t \ge t_0 , \quad V(x,t) \ge V_0(x)
+\]</span> <span class="math inline">\(V_0(x)\)</span> is positive definite.</p>
+<p>That means a time-variant function is locally positive definite if it dominates a time-invariant locally positive definite function.</p>
+<p>Other concepts are the same.</p>
+<p>==Decrescent==</p>
+<p>A scalar function <span class="math inline">\(V(x,t)\)</span> is decrescent if <span class="math inline">\(V(0,t)=0\)</span> and if there exists a time-invariant positive definite function <span class="math inline">\(V_1(x)\)</span> <span class="math display">\[
+\forall t \ge0, \quad V(x,t) \le V_1(x)
+\]</span> for the time variant scalar function <span class="math inline">\(V\)</span> <span class="math display">\[
+\frac{dV}{dt}=\frac{\part V}{\part t}+\frac{\part V}{\part x}\frac{\part x}{\part t}\\
+=\frac{\part V}{\part t}+\frac{\part V}{\part x}f(x,t)
+\]</span> Example</p>
+<p>Consider the positive definite function <span class="math display">\[
+V(x,t)=(1+\sin^2t)(x_1^2+x_2^2)
+\]</span> It dominates the function <span class="math inline">\(V_0=x_1^2+x_2^2\)</span> and it is dominated by <span class="math inline">\(V_1=2(x_1^2+x_2^2)\)</span> . Therefore the function is positive definite and is decrescent.</p>
+<p>==Lyapunov Theorem for Non-Autonomous Systems==</p>
+<blockquote>
+<p>for <span class="math inline">\(V(x,t)\)</span> , in a ball <span class="math inline">\(B_{R_{0}}\)</span></p>
+<ol type="1">
+<li>V is positive definite</li>
+<li><span class="math inline">\(\dot{V}\)</span> is negative semi-definite</li>
+</ol>
+<p>then the equilibrium point 0 is stable.</p>
+</blockquote>
+<p>If V is decrescent, uniformly stable.</p>
+<p>If <span class="math inline">\(\dot{V}\)</span> is negative definite and V is decrescent, uniformly asymptotically stable</p>
+<p>If <span class="math inline">\(B_{R_{0}}\)</span> is the whole state, globally uniformly asymptotically stable.</p>
+<h2 id="proof-of-lyapunov-analysis-of-non-autonomous-systems">3. Proof of Lyapunov Analysis of Non-Autonomous Systems</h2>
+<p>A continuous function <span class="math inline">\(\alpha\)</span> is said to be of class K (<span class="math inline">\(R^+ \rightarrow R^+\)</span>) if</p>
+<ul>
+<li><span class="math inline">\(\alpha(0)=0\)</span></li>
+<li><span class="math inline">\(\alpha(p)&gt;0\)</span> if <span class="math inline">\(\forall p&gt;0\)</span></li>
+<li><span class="math inline">\(\alpha\)</span> is non-decreasing</li>
+</ul>
+<p>Lemma 1</p>
+<p>A function is locally (globally) positive definite if, and only if, there exists a function <span class="math inline">\(\alpha\)</span> of class K such that <span class="math inline">\(V(0,t)=0\)</span> and <span class="math display">\[
+V(x,t) \ge \alpha(||x||)
+\]</span> A function is locally (globally) decrescent if and only if there exists a class K function <span class="math inline">\(\beta\)</span> such that <span class="math inline">\(V(0,t)=0\)</span> and<br>
+<span class="math display">\[
+V(x,t) \le \beta(||x||)
+\]</span> Theorem</p>
+<p>For non-autonomous system <span class="math inline">\(V(x,t)\)</span> and a class K function <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\gamma\)</span></p>
+<blockquote>
+<ol type="1">
+<li><p><span class="math inline">\(V(x,t) \ge \alpha(||x||) &gt; 0\)</span></p></li>
+<li><p><span class="math inline">\(\dot V(x,t) \le 0\)</span></p></li>
+</ol>
+<p>The system is <span class="math inline">\(L\)</span> stable.</p>
+<ol start="3" type="1">
+<li><span class="math inline">\(V(x,t) \le \beta(||x||)\)</span></li>
+</ol>
+<p>The system is uniformly stable.</p>
+<p>if 2 is change to</p>
+<p><span class="math inline">\(\dot V(x,t) \le -\gamma(||x||) &lt; 0\)</span></p>
+<p>the system is uniformly asymptotically stale</p>
+<p><span class="math inline">\(\displaystyle \lim _{x \rightarrow \infty} \alpha(||x||) \rightarrow \infty\)</span> and 1. 2. 3. are satisfied in whole state space then</p>
+<p>the system is globally uniformly asymptotically stable.</p>
+</blockquote>
+<p>Consider the system defined by <span class="math display">\[
+\dot x_1=-x_1-e^{-2t}x_2\\
+\dot x_2=x_1-x_2
+\]</span> Now we try <span class="math display">\[
+V=x_1^2+(1+e^{-2t})x_2^2\\
+\dot V=-2e^{-2t}x_2^2+2x_1(-x_1-e^{-2t}x_2)+(1+e^{-2t})2x_2(x_1-x_2)\\
+=-2[x_1^2-x_1x_2+(2e^{-2t}+1)x_2^2]
+\]</span> Then we have <span class="math display">\[
+\dot V \le-2[x_1^2-x_1x_2+x_2^2]&lt;0
+\]</span> System is globally asymptotically stable.</p>
+<h2 id="lyapunov-analysis-of-ltv">4. Lyapunov Analysis of LTV</h2>
+<p>in view the relationship between the LTV and the non-autonomous system. Nonlinear non-autonomous system can be linearized to LTV and then discuss the stability. <span class="math display">\[
+\dot{x}=A(t)x
+\]</span> Given <span class="math display">\[
+\begin{array}{lll}
+V &amp; = &amp; x^Tx \\
+\dot{V} &amp; = &amp; \dot{x}^Tx+x^T\dot{x} \\
+ &amp; = &amp; x^TA^T(t)x+x^TA(t)x \\
+ &amp; = &amp; x^T(A^T(t)+A(t))x
+\end{array}
+\]</span> Therefore,</p>
+<p>if <span class="math inline">\(A^T(t)+A(t)\)</span> is negative definite, the LTV system is stable.</p>
+<p>but this theorem is only sufficient</p>
+<p>and since <span class="math display">\[
+\exist \lambda&gt;0, \forall i, \forall t\ge0,\lambda_i(A(t)+A^T(t))\le-\lambda \\
+\dot{V}=x^T(A^T(t)+A(t))x \le -\lambda x^T x=-\lambda V
+\]</span> therefore, the system is exponentially stable.</p>
+<p>perturbed linear system <span class="math display">\[
+\dot{x}=(A_1+A_2(t))x
+\]</span> If <span class="math inline">\(A_1\)</span> is constant and Hurwitz (all its eigenvalues are strictly in the left-half plane), and if <span class="math inline">\(A_2\)</span>(t) is <span class="math display">\[
+A_2(t) \rightarrow0 \quad as \quad t \rightarrow \infty
+\]</span> and <span class="math display">\[
+\int_0^\infty||A_2(t)||dt&lt;\infty
+\]</span> That means the integral exists and is finite.</p>
+<p>The system is globally exponentially stable</p>
+<p>Consider the system <span class="math display">\[
+\dot x_1=-(5+x_2^5+x_3^8)x_1\\
+\dot x_2=-x_2+4x_3^2\\
+\dot x_3=-(2+\sin t)x_3\\
+\]</span> We can see <span class="math inline">\(x_3\)</span> is asymptotically stable and it converges to zero exponentially, so is <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_1\)</span>.</p>
+<h2 id="the-linearization-of-non-autonomous-system">5. The linearization of non-autonomous system</h2>
+<p>if origin is the equilibrium point <span class="math display">\[
+A(t)=(\frac{\part f}{\part x})_{x=0}\\
+\dot{x}=A(t)x
+\]</span> the second part is said to be the linearization of the non-autonomous system.</p>
+<p>but <span class="math display">\[
+\dot{x}=A(t)x+O(x,t)
+\]</span> the system can be linearized only with this condition satisfied <span class="math display">\[
+\lim_{||x||\rightarrow 0} \sup\frac{||O(x,t)||}{||x||}=0, \quad \forall \ge0
+\]</span> Note, <span class="math inline">\(A\)</span> can be time-varying and also can be constant.</p>
+<p>If the linearized system is uniformly asymptotically stable, then the equilibrium point 0 of the original non-autonomous system is also uniformly asymptotically stable.</p>
+<p>But it does not relate the instability.</p>
+<h2 id="instability-theorem">6. Instability Theorem</h2>
+<p>First we can try the linearization method to analyze the instability of the system.</p>
+<p>when the linearization method failed. we can use the direct method.</p>
+<p>==First Instability Theorem==</p>
+<p><span class="math inline">\(V(0,t) = 0 \quad \forall \space t\ge t_0\)</span></p>
+<p><span class="math inline">\(V(x,t_0)\)</span> can assume strictly positive value arbitrarily close to the origin</p>
+<p><span class="math inline">\(\dot{V}(x,t)\)</span> is positive definite.</p>
+<p>then the system is unstable.</p>
+<p>Example</p>
+<p>Consider the system <span class="math display">\[
+\dot x_1=2x_2+x_1(x_1^2+2x_2^4)\\
+\dot x_2=-2x_1+x_2(x_1^2+x_2^4)
+\]</span> We take <span class="math display">\[
+V=\frac{1}{2}(x_1^2+x_2^2)
+\]</span> its derivative is <span class="math display">\[
+\dot V=(x_1^2+x_2^2)(x_1^2+x_2^4)
+\]</span> The system is instable.</p>
+<p>==Second Instability Theorem== <span class="math display">\[
+\dot{V}(x,t)-\lambda V(x,t) \ge 0 \quad \forall t \ge t_0 \quad \forall x \in \Omega
+\]</span> <span class="math inline">\(\Omega\)</span> is a certain neighborhood of the origin. V is differentiable, decrescent function. <span class="math display">\[
+V(x,t)=x_1^2-x_2^2
+\]</span> For the above equation, <span class="math inline">\(\Omega\)</span> can be said to be a certain neighborhood of the origin.</p>
+<p>==Third instability theorem==</p>
+<p>?????(P119) similar to 2.</p>
+<h2 id="existence-of-lyapunov-function">7. Existence of Lyapunov Function</h2>
+<p>Stability</p>
+<p>If the origin of the system is stable, there exists a positive definite function <span class="math inline">\(V(x,t)\)</span> with a non-positive definite.</p>
+<p>Uniform Asymptotic Stability</p>
+<p>If the equilibrium point at the origin is uniformly asymptotically stable, there exists a positive definite and decrescent function <span class="math inline">\(V(x,t)\)</span> with a negative definite derivative.</p>
+<h2 id="lyapunov-like-analysis-using-barbalats-lemma">8. Lyapunov-Like Analysis Using Barbalat's Lemma</h2>
+<p><span class="math inline">\(\dot{f} \rightarrow 0 \quad t \rightarrow \infty\)</span> does not mean f converge</p>
+<p>Example <span class="math display">\[
+f(t)=\sin (\log t)\\
+f&#39;(t)=\frac{\cos(\log t)}{t} \rightarrow0
+\]</span> f converge does not mean <span class="math inline">\(\dot{f} \rightarrow 0\)</span></p>
+<p><span class="math display">\[
+f(t)=e^{-t}\sin(e^{2t})\rightarrow0\\
+f&#39;(t)=-e^{-t}\sin (e^{2t})+e^{t}\cos (e^{2t}) \rightarrow\infty
+\]</span> If <span class="math inline">\(f\)</span> is lower bounded and decreasing (<span class="math inline">\(\dot{f} \le 0\)</span>), then it converges to a limit.</p>
+<p>==Barbalat's Lemma==</p>
+<p>If differential function <span class="math inline">\(f(t)\)</span> has a finite limit as $t $, and if <span class="math inline">\(\dot f(t)\)</span> is uniformly continuous, then <span class="math inline">\(\dot f(t) \rightarrow 0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span></p>
+<p>It can be proved that if $ (t)$ is bounded, then <span class="math inline">\(\dot f(t)\)</span> is uniformly continuous.</p>
+<p>==Lyapunov-Like Lemma==</p>
+<p>If a scalar function <span class="math inline">\(V(x,t)\)</span> satisfies the following conditions</p>
+<p><span class="math inline">\(V(x,t)\)</span> is lower bounded</p>
+<p><span class="math inline">\(\dot V(x,t)\)</span> is negative semi-definite</p>
+<p><span class="math inline">\(\dot V(x,t)\)</span> is uniformly continuous in time</p>
+<p>then <span class="math inline">\(\dot{V}(x,t) \rightarrow0\)</span> as <span class="math inline">\(t \rightarrow \infty\)</span></p>
+<p>Example</p>
+<p>for an adaptive control system <span class="math display">\[
+\dot e = -e+\theta w(t) \\
+\dot \theta = -ew(t)
+\]</span> Consider <span class="math display">\[
+V = e^2+\theta^2
+\]</span> We have <span class="math display">\[
+\begin{array}{}
+\dot V &amp;=&amp; 2e\dot e+2\theta \dot \theta \\
+&amp;=&amp;2e(-e+\theta w(t))+2\theta(-ew(t)) \\
+&amp;=&amp;-2e^2
 \end{array}
 \]</span></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ode_option = odeset(<span class="string">'Maxstep'</span>,<span class="number">0.01</span>);</span><br><span class="line">[t1, x1]=ode45(@odefun,[<span class="number">0</span>,<span class="number">10</span>],[<span class="number">2</span>,<span class="number">2</span>],ode_option);</span><br><span class="line">[t2, x2]=ode45(@odefun,[<span class="number">0</span>,<span class="number">10</span>],[<span class="number">-3</span>,<span class="number">1</span>],ode_option);</span><br><span class="line">[t3, x3]=ode45(@odefun,[<span class="number">0</span>,<span class="number">10</span>],[<span class="number">0.5</span>,<span class="number">0.5</span>],ode_option);</span><br><span class="line"></span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"><span class="built_in">scatter</span>(x1(:,<span class="number">1</span>),x1(:,<span class="number">2</span>),<span class="number">2</span>,t1,<span class="string">'filled'</span>);</span><br><span class="line"><span class="built_in">scatter</span>(x2(:,<span class="number">1</span>),x2(:,<span class="number">2</span>),<span class="number">2</span>,t2,<span class="string">'filled'</span>);</span><br><span class="line"><span class="built_in">scatter</span>(x3(:,<span class="number">1</span>),x3(:,<span class="number">2</span>),<span class="number">2</span>,t3,<span class="string">'filled'</span>);</span><br><span class="line"></span><br><span class="line">colorbar;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dxdt</span> = <span class="title">odefun</span><span class="params">(~,x)</span></span></span><br><span class="line">    dxdt=<span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">    dxdt(<span class="number">1</span>) = x(<span class="number">2</span>);</span><br><span class="line">    dxdt(<span class="number">2</span>) = <span class="number">-0.6</span>*x(<span class="number">2</span>)<span class="number">-3</span>*x(<span class="number">1</span>)-x(<span class="number">1</span>)^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h2 id="symmetry-in-phase-plane-portraits">2. Symmetry in Phase Plane Portraits</h2>
-<p><span class="math display">\[
-f(x_1,x_2)=f(x_1,-x_2) \\
-f(x_1,x_2)=f(-x_1,x_2) \\
-f(x_1,x_2)=-f(-x_1,-x_2)
+<p>that means <span class="math inline">\(V(t) \le V(0)\)</span> , <span class="math inline">\(e\)</span> and <span class="math inline">\(\theta\)</span> is bounded.</p>
+<p><span class="math inline">\(V\)</span> is lower bounded and <span class="math inline">\(\dot V\)</span> is negative semi-definite. we need <span class="math inline">\(\dot V\)</span> is uniformly continuous. <span class="math display">\[
+\ddot V = -4e \dot e=-4e(-e+\theta w(t))
 \]</span></p>
-<p>the above three equations represent symmetry about <span class="math inline">\(x_1\)</span>, symmetry about <span class="math inline">\(x_2\)</span>, symmetry about origin.</p>
-<h2 id="how-to-construct">3. How to Construct</h2>
-<p>Analytical Method</p>
-<p>Method of Isoclines</p>
-<h2 id="phase-plane-analysis-of-linear-system">4. Phase Plane Analysis of Linear System</h2>
-<p>Stable, Unstable, Saddle, Stable focus, Unstable focus, Centre point</p>
-<h2 id="limit-circle">5. Limit Circle</h2>
-<ol type="1">
-<li><p>Stable limit circle</p>
-<p>all trajectories in the vicinity of limit circle converge to it.</p></li>
-<li><p>Unstable limit circle</p>
-<p>all trajectories in the vicinity of limit circle diverge from it.</p></li>
-<li><p>Some converge to it while some diverge from it.</p></li>
-</ol>
-<h2 id="existence-of-limit-circle">6. Existence of Limit Circle</h2>
-<p>N is the number of nodes, centers and foci enclosed by a limit circle.</p>
-<p>S is the number of saddle points enclosed by a limit circle.</p>
-<ol type="1">
-<li><p>Poincare</p>
-<p>If a limit circle exists in the second-order autonomous system, then <span class="math inline">\(N=S+1\)</span></p>
-<p>the proof is mathematically involved and the inference is that from this theorem, a limit circle must enclose at least one equilibrium point.</p></li>
-<li><p>Poincare-Bendixson</p>
-<p>If a trajectory of the second order autonomous system remains in a finite region <span class="math inline">\(\Omega\)</span> , then one of the following is true</p>
-<ol type="1">
-<li>the trajectory goes to an equilibrium point</li>
-<li>the trajectory tends to an asymptotically stable limit circle</li>
-<li>the trajectory is itself a limit circle.</li>
-</ol></li>
-<li><p>Bendixson</p>
-<p>For the nonlinear system, no limit circle can exist in a region <span class="math inline">\(\Omega\)</span> of the phase plane in which <span class="math inline">\(\frac{\part f_1}{\part x_1}+\frac{\part f_2}{\part x_2}\)</span> does not vanish and does not change sign.</p></li>
-</ol>
-<h3 id="exercise">7. Exercise</h3>
-<ol type="1">
-<li>Draw Phase Plane for the system</li>
-</ol>
-<p><span class="math display">\[
-G(p)=\frac{10}{p(1+0.1p)}
+<p><span class="math inline">\(\ddot V\)</span> is bounded</p>
+<p><span class="math inline">\(\dot V\)</span> goes to 0 as <span class="math inline">\(t \rightarrow \infty\)</span></p>
+<p>that means $e 0 $ as <span class="math inline">\(t \rightarrow \infty\)</span></p>
+<h2 id="positive-linear-system">9. Positive Linear System</h2>
+<p>In the analysis and design of nonlinear system, it is possible to decompose the system into a linear subsystem and a nonlinear subsystem. If the transfer function of the linear subsystem is so-called positive real, then it has important properties which may lead to the generation of a Lyapunov function for the whole system.</p>
+<p>==Positive Real Function and Strictly Positive Real Function==</p>
+<p>A transfer function is positive real if <span class="math inline">\(Re[h(p)] \ge 0\)</span> for all <span class="math inline">\(Re[p] \ge 0\)</span></p>
+<p>It is strictly positive real if <span class="math inline">\(h(p-\epsilon )\)</span> is positive real for some <span class="math inline">\(\epsilon \ge 0\)</span></p>
+<p>It means that h(p) always has a positive real part when p has positive (or zero) real part.</p>
+<p>A transfer function is SPR if and only if</p>
+<p>​ 1) <span class="math inline">\(h(p)\)</span> is a strictly stable transfer function</p>
+<p>​ 2) the real part of <span class="math inline">\(h(p)\)</span> is strictly positive along the <span class="math inline">\(j\omega\)</span> axis, <span class="math inline">\(\forall \omega \ge 0\)</span>, <span class="math inline">\(Re[h(j \omega)]&gt;0\)</span></p>
+<p>There are four necessary conditions according to the above</p>
+<p>​ 1) <span class="math inline">\(h(p)\)</span> is strictly stable</p>
+<p>​ 2) Nyquist plot of <span class="math inline">\(h(j\omega)\)</span> lies entirely in the right half complex plane.</p>
+<p>​ 3) <span class="math inline">\(h(p)\)</span> has relative degree 0 or 1</p>
+<p>​ 4) <span class="math inline">\(h(p)\)</span> is strictly minimum-phase (all zeros are strictly in the left half plane)</p>
+<p>==KY Lemma==</p>
+<p>Consider a controllable LTI system <span class="math display">\[
+\dot{x}=Ax+bu\\
+y=c^Tx
+\]</span> The transfer function <span class="math display">\[
+h(p)=c^T[pI-A]^{-1}b
+\]</span> is SPR if and only if there exist positive definite matrices P and Q such that <span class="math display">\[
+A^TP+PA=-Q \\
+Pb=c
 \]</span></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ode_option = odeset(<span class="string">'Maxstep'</span>,<span class="number">0.01</span>);</span><br><span class="line">[t1, x1]=ode45(@odefun,[<span class="number">0</span>,<span class="number">10</span>],[<span class="number">0</span>,<span class="number">0</span>],ode_option);</span><br><span class="line">[t2, x2]=ode45(@odefun,[<span class="number">0</span>,<span class="number">10</span>],[<span class="number">-1</span>,<span class="number">1</span>],ode_option);</span><br><span class="line">[t3, x3]=ode45(@odefun,[<span class="number">0</span>,<span class="number">10</span>],[<span class="number">0.1</span>,<span class="number">0.1</span>],ode_option);</span><br><span class="line"></span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"><span class="built_in">scatter</span>(x1(:,<span class="number">1</span>),x1(:,<span class="number">2</span>),<span class="number">2</span>,t1,<span class="string">'filled'</span>);</span><br><span class="line"><span class="built_in">scatter</span>(x2(:,<span class="number">1</span>),x2(:,<span class="number">2</span>),<span class="number">2</span>,t2,<span class="string">'filled'</span>);</span><br><span class="line"><span class="built_in">scatter</span>(x3(:,<span class="number">1</span>),x3(:,<span class="number">2</span>),<span class="number">2</span>,t3,<span class="string">'filled'</span>);</span><br><span class="line"></span><br><span class="line">colorbar;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dxdt</span> = <span class="title">odefun</span><span class="params">(~,x)</span></span></span><br><span class="line">    dxdt=<span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">    dxdt(<span class="number">1</span>) = x(<span class="number">2</span>);</span><br><span class="line">    dxdt(<span class="number">2</span>) = <span class="number">-10</span>*x(<span class="number">2</span>)<span class="number">-100</span>*x(<span class="number">1</span>)+<span class="number">100</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="the-passivity-formalism">10. The Passivity Formalism (?????)</h2>
+<p><span class="math display">\[
+\frac{d[\text{Stored Energy}]}{dt} = [\text{External Power Input}]+[\text{Internal Power Generation}]
+\]</span></p>
+<p>Therefore, we define the form <span class="math display">\[
+\dot{V_1}=y_1^Tu_1-g_1(t)
+\]</span> if <span class="math inline">\(V_1\)</span> is lower bounded and <span class="math inline">\(g_1 \ge 0\)</span>, the system is said to be passive (passive mapping from u to y)</p>
+<ol start="11" type="1">
+<li>Exercise</li>
+</ol>
+<p>4.2 <span class="math display">\[
+\dot{v}+2a|v|v+bv=c \\
+V=v^2 \\
+\dot{V}=2v\dot{v}=2v(c-2a|v|v-bv)
+\]</span></p>
 
         
       
@@ -796,7 +772,7 @@ G(p)=\frac{10}{p(1+0.1p)}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -841,7 +817,7 @@ G(p)=\frac{10}{p(1+0.1p)}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
