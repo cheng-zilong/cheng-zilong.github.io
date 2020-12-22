@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/" class="post-title-link" itemprop="url">8. MPC with Constraint</a>
+            <a href="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:03:07" itemprop="dateModified" datetime="2019-08-26T00:03:07+08:00">2019-08-26</time>
+                <time title="Modified: 2018-11-24 13:00:23" itemprop="dateModified" datetime="2018-11-24T13:00:23+08:00">2018-11-24</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/" class="post-meta-item leancloud_visitors" data-flag-title="8. MPC with Constraint" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,231 +306,79 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="model-predictive-control-with-constraints">Model Predictive Control with Constraints</h2>
-<p>From the last note, we derive the augmented state space model <span class="math display">\[
-x(k+1)=Ax(k)+B\Delta u(k) \\
-y(k)=Cx(k) \\
-Y = Fx(k)+\Phi\Delta U\\
-J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
-\]</span> If we denote <span class="math display">\[
-H=\Phi^T\Phi+\bar R \\
-f=-\Phi^T(R_s-Fx(k))
-\]</span> We have <span class="math display">\[
-J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f
-\]</span> Now we will discuss different kinds of constraints.</p>
-<h3 id="constraints-on-the-control-variable-incremental-variation">1. Constraints on the control variable incremental variation</h3>
-<p><span class="math display">\[
-\Delta U^{min}\le\Delta U \le\Delta U^{max}
-\]</span></p>
-<p>We will have <span class="math display">\[
-\Delta U\le \Delta U^{max}\\
--\Delta U\le -\Delta U^{min}
-\]</span> Equally, we have <span class="math display">\[
-\begin{bmatrix}
--I \\
-I
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--\Delta U^{min} \\
-\Delta U^{max}
-\end{bmatrix}
-\]</span></p>
-<h3 id="constraints-on-the-amplitude-of-control-variable">2. Constraints on the amplitude of control variable</h3>
-<p><span class="math display">\[
-U^{min}\le U \le U^{max}
-\]</span></p>
-<p><span class="math display">\[
-\overbrace{\begin{bmatrix}
-u(k)\\
-u(k+1)\\
-\vdots\\
-u(k+N_c-1)
-\end{bmatrix}}^{U}=
-\overbrace{\begin{bmatrix}
-1\\
-1\\
-\vdots\\
-1
-\end{bmatrix}}^{C_1}u(k-1)+
-\overbrace{\begin{bmatrix}
-1 &amp; 0 &amp; \dotsm &amp; 0\\
-1 &amp; 1 &amp; \dotsm &amp; 0\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-1&amp;1&amp;\dotsm&amp;1
-\end{bmatrix}}^{C_2}
-\overbrace{\begin{bmatrix}
-\Delta u(k)\\
-\Delta u(k+1)\\
-\vdots\\
-\Delta u(k+N_c-1)
-\end{bmatrix}}^{\Delta U}
-\]</span></p>
-<p>Equally, we have <span class="math display">\[
-U=C_1u(k-1)+C_2\Delta U
-\]</span> We can get the following result <span class="math display">\[
-\begin{bmatrix}
--C_2 \\
-C_2
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--U^{min}+C_1u(k-1) \\
-U^{max}-C_1u(k-1)
-\end{bmatrix}
-\]</span></p>
-<h3 id="output-constraints">3. Output Constraints</h3>
-<p><span class="math display">\[
-Y^{min}\le Y \le Y^{max}
-\]</span></p>
-<p>We have the conclusion form the last note <span class="math display">\[
-Y=Fx(k)+\Phi\Delta U
-\]</span> We can derive the same result as the previous procedures <span class="math display">\[
-\begin{bmatrix}
--\Phi \\
-\Phi
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--Y^{min}+Fx(k) \\
-Y^{max}-Fx(k) 
-\end{bmatrix}
-\]</span></p>
-<h3 id="conclusion">4. Conclusion</h3>
-<p><span class="math display">\[
-\begin{bmatrix}
--I \\
-I \\
--C_2 \\
-C_2 \\
--\Phi \\
-\Phi
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--\Delta U^{min} \\
-\Delta U^{max} \\
--U^{min}+C_1u(k-1) \\
-U^{max}-C_1u(k-1) \\
--Y^{min}+Fx(k) \\
-Y^{max}-Fx(k) 
+          <h2 id="problem-formulation-and-preliminaries">1. Problem Formulation and Preliminaries</h2>
+<p>The system is described as <span class="math display">\[
+\dot x = Ax +Bu \\
+y=Cx
+\]</span> The objective is to bring the state from non-zero initial value to zero. This is the regulation problem. The problem is cast into the following quadratic cost function. <span class="math display">\[
+J=\frac{1}{2}\int_0^\infty(x^TQx+u^TRu)dt
+\]</span> Using state feedback <span class="math inline">\(u=-Kx\)</span> to minimize the above equation.</p>
+<p>Q (semi-positive) and R (positive) can be made symmetric.</p>
+<p>Q and R appear most in diagonal form. <span class="math display">\[
+Q=\begin{bmatrix}
+q_1&amp;&amp;&amp;&amp;0 \\
+&amp;q_2&amp;&amp;&amp;0 \\
+&amp;&amp;\ddots&amp;&amp;0 \\
+&amp;&amp;&amp;q_{n-1}&amp;0 \\
+&amp;&amp;&amp;&amp;q_{n} \\
 \end{bmatrix}\\
-C_1=\overbrace{\begin{bmatrix}
-1 &amp; 
-1 &amp; 
-\dotsm &amp; 
-1
-\end{bmatrix}^T}^{N_c}\\
-C_2=\overbrace{\begin{bmatrix}
-1 &amp; 0 &amp; \dotsm &amp; 0\\
-1 &amp; 1 &amp; \dotsm &amp; 0\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-1&amp;1&amp;\dotsm&amp;1
-\end{bmatrix}}^{N_c}
-\]</span></p>
-<h3 id="example">5. Example</h3>
-<p>We have the state space model <span class="math display">\[
-x_p(k+1)=x_p(k)+u(k) \\
-y(k)=x_p(k)
-\]</span> The control horizon is 1 and the predictive horizon is 2. <span class="math display">\[
-N_c=1 \\
-N_p=2 \\
-r_w=5 \\
-r(k)=1\quad(k\ge0) \\
-Y^{max}=[1 \quad 1]^T
-\]</span> First we have the augmented state space model <span class="math display">\[
-A=\begin{bmatrix} 1 &amp; 0 \\ 1 &amp; 1\end{bmatrix}\quad 
-B=\begin{bmatrix} 1  \\ 1 \end{bmatrix}\quad
-C=\begin{bmatrix} 0 &amp; 1 \end{bmatrix}
-\]</span> Then we get <span class="math display">\[
-F=\begin{bmatrix} 1 &amp; 1 \\ 2&amp;1\end{bmatrix}\quad 
-\Phi=\begin{bmatrix} 1  \\ 2 \end{bmatrix}\quad
-\]</span> According to the question <span class="math display">\[
-\begin{bmatrix} 1 \\ 2 \end{bmatrix} 
-\Delta u(k) \le \begin{bmatrix} 1-x_1(k)-x_2(k) \\ 1-2x_1(k)-x_2(k) \end{bmatrix}
-\]</span> Also we need to calculate J <span class="math display">\[
-H=\Phi^T\Phi+\bar R = 10\\
-f=-\Phi^T(R_s-Fx(k)) = 5x_1(k)+3x_2(k)-3\\
-J=5\Delta u^2(k)+\Delta u(k)(5x_1(k)+3x_2(k)-3)
-\]</span> For k=0 <span class="math display">\[
-\Delta u(0)\le0.5 \\
-J=5\Delta u^2-3\Delta u
-\]</span> We can get <span class="math display">\[
-\Delta u(0)=0.3
-\]</span> For k=1 <span class="math display">\[
-x(1)=Ax(0)+B\Delta u(0)=[0.3 \quad 0.3]^T\\
-\Delta u(1) \le0.05 \\
-J=5\Delta u^2(1)-0.6\Delta u(1)
-\]</span> we can get <span class="math display">\[
-u(1)=0.05
-\]</span></p>
-<p>One more example</p>
-<p>We have an augmented state space <span class="math display">\[
-x(k+1)=
-\begin{bmatrix}
-1 &amp; 1\\
-0 &amp; 1
-\end{bmatrix}x(k)+
-\begin{bmatrix}
-0\\
-1
-\end{bmatrix}\Delta u(k)\\
-y(k)=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}x(k)
-\]</span></p>
-<p>We choose <span class="math display">\[
-N_c=2\quad N_p=3\quad r_w=1 \quad r(k)=15
-\]</span> The constraints are <span class="math display">\[
-Y\le Y_{max}=15\\
-\Delta U\ge\Delta U_{min}=-5
-\]</span> Then we have the constraint inequations <span class="math display">\[
-\begin{bmatrix}
--I\\\Phi
-\end{bmatrix}\Delta U\le
-\begin{bmatrix}
--\Delta U_{min}\\
-Y_{max}-Fx(k)
+R=\begin{bmatrix}
+r_1&amp;&amp;&amp;&amp;0 \\
+&amp;r_2&amp;&amp;&amp;0 \\
+&amp;&amp;\ddots&amp;&amp;0 \\
+&amp;&amp;&amp;r_{n-1}&amp;0 \\
+&amp;&amp;&amp;&amp;r_{n} \\
 \end{bmatrix}
-\]</span> We have <span class="math display">\[
-F=
-\begin{bmatrix}
-CA\\CA^2\\CA^3
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 1\\
-1 &amp; 2\\
-1 &amp; 3\\
-\end{bmatrix}\quad
-\Phi=
-\begin{bmatrix}
-CB &amp; 0\\
-CAB &amp; CB\\
-CA^2B &amp; CAB
-\end{bmatrix}=
-\begin{bmatrix}
-0 &amp; 0\\
-1 &amp; 0\\
-2 &amp; 1\\
+\]</span> For later use, we define <span class="math display">\[
+Q=H^TH
+\]</span></p>
+<p>Three Assumptions</p>
+<ol type="1">
+<li>The system (A, B) is controllable</li>
+<li>The system (A, H) is observable</li>
+<li>R is positive definite, Q is semi-positive definite</li>
+</ol>
+<p>We have a symmetric positive definite matrix P satisfying the following Algebraic Riccati Equation (ARE) <span class="math display">\[
+A^TP+PA+Q=PBR^{-1}B^TP
+\]</span> Then <span class="math display">\[
+u=-R^{-1}B^TPx=-Kx \\
+K=R^{-1}B^{T}P
+\]</span> Selection of Q and R</p>
+<ol type="1">
+<li>Q and R are selected to be diagonal</li>
+<li>The larger Q, the larger K</li>
+</ol>
+<p>How to solve ARE</p>
+<p>Step1.</p>
+<p>Form <span class="math display">\[
+\Gamma=\begin{bmatrix}
+A &amp; -BR^{-1}B^T \\
+-Q &amp; -A^T
 \end{bmatrix}
-\]</span> And we have <span class="math display">\[
-H=\Phi^T\Phi+\bar R =
+\]</span> Then</p>
+<p>get the stable eigenvectors of <span class="math inline">\(\Gamma\)</span> <span class="math display">\[
 \begin{bmatrix}
-6 &amp; 2\\
-2 &amp; 2
-\end{bmatrix}\\
-f=-\Phi^T(R_s-Fx(k))=
-\begin{bmatrix}
--45+3x_1(k)+8x_2(k)\\
--15+x_1(k)+3x_2(k)
-\end{bmatrix}\\
-J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
-\]</span> Not finished!!!</p>
+v_i \\ \mu_i
+\end{bmatrix}
+\]</span> Then <span class="math display">\[
+P=[\mu_1 \quad\mu_2\quad\dotsm\quad \mu_n][v_1 \quad v_2\quad\dotsm\quad v_n]^{-1}\\
+u=-R^{-1}B^TPx=-Kx \\
+K=R^{-1}B^{T}P
+\]</span> Example <span class="math display">\[
+A=\begin{bmatrix}
+0&amp;1\\0&amp;0
+\end{bmatrix}
+B=\begin{bmatrix}
+0\\1
+\end{bmatrix}
+Q=\begin{bmatrix}
+1&amp;0\\0&amp;0
+\end{bmatrix}
+R=\begin{bmatrix}
+\beta
+\end{bmatrix}
+\]</span></p>
+<p>Example</p>
 
         
       
@@ -555,7 +403,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/7. Pole Placement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -569,7 +417,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/" class="post-title-link" itemprop="url">7. Model Predictive Control</a>
+            <a href="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -584,7 +432,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
                 
               
 
-              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
             </span>
           
             
@@ -595,7 +443,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:02:49" itemprop="dateModified" datetime="2019-08-26T00:02:49+08:00">2019-08-26</time>
+                <time title="Modified: 2018-11-20 11:43:25" itemprop="dateModified" datetime="2018-11-20T11:43:25+08:00">2018-11-20</time>
               </span>
             
           
@@ -605,7 +453,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
 
                 
                 
@@ -614,7 +462,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
           
 
           
-            <span id="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/" class="post-meta-item leancloud_visitors" data-flag-title="7. Model Predictive Control" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -632,7 +480,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -646,181 +494,246 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="model-predictive-control">Model Predictive Control</h2>
-<h3 id="state-space-model-augmented-with-an-integrator">1. State Space Model Augmented with an Integrator</h3>
-<p>We give a definition <span class="math display">\[
-\Delta u(k)=u(k)-u(k-1) \\
-\Delta x(k)=x(k)-x(k-1)
-\]</span></p>
-<p>Consider the input-output model <span class="math display">\[
-x_p(k+1)=A_px_p(k)+B_pu(k) \\
-y(k)=C_px_p(k)
-\]</span> Therefore, <span class="math display">\[
-\Delta x(k+1)=A_p\Delta x_p(k)+B_p\Delta u(k)\\
-\Delta y(k)=C_p \Delta x_p(k) \\
-y(k+1)=y(k)+C_p \Delta x_p(k+1)
-\]</span> Now we can build the augmented state-space model <span class="math display">\[
-\overbrace{\begin{bmatrix}
-\Delta x_p(k+1)\\
-y(k+1)
-\end{bmatrix}}^{x(k+1)}=
-\overbrace{\begin{bmatrix}
-A_p&amp;o_p^T\\
-C_pA_p&amp;1
-\end{bmatrix}}^{A}
-\overbrace{\begin{bmatrix}
-\Delta x_p(k)\\
-y(k)
-\end{bmatrix}}^{x(k)}+
-\overbrace{\begin{bmatrix}
-B_p\\
-C_pB_p
-\end{bmatrix}}^{B}
-\Delta u(k) \\
-y(k)=\overbrace{[o_p \quad 1]}^{C}
-\overbrace{\begin{bmatrix}
-\Delta x_p(k)\\
-y(k)
-\end{bmatrix}}^{x(k)}
-\]</span> where <span class="math display">\[
-o_p=\underbrace {[0\quad0\quad\dotsm\quad0]}_{n_p}
-\]</span> For now, we can calculate y(k). <span class="math display">\[
-\begin{array}{rcl}
-y(k+1) &amp;=&amp; Cx(k+1)=CAx(k)+CB\Delta u(k)\\
-y(k+2) &amp;=&amp; Cx(k+2)=CAx(k+1)+CB\Delta u(k+1) \\
-       &amp;=&amp; CA^2x(k)+CAB\Delta u(k)+CB\Delta u(k+1) \\
-y(k+3) &amp;=&amp; CA^3x(k)+CA^2B\Delta u(k)+CAB\Delta u(k+1)+CB\Delta u(k+2) \\
-&amp;\vdots\\
-y(k+N_p) &amp;=&amp; CA^{N_p}x(k)+CA^{N_{p}-1}B\Delta u(k)+CA^{N_{p}-2}B\Delta u(k+1)+\dotsm+
-+CA^{N_{p}-N_p}B\Delta u(k+N_p-1)
-\end{array}
-\]</span> We can denote this in matrix form <span class="math display">\[
-\Delta U=[\Delta u(k)\quad\Delta u(k+1)\quad\dotsm\quad\Delta u(k+N_c-1)]^T \\
-Y=[y(k+1)\quad y(k+2)\quad y(k+N_p)]^T
-\]</span> Then we have <span class="math display">\[
-Y=Fx(k)+\Phi \Delta U
-\]</span> From the above equations, we can find <span class="math display">\[
-F=\begin{bmatrix}
-CA \\ CA^2 \\ CA^3 \\ \vdots \\CA^{N_P}
-\end{bmatrix} \\
-\Phi=\begin{bmatrix}
-CB &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
-CAB &amp; CB &amp; 0 &amp; 0 &amp; 0  \\  
-CA^2B &amp; CAB &amp; CB &amp; 0 &amp; 0 \\ 
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-CA^{N_P-2}B &amp; CA^{N_P-3}B &amp;CA^{N_P-4}B &amp; \dotsm &amp; CA^{N_P-N_c-1}B\\
-CA^{N_P-1}B &amp; CA^{N_P-2}B &amp;CA^{N_P-3}B &amp; \dotsm &amp; CA^{N_P-N_c}B
-\end{bmatrix}
-\]</span> P.S. in order to reduce the complexity of calculation, we can ignore the control of high order future state and also we can reduce the steps of future prediction. Here gives the concept of control horizon <span class="math inline">\(N_c\)</span> , which means we can ignore the input after <span class="math inline">\(N_c\)</span> steps. It will be shown in the following example. <span class="math inline">\(N_p\)</span> is called prediction horizon.</p>
-<p>For now we give the reference <span class="math display">\[
-R_s^T=\overbrace{[1 \quad 1 \quad\dotsm\quad 1]}^{N_p}r(k)
-\]</span> We can introduce the cost function <span class="math display">\[
-J=\frac{1}{2}[(R_s-Y)^T(R_s-Y)+\Delta U^T\bar R\Delta U]
-\]</span> <span class="math inline">\(\bar R\)</span> is used to restrict the input. <span class="math display">\[
-\bar R=r_wI_{N_c\times N_c}
-\]</span> Now we get <span class="math display">\[
-J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))+\frac{1}{2}(R_s-Fx(k))^T(R_s-Fx(k))
-\]</span> For the last part of the above equation, it is a constant. Therefore, we need to minimize the first and the second parts <span class="math display">\[
-J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
-\]</span> the necessary of get the minimum of J is <span class="math display">\[
-\frac{\part J}{\part \Delta U}=0
-\]</span> We know the quadratic matrix form derivative is <span class="math display">\[
-f(x)=x^TAx\\
-f&#39;(x)=x^T(A+A^T)\\
-\]</span> And we know Transpose Matrix Derivative is <span class="math display">\[
-f(x)=x^TAB\\
-f&#39;(x)=(AB)^T=B^TA^T
-\]</span> Then we have <span class="math display">\[
-\frac{\part J}{\part \Delta U}=\frac{1}{2}\Delta U^{T}(\Phi^T\Phi+\bar R+\Phi^T\Phi+\bar R^T)-(R_s-Fx(k))^T\Phi=0\\
-\]</span> Transpose both sizes of the above equation <span class="math display">\[
-(\Phi^T\Phi+\bar R)\Delta U-\Phi^T(R_s-Fx(k))=0
-\]</span> For this linear equation, there must be one minimum point. So the above condition is also a sufficient condition.</p>
-Finally we get <span class="math display">\[
-\Delta U=(\Phi^T\Phi+\bar R)^{-1}\Phi^T(R(s)-Fx(k))
-\]</span> <span class="math inline">\(\Delta U\)</span> contains the control input of many steps but we only need the first step. $$
-<span class="math display">\[\begin{array}{}
-\Delta u(k)&amp;=&amp;\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_c}(\Phi^T\Phi+\bar R)^{-1}\Phi^T(R(s)-Fx(k)) \\
-
-&amp;=&amp; K_rr(k)-K_{mpc}x(k)
-\end{array}\]</span>
+          <h2 id="state-feedback">1. State Feedback</h2>
+<p>For a system <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx
+\]</span> We have a control law <span class="math display">\[
+u=-Kx+Fr
+\]</span> Then the system can be changed to <span class="math display">\[
+\dot x=(A-BK)x+BFr \\
+y=Cx
+\]</span> ==Lemma1==</p>
+<p>The controllability of the system is unaltered by state feedback</p>
+<p>==Lemma2==</p>
+<p>The closed-loop poles are affected only by feedback gain matrix K but independent of F.</p>
+<h2 id="why-pole-placement">2. Why Pole Placement</h2>
 <p><span class="math display">\[
-where
-\]</span> K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TR_s\ K_{mpc}=K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TF \ R_s = ^{N_p} <span class="math display">\[
-Note that this is a kind of LTI state feedback control. We can analysis its pole by
-\]</span>  $$ ### 2. Example</p>
-<p>We have a discrete state space model <span class="math display">\[
-x_p(k+1)=0.8x_p(k)+0.1u(k) \\
-y(k)=x(k)
-\]</span> We hope that <span class="math display">\[
-r(k)=1 \quad \forall k\ge0 \quad r_w=0.01
-\]</span> First we build the augmented state space model <span class="math display">\[
-A= \begin{bmatrix}
-0.8 &amp; 0 \\
-0.8 &amp; 1
+G(s)=\frac{\omega_n^2}{s^2+2\xi\omega_ns+\omega_n^2}
+\]</span></p>
+<p>Rise time: <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
+<p>Peak overshoot: <span class="math inline">\(M_p=e^{\frac{-\pi \xi}{\sqrt{1-\xi^2}}}\)</span></p>
+<p>2% settling time: <span class="math inline">\(t_s=\frac{4}{\xi \omega_n}​\)</span></p>
+<p>poles: <span class="math inline">\(\lambda=-\xi\omega_n\pm\omega_n\sqrt{\xi^2-1}\)</span></p>
+<h2 id="single-input-case">3.Single-input Case</h2>
+<p>Ackerman's Formula <span class="math display">\[
+k^T=\begin{matrix} [0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1] \end{matrix}M_c^{-1}\Phi(A)
+\]</span></p>
+<p>Choose two poles according to second order system and choose other poles 2~5 times left to these two dominant poles.</p>
+<h2 id="multi-input-case">4. Multi-input Case</h2>
+<p>For u <span class="math display">\[
+u=\begin{bmatrix}
+u_1 \\u_2\\\vdots\\u_m
 \end{bmatrix}
-B= \begin{bmatrix}
-0.1 \\
-0.1
+\]</span> First we try direct comparison method</p>
+<p>Example <span class="math display">\[
+\dot x=\
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}x+
+\begin{bmatrix}
+1 &amp; 0\\0&amp;1
+\end{bmatrix}u
+\]</span> The desired polynomial is <span class="math display">\[
+s^2+2s+2
+\]</span> Then the controllability matrix is <span class="math display">\[
+M_c=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0
 \end{bmatrix}
-C= \begin{bmatrix}
-0 &amp; 1
+\]</span> The system is controllable.</p>
+<p>We choose <span class="math display">\[
+u=-Kx+Fr \\
+\dot x= Ax+Bu=Ax+B(-Kx+Fr)=(A-BK)x+BFr \\
+= 
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}-
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
 \end{bmatrix}
-\]</span> We also have <span class="math display">\[
-R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
-F=\begin{bmatrix}
-0.8 &amp; 1 \\
-1.44 &amp; 1 \\
-1.952 &amp; 1 \\
+\begin{bmatrix}
+k_{11} &amp; k_{12} \\
+k_{21} &amp; k_{22}
+\end{bmatrix}=
+\begin{bmatrix}
+-k_{11} &amp;1-k_{12} \\
+-k_{21} &amp; -k_{22}
 \end{bmatrix}
-\Phi=\begin{bmatrix}
-0.1 &amp; 0 &amp; 0 \\
-0.18 &amp; 0.1 &amp; 0 \\
-0.244 &amp; 0.18 &amp; 0.1\\
+\]</span> The determinant is <span class="math display">\[
+\lambda^2+(k_{11}+k_{12})\lambda+k_{11}k_{12}-k_{12}k_{21}-k_{21}
+\]</span> Obviously, there are infinite solutions.</p>
+<h3 id="unity-rank-k">4.1 Unity Rank K</h3>
+<p>We choose <span class="math display">\[
+u=\begin{bmatrix}
+q_1\\q_2\\\vdots\\q_n
+\end{bmatrix}v
+\]</span> We can have different weights for different input. Then the system becomes single input system <span class="math display">\[
+\dot x=Ax+Bqv
+\]</span> Algorithm</p>
+<blockquote>
+<ol type="1">
+<li><p>Choose the weight vector q</p></li>
+<li><p>use the single input design <span class="math inline">\(k^T\)</span></p></li>
+<li><p><span class="math inline">\(K=qk^T\)</span></p></li>
+</ol>
+</blockquote>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A=\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
 \end{bmatrix} \\
-\bar R=0.01\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 1\\
+B=\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
 \end{bmatrix}
-=\begin{bmatrix}
-0.01 &amp; 0 &amp; 0 \\
-0 &amp; 0.01 &amp; 0 \\
-0 &amp; 0 &amp; 0.01 \\
+\]</span> The desired polynomial is <span class="math display">\[
+s^2+2s+2
+\]</span> Choose weight vector <span class="math display">\[
+q=
+\begin{bmatrix}
+0 \\1
+\end{bmatrix} \\
+Bq=
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}\\
+M_c=
+\begin{bmatrix}
+0 &amp; 1\\ 1 &amp; 0
+\end{bmatrix} \\
+M_c^{-1} = 
+\begin{bmatrix}
+0 &amp; 1\\ 1 &amp; 0
+\end{bmatrix} \\
+\Phi(A)=A^2+2A+2I=
+\begin{bmatrix}
+2&amp;2\\0&amp;2
+\end{bmatrix}\\
+k^T=[0 \quad 1]M_c^{-1}\Phi(A)=[2 \quad 2] \\
+K=qk^T=
+\begin{bmatrix}
+0&amp;0\\2&amp;2
+\end{bmatrix}
+\]</span> For this method, we need to choose q to make the single input system [A Bq] is controllable.</p>
+<h3 id="full-rank-method">4.2 Full Rank Method</h3>
+For the single input system $$ M_c^{-1}=
+<span class="math display">\[\begin{bmatrix}
+q_1^T \\ q_2^T \\ \vdots \\ q_n^T
+\end{bmatrix}\]</span>
+<p>\</p>
+T=
+<span class="math display">\[\begin{bmatrix}
+q_n^T \\q_n^TA \\ \vdots \\q_n^TA^{n-1}
+\end{bmatrix}\]</span>
+\ B=TB=
+<span class="math display">\[\begin{bmatrix}
+0 \\0 \\ \vdots \\0\\1
+\end{bmatrix}\]</span>
+<p>$$</p>
+<p>For the multi-input system, shown in example</p>
+<p>for the system <span class="math display">\[
+\dot x=Ax+Bu \\
+A=
+\begin{bmatrix}
+-1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1\\0 &amp; 0 &amp; 2
+\end{bmatrix}
+B=
+\begin{bmatrix}
+1 &amp; 1\\0 &amp; 0\\ 0 &amp; 1
+\end{bmatrix}
+\]</span> First we need the controllability matrix <span class="math inline">\(M_c\)</span> <span class="math display">\[
+M_c=
+\begin{bmatrix}
+B &amp; AB &amp; A^2B
+\end{bmatrix} = 
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 &amp;2\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 3\\
+0 &amp; 1 &amp; 0 &amp; 2 &amp; 0 &amp; 4\\
 \end{bmatrix}
 \]</span></p>
-<p>And then <span class="math display">\[
-K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 5.0519
-\\
-K_{mpc}=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.879 \quad 5.0519]\\
-\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
-\Delta u(k)= K_rr(k)-K_{mpc}x(k)
-\]</span> If control horizon is taken into consideration, e.g. <span class="math inline">\(N_c=2\)</span> , we solve this example again <span class="math display">\[
-R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
-F=\begin{bmatrix}
-0.8 &amp; 1 \\
-1.44 &amp; 1 \\
-1.952 &amp; 1 \\
+<p>Then we choose independent vectors from left to right and group them in C <span class="math display">\[
+C=
+\begin{bmatrix}
+b_1 &amp; Ab_1 &amp; A^2b_1 &amp; \dotsm &amp; A^{d_1-1}b_1 &amp; | &amp; 
+b_2 &amp; Ab_2 &amp; A^2b_2 &amp; \dotsm &amp; A^{d_2-1}b_1 &amp; | &amp; \dotsm
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 \\
+0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 2
 \end{bmatrix}
-\Phi=\begin{bmatrix}
-0.1 &amp; 0\\
-0.18 &amp; 0.1\\
-0.244 &amp; 0.18\\
+\]</span> 1 vector for the first input and 2 vectors for the second input</p>
+<p>We denote <span class="math inline">\(d_1=1\quad d_2=2\)</span></p>
+<p>Then we get <span class="math display">\[
+C^{-1}=
+\begin{bmatrix}
+1 &amp; 3 &amp; -1 \\
+0 &amp; -2 &amp; 1 \\
+0 &amp; 1 &amp; 0 \\
+\end{bmatrix}
+\]</span> And we choose <span class="math display">\[
+T=
+\begin{bmatrix}
+q_1 \\ q_3 \\ q_3A
+\end{bmatrix}=
+\begin{bmatrix}
+1&amp;3&amp;-1\\
+0&amp;1&amp;0\\
+0&amp;1&amp;1
+\end{bmatrix}\\
+T^{-1}=
+\begin{bmatrix}
+1 &amp; -4 &amp; 1 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 1 \\
+\end{bmatrix}\\
+\bar A=TAT^{-1}=
+\begin{bmatrix}
+-1&amp;|&amp;7&amp;0\\\hdashline
+0&amp;|&amp;0&amp;1\\
+0&amp;\Big|&amp;-2&amp;3
 \end{bmatrix} \\
-\bar R=0.01\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
+\bar B=TB=
+\begin{bmatrix}
+1 &amp; 0\\\hdashline0&amp; 0\\0&amp; 1
 \end{bmatrix}
-=\begin{bmatrix}
-0.01 &amp; 0\\
-0 &amp; 0.01\\
+\]</span> Design the feedback gain matrix <span class="math display">\[
+\bar K=
+\begin{bmatrix}
+\bar k_{11}&amp;\bar k_{12}&amp;\bar k_{13}\\
+\bar k_{21}&amp;\bar k_{22}&amp;\bar k_{23}
+\end{bmatrix} \\
+\bar A-\bar B \bar K=
+\begin{bmatrix}
+-1-\bar k_{11} &amp; 7-\bar k_{12} &amp; -\bar k_{13}\\
+0&amp;0&amp;1\\
+-\bar k_{21} &amp; -2-\bar k_{22} &amp; 3-\bar k_{23}
 \end{bmatrix}
-\]</span> Finally we get, <span class="math display">\[
-K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 4.9819
-\\
-K_{mpc}=K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.9364 \quad 4.9819]\\
-\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
-\Delta u(k)= K_rr(k)-K_{mpc}x(k)
-\]</span> Therefore, you can compare the two results.</p>
+\]</span></p>
+<p>We have the desired the eigenvalues -1 -2 -3</p>
+<p>Then we can choose the polynomial <span class="math display">\[
+(s+1)(s+2)(s+3)=(s+1)(s^2+5s+6)
+\]</span> And choose the desired matrix <span class="math display">\[
+A_d=
+\begin{bmatrix}
+-1 &amp;|&amp; 0 &amp; 0 \\\hdashline
+0&amp;|&amp;0&amp;1\\
+0&amp;|&amp;-6&amp;-5
+\end{bmatrix}
+\]</span> Then we can get the solution <span class="math display">\[
+\bar k_{11}=\bar k_{13}=\bar k_{21}=0 \\
+\bar k_{12}=7\\
+\bar k_{22}=4\\
+\bar k_{23}=8
+\]</span> Finally, <span class="math display">\[
+K=\bar KT=
+\begin{bmatrix}
+0 &amp; 7 &amp; 0 \\
+0 &amp; 12 &amp; 8 
+\end{bmatrix}
+\]</span></p>
 
         
       

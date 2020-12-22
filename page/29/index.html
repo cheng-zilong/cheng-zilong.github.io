@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/4. Pole Placement Problem SS Approach/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/3. State-Space Solution and Propoerties/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5104 Computer Control/4. Pole Placement Problem SS Approach/" class="post-title-link" itemprop="url">4. Pole Placement Problem SS Approach</a>
+            <a href="/2020/12/22/EE5101 Linear Systems/3. State-Space Solution and Propoerties/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:02:15" itemprop="dateModified" datetime="2019-08-26T00:02:15+08:00">2019-08-26</time>
+                <time title="Modified: 2018-11-21 19:15:59" itemprop="dateModified" datetime="2018-11-21T19:15:59+08:00">2018-11-21</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/EE5104 Computer Control/4. Pole Placement Problem SS Approach/" class="post-meta-item leancloud_visitors" data-flag-title="4. Pole Placement Problem SS Approach" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/3. State-Space Solution and Propoerties/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5104 Computer Control/4. Pole Placement Problem SS Approach/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/4. Pole Placement Problem SS Approach/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/3. State-Space Solution and Propoerties/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/3. State-Space Solution and Propoerties/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,247 +306,215 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="pole-placement-for-state-space-model">1. Pole Placement for State Space Model</h2>
-<p>If one matrix is controllable canonical form <span class="math display">\[
-x(k+1)= \Phi x(k)+\Gamma u(k) \\
-y(k)=Cx(k)
-\]</span></p>
-<p><span class="math display">\[
-\Phi=\begin{bmatrix}{}
--a_1 &amp; -a_2 &amp;\dotsm &amp;-a_{n-1} &amp;-a_n\\
-1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
-0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
-\end{bmatrix}\\\\
-\]</span></p>
-<p>If we choose <span class="math inline">\(u=-Lx(k)\quad L=[l_1\quad l_2\quad \dotsm l_n ] \quad \Gamma=[1 \quad 0 \quad 0 \dotsm]^T\)</span> <span class="math display">\[
-x(k+1)=(\Phi-\Gamma L)x(k)
-\]</span></p>
-<p><span class="math display">\[
-\Phi-\Gamma L=\begin{bmatrix}{}
--(a_1+l_1) &amp; -(a_2+l_2) &amp;\dotsm &amp;-(a_{n-1}+l_{n-1}) &amp;-(a_n+l_n)\\
-1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
-0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
-\end{bmatrix}
-\]</span></p>
-<p>For any state space model, according to Ackermann's Formula, we have <span class="math display">\[
-L=[0\quad0\quad\dotsm\quad1]M_c^{-1}A_m(\Phi)
-\]</span> For a uncontrollable system, if we use state feedback control, some poles cannot be changed.</p>
-<p>If uncontrollable poles are stable, we can still control some poles.</p>
-<h2 id="observer">2. Observer</h2>
-<p><span class="math display">\[
-\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
-\hat y=C\hat x(k) \\
-e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
-\]</span> Common used observer</p>
-<p>Deadbeat Observer <span class="math display">\[
-A_o(\Phi)=\Phi^n
-\]</span> From Ackerman's Formula <span class="math display">\[
-K=A_o(\Phi)M_o^{-1}[0\quad0\quad\dotsm\quad1]^T
-\]</span> ## 3. Disturbance Rejection</p>
-<p>Augmented state vector <span class="math display">\[
-z(k)=\begin{bmatrix}
-x(k)\\
-\omega(k)
-\end{bmatrix}\\
-z(k+1)=\begin{bmatrix}
-\Phi&amp;\Phi_{\omega x}\\
-0&amp;\Phi_\omega
-\end{bmatrix}z(k)
-+\begin{bmatrix}
-\Gamma\\
-0
-\end{bmatrix}u(k)
-\]</span> If we choose <span class="math inline">\(u(k)=-Lx(k)-L_ww(k)\)</span>,</p>
-<p>Then <span class="math display">\[
-x(k+1)=(\Phi-\Gamma L)x(k)+(\Phi_{wx}-\Gamma L_w)w(k)
-\]</span> Therefore, we only need <span class="math display">\[
-\Phi_{wx}-\Gamma L_w=0
-\]</span> If the above cannot be satisfied, we can use the following method,</p>
-<p>if the disturbance is constant <span class="math display">\[
-x(k+1)=\Phi x(k)+\Phi_{x\omega}\omega(k)+\Gamma u(k) \\
-\]</span> If we use state feedback controller, then we will have, <span class="math display">\[
-u(k)=-Lx(k)-L_w\omega(k) \\
-x(k+1)=(\Phi-\Gamma L) x(k)+(\Phi_{x\omega}-\Gamma L_\omega)\omega(k) \\
-(zI-(\Phi-\Gamma L))X(z)=(\Phi_{x\omega}-\Gamma L_\omega)W(z) \\
-G_{x\omega}(z)=(zI-(\Phi-\Gamma L))^{-1}(\Phi_{x\omega}-\Gamma L_\omega) \\
-G_{x\omega}(1)=0
-\]</span> If the disturbance is not constant, then frequency analysis should be used.</p>
-<p>Example <span class="math display">\[
-x(k+1)=
-\begin{bmatrix}
-1 &amp; h\\
-0 &amp; 1\\
-\end{bmatrix}x(k)+
-\begin{bmatrix}
-\frac{h^2}{2}\\
-h
-\end{bmatrix}(u(k)+w(k))\\
-w(k+1)=w(k)
-\]</span> We can get the augmented state space model <span class="math display">\[
-z(k+1)=
-\begin{bmatrix}
-1 &amp; h &amp; \frac{h^2}{2}\\
-0 &amp; 1 &amp; h\\
-0 &amp; 0 &amp; 1\\
-\end{bmatrix}z(k)+
-\begin{bmatrix}
-\frac{h^2}{2}\\
-h\\
-0\\
-\end{bmatrix}u(k)\\
-\]</span> Step1. Disturbance Rejection <span class="math display">\[
-\Phi_{wx}-\Gamma L_{w}=0\\
-\]</span> Then we have <span class="math display">\[
-L_w=1
-\]</span> If not satisfied and the disturbance is constant, we will have <span class="math display">\[
-G_{xw}(1)=0
-\]</span> Step2. Observer <span class="math display">\[
-A_o(\Phi)=\tilde A^n\\
-M_o=\begin{bmatrix}
-\tilde C\\
-\tilde C\tilde\Phi\\
-\tilde C\tilde\Phi^2
-\end{bmatrix}
-\\
-K=A_o(\Phi)M_o^{-1}\begin{bmatrix}
-0\\0\\1
-\end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-\hat z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)+K(y-\tilde C\hat z)
-\]</span> Step3. Pole Placement <span class="math display">\[
-L=
-\begin{bmatrix}
-0 &amp; 0 &amp; 1
-\end{bmatrix}
-M_c^{-1}A_m(\Phi)\\
-u(k)=-L\hat x-L_w\hat w
-\]</span></p>
-<h2 id="ss-feedforward-controller">4. SS Feedforward Controller</h2>
-<p>We can check the transfer function from feedforward input <span class="math inline">\(u_{ff}\)</span> to Output y <span class="math display">\[
-H_{cl}(z)=C(zI-\Phi+\Gamma L)^{-1}\Gamma L_c=L_c\frac{B(z)}{A_m(z)}
-\]</span> Therefore, we can choose <span class="math display">\[
-H_{ff}=L_c=\frac{B_m}{B}
-\]</span></p>
-<p>We can achieve perfect tracking if and only if B is stable. Then the input of the feedforward controller is bounded.</p>
-<h2 id="ss-example">5. SS Example</h2>
-<p><span class="math display">\[
-x(k+1)=
-\begin{bmatrix}
-0.5 &amp; 1\\
-0.2 &amp; 0.8\\
-\end{bmatrix}x(k)+
-\begin{bmatrix}
-1\\
-1\\
-\end{bmatrix}u(k)+
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}v(k)\\
-y=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}x(k)
-\]</span></p>
-<p>Where, disturbance v is constant. Design controllers such that influence of v can be eliminated in s.s. in the following cases.</p>
-<ol type="a">
-<li>The state and v can be measured.</li>
+          <h2 id="homogeneous-solution">Homogeneous Solution</h2>
+<p>The state-space model denoted as <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx+Du
+\]</span> First we want to solve <span class="math display">\[
+\dot x=Ax \\
+x=e^{A(t-t_0)}x_0 \\
+t_0=0 \\
+x=e^{At}x(0)
+\]</span> ## Properties of <span class="math inline">\(e^{At}\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\frac{d}{dt}e^{At}=Ae^{At}=e^{At}A\)</span></li>
+<li><span class="math inline">\(e^{At}=\mathcal{L}^{-1}[(sI-A)^{-1}]\)</span></li>
+<li><span class="math inline">\(e^{At_1}e^{At_1}=e^{A(t_1+t_2)}\)</span></li>
+<li><span class="math inline">\([e^{At}]^T=e^{A^Tt}\)</span></li>
+<li><span class="math inline">\(e^{At}e^{Bt}=e^{(A+B)t}\)</span> only and only if AB=BA</li>
+<li><span class="math inline">\(e^{At}=\displaystyle\sum_{k=0}^\infty \frac{A^kt^k}{k!}\)</span></li>
 </ol>
-<p>The augmented state space model is <span class="math display">\[
-z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)\\
-z(k+1)=
+<h2 id="how-to-solve-eat">How to Solve <span class="math inline">\(e^{At}\)</span></h2>
+<ol type="1">
+<li>Series Expansion</li>
+</ol>
+<p><span class="math display">\[
+e^{At}=I+At+\frac{1}{2!}A^2t^2+\dotsm+\frac{1}{n!}A^nt^n+\dotsm
+\]</span></p>
+<ol type="1">
+<li><p>Using Inverse Laplace Transform</p>
+<p>Example:</p></li>
+</ol>
+<p><span class="math display">\[
+A =\begin{bmatrix}
+0 &amp; 1 \\-2 &amp; -3
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+e^{At}=\mathcal{L}^{-1}[(sI-A)^{-1}] \\
+(sI-A)=
 \begin{bmatrix}
-x(k+1)\\
-v(k+1)
+s &amp; -1 \\ 2 &amp; s+3
+\end{bmatrix}\\
+(sI-A)^{-1}=\frac{1}{s(s+3)+2}
+\begin{bmatrix}
+s+3 &amp; 1 \\ -2 &amp; s
 \end{bmatrix}=
 \begin{bmatrix}
-0.5 &amp; 1 &amp; 1\\
-0.2 &amp; 0.8 &amp; 0\\
-0 &amp; 0 &amp; 1\\
+\frac{s+3}{(s+1)(s+2)} &amp; \frac{1}{(s+1)(s+2)} \\
+\frac{-2}{(s+1)(s+2)} &amp; \frac{s}{(s+1)(s+2)}
+\end{bmatrix} = 
+\begin{bmatrix}
+\frac{2}{s+1}-\frac{1}{s+2} &amp; \frac{1}{s+1}-\frac{1}{s+2} \\ 
+\frac{-2}{s+1}-\frac{-2}{s+2} &amp; \frac{-1}{s+1}-\frac{-2}{s+2}
+\end{bmatrix}\\
+\mathcal{L}^{-1}[*^{-1}]=
+\begin{bmatrix}
+2e^{-t}-e^{-2t} &amp; e^{-t}-e^{-2t} \\ -2e^{-t}+2e^{-2t} &amp; -e^{-t}+2e^{-2t}
+\end{bmatrix}
+\]</span></p>
+<ol start="3" type="1">
+<li>Using Caley-Hamilton Theorem</li>
+</ol>
+<p>Example <span class="math display">\[
+A =\begin{bmatrix}
+0 &amp; 1 \\-2 &amp; -3
+\end{bmatrix}\\
+f(\lambda)=e^{\lambda t} \\
+h(\lambda)=\beta_0+\beta_1\lambda \\
+\lambda_1=-1 \quad \lambda_2=-2 \\
+\begin{array}{}
+e^{-t}&amp;=&amp;\beta_0+\beta_1(-1) \\
+e^{-2t}&amp;=&amp; \beta_0+\beta_1(-2) \\
+\end{array}\\
+\text{We can get the result:} \\
+\beta_0=2e^{-t}-e^{-2t} \\
+\beta_1=e^{-t}-e^{-2t} \\
+\text{Then we have:} \\
+h(\lambda)=2e^{-t}-e^{-2t}+(e^{-t}-e^{-2t})\lambda\\
+f(A)=h(A)=(2e^{-t}-e^{-2t})I+(e^{-t}-e^{-2t})A =
+\begin{bmatrix}
+2e^{-t}-e^{-2t} &amp; e^{-t}-e^{-2t} \\ -2e^{-t}+2e^{-2t} &amp; -e^{-t}+2e^{-2t}
+\end{bmatrix}
+\]</span></p>
+<ol start="3" type="1">
+<li>Using Diagonalization</li>
+</ol>
+<h2 id="full-solution">Full Solution</h2>
+<p><span class="math display">\[
+x(t)=e^{At}x(0)+\int_0^te^{A(t-\tau)}Bu(\tau)d\tau
+\]</span> Example: <span class="math display">\[
+\dot x=\begin{bmatrix}
+0 &amp; 1 \\ -2 &amp; 3
+\end{bmatrix}
+x+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix} u
+\]</span> Input is unit step.</p>
+<p>We have get the solution in the previous <span class="math display">\[
+e^{At}=\begin{bmatrix}
+2e^{-t}-e^{-2t} &amp; e^{-t}-e^{-2t} \\ -2e^{-t}+2e^{-2t} &amp; -e^{-t}+2e^{-2t}
+\end{bmatrix}
+\]</span> Then <span class="math display">\[
+\int_0^te^{A(t-\tau)}Bd\tau=\int_0^t\begin{bmatrix}
+2e^{-(t-\tau)}-e^{-2(t-\tau)} &amp; e^{-(t-\tau)}-e^{-2(t-\tau)} \\ -2e^{-(t-\tau)}+2e^{-2(t-\tau)} &amp; -e^{-(t-\tau)}+2e^{-2(t-\tau)}
 \end{bmatrix}
 \begin{bmatrix}
-x(k)\\
-v(k)
-\end{bmatrix}+
+0 \\ 1
+\end{bmatrix}d\tau \\
+=\int_0^t
 \begin{bmatrix}
-1\\
-1\\
-0\\
-\end{bmatrix}u(k)
-\]</span> We can choose the controller, <span class="math display">\[
-u(k)=-Lx-L_vv
-\]</span> Step 1. Disturbance Rejection. <span class="math display">\[
-\Phi_{vx}-\Gamma L_v=0\\
+e^{-(t-\tau)}-e^{-2(t-\tau)} \\ -e^{-(t-\tau)}+2e^{-2(t-\tau)}
+\end{bmatrix}d\tau
+=
 \begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}-
+\frac{1}{2}-e^{-t}+\frac{1}{2}e^{-2t} \\ e^{-t}-e^{-2t}
+\end{bmatrix}
+\]</span> ## Relationship Between T.F. Matrix and S.S. Equation</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu\\
+y=Cx \\
+A=
 \begin{bmatrix}
-1\\
-1\\
-\end{bmatrix}L_v=0
-\]</span> We cannot get a <span class="math inline">\(L_v\)</span> to solve this equation.</p>
-<p>Step 2. Feedback Controller <span class="math display">\[
-A_m(\Phi)=\Phi^2\\
-M_c=
+0 &amp; 1 \\
+-\frac{k}{m} &amp; -\frac{b}{m}
+\end{bmatrix} \quad
+B=\begin{bmatrix}
+0\\\frac{1}{m} 
+\end{bmatrix}\quad
+C=[1 \quad 0]
+\]</span> After Laplace Transform <span class="math display">\[
+sX(s)=AX(s)+BU(s) \\
+X(s)=(sI-A)^{-1}BU(s) \\
+Y(s)=C(sI-A)^{-1}BU(s) \\
+G(s)=C(sI-A)^{-1}B \\
+(sI-A)=\begin{bmatrix}
+s &amp; -1\\\frac{k}{m} &amp; s+\frac{b}{m}
+\end{bmatrix}\\
+(sI-A)^{-1}=\begin{bmatrix}
+\frac{ms+b}{ms^2+bs+k} &amp; \frac{m}{ms^2+bs+k} \\
+\frac{-k}{ms^2+bs+k} &amp; \frac{ms}{ms^2+bs+k}
+\end{bmatrix}\\
+G(s)=\frac{1}{ms^2+bs+k}
+\]</span> ## Modes of System</p>
+<p>Consider <span class="math inline">\(\dot x=Ax\)</span> <span class="math display">\[
+Q=[q_1 \quad q_2 \quad\dotsm\quad q_n]
+\]</span> where <span class="math inline">\(q_i\)</span> are the eigenvectors of A <span class="math display">\[
+Q^{-1}=
 \begin{bmatrix}
-1 &amp; 1.5\\
+p_1 \\ p_2 \\ \vdots \\ p_n
+\end{bmatrix}
+\]</span> Where <span class="math inline">\(p_i\)</span> is i<sup>th</sup> row vector of Q<sup>-1</sup> .</p>
+<p>Then we have <span class="math display">\[
+x(t)=\sum_{i=1}^ne^{\lambda_it}q_ip_ix_0 = \sum_{i=1}^ne^{\lambda_it}q_i\mu_i
+\]</span> Where <span class="math inline">\(\mu_i=p_ix_0\)</span></p>
+<p>The above shows that the solution is the sum of n modes.</p>
+<p>Example <span class="math display">\[
+\dot x=
+\begin{bmatrix}
+0 &amp; 1\\
+-4 &amp; -5\\
+\end{bmatrix}x\\
+\]</span> Eigenvalues are -1 and -4 <span class="math display">\[
+Q=\begin{bmatrix}
+1 &amp; -1\\
+-1 &amp; 4\\
+\end{bmatrix}
+Q^{-1}=
+\frac{1}{3}\begin{bmatrix}
+4 &amp; 1\\
 1 &amp; 1\\
 \end{bmatrix}\\
-L=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}M_c^{-1}A_m(\Phi)=
-\begin{bmatrix}
-0.38 &amp; 0.92
+p_1=[\frac{4}{3}\quad\frac{1}{3}]\\
+p_2=[\frac{1}{3}\quad\frac{1}{3}]\\
+x_1(t)=\frac{1}{3}[(4x_{10}+x_{20})e^{-t}-(x_{10}+x_{20})e^{-4t}]\\
+x_2(t)=\frac{1}{3}[(-4x_{10}-x_{20})e^{-t}+(4x_{10}+4x_{20})e^{-4t}]\\
+\]</span></p>
+<h2 id="ltv-general-solution">LTV General Solution</h2>
+<p><span class="math display">\[
+X=[x_1 \quad x_2 \quad \dotsm \quad x_n] \\
+\dot{x}=Ax \\
+\dot X(t)=A(t)X(t) \\
+\phi(t,t_0)=X(t)X(t_0)^{-1} \\
+x(t)=\phi(t,t_0)x(t_0)
+\]</span></p>
+<p>With <span class="math inline">\(\varphi(t,t_0)\)</span> , we can get the full solution <span class="math display">\[
+x(t)=\varphi(t,t_0)x(t_0)+\int_{t_0}^{t}\varphi(t,\tau)B(\tau)u(\tau)d\tau
+\]</span> Example <span class="math display">\[
+\dot x(t)=\begin{bmatrix}
+0 &amp; 0 \\ t &amp; 0
+\end{bmatrix} x(t)\\
+x_1(t)=x_1(0) \\
+x_2(t)=0.5t^2x_1(0)+x_2(0)\\
+x(0)=\begin{bmatrix}
+1 \\ 0
+\end{bmatrix} \rightarrow x(t)=\begin{bmatrix}
+1 \\ 0.5t^2
 \end{bmatrix}\\
-\]</span> Then we have <span class="math display">\[
-u(k)=-Lx-L_vv
-\]</span> Then <span class="math display">\[
-H_v(z)=C(zI-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)\\
-H_v(1)=C(I-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)=0\\
-\]</span> We can get <span class="math display">\[
-L_v=0.9333
-\]</span> b) The state can be measured.</p>
-<p>We set k=0. <span class="math display">\[
-x(1)=\Phi x(0)+\Gamma u(0)+\Phi_{vx}v
-\]</span> Because states can be measured, we can solve v</p>
-<p>Then the controller is the same as a).</p>
-<ol start="3" type="a">
-<li>The input can be measured.</li>
-</ol>
-<p>Now we need to design an Deadbeat observer. <span class="math display">\[
-A_o(\tilde\Phi)=\tilde \Phi^3=
-\begin{bmatrix}
-0.485 &amp; 1.49 &amp; 1.95\\
-0.298 &amp; 0.932 &amp; 0.46 \\
-0 &amp; 0 &amp; 1
+x(0)=\begin{bmatrix}
+1 \\ 1
+\end{bmatrix} \rightarrow x(t)=\begin{bmatrix}
+1 \\ 0.5t^2+1
 \end{bmatrix}\\
-M_o=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-0.5 &amp; 1 &amp; 1\\
-0.45 &amp; 1.3 &amp; 1.5\\
+X(t)=\begin{bmatrix}
+1 &amp; 1 \\ 0.5t^2 &amp; 0.5t^2+1
 \end{bmatrix}\\
-K=A_o(\tilde\Phi)M_o^{-1}
-\begin{bmatrix}
-0\\
-0\\
-1\\
-\end{bmatrix}=
-\begin{bmatrix}
-2.3\\
--2.36\\
-5\\
+X(t_0)^{-1}=\begin{bmatrix}
+0.5t_0^2+1 &amp; -1 \\ -0.5t_0^2 &amp; 1
+\end{bmatrix}\\
+X(t)X(t_0)^{-1}=\begin{bmatrix}
+1 &amp; 0 \\ 0.5(t^2-t_0^2) &amp; 1
 \end{bmatrix}
-\]</span> Then we have <span class="math display">\[
-{\hat z(k+1)}=\tilde \Phi \hat z(k)+\tilde \Gamma u(k)+K(y(k)-\tilde C\hat z(k))
-\]</span> Now our controller should be <span class="math display">\[
-u(k)=-L\hat x(k)-L_v\hat v
 \]</span></p>
 
         
@@ -572,7 +540,7 @@ u(k)=-L\hat x(k)-L_v\hat v
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -586,7 +554,7 @@ u(k)=-L\hat x(k)-L_v\hat v
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/" class="post-title-link" itemprop="url">3. Analysis of Discrete Time System</a>
+            <a href="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -601,7 +569,7 @@ u(k)=-L\hat x(k)-L_v\hat v
                 
               
 
-              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
             </span>
           
             
@@ -612,7 +580,7 @@ u(k)=-L\hat x(k)-L_v\hat v
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:04:46" itemprop="dateModified" datetime="2019-08-26T00:04:46+08:00">2019-08-26</time>
+                <time title="Modified: 2018-11-22 22:44:47" itemprop="dateModified" datetime="2018-11-22T22:44:47+08:00">2018-11-22</time>
               </span>
             
           
@@ -622,7 +590,7 @@ u(k)=-L\hat x(k)-L_v\hat v
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
 
                 
                 
@@ -631,7 +599,7 @@ u(k)=-L\hat x(k)-L_v\hat v
           
 
           
-            <span id="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/" class="post-meta-item leancloud_visitors" data-flag-title="3. Analysis of Discrete Time System" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -649,7 +617,7 @@ u(k)=-L\hat x(k)-L_v\hat v
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -663,201 +631,108 @@ u(k)=-L\hat x(k)-L_v\hat v
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="stability">1. Stability</h2>
-<p>Jury's Stability Test</p>
-<p>For the system <span class="math display">\[
-\frac{1}{z^2+a_1z+a_2}
-\]</span> Using Jury's Stability Test <span class="math display">\[
-\begin{array}{ccc}
-1 &amp; a_1 &amp; a_2\\
-a_2 &amp; a_1 &amp; 1 &amp; \times -a_2\\ \hline
-1-a_2^2 &amp; a_1-a_1a_2\\ 
-a_1-a_1a_2 &amp; 1-a_2^2 &amp;  &amp; \times-\frac{a_1}{1+a_2}\\ \hline
-\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}
+          <h2 id="norms-of-vector">Norms of Vector</h2>
+<p>The most commonly used norm <span class="math display">\[
+\begin{array}{lcl}
+    ||x|| _{1} &amp; = &amp;\displaystyle \sum_{i=1}^{n}|x_i| \\
+    ||x|| _{2} &amp; = &amp; \sqrt{x^Tx} = (\displaystyle\sum_{i=1}^nx^2_i)^{0.5} \\
+    ||x||_{\infty} &amp; = &amp; max\space|x_i|
 \end{array}
-\]</span> If the system is stable, we have <span class="math display">\[
-1-a_2^2 &gt;0\\
-\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}&gt;0
-\]</span></p>
-<h2 id="controllability">2. Controllability</h2>
-<p>Controllable: The system can be driven from any initial state to any other destination in finite time.</p>
-<p>For the system <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y(k)=Cx(k)\\
-\]</span> We have the initial state <span class="math inline">\(x(0)\)</span></p>
-<p>Then <span class="math display">\[
-x(1)=\Phi x(0)+\Gamma u(0)\\
-x(2)=\Phi x(1)+\Gamma u(1)=\Phi(\Phi x(0)+\Gamma u(0))+\Gamma u(1)\\
-=\Phi^2 x(0)+\Phi\Gamma u(0)+\Gamma u(1)\\
-\vdots\\
-x(n)=\Phi^nx(0)+\Phi^{n-1}\Gamma u(0)+\Phi^{n-2}\Gamma u(1)+\dotsm+\Gamma u(n-1)
-\]</span> If the system can be driven to any state in finite steps, we just need to ensure <span class="math display">\[
-W_c=\begin{bmatrix}
-\Gamma &amp; \Phi\Gamma &amp; \Phi^2\Gamma &amp; \dotsm &amp; \Phi^{n-1}\Gamma
-\end{bmatrix}
-\]</span> is NONSINGULAR.</p>
-<p>If we cannot get to one state with n-1 steps, we cannot to get to one state with n steps.</p>
-<p>Proof <span class="math display">\[
-A(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\dotsm+\ a_n \\
-\]</span> Then we have <span class="math display">\[
-A(\Phi)=\Phi^n+a_1\Phi^{n-1}+a_2\Phi^{n-2}+\dotsm+\ a_nI \\
-\]</span> Similarly,</p>
-<p>We know <span class="math inline">\(\Phi^n\)</span> is linear combination of <span class="math inline">\(\Phi^0, \quad \Phi,\quad\dotsm\quad\Phi^{n-1}\)</span>.</p>
-<p>Therefore, we still cannot get to arbitrary desired state.</p>
-<p>Controllable Canonical Form <span class="math display">\[
-\Phi=
+\]</span> ## Norms of Matrices</p>
+<p><span class="math display">\[
+||Ax|| =\sup _{x\neq0} \frac{||Ax||}{||x||}=\sup _{x=1}||Ax||
+\]</span> ## Diagonal and Jordan Form Derivation</p>
+<p><span class="math display">\[
+Q\bar A=AQ \\
 \begin{bmatrix}
--a_{n} &amp; -a_{n-1} &amp; \dotsm &amp; -a_{2} &amp; -a_1\\
-1 &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0\\
-\end{bmatrix}
-\Gamma=
+q_1 &amp; q_2 &amp; \dotsm &amp; q_n
+\end{bmatrix} \bar A=A
 \begin{bmatrix}
-1\\
-0\\
-0\\
-\vdots\\
-0\\
-\end{bmatrix}
-C=
+q_1 &amp; q_2 &amp; \dotsm&amp;q_n
+\end{bmatrix}=
 \begin{bmatrix}
-b_n &amp; b_{n-1} &amp; \dotsm &amp; b_1
+\lambda_1 q_1 &amp; \lambda_2 q_2 &amp; \dotsm &amp; \lambda_n q_n
 \end{bmatrix}
 \]</span></p>
-<h2 id="observability">3. Observability</h2>
-<p>Observer <span class="math display">\[
-\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
-\hat y=C\hat x(k) \\
-e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
-\]</span> Observability Matrix <span class="math display">\[
-M_o^{-1}=\begin{bmatrix}
-C\\C\Phi\\C\Phi^2\\\vdots\\C\Phi^{n-1}
-\end{bmatrix}
-\]</span> Observable Canonical Form <span class="math display">\[
-\Phi=
+<p>We can easily solve that <span class="math display">\[
+\bar A=
 \begin{bmatrix}
--a_{n} &amp; 1 &amp; 0 &amp; \dotsm &amp; 0\\
--a_{n-1} &amp; 0 &amp; 1 &amp; \dotsm  &amp; 0\\
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
--a_{2} &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
--a_{1} &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-b_n\\
-b_{n-1}\\
-b_{n-2}\\
-\vdots\\
-b_1\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; \dotsm &amp; 0
+\lambda_1 &amp; 0  &amp;\dotsm&amp;0 \\
+0 &amp;\lambda_2  &amp;\dotsm&amp;0 \\
+\vdots &amp; \vdots  &amp;\ddots&amp;0 \\
+0&amp;0&amp;\dotsm&amp;\lambda_n
 \end{bmatrix}
 \]</span></p>
-<h2 id="how-to-create-state-space-from-difference-equation">4. How to Create State Space From Difference Equation</h2>
-<p>Example <span class="math display">\[
-y(k+1)=-a_1y(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
-\]</span> First, we choose <span class="math display">\[
-x_1(k)=y(k)
-\]</span> Then we have <span class="math display">\[
-x_1(k+1)=y(k+1)=-a_1x_1(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
-\]</span> Then we choose <span class="math display">\[
-x_2(k)=-a_2y(k-1)-a_3y(k-2)+b_2u(k-1)+b_3u(k-2)\\
-x_2(k+1)=-a_2y(k)-a_3y(k-1)+b_2u(k)+b_3u(k-1)\\
-x_3(k)=-a_3y(k-1)+b_3u(k-1)\\
-x_3(k+1)=-a_3y(k)+b_3u(k)
-\]</span> Therefore, we have <span class="math display">\[
-x_1(k+1)=-a_1x_1+x_2(k)+b_1u(k)\\
-x_2(k+1)=-a_2x_1(k)+x_3(k)+b_2u(k)\\
-x_3(k+1)=-a_3x_1(k)+b_3u(k)\\
-\]</span> Therefore, <span class="math display">\[
-\Phi=\begin{bmatrix}
--a_1 &amp; 1 &amp; 0\\
--a_2 &amp; 0 &amp; 1\\
--a_3 &amp; 0 &amp; 0
-\end{bmatrix}
-\Gamma=\begin{bmatrix}
-b_1\\b_2\\b_3
-\end{bmatrix}
-C=\begin{bmatrix}
-1 &amp; 0 &amp; 0
-\end{bmatrix}
-\]</span></p>
-<h2 id="some-useful-conclusions">5. Some Useful Conclusions</h2>
-<ol type="1">
-<li>The minimal realization has the same order as that of the transfer function. If higher, it is called non-minimal realization.</li>
-<li>The minimal realization can be always cast into the form of observable canonical form. Therefore, the minimal realization is always observable.</li>
-<li>If there are common zeros and poles, uncontrollable, otherwise, controllable.</li>
-</ol>
-<h2 id="example">6. Example</h2>
-<p>Example 1 <span class="math display">\[
-y(k+1)=3y(k)-2y(k-1)+u(k-1)+2u(k-2)
-\]</span> a) What is the Transfer Function? <span class="math display">\[
-zY(z)=3Y(z)-2z^{-1}Y(z)+z^{-1}U(z)+2z^{-2}U(z)\\
-\frac{Y(z)}{U(z)}=\frac{z^{-1}+2z^{-2}}{z-3+2z^{-1}}=\frac{z+2}{z^3-3z^2+2z}=\frac{z+2}{z(z-1)(z-2)}
-\]</span> b) is it possible to realize the system such that it is observable but not controllable.</p>
-<p>It is not controllable, therefore, it should have common zeros and poles. <span class="math display">\[
-G(z)=\frac{(z+2)(z+1)}{z(z-1)(z-2)(z+1)}=\frac{z^2+3z+2}{z^4-2z^3-z^2+2z}\\
-\]</span> The system is observable, therefore, we realize the system in observable canonical form. <span class="math display">\[
-\Phi=
-\begin{bmatrix}
-2 &amp; 1 &amp; 0 &amp; 0\\
-1 &amp; 0 &amp; 1 &amp; 0\\
--2 &amp; 0 &amp; 0 &amp; 1\\
-0 &amp; 0 &amp; 0 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-0\\
-1\\
-3\\
-2\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0
-\end{bmatrix}\\
+<p>Suppose <span class="math inline">\(\lambda\)</span> is the only repeated e-value of A. Assume <span class="math inline">\(A-\lambda I\)</span> has rank 3 and nullity 1. We need three more. <span class="math inline">\((A-\lambda I)v_1=(A-\lambda I)^2v_2=(A-\lambda I)^3v_3=(A-\lambda I)^4v_4=0\)</span></p>
+<p>Then it follows that <span class="math display">\[
+Av_1=\lambda v_1\\
+Av_2=v_1+\lambda v_2\\
+Av_3=v_2+\lambda v_3\\
+Av_4=v_3+\lambda v_4\\
+[v_1\quad v_2\quad v_3\quad v_4]\bar A=[Av_1\quad Av_2\quad Av_3\quad Av_4]=[\lambda v_1\quad \lambda v_2+v_1\quad \lambda v_3+v_2\quad \lambda v_4+v_3]
 \]</span></p>
 <p><span class="math display">\[
-M_C=
+A=
 \begin{bmatrix}
-0 &amp; 1 &amp; 5 &amp; 13\\
-1 &amp; 3 &amp; 3 &amp; 3\\
-3 &amp; 2 &amp; -2 &amp; -10\\
-2 &amp; 0 &amp; 0 &amp; 0\\
+\lambda &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; \lambda &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; \lambda &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; \lambda
 \end{bmatrix}
-M_o=
+\]</span></p>
+<h2 id="caley-hamilton-theorem">Caley-Hamilton Theorem</h2>
+<p>if <span class="math display">\[
+det(\lambda I-A)=\lambda^n + a_1\lambda^{n-1}+\dotsb+a_n=0
+\]</span> then <span class="math display">\[
+A^n+a_1A^{n-1}+\dotsb+a_{n-1}A+a_nI=0
+\]</span> Theorem 2.1 <span class="math display">\[
+f(\lambda)=e^\lambda
+\]</span></p>
+<p><span class="math display">\[
+A=
 \begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-2 &amp; 1 &amp; 0 &amp; 0\\
-5 &amp; 2 &amp; 1 &amp; 0\\
-10 &amp; 5 &amp; 2 &amp; 1
+    -1 &amp; 1 \\
+    0 &amp; -2
+\end{bmatrix}
+\]</span></p>
+<p>First, we define <span class="math inline">\(h(\lambda)=\beta_0+\beta_1\lambda\)</span></p>
+<p>and we have <span class="math inline">\(h(\lambda)=\beta_0+\beta_1\lambda=e^\lambda\)</span></p>
+<p>Therefore, <span class="math inline">\(h(-1)=\beta_0-\beta_1=e^{-1} \\ h(-2)=\beta_0-2\beta_1=e^{-2}\)</span></p>
+<p>We have <span class="math inline">\(\beta_1=e^{-1}-e^{-2} \\ \beta_0=2e^{-1}-e^{-2}\)</span> <span class="math display">\[
+h(\lambda)=2e^{-1}-e^{-2}+(e^{-1}-e^{-2})\lambda
+\]</span></p>
+<p><span class="math display">\[
+f(A)=h(A)=\\2e^{-1}-e^{-2}+(e^{-1}-e^{-2})
+\begin{bmatrix}
+    -1&amp;1\\
+    0&amp;-2
+\end{bmatrix}=\\
+\begin{bmatrix}
+    e^{-1}&amp;e^{-1}-e^{-2}\\
+    0&amp;e^{-2}
 \end{bmatrix}\\
 \]</span></p>
-<p>Therefore, the system is observable but not controllable.</p>
-<p>However, we need to check if this space state is that transfer function. It is easy to find that it is exactly the G(z) instead of the transfer function in the question. Therefore, it is <strong>impossible</strong> to realize this system in observable but not controllable form.</p>
-<ol start="3" type="a">
-<li>is it possible to realize the system such that it is controllable but not observable.</li>
+<h2 id="positive-definite-of-square-matrix">Positive Definite of Square Matrix</h2>
+<ol type="1">
+<li>A real symmetric matrix A is said to be positive definite if for all <span class="math inline">\(x\in\mathbb{R},x\neq0,x^tAx&gt;0\)</span></li>
+<li>A real symmetric matrix A is said to be positive semi-definite if for all <span class="math inline">\(x\in \mathbb{R},x\neq0,x^tAx\ge0\)</span></li>
+<li>A symmetric matrix A is positive definite if all its leading minors are positive</li>
 </ol>
-<p>Same as the above, it is possible to realize.</p>
-<ol start="4" type="a">
-<li>is it possible to realize the system such that it is both controllable and observable.</li>
-</ol>
-<p>Obviously, it is possible.</p>
-<p>Example 2. <span class="math display">\[
-y(k+1)=3y(k-1)-2y(k-2)+u(k)-2u(k-1)+u(k-2)\\
-\]</span> The questions are same as the above.</p>
-<ol type="a">
-<li><p><span class="math display">\[
-zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
-\frac{Y(z)}{U(z)}=\frac{z^2-2z+1}{z^3-3z-2}=\frac{(z-1)^2}{(z-1)^2(z+2)}
-\]</span></p></li>
-<li><p>it is possible observable but not controllable</p></li>
-<li><p>it is not possible controllable but not observable</p></li>
-<li><p>it is not possible controllable and observable</p></li>
+<p><span class="math display">\[
+a_{11}&gt;0\\
+\begin{vmatrix}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}
+\end{vmatrix}&gt;0\\
+\begin{vmatrix}
+a_{11}&amp;a_{12}&amp;a_{13}\\
+a_{21}&amp;a_{22}&amp;a_{23}\\
+a_{31}&amp;a_{32}&amp;a_{33}
+\end{vmatrix}&gt;0\\
+\]</span></p>
+<ol type="1">
+<li>A symmetric matrix A is positive definite if and only if its eigenvalues are positive</li>
+<li>if <span class="math inline">\(D\in\mathbb{R}^{n\times m}\)</span> then <span class="math inline">\(DD^T=A\)</span> is positive definite if and only if D has full rank n.</li>
 </ol>
 
         

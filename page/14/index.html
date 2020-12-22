@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-07 22:02:17" itemprop="dateModified" datetime="2019-07-07T22:02:17+08:00">2019-07-07</time>
+                <time title="Modified: 2019-08-19 17:01:34" itemprop="dateModified" datetime="2019-08-19T17:01:34+08:00">2019-08-19</time>
               </span>
             
           
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,101 +306,219 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="orthogonal-and-orthonormal-system">3.6 Orthogonal and Orthonormal system</h2>
-<p>By a basis of a vector space E, we mean a linearly independent family <span class="math inline">\(\mathscr B\)</span> of vectors from E such that any vector <span class="math inline">\(x\in E\)</span> can be written as <span class="math inline">\(x=\sum_{n=1}^m \lambda_nx_n\)</span> where <span class="math inline">\(x_n\in \mathscr B\)</span> and <span class="math inline">\(\lambda_n\)</span>’s are scalars. In the inner product space, orthonormal bases are of much greater importance. Instead of finite combinations <span class="math inline">\(\sum_{n=1}^m \lambda_nx_n\)</span>, infinite sums are allowed and the ==condition of linear independence== is replaced by orthogonality.</p>
-<p>==Definition 3.6.1== (Orthogonal and Orthonormal systems)</p>
-<p>Let E be an inner product space. A family S of non-zero vectors in E is called an orthogonal system if <span class="math inline">\(x\perp y\)</span> for any two distinct elements of S. If, in addition, <span class="math inline">\(||x||=1\)</span> for all <span class="math inline">\(x\in S\)</span>, then S is called an orthonormal system.</p>
-<p>Every orthogonal set of non-zero vectors can be normalized. If S is an orthogonal system, then the family <span class="math display">\[
-S_1=\{\frac{x}{||x||}:x\in S\} 
-\]</span> is an orthonormal system.</p>
-<p>==Theorem 3.6.1==</p>
-<p>Orthogonal systems are linearly independent.</p>
-<p>==Definition 3.6.2== (Orthonormal sequence)</p>
-<p>A sequence of vectors which constitute an orthonormal system is called an orthonormal sequence.</p>
-<p>The condition of orthogonality of a sequence <span class="math inline">\((x_n)\)</span> can be expressed in terms of the Kronecker delta symbol <span class="math display">\[
-&lt;x_m,x_n&gt;=\delta_{mn}=\begin{cases}0&amp;m\neq n\\1&amp;m=n\end{cases}
-\]</span> ==Example 3.6.1==</p>
-<h2 id="properties-of-orthonormal-systems">3.7 Properties of Orthonormal systems</h2>
-<p>In section 3.3, we proved that Pythagorean formula holds for any pair of orthogonal vectors in an inner product space. It turns out that it can be generalized to any finite number of orthogonal vectors.</p>
-<p>==Theorem 3.7.1== (Pythagorean formula)</p>
-<p>If <span class="math inline">\(x_1,\dotsm,x_n\)</span> are orthogonal vectors in an inner product space, then <span class="math display">\[
-||\sum_{k=1}^nx_k||^2=\sum_{k=1}^n||x_k||^2
-\]</span> ==Theorem 3.7.2== Bessel’s equality and inequality</p>
-<p>Let <span class="math inline">\(x_1,\dotsm,x_n\)</span> be an orthonormal set of vectors in an inner product space E. Then, for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
-\left|\left|x-\sum_{k=1}^n &lt;x,x_k&gt;x_k\right|\right|^2=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2
-\]</span> and <span class="math display">\[
-\sum_{k=1}^n|&lt;x,x_k&gt;|^2\le ||x||^2
-\]</span> Proof.</p>
-<p>In view of the Pythagorean Formula, we have <span class="math display">\[
-\left|\left|\sum_{k=1}^n\alpha_kx_k\right|\right|^2=\sum_{k=1}^n|\alpha_k|^2
-\]</span> Then <span class="math display">\[
-\left|\left|x-\sum_{k=1}^n\alpha_kx_k\right|\right|^2\\
-=\left\langle x-\sum_{k=1}^n\alpha_kx_k,x-\sum_{k=1}^n\alpha_kx_k \right\rangle\\
-=||x||^2
--\sum_{k=1}^n\bar \alpha_k\left\langle x,x_k\right\rangle
--\sum_{k=1}^n\alpha_k\overline{\left\langle x,x_k \right\rangle}
-+\sum_{k=1}^n|\alpha_k|^2||x_k||^2\\
-=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2+\sum_{k=1}^n |&lt;x,x_k&gt;-\alpha_k|^2
-\]</span> Then let <span class="math inline">\(\alpha_k=&lt;x,x_k&gt;\)</span>, Q.E.D.</p>
-<ol type="1">
-<li><p>This choice of <span class="math inline">\(\alpha_k\)</span>’s minimizes <span class="math inline">\(||x-\sum_{k=1}^n\alpha_kx_k||\)</span> and thus it provides the best approximation of <span class="math inline">\(x\)</span> by a linear combination of vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span>.</p></li>
-<li><p>If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence of vectors in an inner product space E, then we have <span class="math display">\[
-\sum_{n=1}^\infty |&lt;x,x_k&gt;|^2\le ||x||^2
-\]</span> This shows that the series <span class="math inline">\(\sum_{k=1}^\infty |&lt;x,x_k&gt;|^2\)</span> converges for every <span class="math inline">\(x\in E\)</span>.</p>
-<p>In another words, the sequence <span class="math inline">\((&lt;x,x_n&gt;)\)</span> is an elements of <span class="math inline">\(l^2\)</span>. We can say that an orthonormal sequence in E induces a mapping from E into <span class="math inline">\(l^2\)</span>. <span class="math display">\[
-x\sim \sum_{n=1}^\infty &lt;x,x_n&gt;x_n
-\]</span> is called generalized Fourier series of <span class="math inline">\(x\)</span>. In general we do not know whether the series if convergent. However, the next theorem show that the completeness of the space ensures the convergence.</p></li>
-</ol>
-<p>==Theorem 3.7.3==</p>
-<p>Let <span class="math inline">\((x_n)\)</span> be an orthonormal sequence in a Hilbert space H and let <span class="math inline">\((\alpha_n)\)</span> be a sequence of complex numbers. Then the series <span class="math inline">\(\sum_{n=1}^\infty\alpha_n x_n\)</span> converges if and only if $_{n=1}^|_n|^2&lt;$, and in that case <span class="math display">\[
-||\sum_{n=1}^\infty \alpha_nx_n||^2=\sum_{n=1}^\infty |\alpha_n|^2
-\]</span> The proceeding theorem imply that in a Hilbert space H the series <span class="math inline">\(\sum_{n=1}^\infty &lt;x,x_n&gt;x_n\)</span> converges for every <span class="math inline">\(x\in H\)</span>. However, it can happen that it converges to an element different from <span class="math inline">\(x\)</span>.</p>
-<p>==Example 3.7.1==</p>
-<p>Let <span class="math inline">\(H=L^2([-\pi,\pi])\)</span> and let <span class="math inline">\(x_n=\frac{1}{\sqrt \pi}\sin nt\)</span> for <span class="math inline">\(n=1,2,\dotsm\)</span>. The sequence <span class="math inline">\((x_n)\)</span> is an orthonormal set in H. On the other hand, for <span class="math inline">\(x(t)=\cos t\)</span>, we have <span class="math display">\[
-\sum_{n=1}^\infty &lt;x,x_n&gt;x_n(t)=\sum_{n=1}^\infty [\frac{1}{\sqrt \pi}\int _{-\pi}^\pi \cos t\sin nt dt]\frac{\sin nt}{\sqrt \pi}=0\neq \cos t
-\]</span> If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence in an inner product space E, then for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
-\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2&lt;\infty
-\]</span> and consequently, <span class="math display">\[
-\lim_{n\rightarrow \infty }&lt;x,x_n&gt;=0
-\]</span> Therefore, orthonormal sequence are weakly convergent to zero. But <span class="math inline">\(||x_n||=1\)</span>, they are not strongly convergent.</p>
-<p>==Definition 3.7.1== (Complete orthonormal sequence)</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in an inner product space E is said to be complete if for every <span class="math inline">\(x\in E\)</span> we have <span class="math display">\[
-x=\sum_{n=1}^\infty &lt;x,x_n&gt;x_n
-\]</span> ==Definition 3.7.2== (Orthonormal basis)</p>
-<p>An orthonormal system B in an inner product space E is called an orthonormal basis if every <span class="math inline">\(x\in E\)</span> has a unique representation <span class="math display">\[
-x=\sum_{n=1}^\infty \alpha_nx_n
-\]</span> where <span class="math inline">\(\alpha_n \in C\)</span> and <span class="math inline">\(x_n\)</span>’s are distinct elements of B.</p>
-<p>==Theorem 3.7.4==</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math inline">\(&lt;x,x_n&gt;=0\)</span> for all <span class="math inline">\(n\in N\)</span> implies <span class="math inline">\(x=0\)</span></p>
-<p>==Theorem 3.7.5== (Parseval’s Formula)</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math display">\[
-||x||^2=\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2
-\]</span> for every <span class="math inline">\(x\in H\)</span>.</p>
-<h2 id="orthogonal-complements-and-projection-theorem">3.9 Orthogonal Complements and projection theorem</h2>
-<p>By a subspace of a Hilbert space, we mean a vector subspace of H. A subspace of a Hilbert space is an inner product space. If we additionally assume that S is a closed subspace of H, then S is a Hilbert space itself, because a closed subspace of complete normed space is complete.</p>
-<p>==Definition 3.9.1== Orthogonal Complement</p>
-<p>Let S be a non-empty subset of a Hilbert space H. An element <span class="math inline">\(x\in H\)</span> is said to be orthogonal to S, denoted by <span class="math inline">\(x\perp S\)</span>, if <span class="math inline">\(&lt;x,y&gt;=0\)</span> for every <span class="math inline">\(y\in S\)</span>. The set of all elements of H orthogonal to S, denoted by <span class="math inline">\(S^\perp\)</span> is called the orthogonal complement of S. In symbols, <span class="math display">\[
-S^\perp =\{x\in H,x\perp S\}
-\]</span> The orthogonal complement of <span class="math inline">\(S^\perp\)</span> is denoted by <span class="math inline">\(S^{\perp\perp}\)</span></p>
-<p>Two subsets of A and B is said to be orthogonal if <span class="math inline">\(x\perp y\)</span> for every <span class="math inline">\(x\in A\)</span> and <span class="math inline">\(y\in B\)</span>. This is denoted by <span class="math inline">\(A\perp B\)</span>. Note that if <span class="math inline">\(A\perp B\)</span>, then <span class="math inline">\(A\bigcap B=\empty\)</span></p>
-<p>==Theorem 3.9.1==</p>
-<p>For any subset S of a Hilbert space H, the set <span class="math inline">\(S^\perp\)</span> is a closed subspace of H.</p>
-<p>==Definition 3.9.2== (Convex sets)</p>
-<p>A set <span class="math inline">\(U\)</span> in a vector space is called convex if for any <span class="math inline">\(x,y \in U\)</span> and <span class="math inline">\(\alpha\in(0,1)\)</span>, we have <span class="math inline">\(\alpha x+(1-\alpha)y \in U\)</span></p>
-<p>The following theorem, concerning the minimization of the norm, is of fundamental importance in approximation theory.</p>
-<p>==Theorem 3.9.2== (The closet point property)</p>
-<p>Let S be a closed convex subset of a Hilbert space H. For every point <span class="math inline">\(x\in H\)</span> there exists a unique point <span class="math inline">\(y\in S\)</span> such that <span class="math display">\[
-||x-y||=\inf_{z\in S}||x-z||
-\]</span> ==Theorem 3.9.3==</p>
-<p>Let S be a closed convex subset of a real Hilbert space H, <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(x\in H\)</span>. Then the following conditions are equivalent.</p>
+          <h1 id="normed-vector-spaces">Normed Vector Spaces</h1>
+<h2 id="introduction">1.1 Introduction</h2>
+<p>The basic algebraic concepts in the theory of Hilbert spaces are those of a <strong>vector space</strong> and an <strong>inner product</strong>. The inner product defines a norm, and therefore, every Hilbert space is a norm space. Since the norm plays a very important role in the theory. It is not possible to study Hilbert space without familiarity with basic concepts and properties of normed spaces.</p>
+<h2 id="vector-spaces">1.2 Vector spaces</h2>
+<p>We will consider <strong>real vector spaces</strong> and <strong>complex vector spaces</strong>. The field of real number will be denoted by <span class="math inline">\(\mathbb R\)</span> and the filed of complex number will be denoted as <span class="math inline">\(\mathbb C\)</span>. We will use <span class="math inline">\(\mathbb F\)</span> to denote either <span class="math inline">\(\mathbb R\)</span> or <span class="math inline">\(\mathbb C\)</span>.</p>
+<p>==Definition 1.2.1== Vector Space</p>
+<p>By a vector space, we mean a nonempty set <span class="math inline">\(E\)</span> with two operations</p>
+<p>a mapping <span class="math inline">\((x,y)\mapsto x+y\)</span> from <span class="math inline">\(E\times E\)</span> into <span class="math inline">\(E\)</span> is called <strong>addition</strong>.</p>
+<p>a mapping <span class="math inline">\((\lambda,x)\mapsto \lambda x\)</span> from <span class="math inline">\(F\times E\)</span> into <span class="math inline">\(E\)</span> is called <strong>multiplication</strong> by scalars.</p>
+<p>==Example 1.2.1== The scalar fields <span class="math inline">\(\mathbb R\)</span> and <span class="math inline">\(\mathbb C\)</span> are the simplest non-trivial vector space.</p>
+<p>==Example 1.2.2== Function Spaces</p>
+<p>Let <span class="math inline">\(X\)</span> be an arbitrary non-empty set and let <span class="math inline">\(E\)</span> be a vector space. Denote by <span class="math inline">\(F\)</span> the space of all functions from <span class="math inline">\(X\)</span> into <span class="math inline">\(E\)</span>. Then <span class="math inline">\(F\)</span> becomes a vector space if addition and multiplication by scalars are defined. The zero vector in <span class="math inline">\(F\)</span> is the function which assigns the zeros vector of <span class="math inline">\(E\)</span> to every element of <span class="math inline">\(X\)</span>. <span class="math display">\[
+(f+g)(x)=f(x)+g(x)\\
+(\lambda f)(x)=\lambda f(x)
+\]</span> A subset <span class="math inline">\(E_1\)</span> of a vector space <span class="math inline">\(E\)</span> is called a ==vector subspace== if for every <span class="math inline">\(\alpha,\beta \in \mathbb F\)</span> and <span class="math inline">\(x,y\in E_1\)</span>, the vector <span class="math inline">\(\alpha x+\beta y\in E_1\)</span>.</p>
+<p><span class="math inline">\(E_1\)</span> is a ==proper subspace== of <span class="math inline">\(E\)</span> if <span class="math inline">\(E_1\)</span> is a subspace of <span class="math inline">\(E\)</span> and <span class="math inline">\(E_1\neq E\)</span>.</p>
+<p>==Example 1.2.3==</p>
+Let <span class="math inline">\(\Omega\)</span> be an open subset of <span class="math inline">\(\mathbb R^N\)</span>. The following are subspaces of the space of all functions from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb C\)</span>. $$
+<span class="math display">\[\begin{array}{rcl}
+\mathscr C(\Omega)&amp;=&amp;\text{The space of all continuous complex-valued functions defined on }\Omega\\
+
+\mathscr C^k(\Omega)&amp;=&amp;\text{The space of all complex-valued functions defined on }\Omega \\
+&amp;&amp;\text{ with continuous partial derivatives of order k}\\
+
+\mathscr C^\infty(\Omega)&amp;=&amp;\text{The space of all complex-valued 
+}\\
+&amp;&amp;\text{functions defined on }\Omega \text{ with continuous partial derivatives of order infty}\\
+
+\mathscr P(\Omega)&amp;=&amp;\text{The space of all polynomials of $N$ variables}
+\end{array}\]</span>
+<p>$$ ==Example1.2.4== Sequence spaces</p>
+<p>If the set <span class="math inline">\(X\)</span> in function spaces is the set <span class="math inline">\(\mathbb N\)</span> of all positive integers. Then the corresponding function space is actually a space of sequences. <span class="math display">\[
+(x_1,x_2,\dotsm)+(y_1,y_2,\dotsm)=(x_1+y_1,x_2+y_2,\dotsm)\\
+\lambda(x_1,x_2,\dotsm)=(\lambda x_1,\lambda x_2,\dotsm)
+\]</span> ==Example 1.2.5== <span class="math inline">\(l^p\)</span>-Spaces</p>
+<p>Denote by <span class="math inline">\(l^p\)</span>, for <span class="math inline">\(p\ge 1\)</span>, the space of all infinite sequences <span class="math inline">\((z_n)\)</span> of complex numbers such that <span class="math inline">\(\sum_{n=1}^\infty |z_n|^p&lt;\infty\)</span></p>
+<p>We are going to show that <span class="math inline">\(l^p\)</span> is a vector space.</p>
+<p>if <span class="math inline">\((x_n),(y_n)\in l^p\)</span> and <span class="math inline">\(\lambda \in C\)</span>. <span class="math display">\[
+\sum_{n=1}^\infty|x_n+y_n|^p&lt;\infty
+\]</span> from Minkowski's inequality <span class="math inline">\((\sum_{n=1}^\infty |x_n+y_n|^p)^{1/p} \le (\sum_{n=1}^\infty |x_n|^p)^{1/p}+(\sum_{n=1}^\infty |y_n|^p)^{1/p}\)</span></p>
+<p>And <span class="math display">\[
+\sum_{n=1}^\infty |\lambda x_n|^p=|\lambda|^p \sum_{n=1}^\infty |x_n|^p&lt;\infty
+\]</span> Cartesian Product of Vector Spaces</p>
+<p>Let <span class="math inline">\(E_1,\dotsm,E_n\)</span> be vector spaces over the same scalar field <span class="math inline">\(F\)</span>. <span class="math display">\[
+E=\{(x_1,\dotsm,x_n):x_1\in E_1,x_2\in E_2,\dotsm,x_n\in E_n\}=E_1\times\dotsm\times E_n
+\]</span></p>
+<h2 id="linear-independence-basis-dimension">1.3 Linear Independence, Basis, Dimension</h2>
+<p>==Definition 1.3.1== Linear combination</p>
+<p>Let <span class="math inline">\(x_1,\dotsm,x_k\)</span> be elements of a vector space <span class="math inline">\(E\)</span>. A vector <span class="math inline">\(x\in E\)</span> is called a linear combination of vectors if there exists scalars <span class="math inline">\(\alpha_1,\dotsm,\alpha_k\)</span> such that <span class="math display">\[
+x=\alpha_1x_1+\dotsm+\alpha_kx_k
+\]</span> ==Definition 1.3.2== Linear independence</p>
+<p>A <strong>finite</strong> collection of vectors is called linearly independent if <span class="math inline">\(\alpha_1x_1+\dotsm+\alpha_kx_k=0\)</span> implies <span class="math inline">\(\alpha_1,\alpha_2,\dotsm, \alpha_k=0\)</span>.</p>
+<p>An <strong>infinite</strong> collection of vectors <span class="math inline">\(\mathscr A\)</span> is called linearly independent if every finite subcollection of <span class="math inline">\(\mathscr A\)</span> is linearly independent.</p>
+<p>==Definition1.3.3== Basis</p>
+<p>A set of vectors <span class="math inline">\(\mathscr B\subset E\)</span> is called a basis of <span class="math inline">\(E\)</span> if <span class="math inline">\(\mathscr B\)</span> is linearly independent and <span class="math inline">\(span \space \mathscr B=E\)</span></p>
+<p>If there exists a finite basis in <span class="math inline">\(E\)</span>, then <span class="math inline">\(E\)</span> is called finite dimensional vector space.</p>
+<p><span class="math inline">\(E\)</span> has a basis that consists exactly n vectors, then any other basis has exactly n vectors. In such a case n is called the dimension of <span class="math inline">\(E\)</span>. <span class="math inline">\(\text{dim }E=n\)</span>. Spaces <span class="math inline">\(\mathscr C(\Omega), \mathscr C^k(\mathbb R^N), \mathscr C^\infty (\mathbb R^N)\)</span> are infinite dimensional.</p>
+<h2 id="normed-spaces">1.4 Normed Spaces</h2>
+<p>In general, it does not make sense to ask what is the length or magnitude of a vector in a vector space. The concept of a norm is an abstract generalization of the length of a vector.</p>
+<p>==Definition 1.4.1== Norm</p>
+<p>A function <span class="math inline">\(x\mapsto ||x||\)</span> from a vector space <span class="math inline">\(E\)</span> into <span class="math inline">\(R\)</span> is called a norm if it satisfies the following conditions</p>
 <ol type="a">
-<li><p><span class="math inline">\(||x-y||=\inf_{z\in S}||x-z||\)</span></p></li>
-<li><p><span class="math inline">\(&lt;x-y,z-y&gt;\le 0\)</span> for all <span class="math inline">\(z\in S\)</span></p></li>
+<li><p><span class="math inline">\(||x||=0\)</span> if and only if <span class="math inline">\(x=0\)</span></p></li>
+<li><p><span class="math inline">\(||\lambda x||=|\lambda|\space ||x||\)</span> for every <span class="math inline">\(x\in E\)</span> and <span class="math inline">\(\lambda \in F\)</span></p></li>
+<li><p><span class="math inline">\(||x+y||\le ||x||+||y||\)</span> for every <span class="math inline">\(x,y \in E\)</span></p></li>
 </ol>
-<p>==Theorem 3.9.4== (Orthogonal projection)</p>
-<p>If S is a closed subspace of a Hilbert space H, then every element <span class="math inline">\(x\in H\)</span> has a unique decomposition in the form <span class="math inline">\(x=y+z\)</span> where <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(z\in S^\perp\)</span></p>
-<p>==Theorem 3.9.5==</p>
-<p>If S is a closed subspace of a Hilbert space H, then <span class="math inline">\(S^{\perp\perp}=S\)</span>.</p>
+<p>For nonnegativity, <span class="math inline">\(0=||0||=||x-x||\le ||x||+||-x||=2||x||\)</span></p>
+<p>Example</p>
+<ol type="1">
+<li><p>The function defined by <span class="math inline">\(||x||=\sqrt{x_1^2+\dotsm+x_N^2}\)</span> is a norm in <span class="math inline">\(R^N\)</span>. This norm is often called the Euclidean norm</p>
+<p>The following are also norms <span class="math display">\[
+||x||=|x_1|+\dotsm+|x_N|\\
+||x||=\max\{|x_1|,\dotsm,|x_N|\}
+\]</span></p></li>
+<li><p>The formula <span class="math inline">\(||z||=\sqrt{|z_1|^2+\dotsm+|z_n|^2}\)</span> defines a norm in <span class="math inline">\(C^N\)</span></p></li>
+<li><p>Let <span class="math inline">\(\Omega\)</span> be a closed bounded subset of <span class="math inline">\(R^n\)</span>. The function $||f||=_{x}|f(x)| $ defines a norm in <span class="math inline">\(\mathscr C(\Omega)\)</span></p></li>
+<li><p>Let <span class="math inline">\(z=(z_n)\in l^p\)</span>. The function defined by <span class="math inline">\(||z||=(\sum_{n=1}^\infty|z_n|^p)^{1/p}\)</span> is a norm in <span class="math inline">\(l^p\)</span></p></li>
+</ol>
+<p>==Definition 1.4.2== Normed Space</p>
+<p>A vector space with a norm is called a normed space.</p>
+<p>We can say a normed space is a pair <span class="math inline">\((E,||\cdot||)\)</span>, where <span class="math inline">\(E\)</span> is a vector space and <span class="math inline">\(||\cdot||\)</span> is a norm defined on <span class="math inline">\(E\)</span>.</p>
+<p>It is possible to define different norms on the same vector space. Therefore, to define a normed space, we need to specify both the vector space and the norm.</p>
+<p>==Definition 1.4.3== Convergence in a normed space</p>
+<p>Let <span class="math inline">\((E,||\cdot||)\)</span> be a normed space. We say that a sequence <span class="math inline">\((x_n)\)</span> of elements of <span class="math inline">\(E\)</span> converges to some <span class="math inline">\(x\in E\)</span> if for every <span class="math inline">\(\varepsilon &gt;0\)</span>, there exists a number M such that for every <span class="math inline">\(n\ge M\)</span> we have <span class="math inline">\(||x_n-x||&lt;\varepsilon\)</span>. In such case, we write <span class="math inline">\(\lim_{n\rightarrow \infty} x_n=x\)</span> or <span class="math inline">\(x_n\rightarrow x\)</span>.</p>
+<p>If we have a normed space <span class="math inline">\(E\)</span>, then we automatically have a convergence defined in <span class="math inline">\(E\)</span>. However, not every convergence definition can be defined with norm (pointwise convergence).</p>
+<p>Here are some examples.</p>
+<p>==Example 1.4.2== Uniform Convergence</p>
+<p>Consider the space <span class="math inline">\(\mathscr C(\Omega)\)</span> of all continuous functions defined on a closed bounded set <span class="math inline">\(\Omega \subset R^n\)</span>. Let <span class="math inline">\(f,f_1,f_2,\dotsm\in \mathscr C(\Omega)\)</span></p>
+<p>We say that the sequence <span class="math inline">\((f_n)\)</span> converges uniformly to <span class="math inline">\(f\)</span> if for every <span class="math inline">\(\epsilon&gt;0\)</span> there exists a constant M such that for all <span class="math inline">\(x\in \Omega\)</span> and for all indices <span class="math inline">\(n\ge M\)</span> we have <span class="math inline">\(||f(x)-f_n(x)||&lt;\epsilon\)</span>. For the norm defined in the above example, we have <span class="math display">\[
+f_1,f_2,\dotsm\text{ converges uniformly to $f$ if and ony if }\max_{x\in\Omega}|f_n(x)-f(x)|\rightarrow 0
+\]</span> ==Definition 1.4.4== Equivalence of Norms</p>
+<p>Two norms defined on the same vector space is called equivalent if they define the same convergence. More precisely, norms <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> in <span class="math inline">\(E\)</span> are equivalent if for any sequence <span class="math inline">\((x_n)\)</span> in <span class="math inline">\(E\)</span> and <span class="math inline">\(x\in E\)</span>, <span class="math display">\[
+||x_n-x||_1\rightarrow 0\text{ if and only if }||x_n-x||_2\rightarrow0
+\]</span> ==Example 1.4.4==</p>
+<p>The norms <span class="math display">\[
+||(x,y)||_1=\sqrt{x^2+y^2}\\
+||(x,y)||_2=|x|+|y|\\
+||(x,y)||_3=\max\{|x|,|y|\}
+\]</span> are equivalent in <span class="math inline">\(R^2\)</span>.</p>
+<p>It can be proved any two norms in a finite dimensional vector space are <strong>equivalent</strong>.</p>
+<p>The following theorem gives another useful criterion for equivalence of norms and often used as a definition of equivalence of norms.</p>
+<p>==Theorem 1.4.1== Let <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> be norms in a vector space <span class="math inline">\(E\)</span>. Then <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> are equivalent if and only if there exists positive numbers <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> such that, <span class="math display">\[
+\alpha||x||_1\le ||x||_2\le \beta||x||_1 \quad \forall x\in E
+\]</span></p>
+<p>Proof.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span> <span class="math display">\[
+\alpha||x_n-x||_1\le ||x_n-x||_2\le \beta||x_n-x||_1
+\]</span> Then if $||x_n-x||_1 $ , then <span class="math inline">\(||x_n-x||_2\rightarrow 0\)</span>. If <span class="math inline">\(||x_n-x||_2\rightarrow 0\)</span>, then <span class="math inline">\(||x_n-x||_1\rightarrow 0\)</span></p>
+<p><span class="math inline">\(\Longrightarrow\)</span></p>
+<p>If now we have <span class="math inline">\(||x_n-x||_1\rightarrow 0\text{ if and only if }||x_n-x||_2\rightarrow0\)</span></p>
+<p>Suppose there is no $&gt;0 $ such that <span class="math inline">\(\forall x\in E,\alpha||x||_1\le ||x||_2\)</span></p>
+<p>That means <span class="math inline">\(\forall \alpha &gt; 0\)</span> such that <span class="math inline">\(\exists x\in E\)</span>, <span class="math inline">\(\alpha||x||_1 &gt;||x||_2\)</span></p>
+<p>For every <span class="math inline">\(n\in \mathbb N\)</span>, there exists <span class="math inline">\(x_n \in E\)</span> such that <span class="math display">\[
+\frac{1}{n}||x_n||_1&gt;||x_n||_2
+\]</span> We define <span class="math display">\[
+y_n=\frac{1}{\sqrt n}\frac{x_n}{||x_n||_2} \in E
+\]</span> Then we have <span class="math display">\[
+||y_n||_1=\frac{1}{\sqrt n}\frac{||x_n||_1}{||x_n||_2}\\
+||y_n||_2=\frac{1}{\sqrt n}\\
+||y_n||_1\ge n||y_n||_2=\sqrt n\\
+\]</span> Then we find that <span class="math inline">\(||y_n||_2\rightarrow 0\)</span> but <span class="math inline">\(||y_n||_1\)</span> does not converge, that contradiction show that number with required property exists.</p>
+<p>In the metric space, the metric is defined by <span class="math inline">\(d(x,y)=||x-y||\)</span>. The metric in E defines a topology in <span class="math inline">\(E\)</span>, i.e. open set and closed set and these all notions can be defined in terms of open set and closed sets. It is not necessary to define the topology using metric. Here we define the basic topological notions in terms of the norm.</p>
+<p>==Definition 1.4.5== Open balls, closed balls, spheres</p>
+<p>Let <span class="math inline">\(x\)</span> be an element of a normed space <span class="math inline">\(E\)</span> and let <span class="math inline">\(r\)</span> be a positive number. We use the following notion:</p>
+<p><span class="math inline">\(B(x,r)=\{y\in E:||y-x||&lt;r\}\)</span> (open ball)</p>
+<p><span class="math inline">\(\bar B(x,r)=\{y\in E:||y-x||\le r\}\)</span> (closed ball)</p>
+<p><span class="math inline">\(S(x,r)=\{y\in E:||y-x||=r\}\)</span> (sphere)</p>
+<p>==Definition 1.4.6== Open and closed sets</p>
+<p>A subset S of a normed space E is called open if for every <span class="math inline">\(x\in S\)</span> there exists <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math inline">\(B(x,\varepsilon)\subseteq S\)</span>.</p>
+<p>A subset is closed if its complement is open. In topology space, a closed set can be defined as a set which contains all its limit points.</p>
+<p>==Theorem 1.4.2==</p>
+<ol type="a">
+<li><p>The union of any number of open sets is open</p></li>
+<li><p>The intersection of finite number of open sets is open</p></li>
+<li><p>The union of a finite number of closed sets is closed</p></li>
+<li><p>The intersection of any number of closed sets is closed.</p></li>
+<li><p>The empty set and the whole space are both open and closed.</p></li>
+</ol>
+<p>==Theorem 1.4.3==</p>
+<p>A subset S of a normed space E is closed if and only if every sequence of elements of S convergent in E has its limit in S, i.e.,</p>
+<p>A subset S of a normed space E is closed if and only if <span class="math display">\[
+x_1,x_2,\dotsm \in S \text{ and } x_n\rightarrow x\quad \implies \quad x\in S
+\]</span> <span class="math inline">\(\Longrightarrow\)</span></p>
+<p>Assume a subset S of a normed space E is closed. <span class="math inline">\(\exists x_1,x_2,\dotsm \in S\)</span> and <span class="math inline">\(x\in E\backslash S\)</span>. <span class="math inline">\((x_n)\)</span> convergent to <span class="math inline">\(x\)</span> means that <span class="math inline">\(\forall \epsilon&gt;0\)</span>, there exists <span class="math inline">\(M\)</span> such that <span class="math inline">\(\forall m&gt;M\)</span>, <span class="math inline">\(||x_m-x||&lt;\epsilon\)</span> . We will show that is impossible.</p>
+<p>S is closed therefore, <span class="math inline">\(E\backslash S\)</span> is open and <span class="math inline">\(x\in E\backslash S\)</span>. That means for every point including <span class="math inline">\(x\)</span>, there exists $_2 &gt;0 $ such that <span class="math inline">\(B(x,\epsilon_2) \subset E\backslash S\)</span>.</p>
+<p>Since <span class="math inline">\((x_n)\)</span> convergent to <span class="math inline">\(x\)</span>, For every <span class="math inline">\(\epsilon_2 &gt;0\)</span>, there exist <span class="math inline">\(m&gt;M\)</span>, <span class="math inline">\(||x_m-x||&lt;\epsilon_2\)</span>, that means <span class="math inline">\(x_m\in B(x,\epsilon_2)\)</span> that contradicts <span class="math inline">\(B(x,\epsilon_2)\subset E\backslash S\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Assume every sequence of elements of S convergent in E has its limit in S, then a subset S of a normed space E is closed, that means whenever <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span>, $x_nx $ and <span class="math inline">\(x\in S\)</span>, the subset S of a normed space E is closed.</p>
+<p>If S is not closed, then <span class="math inline">\(E\backslash S\)</span> is not open.</p>
+<p>A subset Eof a normed space E is not ==open== if there exists <span class="math inline">\(x\in E\backslash S\)</span>, for all <span class="math inline">\(\epsilon &gt;0\)</span>, such that <span class="math inline">\(B(x,\epsilon)\)</span> contains elements of S. Consequently, we can find a sequence <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. But then <span class="math inline">\(x_n\rightarrow x\)</span>. That contradicts every sequence of elements of S convergent in E has its limit in S.</p>
+<p>==Definition 1.4.7== Closure</p>
+<p>Let S be a subset of a normed space E. By the closure of S, denoted by cl S, we mean the intersection of all closed sets containing S.</p>
+<p>The closure of a set is always a closed set. It is the smallest closed set which contains S.</p>
+<p>==Theorem 1.4.4==</p>
+<p>Let S be a subset of a normed space E. The closure of S is the set of limits of all convergent sequences of elements of S. <span class="math display">\[
+\text{cl S}=\{x\in E:\text{there exist }x_1,x_2,\dotsm\in S\text{ such that }x_n\rightarrow x\}
+\]</span> Lemma, if $x$ cl S, there exists <span class="math inline">\(\epsilon&gt;0\)</span> and <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>.</p>
+<p>Since cl S is intersection of any closed sets, therefore cl S is closed. Then <span class="math inline">\(E\backslash clS\)</span> is open set. For all <span class="math inline">\(x\in E\backslash clS\)</span>, there exists <span class="math inline">\(\epsilon &gt;0\)</span> such that $B(x,)ES $. Therefore, for all <span class="math inline">\(x\notin cl S\)</span>, there exists <span class="math inline">\(\epsilon &gt;0\)</span>, <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>For any convergent sequences <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> and <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
+\forall \epsilon &gt;0\quad \exist M\quad \forall m&gt;M\quad ||x_m-x||&lt;\epsilon
+\]</span> therefore, for limits of all convergent sequences of elements of S, there is no arbitrarily small <span class="math inline">\(\epsilon\)</span> such that <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>, that means <span class="math inline">\(x\in\)</span> cl S.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>If <span class="math inline">\(x\in\)</span> cl S, then <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x,\epsilon)\cap S\neq \empty\)</span></p>
+<p>we can find a sequence <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. But then <span class="math inline">\(x_n\rightarrow x\)</span> that means every sequence of elements of S convergent in E has its limit in cl S.</p>
+<p>The Weierstrass theorem says that every continuous function on an interval [a,b] can be approximated uniformly by polynomials. This can be expressed as follows: The closure of the set of all polynomials on [a,b] is the whole space <span class="math inline">\(\mathscr C([a,b])\)</span>.</p>
+<p>==Definition 1.4.8== Dense subsets</p>
+<p>A subset S of a normed space E is called dense in E if cl S=E.</p>
+<p>The set of all polynomials on [a,b] is dense in <span class="math inline">\(\mathscr C([a,b])\)</span></p>
+<p>==Theorem 1.4.5==</p>
+<p>Let S be a subset of a normed space E. The following conditions are equivalent.</p>
+<ol type="a">
+<li><p>S is dense in E</p></li>
+<li><p>For every <span class="math inline">\(x\in E\)</span> there exists <span class="math inline">\(x_1,x_2,\dotsm \in S\)</span> such that <span class="math inline">\(x_n\rightarrow x\)</span></p></li>
+<li><p>Every non-empty open subset of E contains elements of S.</p></li>
+</ol>
+<p>Proof.</p>
+<ol type="a">
+<li><p>— (b) Theorem 1.4.4</p></li>
+<li><p>to (c)</p></li>
+</ol>
+<p>proof method 1.</p>
+<p>cl S=E.</p>
+<p>For all <span class="math inline">\(x\in E\)</span>, we have <span class="math inline">\(x\in\)</span> cl S. That means <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x,\epsilon)\cap S\neq \empty\)</span></p>
+<p>if there exists one non-empty open subsets O of E contains no element of S, we choose <span class="math inline">\(x&#39;\in O\)</span>, then <span class="math inline">\(\exist\epsilon&#39;&gt;0\)</span>, we have <span class="math display">\[
+B(x&#39;,\epsilon&#39;)\subseteq O
+\]</span> However, <span class="math inline">\(x&#39;\in E\)</span>, that contradicts <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x&#39;,\epsilon)\cap S\neq \empty\)</span>.</p>
+<p>Proof method 2</p>
+<p>If there exists non-empty open subset O of E contains no element of S.</p>
+<p>Then <span class="math inline">\(O \not \subset clS\)</span></p>
+<p>However <span class="math inline">\(O\subset E\)</span></p>
+<p>That means <span class="math inline">\(clS\neq E\)</span></p>
+<ol start="3" type="a">
+<li>to (a)</li>
+</ol>
+<p>Proof method 1,</p>
+<p>Every non-empty open subset of E contains an element of S means S is dense in E.</p>
+<p>If S is not dense in E, we have $xE$cl S, since cl S is closed set, <span class="math inline">\(E\backslash\)</span>cl S is an open set. There exists <span class="math inline">\(\epsilon\)</span> such that <span class="math inline">\(B(x,\epsilon)\subseteq E\backslash\)</span>cl S. Q.E.D.</p>
+<p>==Definition 1.4.9== Compact sets</p>
+<p>A subset S of a normed subspace E is called compact if every sequence <span class="math inline">\((x_n)\)</span> in S contains a convergent subsequence whose limit belongs to S.</p>
+<p>For <span class="math inline">\(R^N\)</span> and <span class="math inline">\(C^N\)</span>, every bounded closed set is compact.</p>
+<p>==Theorem 1.4.6==</p>
+<p>Compact sets are closed and bounded.</p>
+<p>==Definition 1.4.10== Bounded</p>
+<p><span class="math inline">\(\exists x\in E\)</span> and <span class="math inline">\(\exists r&gt;0\)</span> such that <span class="math inline">\(\forall s\in S\)</span>, <span class="math inline">\(||s-x||&lt;r\)</span></p>
+<p>A subset S of a normed subspace E is not closed, that means Eis not an open set.</p>
+<p>That means <span class="math inline">\(\exists x\in E\backslash S\quad \forall \epsilon&gt;0 \quad B(x,\epsilon)\)</span> contains elements in S.</p>
+<p>Then we can choose sequence in S, <span class="math inline">\(x_1,x_2,\dotsm \in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. <span class="math inline">\(x_n\rightarrow x\)</span>. That means this sequence belongs to S but does not have a convergent subsequence whose limit belongs to S (because the limit belongs to E).</p>
+<p>Then we prove compact sets are bounded.</p>
+<p>If <span class="math inline">\(S\subseteq E\)</span> is compact but not bounded, that means every sequence <span class="math inline">\((x_n)\)</span> in S contains a convergent subsequence whose limit belongs to S but <span class="math inline">\(\forall x\in E\)</span> and <span class="math inline">\(\forall r&gt;0\)</span> such that <span class="math inline">\(\exists s\in S\)</span>, <span class="math inline">\(||x-s||\ge r\)</span></p>
+<p>From the definition of not bounded, we can construct a sequence (For all <span class="math inline">\(x\)</span>, we choose <span class="math inline">\(x=0\)</span>. For all <span class="math inline">\(r\)</span> we choose <span class="math inline">\(r=n\)</span>) <span class="math display">\[
+||x_n||&gt;n
+\]</span> Obviously these sequences do not have a convergent subsequence.</p>
 
         
       
@@ -425,7 +543,7 @@ S^\perp =\{x\in H,x\perp S\}
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -439,7 +557,7 @@ S^\perp =\{x\in H,x\perp S\}
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -454,7 +572,7 @@ S^\perp =\{x\in H,x\perp S\}
                 
               
 
-              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:46:14" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:14+08:00">2020-12-22</time>
             </span>
           
             
@@ -465,7 +583,7 @@ S^\perp =\{x\in H,x\perp S\}
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-07 16:42:51" itemprop="dateModified" datetime="2019-07-07T16:42:51+08:00">2019-07-07</time>
+                <time title="Modified: 2019-04-27 15:00:13" itemprop="dateModified" datetime="2019-04-27T15:00:13+08:00">2019-04-27</time>
               </span>
             
           
@@ -475,7 +593,7 @@ S^\perp =\{x\in H,x\perp S\}
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
 
                 
                 
@@ -484,7 +602,7 @@ S^\perp =\{x\in H,x\perp S\}
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -502,7 +620,7 @@ S^\perp =\{x\in H,x\perp S\}
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -516,35 +634,73 @@ S^\perp =\{x\in H,x\perp S\}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="linear-functionals-and-riesz-representation-theorem">3.10 Linear Functionals and Riesz Representation Theorem</h2>
-<p>In section 3.5 we have remarked that for any fixed vector <span class="math inline">\(x_0\)</span> in an inner product space E, the formula <span class="math inline">\(f(x)=&lt;x,x_0&gt;\)</span> defines a bounded linear functional on E. It turns out E is a Hilbert space, then every bounded linear functional is of this form.</p>
-<p>==Example 3.10.1==</p>
-<p>Let <span class="math inline">\(H=L^2((a,b)),-\infty&lt;a&lt;b&lt;\infty\)</span>. Define a linear functional <span class="math inline">\(f\)</span> on <span class="math inline">\(H\)</span> by the formula <span class="math display">\[
-f(x)=\int _a^bx(t)dt
-\]</span> If <span class="math inline">\(x_0\)</span> denote the constant function 1 on <span class="math inline">\((a,b)\)</span>, then clearly <span class="math inline">\(f(x)=&lt;x,x_0&gt;\)</span> and thus <span class="math inline">\(f\)</span> is a bounded functional.</p>
-<p>==Example 3.10.2==</p>
-<p>Let <span class="math inline">\(H=L^2((a,b))\)</span> and let <span class="math inline">\(t_0\)</span> to be a fixed point in <span class="math inline">\((a,b)\)</span>. Let <span class="math inline">\(f\)</span> be a functional on H defined by <span class="math inline">\(f(x)=x(t_0)\)</span>. This function is linear but not bounded.</p>
-<p>==Lemma 3.10.1==</p>
-<p>Let <span class="math inline">\(f\)</span> be a bounded linear functional on an inner product space <span class="math inline">\(E\)</span>. Then dim <span class="math inline">\(\mathcal N(f)^\perp\le 1\)</span>.</p>
-<p>==Theorem 3.10.1== (Riesz Representation Theorem)</p>
-<p>Let <span class="math inline">\(f\)</span> be a bounded linear functional on a Hilbert space H. There exists one <span class="math inline">\(x_0\in H\)</span> such that <span class="math inline">\(f(x)=&lt;x,x_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>. Moreover, we have <span class="math inline">\(||f||=||x_0||\)</span>.</p>
-<h2 id="separable-hilbert-space">3.11 Separable Hilbert Space</h2>
-<p>==Definition 3.11.1== (Separable Spaces)</p>
-<p>A Hilbert space is called separable if it contains a complete orthonormal sequence. Finite dimensional Hilbert space are considered separable.</p>
-<p>==Theorem 3.11.1==</p>
-<p>Every separable Hilbert Space contains a countable dense subset.</p>
-<p>==Theorem 3.11.2==</p>
-<p>Every orthogonal set in a separable Hilbert Space is countable.</p>
-<p>==Definition 3.11.2== (Hilbert Space Isomorphism)</p>
-<p>A Hilbert space <span class="math inline">\(H_1\)</span> is said to be isomorphic to a Hilbert space <span class="math inline">\(H_2\)</span> if there exists a one-to-one linear mapping T from <span class="math inline">\(H_1\)</span> onto <span class="math inline">\(H_2\)</span> such that <span class="math display">\[
-&lt;T(x),T(y)&gt;=&lt;x,y&gt;
-\]</span> for every <span class="math inline">\(x,y\in H_1\)</span>. Such a mapping is called a Hilbert Space isomorphism of <span class="math inline">\(H_1\)</span> onto <span class="math inline">\(H_2\)</span>.</p>
-<p>==Theorem 3.11.3==</p>
-<p>Let H be a separable Hilbert space.</p>
-<ol type="a">
-<li><p>if H is infinite dimensional, then it is isomorphic to <span class="math inline">\(l^2\)</span>.</p></li>
-<li><p>If H has a dimension N, then it is isomorphic to <span class="math inline">\(C^N\)</span>.</p></li>
+          <h1 id="clustering-and-applications">Clustering and Applications</h1>
+<h2 id="what-is-cluster-analysis">1. What is Cluster Analysis</h2>
+<p>Finding groups of objects such that the objects in a group will be similar to one another and different from the objects in other groups.</p>
+<p>A clustering is a set of clusters.</p>
+<p>Partitional Clustering: A division of data objects into non-overlapping subsets, such that each data object is in exactly one subset.</p>
+<p>Hierarchical clustering: A set of nested clusters organized as a hierarchical tree.</p>
+<p>Exclusive and non-exclusive: In non-exclusive clustering, points may belong to multiple clusters.</p>
+<p>Fuzzy and non-fuzzy: In fuzzy clustering, a point belongs to every cluster with some weight between 0 and 1.</p>
+<p>Partial and Complete: In some cases, we only want to cluster some of the data.</p>
+<h2 id="k-means">2. K-means</h2>
+<ol type="1">
+<li>partitional clustering approach</li>
+<li>Each cluster is associated with a centroid</li>
+<li>Each point is assigned to a cluster with the closest centroid</li>
+<li>Number of clusters, K, must be specified</li>
 </ol>
+<p>Algorithm</p>
+<p>Select K points as the initial centroids</p>
+<p>repeat</p>
+<p>From K clusters by assigning all points to the closest centroid.</p>
+<p>Recompute the centroid of each cluster.</p>
+<p>until the centroid don't change</p>
+<h2 id="evaluating-k-means-clusters">3. Evaluating K-means Clusters</h2>
+<p>Most common measure is Sum of Squared Error (SSE) <span class="math display">\[
+SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
+\]</span> the initial chosen points are very important.</p>
+<p>Solutions to Initial centroids problem</p>
+<ol type="1">
+<li>Multiple runs</li>
+<li>Use hierarchical clustering to determine initial centroids</li>
+<li>Select more than K initial centroids and then select among these initial centroids (Select most widely separated)</li>
+<li>Postprocessing
+<ol type="1">
+<li>Eliminate small clusters that may represent outliers</li>
+<li>Split loose clusters (Clusters with relatively high SSE)</li>
+<li>Merge close clusters (Clusters with relatively low SSE)</li>
+</ol></li>
+</ol>
+<p>Limitations of K-means</p>
+<p>K-means has problems when clusters are of differing sizes, densities.</p>
+<p>when the data contains outliers (not belonging to any cluster).</p>
+<p>The similarity function is suitable or not.</p>
+<h2 id="hierarchical-clustering">4. Hierarchical Clustering</h2>
+<p>Do not have assume any particular number of clusters</p>
+<p>Any desired number of clusters can be obtained by cutting the dendrogram at the proper level</p>
+<p>Two main types of hierarchical clustering</p>
+<h3 id="agglomerative-clustering-algorithm">1. Agglomerative clustering algorithm</h3>
+<p>Agglomerative: Start with the points as individual clusters and at each step, merge the closest part of clusters until only one cluster (or k clusters) left. (More popular)</p>
+<p>Algorithm:</p>
+<p>Compute the proximity/distance matrix</p>
+<p>Let each point be a cluster</p>
+<p>repeat</p>
+<p>​ Merge the two closet clusters</p>
+<p>​ update the proximity/distance matrix</p>
+<p>until only a single cluster remains</p>
+<h3 id="divisive-clustering-algorithm">2. Divisive clustering algorithm</h3>
+<p>Divisive: Start with one, all-inclusive cluster and at each step, split a cluster until each cluster contains a point (or there are k clusters)</p>
+<p>Traditional hierarchical algorithms use a similarity or distance matrix to merge or split one cluster at a time</p>
+<h2 id="inter-cluster-similarity">5. Inter-cluster Similarity</h2>
+<p>MIN: most similar (closest) points in the different clusters</p>
+<p>MAX: two least similar (most distant) points in the different clusters</p>
+<p>Group Average: Proximity of two clusters is the average of pairwise proximity between points in the two clusters.</p>
+<p>Distance Between Centroids</p>
+<h2 id="problems-and-limitations">6. Problems and Limitations</h2>
+<p>No objective function is directly minimized</p>
+<p>Different schemes have problems with one or more of the following:</p>
+<p>Sensitivity to noise and outliers Difficulty handling different sized clusters Breaking large clusters</p>
 
         
       

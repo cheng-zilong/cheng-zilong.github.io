@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/" class="post-title-link" itemprop="url">7. Model Predictive Control</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-04-27 17:14:06" itemprop="dateModified" datetime="2019-04-27T17:14:06+08:00">2019-04-27</time>
+                <time title="Modified: 2019-08-26 00:02:49" itemprop="dateModified" datetime="2019-08-26T00:02:49+08:00">2019-08-26</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/" class="post-meta-item leancloud_visitors" data-flag-title="7. Model Predictive Control" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/7. Model Predictive Control/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,75 +306,181 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="gaussian-mixture-model-and-boosting">Gaussian Mixture Model and Boosting</h1>
-<p>A generative model learns the joint probability distribution <span class="math inline">\(p(x,y)\)</span> and a discriminative model learns the conditional probability distribution <span class="math inline">\(p(x|y)\)</span></p>
-<h2 id="gaussian-mixture-model-gmm">1. Gaussian Mixture Model (GMM)</h2>
-<p>GMM: the weighted sum of a number of Gaussians where the weights are determined by a distribution <span class="math inline">\(\pi\)</span>. <span class="math display">\[
-\begin{array}{lll}
-p(x)&amp;=&amp;\pi_1 N(x|\mu_1,\Sigma_1)+\pi_2 N(x|\mu_2,\Sigma_2)+\dotsm+\pi_K N(x|\mu_K,\Sigma_K)\\
-&amp;=&amp; \sum_{i=1}^K \pi_iN(x|\mu_i,\Sigma_i)
+          <h2 id="model-predictive-control">Model Predictive Control</h2>
+<h3 id="state-space-model-augmented-with-an-integrator">1. State Space Model Augmented with an Integrator</h3>
+<p>We give a definition <span class="math display">\[
+\Delta u(k)=u(k)-u(k-1) \\
+\Delta x(k)=x(k)-x(k-1)
+\]</span></p>
+<p>Consider the input-output model <span class="math display">\[
+x_p(k+1)=A_px_p(k)+B_pu(k) \\
+y(k)=C_px_p(k)
+\]</span> Therefore, <span class="math display">\[
+\Delta x(k+1)=A_p\Delta x_p(k)+B_p\Delta u(k)\\
+\Delta y(k)=C_p \Delta x_p(k) \\
+y(k+1)=y(k)+C_p \Delta x_p(k+1)
+\]</span> Now we can build the augmented state-space model <span class="math display">\[
+\overbrace{\begin{bmatrix}
+\Delta x_p(k+1)\\
+y(k+1)
+\end{bmatrix}}^{x(k+1)}=
+\overbrace{\begin{bmatrix}
+A_p&amp;o_p^T\\
+C_pA_p&amp;1
+\end{bmatrix}}^{A}
+\overbrace{\begin{bmatrix}
+\Delta x_p(k)\\
+y(k)
+\end{bmatrix}}^{x(k)}+
+\overbrace{\begin{bmatrix}
+B_p\\
+C_pB_p
+\end{bmatrix}}^{B}
+\Delta u(k) \\
+y(k)=\overbrace{[o_p \quad 1]}^{C}
+\overbrace{\begin{bmatrix}
+\Delta x_p(k)\\
+y(k)
+\end{bmatrix}}^{x(k)}
+\]</span> where <span class="math display">\[
+o_p=\underbrace {[0\quad0\quad\dotsm\quad0]}_{n_p}
+\]</span> For now, we can calculate y(k). <span class="math display">\[
+\begin{array}{rcl}
+y(k+1) &amp;=&amp; Cx(k+1)=CAx(k)+CB\Delta u(k)\\
+y(k+2) &amp;=&amp; Cx(k+2)=CAx(k+1)+CB\Delta u(k+1) \\
+       &amp;=&amp; CA^2x(k)+CAB\Delta u(k)+CB\Delta u(k+1) \\
+y(k+3) &amp;=&amp; CA^3x(k)+CA^2B\Delta u(k)+CAB\Delta u(k+1)+CB\Delta u(k+2) \\
+&amp;\vdots\\
+y(k+N_p) &amp;=&amp; CA^{N_p}x(k)+CA^{N_{p}-1}B\Delta u(k)+CA^{N_{p}-2}B\Delta u(k+1)+\dotsm+
++CA^{N_{p}-N_p}B\Delta u(k+N_p-1)
 \end{array}
-\]</span> The ==Expectation-maximization algorithm== (EM) is a method for finding maximum likelihood (or maximum a posteriori) estimate of parameters in statistical model, where the model depends on unobserved latent variables.</p>
-<p>EM is a iterative method which alternates between performing and Expectation (E) Step and Maximization (M) Step.</p>
-<p>E-Step: Computes the expectation of the log-likelihood evaluated using the current estimated distributions for the latent variables based on the parameters inferred from previous step.</p>
-<p>M-Step: Computes parameters maximizing the expected log-likelihood from the E-Step. These parameters are then used to determine the distribution of the latent variables in the next E-Step.</p>
-<p>It seems like a K-means algorithm.</p>
-<p>==Example==</p>
-<p>Let events be ''grades in a class'' <span class="math display">\[
-P(A)=0.5\\p(B)=\mu\\P(C)=2\mu\\P(D)=0.5-3\mu\\P(a,b,c,d|\mu)=K(0.5)^a \mu^b (2\mu)^c (0.5-3\mu)^d
-\]</span> We hope to get the max like <span class="math inline">\(\mu\)</span> <span class="math display">\[
-\log P=\log K+a\log0.5 + b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
-\frac{\partial \log P}{\partial \mu}=\frac{b}{\mu}+\frac{c}{\mu}-\frac{3d}{0.5-3\mu}=0\\
-\mu=\frac{b+c}{6(b+c+d)}
-\]</span> If the class got A=14,B=6,C=9,D=10, then we have <span class="math inline">\(\mu=\frac{1}{10}\)</span></p>
-<p>If we have a latent variable in the problem, A+B=h, C=c, D=d</p>
-<p>Then the probability is <span class="math display">\[
-P(h,c,d|\mu,b)=K(0.5)^{h-b}\mu^{b}(2\mu)^c (0.5-3\mu)^d\\
-\log P=\log K+(h-b)\log 0.5+b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
-\]</span> E-Step</p>
-<p>If we know <span class="math inline">\(\mu\)</span>, then we can get the expected b <span class="math display">\[
-E_\mu(b)=\frac{\mu}{0.5+\mu}h
-\]</span> M-Step</p>
-<p>If we know b, then we can get the optimal <span class="math inline">\(\mu\)</span> <span class="math display">\[
-\mu_b=\frac{E_\mu(b)+c}{6(E_\mu(b)+c+d)}
-\]</span> Then if we iterate between E-Step and M-Step, the values will be converged to a local minimum.</p>
-<p>Then we can use this algorithm to solve the GMM problems</p>
-<p>We define <span class="math display">\[
-\pi_i=p(w_i)\quad \sum_i \pi_i=1\\
-z_i=p(w_i|x)=\frac{p(w_i)p(x|w_i)}{\sum_{j=1}^Kp(w_j)p(x|w_j)}\\
-z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
-\]</span> Then the hidden variables <span class="math inline">\(z_k^n\)</span> indicating which component <span class="math inline">\(k\)</span> the datum <span class="math inline">\(n\)</span> is sampled from</p>
-<p>Identify the likelihood <span class="math display">\[
-P(x_1,\dotsm,x_N|\pi,\mu)=\prod_{n=1}^NP(x_n|\pi,\mu)\\
-=\prod_{n=1}^N \sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\\
-\log P =\sum_{n=1}^N\log \left[\sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\right]
-\]</span> Set the partials to zero, we have (Similarly for the other parameters) <span class="math display">\[
-\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
-\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
-\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
-\]</span> Therefore,</p>
-<p>E-Step: <span class="math display">\[
-z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
-\]</span> M-Step: <span class="math display">\[
-\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
-\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
-\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
+\]</span> We can denote this in matrix form <span class="math display">\[
+\Delta U=[\Delta u(k)\quad\Delta u(k+1)\quad\dotsm\quad\Delta u(k+N_c-1)]^T \\
+Y=[y(k+1)\quad y(k+2)\quad y(k+N_p)]^T
+\]</span> Then we have <span class="math display">\[
+Y=Fx(k)+\Phi \Delta U
+\]</span> From the above equations, we can find <span class="math display">\[
+F=\begin{bmatrix}
+CA \\ CA^2 \\ CA^3 \\ \vdots \\CA^{N_P}
+\end{bmatrix} \\
+\Phi=\begin{bmatrix}
+CB &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 
+CAB &amp; CB &amp; 0 &amp; 0 &amp; 0  \\  
+CA^2B &amp; CAB &amp; CB &amp; 0 &amp; 0 \\ 
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+CA^{N_P-2}B &amp; CA^{N_P-3}B &amp;CA^{N_P-4}B &amp; \dotsm &amp; CA^{N_P-N_c-1}B\\
+CA^{N_P-1}B &amp; CA^{N_P-2}B &amp;CA^{N_P-3}B &amp; \dotsm &amp; CA^{N_P-N_c}B
+\end{bmatrix}
+\]</span> P.S. in order to reduce the complexity of calculation, we can ignore the control of high order future state and also we can reduce the steps of future prediction. Here gives the concept of control horizon <span class="math inline">\(N_c\)</span> , which means we can ignore the input after <span class="math inline">\(N_c\)</span> steps. It will be shown in the following example. <span class="math inline">\(N_p\)</span> is called prediction horizon.</p>
+<p>For now we give the reference <span class="math display">\[
+R_s^T=\overbrace{[1 \quad 1 \quad\dotsm\quad 1]}^{N_p}r(k)
+\]</span> We can introduce the cost function <span class="math display">\[
+J=\frac{1}{2}[(R_s-Y)^T(R_s-Y)+\Delta U^T\bar R\Delta U]
+\]</span> <span class="math inline">\(\bar R\)</span> is used to restrict the input. <span class="math display">\[
+\bar R=r_wI_{N_c\times N_c}
+\]</span> Now we get <span class="math display">\[
+J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))+\frac{1}{2}(R_s-Fx(k))^T(R_s-Fx(k))
+\]</span> For the last part of the above equation, it is a constant. Therefore, we need to minimize the first and the second parts <span class="math display">\[
+J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
+\]</span> the necessary of get the minimum of J is <span class="math display">\[
+\frac{\part J}{\part \Delta U}=0
+\]</span> We know the quadratic matrix form derivative is <span class="math display">\[
+f(x)=x^TAx\\
+f&#39;(x)=x^T(A+A^T)\\
+\]</span> And we know Transpose Matrix Derivative is <span class="math display">\[
+f(x)=x^TAB\\
+f&#39;(x)=(AB)^T=B^TA^T
+\]</span> Then we have <span class="math display">\[
+\frac{\part J}{\part \Delta U}=\frac{1}{2}\Delta U^{T}(\Phi^T\Phi+\bar R+\Phi^T\Phi+\bar R^T)-(R_s-Fx(k))^T\Phi=0\\
+\]</span> Transpose both sizes of the above equation <span class="math display">\[
+(\Phi^T\Phi+\bar R)\Delta U-\Phi^T(R_s-Fx(k))=0
+\]</span> For this linear equation, there must be one minimum point. So the above condition is also a sufficient condition.</p>
+Finally we get <span class="math display">\[
+\Delta U=(\Phi^T\Phi+\bar R)^{-1}\Phi^T(R(s)-Fx(k))
+\]</span> <span class="math inline">\(\Delta U\)</span> contains the control input of many steps but we only need the first step. $$
+<span class="math display">\[\begin{array}{}
+\Delta u(k)&amp;=&amp;\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_c}(\Phi^T\Phi+\bar R)^{-1}\Phi^T(R(s)-Fx(k)) \\
+
+&amp;=&amp; K_rr(k)-K_{mpc}x(k)
+\end{array}\]</span>
+<p><span class="math display">\[
+where
+\]</span> K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TR_s\ K_{mpc}=K_r=<sup>{N_c}(</sup>T+R)<sup>{-1}</sup>TF \ R_s = ^{N_p} <span class="math display">\[
+Note that this is a kind of LTI state feedback control. We can analysis its pole by
+\]</span>  $$ ### 2. Example</p>
+<p>We have a discrete state space model <span class="math display">\[
+x_p(k+1)=0.8x_p(k)+0.1u(k) \\
+y(k)=x(k)
+\]</span> We hope that <span class="math display">\[
+r(k)=1 \quad \forall k\ge0 \quad r_w=0.01
+\]</span> First we build the augmented state space model <span class="math display">\[
+A= \begin{bmatrix}
+0.8 &amp; 0 \\
+0.8 &amp; 1
+\end{bmatrix}
+B= \begin{bmatrix}
+0.1 \\
+0.1
+\end{bmatrix}
+C= \begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+\]</span> We also have <span class="math display">\[
+R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
+F=\begin{bmatrix}
+0.8 &amp; 1 \\
+1.44 &amp; 1 \\
+1.952 &amp; 1 \\
+\end{bmatrix}
+\Phi=\begin{bmatrix}
+0.1 &amp; 0 &amp; 0 \\
+0.18 &amp; 0.1 &amp; 0 \\
+0.244 &amp; 0.18 &amp; 0.1\\
+\end{bmatrix} \\
+\bar R=0.01\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}
+=\begin{bmatrix}
+0.01 &amp; 0 &amp; 0 \\
+0 &amp; 0.01 &amp; 0 \\
+0 &amp; 0 &amp; 0.01 \\
+\end{bmatrix}
 \]</span></p>
-<h2 id="boosting">2. Boosting</h2>
-<p>Easy to implement, not requires external optimization tools</p>
-<p>Boosting fits the additive model <span class="math display">\[
-F(x)=f_1(x)+f_2(x)+f_3(x)+\dotsm
-\]</span> by minimizing the exponential loss <span class="math display">\[
-J(F)=\sum_{t=1}^Ne^{-y_tF(x_t)}
-\]</span> Sequential Procedure. At each step m we add <span class="math display">\[
-F(x)\leftarrow F(x)+f_m(x)
-\]</span> to minimize the residual loss <span class="math display">\[
-(\phi_m)=\arg\min_{\phi}\sum_{t=1}^N J(y_t,F(x_t)+f(x_t;\phi))
-\]</span> At each iteration, we choose <span class="math inline">\(f_m(x)\)</span> that minimizes the cost <span class="math display">\[
-J(F+f_m)=\sum_{t=1}^Ne^{-y_t(F(x_t)+f_m(x_t))}
-\]</span> Instead of doing exact optimization, gentle Boosting minimizes the approximation of the error <span class="math display">\[
-J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
-\]</span></p>
+<p>And then <span class="math display">\[
+K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 5.0519
+\\
+K_{mpc}=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.879 \quad 5.0519]\\
+\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
+\Delta u(k)= K_rr(k)-K_{mpc}x(k)
+\]</span> If control horizon is taken into consideration, e.g. <span class="math inline">\(N_c=2\)</span> , we solve this example again <span class="math display">\[
+R_s=\bar R_sr(k)=[1 \quad 1 \quad 1]^T\times1=[1 \quad 1 \quad 1]^T \\
+F=\begin{bmatrix}
+0.8 &amp; 1 \\
+1.44 &amp; 1 \\
+1.952 &amp; 1 \\
+\end{bmatrix}
+\Phi=\begin{bmatrix}
+0.1 &amp; 0\\
+0.18 &amp; 0.1\\
+0.244 &amp; 0.18\\
+\end{bmatrix} \\
+\bar R=0.01\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}
+=\begin{bmatrix}
+0.01 &amp; 0\\
+0 &amp; 0.01\\
+\end{bmatrix}
+\]</span> Finally we get, <span class="math display">\[
+K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^T\bar R_s= 4.9819
+\\
+K_{mpc}=K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi+\bar R)^{-1}\Phi^TF = [5.9364 \quad 4.9819]\\
+\bar R_s = \overbrace{[1 \quad 1 \quad\dotsm\quad 1]^T}^{N_p}\\
+\Delta u(k)= K_rr(k)-K_{mpc}x(k)
+\]</span> Therefore, you can compare the two results.</p>
 
         
       
@@ -399,7 +505,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/1. Probability/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/6. Kalman Filter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -413,7 +519,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5907 Pattern Recognition/1. Probability/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5104 Computer Control/6. Kalman Filter/" class="post-title-link" itemprop="url">6. Kalman Filter</a>
           
         </h1>
 
@@ -428,7 +534,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
             </span>
           
             
@@ -439,7 +545,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-05-03 20:16:26" itemprop="dateModified" datetime="2019-05-03T20:16:26+08:00">2019-05-03</time>
+                <time title="Modified: 2019-08-26 00:05:18" itemprop="dateModified" datetime="2019-08-26T00:05:18+08:00">2019-08-26</time>
               </span>
             
           
@@ -449,7 +555,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
 
                 
                 
@@ -458,7 +564,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
           
 
           
-            <span id="/2020/12/22/EE5907 Pattern Recognition/1. Probability/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5104 Computer Control/6. Kalman Filter/" class="post-meta-item leancloud_visitors" data-flag-title="6. Kalman Filter" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -476,7 +582,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/1. Probability/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/1. Probability/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5104 Computer Control/6. Kalman Filter/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/6. Kalman Filter/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -490,107 +596,270 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="types-of-machine-learning">1. Types of Machine Learning</h2>
-<p>Supervised Learning: Great if we know what we what to predict</p>
-<p>Unsupervised learning: Great if we want to discover something new</p>
-<h2 id="design-cycle">2. Design Cycle</h2>
-<p>Data collection</p>
-<p>Preprocessing: Image enhancement, remove background, segmentation</p>
-<p>Divide data into training and test sets (Feature Extraction, Train classifier)</p>
-<p>Re-visit previous steps if performance unsatisfactory</p>
-<h2 id="probability-review">3. Probability Review</h2>
-<p>A random variable x is a quantity that is uncertain.</p>
-<p>If x is discrete, then the probability of x <span class="math inline">\(p(x)\)</span> is probability mass function (pmf)</p>
-<p>if x is continuous, then the probability of x <span class="math inline">\(p(x)\)</span> is probability distribution function (pdf)</p>
-<p><span class="math inline">\(p(x,y)\)</span> is joint probability distribution of x and y. we have <span class="math display">\[
-p(y)=\int_x p(x,y)dx\quad or\quad p(y)=\sum_xp(x,y)
-\]</span> This is called marginalization.</p>
-<p>Suppose we observe y to be <span class="math inline">\(y_1\)</span> , then <span class="math inline">\(p(x|y=y_1)\)</span> is how likely x will take on various values given this observation, that read as conditional probability of x given y is equal to <span class="math inline">\(y_1\)</span> . We have <span class="math display">\[
-p(x|y)=\frac{p(x,y)}{p(y)}=\frac{p(y|x)p(x)}{\int_xp(x,y)dx}=\frac{p(y|x)p(x)}{\int_xp(y|x)p(x)dx}
+          <h2 id="kalman-filter-proof">Kalman Filter Proof</h2>
+<p>Here gives a derivation of KF control theory, optimal control.</p>
+<p>First, we introduce the Thomas Algorithm</p>
+<p>Thomas Algorithm</p>
+<p>Consider the system of equation <span class="math display">\[
+\begin{bmatrix}
+b_1 &amp; c_1 &amp;0 &amp; 0 \\
+a_2 &amp; b_2 &amp;c_2 &amp; 0 \\
+0 &amp; a_3 &amp;b_3 &amp; c_3 \\
+0 &amp; 0 &amp;a_4 &amp; b_4 \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2\\ x_3\\ x_4
+\end{bmatrix}=
+\begin{bmatrix}
+z_1 \\ z_2\\ z_3\\ z_4
+\end{bmatrix}
+\]</span> For the row 1</p>
+<p>We have <span class="math display">\[
+\tag{1.1}
+b_1x_1+c_1x_2=z_1 \\
+x_1+\frac{c_1}{b_1}x_2=\frac{1}{b_1}z_1\\
+\]</span> If let <span class="math inline">\(\gamma_1=\frac{c_1}{b_1}\quad\rho_1=\frac{z_1}{b_1}\)</span> , we have <span class="math inline">\(x_1+\gamma_1x_2=\rho_1\)</span></p>
+<p>For the row 2 <span class="math display">\[
+\tag{1.2}
+a_2x_1+b_2x_2+c_2x_3=z_2 \\
+\]</span> With row 1, we have</p>
+<p><span class="math display">\[
+x_2+\frac{c_2}{b_2-a_2\gamma_1}x_3=\frac{z_2-a_2\rho_1}{b_2-a_2\gamma_1}
+\]</span> For here <span class="math display">\[
+\gamma_2=\frac{c_2}{b_2-a_2\gamma_1} \\
+\rho_2=\frac{z_2-a_2\rho_1}{b_2-a_2\gamma_1}
+\]</span> Similarly, for the 3rd row, we have <span class="math display">\[
+x_3+\frac{c_3}{b_3-a_3\gamma_2}x_4=\frac{z_3-a_3\rho_2}{b_3-a_3\gamma_2} \\
+\gamma_3=\frac{c_3}{b_3-a_3\gamma_2} \\
+\rho_3=\frac{z_3-a_3\rho_2}{b_3-a_3\gamma_2}
+\]</span> For the last row, we have <span class="math display">\[
+x_4=\frac{z_4-a_4\rho_3}{b_4-a_4\gamma_3} \\
+\]</span> Therefore, we can draw a conclusion <span class="math display">\[
+x_n=\frac{z_n-a_n\rho_{n-1}}{b_n-a_n\gamma_{n-1}} \\
+\gamma_{n-1}=\frac{c_{n-1}}{b_{n-1}-a_{n-1}\gamma_{n-2}} \\
+\rho_{n-1}=\frac{z_{n-1}-a_{n-1}\rho_{n-2}}{b_{n-1}-a_{n-1}\gamma_{n-2}}
 \]</span></p>
-<h2 id="discrete-distributions">4. Discrete Distributions</h2>
-<p>==Bernoulli Distribution== <span class="math display">\[
-P(x)=\lambda^x(1-\lambda)^{1-x}
-\]</span> where x=0, 1</p>
-<p>Bernoulli Distribution describes situation where only two possible outcomes x=0, 1</p>
-<p>==Categorical Distribution== <span class="math display">\[
-P(x=k)=\lambda_k
-\]</span> Categorical Distribution describes situation where K possible outcomes</p>
-<p>==Binomial Distribution==</p>
-<p>The binomial distribution with parameters n and p is the discrete probability distribution of the number of successes in a sequence of n independent experiments, each asking a yes–no question, and each with its own boolean-valued outcome: a random variable containing a single bit of information: success/yes/true/one (with probability p) or failure/no/false/zero (with probability q = 1 − p). <span class="math display">\[
-P(x=k)=\left(
-\begin{array}{c}
-n\\
-k
+<p>Example</p>
+<p>We try to solve the last row directly with Thomas Algorithm <span class="math display">\[
+\begin{bmatrix}
+2 &amp; 3 &amp; 0 &amp; 0\\
+1 &amp; 2 &amp; 3 &amp; 0\\
+0 &amp; 1 &amp; 2 &amp; 3\\
+0 &amp; 0 &amp; 1 &amp; 2\\
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+\end{bmatrix}=
+\begin{bmatrix}
+1\\
+2\\
+3\\
+4\\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\gamma_1=\frac{3}{2}\quad\rho_1=\frac{1}{2}\\
+\gamma_2=\frac{3}{2-1.5}=6\quad\rho_2=\frac{2-0.5}{2-1.5}=3\\
+\gamma_3=-\frac{3}{4} \quad \rho_3=\frac{z_1}{2}=0\\
+x_4=\frac{4-0.75}{2-0}=\frac{16}{11}
+\]</span></p>
+<p>Least Square Estimation</p>
+<p>If some linear equations cannot be solved because of the number of equations are greater than the number of variables, we need Least Square Estimation to estimate the closet solution. <span class="math display">\[
+\Phi = \begin{bmatrix}
+\Phi_{11} &amp; \Phi_{12} \\
+\Phi_{21} &amp; \Phi_{22} \\
+\Phi_{31} &amp; \Phi_{32} \\
+\end{bmatrix} \\
+\theta = \begin{bmatrix}
+\theta_{1} \\
+\theta_{2} \\
+\end{bmatrix}\\
+Y = \begin{bmatrix}
+y_{1} \\
+y_{2} \\
+y_{3} \\
+\end{bmatrix}\\
+\]</span> If we want to solve <span class="math inline">\(\Phi\theta=Y\)</span>, it is impossible.</p>
+<p>We can define <span class="math display">\[
+\tag{1.3}
+V=(Y-\Phi\theta)^T(Y-\Phi\theta)
+\]</span> If V is the least, that means the <span class="math inline">\(\theta\)</span> we choose makes the result of the left hand closet to Y.</p>
+<p>How to get <span class="math inline">\(V_{min}\)</span>.</p>
+<p>We can use derivatives. <span class="math display">\[
+\frac{dV}{d\theta}=0
+\]</span> We have <span class="math display">\[
+-\Phi^TY+\Phi^T\Phi\hat \theta=0
+\]</span> If <span class="math inline">\(\Phi^T\Phi\)</span> is invertible, <span class="math display">\[
+\hat \theta=(\Phi^T\Phi)^{-1}\Phi^TY
+\]</span></p>
+<p>Example <span class="math display">\[
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 1\\
+2 &amp; 1\\
+\end{bmatrix}
+\begin{bmatrix}
+m\\
+c
+\end{bmatrix}=
+\begin{bmatrix}
+0.6\\
+1.3\\
+2.6
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+\hat \theta=
+\begin{bmatrix}
+1\\
+0.5
+\end{bmatrix}
+\]</span> Now we will give introduction to Kalman Filter,</p>
+<p>Consider the first order process model <span class="math display">\[
+x(k+1)=Ax(k)+w(k) \\
+y(k)=Cx(k)+v(k)
+\]</span> Now, we can only measure the output <span class="math inline">\(y(k)\)</span> and we know this model.</p>
+<p><span class="math inline">\(w(k)\)</span> and <span class="math inline">\(v(k)\)</span> are the estimate noise and measurement noise separately with gauss noise. and we know the covariances of the two noises.</p>
+<p>For example, for k=0,1,2,3, we know the output <span class="math inline">\(y(0) \quad y(1)\quad y(2)\quad y(3)\)</span>, and we hope to get the states <span class="math display">\[x(0) \quad x(1)\quad x(2)\quad x(3)\]</span> of the above equations. <span class="math display">\[
+x(1)=Ax(0) \\
+y(0)=Cx(0) \\
+x(2)=Ax(1) \\
+y(1)=Cx(1) \\
+x(3)=Ax(2) \\
+y(2)=Cx(2) \\
+y(3)=Cx(3) \\
+\]</span> We define the function like (1.3) but for now we know the covariances of the two noises and we can use the as the parameters of weight. We need to use these 7 equations to solve 4 variables. This is a Least Square Problem. Therefore we get the equation <span class="math display">\[
+J=\frac{1}{2R_1}[(\hat x(1)-A\hat x(0))^2+(\hat x(2)-A\hat x(1))^2+(\hat x(3)-A\hat x(2))^2]+\\
+\frac{1}{2R_2}[(y(0)-C\hat x(0))^2+(y(1)-C\hat x(1))^2+(y(2)-C\hat x(2))^2+(y(3)-C\hat x(3))^2]\\
+\]</span> We derivative J <span class="math display">\[
+\frac{dJ}{d \hat x(0)}=\frac{-A(\hat x(1)-A\hat x(0))}{R_1}+\frac{-C(\hat y(0)-C\hat x(0))}{R_2}=0 \\
+\frac{dJ}{d \hat x(1)}=\frac{\hat x(1)-A\hat x(0)}{R_1}+\frac{-A(\hat x(2)-A\hat x(1))}{R_1}+\frac{-C(\hat y(1)-C\hat x(1))}{R_2}=0 \\
+\frac{dJ}{d \hat x(2)}=\frac{\hat x(2)-A\hat x(1)}{R_1}+\frac{-A(\hat x(3)-A\hat x(2))}{R_1}+\frac{-C(\hat y(2)-C\hat x(2))}{R_2}=0 \\
+\frac{dJ}{d \hat x(3)}=\frac{\hat x(3)-A\hat x(2)}{R_1}+\frac{-C(\hat y(3)-C\hat x(3))}{R_2}=0 \\
+\]</span> Now we get the matrix equation, <span class="math display">\[
+\begin{bmatrix}
+\frac{A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1} &amp; 0 &amp; 0 \\
+\frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1} &amp; 0  \\
+0 &amp; \frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1}   \\
+0 &amp; 0 &amp;  \frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} \\
+\end{bmatrix}
+\begin{bmatrix}
+\hat x(0)\\
+\hat x(1)\\
+\hat x(2)\\
+\hat x(3)\\
+\end{bmatrix}=\frac{C}{R_2}
+\begin{bmatrix}
+y(0)\\
+y(1)\\
+y(2)\\
+y(3)
+\end{bmatrix}
+\]</span></p>
+<p>For general, we get the matrix equation, <span class="math display">\[
+\begin{bmatrix}
+\beta-\frac{1}{R_1} &amp; \alpha &amp; 0 &amp; 0   &amp; 0 &amp; \dotsm &amp; 0\\
+\alpha &amp; \beta &amp; \alpha &amp; 0 &amp; 0 &amp; \dotsm  &amp; 0\\
+0 &amp; \alpha &amp; \beta &amp; \alpha &amp; 0 &amp; \dotsm  &amp; 0\\
+\vdots&amp; \ddots &amp; \ddots &amp; \ddots  &amp; \ddots &amp; \ddots &amp; \vdots
+\\
+0 &amp; \dotsm &amp; 0 &amp;  \alpha &amp; \beta &amp; \alpha  &amp; 0\\
+0 &amp; \dotsm &amp; 0 &amp;  0 &amp; \alpha &amp; \beta &amp; \alpha  \\
+0 &amp; \dotsm &amp; 0 &amp; 0&amp;  0 &amp; \alpha &amp; \beta-\frac{A^2}{R_1}  \\
+\end{bmatrix}
+\begin{bmatrix}
+\hat x(0)\\
+\hat x(1)\\
+\hat x(2)\\
+\vdots\\
+\hat x(n-1)\\
+\hat x(k)
+\end{bmatrix}=
+\begin{bmatrix}
+z(0)\\
+z(1)\\
+z(2)\\
+\vdots\\
+z(n-1)\\
+z(k)
+\end{bmatrix}
+\]</span> Where, <span class="math display">\[
+\alpha=-\frac{A}{R_1}\\
+\beta=\frac{1}{R_1}+\frac{C^2}{R_2}+\frac{A^2}{R_1}\\
+z(k)=\frac{C}{R_2}y(k)
+\]</span> Using Thomas Algorithm, we have <span class="math display">\[
+x_n=\frac{z_n-a_n\rho_{n-1}}{b_n-a_n\gamma_{n-1}} \\
+\gamma_{n-1}=\frac{c_{n-1}}{b_{n-1}-a_{n-1}\gamma_{n-2}} \\
+\rho_{n-1}=\frac{z_{n-1}-a_{n-1}\rho_{n-2}}{b_{n-1}-a_{n-1}\gamma_{n-2}}
+\]</span> Then <span class="math display">\[
+x(k)=\frac{z(k)-\alpha\rho(k-1)}{\beta-\frac{A^2}{R_1}-\alpha\gamma(k-1)}
+\]</span> If we define <span class="math display">\[
+P(k)=(\beta-\frac{A^2}{R_1}-\alpha\gamma(k-1))^{-1}
+\]</span> We have <span class="math display">\[
+x(k)=P(k)[z(k)-\alpha\rho(k-1)]
+\]</span> Where <span class="math display">\[
+\gamma(k-1)=\frac{\alpha}{\beta-\alpha \gamma(k-2)}\\
+\rho(k-1)=\frac{z(k-1)-\alpha\rho(k-2)}{\beta-\alpha\gamma(k-2)}
+\]</span> Now we consider k-1 samples. We hope to use recursive algorithm to calculate. <span class="math display">\[
+\gamma(k-2)=\frac{\alpha}{\beta-\alpha \gamma(k-3)}\\
+\rho(k-2)=\frac{z(k-2)-\alpha\rho(k-3)}{\beta-\alpha\gamma(k-3)}\\
+P(k-1)=(\beta-\frac{A^2}{R_1}-\alpha\gamma(k-2))^{-1}\\
+x(k-1)=P(k-1)[z(k-1)-\alpha\rho(k-2)]
+\]</span> Now we cancel out <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\beta\)</span></p>
+<p>Therefore, we can get the Kalman Filter with iterative method.</p>
+<p>Skip the steps of mathematical derivation.</p>
+<p>Finally we get the Kalman Filter in the following form <span class="math display">\[
+\begin{array}{rcl}
+K_f(k)&amp;=&amp;P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1} \\
+K(k)&amp;=&amp;(AP(k|k-1)C^T)(CP(k|k-1)C^T+R_2)^{-1} \\
+\hat x(k|k)&amp;=&amp;\hat x(k|k-1)+K_f(k)(y(k)-C\hat x(k|k-1))\\
+\hat x(k+1|k)&amp;=&amp;A\hat x(k|k-1)+Bu(k)+K(k)(y(k)-C\hat x(k|k-1))\\
+P(k|k)&amp;=&amp;P(k|k-1)-P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1}CP(k|k-1) \\
+p(k+1|k)&amp;=&amp;AP(k|k-1)A^T-K(k)(CP(k|k-1)C^T+R_2)K^T(k)+R_1
 \end{array}
-\right)p^{k}(1-p)^k
-\]</span> ==Multinomial Distribution==</p>
-<p>The multinomial distribution is a generalization of the binomial distribution. For example, it models the probability of counts for rolling a k-sided die n times. For n independent trials each of which leads to a success for exactly one of k categories, with each category having a given fixed success probability, the multinomial distribution gives the probability of any particular combination of numbers of successes for the various categories. <span class="math display">\[
-\begin{array}{ccc}
-P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=\frac{n!}{x_1!x_2!\dotsm x_k!}p_1^{x_1}p_2^{x_2}\dotsm p_k^{x_k}\quad when \sum_{i=1}^kx_i=n\\
-otherwise\quad P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=0
+\]</span></p>
+<p>Simpler version <span class="math display">\[
+\begin{array}{rcl}
+K_f(k)&amp;=&amp;P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1} \\
+K(k)&amp;=&amp;Ak_f(k) \\
+\hat x(k|k)&amp;=&amp;\hat x(k|k-1)+K_f(k)(y(k)-C\hat x(k|k-1))\\
+\hat x(k+1|k)&amp;=&amp;A\hat x(k|k)+Bu(k)\\
+P(k|k)&amp;=&amp;P(k|k-1)-P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1}CP(k|k-1) \\
+P(k+1|k)&amp;=&amp;AP(k|k)A^T+R_1
 \end{array}
-\]</span> ==Poisson Distribution==</p>
-<p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring in a fixed interval of time or space if these events occur with a known constant rate and independently of the time since the last event. <span class="math display">\[
-P(x=k)=e^{-\lambda}\frac{\lambda^k}{k!}
 \]</span></p>
-<h2 id="continuous-distributions">5. Continuous Distributions</h2>
-<p>==Gaussian Distribution (Normal Distribution)==</p>
-<p>It states that averages of samples of observations of random variables independently drawn from independent distributions converge in distribution to the normal, that is, they become normally distributed when the number of observations is sufficiently large <span class="math display">\[
-P(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
-\]</span> ==Exponential Distribution==</p>
-<p>The exponential distribution is the probability distribution that describes the time between events in a Poisson point process. <span class="math display">\[
-P(X=x)=\lambda e^{-\lambda x}
-\]</span> ==Gamma Distribution==</p>
-<p>The gamma distribution is a two-parameter family of continuous probability distributions. The exponential distribution, Erlang distribution, and chi-squared distribution are special cases of the gamma distribution. <span class="math display">\[
-P(x|\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}
-\]</span> where <span class="math inline">\(\Gamma(\alpha)\)</span> is the Gamma Function.</p>
-<p>==Beta Distribution==</p>
-<p>The beta distribution is a family of continuous probability distributions defined on the interval [0, 1] parametrized by two positive shape parameters, denoted by α and β, that appear as exponents of the random variable and control the shape of the distribution. It is a special case of the Dirichlet distribution.</p>
-<p>The beta distribution has been applied to model the behavior of random variables limited to intervals of finite length in a wide variety of disciplines.</p>
-<p>In Bayesian inference, the beta distribution is the conjugate prior probability distribution for the Bernoulli, binomial, negative binomial and geometric distributions. For example, the beta distribution can be used in Bayesian analysis to describe initial knowledge concerning probability of success such as the probability that a space vehicle will successfully complete a specified mission. The beta distribution is a suitable model for the random behavior of percentages and proportions. <span class="math display">\[
-P(x|\alpha,\beta)=\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}
-\]</span> where <span class="math inline">\(B(\alpha,\beta)\)</span> is Beta Function defined by <span class="math display">\[
-B(\alpha,\beta)=\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}
-\]</span> ==Dirichlet Distribution==</p>
-<p>the Dirichlet distribution often denoted as Dir(<span class="math inline">\(\alpha\)</span>) is a family of continuous multivariate probability distributions parameterized by a vector <span class="math inline">\(\alpha\)</span> of positive reals. It is a multivariate generalization of the beta distribution, hence its alternative name of Multivariate Beta distribution (MBD). <span class="math display">\[
-P(x|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
+<p>Example</p>
+<p>We have one system <span class="math display">\[
+x(k+1)=x(k)+w(k)\\
+y(k)=x(k)+v(k)
+\]</span> We have measurement <span class="math display">\[
+y(0)=0\\
+y(1)=1\\
+y(2)=2\\
+\]</span> Kalman Filter initialized with <span class="math display">\[
+\hat x(0|-1)=0\\
+P(0|-1)=\infty\\
+R_1=R_2=1
+\]</span> Now we have <span class="math display">\[
+\begin{array}{lll}
+k=0\\
+K_f(0)=1 &amp; K(0)=1\\
+\hat x(0|0)=0 &amp; \hat x(1|0)=0\\
+P(0|0)=1 &amp; P(1|0)=2\\
+\hline
+k=1\\
+K_f(1)=\frac{2}{3} &amp; K(1)=\frac{2}{3}\\
+\hat x(1|1)=\frac{2}{3} &amp; \hat x(2|1)=\frac{2}{3}\\
+P(1|1)=\frac{2}{3} &amp; P(2|1)=\frac{5}{3}\\
+\hline
+k=2\\
+K_f(2)=\frac{5}{8} &amp; K(2)=\frac{5}{8}\\
+\hat x(2|2)=\frac{3}{2} &amp; \hat x(3|2)=\frac{3}{2}\\
+P(2|2)=\frac{5}{8} &amp; P(3|2)=\frac{13}{8}\\
+\end{array}
 \]</span></p>
-<h2 id="bayes-rule">5. Bayes' Rule</h2>
-<p>For continuous <span class="math display">\[
-p(x,y)=p(x)p(y|x)=p(y)p(x|y) \implies \\
-p(y|x)=\frac{p(y)p(x|y)}{p(x)}=\frac{p(y)p(x|y)}{\int p(x,y)dy}=\frac{p(y)p(x|y)}{\int p(y)p(x|y) dy}
-\]</span> For discrete <span class="math display">\[
-p(x,y)=p(x)p(y|x)=p(y)p(x|y) \implies \\
-p(y|x)=\frac{p(y)p(x|y)}{p(x)}=\frac{p(y)p(x|y)}{\sum_y p(x,y)}=\frac{p(y)p(x|y)}{\sum_y p(y)p(x|y) }
-\]</span> Denotion <span class="math display">\[
-\underbrace{p(y|x)}_\text{Posterior}=\frac{\overbrace{p(y)}^\text{Prior}\quad\overbrace{p(x|y)}^\text{Liklihood}}{\underbrace{p(x)}_\text{Evidence}}
-\]</span> Prior: What we know before seeing x</p>
-<p>Posterior: What we know after seeing x</p>
-<p>Likelihood: Propensity for observing a certain value of x given certain value of y</p>
-<p>Evidence: Make sure the left hand is a valid distribution</p>
-<h2 id="expectation">6. Expectation</h2>
-<p>Definition of expectation <span class="math display">\[
-E(f(x))=\sum_xf(x)p(x)\\
-E(f(x))=\int_xf(x)p(x)dx\\
-\]</span> Definition of mean <span class="math display">\[
-E(x)=\int_xxp(x)dx=\mu_x
-\]</span> Definition of variance <span class="math display">\[
-E((x-\mu_x)^2)=\int_x(x-\mu_x)^2p(x)dx=\sigma_x^2
-\]</span> then <span class="math inline">\(\sigma_x\)</span> is called standard deviation</p>
-<p>Definition of covariance <span class="math display">\[
-E((x-\mu_x)(y-\mu_y))=\int\int(x-\mu_x)(y-\mu_y)p(x,y)dxdy=Cov(x,y)
-\]</span> Some important conclusions for expectation <span class="math display">\[
-E(af(x)+bf(y))=aE(f(x))+bE(f(y))\\
-Cov(x,y)=E(xy)-E(x)E(y)\\
-Var(x)=Cov(x,x)=E(x^2)-E^2(x)
-\]</span> Definition of Conditional Expectation <span class="math display">\[
-E(f(x,y)|y)=E_{p(x|y)}[f(x,y)]=\sum_xf(x,y)p(x|y)
-\]</span> Definition of Conditional Independece <span class="math display">\[
-p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
-\]</span> Attention!</p>
-<p><span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are independent does not imply <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are conditionally independent given <span class="math inline">\(x_3\)</span>.</p>
-<p><span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are independent given <span class="math inline">\(x_3\)</span> does not imply <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are independent.</p>
 
         
       

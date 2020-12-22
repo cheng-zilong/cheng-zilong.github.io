@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-07 23:51:33" itemprop="dateModified" datetime="2019-07-07T23:51:33+08:00">2019-07-07</time>
+                <time title="Modified: 2019-08-19 15:14:40" itemprop="dateModified" datetime="2019-08-19T15:14:40+08:00">2019-08-19</time>
               </span>
             
           
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,88 +306,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="adjoint-and-self-adjoint-operators">4.4 Adjoint and Self-Adjoint Operators</h2>
-<p>Let A be a bounded operator on a Hilbert Space H. For every fixed <span class="math inline">\(x_0\in H\)</span>, the functional <span class="math inline">\(f\)</span> defined on H by <span class="math display">\[
-f(x)=&lt;Ax,x_0&gt;
-\]</span> is bounded linear functional on H. Thus, by Riesz Representation Theorem, there exists unique <span class="math inline">\(y_0\in H\)</span> such that <span class="math inline">\(f(x)=&lt;x,y_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>, or, equivalently, <span class="math inline">\(&lt;Ax,x_0&gt;=&lt;x,y_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>. If we denote by <span class="math inline">\(A^*\)</span> the operator which to every <span class="math inline">\(x_0\in H\)</span> assigns that unique <span class="math inline">\(y_0\)</span>, then we have<span class="math inline">\(&lt;Ax,y&gt;=&lt;x,A^*y&gt;\)</span> for all <span class="math inline">\(x,y\in H\)</span>.</p>
-<p>==Definition 4.4.1== (Adjoint Operator)</p>
-<p>Let A be a bounded operator on a Hilbert Space H. The operator <span class="math inline">\(A^*:H\rightarrow H\)</span> defined by <span class="math display">\[
-&lt;Ax,y&gt;=&lt;x,A^*y&gt;\quad \forall x,y\in E
-\]</span> is called the adjoint operator of A.</p>
-<p>The following properties are direct consequences of the above definition. <span class="math display">\[
-(A+B)^*=A^*+B^*\\
-(\alpha A)^*=\bar \alpha A^*\\
-(A^*)^*=A\\
-\mathscr J^*=\mathscr J\\
-(AB)^*=B^*A^*
-\]</span> for arbitrary operators A and B and scalar <span class="math inline">\(\alpha\)</span>.</p>
-<p>==Theorem 4.4.1==</p>
-<p>The adjoint operator <span class="math inline">\(A^*\)</span> of a bounded operator A is bounded. Moreover, we have <span class="math inline">\(||A||=||A^*||\)</span> and <span class="math inline">\(||A^*A||=||A||^2\)</span></p>
-<p>In general, <span class="math inline">\(A\)</span> and <span class="math inline">\(A^*\)</span> need not be equal. Operators for which <span class="math inline">\(A=A^*\)</span> are of special interest.</p>
-<p>==Definition 4.4.2== (Self-adjoint Operator)</p>
-<p>If <span class="math inline">\(A^*=A\)</span>, i.e. <span class="math inline">\(&lt;Ax,y&gt;=&lt;x,Ay&gt;\)</span> for all <span class="math inline">\(x,y \in H\)</span>, then <span class="math inline">\(A\)</span> is called self-adjoint (or Hermitian).</p>
-<p>==Theorem 4.4.2==</p>
-<p>Let A be a bounded operator on a Hilbert Space H. The operator <span class="math inline">\(T_1=A^*A\)</span> and <span class="math inline">\(T_2=A+A^*\)</span> are self-adjoint.</p>
-<p>==Theorem 4.4.3==</p>
-<p>The product of two self-adjoint operators is self-adjoint if and only if the operators are commute.</p>
-<p>==Corollary 4.4.1==</p>
-<p>If A is self-adjoint, then so is any polynomial of A. <span class="math display">\[
-\alpha_n A^n+\dotsm+\alpha_1 A+\alpha_0\mathscr J
-\]</span> with real coefficients <span class="math inline">\(\alpha_n,\dotsm,\alpha_0\)</span>.</p>
-<p>In the definition of the adjoint operator of A we have assumed that the domain of A is the entire space H. Then the existence and uniqueness of the adjoint operator <span class="math inline">\(A^*\)</span> can be guaranteed by the Riesz Representation Theorem. In practice, we often deal with the operators defined on a proper subspace of H, for example, the differential operator. In such case, the adjoint operator can be defined as follows.</p>
-<p>Let <span class="math inline">\(A:\mathscr D(A)\rightarrow H\)</span> and <span class="math inline">\(B:\mathscr D(B)\rightarrow H\)</span> be operators, <span class="math inline">\(\mathscr D(A),\mathscr D(B)\subset H\)</span>. Without loss of generality, we can assume that <span class="math inline">\(\mathscr D(A)\)</span> and <span class="math inline">\(\mathscr D(B)\)</span> are vector spaces. Then B is called an adjoint operator of A if <span class="math display">\[
-&lt;Ax,y&gt;=&lt;x,By&gt;\quad\forall x\in\mathscr D(A),y\in\mathscr D(B)
-\]</span> In this case, an adjoint operator need not be unique. It can be proved that if <span class="math inline">\(\mathscr D(A)\)</span> is dense in H, the adjoint is unique. Operators defined on proper subspaces of Hilbert space will be discussed in more detail in section 4.12.</p>
-<p>==Theorem 4.4.5==</p>
-<p>Let T be a self-adjoint operator on a Hilbert Space H. Then <span class="math display">\[
-||T||=\sup_{||x||=1} |&lt;Tx,x&gt;|
-\]</span> ==Definition 4.4.3== (Anti-Hermitian Operator)</p>
-<p>An operator A is called anti-Hermitian if <span class="math inline">\(A=-A^*\)</span>.</p>
-<h2 id="invertible-normal-isometric-and-unitary-operators">4.5 Invertible, Normal, Isometric, and Unitary Operators</h2>
-<p>==Definition 4.5.1== (Inverse Operator)</p>
-<p>Let A be an operator defined on a vector space of E. An operator B defined on <span class="math inline">\(\mathscr R(A)\)</span> is called inverse of A if <span class="math inline">\(ABx=x\)</span> for all <span class="math inline">\(x\in \mathscr R(A)\)</span> and <span class="math inline">\(BAx=x\)</span> for all <span class="math inline">\(x\in \mathscr D(A)\)</span>. An operator which has an inverse is called invertible. The inverse of A will be denoted as <span class="math inline">\(A^{-1}\)</span>.</p>
-<p>If an operator has an inverse, then it is unique. Suppose <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> are inverses of A, then <span class="math display">\[
-B_1=B_1\mathscr J=B_1AB_2=\mathscr JB_2=B_2
-\]</span> Note also that <span class="math display">\[
-\mathscr D(A^{-1})=\mathscr R(A) \quad and\quad \mathscr R(A^{-1})=\mathscr D(A)
-\]</span> ==Theorem 4.5.1==</p>
+          <h2 id="completion-of-normed-spaces">1.7 Completion of Normed Spaces</h2>
+<p>Some spaces arising naturally from applications are not complete. We would like to find a way to enlarge such a space to a complete space. It turns out that it is always possible.</p>
+<p>Let <span class="math inline">\((E,||\cdot||)\)</span> be a normed space. A normed space <span class="math inline">\((\tilde E,||\cdot||_1)\)</span> is called a completion of <span class="math inline">\((E,||\cdot||)\)</span> if</p>
 <ol type="a">
-<li><p>The inverse of a linear operator is a linear operator</p></li>
-<li><p>An operator A is invertible if and only if <span class="math inline">\(Ax=0\)</span> implies <span class="math inline">\(x=0\)</span></p></li>
-<li><p>If an operator A is invertible and vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span> are linearly independent, then <span class="math inline">\(Ax_1,Ax_2,\dotsm,Ax_n\)</span> are linearly independent.</p></li>
-<li><p>If operators A and B are invertible, then operator AB is invertible and we have <span class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span></p></li>
+<li><p>there exists a one-to-one linear mapping <span class="math inline">\(\Phi:E\rightarrow \tilde E\)</span></p></li>
+<li><p><span class="math inline">\(||x||=||\Phi(x)||_1\)</span> for every <span class="math inline">\(x\in E\)</span></p></li>
+<li><p><span class="math inline">\(\Phi(E)\)</span> is dense in <span class="math inline">\(\tilde E\)</span></p></li>
+<li><p><span class="math inline">\(\tilde E\)</span> is complete</p></li>
 </ol>
-<p>It follows from (c) that if E is finite dimensional vector space and A is linear invertible operator on E, then <span class="math inline">\(\mathscr R(A)=E\)</span>. As the following example shows, in infinite dimensional vector space, it is not necessarily true.</p>
-<p>==Example 4.5.1== Let <span class="math inline">\(E=l^2\)</span>. Define an operator A on E by <span class="math display">\[
-A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
-\]</span> Clearly, this is a linear invertible operator on <span class="math inline">\(l^2\)</span> whose range is proper subspace of <span class="math inline">\(l^2\)</span>.</p>
-<p><strong>Invertible of a bounded operator is not necessarily bounded.</strong></p>
-<p>==Theorem 4.5.2==</p>
-<p>Let A be a bounded operator on a Hilbert space H such that <span class="math inline">\(\mathscr R(A)=H\)</span>. If A has a bounded inverses, then the adjoint <span class="math inline">\(A^*\)</span> is invertible and <span class="math inline">\((A^*)^{-1}=(A^{-1})^*\)</span>.</p>
-<p>==Corollary 4.5.1==</p>
-<p>If a bounded self-adjoint operator A has bounded inverse <span class="math inline">\(A^{-1}\)</span>, then <span class="math inline">\(A^{-1}\)</span> is self-adjoint.</p>
-<p>==Definition 4.5.2== (Normal Operator)</p>
-<p>A bounded operator <span class="math inline">\(T\)</span> is called a normal operator if it commutes with its adjoint. i.e. <span class="math inline">\(TT^*=T^*T\)</span>.</p>
-<p>==Theorem 4.5.3==</p>
-<p>A bounded operator T is normal if and only if <span class="math inline">\(||Tx||=||T^*x||\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
-<p>==Theorem 4.5.4==</p>
-<p>If <span class="math inline">\(A\)</span> is normal, then <span class="math inline">\((\alpha \mathscr J-A)\)</span> is normal for any <span class="math inline">\(\alpha \in C\)</span>.</p>
-<p>==Theorem 4.5.5== Let T be a bounded operator on a Hilbert space H and let A and B be self-adjoint operators on H such that <span class="math inline">\(T=A+iB\)</span>. Then <span class="math inline">\(T\)</span> is normal if and only if A and B commute.</p>
-<p>==Definition 4.5.3== (Isometric Operator)</p>
-<p>A bounded operator T on a Hilbert Space H is called an isometric operator if <span class="math inline">\(||Tx||=||x||\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
-<p>==Theorem 4.5.6==</p>
-<p>A bounded operator T defined on a Hilbert Space H is isometric if and only if <span class="math inline">\(T^*T=\mathscr J\)</span> on H.</p>
-<p>==Definition 4.5.4== (Unitary Operator)</p>
-<p>A bounded operator T on a Hilbert space H is called a unitary operator if <span class="math inline">\(T^*T=TT^*=\mathscr J\)</span> on H.</p>
-<p>==Theorem 4.5.7==</p>
-<p>An operator T is unitary if and only if it is invertible and <span class="math inline">\(T^{-1}=T^*\)</span>.</p>
-<p>==Theorem 4.5.8==</p>
-<p>Let T be a unitary operator. Then</p>
-<ol type="a">
-<li><p>T is isometric</p></li>
-<li><p>T is normal</p></li>
-<li><p><span class="math inline">\(T^{-1}\)</span> and <span class="math inline">\(T^{*}\)</span> are unitary.</p></li>
-</ol>
+<h2 id="contraction-mappings-and-the-banach-fixed-point-theorem">1.8 Contraction Mappings and the Banach Fixed Point Theorem</h2>
+<p>The name "Fixed Point Theorem" is usually given to a result which says that, under certain conditions, given a mapping <span class="math inline">\(f\)</span> there is a point <span class="math inline">\(z\)</span> such that <span class="math inline">\(f(z)=z\)</span>. Such a point is called a fixed point of <span class="math inline">\(f\)</span>.</p>
+<p>==Definition 1.8.1== Contraction Mappings</p>
+<p>A mapping <span class="math inline">\(f\)</span> from a subset <span class="math inline">\(A\)</span> of a normed space <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_1\)</span> is called a contraction mapping (or simply a contraction) if there exists a positive number <span class="math inline">\(\alpha &lt;1\)</span> such that <span class="math display">\[
+||f(x)-f(y)||\le \alpha||x-y||\quad \forall x,y\in A
+\]</span> Note that the contraction mappings are continuous.</p>
+<p>==Theorem 1.8.1== Banach Fixed Point Theorem</p>
+<p>Let <span class="math inline">\(F\)</span> be a closed subset of a Banach space <span class="math inline">\(E\)</span> and let <span class="math inline">\(f\)</span> be a contraction mappings from <span class="math inline">\(F\)</span> into <span class="math inline">\(F\)</span>. Then there exists a unique <span class="math inline">\(z\in F\)</span> such that <span class="math inline">\(f(z)=z\)</span>.</p>
 
         
       
@@ -412,7 +347,7 @@ A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -426,7 +361,7 @@ A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -452,7 +387,7 @@ A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-12 20:27:34" itemprop="dateModified" datetime="2019-07-12T20:27:34+08:00">2019-07-12</time>
+                <time title="Modified: 2019-08-19 17:18:42" itemprop="dateModified" datetime="2019-08-19T17:18:42+08:00">2019-08-19</time>
               </span>
             
           
@@ -471,7 +406,7 @@ A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -489,7 +424,7 @@ A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -503,116 +438,213 @@ A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="linear-operator-on-hilbert-spaces">Linear Operator on Hilbert Spaces</h1>
-<h2 id="introduction">4.1 Introduction</h2>
-<p>The conception of an operator (or transformation) on a normed vector space is a natural generalization of the idea of a function of a real variable. Linear operators on a normed vector space are widely used to represent physical quantities, and hence their importance is further enhanced in applied mathematics and mathematical physics.</p>
-<p>The most important operators include <strong>differential, integral, and matrix operators</strong>.</p>
-<h2 id="examples-of-operators">4.2 Examples of Operators</h2>
-<p>In section 4.1, we discussed some basic properties of linear mappings from a vector space <span class="math inline">\(E_1\)</span> into a vector space <span class="math inline">\(E_2\)</span>. In this chapter, we are interested in the cases when <span class="math inline">\(E_1=E_2=E\)</span> or <span class="math inline">\(E_1\subset E_2=E\)</span>, where <span class="math inline">\(E\)</span> is normed space or inner product space. Here we will not consider nonlinear operator so operator just means the linear operator.</p>
-<p>Recall that an operator A is called bounded if there is a number <span class="math inline">\(K\)</span> such that <span class="math inline">\(||Ax||\le K||x\|\)</span> for every <span class="math inline">\(x\)</span> in the domain of A. The norm of A is defined as the least of all numbers K, or equivalently, by <span class="math display">\[
-||A||=\sup_{||x||=1}||Ax||
-\]</span> In section 1.6, we proved that an operator A is bounded if and only if it is continuous. It is often much more difficult to find the norm of an operator than just prove it is bounded.</p>
-<p>==Example 4.2.1== (Identity Operator and Null operator)</p>
-<p>The simplest example of an operator is the identity operator <span class="math inline">\(\mathscr I\)</span>, which leaves every element unchanged: <span class="math inline">\(\mathscr Ix=x\quad \forall x\in E\)</span>. The null operator, which assigns the zero vector to every element of E, will be denoted by 0. The two operators are both bounded and we have <span class="math inline">\(||\mathscr I||=1\)</span> and <span class="math inline">\(||0||=0\)</span>. A scalar multiple <span class="math inline">\(\alpha\mathscr I\)</span> of the identity operator is the operator which multiplies every element by the scalar <span class="math inline">\(\alpha\)</span>: <span class="math inline">\((\alpha\mathscr I)x=\alpha x\)</span>.</p>
-<p>==Example 4.2.2==</p>
-<p>Let A be an operator on <span class="math inline">\(C^N\)</span> and let <span class="math inline">\(\{e_1,\dotsm,e_n\}\)</span> be the standard orthonormal base in <span class="math inline">\(C^N\)</span>, i.e. <span class="math display">\[
-e_1=(1,0,\dotsm,0)\\
-e_2=(0,1,\dotsm,0)\\
-\dotsm\\
-e_n=(0,0,\dotsm,1)
-\]</span> Define <span class="math inline">\(i,j=\{1,2,\dotsm,N\}\)</span>, <span class="math display">\[
-a_{ij}=&lt;Ae_j,e_i&gt;
-\]</span> Then for <span class="math inline">\(x=\sum_{j=1}^N \lambda_je_j\in C^N\)</span>, we have <span class="math inline">\(Ax=\sum_{j=1}^N\lambda_jAe_j\)</span>. <span class="math display">\[
-&lt;Ax,e_i&gt;=\sum_{j=1}^N\lambda_j&lt;Ae_j,e_i&gt;=\sum_{j=1}^N\lambda_j\alpha_{ij}\\
-\]</span> Hence, every operator on the space <span class="math inline">\(C^N\)</span> is defined by a <span class="math inline">\(N\times N\)</span> matrix. Conversely, for every <span class="math inline">\(N\times N\)</span> matrix <span class="math inline">\((\alpha_{ij})\)</span>, it defines an operator on <span class="math inline">\(C^N\)</span>. <span class="math display">\[
-||A||\le \sqrt{\sum_{i=1}^N\sum_{j=1}^N |\alpha_{ij}|^2}
-\]</span> ==Example 4.2.3== (Differential Operator)</p>
-<p>One of the most important operator is the differential operator <span class="math display">\[
-(Df)(x)=\frac{df}{dx}(x)=f&#39;(x)
-\]</span> defined on a space of differentiable functions.</p>
-<p>==Example 4.2.4== (Integral Operator)</p>
-<p>Another important kind of operator is an integral operator defined by <span class="math display">\[
-(Tx)(s)=\int _a^b K(s,t)x(t)dt
-\]</span> where a and b are finite or infinite, <span class="math inline">\(a&lt;b\)</span> and K is a function defined on <span class="math inline">\((a,b)\times (a,b)\)</span>. The function K is called the kernel of the operator. The domain of an integral operator depends on K. If <span class="math display">\[
-\int _a^b\int _a^b|K(s,t)|^2dtds&lt;\infty
-\]</span> Then T is bounded operator on <span class="math inline">\(L^2([a,b])\)</span> and <span class="math display">\[
-||T||\le \sqrt{\int _a^b\int _a^b|K(s,t)|dtds}
-\]</span> ==Example 4.2.5== (Multiplication Operator)</p>
-<p>Let <span class="math inline">\(z\in \mathscr C([a,b])\)</span>. An operator A on <span class="math inline">\(L^2([a,b])\)</span> defined by <span class="math inline">\((Ax)(t)=z(t)x(t)\)</span> is clearly linear. The function z is called the multiplier.</p>
+          <h2 id="banach-spaces">1.5 Banach Spaces</h2>
+<p>Every Cauchy sequence of <strong>numbers</strong> converges. Every absolutely convergent series of <strong>numbers</strong> converges. Similar properties of a normed space would be of great importance. Not all normed spaces have the above properties. Those which do are called Banach Spaces.</p>
+<p>==Definition 1.5.1== Cauchy Sequence</p>
+<p>A sequence of vectors <span class="math inline">\((x_n)\)</span> in a normed space is called a Cauchy sequence if for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>.</p>
+<p>==Theorem 1.5.1==</p>
+<p>The following conditions are equivalent:</p>
+<ol type="a">
+<li><p><span class="math inline">\((x_n)\)</span> is a Cauchy sequence.</p></li>
+<li><p><span class="math inline">\(||x_{p_n}-x_{q_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, for every pair of increasing sequences of positive integers <span class="math inline">\((p_n)\)</span> and <span class="math inline">\((q_n)\)</span></p></li>
+<li><p><span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> for every increasing sequence of positive integers <span class="math inline">\((p_n)\)</span></p></li>
+</ol>
+<p>Proof. clearly <span class="math inline">\((a)\rightarrow (b)\rightarrow (c)\)</span></p>
+<p>we only need to prove <span class="math inline">\((c)\rightarrow (a)\)</span></p>
+<p>If <span class="math inline">\((x_n)\)</span> is not a Cauchy sequence, then <span class="math inline">\(\exists \epsilon&gt;0,\forall M&gt;0,\exists m,n&gt;M\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span>.</p>
+<p>That means <span class="math inline">\(\exists \epsilon&gt;0\)</span>, there are infinitely many <span class="math inline">\(m,n\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span></p>
+<p>Then there exists increasing sequence of positive integers <span class="math inline">\((p_n)\)</span> such that <span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\not \rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p>We can easily find such sequence. Q.E.D.</p>
+<p>Observe that every <strong>convergent sequence</strong> is a <strong>Cauchy sequence</strong>.</p>
+<p>If we have <span class="math inline">\(||x_n-x||\rightarrow 0\)</span>, then <span class="math inline">\(||x_{p_n}-x_{q_n}||\le||x_{p_n}-x||+||x_{q_{n}}-x||\rightarrow 0\)</span></p>
+<p>The converse is not true. A sequence of the rational number may converge to an irrational number.</p>
+<p>==Lemma 1.5.1==</p>
+<p>If <span class="math inline">\((x_n)\)</span> is a Cauchy sequence in a normed space, then the sequence of norms <span class="math inline">\((||x_n||)\)</span> converges.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>. <span class="math display">\[
+|\space||x_m||-||x_n||\space|\le||x_m-x_n||\rightarrow 0
+\]</span> ==Definition 1.5.2== Banach Space</p>
+<p>A normed space <span class="math inline">\(E\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(E\)</span> converges to an element of <span class="math inline">\(E\)</span>. A complete normed space is called a Banach Space.</p>
+<p>==Example 1.5.1== The space <span class="math inline">\(l^2\)</span> is complete.</p>
+<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(z_1,z_2,\dotsm \in E\)</span> satisfying that</p>
+<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
+||z_m-z_n||^2=\sum_{k=1}^\infty |z_{m,k}-z_{n,k}|^2&lt;\epsilon^2
+\]</span> that implies <span class="math inline">\(\forall k\in \mathbb N,\forall\epsilon&gt;0,\exists n_0&gt;0\)</span> <span class="math display">\[
+|z_{m,k}-z_{n,k}|&lt;\epsilon\quad \forall m,n&gt;n_0
+\]</span> that mean for every k, the sequence <span class="math inline">\((z_{n,k})\)</span> is Cauchy sequence and convergent. Then we denote <span class="math display">\[
+z_k=\lim_{n\rightarrow \infty} z_{n,k}\quad k=1,2,\dotsm\quad z=(z_k)
+\]</span> We need to prove that there exists an element <span class="math inline">\(z\in E\)</span> such that <span class="math inline">\(\forall \varepsilon&gt;0,\exists M&gt;0,\forall m&gt;M\)</span> such that <span class="math display">\[
+||z_m-z||=\sum_{k=1}^\infty |z_{m,k}-z_k|^2&lt;\varepsilon^2
+\]</span> By letting $n$, we can prove the second equation by the first equation.</p>
+<p>Then we need to prove that <span class="math inline">\(z\in E\)</span> <span class="math display">\[
+\sqrt{\sum_{k=1}^\infty|z_k|^2}=\sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}+z_{m,k}|^2}\\
+\le \sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}|^2}+\sqrt{\sum_{k=1}^\infty |z_{m,k}|^2}
+&lt; \infty
+\]</span> That means <span class="math inline">\(z_m \rightarrow z\)</span></p>
+<p>Q.E.D.</p>
+<p>==Example 1.5.2== Another important example of a Banach space is the space <span class="math inline">\(\mathscr C([a,b])\)</span> of continuous functions on an interval <span class="math inline">\([a,b]\)</span>.</p>
+<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(f_1,f_2,\dotsm \in E\)</span> satisfying that</p>
+<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
+||f_m-f_n||&lt;\epsilon\\
+\max_{x\in[a,b]} |f_m(x)-f_n(x)|&lt;\epsilon
+\]</span> that implies <span class="math display">\[
+|f_m(x)-f_n(x)|&lt;\epsilon \quad \forall n,m\ge n_0,\forall x\in[a,b]
+\]</span> that means <span class="math inline">\((f_n(x))\)</span> is Cauchy sequence <span class="math inline">\(\forall x\in[a,b]\)</span>.</p>
+<p>We denote <span class="math display">\[
+f(x)=\lim_{n\rightarrow \infty } f_n(x),\forall x\in[a,b]
+\]</span> Let $n$ , we have <span class="math display">\[
+|f_m(x)-f(x)|&lt;\epsilon,\forall m\ge n_0 ,\forall x\in[a,b]\\
+\max_{x\in[a,b]}|f_m(x)-f(x)|&lt;\epsilon \\
+||f_m-f|&lt;\epsilon
+\]</span> Then we prove <span class="math inline">\(f\in E\)</span></p>
+<p>Let <span class="math inline">\(\forall x_0\in[a,b]\)</span>. Since <span class="math inline">\(f_{n_0}\)</span> is continuous on <span class="math inline">\([a,b]\)</span>, there exists <span class="math inline">\(\delta &gt;0\)</span> such that <span class="math inline">\(|f_{n_0}(x_0)-f_{n_0}(y)|&lt;\epsilon\)</span> for every <span class="math inline">\(y\in[a,b]\)</span> and <span class="math inline">\(|x_0-y|&lt;\delta\)</span> <span class="math display">\[
+|f(x_0)-f(y)|= |f(x_0)-f_{n_0}(x_0)+f_{n_0}(x_0)-f_{n_0}(y)+f_{n_0}(y)-f(y)|\\
+\le |f(x_0)-f_{n_0}(x_0)|+|f_{n_0}(x_0)-f_{n_0}(y)|+|f_{n_0}(y)-f(y)|\\
+&lt; 3\epsilon
+\]</span> whenever <span class="math inline">\(|x_0-y|&lt;\delta\)</span>, that means <span class="math inline">\(f\)</span> is continuous.</p>
+<p>Q.E.D.</p>
+<p>==Definition 1.5.3== Convergent and Absolutely convergent series</p>
+<p>A series <span class="math inline">\(\sum_{n=1}^\infty x_n\)</span> converges in a normed space <span class="math inline">\(E\)</span> if the sequence of partial sums converges in <span class="math inline">\(E\)</span>.</p>
+<p>i.e. there exists <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_1+x_2+\dotsm+x_n-x||\rightarrow 0\)</span> as $n$ .</p>
+<p>In that case, we write <span class="math inline">\(\sum_{n=1}^\infty x_n=x\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty ||x_n||&lt;\infty\)</span>, then the series is called absolute convergent.</p>
+<p>==Theorem 1.5.2==</p>
+<p>A normed space is complete if and only if every absolutely convergent series converges.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>We will prove this by proving absolutely convergent series is a Cauchy series.</p>
+<p>We define a absolutely convergent series. Suppose <span class="math inline">\(x_n\in E\)</span> and <span class="math inline">\(\sum_{n=1}^\infty||x_n||&lt;\infty\)</span> and denote <span class="math display">\[
+s_n=\sum_{k=1}^nx_k
+\]</span> Because the sequence of partial sums converges in E, for every $&gt;0 $, there exists <span class="math inline">\(k&gt;0\)</span> such that <span class="math display">\[
+\sum_{n=k+1}^\infty ||x_n||&lt;\epsilon
+\]</span> To show <span class="math inline">\((s_n)\)</span> is a Cauchy sequence, <span class="math inline">\(\forall \epsilon&gt;0,\exists M,\forall m,n&gt;M\)</span> such that <span class="math display">\[
+||s_m-s_n||=||x_{n+1}+x_{n+2}+\dotsm+x_m||\le \sum_{r=n+1}^\infty ||x_r||&lt;\epsilon
+\]</span> (without loss of generality, we assume <span class="math inline">\(m&gt;n\)</span>)</p>
+<p>Since E is complete, <span class="math inline">\(s_n\)</span> converges.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>We need to prove if every absolutely convergent series in a norm space converges, then the normed space is complete.</p>
+<p>Let <span class="math inline">\((x_n)\)</span> be an Cauchy sequence in E and therefore <span class="math inline">\(\forall \epsilon&gt;0,\exists p_k\in N,\forall m,n&gt;p_k\)</span> such that <span class="math display">\[
+||x_m-x_n||&lt;2^{-k}
+\]</span> without loss of generality, we can assume <span class="math inline">\((p_k)\)</span> is strictly increasing.</p>
+<p>Then the series <span class="math inline">\(\sum_{k=1}^\infty (x_{p_{k+1}}-x_{p_k})\)</span> is absolutely convergent and therefore, convergent and therefore, the sequence <span class="math display">\[
+x_{p_k}=x_{p_1}+(x_{p_2}-x_{p_1})+(x_{p_3}-x_{p_2})+\dotsm+(x_{p_k}-x_{p_{k-1}})
+\]</span> converges to an element <span class="math inline">\(x\in E\)</span></p>
+<p>Then <span class="math display">\[
+||x_n-x||\le ||x_n-x_{p_n}||+||x_{p_n}-x||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Theorem 1.5.3==</p>
+<p>A closed vector subspace of a Banach space is a Banach space itself.</p>
+<h2 id="linear-mappings">1.6 Linear Mappings</h2>
+<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be vector spaces, and let L be a mapping from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span></p>
+<p>If <span class="math inline">\(y=L(x)\)</span>, then y is called the ==image== of x. If A is subset of <span class="math inline">\(E_1\)</span>, then <span class="math inline">\(L(A)\)</span> denotes the image of the set <span class="math inline">\(A\)</span>.</p>
+<p>If B is a subset of <span class="math inline">\(E_2\)</span>, then <span class="math inline">\(L^{-1}(B)\)</span> denote the ==inverse image== of B. i.e. <span class="math inline">\(L^{-1}(B)\)</span> is the set of all vectors in <span class="math inline">\(E_1\)</span> whose images are elements of B.</p>
+<p>We consider the mapping which are defined on a proper subset of a vector space. Then the ==domain== of <span class="math inline">\(L\)</span> will be denoted as <span class="math inline">\(\mathscr D(L)\)</span>. The set <span class="math inline">\(L(\mathscr D(L))\)</span> is called the ==range== of the L and denoted by <span class="math inline">\(\mathscr R (L)\)</span></p>
+<p>By the ==null space== of L, denoted by <span class="math inline">\(\mathscr N(L)\)</span>, we mean the set of all vectors <span class="math inline">\(x\in \mathscr D(L)\)</span> such that <span class="math inline">\(L(x)=0\)</span></p>
+<p>By the ==graph== if L, denoted by <span class="math inline">\(\mathscr G(L)\)</span>, we mean the subset of <span class="math inline">\(E_1\times E_2\)</span> defined as follows: <span class="math display">\[
+\mathscr G(L)=\{(x,y):x\in\mathscr D(L),y=L(x)\}
+\]</span> ==Definition 1.6.1== Linear Mappings</p>
+<p>A mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called a linear mapping if <span class="math display">\[
+L(\alpha x+\beta y)=\alpha L(x)+\beta L(y)
+\]</span> for all <span class="math inline">\(x,y\in E_1\)</span> and all scalars <span class="math inline">\(\alpha,\beta\)</span>.</p>
+<p>In the remaining part of this section, we will assume that both spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces.</p>
+<p>==Definition 1.6.2== Continuous Mappings</p>
+<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be normed spaces. A mapping <span class="math inline">\(F\)</span> from <span class="math inline">\(E_1\)</span> to <span class="math inline">\(E_2\)</span> is called continuous at <span class="math inline">\(x_0\in E_1\)</span> if for any sequence <span class="math inline">\((x_n)\)</span> of elements of <span class="math inline">\(E_1\)</span> convergent to <span class="math inline">\(x_0\)</span>, the sequence <span class="math inline">\((F(x_n))\)</span> converges to <span class="math inline">\(F(x_0)\)</span>. i.e. F is continuous at <span class="math inline">\(x_0\)</span> if <span class="math inline">\(||x_n-x_0||\rightarrow 0\)</span> implies <span class="math inline">\(||F(x_n)-F(x_0)||\rightarrow 0\)</span>. If F is continuous at every <span class="math inline">\(x\in E_1\)</span>, then we simply say that <span class="math inline">\(F\)</span> is continuous.</p>
+<p>==Example 1.6.1==</p>
+<p>The norm in a normed space <span class="math inline">\(E\)</span> is continuous mapping from <span class="math inline">\(E\)</span> into <span class="math inline">\(R\)</span>. <span class="math display">\[
+||x_n-x||\rightarrow 0\implies |\space ||x_n||-||x||\space |\le||x_n-x||\rightarrow 0
+\]</span> ==Theorem 1.6.1==</p>
+<p>Let <span class="math inline">\(F:E_1\rightarrow E_2\)</span>. The following conditions are equivalent:</p>
+<ol type="a">
+<li><p><span class="math inline">\(F\)</span> is continuous</p></li>
+<li><p>The inverse image <span class="math inline">\(F^{-1}(U)\)</span> of any open set U of <span class="math inline">\(E_2\)</span> is open in <span class="math inline">\(E_1\)</span></p></li>
+<li><p>The inverse image <span class="math inline">\(F^{-1}(S)\)</span> of any closed set S of <span class="math inline">\(E_2\)</span> is closed in <span class="math inline">\(E_1\)</span></p></li>
+</ol>
+<p>Proof.</p>
+<p><span class="math inline">\((a)\rightarrow (b)\)</span></p>
+<p>If there exists an open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is not open in <span class="math inline">\(E_1\)</span></p>
+<p>there exists <span class="math inline">\(x\in F^{-1}(U)\)</span>, for all <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math inline">\(B(x,\varepsilon)\)</span> contains elements in <span class="math inline">\(E_1\backslash F^{-1}(U)\)</span></p>
+<p>Then we can choose the sequence <span class="math inline">\(x_1,x_2,\dotsm\in E_1\backslash F^{-1}(U)\)</span> satisfying <span class="math inline">\(x_n\in B(x,\frac{1}{n})\)</span> that means <span class="math inline">\(||x_n-x||\rightarrow 0\)</span></p>
+<p>However, $y=F(x)U $ that means there exists <span class="math inline">\(\epsilon&gt;0\)</span> such that <span class="math inline">\(B(y,\epsilon) \subseteq U\)</span> . <span class="math inline">\(x_n\notin F^{-1}(U)\)</span> means <span class="math inline">\(F(x_n)\notin U\)</span>.</p>
+<p><span class="math inline">\(F(x_n)\)</span> cannot converge to <span class="math inline">\(F(x)\)</span>. Proved.</p>
+<p><span class="math inline">\((b)\rightarrow (a)\)</span></p>
+<p>If for any open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is open in <span class="math inline">\(E_1\)</span>, then F is continuous.</p>
+<p>For all <span class="math inline">\(a\in F^{-1}(U)\)</span>, <span class="math inline">\(F(a)\in U\)</span>, <span class="math inline">\(U\)</span> is open and therefore for every <span class="math inline">\(a\)</span>, there exists <span class="math inline">\(\epsilon_1\)</span> such that <span class="math inline">\(B(F(a),\epsilon_1)\subseteq U\)</span> and <span class="math inline">\(a\in F^{-1}(B(F(a),\epsilon_1))\)</span>. There exists <span class="math inline">\(\epsilon_2\)</span> such that <span class="math inline">\(B(a,\epsilon_2) \subset F^{-1}(B(F(a),\epsilon_1))\)</span></p>
+<p>That mean <span class="math inline">\(||x-a||&lt;\epsilon_2\)</span> implies <span class="math inline">\(||F(x)-F(a)||&lt;\epsilon_1\)</span>. Q.E.D.</p>
+<p>==Theorem 1.6.2==</p>
+<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is continuous if and only if it is continuous at a point.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(\implies\)</span> obviously</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Assume L is continuous at <span class="math inline">\(x_0 \in E\)</span>. We define sequence <span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for any point <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_n-x ||\rightarrow 0\)</span>.</p>
+<p>Since L is linear mapping, we have <span class="math display">\[
+||L(x_n-x+x_0-x_0)||=||L(x_n-x+x_0)-L(x_0)||
+\]</span> Since L is continuous at <span class="math inline">\(x_0\in E\)</span>, for every sequence converging to <span class="math inline">\(x_0\)</span>, the <span class="math inline">\(L\)</span> converges <span class="math inline">\(L(x_0)\)</span>. We have <span class="math display">\[
+||L(x_n-x+x_0)-L(x_0)||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Definition 1.6.3== Bounded linear mapping</p>
+<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called bounded if there exists a number K such that <span class="math display">\[
+||L(x)||\le K||x||
+\]</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
+<p>==Theorem 1.6.3==</p>
+<p>A linear mapping is continuous if and only if it is bounded.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>If the linear mapping is not bounded, that means for every number K, there exists some x such that <span class="math display">\[
+||L(x)||&gt;K||x||
+\]</span> then for every <span class="math inline">\(n-1\le|k_n|&lt; n\)</span>, there exists <span class="math inline">\(x_n \in E_1\)</span> such that <span class="math display">\[
+||L(x_n)||&gt;k_n||x_n||
+\]</span> We define the sequence <span class="math display">\[
+y_n=\frac{x_n}{k_n||x_n||}
+\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span> <span class="math display">\[
+||y_n||=\frac{1}{k_n}\rightarrow 0\\
+||L(y_n)||&gt;k_n||y_n||=1
+\]</span> Therefore, <span class="math inline">\(L\)</span> is not continuous.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>If L is bounded, then there exists a number K, for all <span class="math inline">\(x\in E_1\)</span> such that <span class="math display">\[
+||L(x)||\le K||x||
+\]</span> Then we define a sequence <span class="math inline">\((x_n)\)</span> converging to zero. When <span class="math inline">\(n\rightarrow \infty\)</span>, <span class="math display">\[
+||L(x_n)||\le K||x_n||\rightarrow 0
+\]</span> By theorem 1.6.2, The linear mapping L is continuous at zero point, then it is continuous linear mapping.</p>
+<p>Q.E.D.</p>
+<p>The space of all linear mapping from a vector space <span class="math inline">\(E_1\)</span> into a vector space <span class="math inline">\(E_2\)</span> becomes a vector space if addition and multiplication by scalars are defined as follows <span class="math display">\[
+(L_1+L_2)(x)=L_1(x)+L_2(x)\\
+(\lambda L)(x)=\lambda(L(x))
+\]</span> If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces, then the set of all bounded linear mappings from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span>, denoted by <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>, is a vector subspace of the space defined above.</p>
+<p>==Theorem 1.6.4==</p>
+<p>If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a normed space with norm defined by <span class="math display">\[
+||L||=\sup_{||x||=1}||L(x)||\quad \forall L\in \mathscr B(E_1,E_2)
+\]</span> Proof.</p>
+<p>Only show Triangle Inequality</p>
+<p><span class="math inline">\(\forall L_1,L_2\in \mathscr B(E_1,E_2)\)</span> <span class="math display">\[
+||L_1+L_2||=\sup_{||x||=1}||L_1(x)+L_2(x)||\le \sup_{||x||=1}||L_1(x)||+\sup_{||x||=1}||L_2(x)||=||L_1||+||L_2||
+\]</span> Q.E.D.</p>
+<p>It follows Theorem 1.6.4 that <span class="math inline">\(||L(x)||\le ||L||||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>. In fact, <span class="math inline">\(||L||\)</span> is the least number K such that <span class="math inline">\(||L(x)||\le K||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
+<p>The norm defined above is the standard norm in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>. It is usually called the ==operator norm==. Convergence with respect to this norm is called the uniform convergence of operator.</p>
+<p>==Theorem 1.6.5==</p>
+<p>If <span class="math inline">\(E_1\)</span> is normed space and <span class="math inline">\(E_2\)</span> is a Banach space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a Banach space.</p>
+<p>Proof.</p>
+<p>We only need to show that <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is complete.</p>
+<p>A normed space <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> converges to an element of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>.</p>
+<p>Let <span class="math inline">\((L_n)\)</span> be Cauchy sequence of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> and Let <span class="math inline">\(\forall x\in E_1\)</span></p>
 <p>We have <span class="math display">\[
-||Ax||\le \max_{|a,b|}|z(t)|||x||
-\]</span> and thus A is bounded.</p>
-<p>Two operator on a vector space E is said to be ==equal==, A=B if <span class="math inline">\(Ax=Bx\)</span> for every <span class="math inline">\(x\in E\)</span>.</p>
-<p>The set of all operator constitutes a ==vector space== with the addition and multiplication defined by <span class="math display">\[
-(A+B)x=Ax+Bx\quad and\quad (\alpha A)x=\alpha(Ax)
-\]</span> The product of operator A and B is defined by <span class="math display">\[
-(AB)x=A(Bx)
-\]</span> Thus, AB denotes the composition of A and B.</p>
-<p>The defined operators have the following obvious properties. <span class="math display">\[
-A+B=B+A\\
-(A+B)+C=A+(B+C)\\
-A+0=A\\
-\alpha(A+B)=\alpha A+\alpha B\\
-(\alpha+\beta) A=\alpha A+\beta A\\
-A0=0\\
-A(BC)=(AB)C\\
-(A+B)C=AC+BC\\
-A\mathscr J=\mathscr JA
-\]</span> In general, <span class="math inline">\(AB\)</span> need not equal BA. Operators A and B for which <span class="math inline">\(AB=BA\)</span> are called commuting operators.</p>
-<p>==Example 4.2.6== (Noncommuting Operators)</p>
-<p>Consider the space of differential functions on R and the operators <span class="math display">\[
-Af(x)=xf(x)\quad D=\frac{d}{dx}\\
-AD\neq DA
-\]</span> The ==square== of an operator A is defined as <span class="math inline">\(A^2x=A(Ax)\)</span>. By induction, we can define <span class="math display">\[
-A^nx=A(A^{n-1}x)
-\]</span> for any positive integer n. As usual <span class="math inline">\(A^1=A\)</span> and <span class="math inline">\(A^0=\mathscr I\)</span>.</p>
-<p>==Theorem 4.2.1==</p>
-<p>The product AB of bounded operators A and B is bounded and <span class="math inline">\(||AB||\le ||A||||B||\)</span></p>
-<p>==Theorem 4.2.2==</p>
-<p>A bounded operator on a separable infinite dimensional Hilbert Space can be represented by an infinite matrix.</p>
-<h2 id="bilinear-functionals-and-quadratic-forms">4.3 Bilinear Functionals and Quadratic Forms</h2>
-<p>The concept of Bilinear functional and quadratic form do not require the structure of an inner product space. They can be defined in any vector space. This discussion is presented in this chapter because of important applications to the theory of operators in Hilbert Space.</p>
-<p>==Definition 4.3.1== (Bilinear Functional)</p>
-<p>By a bilinear functional <span class="math inline">\(\phi\)</span> on a complex vector space E, we mean a mapping <span class="math inline">\(E\times E \rightarrow C\)</span> satisfying the following two conditions,</p>
-<ol type="a">
-<li><p><span class="math inline">\(\phi(\alpha x_1+\beta x_2,y)=\alpha \phi(x_1,y)+\beta \phi(x_2,y)\)</span></p></li>
-<li><p><span class="math inline">\(\phi(x,\alpha y_1+\beta y_2)=\bar \alpha \phi(x,y_1)+\bar \beta \phi(x,y_2)\)</span></p></li>
-</ol>
-<p>for any scalar <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> and any <span class="math inline">\(x,x_1,x_2,y,y_1,y_2\in E\)</span>.</p>
-<p>Bilinear functionals are often called ==sesquilinear==. Note that bilinear functional is linear with respect to the first variable and antilinear with respect to the second variable, all bilinear functionals on E constitute a vector space.</p>
-<p>==Example 4.2.1== Inner product is a bilinear functional</p>
-<p>==Example 4.2.2== Let A and B be operators on an inner product space E. Then <span class="math inline">\(\phi_1(x,y)=&lt;Ax,y&gt;\)</span>, <span class="math inline">\(\phi_2(x,y)=&lt;x,By&gt;\)</span>, and <span class="math inline">\(\phi_3(x,y)=&lt;Ax,By&gt;\)</span> are bilinear functionals.</p>
-<p>==Example 4.2.3== Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> be linear functionals on a vector space E. Then <span class="math inline">\(\phi(x,y)=f(x)\overline{g(y)}\)</span> is a bilinear functional on E.</p>
-<p>==Definition 4.3.2== Let <span class="math inline">\(\phi\)</span> be a bilinear functional on E.</p>
-<ol type="a">
-<li><p><span class="math inline">\(\phi\)</span> is called symmetric if <span class="math inline">\(\phi(x,y)=\overline{\phi(y,x)}\)</span> for all <span class="math inline">\(x,y\in E\)</span>.</p></li>
-<li><p><span class="math inline">\(\phi\)</span> is called positive if <span class="math inline">\(\phi(x,x)\ge 0\)</span> for every <span class="math inline">\(x\in E\)</span>.</p></li>
-<li><p><span class="math inline">\(\phi\)</span> is called strictly positive if it is positive and <span class="math inline">\(\phi(x,x)&gt;0\)</span> for every <span class="math inline">\(x\neq 0\)</span>.</p></li>
-<li><p>If E is a normed space, then <span class="math inline">\(\phi\)</span> is called bounded if <span class="math inline">\(|\phi(x,y)|\le K||x|||y||\)</span> for some <span class="math inline">\(K&gt;0\)</span> and all <span class="math inline">\(x,y\in E\)</span>. The norm of a bounded bilinear functional is defined by <span class="math display">\[
-||\phi||=\sup_{||x||=1,||y||=1}|\phi(x,y)|
-\]</span> ==Definition 4.3.3== (Quadratic form)</p></li>
-</ol>
-<p>Let <span class="math inline">\(\phi\)</span> be a bilinear functional on a vector space E. The function <span class="math inline">\(\Phi:E\rightarrow C\)</span> defined by <span class="math inline">\(\Phi(x)=\phi(x,x)\)</span> is called the quadratic form associated with <span class="math inline">\(\phi\)</span>. A quadratic form <span class="math inline">\(\Phi\)</span> on a normed space E is called bounded if there exists a constant <span class="math inline">\(k&gt;0\)</span> such that <span class="math inline">\(|\Phi(x)|\le k||x||^2\)</span> for all <span class="math inline">\(x\in E\)</span>. The norm of a bounded quadratic form is defined by <span class="math display">\[
-||\Phi||=\sup_{||x||=1} |\Phi(x)|
-\]</span> ==Theorem 4.3.1== (Polarization Identity)</p>
-<p>Let <span class="math inline">\(\phi\)</span> be a bilinear functional on E and let <span class="math inline">\(\Phi\)</span> be quadratic form associated with <span class="math inline">\(\phi\)</span>. Then <span class="math display">\[
-4\phi(x,y)=\Phi(x+y)-\Phi(x-y)+i\Phi(x+iy)-i\Phi(x-iy)
-\]</span> for all <span class="math inline">\(x,y\in E\)</span>.</p>
-<p>==Corollary 4.3.1== Let <span class="math inline">\(\phi_1\)</span> and <span class="math inline">\(\phi_2\)</span> be bilinear functional on E. If <span class="math inline">\(\phi_1(x,x)=\phi_2(x,x)\)</span> for all <span class="math inline">\(x\in E\)</span>, then <span class="math inline">\(\phi_1=\phi_2\)</span>. i.e. <span class="math inline">\(\phi_1(x,y)=\phi_2(x,y)\)</span> for all <span class="math inline">\(x,y \in E\)</span>.</p>
-<p>==Theorem 4.3.2== A bilinear functional <span class="math inline">\(\phi\)</span> on E is symmetric if and only if the associated quadratic form <span class="math inline">\(\Phi\)</span> is real.</p>
-<p>==Theorem 4.3.3== A bilinear functional <span class="math inline">\(\phi\)</span> on a normed space E is bounded if and only if the associated quadratic form <span class="math inline">\(\Phi\)</span> is bounded. Moreover, we have <span class="math display">\[
-||\Phi||\le ||\phi||\le 2||\Phi||
-\]</span> ==Theorem 4.3.4== If a bilinear functional <span class="math inline">\(\phi\)</span> on a normed space <span class="math inline">\(E\)</span> is symmetric and bounded, then for the associated form <span class="math inline">\(\Phi\)</span> we have <span class="math inline">\(||\phi||=||\Phi||\)</span>.</p>
-<p>==Theorem 4.3.5== Let <span class="math inline">\(A\)</span> be a bounded operator on a Hilbert space <span class="math inline">\(H\)</span>. Then the bilinear functional defined by <span class="math inline">\(\phi(x,y)=&lt;x,Ay&gt;\)</span> is bounded and <span class="math inline">\(||A||=||\phi||\)</span>.</p>
-<p>==Theorem 4.3.6== Let <span class="math inline">\(\phi\)</span> be a bounded bilinear functional on a Hilbert space H. There exists a unique bounded operator A on H such that <span class="math display">\[
-\phi(x,y)=&lt;x,Ay&gt;\quad \forall x,y\in H
-\]</span> ==Definition 4.3.6== (Coercive Functional)</p>
-<p>A bilinear functional <span class="math inline">\(\phi\)</span> on a normed space <span class="math inline">\(E\)</span> is called coercive (or elliptic) if there exists a positive constant K such that <span class="math display">\[
-\phi(x,x)\ge K||x||^2\quad \forall x\in E 
-\]</span> ==Theorem 4.3.7== (Lax-Milgram Theorem)</p>
-<p>Let <span class="math inline">\(\phi\)</span> be a bounded, coercive, bilinear functional on a Hilbert Space H. For every bounded linear functional <span class="math inline">\(f\)</span> on <span class="math inline">\(H\)</span>, there exists a unique <span class="math inline">\(x_f\in H\)</span> such that <span class="math display">\[
-f(x)=\phi(x,x_f)\quad \forall x\in H
-\]</span></p>
+||L_m(x)-L_n(x)||\le ||L_m-L_n||||x||\rightarrow 0 \quad as\space n,m \rightarrow \infty
+\]</span> That means <span class="math inline">\((L_n(x))\)</span> is Cauchy sequence in <span class="math inline">\(E_2\)</span>. By completeness of <span class="math inline">\(E_2\)</span>, we have <span class="math inline">\(L(x)\in E_2\)</span> such that <span class="math display">\[
+L(x)=\lim_{n\rightarrow \infty} L_n(x)
+\]</span> Then we only need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> and <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span></p>
+<p>First we prove <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span>, we only need to prove <span class="math inline">\(\exists K,||L(x)||\le K||x||\)</span> <span class="math display">\[
+||L(x)||=||\lim_{n\rightarrow \infty }L_n(x)||=\lim_{n\rightarrow \infty}||L_n(x)||
+\]</span> Since <span class="math inline">\(E_2\)</span> is complete and Cauchy sequence <span class="math inline">\((L_n)\)</span> is bounded, that means <span class="math inline">\(||L_n||\le M\)</span> <span class="math display">\[
+\lim_{n\rightarrow \infty}||L_n(x)||\le M||x||\\
+||L(x)||\le M||x||
+\]</span> Then we need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> <span class="math display">\[
+||L_m-L_n||\rightarrow 0\\
+m\rightarrow \infty\\
+||L_n-L||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Theorem 1.6.6==</p>
+<p>Let L be a continuous linear mapping from a subspace of a normed space <span class="math inline">\(E_1\)</span> into a Banach space <span class="math inline">\(E_2\)</span>. Then L has a unique extension continuous linear mapping defined on the closure of the domain <span class="math inline">\(\mathscr D(L)\)</span>. In particular, if <span class="math inline">\(\mathscr D(L)\)</span> is dense in <span class="math inline">\(E_1\)</span>, then L has a unique extension to a continuous linear mapping defined on the whole space <span class="math inline">\(E_1\)</span>.</p>
+<p>==Theorem 1.6.7==</p>
+<p>If <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is a continuous linear mapping, then the null space <span class="math inline">\(\mathscr N(L)\)</span> is a closed subspace of <span class="math inline">\(E\)</span>. Moreover, if the domain <span class="math inline">\(\mathscr D(L)\)</span> is closed, then the graph <span class="math inline">\(\mathscr G(L)\)</span> is a closed subspace of <span class="math inline">\(E_1\times E_2\)</span>.</p>
+<p>==Theorem 1.6.9==</p>
+<p>Let <span class="math inline">\(\mathscr T\)</span> be a family of bounded linear mapping from a Banach space <span class="math inline">\(X\)</span> into a normed space <span class="math inline">\(Y\)</span>. If for every <span class="math inline">\(x\in X\)</span> there exists a constant <span class="math inline">\(M_x\)</span> such that <span class="math inline">\(||T(x)||\le M_x\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>, then there exists a constant <span class="math inline">\(M&gt;0\)</span> such that <span class="math inline">\(||T||\le M\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>.</p>
 
         
       

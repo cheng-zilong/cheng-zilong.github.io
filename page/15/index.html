@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:46:14" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:14+08:00">2020-12-22</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-07 14:59:07" itemprop="dateModified" datetime="2019-07-07T14:59:07+08:00">2019-07-07</time>
+                <time title="Modified: 2019-04-16 17:55:52" itemprop="dateModified" datetime="2019-04-16T17:55:52+08:00">2019-04-16</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,100 +306,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="hilbert-spaces-and-orthonormal-systems">Hilbert Spaces and Orthonormal Systems</h1>
-<h2 id="introduction">3.1 Introduction</h2>
-<p>This chapter is concerned with inner product space and Hilbert Spaces. The basic ideas and properties will be discussed with special attention given to orthonormal systems.</p>
-<h2 id="inner-product-spaces-definition-and-examples">3.2 Inner Product Spaces-Definition and Examples</h2>
-<p>==Definition 3.2.1== Inner product space</p>
-<p>Let E be a complex vector space. A mapping <span class="math inline">\(\langle \cdot,\cdot\rangle:E\times E\rightarrow C\)</span> is called an inner product in E if for any <span class="math inline">\(x,y,z\in E\)</span> and <span class="math inline">\(\alpha,\beta \in C\)</span> the following conditions are satisfied,</p>
-<ol type="a">
-<li><p><span class="math inline">\(\langle x,y\rangle=\overline {\langle y,x\rangle}\)</span></p></li>
-<li><p><span class="math inline">\(&lt;\alpha x+\beta y,z&gt;=\alpha&lt;x,z&gt;+\beta&lt;y,z&gt;\)</span></p></li>
-<li><p><span class="math inline">\(&lt;x,x&gt;\ge 0\)</span> and <span class="math inline">\(&lt;x,x&gt;=0\implies x=0\)</span></p></li>
-</ol>
-<p>A vector space with an inner product is called a inner product space or pre-Hilbert space.</p>
-<p>According to the definition, we know that the inner product of two vectors is a complex number.</p>
-<p>An inner product is the generalization of the dot product.</p>
-<p>==Example 3.2.1==</p>
-<p>The simplest example is an inner product of complex number C. The inner product is defined as <span class="math display">\[
-\def \norm &lt;#1,#2&gt;{\langle#1,#2\rangle}
-\norm&lt;x,y&gt;=x\bar y
-\]</span> ==Example 3.2.2==</p>
-<p>The space <span class="math inline">\(C^N\)</span> of ordered N-tuples <span class="math inline">\(x=(x_1,x_2,\dotsm,x_N)\)</span> of complex numbers, with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^N x_k \bar y_k
-\]</span> ==Example 3.2.3==</p>
-<p>The space <span class="math inline">\(l^2\)</span> of all sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex numbers such that <span class="math inline">\(\sum_{k=1}^\infty |x_k|^2&lt;\infty\)</span> with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^\infty x_k\bar y_k
-\]</span> is an infinite dimensional inner product space.</p>
-<p>==Example 3.2.4==</p>
-<p>Consider the space of sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex number with only finite number of items is non-zero. This is an inner product space with the inner product defined as in Example 3.2.3.</p>
-<p>==Example 3.2.5==</p>
-<p>The space <span class="math inline">\(\mathscr C([a,b])\)</span> of all continuous complex-valued functions on the interval [a,b], with the inner product <span class="math display">\[
-\norm&lt;f,g&gt;=\int _a^b f(x)\overline{g(x)} dx
-\]</span> is an inner product space.</p>
-<p>==Example 3.2.6==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> with the inner product defined by <span class="math display">\[
-\int _{-\infty} ^\infty f(x)\overline{g(x)} dx
-\]</span> and more generally, the space <span class="math inline">\(L^2(R^N)\)</span> with the inner product defined by <span class="math display">\[
-\int _{R^N} f(x)\overline{g(x)} dx
-\]</span> are inner product space.</p>
-<p>==Example 3.2.7==</p>
-<p>Let E be the Cartesian product of inner product spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, i.e. <span class="math inline">\(E=E_1\times E_2\)</span>.</p>
-<p>The space E is an inner product space with the inner product defined by <span class="math display">\[
-\norm&lt;(x_1,y_1),(x_2,y_2)&gt; = \norm&lt;x_1,x_2&gt;+\norm&lt;y_1,y_2&gt;
+          <h1 id="supervised-feature-extraction">Supervised Feature Extraction</h1>
+<h2 id="linear-discriminant-analysis">1. Linear Discriminant Analysis</h2>
+<p>Linear discriminant analysis (LDA) finds most discriminative projection by maximizing between-class distance and minimizing within-class distance.</p>
+<p>Class-specific mean vector <span class="math display">\[
+\mu_i = \frac{1}{n_i}\sum_{x\in C_i} x
+\]</span> Class-specific covariance matrix <span class="math display">\[
+S_i=\frac{1}{n_i}\sum_{x\in C_i} (x-\mu_i)(x-\mu_i)^T
 \]</span></p>
-<h2 id="norm-in-an-inner-product-space">3.3 Norm in an inner product space</h2>
-<p>An inner product space is a vector space with an inner product. It turns out that every inner product space is also a normed space with the norm defined by <span class="math display">\[
-||x||=\sqrt{\norm&lt;x,x&gt;}
-\]</span> ==Definition 3.3.1== (Norm in an Inner Product Space)</p>
-<p>By the norm in an inner product space E, we mean the functional defined by <span class="math inline">\(||x||=\sqrt{\norm&lt;x,x&gt;}\)</span></p>
-<p>We have proved that every inner product space is a normed space. But it is <strong>not true</strong> that any normed space is an inner product space. In the following theorem, we prove a property of a norm in an inner product space which is a necessary and sufficient condition for a normed space to be an inner product space.</p>
-<p>==Theorem 3.3.2== Parallelogram Law</p>
-<p>For any two elements <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of an inner product space we have <span class="math display">\[
-||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)
-\]</span> One of the most important consequences of having the inner product is the possibility of defining <strong>orthogonality</strong> of vectors. This makes the theory of Hilbert spaces very different from the general theory of Banach spaces.</p>
-<p>==Definition 3.3.2== Orthogonal vectors</p>
-<p>Two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in an inner product space are called orthogonal, denoted by <span class="math inline">\(x\perp y\)</span> if <span class="math inline">\(\norm&lt;x,y&gt;=0\)</span>.</p>
-<p>==Theorem 3.3.3== Pythagorean Formula</p>
-<p>For any pair of orthogonal vectors we have <span class="math display">\[
-||x+y||^2=||x||^2+||y||^2
+<p>Total mean vector <span class="math display">\[
+\mu = \frac{1}{N}\sum_x x
+\]</span> Within-class scatter <span class="math display">\[
+S_W=\sum_{i=1}^C \frac{n_i}{N}S_i=\sum_{i=1}^C P_iS_i
+\]</span> where <span class="math inline">\(P_i\)</span> weight of a specific class.</p>
+<p>Between-class scatter <span class="math display">\[
+S_B=\sum_{i=1}^CP_i (\mu_i-\mu)(\mu_i-\mu)^T
+\]</span> That means the sum of the distance of all class specific mean vector to the total mean vector.</p>
+<p>Total covariance <span class="math display">\[
+S_T=\frac{1}{N}\sum_x (x-\mu)(x-\mu)^T=S_W+S_B
+\]</span> Proof skipped.</p>
+<h3 id="two-classes">Two classes</h3>
+<p><span class="math display">\[
+y=w^Tx
 \]</span></p>
-<h2 id="hilbert-spaces-definition-and-examples">3.4 Hilbert Spaces-Definition and Examples</h2>
-<p>==Definition 3.4.1== Hilbert space</p>
-<p>A complete inner product space is called a Hilbert space.</p>
-<p>By the completeness of an inner product space E, we mean the completeness of E as a ==normed space==.</p>
-<p>Now we are going to discuss completeness of the inner product spaces and give some new examples.</p>
-<p>==Example 3.4.1==</p>
-<p>Since C is complete, it is a Hilbert space.</p>
-<p>==Example 3.4.2==</p>
-<p><span class="math inline">\(C^N\)</span> is Hilbert space.</p>
-<p>==Example 3.4.3==</p>
-<p><span class="math inline">\(l^2\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.4==</p>
-<p>The space described in Example 3.2.4 is ==not== Hilbert space.</p>
-<p>==Example 3.4.5==</p>
-<p><span class="math inline">\(\mathscr C([a,b])\)</span> is ==not== Hilbert space.</p>
-<p>==Example 3.4.6==</p>
-<p>The space <span class="math inline">\(L^2([a,b])\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.7==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> is a Hilbert space.</p>
-<h2 id="strong-and-weak-convergence">3.5 Strong and Weak Convergence</h2>
-<p>Since every inner product is a normed , it is equipped with a convergence, namely the convergence defined by the norm. This convergence is called strong convergence.</p>
-<p>==Definition 3.5.1== Strong convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called strongly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(||x_n-x||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>==Definition 3.5.2== Weak convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called weakly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>It will be convenient to reserve the notation <span class="math inline">\(x_n\rightarrow x\)</span> for the strong convergent and use <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> for weakly convergent.</p>
-<p>==Theorem 3.5.1==</p>
-<p>A strongly convergent sequence is weakly convergent.</p>
-<p>==Theorem 3.5.2==</p>
-<p>If <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> and <span class="math inline">\(||x_n||\rightarrow ||x||\)</span>, then <span class="math inline">\(x_n\rightarrow x\)</span></p>
-<p>==Theorem 3.5.3==</p>
-<p>Let <span class="math inline">\(S\)</span> be a subset of an inner product space <span class="math inline">\(E\)</span> such that span S is dense in E. If <span class="math inline">\((x_n)\)</span> is a bounded sequence in E and <span class="math display">\[
-\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\quad \forall y\in S
-\]</span> then <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span>.</p>
-<p>==Theorem 3.5.4==</p>
-<p>Weakly convergent sequences in a <strong>Hilbert Space</strong> are bounded. i.e. if <span class="math inline">\((x_n)\)</span> is a weakly convergent sequence, then there exists a number M such that <span class="math inline">\(||x_n||\le M\)</span> for all <span class="math inline">\(n\in N\)</span>.</p>
+<p>Then we can get the scalar y, of all possible <span class="math inline">\(w\)</span>, we hope to choose the best that maximizes the separability. <span class="math display">\[
+\mu_i=\frac{1}{n_i}\sum_{x\in C_i}x\quad \tilde \mu_i=w^T\mu_i
+\]</span> The distance between the two classes <span class="math display">\[
+J(w)=|\tilde \mu_1-\tilde \mu_2|=|w^T(\mu_1-\mu_2)|
+\]</span> However, the distance can be infinitely large if no constraint to the chosen <span class="math inline">\(w^T\)</span>, therefore, we normalize the distance <span class="math display">\[
+J(w)=\frac{|\tilde \mu_1-\tilde \mu_2|^2}{\tilde S_1^2+\tilde S_2^2}
+\]</span> where <span class="math inline">\(\tilde S_i^2\)</span> is the Class-specific covariance matrix of <span class="math inline">\(\tilde y_i\)</span>, <span class="math inline">\(\tilde S_1^2+\tilde S_2^2\)</span> is the Within-class scatter of <span class="math inline">\(\tilde y_i\)</span></p>
+<p>Then we find <span class="math inline">\(\tilde S_1^2+\tilde S_2^2=w^TS_W w\)</span> and <span class="math inline">\(|\tilde \mu_1-\tilde \mu_2|^2=w^TS_Bw\)</span></p>
+<p>Then <span class="math display">\[
+J(w)=\frac{w^TS_B w}{w^TS_Ww}
+\]</span> We take the derivative and let the derivative be zero (<span class="math inline">\((w^TS_Ww)^2\)</span> is omitted), <span class="math display">\[
+(w^TS_W w) S_Bw-(w^TS_B w) S_Ww=0\\
+S_Bw-J(w)S_Ww=0\\
+S_W^{-1}S_Bw=J(w)w
+\]</span> That means <span class="math inline">\(w^*\)</span> is the eigenvector of <span class="math inline">\(S_w^{-1}S_B​\)</span></p>
+<p>For Multi-class <span class="math display">\[
+J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
+(S_B-\lambda_i S_W)w_i^*=0
+\]</span> Then <span class="math inline">\(w_i^*\)</span> are the largest eigenvectors corresponding to the largest eigenvalues.</p>
 
         
       
@@ -424,7 +372,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -438,7 +386,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -453,7 +401,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
             </span>
           
             
@@ -464,7 +412,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-01 14:46:55" itemprop="dateModified" datetime="2019-07-01T14:46:55+08:00">2019-07-01</time>
+                <time title="Modified: 2019-04-27 13:25:57" itemprop="dateModified" datetime="2019-04-27T13:25:57+08:00">2019-04-27</time>
               </span>
             
           
@@ -474,7 +422,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
 
                 
                 
@@ -483,7 +431,7 @@
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -501,7 +449,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -515,58 +463,86 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="locally-integrable-functions">2.9 Locally Integrable Functions</h2>
-<p>The integral <span class="math inline">\(\int f\)</span> corresponds to the integration over the entire real line, so the symbols <span class="math inline">\(\int ^\infty_{-\infty}\)</span> or <span class="math inline">\(\int _R\)</span> could be used instead. In applications we often need to integrate functions over bounded intervals. This concept can be easily defined using the integral <span class="math inline">\(\int f\)</span></p>
-<p>==Definition 2.9.1== Integral over an interval</p>
-<p>By the integral of a function <span class="math inline">\(f\)</span> over an interval <span class="math inline">\([a,b]\)</span>, denoted by <span class="math inline">\(\int_a^b f\)</span>, we mean the value of the integral <span class="math inline">\(\int f \mathcal X_{[a,b]}\)</span>, where <span class="math inline">\(\mathcal X_{[a,b]}\)</span> denotes the characteristic function of <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(f\mathcal X_{[a,b]}\)</span> is the product of <span class="math inline">\(f\)</span> and <span class="math inline">\(\mathcal X_{[a,b]}\)</span></p>
-<p>In proofs, it is often more convenient to use <span class="math inline">\(\mathcal X_{[a,b)}\)</span> instead of <span class="math inline">\(\mathcal X_{[a,b]}\)</span></p>
-<p>==Theorem 2.9.1==</p>
-<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then for every interval <span class="math inline">\([a,b]\)</span> the integral <span class="math inline">\(\int _a^b f\)</span> exists.</p>
-<p>==Definition 2.9.2== Locally integrable functions</p>
-<p>A function <span class="math inline">\(f\)</span> on R is called locally integrable if for <strong>every</strong> <span class="math inline">\(-\infty&lt;a&lt;b&lt;\infty\)</span> the integral <span class="math inline">\(\int _a^b f\)</span> exists.</p>
-<p>It is sufficient to check that the integral <span class="math inline">\(\int_{-n}^n f\)</span> exists for every <span class="math inline">\(n\in N\)</span>. The absolute value of a locally integrable functions is locally integrable. However, the product of integrable functions need not be integrable.</p>
-<p>==Theorem 2.9.2==</p>
-<p>Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> be locally integrable functions. If <span class="math inline">\(g\)</span> is bounded on <span class="math inline">\([a,b]\)</span> for every <span class="math inline">\(-\infty&lt;a&lt;b&lt;\infty\)</span>, then the product <span class="math inline">\(fg\)</span> is locally integrable functions.</p>
-<p>==Theorem 2.9.3==</p>
-<p>If <span class="math inline">\(f\)</span> is locally integrable function such that <span class="math inline">\(|f|\le g\)</span> for some <span class="math inline">\(g\in L^1(R)\)</span>, then <span class="math inline">\(f\in L^1(R)\)</span></p>
-<h2 id="the-lebesgue-integral-and-the-riemann-integral">2.10 The Lebesgue Integral and the Riemann Integral</h2>
-<p>In this section we are going to prove that Riemann integrable functions are Lebesgue integrable. Then we will prove some theorems which show that useful properties of the Riemann integral are not lost when the more general Lebesgue integral is considered.</p>
-<p>==Theorem 2.10.1== A Riemann integrable function is Lebesgue integrable and the integrals are equal.</p>
-<p>==Theorem 2.10.2== Let <span class="math inline">\(f\)</span> be a Lebesgue integral function on a bounded or unbounded interval <span class="math inline">\((a,b)\)</span> and Let <span class="math inline">\(a\le c\le b\)</span>. Then the function <span class="math inline">\(F(x)=\int ^x _c f\)</span> is continuous in <span class="math inline">\((a,b)\)</span> and the limits <span class="math display">\[
-F(a)=\lim_{x\rightarrow a+} F(x)\quad F(b)=\lim_{x\rightarrow b-} F(x)
-\]</span> ==Theorem 2.10.3== Let <span class="math inline">\(f\)</span> be a function integrable over <span class="math inline">\((a,b)\)</span> and let <span class="math inline">\(F(x)=\int _c^x f\)</span> where $c(a,b) $. If <span class="math inline">\(f\)</span> is continuous at a point <span class="math inline">\(x_0 \in (a,b)\)</span>, then F is differentiable at <span class="math inline">\(x_0\)</span> and we have <span class="math inline">\(F&#39;(x_0)=f(x_0)\)</span>.</p>
-<p>The following theorem establishes the same change of variables formula for the Lebesgue integral as for the Riemann integral. The theorem is only a special case of a more general theorem on the change of variables for the Lebesgue integral, but it is sufficient for most applications.</p>
-<p>==Theorem 2.10.4== Change of variables</p>
-<p>Let <span class="math inline">\(g\)</span> be a non-decreasing differentiable function defined on a bounded or unbounded interval <span class="math inline">\((a,b)\)</span> such that <span class="math inline">\(g&#39;\)</span> is integrable over <span class="math inline">\((a,b)\)</span>. Denote by <span class="math inline">\(g(a)\)</span> and <span class="math inline">\(g(b)\)</span> the limits of <span class="math inline">\(g\)</span> at <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> respectively, i.e. <span class="math inline">\(g(a)=\lim_{x\rightarrow a+} g(x)\)</span> and <span class="math inline">\(g(b)=\lim_{x\rightarrow b-} g(x)\)</span>. If <span class="math inline">\(f\)</span> is an integrable function <span class="math inline">\((g(a),g(b))\)</span>, then the product <span class="math inline">\(f(g(t))g&#39;(t)\)</span> is integrable over <span class="math inline">\((a,b)\)</span> and <span class="math display">\[
-\int _{g(a)}^{g(b)} f(t)dt=\int_a^b f(g(t))g&#39;(t)dt
+          <h1 id="unsupervised-feature-learning">Unsupervised Feature Learning</h1>
+<p>Representation learning refers to transforming the raw data into another (possibly lower-dimensional) space, such that one can do pattern recognition more easily.</p>
+<p>Why Feature Extraction?</p>
+<p>Visualization: projecting high-dimensional data onto 2D or 3D planes.</p>
+<p>Data compression: efficient storage and retrieval</p>
+<p>Noise removal: positive effect on testing accuracy</p>
+<h2 id="principal-component-analysis">1. Principal Component Analysis</h2>
+<p>PCA reduces the dimensionality of a collection of observations by finding a new set of variables, smaller than the original set of variables. It captures big variability in the data and ignore the small variability. The new variables are called principal components.</p>
+<p>For a group of data, the first PC is a line with minimum distance. The second PC is a line orthogonal to the first line with minimum distance.</p>
+<p>PCs are a series of linear least squares fits to a sample set each orthogonal to all the previous ones.</p>
+<p>Define the first principal component by the linear projection <span class="math inline">\(a_1\)</span> <span class="math display">\[
+z_1=a_1^Tx
+\]</span> where <span class="math inline">\(a_1=(a_{11},a_{21},\dotsm,a_{d1})\)</span>, we hope to find the <span class="math inline">\(a_1\)</span> such that the variance of <span class="math inline">\(z_1\)</span> is maximum <span class="math display">\[
+\begin{array}{rcl}
+var(z_1)&amp;=&amp;E((z_1-\bar z_1)^2)\\
+&amp;=&amp;\frac{1}{n} \sum_{i=1}^n(a_1^T x_i-a_1^T\bar x)^2\\
+&amp;=&amp;a_1^T\left[\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\right] a_1 \\
+&amp;=&amp; a_1^TSa_1
+\end{array}
+\]</span> where <span class="math inline">\(S=\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\)</span>, <span class="math inline">\(\bar x\)</span> is the mean.</p>
+<p>Then we hope to find <span class="math inline">\(a_1\)</span> that maximizes the variance, for example <span class="math display">\[
+x=
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 &amp; 4\\
+4 &amp; 3 &amp; 2 &amp; 1
+\end{bmatrix}\\
+\bar x=
+\begin{bmatrix}
+2.5 \\ 2.5
+\end{bmatrix}
+\]</span> Then we hope to find <span class="math inline">\(a_1=[a_{11},a_{12}]&#39;\)</span> and <span class="math inline">\(a_2=[a_{21},a_{22}]&#39;\)</span> to maximum the variance of <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span></p>
+<p>To find <span class="math inline">\(a_1\)</span> that maximizes the variance subject to <span class="math inline">\(a_1^Ta_1=c\)</span>, let <span class="math inline">\(\lambda\)</span> be a Lagrange multiplier <span class="math display">\[
+L=a_1^TSa_1-\lambda(a_1^Ta_1-c)\\
+\frac{\part L}{\part a_1}=Sa_1-\lambda a_1=0\\
+(S-\lambda I)a_1=0
+\]</span> therefore, <span class="math inline">\(a_1\)</span> is the eigenvector of S, corresponding the largest eigenvalue <span class="math inline">\(\lambda=\lambda_1\)</span></p>
+<p>It is easily found that <span class="math inline">\(var(z_k)=a_k^TSa_k=\lambda_k\)</span></p>
+<p>Therefore, we choose the <span class="math inline">\(k^{th}\)</span> largest eigenvalues of S.</p>
+<p>In practice, we compute the PCs via singular value decomposition (SVD) on the centered data matrix. <span class="math display">\[
+X=U_{d,d}D_{d,n}V^T_{n,n}
+\]</span> where U and V are orthogonal matrices, D is a diagonal matrix, <span class="math inline">\(X=\{(x_1-\bar x),\dotsm,(x_n-\bar x)\}\)</span></p>
+<p>The covariance matrix can be written <span class="math display">\[
+S=XX^T=UD^2U^T
+\]</span> So the eigenvectors of S are the columns of <span class="math inline">\(U\)</span> and the eigenvalues of S are the diagonal elements of <span class="math inline">\(D^2\)</span></p>
+<p>Take only a few significant eigenvalues <span class="math inline">\(p\)</span>, the reconstructed data is <span class="math display">\[
+x_i=\bar x+U_{d,p}U_{d,p}^T(x_i-\bar x)
+\]</span> How many PCs kept? <span class="math display">\[
+\frac{\sum_{i=1}^p \lambda_i}{\sum_{i=1}^d \lambda_i}\ge0.95(Threshold)
 \]</span></p>
-<h2 id="lebesgue-measure-on-r">2.11 Lebesgue Measure on R</h2>
-<p>Our presentation of the Lebesgue integral does not require the concept of measure. On the other hand, once the integral is defined, we can easily define measurable set and Lebesgue measure.</p>
-<p>Lebesgue measure is an extension of the concept of length of an interval onto a large class of sets.</p>
-<p>==Definition 2.11.1== Measurable sets</p>
-<p>A set S is called measurable if the characteristic function of S is locally integrable function.</p>
-<p>To every measurable set, we assign a non-negative number or infinity which is called the measure of that set.</p>
-<p>==Definition 2.11.2== Measure</p>
-<p>Let S be a measurable set. If the characteristic function $X_S $ is an integrable function, then by the measure of S, denoted by <span class="math inline">\(\mu(S)\)</span>, we mean the value of the integral <span class="math inline">\(\mu(S)=\int \mathcal X_S\)</span>. If <span class="math inline">\(\mathcal X_S\)</span> is not integrable, then we define <span class="math inline">\(\mu(S)=\infty\)</span>.</p>
-<p>==Null sets== are sets whose measure is 0. The following theorem gives a useful tool for proving that a set is a null set.</p>
-<p>==Theorem 2.11.1==</p>
-<p>Let <span class="math inline">\(S\subseteq R\)</span> be such that for every <span class="math inline">\(\epsilon &gt;0\)</span> there exist intervals <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm\)</span> such that <span class="math display">\[
-S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
-\sum_{n=1}^\infty (b_n-a_n)&lt;\epsilon
-\]</span> Then S is a null set.</p>
-<p>The property of the measure proven in the next theorem is called <span class="math inline">\(\sigma-\)</span>additivity of the measure. It is one of the most fundamental properties of the measure.</p>
-<p>==Theorem 2.11.2== Let <span class="math inline">\(S_1, S_2,\dotsm\)</span> be a sequence of disjoint measurable sets. Then the union <span class="math inline">\(S=\bigcup_{n=1}^\infty S_n\)</span> is measurable and we have <span class="math display">\[
-\mu(S)=\sum_{n=1}^\infty \mu(S_n)
-\]</span> In section 2.9, we defined the integral <span class="math inline">\(\int _a^b f\)</span> which corresponds to the integral over interval <span class="math inline">\([a,b]\)</span>. In a similar way we can define the integral over any measurable set <span class="math inline">\(\Omega\)</span>. <span class="math display">\[
-\int _{\Omega}=\int f \mathcal X_{\Omega}
-\]</span> If <span class="math inline">\(f\)</span> is a measurable function, then <span class="math inline">\(|f|\in L^1(R)\)</span> implies <span class="math inline">\(f\in L^1(R)\)</span></p>
-<p>==Definition 2.11.3== Measurable functions</p>
-<p>A <span class="math inline">\(f\)</span> is called measurable if there exists a sequence of step functions <span class="math inline">\(f_1,f_2,\dotsm\)</span> such that <span class="math inline">\(f_n\rightarrow f\)</span> a.e.</p>
-<p>Obviously, every integrable function is measurable and every locally integrable function is measurable.</p>
-<p>==Theorem 2.11.3== The measurable functions form a vector space. The absolute value of a measurable function is a measurable function. The product of measurable functions is a measurable function.</p>
-<p>==Theorem 2.11.4==</p>
-<p>If <span class="math inline">\(f\)</span> is a measurable function and <span class="math inline">\(|f|\le g\)</span> for some locally integrable function <span class="math inline">\(g\)</span>, then <span class="math inline">\(f\)</span> is locally integrable.</p>
-<h2 id="section"></h2>
+<h3 id="summary-of-pca">Summary of PCA</h3>
+<p>Input samples <span class="math inline">\(\{x_1,x_2,\dotsm,x_N\}\)</span></p>
+<ol type="1">
+<li>Compute the covariance matrix S</li>
+</ol>
+<p><span class="math display">\[
+S=\frac{1}{N}\sum_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T
+\]</span></p>
+<ol start="2" type="1">
+<li><p>perform eigenvalue decomposition [U]=eig(S)</p></li>
+<li><p>Output PCs U(:,1:p)</p></li>
+</ol>
+<h2 id="nonnegative-matrix-factorization">2. Nonnegative Matrix Factorization</h2>
+<p>Find a set of orthogonal principal components</p>
+<p>The reconstructed image is a linear combination of the principal components plus mean face.</p>
+<p>Matrix factorization <span class="math display">\[
+V\approx WH
+\]</span> V: <span class="math inline">\(n\times m\)</span> matrix. Each column contains n nonnegative pixel values of one of the m facial images.</p>
+<p>W: <span class="math inline">\(n\times r\)</span> matrix. r columns of W are called the basis images.</p>
+<p>H: <span class="math inline">\(r\times m\)</span> matrix. each column of H is called encoding.</p>
+<p>Using gradient decent method $$ H_{a}H_{a}\</p>
+<p>W_{a}W_{a}\ $$</p>
+<h3 id="summary-of-nmf">Summary of NMF</h3>
+<p>Input sample matrix <span class="math inline">\(V=[v_1,v_2,\dotsm,v_N]\)</span></p>
+<p>Initialize <span class="math inline">\(W^0\)</span> and <span class="math inline">\(H^0\)</span> randomly as positive matrices</p>
+<p>for t=0:1:T_max do</p>
+<p>gradient decent method</p>
+<p>if <span class="math inline">\(||W^t-W^{t+1}||\le \epsilon_1\)</span> and <span class="math inline">\(||H^t-H^{t+1}||\le \epsilon_2\)</span></p>
+<p>return;</p>
+<p>end for</p>
+<p>output matrices W and H.</p>
 
         
       

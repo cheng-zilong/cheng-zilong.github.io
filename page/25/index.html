@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5904 Neural Network/4.SVM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5904 Neural Network/4.SVM/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/" class="post-title-link" itemprop="url">3. Analysis of Discrete Time System</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:45:47" itemprop="dateCreated datePublished" datetime="2020-12-22T13:45:47+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-04-25 13:41:51" itemprop="dateModified" datetime="2019-04-25T13:41:51+08:00">2019-04-25</time>
+                <time title="Modified: 2019-08-26 00:04:46" itemprop="dateModified" datetime="2019-08-26T00:04:46+08:00">2019-08-26</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/EE5904 Neural Network/4.SVM/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/" class="post-meta-item leancloud_visitors" data-flag-title="3. Analysis of Discrete Time System" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5904 Neural Network/4.SVM/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5904 Neural Network/4.SVM/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/3. Analysis of Discrete Time System/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,250 +306,201 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="support-vector-machine-svm">Support Vector Machine (SVM)</h1>
-<h2 id="introduction">1. Introduction</h2>
-<p>There are many planes to separate data. SVM is one of the best planes.</p>
-<h2 id="data">2. Data</h2>
-<p>Data set <span class="math inline">\(\sum\)</span> containing <span class="math inline">\(N+\bar N\)</span> examples is partitioned into a training set <span class="math display">\[
-S=\{(x_1,d_1),\dotsm,(x_N,d_N)\}
-\]</span> and a test set <span class="math display">\[
-\bar S=\{(\bar x_1,\bar d_1),\dotsm,(\bar x_\bar N,\bar d_\bar N)\}
+          <h2 id="stability">1. Stability</h2>
+<p>Jury's Stability Test</p>
+<p>For the system <span class="math display">\[
+\frac{1}{z^2+a_1z+a_2}
+\]</span> Using Jury's Stability Test <span class="math display">\[
+\begin{array}{ccc}
+1 &amp; a_1 &amp; a_2\\
+a_2 &amp; a_1 &amp; 1 &amp; \times -a_2\\ \hline
+1-a_2^2 &amp; a_1-a_1a_2\\ 
+a_1-a_1a_2 &amp; 1-a_2^2 &amp;  &amp; \times-\frac{a_1}{1+a_2}\\ \hline
+\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}
+\end{array}
+\]</span> If the system is stable, we have <span class="math display">\[
+1-a_2^2 &gt;0\\
+\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}&gt;0
 \]</span></p>
-<h2 id="classification">3. Classification</h2>
-<p>A hyperplane denoted by <span class="math inline">\((w,b)\)</span> can be expressed by <span class="math display">\[
-g(x)=w^Tx+b=0
-\]</span> Hyperplane classifies a given <span class="math inline">\(x_i\)</span> with <span class="math display">\[
-sgn[g(x_i)]=
-\begin{cases}
-+1\quad if\quad g(x_i)&gt;0\\
--1\quad if\quad g(x_i)&lt;0
-\end{cases}
-\]</span> Hyperplane classifies an example <span class="math inline">\((x_i,d_i)\)</span> correctly if <span class="math display">\[
-sgn[d_i g(x_i)]=1
-\]</span> Two classes of data are linearly separable if and only if there exists a hyperplane that separates the two classes.</p>
-<h2 id="margins">4. Margins</h2>
-<p>The functional margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
-\gamma_i^f=d_i(w^Tx_i+b)
-\]</span> The Geometric margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
-\gamma_i^g=d_i(\frac{1}{||w||}w^Tx_i+\frac{1}{||w||}b)
-\]</span> that is the Euclidean distance from the point to the hyperplane.</p>
-<p>It is easy to see that <span class="math inline">\(\frac{1}{||w||}b\)</span> is the distance from origin to the hyperplane. <span class="math inline">\(\frac{1}{||w||}w^T x_i\)</span> is the projection distance (vector projection distance) from the point <span class="math inline">\(x_i\)</span> to the subspace <span class="math inline">\(w\)</span> , therefore <span class="math inline">\(\gamma_i^g\)</span> is the Euclidean distance from the point to the hyperplane.</p>
-<p>The hyperplane does not change when scaled by a real constant. <span class="math display">\[
-w^Tx+b=0\\
-cw^Tx+cb=0
-\]</span> <span class="math inline">\(\gamma_i^g\)</span> does not change but <span class="math inline">\(\gamma_i^f\)</span> changes (This property is important).</p>
-<p>We have the following equation <span class="math display">\[
-\gamma_i^g=\frac{\gamma_i^f}{||w||}
-\]</span> The functional margin of the training set is defined as <span class="math display">\[
-\gamma^f=\min_{1\le i\le N}\{\gamma_i^f\}
-\]</span> The geometric margin of a training set is defined as <span class="math display">\[
-\gamma^g=\min_{1\le i \le N}\{\gamma_i^g\}
-\]</span> The training set S can have different geometric margins depending on how hyperplane is defined.</p>
-<p>The optimal hyperplane for a given S is one that gives maximum <span class="math inline">\(\gamma^g\)</span> over all possible hyperplanes. <span class="math display">\[
-\gamma =\max\{\gamma^g_{(w_1,b_1)},\gamma^g_{(w_2,b_2)},\dotsm\}
-\]</span></p>
-<h2 id="primal">5. Primal</h2>
-<p>How to find the margin of S?</p>
-<p>For a given w, We have <span class="math display">\[
-\gamma_i^g=\frac{\gamma_i^f}{||w||}
-\]</span> The sample k that yields <span class="math display">\[
-\gamma^f=\gamma^f_k
-\]</span> also yields <span class="math display">\[
-\gamma^g =\gamma_k^g
-\]</span> So we have <span class="math display">\[
-\gamma^g=\frac{\gamma^f}{||w||}
-\]</span> therefore, we can maximize <span class="math inline">\(\gamma^g\)</span> by fixing <span class="math inline">\(\gamma^f\)</span> and then minimizing <span class="math inline">\(||w||\)</span> <span class="math display">\[
-\gamma^f = d_k(w^Tx_k+b)=1
-\]</span> That means we choose different to satisfy <span class="math inline">\(\gamma^f=1\)</span> . Without this constraint, we have infinite solutions <span class="math inline">\(w\)</span> since <span class="math inline">\(w&#39;=cw\)</span> and <span class="math inline">\(b&#39;=cb\)</span> where <span class="math inline">\(c\)</span> can any number.</p>
-<p>With <span class="math inline">\(\gamma^f\)</span> fixed at 1, for any examples in <span class="math inline">\(x_i\)</span> , we have <span class="math display">\[
-d_i(w^Tx_i+b)\ge1
-\]</span></p>
-<p>Therefore we get the constraint optimization problem, <span class="math display">\[
-\begin{array}{rl}
-\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
-\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
-\end{array}
-\]</span> Solving this problem yields the optimal hyperplane <span class="math inline">\((w_0,b_0)\)</span></p>
-<p>Then the discriminant function is <span class="math display">\[
-g(x)=w_0^Tx+b_0
-\]</span></p>
-<h2 id="lagrange-multipliers-and-kkt-conditions">6. Lagrange Multipliers and KKT Conditions</h2>
-<p>For the constraint optimization problem <span class="math display">\[
-\begin{array}{rl}
-\text{Minimize:} &amp; f(w)\\
-\text{Subject to:} &amp; h(w)=0\\
-\end{array}
-\]</span> We can use Lagrange Theorem to solve. The necessary for the existence of an optimal solution <span class="math inline">\(w_0\)</span> corresponding to a minimum of <span class="math inline">\(f(w)\)</span> subject to <span class="math inline">\(h_i(w)=0\)</span> are <span class="math display">\[
-\frac{\partial L(w_0,\beta_0)}{\partial w}=0\\
-\frac{\partial L(w_0,\beta_0)}{\partial \beta_i}=0\\
-\]</span></p>
-<p>where we define the Lagrangian Function <span class="math display">\[
-L(w,\beta)=f(w)+\sum_{i=1}^m \beta_i h_i(w)
-\]</span> Lagrange Theorem can be generalized to deal with problems having both equality and inequality constraints.</p>
-<p>For the primal problem, <span class="math display">\[
-\begin{array}{rl}
-\text{Minimize:} &amp; f(w)\\
-\text{Subject to:} &amp; q_i(w)\le 0\\
-&amp; h_i(w)=0
-\end{array}
-\]</span> We have the generalized Lagrangian function <span class="math display">\[
-L(w,\alpha,\beta)=f(w)+\sum_{i=1}^k \alpha_iq_i(w)+\sum_{i=1}^m\beta_ih_i(w)
-\]</span> where <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_i\)</span> are the Lagrange Multipliers.</p>
-<p>In order to solve the primal problem, we have Kuhn-Tucker Theorem</p>
-<p>The sufficient and necessary condition for a point <span class="math inline">\(w_o\)</span> to be an optimal solution is the existence of <span class="math inline">\(\alpha_o\)</span> and <span class="math inline">\(\beta_o\)</span> such that <span class="math display">\[
-\begin{array}{rcl}
-\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial w}&amp;=&amp;0\\
-\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial \beta_i}&amp;=&amp;0\\
-\alpha_{o,i}q_i(w_o)&amp;=&amp;0\\
-q_i(w_o)&amp;\le&amp;0\\
-\alpha_{o,i}&amp;\ge&amp;0
-\end{array}
-\]</span></p>
-<h2 id="lagrange-dual-problem">7. Lagrange Dual Problem</h2>
-<p>In mathematical optimization theory, duality or the duality principle is the principle that optimization problems may be viewed from either of two perspectives, the primal problem or the dual problem. The solution to the dual problem provides a lower bound to the solution of the primal (minimization) problem. However in general the optimal values of the primal and dual problems need not be equal. Their difference is called the ==duality gap==. For convex optimization problems, the duality gap is zero under a constraint qualification condition (Regularity conditions). (From Wikipedia Duality (Optimization))</p>
-<p>The Lagrangian dual problem is obtained by forming the Lagrangian of a minimization problem by using nonnegative Lagrange multipliers to add the constraints to the objective function, and then solving for the primal variable values that minimize the original objective function. This solution gives the primal variables as functions of the Lagrange multipliers, which are called dual variables, so that the new problem is to maximize the objective function with respect to the dual variables under the derived constraints on the dual variables (including at least the nonnegativity constraints).</p>
-For a convex minimization problem with inequality constraints (primal problem), <span class="math display">\[
-\begin{array}{ll}{\underset{x}{\operatorname{minimize}}} &amp; {f(x)} \\ {\text { subject to }} &amp; {g_{i}(x) \leq 0, \quad i=1, \ldots, m}\end{array}
-\]</span> The Lagrangian Dual Problem is <span class="math display">\[
-\begin{array}{cl}{\underset{u}{\operatorname{maximize}}} &amp; {\inf _{x}\left(f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x)\right)} \\ {\text { subject to }} &amp; {u_{i} \geq 0, \quad i=1, \ldots, m}\end{array}
-\]</span> The infimum occurs where the gradient is equal to zero. Then problem is denoted as <span class="math display">\[
-\begin{array}{cl}
-\underset{x, u}{\operatorname{maximize}} &amp; f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x) \\ 
-\text { subject to } &amp; \nabla f(x)+\sum_{j=1}^{m} u_{j} \nabla g_{j}(x)=0 \\ 
-&amp; {u_{i} \geq 0, \quad i=1, \ldots, m}
-\end{array}
-\]</span> Therefore, for the primal problem of SVM, <span class="math display">\[
-\begin{array}{rl}
-\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
-\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
-\end{array}
-\]</span> we have the dual problem <span class="math display">\[
-\begin{array}{rl}
-\text{Maximize:} &amp; L(w,\alpha,\beta)\\
-\text{Subject to:} &amp; \frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}=0\\
-&amp;\alpha\ge0 
-\end{array}
-\]</span> Then we hope to reduce the variables in the dual problem <span class="math display">\[
-\begin{array}{rcl}
-q_i &amp;=&amp; -d_i(w^Tx_i+b)+1\le0\\
-L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_i(d_i(w^Tx_i+b)-1)\\
-&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i
-\end{array}
+<h2 id="controllability">2. Controllability</h2>
+<p>Controllable: The system can be driven from any initial state to any other destination in finite time.</p>
+<p>For the system <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k)=Cx(k)\\
+\]</span> We have the initial state <span class="math inline">\(x(0)\)</span></p>
+<p>Then <span class="math display">\[
+x(1)=\Phi x(0)+\Gamma u(0)\\
+x(2)=\Phi x(1)+\Gamma u(1)=\Phi(\Phi x(0)+\Gamma u(0))+\Gamma u(1)\\
+=\Phi^2 x(0)+\Phi\Gamma u(0)+\Gamma u(1)\\
+\vdots\\
+x(n)=\Phi^nx(0)+\Phi^{n-1}\Gamma u(0)+\Phi^{n-2}\Gamma u(1)+\dotsm+\Gamma u(n-1)
+\]</span> If the system can be driven to any state in finite steps, we just need to ensure <span class="math display">\[
+W_c=\begin{bmatrix}
+\Gamma &amp; \Phi\Gamma &amp; \Phi^2\Gamma &amp; \dotsm &amp; \Phi^{n-1}\Gamma
+\end{bmatrix}
+\]</span> is NONSINGULAR.</p>
+<p>If we cannot get to one state with n-1 steps, we cannot to get to one state with n steps.</p>
+<p>Proof <span class="math display">\[
+A(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\dotsm+\ a_n \\
 \]</span> Then we have <span class="math display">\[
-\begin{array}{rcl}
-\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}&amp;=&amp; \frac{1}{2}\frac{\partial w^Tw}{\partial w}-\sum_{i=1}^N\alpha_id_i(\frac{\partial w^Tx_i}{\partial w})\\
-&amp;=&amp;w-\sum_{i=1}^N\alpha_id_ix_i=0\\
-w&amp;=&amp;\sum_{i=1}^N\alpha_id_ix_i\\
-\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial b}&amp;=&amp;\sum_{i=1}^Na_id_i=0
-\end{array}
-\]</span> Then we have the simplified dual problem $$
-<span class="math display">\[\begin{array}{rcl}
-L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
-
-&amp;=&amp;\frac{1}{2}\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]\left[\sum_{i=1}^N\alpha_id_ix_i\right]\\
-&amp;&amp;-\sum_{i=1}^N\alpha_id_i\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]x_i\\
-&amp;&amp;-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
-
-&amp;=&amp; \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
-&amp;&amp;-\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
-&amp;&amp;-0+\sum_{i=1}^N\alpha_i
-\end{array}\]</span>
-<span class="math display">\[
-Then we have the dual problem
-\]</span>
-<span class="math display">\[\begin{array}{rl}
-\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
-{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
-
-\text{Subject to:} &amp; \alpha_i\ge0 \\
-&amp;\sum_{i=1}^Na_id_i=0
-\end{array}\]</span>
-<p><span class="math display">\[
-From the KKT condition, we have
-\]</span> _{o,i}(d_i(w_o^Tx_i+b_o)-1)=0 $$ For the support vectors, we have <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> Then <span class="math inline">\(\alpha_{o,i}\neq 0\)</span></p>
-<p>Furthermore, fore a support vector <span class="math inline">\(x_i\)</span>, <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> then <span class="math inline">\(b_o=\frac{1}{d_i}-w_o^Tx_i\)</span> .</p>
-<p>As <span class="math inline">\(\alpha_{o,i}\)</span> is obtained, we can calculate <span class="math inline">\(w_o\)</span> and <span class="math inline">\(b_o\)</span> as follows <span class="math display">\[
-w_o=\sum_{i=1}^N \alpha_{o,i}d_ix_i\\
-b_o=\frac{1}{d^{(s)}}-w_o^Tx^{(s)}\\
-\]</span> <span class="math inline">\(\alpha_{o,i}\)</span> can be solved by many methods such as quadratic programming.</p>
-<h2 id="soft-margin">8. Soft Margin</h2>
-<p>We add nonnegative slack variables <span class="math inline">\(\xi_i\)</span></p>
-<p><span class="math inline">\(\xi_i =0\)</span> when data point is not in region of separation</p>
-<p><span class="math inline">\(0\le \xi_i\le 1\)</span> when data point is in the region of separation and on correct side of hyperplane</p>
-<p><span class="math inline">\(\xi_i &gt; 0\)</span> when data point is in the region of separation but on wrong side of hyperplane</p>
-<p>We hope to minimize the cost function <span class="math display">\[
-f(w,\xi)=\frac{1}{2}w^Tw+C\sum_{i=1}^N \xi_i
-\]</span> A large C generally leads to smaller margin but also fewer misclassification</p>
-<p>A small C generally leads to larger margin but also more misclassification</p>
-Then for an example we have <span class="math display">\[
-d_i(w^Tx_i+b)\ge 1-\xi_i 
-\]</span> Finally we have the dual problem $$
-<span class="math display">\[\begin{array}{rl}
-\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
-{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
-
-\text{Subject to:} &amp; 0\le\alpha_i\le C \\
-&amp;\sum_{i=1}^Na_id_i=0
-\end{array}\]</span>
-<p>$$ Then we try to find the support vector</p>
-<ol type="1">
-<li>For the support vector with <span class="math inline">\(\alpha_i&lt;C\)</span> . Support is located on the boarder of margin of separation.</li>
-<li>For the support vector with <span class="math inline">\(\alpha_i=C\)</span>. Support is located inside the margin of separation.</li>
-</ol>
-<p>Then for each sample <span class="math inline">\(x_i\)</span> with <span class="math inline">\(0\le \alpha_i \le C\)</span> <span class="math display">\[
-w_o=\sum_{i=1}^N\alpha_{o,i}d_ix_i\\
-b_{o,i}=\frac{1}{d_i}-w_o^Tx_i\\
-b_o=\frac{\sum_{i=1}^mb_{o,i}}{m}
+A(\Phi)=\Phi^n+a_1\Phi^{n-1}+a_2\Phi^{n-2}+\dotsm+\ a_nI \\
+\]</span> Similarly,</p>
+<p>We know <span class="math inline">\(\Phi^n\)</span> is linear combination of <span class="math inline">\(\Phi^0, \quad \Phi,\quad\dotsm\quad\Phi^{n-1}\)</span>.</p>
+<p>Therefore, we still cannot get to arbitrary desired state.</p>
+<p>Controllable Canonical Form <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+-a_{n} &amp; -a_{n-1} &amp; \dotsm &amp; -a_{2} &amp; -a_1\\
+1 &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+1\\
+0\\
+0\\
+\vdots\\
+0\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+b_n &amp; b_{n-1} &amp; \dotsm &amp; b_1
+\end{bmatrix}
 \]</span></p>
-<h2 id="kernel">9. Kernel</h2>
-<p>Cover's Theorem</p>
-<p>Probability that classes are linearly separable increases when data points in input space are nonlinearly mapped to a higher dimensional feature space.</p>
-<p>Then if we map <span class="math inline">\(x_i\)</span> to <span class="math inline">\(\varphi(x_i)\)</span></p>
-The discriminant function becomes <span class="math display">\[
-g(x)=w_o^T\varphi(x)+b_o
-\]</span> The dual problem becomes $$
-<span class="math display">\[\begin{array}{rl}
-\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
-{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_j\varphi(x_i)^T\varphi(x_j)\\
-
-\text{Subject to:} &amp; 0\le\alpha_i\le C \\
-&amp;\sum_{i=1}^Na_id_i=0
-\end{array}\]</span>
-<span class="math display">\[
-Given the optimal value $\alpha_{o,i}$ 
-\]</span> w_o=<em>{i=1}^N</em>{o,i}d_i(x_i)\ b_o=-w_o<sup>T(x</sup>{(s)})\ <span class="math display">\[
-Solution requires $\varphi$ but finding explicit form of $\varphi$ is not easy, then we define
-\]</span> K(x,y)=^T(x)(y) <span class="math display">\[
-The dual problem becomes
-\]</span>
-<span class="math display">\[\begin{array}{rl}
-\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
-{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jK(x_i,x_j)\\
-
-\text{Subject to:} &amp; 0\le\alpha_i\le C \\
-&amp;\sum_{i=1}^Na_id_i=0
-\end{array}\]</span>
-<span class="math display">\[
-Given the optimal value $\alpha_{o,i}$, we have
-\]</span> b_o=-<em>{i=1}<sup>N<em>{o,i}d_iK(x_i,x^{(s)}) <span class="math display">\[
-The discriminant function is 
-\]</span> g(x)=</em>{i=1}</sup>N</em>{o,i}d_iK(x_i,x)+b_o <span class="math display">\[
-==Attention== the expression for $K$ must satisfy Mercer&#39;s Condition
-\]</span> K=
-<span class="math display">\[\begin{bmatrix}
-k(x_1,x_1) &amp; \dotsm &amp; K(x_1,x_N)\\
-\vdots &amp; \ddots &amp; \vdots\\
-K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
-\end{bmatrix}\]</span>
-<p>$$ is positive semi-definite.</p>
-<h2 id="summary">10. Summary</h2>
-<p>Given a training set <span class="math inline">\(S=\{(x_i,d_i)\}\)</span></p>
+<h2 id="observability">3. Observability</h2>
+<p>Observer <span class="math display">\[
+\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
+\hat y=C\hat x(k) \\
+e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
+\]</span> Observability Matrix <span class="math display">\[
+M_o^{-1}=\begin{bmatrix}
+C\\C\Phi\\C\Phi^2\\\vdots\\C\Phi^{n-1}
+\end{bmatrix}
+\]</span> Observable Canonical Form <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+-a_{n} &amp; 1 &amp; 0 &amp; \dotsm &amp; 0\\
+-a_{n-1} &amp; 0 &amp; 1 &amp; \dotsm  &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+-a_{2} &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
+-a_{1} &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+b_n\\
+b_{n-1}\\
+b_{n-2}\\
+\vdots\\
+b_1\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; \dotsm &amp; 0
+\end{bmatrix}
+\]</span></p>
+<h2 id="how-to-create-state-space-from-difference-equation">4. How to Create State Space From Difference Equation</h2>
+<p>Example <span class="math display">\[
+y(k+1)=-a_1y(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
+\]</span> First, we choose <span class="math display">\[
+x_1(k)=y(k)
+\]</span> Then we have <span class="math display">\[
+x_1(k+1)=y(k+1)=-a_1x_1(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
+\]</span> Then we choose <span class="math display">\[
+x_2(k)=-a_2y(k-1)-a_3y(k-2)+b_2u(k-1)+b_3u(k-2)\\
+x_2(k+1)=-a_2y(k)-a_3y(k-1)+b_2u(k)+b_3u(k-1)\\
+x_3(k)=-a_3y(k-1)+b_3u(k-1)\\
+x_3(k+1)=-a_3y(k)+b_3u(k)
+\]</span> Therefore, we have <span class="math display">\[
+x_1(k+1)=-a_1x_1+x_2(k)+b_1u(k)\\
+x_2(k+1)=-a_2x_1(k)+x_3(k)+b_2u(k)\\
+x_3(k+1)=-a_3x_1(k)+b_3u(k)\\
+\]</span> Therefore, <span class="math display">\[
+\Phi=\begin{bmatrix}
+-a_1 &amp; 1 &amp; 0\\
+-a_2 &amp; 0 &amp; 1\\
+-a_3 &amp; 0 &amp; 0
+\end{bmatrix}
+\Gamma=\begin{bmatrix}
+b_1\\b_2\\b_3
+\end{bmatrix}
+C=\begin{bmatrix}
+1 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<h2 id="some-useful-conclusions">5. Some Useful Conclusions</h2>
 <ol type="1">
-<li>Find a suitable kernel and check Mercer's condition</li>
-<li>Choose a value for C</li>
-<li>Solve for <span class="math inline">\(\alpha_{o,i}\)</span></li>
-<li>Determine <span class="math inline">\(b_o\)</span></li>
-<li>Use discriminant function</li>
+<li>The minimal realization has the same order as that of the transfer function. If higher, it is called non-minimal realization.</li>
+<li>The minimal realization can be always cast into the form of observable canonical form. Therefore, the minimal realization is always observable.</li>
+<li>If there are common zeros and poles, uncontrollable, otherwise, controllable.</li>
+</ol>
+<h2 id="example">6. Example</h2>
+<p>Example 1 <span class="math display">\[
+y(k+1)=3y(k)-2y(k-1)+u(k-1)+2u(k-2)
+\]</span> a) What is the Transfer Function? <span class="math display">\[
+zY(z)=3Y(z)-2z^{-1}Y(z)+z^{-1}U(z)+2z^{-2}U(z)\\
+\frac{Y(z)}{U(z)}=\frac{z^{-1}+2z^{-2}}{z-3+2z^{-1}}=\frac{z+2}{z^3-3z^2+2z}=\frac{z+2}{z(z-1)(z-2)}
+\]</span> b) is it possible to realize the system such that it is observable but not controllable.</p>
+<p>It is not controllable, therefore, it should have common zeros and poles. <span class="math display">\[
+G(z)=\frac{(z+2)(z+1)}{z(z-1)(z-2)(z+1)}=\frac{z^2+3z+2}{z^4-2z^3-z^2+2z}\\
+\]</span> The system is observable, therefore, we realize the system in observable canonical form. <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+2 &amp; 1 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 1 &amp; 0\\
+-2 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+0\\
+1\\
+3\\
+2\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+M_C=
+\begin{bmatrix}
+0 &amp; 1 &amp; 5 &amp; 13\\
+1 &amp; 3 &amp; 3 &amp; 3\\
+3 &amp; 2 &amp; -2 &amp; -10\\
+2 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+M_o=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 &amp; 0\\
+5 &amp; 2 &amp; 1 &amp; 0\\
+10 &amp; 5 &amp; 2 &amp; 1
+\end{bmatrix}\\
+\]</span></p>
+<p>Therefore, the system is observable but not controllable.</p>
+<p>However, we need to check if this space state is that transfer function. It is easy to find that it is exactly the G(z) instead of the transfer function in the question. Therefore, it is <strong>impossible</strong> to realize this system in observable but not controllable form.</p>
+<ol start="3" type="a">
+<li>is it possible to realize the system such that it is controllable but not observable.</li>
+</ol>
+<p>Same as the above, it is possible to realize.</p>
+<ol start="4" type="a">
+<li>is it possible to realize the system such that it is both controllable and observable.</li>
+</ol>
+<p>Obviously, it is possible.</p>
+<p>Example 2. <span class="math display">\[
+y(k+1)=3y(k-1)-2y(k-2)+u(k)-2u(k-1)+u(k-2)\\
+\]</span> The questions are same as the above.</p>
+<ol type="a">
+<li><p><span class="math display">\[
+zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
+\frac{Y(z)}{U(z)}=\frac{z^2-2z+1}{z^3-3z-2}=\frac{(z-1)^2}{(z-1)^2(z+2)}
+\]</span></p></li>
+<li><p>it is possible observable but not controllable</p></li>
+<li><p>it is not possible controllable but not observable</p></li>
+<li><p>it is not possible controllable and observable</p></li>
 </ol>
 
         
@@ -575,7 +526,7 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5904 Neural Network/3.SOM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -589,7 +540,7 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5904 Neural Network/3.SOM/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-title-link" itemprop="url">2. Computer Control and Discrete-Time Systems</a>
           
         </h1>
 
@@ -604,7 +555,7 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
                 
               
 
-              <time title="Created: 2020-12-22 13:45:47" itemprop="dateCreated datePublished" datetime="2020-12-22T13:45:47+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
             </span>
           
             
@@ -615,7 +566,7 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-04-20 23:12:22" itemprop="dateModified" datetime="2019-04-20T23:12:22+08:00">2019-04-20</time>
+                <time title="Modified: 2019-08-26 00:04:50" itemprop="dateModified" datetime="2019-08-26T00:04:50+08:00">2019-08-26</time>
               </span>
             
           
@@ -625,7 +576,7 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
 
                 
                 
@@ -634,7 +585,7 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
           
 
           
-            <span id="/2020/12/22/EE5904 Neural Network/3.SOM/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-meta-item leancloud_visitors" data-flag-title="2. Computer Control and Discrete-Time Systems" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -652,7 +603,7 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5904 Neural Network/3.SOM/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5904 Neural Network/3.SOM/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -666,74 +617,211 @@ K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="self-organizing-maps">Self-Organizing Maps</h1>
-<h2 id="introduction">1. Introduction</h2>
-<p>Learning is a process by which the free parameters of a neural network are adapted through a process of stimulation by the environment in which the network is embedded.</p>
-<p>The topology-conserving mapping can be achieved by SOMs. The network is two layers network. There are only input layer and output layer without hidden layer. There is no hidden layer.</p>
-<p>The location of neurons in the output layer is important.</p>
-<h2 id="architecture">2. Architecture</h2>
-<p>For each output neuron j, there are a set of synaptic weights <span class="math inline">\(w_{ji}\)</span> connected from all input neurons</p>
-<h3 id="randomly-initialize-all-the-weights.">1. Randomly initialize all the weights.</h3>
-<h3 id="select-input-vector-xx_1x_2dotsmx_n-from-the-training-set">2. Select input vector <span class="math inline">\(x=[x_1,x_2,\dotsm,x_n]\)</span> from the training set</h3>
-<p>It can be done by choosing randomly from the training set or one by one in a deterministic manner like that for sequential learning.</p>
-<h3 id="compare-x-with-weights-w_j-for-each-neuron-j-to-determine-winner">3. Compare x with weights <span class="math inline">\(w_j\)</span> for each neuron j to determine winner</h3>
-<p>Find the best-matching neuron w(x), usually the neuron whose weight vector has smallest Euclidean distance from the input vector. <span class="math display">\[
-i(x)=\arg \min _j||x-w_j||
-\]</span> The winning neuron is that which is in some sense closet to the input sector.</p>
-<h3 id="update-winner-so-that-it-becomes-more-like-x-together-with-the-winners-neighbor">4. Update winner so that it becomes more like x, together with the winner's neighbor</h3>
-<p>The typical choice of topological neighborhood function <span class="math display">\[
-h_{j,i(x)}=\exp (-\frac{d_{j,i}^2}{2\sigma^2})
-\]</span> where <span class="math display">\[
-d_{j,i}=\sqrt{(l-n)^2+(m-k)^2}
-\]</span> if the position of the neuron is described by the index of the neuron in the matrix (2-d lattice)</p>
-<h3 id="adjust-parameters-learning-rate-neighborhood-function">5. Adjust parameters: learning rate &amp; neighborhood function</h3>
-<p>Another unique feature of the SOM algorithm is that the size of the topological neighborhood shrinks with time. <span class="math display">\[
-\sigma(n)=\sigma_0\exp (-\frac{n}{\tau_1})
-\]</span> where <span class="math inline">\(\tau_1\)</span> is a time-constant to control the decay rate of the effective width.</p>
-<p>Time-varying neighborhood function <span class="math display">\[
-h_{j,i(x)}=\exp (-\frac{d_{j,i}^2}{2\sigma(n)^2})
-\]</span> It means that the influence of the winner on its neighbors decrease with time.</p>
-<p>Parameters are adapted by <span class="math display">\[
-w_j(n+1)=w_j(n)+\eta(n)h_{j,i(x)}(n)(x-w_j(n))
-\]</span> That means the weight is the weighted average of the input and the current weight.</p>
-<p>The synaptic weight vector <span class="math inline">\(w_i\)</span> of winning neuron i moves to the input vector x.</p>
-<p>All the neurons in the neighborhood of the winning neuron also move to the input vector.</p>
-<p>The learning-rate parameter <span class="math inline">\(\eta\)</span> should also decrease with time <span class="math display">\[
-\eta(n)=\eta_0 \exp (-\frac{n}{\tau_2})
-\]</span></p>
-<h3 id="repeat-step-2-until-the-map-has-converged.">6. Repeat step 2 until the map has converged.</h3>
-<h2 id="two-phases-of-the-adaptive-process">3. Two phases of the adaptive process</h2>
-<h3 id="the-first-phase">1. The First Phase</h3>
-<p>An ordering or self-organizing phase</p>
-<p>The ordering phase may take as many as 1000 iterations and possibly more.</p>
-<p>The learning rate should begin with a value close to 0.1; there after it should decrease gradually, but remain above 0.01. <span class="math display">\[
-\eta_0=0.1\quad \tau_2=T\quad \eta(n)=0.1\exp(-\frac{n}{T})
-\]</span> T is the total number of iterations for the first phase.</p>
-<p>The neighborhood function should initially include almost all neurons, and then shrink with time. We may set the initial size of the width equal to the “radius” of the lattice. For instance if the size of the lattice is <span class="math inline">\(M\times N\)</span>, then the initial width can be set as <span class="math display">\[
-\sigma_0=\frac{\sqrt{M^2+N^2}}{2}
-\]</span> The time constant can be chosen as <span class="math display">\[
-\tau_1=\frac{T}{\log (\sigma_0)}
-\]</span> Then at the end, <span class="math inline">\(\sigma(T)=1\)</span></p>
-<h3 id="the-second-phase">2. The Second Phase</h3>
-<p>Convergence Phase</p>
-<p>The second phase is needed to fine tune the feature map.</p>
-<p>As a general rule, the number of iterations must be at least 500 times the number of neurons in the network. Thus, the convergence phase may have to go on for thousands and possibly tens of thousands of iterations.</p>
-<p>For a good statistical accuracy, the learning parameter <span class="math inline">\(\eta(n)\)</span> should be kept at a small value, on the order of 0.01.</p>
-<p>In many applications, the second phase is not needed if convergence of the parameters are not critical.</p>
-<h2 id="summary">4. Summary</h2>
-<p>For n-dimensional input space and m output neurons</p>
-<ol type="1">
-<li>Randomly initialize the weight vector <span class="math inline">\(w_i\)</span> for neuron</li>
-<li>Sampling: choose an input vector x from the training set</li>
-<li>Determine winner neuron k</li>
-<li>Update all weight vectors of all neurons (include itself) in the neighborhood of the winning neuron</li>
-<li>If convergence criterion met, Stop</li>
-</ol>
+          <h2 id="pole-cancellation">1. Pole Cancellation</h2>
+<p>If the whole system is stable, then the poles and zeros can be cancelled out each other, then the reduced transfer function is good approximation of the original one.</p>
+<p>If the common factors are related to the same variables, they must cancel out.</p>
+<p>If the common factors are related to different variables, they should remain.</p>
+<p>The best tools to check whether they can be cancelled out or not is time domain. Proof is omitted.</p>
 <p>Example</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">X = <span class="built_in">randn</span>(<span class="number">800</span>,<span class="number">2</span>);</span><br><span class="line">s2 = sum(X.^<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">trainX = (X.*<span class="built_in">repmat</span>(<span class="number">1</span>*(<span class="built_in">gammainc</span>(s2/<span class="number">2</span>,<span class="number">1</span>).^(<span class="number">1</span>/<span class="number">2</span>))./<span class="built_in">sqrt</span>(s2),<span class="number">1</span>,<span class="number">2</span>))';</span><br><span class="line"><span class="built_in">plot</span>(trainX(<span class="number">1</span>,:),trainX(<span class="number">2</span>,:),<span class="string">'+r'</span>); </span><br><span class="line">axis equal</span><br><span class="line"></span><br><span class="line">total_step_number = <span class="number">400000</span>;</span><br><span class="line">W = <span class="built_in">rand</span>(<span class="number">2</span>,<span class="number">64</span>); <span class="comment">%  row number (x-1)/8+1, column number (x-1)%8+1</span></span><br><span class="line">eta_0=<span class="number">0.1</span>; eta = eta_0; </span><br><span class="line">sigma_0 = <span class="number">4</span>; sigma = sigma_0;</span><br><span class="line"></span><br><span class="line">tau = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:(total_step_number/<span class="built_in">size</span>(trainX,<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">for</span> xx=trainX</span><br><span class="line">        [~,winner_index] = <span class="built_in">min</span>(vecnorm(xx-W));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> nn=<span class="number">1</span>:<span class="built_in">size</span>(W,<span class="number">2</span>) <span class="comment">%update neighbors</span></span><br><span class="line">            d_ji=norm([<span class="built_in">fix</span>((nn<span class="number">-1</span>)/<span class="number">8</span>+<span class="number">1</span>);<span class="built_in">mod</span>((nn<span class="number">-1</span>),<span class="number">8</span>)+<span class="number">1</span>]- ...</span><br><span class="line">                [<span class="built_in">fix</span>((winner_index<span class="number">-1</span>)/<span class="number">8</span>+<span class="number">1</span>);<span class="built_in">mod</span>((winner_index<span class="number">-1</span>),<span class="number">8</span>)+<span class="number">1</span>]);</span><br><span class="line">        </span><br><span class="line">            h_ji=<span class="built_in">exp</span>(-(d_ji^<span class="number">2</span>/(<span class="number">2</span>*sigma^<span class="number">2</span>)));</span><br><span class="line">            W(:,nn) =  W(:,nn) + eta*h_ji*(xx-W(:,nn));</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        eta = eta_0 * <span class="built_in">exp</span>(-(<span class="built_in">i</span>/(total_step_number/<span class="built_in">size</span>(trainX,<span class="number">2</span>))));</span><br><span class="line">        sigma = sigma_0 * <span class="built_in">exp</span>(-(<span class="built_in">i</span>/tau));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">axis equal</span><br><span class="line"><span class="built_in">plot</span>(trainX(<span class="number">1</span>,:),trainX(<span class="number">2</span>,:),<span class="string">'+r'</span>);</span><br><span class="line"><span class="built_in">plot</span>(W(<span class="number">1</span>,:),W(<span class="number">2</span>,:),<span class="string">'*b'</span>)</span><br><span class="line"></span><br><span class="line">result = <span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">8</span>,<span class="number">8</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">64</span></span><br><span class="line">    result(:,<span class="built_in">fix</span>((<span class="built_in">i</span><span class="number">-1</span>)/<span class="number">8</span>+<span class="number">1</span>),<span class="built_in">mod</span>((<span class="built_in">i</span><span class="number">-1</span>),<span class="number">8</span>)+<span class="number">1</span>) = W(:,<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">7</span></span><br><span class="line">       <span class="built_in">plot</span>([result(<span class="number">1</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">1</span>,<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>)],[result(<span class="number">2</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">2</span>,<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>)],<span class="string">'*-'</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">7</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">8</span></span><br><span class="line">       <span class="built_in">plot</span>([result(<span class="number">1</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">1</span>,<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>)],[result(<span class="number">2</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">2</span>,<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>)],<span class="string">'*-'</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<figure>
-<img src="assets/1555772820715.png" alt="Figure."><figcaption aria-hidden="true">Figure.</figcaption>
-</figure>
+<p>---u------G1------v------G2------y <span class="math display">\[
+G_1=\frac{s-1}{s^2+s+1}\\
+G_2=\frac{1}{s-1}\\
+\]</span> Then <span class="math display">\[
+G_1G_2=\frac{s-1}{(s^2+s+1)(s-1)}\\
+\]</span> ---u------G2------v------G1------y <span class="math display">\[
+G_2G_1=\frac{1}{s^2+s+1}\\
+\]</span></p>
+<h2 id="zero-order-hold-discrete-instead-of-first-order-hold">2. Zero-order Hold Discrete instead of First Order Hold</h2>
+<p>Because you will never know what will happen in the next time. So we can only choose zero-order hold for the computer control system.</p>
+<h2 id="how-to-solve-the-differential-equation">3. How to Solve the Differential Equation</h2>
+<p><span class="math display">\[
+x(t)=\underbrace{e^{At}x(0)}_{\text{zero input response}}+\underbrace{\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau}_{\text{zero-state response}}\\
+\]</span></p>
+<p>For continuous time, we have differential equation, differentiation operator, Laplace Transform, continuous state space.</p>
+<p>For discrete time, we have difference equation, shift operator, Z Transform, discrete state space.</p>
+<h2 id="discrete-with-zero-order-hold">4. Discrete with Zero-Order Hold</h2>
+<p>For a constant in the whole interval <span class="math inline">\([t_k,t_{k+1})\)</span> <span class="math display">\[
+x(t)=e^{A(t-t_k)}x(t_k)+\int_{t_k}^{t}e^{A(t-\tau)}d\tau Bu(t_k)\\
+\]</span> For the second part we have <span class="math inline">\(v=t-\tau\)</span> <span class="math display">\[
+\int_{t_k}^{t}e^{A(t-\tau)}d\tau=\int_0^{t-t_k}e^{Av}dv\\
+\]</span> If the sampling time is h, we have <span class="math display">\[
+x(kh+h)=e^{Ah}x(kh)+\int_0^he^{Av}dvBu(kh)=\Phi x(kh)+\Gamma u(kh)\\
+\]</span> To be simple <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y=Cx\\
+\]</span> where <span class="math display">\[
+\Phi=e^{Ah} \\
+\Gamma=\int_0^he^{Av}dvB\\
+\]</span></p>
+<p>Difference Equation <span class="math display">\[
+y(k+1)=a_1y(k)+a_2y(k-1)+b_0u(k)+b_1u(k-1)\\
+y(k+1)-a_1y(k)-a_2y(k-1)=b_0u(k)+b_1u(k-1)\\
+\]</span> We define shift-operator q <span class="math display">\[
+qf(k)=f(k+1)\\
+q^{-1}f(k)=f(k-1)\\
+\]</span> Then we will have <span class="math display">\[
+qy(k)-a_1y(k)-a_2q^{-1}y(k)=b_0u(k)+b_1q^{-1}u(k)\\
+\frac{y(k)}{u(k)}=\frac{b_0+b_1q^{-1}}{q-a_1-a_2q^{-1}}=\frac{b_0q+b_1}{q^2-a_1q-a_2}=\frac{B(q)}{A(q)}\\
+\]</span></p>
+<h2 id="z-transform">5. Z Transform</h2>
+<p>In continuous time domain, we have <span class="math display">\[
+u=e^{st}\quad y=H(s)e^{st}\\
+\]</span> In discrete time domain, we have <span class="math display">\[
+e^{st\quad\underrightarrow{t\rightarrow kh}}\quad e^{skh\quad\underrightarrow{e^{sh}\rightarrow a}} \quad a^k\\
+\]</span> Therefore, <span class="math display">\[
+u(k)=a^k\quad y(k)=H(a)a^k\\
+\]</span> Then we have the following calculation which has the same properties. <span class="math display">\[
+F(z)=\sum^\infty_{k=0}f(k)z^{-k}\\
+\]</span> Which is Z transform.</p>
+<p>For impulse signal, we have <span class="math inline">\(U(z)=1\)</span>.</p>
+<p>For <span class="math inline">\(u=a^k\)</span>, we have <span class="math inline">\(U(z)=\frac{1}{z-a}\)</span>.</p>
+<p>Inverse Z Transform e.g. <span class="math display">\[
+z^2Y(z)-Y(z)=zU(z)+2U \\
+\frac{Y}{U}=G(z)=\frac{z+2}{z^2-1}\\
+\frac{G(z)}{z}=\frac{z+2}{z(z+1)(z-1)}=\frac{A_1}{z}+\frac{A_2}{z+1}+\frac{A_3}{z-1} \\
+G(Z)=\frac{z+2}{z(z+1)(z-1)}=-1+\frac{0.5z}{z+1}+\frac{0.5z}{z-1} \\
+\]</span> After inverse z transform <span class="math display">\[
+y(k)=-\delta(k)+0.5(-1)^k+0.5 (1)^k
+\]</span> Apply z transform to state space equation <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k) = cx(k) \\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z) \\
+(zI-\Phi)X(z)=x(0)+\Gamma U(z) \\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z) \\
+Y(z)=cX(Z)=c(zI-\Phi)^{-1}x(0)+c(zI-\Phi)^{-1}\Gamma U(z)\\
+\]</span></p>
+<p>For s domain, steady state gain(SSG) is H(0).</p>
+<p>For z domain, SSG is H(1).</p>
+<p>Poles in continuous time domain(CTD) is <span class="math inline">\(\lambda\)</span> , in the discrete time is <span class="math inline">\(e^{h\lambda }\)</span></p>
+<p>In CTD, if <span class="math inline">\(\lambda = \sigma+j\omega\)</span> , <span class="math inline">\(e^{\sigma+j\omega}=e^{\sigma}(cos (\omega)+jsin(\omega))\)</span></p>
+<p>In DTD, <span class="math inline">\(e^{h\lambda}=e^{h(\sigma+jw)}=e^{h\sigma}e^{jhw}\)</span></p>
+<p>Therefore, we can map poles from continuous time domain to discrete time domain.</p>
+<h2 id="example">6. Example</h2>
+<p>We have one electrical system <span class="math inline">\(L=C=R=1\)</span> <span class="math display">\[
+L\frac{di}{dt}+Ri+\frac{1}{C}\int idt=e_i\\
+\frac{1}{C}\int idi=e_o
+\]</span> a) Derive transfer function. Input is <span class="math inline">\(e_i\)</span>. Output is <span class="math inline">\(e_o\)</span>. <span class="math display">\[
+s^2Y(s)+sY(s)+Y(s)=U(s)\\
+\frac{Y(s)}{U(s)}=\frac{1}{s^2+s+1}\\
+\]</span> b) Define <span class="math inline">\(x_1=e_o,x_2=\dot e_o\)</span>, derive state space representation. <span class="math display">\[
+\dot x_1=x_2\\
+\dot x_2=-x_2-x_1+u\\
+x=Ax+Bu\\
+y=Cx\\
+A=
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}x+
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}u\\
+y=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}x\\
+\]</span> c) Discrete this system with h=1. <span class="math display">\[
+x(k+1)=\Phi x+\Gamma u\\
+y=Cx\\
+\Phi=e^{Ah}\\
+\]</span> According to Caley-Hamilton Equation <span class="math display">\[
+f(\lambda)=e^{\lambda t}\\
+h(\lambda)=\beta_0+\beta_1\lambda\\
+\lambda_1=-0.5+\frac{\sqrt3}{2}i\\
+\lambda_2=-0.5-\frac{\sqrt3}{2}i\\
+f(\lambda_1)=e^{(-0.5+\frac{\sqrt3}{2}i)t}=h(\lambda_1)=\beta_0+\beta_1(-0.5+\frac{\sqrt3}{2}i)\\
+f(\lambda_2)=e^{(-0.5-\frac{\sqrt3}{2}i)t}=h(\lambda_2)=\beta_0+\beta_1(-0.5-\frac{\sqrt3}{2}i)\\
+\]</span> Then we can solve that <span class="math display">\[
+\beta_0=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\\
+\beta_1=\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+\]</span> Then we have <span class="math display">\[
+f(A)=h(A)=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}+
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}\\
+=\begin{bmatrix}
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]&amp;
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}&amp;
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t-\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\end{bmatrix}\\
+\]</span> Then we have <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+0.6597 &amp; 0.5335\\
+-0.5335 &amp; 0.1262\\
+\end{bmatrix}\\
+\Gamma=A^{-1}[e^{Ah}-I]B=
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}\\
+C=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\\
+\]</span> d) Apply z-transform to c), and obtain input-output model <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k)=Cx(k)\\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z)\\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z)\\
+Y(z)=C(zI-\Phi)^{-1}x(0)+C(zI-\Phi)^{-1}\Gamma U(z)\\
+=\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}x(0)+\\
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}U(z)=\\
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}x(0)+\\
+\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+\]</span> We assume initial state is zero. <span class="math display">\[
+Y(z)=\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+y(k+2)-0.7859y(k+1)+0.3679y(k)=0.3403u(k+1)+0.2417u(k)\\
+y(k+1)=0.7859y(k)-0.3679y(k-1)+0.3403u(k)+0.2419u(k-1)\\
+\]</span> e) Assuming initial condition is <span class="math inline">\(x_1(0)=1,x_2(0)=0\)</span> , with step input, calculate the output <span class="math inline">\(y(k)\)</span>. <span class="math display">\[
+Y(z)=
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}
+(
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}z+
+\begin{bmatrix}
+0.3403\\
+0.5335\\
+\end{bmatrix}\frac{z}{z-1}
+)\\
+=\frac{z}{z-1}\\
+\]</span></p>
+<p>Therefore, <span class="math inline">\(y(z)=1\)</span></p>
 
         
       

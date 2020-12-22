@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.2 Nonlinear conic programming/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.6 Positive Operators/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.2 Nonlinear conic programming/" class="post-title-link" itemprop="url">7. Nonlinear conic programming (2)</a>
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.6 Positive Operators/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-31 22:11:14" itemprop="dateModified" datetime="2019-10-31T22:11:14+08:00">2019-10-31</time>
+                <time title="Modified: 2019-07-08 09:44:14" itemprop="dateModified" datetime="2019-07-08T09:44:14+08:00">2019-07-08</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/MA6268 Nonlinear Optimization/7.2 Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (2)" title="Views">
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.6 Positive Operators/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/7.2 Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/7.2 Nonlinear conic programming/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.6 Positive Operators/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.6 Positive Operators/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,231 +306,70 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="robinsons-constraint-qualification">7.1 Robinson’s constraint qualification</h2>
-<p>In order for the KKT conditions to be necessary for the local minimizer <span class="math inline">\(\bar x\)</span>, we need to introduce some conditions to ensure the existence of Lagrange multipliers and the boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>. This is the generalization of the linear independent constraint qualification (LICQ) in chapter 5.</p>
-<p>Note that <span class="math inline">\(G&#39;(\bar x)\)</span> is the Jacobian of <span class="math inline">\(G\)</span>, and we have <span class="math inline">\(\nabla G=(G&#39;)^T\)</span>.</p>
-<p><strong>Definition</strong> (Robinson’s constraint qualification)</p>
-<p>Let <span class="math inline">\(\bar x\)</span> be a feasible solution to COP. Robinson’s constraint qualification is said to hold at <span class="math inline">\(\bar x\)</span> if <span class="math display">\[
-0\in\text{int}\left(G(\bar x)+G&#39;(\bar x)\mathcal X-\mathcal K\right).
-\]</span> <strong>Remark</strong></p>
-<p>If <span class="math inline">\(A:\mathbb R^n\rightarrow \mathbb R^m\)</span>, then <span class="math inline">\(0\in\text{int }(A\mathbb R^n)\)</span> means <span class="math inline">\(\text{Range}(A)=\mathbb R^m\)</span>.</p>
-<p><strong>Example</strong></p>
-<p>For the basic nonlinear programming, Robinson's CQ can be written as <span class="math display">\[
-0\in \text{int}\left(\begin{bmatrix}g(\bar x)\\h(\bar x)\end{bmatrix}
-+\begin{bmatrix}g&#39;(\bar x)\\h&#39;(\bar x)\end{bmatrix}\mathbb R^n
--\begin{bmatrix}\{0^m\}\\\mathbb R^p_+\end{bmatrix}\right).
-\]</span> This is the Mangasarian-Fromovitz constraint qualification (MFCQ) given explicitly as <span class="math display">\[
-\begin{array}{l}
-\exists d\in \mathbb R^n\text{ such that }\\
-\langle \nabla g_i(\bar x),d\rangle=0,\quad \forall i=1,2,\dotsm,m\\
-\langle \nabla h_j(\bar x),d\rangle&gt;0,\quad \forall j\in J(\bar x).
-\end{array}
-\]</span> If we define <span class="math display">\[
-\begin{array}{rcl}
-B_g(\bar x)&amp;=&amp;[\nabla g_1(\bar x),\dotsm,\nabla g_m(\bar x)]\\
-B_h(\bar x)&amp;=&amp;\{\nabla h_j(\bar x)\;|\;j\in J(\bar x)\}\\
-B(\bar x)&amp;=&amp;[B_g(\bar x),B_h(\bar x)]\in\mathbb R^{n\times (m+|J|)}.
-\end{array}
-\]</span> The above condition is equivalent to saying that <span class="math inline">\(B_g(\bar x)\)</span> has full column rank and the systems <span class="math display">\[
-B_g(\bar x)^Td=0^m,\quad B_h(\bar x)^Td&gt;0
-\]</span> have a solution. It is easy to show that LICQ implies MFCQ.</p>
-<p><strong>Proposition</strong></p>
-<p>Assume that <span class="math inline">\(G(\bar x)\in\mathcal K\)</span>. Then the following conditions are equivalent to each other and to Robinson's CQ.</p>
+          <h2 id="positive-operators">4.6 Positive Operators</h2>
+<p>==Definition 4.6.1== (Positive Operators)</p>
+<p>An operator A is called positive if it is self-adjoint and <span class="math inline">\(&lt;Ax,x&gt;\ge 0\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
+<p>==Theorem 4.6.1== For any bounded operator A on a Hilbert space H, the operators <span class="math inline">\(A^*A\)</span> and <span class="math inline">\(AA^*\)</span> are positive.</p>
+<p>==Theorem 4.6.2== If A is an invertible positive operator on a Hilbert Space H, then its inverse <span class="math inline">\(A^{-1}\)</span> is positive.</p>
+<p>To indicate that A is positive operator, we write <span class="math inline">\(A\ge 0\)</span>. If the difference <span class="math inline">\(A-B\)</span> of two self-adjoint operators is a positive operator, i.e. <span class="math inline">\(A-B\ge 0\)</span>, then we write <span class="math inline">\(A\ge B\)</span>. Consequently, <span class="math inline">\(A\ge B\)</span> if and only if <span class="math inline">\(&lt;Ax,x&gt;\ge &lt;Bx,x&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
+<p>This relation has the following natural properties,</p>
 <ol type="1">
-<li><span class="math inline">\(G&#39;(\bar x)\mathcal X+T_{\mathcal K}(G(\bar x))=\mathcal Y\)</span></li>
-<li><span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))=\{0\}\)</span>.</li>
+<li>If <span class="math inline">\(A\ge B\)</span> and <span class="math inline">\(C\ge D\)</span>, then <span class="math inline">\(A+C\ge B+D\)</span></li>
+<li>If <span class="math inline">\(A\ge 0\)</span> and <span class="math inline">\(\alpha\ge 0\)</span>, then <span class="math inline">\(\alpha A\ge 0\)</span></li>
+<li>If <span class="math inline">\(A\ge B\)</span> and <span class="math inline">\(B\ge C\)</span>, then <span class="math inline">\(A\ge C\)</span></li>
 </ol>
-<p>Proof is not trivial and omitted.</p>
-<p>For a set <span class="math inline">\(S\)</span> in <span class="math inline">\(\mathcal Y\)</span> and a point <span class="math inline">\(y\in S\)</span>, the <strong>tangent cone</strong> to <span class="math inline">\(S\)</span> at <span class="math inline">\(y\)</span> is defined by <span class="math display">\[
-T_S(y)=\{d\in\mathcal Y\;|\; \exists t_k\downarrow0,\text{dist}(y+t_kd,S)=o(t_k)\}.
-\]</span> It is saying that <span class="math inline">\(\frac{\text{dist} (y+t_kd,S)}{t_k}\rightarrow 0\)</span> as <span class="math inline">\(t_k\rightarrow 0\)</span>.</p>
-<p>Note that if <span class="math inline">\(S\)</span> is a nonempty convex subset of <span class="math inline">\(\mathcal Y\)</span>, then <span class="math display">\[
-T_S(y)=\text{closure} (t(x-y)\;|\; x\in S,t\ge 0).
-\]</span> <strong>Remark</strong></p>
-<ol type="1">
-<li><p>For <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span> and <span class="math inline">\(y\in\mathcal C\)</span>. Let <span class="math inline">\(J(y)=\{j\;|\; y_j=0\}\)</span>. We have <span class="math display">\[
-T_\mathcal C(y)=\{d\in\mathbb R^p\;|\;d_j\ge 0,j\in J(y)\}.
-\]</span></p></li>
-<li><p>For NLP, it follows from the above proposition that Robinson's CQ is equivalent to the following, <span class="math display">\[
-\begin{bmatrix}g&#39;(\bar x)\\h&#39;(\bar x)\end{bmatrix}\mathbb R^n
-+
-\begin{bmatrix}\{0^m\}\\T_{\mathbb R^p_+}(h(\bar x))\end{bmatrix}=
-\begin{bmatrix}\mathbb R^m\\ \mathbb R^p\end{bmatrix}.
-\]</span></p></li>
+<p>==Theorem 4.6.3==</p>
+<p>If A is a self-adjoint operator on H and <span class="math inline">\(||A||\le 1\)</span>, then <span class="math inline">\(A\le \mathscr J\)</span>.</p>
+<p>==Corollary 4.6.1==</p>
+<p>If A is a positive operator on a Hilbert Space H, then there exists <span class="math inline">\(\alpha&gt;0\)</span> such that <span class="math inline">\(\alpha A\le \mathscr J\)</span>.</p>
+<p>==Theorem 4.6.4==</p>
+<p>The product of two commuting positive operators on a Hilbert space is a positive operator.</p>
+<p>==Corollary 4.6.2==</p>
+<p>Let A and B be self-adjoint operators on a Hilbert space H. if <span class="math inline">\(A\le B\)</span>, then <span class="math inline">\(AC\le BC\)</span> for every positive operator C that commutes with both A and B.</p>
+<p>==Theorem 4.6.5==</p>
+<p>Let A be a positive operator on a Hilbert Space H such that <span class="math display">\[
+\alpha \mathscr J\le A\le \beta \mathscr J
+\]</span> for some <span class="math inline">\(0\le \alpha\le \beta\)</span>, then</p>
+<ol type="a">
+<li><p>A is invertible</p></li>
+<li><p><span class="math inline">\(\mathscr R(A)=H\)</span></p></li>
+<li><p><span class="math inline">\(\frac{1}{\beta}\mathscr J\le A^{-1}\le \frac{1}{\alpha}\mathscr J\)</span></p></li>
 </ol>
-<p><strong>Proposition</strong></p>
-<p>Assume that <span class="math inline">\(G(\bar x)\in\mathcal K\)</span>. If <span class="math inline">\(\mathcal K\)</span> has a nonempty interior, then the Robinson's CQ is equivalent to there exists <span class="math inline">\(d\in\mathcal X\)</span> such that <span class="math display">\[
-G(\bar x)+G&#39;(\bar x)d\in\text{int}(\mathcal K).
-\]</span> This proposition says that there exists linearization <span class="math inline">\(G(\bar x+d)\approx G(\bar x)+G&#39;(\bar x)d\)</span>, which is in the interior of the set <span class="math inline">\(\mathcal K\)</span>.</p>
-<p>Proof.</p>
-<p><span class="math inline">\(\implies\)</span></p>
-<p>If there exists <span class="math inline">\(d\in\mathcal X\)</span> such that <span class="math inline">\(y= G(\bar x)+G&#39;(\bar x)d\in \text{int}(\mathcal K)\)</span>, then there exists an open ball <span class="math inline">\(B_\epsilon(y)\subset \text{int}(\mathcal K)\)</span>, which means <span class="math inline">\(B_\epsilon(0)\in \text{int}(\mathcal K-y)\)</span>. This means <span class="math inline">\(0\in \text{int}(G(\bar x)+G&#39;(\bar x)d-\mathcal K)\)</span>, which is the Robinson's CQ.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>We will prove the necessity by contradiction. Suppose <span class="math inline">\(\forall d\in\mathcal X\)</span> such that <span class="math inline">\(G(\bar x)+G&#39;(\bar x)d\notin\text{int}(\mathcal K)\)</span>, which means <span class="math display">\[
-\left(G(\bar x)+G&#39;(\bar x)\mathcal X\right) \cap \text{int}(\mathcal K)=\emptyset.
-\]</span> Then by the proper separation theorem, there exists a nonzero <span class="math inline">\(\lambda\in\mathcal Y\)</span>, such that <span class="math display">\[
-\langle \lambda,G(\bar x)+G&#39;(\bar x) d\rangle\ge \langle \lambda ,k\rangle\implies 
-\langle \lambda,G(\bar x)+G&#39;(\bar x)d-k\rangle \ge 0,
-\]</span> for all <span class="math inline">\(d\in \mathcal X\)</span> and <span class="math inline">\(k\in\mathcal K\)</span>.</p>
-<p>Let <span class="math inline">\(y\in\mathcal Y\)</span>, such that <span class="math inline">\(\langle \lambda,y\rangle &lt;0\)</span>. Then for any <span class="math inline">\(t&gt;0\)</span>, we have <span class="math inline">\(\langle \lambda,ty\rangle&lt;0\)</span>, which means <span class="math inline">\(ty\notin G(\bar x)+G&#39;(\bar x)\mathcal X-K\)</span>. This means <span class="math inline">\(G(\bar x)+G&#39;(\bar x)\mathcal X-K\)</span> cannot contain an open ball centered at origin.</p>
-<p><strong>Proposition</strong></p>
-<p>Suppose that <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, and <span class="math inline">\(G(\bar x)\in \mathcal K\)</span>. If <span class="math inline">\(\mathcal C\)</span> has a nonempty interior, then Robinson's CQ is equivalent to</p>
-<ol type="1">
-<li><span class="math inline">\(g&#39;(\bar x)\)</span> is onto and,</li>
-<li><span class="math inline">\(\exists d\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)d=0,h(\bar x)+h&#39;(\bar x)d\in \text{int}(\mathcal C)\)</span>.</li>
+<p>The following theorem is a property of positive operator that is analogous to a property of real numbers.</p>
+<p>==Theorem 4.6.6==</p>
+<p>Let <span class="math inline">\(A_1\le A_2\le \dotsm\le A_n\le \dotsm\)</span> be self-adjoint operators in a Hilbert space H such that <span class="math inline">\(A_nA_m=A_mA_n\)</span> for all $m,nN $. If B is a self-adjoint operator on H such that <span class="math inline">\(A_nB=BA_n\)</span> and <span class="math inline">\(A_n\le B\)</span> for all <span class="math inline">\(n\in N\)</span>, then there exists a self-adjoint operator A such that <span class="math display">\[
+\lim_{n\rightarrow \infty} A_nx=Ax\quad \forall x\in H\\
+A_n\le A\le B\quad \forall n\in N
+\]</span> ==Definition 4.6.2== (Square root)</p>
+<p>A square root of a positive operator is a self-adjoint operator B satisfying <span class="math inline">\(B^2=A\)</span>.</p>
+<p>==Theorem 4.6.7==</p>
+<p>Every positive operator A has a unique positive square root B. Moreover, B commutes with every operator commuting with A.</p>
+<p>==Definition 4.6.3== (Strictly positive operator)</p>
+<p>A self-adjoint operator is called strictly positive definite if <span class="math inline">\(&lt;Ax,x&gt;&gt;0\)</span> for all <span class="math inline">\(x\in H\)</span>, <span class="math inline">\(x\neq 0\)</span>.</p>
+<h2 id="projection-operators">4.7 Projection Operators</h2>
+<p>Theorem 3.9.2 states that if S is a closed subspace of a Hilbert space H, then for every <span class="math inline">\(x\in H\)</span>, there exists a unique element <span class="math inline">\(y\in S\)</span> such that <span class="math inline">\(x=y+z\)</span> and <span class="math inline">\(z\in S^{\perp}.\)</span> Thus, every closed subspace induces an operator on H which assigns to x that unique y.</p>
+<p>==Definition 4.7.1== (Orthogonal Projection Operator)</p>
+<p>Let S be a closed subspace of a Hilbert Space H. The operator P on H defined by <span class="math display">\[
+Px=y\quad if\quad x=y+z,y\in S, z\in S^\perp
+\]</span> is called the orthogonal projection operator onto S, or simply projection operator onto S. The vector y is called the projection of x onto S.</p>
+<p>==Definition 4.7.2== (Idempotent Operator)</p>
+<p>An operator T is called idempotent if <span class="math inline">\(T^2=T\)</span>.</p>
+<p>==Theorem 4.7.1==</p>
+<p>A bounded operator is a projection if and only if it is idempotent and self-adjoint.</p>
+<p>==Corollary 4.7.1==</p>
+<p>If P is a projection operator onto a subspace of a Hilbert Space H, then <span class="math inline">\(&lt;Px,x&gt;=||Px||^2\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
+<p>==Definition 4.7.3== (Orthogonality of Projection Operators) Two projection operator P and Q are called orthogonal if <span class="math inline">\(PQ=0\)</span>.</p>
+<p>==Theorem 4.7.2== Two projection operators <span class="math inline">\(P_R:H\rightarrow R\)</span> and <span class="math inline">\(P_S:H\rightarrow S\)</span> are orthogonal if and only if <span class="math inline">\(R\perp S\)</span>.</p>
+<p>==Theorem 4.7.3== The sum of two projection operators <span class="math inline">\(P_R\)</span> and <span class="math inline">\(P_S\)</span> is a projection operator if and only if <span class="math inline">\(P_RP_S=0\)</span>. In this case <span class="math inline">\(P_R+P_S=P_{R\oplus S}\)</span>.</p>
+<p>==Theorem 4.7.4== The product of two projection operators <span class="math inline">\(P_R\)</span> and <span class="math inline">\(P_S\)</span> is a projection operator if and only if <span class="math inline">\(P_R\)</span> and <span class="math inline">\(P_S\)</span> commute. In this case, <span class="math inline">\(P_RP_S=P_{R\cap S}\)</span>.</p>
+<p>==Theorem 4.7.5== Let R and S be two closed subspaces of a Hilbert Space H and let <span class="math inline">\(P_R\)</span> and <span class="math inline">\(P_S\)</span> be the respective projections. The following condition are equivalent:</p>
+<ol type="a">
+<li><p><span class="math inline">\(R\subset S\)</span></p></li>
+<li><p><span class="math inline">\(P_SP_R=P_R\)</span></p></li>
+<li><p><span class="math inline">\(P_RP_S=P_R\)</span></p></li>
+<li><p><span class="math inline">\(||P_Rx||\le ||P_Sx||\)</span> for all <span class="math inline">\(x\in H\)</span>.</p></li>
 </ol>
-<p>Proof.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Robinson’s CQ is saying that there exists <span class="math inline">\(\epsilon_1,\epsilon_2&gt;0\)</span>, for all <span class="math inline">\(y\in\mathbb R^m\)</span> such that <span class="math inline">\(||y||\le \epsilon_1\)</span> and for all <span class="math inline">\(z\in \mathcal V\)</span> such that <span class="math inline">\(||z||\le \epsilon_2\)</span>, such that there exists <span class="math inline">\(d\in\mathcal X\)</span> satisfying <span class="math display">\[
-y\in g(\bar x)+g&#39;(\bar x)d-\{0^m\},\\
-z\in h(\bar x)+h&#39;(\bar x)d-\mathcal C.
-\]</span> From the first equation, it is obvious to show that <span class="math inline">\(g&#39;(\bar x)\)</span> is onto. (Since <span class="math inline">\(g(\bar x)=0\)</span>, <span class="math inline">\(y\in g&#39;(\bar x)\mathcal X\)</span>)</p>
-<p>We can take <span class="math inline">\(y=0\)</span>, then we have <span class="math inline">\(d \in \text{null}(g&#39;(\bar x))\)</span>. Therefore, we have <span class="math display">\[
-z\in h(\bar x)+h&#39;(\bar x) \text{null}(g&#39;(\bar x))-\mathcal C.
-\]</span> Since <span class="math inline">\(\mathcal C\)</span> has nonempty interior, there exists <span class="math inline">\(d\in\mathcal X\)</span>, such that <span class="math inline">\(g&#39;(\bar x) d=0\)</span>, and then we have <span class="math display">\[
-h(\bar x)+h&#39;(\bar x)d\in\mathcal C+z\implies h(\bar x)+h&#39;(\bar x)d\in \text{int}(\mathcal C).
-\]</span> <span class="math inline">\(\implies\)</span></p>
-<p>The proposition is equivalent to <span class="math display">\[
-g&#39;(\bar x)\text{ is onto and }0\in \text{int}(h(\bar x)+h&#39;(\bar x)\text{Null}(g&#39;(\bar x))-\mathcal C).
-\]</span> Then there exists <span class="math inline">\(\epsilon &gt;0\)</span> such that the open ball <span class="math inline">\(B_\epsilon (0)\subset \text{int}(h(\bar x)+h&#39;(\bar x)\text{Null}(g&#39;(\bar x))-\mathcal C)\)</span>. <span class="math inline">\(g&#39;(\bar x)\)</span> is onto implies there exists <span class="math inline">\(M&gt;0\)</span> such that for each <span class="math inline">\(y\in\mathbb R^m\)</span>, there exists <span class="math inline">\(d_1\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)d_1=y\)</span> and <span class="math inline">\(||d_1||\le M||y||\)</span>.</p>
-<p>Assume there exists <span class="math inline">\(\epsilon_1,\epsilon_2&gt;0\)</span>, for all <span class="math inline">\(y\in\mathbb R^m\)</span> such that <span class="math inline">\(||y||\le \epsilon_1\)</span> and for all <span class="math inline">\(z\in \mathcal V\)</span> such that <span class="math inline">\(||z||\le \epsilon_2\)</span>. Then there exists <span class="math inline">\(d\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)d=y\)</span> and <span class="math inline">\(B_\epsilon (0)\subset \text{int}(h(\bar x)+h&#39;(\bar x)d-\mathcal C)\)</span> (This is the Robinson’s CQ) if and only if <span class="math inline">\(d_2=d-d_1\)</span> is such that <span class="math inline">\(g&#39;(\bar x)d_2=0\)</span>, and <span class="math display">\[
-z\in h(\bar x)+h&#39;(\bar x)(d_1+d_2)-\mathcal C \iff z-h&#39;(\bar x)d_1\in h(\bar x)+h&#39;(\bar x)d_2-\mathcal C.
-\]</span> The above condition can be checked easily by the following. Since we have <span class="math inline">\(||d_1||\le M||y||\)</span>, by choosing sufficient small <span class="math inline">\(\epsilon_1\)</span> and <span class="math inline">\(\epsilon_2\)</span>, we have <span class="math inline">\(B_\epsilon (0)\subset \text{int}(h(\bar x)+h&#39;(\bar x)\mathcal X-\mathcal C)\)</span>. Therefore, there exists <span class="math inline">\(\bar d\in\mathcal X\)</span> such that <span class="math inline">\(g&#39;(\bar x)\bar d=0\)</span> and <span class="math inline">\(z-h&#39;(\bar x)d_1\in h(\bar x)+h&#39;(\bar x)\bar d-\mathcal C\)</span>. Let <span class="math inline">\(d=\bar d+d_1\)</span>. Then Robinson’s CQ holds.</p>
-<h2 id="first-order-necessary-conditions">7.2 First order necessary conditions</h2>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(\bar x\)</span> be a locally optimal solution of (COP). Then the point <span class="math inline">\(d=0\)</span> is an optimal solution of the following problem <span class="math display">\[
-\quad \begin{array}{rCl}
-\min &amp; f&#39;(\bar x)d\\
-\text{subject to}&amp; d\in T_\mathcal F(\bar x),
-\end{array}
-\]</span> where <span class="math inline">\(\mathcal F=\{x\in\mathcal X\;|\; G(x)\in\mathcal K\}\)</span> is the feasible region of (COP).</p>
-<p>Proof.</p>
-<p>Let <span class="math inline">\(d\in T_\mathcal K(\bar x)\)</span>. By the definition of the tangent cone, there exists <span class="math inline">\(t_k\downarrow 0\)</span> and <span class="math inline">\(x^k=\bar x+t_kd+o(t_k)\)</span> such that <span class="math inline">\(x^k\in \mathcal F\)</span>. Since <span class="math inline">\(\bar x\)</span> is a locally optimal solution of (COP), it follows that <span class="math display">\[
-0\le \lim_{k\rightarrow \infty}\frac{f(x^k)-f(\bar x)}{t_k}=\lim_{k\rightarrow \infty}\frac{f(\bar x+t_kd+o(t_k))-f(\bar x)}{t_k}=f&#39;(\bar x)d.
-\]</span> This completes the proof.</p>
-<p>This proposition means when the point gets to the suboptimal point, there is no direction to reduce the value of the function. We check the following equation <span class="math display">\[
-f(x+d)\approx f(x)+f&#39;(x)d,
-\]</span> and we have <span class="math inline">\(\min_d f(x+d)=\min_d f&#39;(x)d\)</span>.</p>
-<p><strong>Lemma</strong> (IMPORTANT)</p>
-<p>If Robinson's CQ holds at a feasible point <span class="math inline">\(\bar x\)</span>, then there exists a constant <span class="math inline">\(c&gt;0\)</span> such that <span class="math display">\[
-\text{dist}(x,G^{-1}(\mathcal K+y))\le c\text{ dist}(G(x)-y,\mathcal K)
-\]</span> for all <span class="math inline">\((x,y)\)</span> in an open neighborhood of <span class="math inline">\((\bar x,0)\)</span>.</p>
-<ol type="1">
-<li>In particular, when <span class="math inline">\(y=0\)</span>, for all <span class="math inline">\(x\)</span> in a neighborhood of <span class="math inline">\(\bar x\)</span>, we have</li>
-</ol>
-<p><span class="math display">\[
-\text{dist}(x,\mathcal F)=O(\text{dist}(G(x),\mathcal K)).
-\]</span> 2. One has <span class="math display">\[
-   0\in \text{int}(G(x)-\mathcal K).
-   \]</span></p>
-<p>This lemma is very important because it can be used to measure the distance from the current point to the feasible point. For example, if we have the constraint <span class="math inline">\(Ax=b\)</span>, it is difficult to know the distance <span class="math inline">\(\text{dist}(x^c,\mathcal F)\)</span>, but it is easy to calculate <span class="math inline">\(||b-Ax^c||\)</span>. Since <span class="math inline">\(\text{dist}(x^c,\mathcal F)\)</span> is bounded by <span class="math inline">\(||b-Ax^c||\)</span>, we can use <span class="math inline">\(||b-Ax^c||\)</span> to estimate the distance.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(\bar x\)</span> be a locally optimal solution of COP. If Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>, then it holds that <span class="math display">\[
-T_\mathcal F(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_\mathcal K(G(\bar x))\}.
-\]</span> Hence <span class="math inline">\(d=0\)</span> is an optimal solution of the following problem, <span class="math display">\[
-\text{(LOCP)}\quad \min_{d\in\mathcal X}\{f&#39;(\bar x)d\;|\; G&#39;(\bar x)d\in T_{\mathcal K}(G(\bar x))\}.
-\]</span> Proof.</p>
-<p>Let <span class="math inline">\(S(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_\mathcal K(G(\bar x))\}\)</span>. We need to prove <span class="math inline">\(T_\mathcal F(\bar x)= S(\bar x)\)</span>.</p>
-<p>$$</p>
-<p>For any <span class="math inline">\(d\in T_\mathcal F(\bar x)\)</span>, there exists <span class="math inline">\(t_k\downarrow 0\)</span> and <span class="math inline">\(x^k=\bar x+t_kd+o(t_k)\)</span> such that <span class="math inline">\(x^k \in\mathcal F\)</span> (i.e. <span class="math inline">\(G(x^k)\in\mathcal K\)</span>). Then we have <span class="math inline">\(G(x^k)=G(\bar x+t_kd+o(t_k))=G(\bar x)+t_kG&#39;(\bar x)d+o(t_k)\in\mathcal K\)</span>. By using the definition of the tangent cone, we have <span class="math inline">\(d\in S(\bar x)\)</span>.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Let <span class="math inline">\(d\in S(\bar x)\)</span>. Then there exists <span class="math inline">\(t_k\downarrow 0\)</span> such that <span class="math inline">\(G(\bar x)+t_kG&#39;(\bar x)d+o(t_k)\in\mathcal K\)</span>. Thus by the previous lemma, there exists a constant <span class="math inline">\(M\)</span> such that <span class="math inline">\(\text{dist}(\bar x+t_kd,\mathcal F)\le M\text{dist}(G(\bar x+t_k d),\mathcal K)=M\text{dist}(G(\bar x)+t_kG&#39;(\bar x)d+o(t_k),\mathcal K)=o(t_k)\)</span>. Therefore <span class="math inline">\(d\in T_\mathcal F(\bar x)\)</span> and hence <span class="math inline">\(S(\bar x)\subset T_{\mathcal F}(\bar x)\)</span>.</p>
-<p><strong>Theorem</strong> (Main Theorem)</p>
-<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Then, <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (which means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span> <strong>if and only if</strong> Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>.</p>
-<p><span class="math inline">\(\implies\)</span></p>
-<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Suppose Robinson's CQ holds at <span class="math inline">\(\bar x\)</span>. We need to prove <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (which means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span>.</p>
-<p>Firstly, we define the set (which is actually derived from the KKT condition) <span class="math display">\[
-\bar N=\{s\in\mathcal X\;|\; s=\nabla G(\bar x)\mu,-\mu\in N_\mathcal K(G(\bar x))\}.
-\]</span> <span class="math inline">\(\bar N\)</span> is obvious a convex cone since the normal cone is always convex.</p>
-<p>Then we will show <span class="math inline">\(\bar N\)</span> is always closed. That is to show that for any <span class="math inline">\(z\in \text{cl}(\bar N)\)</span>, there exists <span class="math inline">\(\{z^k\}\subset \bar N\)</span>, such that <span class="math inline">\(z^k\rightarrow z\)</span>. For any sequence <span class="math inline">\(\{-\mu^k\}\subset N_\mathcal K(G(\bar x))\)</span>, we have <span class="math inline">\(\mu^k\rightarrow \mu\)</span> (converge) or <span class="math inline">\(\sigma^k\mu^k\rightarrow \mu\neq 0\)</span> (not converge), where <span class="math inline">\(\sigma^k = 1/||\mu_k||\rightarrow 0\)</span>. In both cases we have <span class="math inline">\(-\mu\in N_\mathcal K(G(\bar x))\)</span> since normal cone is closed. For the first case, <span class="math inline">\(\mu^k\rightarrow \mu\)</span>, we have <span class="math inline">\(z\in \bar N\)</span> since <span class="math inline">\(-\mu \in N_\mathcal K(G(\bar x))\)</span>. For the second case, we have <span class="math inline">\(\sigma ^k\mu^k\rightarrow\mu\neq 0\)</span>. We obtain from <span class="math inline">\(\sigma^k z^k=\nabla G(\bar x)\sigma^k \mu^k\)</span>. The left hand side is zero since <span class="math inline">\(\sigma^k\rightarrow 0\)</span> and <span class="math inline">\(z^k\rightarrow z\)</span>. Then we have <span class="math inline">\(0=\nabla G(\bar x)\mu\)</span>. We also have <span class="math inline">\(0\neq -\mu\in N_\mathcal K(G(\bar x))\)</span>, which contradicts that <span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))=\{0\}\)</span>. Therefore, we only have the first case, which means <span class="math inline">\(\bar N\)</span> is closed.</p>
-<p>Then we will show that <span class="math inline">\(\nabla f(\bar x)\in \bar N\)</span> by contradiction. Suppose <span class="math inline">\(\nabla f(\bar x)\notin \bar N\)</span>.Then we have <span class="math inline">\(\bar d=\Pi_\bar N(\nabla f(\bar x))-\nabla f(\bar x)\neq 0\)</span>. Then we have <span class="math inline">\(\bar d = \Pi_{\bar N^*}(\nabla f(\bar x))\)</span>. <span class="math display">\[
-0\le||\bar d||^2=\langle d,d\rangle=\langle\Pi_\bar N(\nabla f(\bar x))-\nabla f(\bar x),\Pi_{\bar N^*}(\nabla f(\bar x))\rangle=-f&#39;(\bar x)\bar d.
-\]</span> By the property of projection, we also have <span class="math display">\[
-\langle \bar d,s-\Pi_\bar N(\nabla f(\bar x))\rangle \ge 0,\forall s\in\bar N.
-\]</span> It follows that <span class="math display">\[
-\langle \bar d,\nabla G(\bar x)\mu-\Pi_\bar N(\nabla f(\bar x))\rangle \ge 0,\forall -\mu\in N_\mathcal K(G(\bar x))\iff\\
-\langle \bar d,\nabla G(\bar x)\mu-\bar d+\nabla f(\bar x)\rangle \ge 0,\forall -\mu\in N_\mathcal K(G(\bar x))\iff\\
-\langle \bar d,\nabla G(\bar x)\mu\rangle \ge ||\bar d||^2-\langle \bar d,\nabla f(\bar x)\rangle\ge 0,\forall -\mu\in N_\mathcal K(G(\bar x)).
-\]</span> Then <span class="math display">\[
-\langle G&#39;(\bar x)\bar d,-\mu\rangle \le 0\quad \forall -\mu\in N_\mathcal K(G(\bar x)),
-\]</span> which means <span class="math display">\[
-G&#39;(\bar x)\bar d\in (N_\mathcal K(G(\bar x)))^o = T_\mathcal K(G(\bar x)).
-\]</span> This yields a contradiction to the proposition.</p>
-<p>Similar method can be used to prove the closeness and boundedness of <span class="math inline">\(\mathcal M(\bar x)\)</span>.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>We will prove necessity by contradiction.</p>
-<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of COP. Suppose Robinson's CQ <strong>does not</strong> hold at <span class="math inline">\(\bar x\)</span>. Suppose <span class="math inline">\(\mathcal M(\bar x)\)</span> is a nonempty (which means you have a KKT point), convex compact subset of <span class="math inline">\(\mathcal Y\)</span>. We need to find contradiction.</p>
-<p>By the proposition, we know that Robinson’s CQ holds if and only if <span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))=\{0\}\)</span>. If Robinson’s CQ does not hold, which means <span class="math inline">\([G&#39;(\bar x)\mathcal X]^\perp\cap N_\mathcal K(G(\bar x))\neq\{0\}\)</span>. Then we have <span class="math inline">\((-\mu_0\neq0)\in N_\mathcal K(G(\bar x))\)</span> such that <span class="math inline">\(\nabla G(\bar x)\mu_0=0\)</span>. Since <span class="math inline">\(\mathcal M(\bar x)\)</span> is nonempty, let <span class="math inline">\(\mu\in\mathcal M(\bar x)\)</span>.</p>
-<p>Then for any <span class="math inline">\(t&gt;0\)</span>, we hope to prove <span class="math inline">\(\mu+t\mu_0\in \mathcal M(\bar x)\)</span>, which will cause the contradiction that <span class="math inline">\(\mathcal M(\bar x)\)</span> is bounded.</p>
-<p>It is easy to show that <span class="math display">\[
-\nabla f(\bar x)-\nabla G(\bar x)(\mu+t\mu_0)=0.
-\]</span> The only thing we need to show is <span class="math inline">\(-(\mu+t\mu_0)\in N_\mathcal K(G(\bar x))\)</span>. Since <span class="math inline">\(-(\mu+t\mu_0)=-(1+t)(\frac{1}{1+t}\mu+\frac{t}{1+t}\mu_0)\)</span> and <span class="math inline">\(N_\mathcal K(G(\bar x))\)</span> is a closed convex cone, we have <span class="math display">\[
--(\mu+t\mu_0)\in N_\mathcal K(G(\bar x)).
-\]</span> which means <span class="math inline">\(\mu+t\mu_0\in \mathcal M(\bar x)\)</span>.</p>
-<p>We get contradiction and therefore, Robinson’s CQ holds at <span class="math inline">\(\bar x\)</span>. This completes the proof.</p>
-<p>这个证明好精彩啊！！！</p>
-<p><strong>Proposition</strong> (Uniqueness of Lagrange Multipliers)</p>
-<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution to COP and <span class="math inline">\(\mathcal M(\bar x)\neq \emptyset\)</span>. Let <span class="math inline">\(\mu_0\in\mathcal M(\bar x)\)</span>.</p>
-<ol type="1">
-<li><p><span class="math inline">\(\mathcal M(\bar x)\)</span> is a singleton if and only if <span class="math display">\[
-[G&#39;(\bar x)\mathcal X]^\perp\cap R_D(-\mu_0)=\{0\}
-\]</span> where <span class="math inline">\(D=N_\mathcal K(G(\bar x))\)</span>.</p></li>
-<li><p>Then the following condition is sufficient for the uniqueness of <span class="math inline">\(\mu_0\)</span>, <span class="math display">\[
-[G&#39;(\bar x)\mathcal X]+(T_\mathcal K(G(\bar x))\cap[-\mu_0]^\perp)=\mathcal Y.
-\]</span></p></li>
-</ol>
-<h2 id="first-order-sufficient-conditions">7.3 First order sufficient conditions</h2>
-<p><strong>Definition</strong> (Critical cone)</p>
-<p>Let <span class="math inline">\(\bar x\in \mathcal F\)</span>. The critical cone of (COP) at <span class="math inline">\(\bar x\)</span> is defined by <span class="math display">\[
-\mathcal C(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_\mathcal K(G(\bar x)),f&#39;(\bar x)d\le 0\}.
-\]</span> Critical cone is the cone in which the direction is feasible (first condition) and can reduce the value of the target function (second condition).</p>
-<p><strong>Proposition</strong></p>
-<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of (COP). If <span class="math inline">\(\mathcal M(\bar x)\)</span> is nonempty, then <span class="math display">\[
-\mathcal C(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_\mathcal K(G(\bar x)),f&#39;(\bar x)d=0\},
-\]</span> and for any <span class="math inline">\(\mu\in\mathcal M(\bar x)\)</span>, it holds that <span class="math display">\[
-\mathcal C(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_{\mathcal K}(G(\bar x)),\langle \mu,G&#39;(\bar x)d\rangle=0 \}.
-\]</span> Proof.</p>
-<p>Let <span class="math inline">\(\mu \in \mathcal M(\bar x)\)</span>. Then <span class="math inline">\(\nabla f(\bar x)-\nabla G(\bar x)\mu=0\)</span> and <span class="math inline">\(-\mu\in N_\mathcal K (G(\bar x))\)</span>. It follows that <span class="math display">\[
-0=\langle \nabla f(\bar x)-\nabla G(\bar x)\mu,d\rangle =f&#39;(\bar x)d-\langle \mu,G&#39;(\bar x)d\rangle\;\forall d\in \mathcal X.
-\]</span> Let <span class="math inline">\(d\in\mathcal C(\bar x)\)</span>, i.e., <span class="math inline">\(f&#39;(\bar x)d\le 0\)</span> and <span class="math inline">\(G&#39;(\bar x)d\in T_\mathcal K(G(\bar x))\)</span>. Then we have <span class="math inline">\(\langle -\mu,G&#39;(\bar x)d\rangle\le 0\)</span> from the fact that <span class="math inline">\(N_\mathcal K(G(\bar x))=[T_\mathcal K(G(\bar x))]^o\)</span>.Therefore, we have <span class="math inline">\(f&#39;(\bar x)d = \langle \mu,G&#39;(\bar x)d\rangle= 0\)</span>.</p>
-<p><strong>Definition</strong></p>
-<p>For <span class="math inline">\(\bar x\in\mathcal F\)</span> and <span class="math inline">\(\mu\ge 0\)</span>, define <span class="math display">\[
-S_\eta(\bar x)=\{d\in\mathcal X\;|\; \text{dist} (G&#39;(\bar x)d,T_\mathcal K(G(\bar x)))\le \eta||d||\}.
-\]</span> In particular, for <span class="math inline">\(\eta = 0\)</span>, it coincides with the feasible set of (LCOP). <span class="math display">\[
-S_0(\bar x)=\{d\in\mathcal X\;|\; G&#39;(\bar x)d\in T_\mathcal K(G(\bar x))\}.
-\]</span> <strong>Definition</strong></p>
-<p>We say that <span class="math inline">\(\beta\)</span>-order growth condition holds at <span class="math inline">\(\bar x\)</span>, if there exist a neighborhood <span class="math inline">\(U\)</span> of <span class="math inline">\(\bar x\)</span> and a constant <span class="math inline">\(c&gt;0\)</span> such that, for all <span class="math inline">\(x\in\mathcal F\cap U\)</span>, the following inequality holds, <span class="math display">\[
-f(x)\ge f(\bar x)+c||x-\bar x||^\beta.
-\]</span> <strong>Proposition</strong></p>
-<p>Suppose <span class="math inline">\(\bar x\in\mathcal F\)</span>. If there exist constants <span class="math inline">\(\alpha &gt;0\)</span> and <span class="math inline">\(\beta &gt;0\)</span> such that <span class="math display">\[
-f&#39;(x)d\ge \alpha ||d||,\quad \forall d\in S_\eta(\bar x),
-\]</span> then the first order growth condition holds at <span class="math inline">\(\bar x\)</span>.</p>
-<p><strong>Theorem</strong></p>
-<p>Let <span class="math inline">\(\bar x\in \mathcal F\)</span>. Suppose that Robinson’s CQ holds at <span class="math inline">\(\bar x\)</span>. Then, there exists <span class="math inline">\(\alpha &gt;0\)</span> such that <span class="math display">\[
-f&#39;(x)d\ge \alpha ||d||,\quad \forall d\in S_\eta(\bar x)
-\]</span> holds for <span class="math inline">\(\eta=0\)</span> if and only if the first order growth condition <span class="math display">\[
-f(x)\ge f(\bar x)+c||x-\bar x||^\beta
-\]</span> holds.</p>
-<h2 id="second-order-necessary-conditions">7.4 Second order necessary conditions</h2>
-<p><strong>Definition</strong> (Second Oder Tangent Set)</p>
-<p>The (outer) second order tangent set to the set <span class="math inline">\(\mathcal D\subset \mathcal Y\)</span> at the point <span class="math inline">\(y\in \mathcal Y\)</span> and in the direction of <span class="math inline">\(d\in\mathcal D\)</span> is defined by <span class="math display">\[
-\mathcal T_\mathcal D^2(y,d)=\left\{w\in\mathcal Y\;\Bigg|\; \exists t_k\downarrow 0,\text{dist}\left(y+t_kd+\frac{1}{2}t_k^2 w,\mathcal D\right)=o(t_k^2)\right\}.
-\]</span> Note that <span class="math inline">\(\mathcal T_\mathcal D^2 (y,d)\)</span> may not be convex even if <span class="math inline">\(\mathcal D\)</span> is convex.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(\bar x\in\mathcal F\)</span>. Suppose that Robinson’s CQ holds at <span class="math inline">\(\bar x\)</span>. Then, for <span class="math inline">\(d\in\mathcal X\)</span>, one has <span class="math display">\[
-\mathcal T_\mathcal F^2(\bar x,d)=G&#39;(\bar x)^{-1} \left(\mathcal T_\mathcal K^2 (G(\bar x),G&#39;(\bar x)d)-G&#39;&#39;(\bar x)(d,d)\right).
-\]</span> Note that the above expression is equivalent to <span class="math display">\[
-\mathcal T_\mathcal F^2(\bar x,d)=\left\{w\in\mathcal X\;|\; G&#39;(\bar x)w+G&#39;&#39;(\bar x)(d,d)\in\mathcal T_\mathcal K^2(G(\bar x),G&#39;(\bar x)d)\right\}.
-\]</span></p>
-<p><strong>Proposition</strong></p>
-<p>Suppose that <span class="math inline">\(\bar x\)</span> is a locally optimal solution of (COP). If <span class="math inline">\(f&#39;(x)d=0\)</span>, then we have <span class="math display">\[
-f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\mathcal T_{\mathcal F}^2(\bar x,d).
-\]</span> Consider the following optimization problem, <span class="math display">\[
-\text{(SLCOP)}\quad \begin{array}{rCl}
-\min &amp; f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle\\
-\text{subject to}&amp; G&#39;(\bar x)w+G&#39;&#39;(\bar x)(d,d)\in\mathcal T_\mathcal K^2(G(\bar x),G&#39;(\bar x)).
-\end{array}
-\]</span> This is considered as the strong linearized problem. This problem is generalized not convex.</p>
+<h2 id="compact-operators">4.8 Compact Operators</h2>
 
         
       
@@ -555,7 +394,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -569,7 +408,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-title-link" itemprop="url">7. Nonlinear conic programming (1)</a>
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -584,7 +423,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
                 
               
 
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
             </span>
           
             
@@ -595,7 +434,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-13 10:18:24" itemprop="dateModified" datetime="2019-11-13T10:18:24+08:00">2019-11-13</time>
+                <time title="Modified: 2019-07-07 23:51:33" itemprop="dateModified" datetime="2019-07-07T23:51:33+08:00">2019-07-07</time>
               </span>
             
           
@@ -605,7 +444,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
 
                 
                 
@@ -614,7 +453,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
           
 
           
-            <span id="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (1)" title="Views">
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -632,7 +471,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -646,288 +485,88 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="nonlinear-conic-programming">7. Nonlinear Conic Programming</h1>
-<p>We consider the following optimization problem, <span class="math display">\[
-\text{(OP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; g(x)=0\\
-&amp;h(x)\in \mathcal C,
-\end{array}
-\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,g:\mathcal X\rightarrow \mathcal U\)</span>, and <span class="math inline">\(h:\mathcal X\rightarrow \mathcal V\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X,\mathcal U\)</span> and <span class="math inline">\(\mathcal V\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induced norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\subseteq \mathcal V\)</span> is a closed convex set in <span class="math inline">\(\mathcal V\)</span>.</p>
-<p>Let <span class="math inline">\(\mathcal Y=\mathcal U\times \mathcal V\)</span>, <span class="math inline">\(\mathcal K=\{0^\mathcal U\}\times \mathcal C\subset \mathcal Y\)</span>. Define <span class="math inline">\(G:\mathcal X\rightarrow \mathcal Y\)</span> by <span class="math display">\[
-G(X)=(g(X),h(X)),\quad X\in\mathcal X.
-\]</span> The problem can be written as the following compact form, <span class="math display">\[
-\text{(COP)}\quad \begin{array}{rCl}
-\min &amp; f(X)\\
-\text{subject to}&amp; G(X)\in\mathcal K.
-\end{array}
-\]</span> Define the Lagrangian function <span class="math inline">\(L:\mathcal X\times \mathcal Y\rightarrow \mathbb R\)</span> for (COP) by <span class="math display">\[
-L(X,\mu)=f(X)-\langle \mu, G(X)\rangle,\quad X\in\mathcal X,\mu\in\mathcal Y.
-\]</span> There is no constraint on <span class="math inline">\(\mu\)</span> for the general Lagrangian function. Therefore, here is <span class="math inline">\(y\in\mathcal Y\)</span>. We will give further explanation in the later.</p>
-<p>The <strong>Lagrangian dual function</strong> is defined by <span class="math display">\[
-\theta(\mu)=\inf\left\{L(X,\mu )\;|\; X\in\mathcal X\right\},
-\]</span> which is an unconstrained function.</p>
-<p>The dual problem is <span class="math display">\[
-\max \{\theta(\mu)\;|\; \mu \in\mathcal K^*\},
-\]</span> where <span class="math inline">\(\mathcal K^* =\mathcal U\times \mathcal C^*\)</span> is the dual cone of <span class="math inline">\(\mathcal K\)</span>. Note that <span class="math inline">\((\{0^\mathcal U\})^*=\mathcal U\)</span> and <span class="math inline">\(\mathbb S_+^n\)</span> is <strong>self-dual</strong>.</p>
-<p>We can see in the conic programming, we only consider <span class="math inline">\(\mu\in \mathcal K^*\)</span> in the dual problem. However, if needed, we can also put this constraint to the Lagrangian dual function and Lagrangian function like what we usually do in the basic nonlinear programming.</p>
-<p>We also define the Lagrangian function in the conic programming as <span class="math inline">\(L(x,\mu)=f(x)\textbf{ minus } \langle \mu,G(x)\rangle\)</span> <strong>instead of plus</strong>. This is for convenience because the cone is usually defined as “positive”, which means <span class="math inline">\(h(x)\succeq 0\)</span> in the conic programming <strong>instead of</strong> <span class="math inline">\(h(x)\le 0\)</span> in the basic nonlinear programming is the common case.</p>
-<p><strong>Example</strong></p>
-<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb R^q\)</span> and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
-\text{(NLP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; g(x)=0\\
-&amp;h(x)\ge 0.
-\end{array}
-\]</span> If we denote <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb R^n_+\)</span>, there exists <span class="math inline">\(\mu\in\mathbb R^m\times \mathbb R^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
-L(x,\mu)=f(x)-\langle \mu,G(x)\rangle.
-\]</span> The Lagrange dual function is defined as <span class="math display">\[
-\theta(\mu)=\min_x L(x,\mu)=\min_x\left(f(x)-\langle\mu,G(x)\rangle\right),\quad \mu\in\mathbb R^m\times \mathbb R^n.
-\]</span> Since <span class="math inline">\(\left(\mathbb R^n_+\right)^*=\mathbb R^n_+\)</span>, the Lagrange dual problem is defined as <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\min &amp; \theta (\mu)\\
-\text{subject to}&amp; \mu\in\mathcal K^*=\mathbb R^n\times \mathbb R^n_+.
-\end{array}
-\]</span> <strong>Example</strong> (semidefinite linear programming)</p>
-<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb S^n\)</span>, and <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(g(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(h(X)=X\)</span> and <span class="math inline">\(\mathcal C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
-\text{(SDP)}\quad \begin{array}{rCl}
-\min &amp; \langle C,X\rangle\\
-\text{subject to}&amp; \mathcal A(X)-b=0\\
-&amp;X\succeq 0(X\in\mathbb S^n_+),
-\end{array}
-\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
-\mathcal A(X)=
-\begin{bmatrix}
-\langle A_1,X\rangle \\ \vdots \\
-\langle A_m,X\rangle
-\end{bmatrix},\quad 
-X\in\mathbb S^n,
-\]</span> where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
-\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
-\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
-\begin{array}{rcl}
-\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
-&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
-&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j, \\
-\mathbf 1^T\mathcal A^*yX \mathbf 1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \mathbf 1^TA_iX\mathbf 1\\
-&amp;=&amp; \mathbf 1^T\displaystyle\sum_{i=1}^m y_i A_iX\mathbf 1,
-\end{array}
-\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
-<p>We have the Lagrange function, <span class="math display">\[
-\begin{array}{rcl}
-L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
-&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
-\end{array}
-\]</span> Then <span class="math display">\[
-\begin{array}{rcl}
-\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
-&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
-&amp;=&amp; 
-\begin{cases}
-\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
--\infty &amp; \text{otherwise.}
-\end{cases}
-\end{array}
-\]</span> Therefore, the dual problem is given by, <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \langle y,b\rangle\\
-\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
-&amp;Z\succeq 0.
-\end{array}
-\]</span> Also, we can consider the compact form. If we define <span class="math inline">\(G(X)=(\mathcal A(X)-b, X)\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S^n_+\)</span>, then we have <span class="math display">\[
-\text{(SDP)}\quad \begin{array}{rCl}
-\min &amp; f(X)=\langle C,X\rangle\\
-\text{subject to}&amp; G(X)\in\mathcal K.
-\end{array}
-\]</span> Then there exists <span class="math inline">\(\mu=(y,Z)\in\mathbb R^n\times \mathbb S^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
-\begin{array}{rcl}
-L(X,\mu)=L(X,y,Z)&amp;=&amp;f(X)-\langle \mu, G(X)\rangle\\
-&amp;=&amp;\langle C,X\rangle-\langle y,\mathcal A(X)-b\rangle-\langle  Z,X\rangle\\
-&amp;=&amp;\langle C,X\rangle-\langle \mathcal A^*(y), X\rangle+\langle y,b\rangle-\langle  Z,X\rangle\\
-&amp;=&amp;\langle C-\mathcal A^*(y)-Z,X\rangle+\langle y,b\rangle.
-\end{array}
-\]</span> The we have the Lagrange dual function, <span class="math display">\[
-\begin{array}{rcl}
-\theta(y,Z)
-&amp;=&amp; 
-\begin{cases}
-\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
--\infty &amp; \text{otherwise.}
-\end{cases}
-\end{array}
-\]</span> Then the Lagrange dual problem is <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \theta(y,Z)\\
-\text{subject to}&amp; (y,Z)\in\mathcal K^*=\mathbb R^n\times \mathbb S^n_+,
-\end{array}
-\]</span> that is <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \langle y,b\rangle\\
-\text{subject to}&amp; Z\in\mathbb S^n_+\\
-&amp;C-\mathcal A^*y-Z=0.
-\end{array}
-\]</span> <strong>Example</strong></p>
-<p>Let <span class="math inline">\(G\in\mathbb R^{p\times n}\)</span> and <span class="math inline">\(H\in\mathbb R^{q\times n}\)</span> for the linear map <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^{p\times q}\)</span> defined by <span class="math inline">\(\mathcal A(X)=GXH^T\)</span>. Show that the adjoint map <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q} \rightarrow \mathbb S^n\)</span> is given by <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>.</p>
-<p>Proof. <span class="math display">\[
-\begin{array}{rcl}
-\langle \mathcal A(X),Y\rangle&amp;=&amp; \langle GXH^T,Y\rangle\\
-&amp;=&amp; \text{tr}(HXG^TY)\\
-&amp;=&amp; \text{tr}(XG^TYH)\\
-&amp;=&amp; \frac{1}{2}\text{tr}\left(X(G^TYH+H^TY^TG)\right)\\
-&amp;=&amp;\langle X,\frac{1}{2}(G^TYH+H^TY^TG)\rangle.
-\end{array}
-\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>. (<strong>ATTENTION</strong>: <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q}\rightarrow \mathbb S^n\)</span>)</p>
-<p><strong>Example</strong> (semidefinite programming least squares problem)</p>
-<p>If <span class="math inline">\(f(x)=\frac{1}{2}||X-B||^2\)</span> where <span class="math inline">\(B\in \mathbb S^n\)</span> is a given matrix. <span class="math display">\[
-\text{(SDPLS)}\quad \begin{array}{rCl}
-\min &amp; \frac{1}{2}||X-B||^2\\
-\text{subject to}&amp; \mathcal A(X)=b\\
-&amp;X\succeq 0.
-\end{array}
-\]</span> In particular, when <span class="math inline">\(\mathcal A(X)=\text{diag} (X)\)</span> and <span class="math inline">\(b=e\)</span>, we get the nearest correlation matrix problem.</p>
-<p>The problem can be denoted as <span class="math display">\[
-\text{(SDPLS)}\quad \begin{array}{rCl}
-\min &amp; \frac{1}{2}||X-B||^2\\
-\text{subject to}&amp; G(X)\in \mathcal K,
-\end{array}
-\]</span> where <span class="math inline">\(G(X)=(\mathcal A(X)-b,X)\)</span> and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S_+^n\)</span>.</p>
-<p>For <span class="math inline">\(X\in \mathbb S^n\)</span>, <span class="math inline">\(\mu = (y,Z)\in\mathcal Y=\mathbb R^m\times \mathbb S^n\)</span>, <span class="math display">\[
-\begin{array}{rcl}
-L(X,y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle y,b-\mathcal A(X)\rangle -\langle Z,X\rangle\\
-&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2+\frac{1}{2}||X||^2-\langle \mathcal A^*(y)+Z+B,X\rangle,
-\end{array}
-\]</span> Thus <span class="math inline">\(\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\)</span> can be found by setting, <span class="math display">\[
-\nabla _XL(X,y,Z)=X-(B+Z+\mathcal A^*(y))=0\implies X=B+Z+\mathcal A^*(y).
-\]</span> Then we have <span class="math display">\[
-\begin{array}{rcl}
-\theta (y,Z)&amp;=&amp;\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\\
-&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2.
-\end{array}
-\]</span> The dual problem is given by <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
-\text{subject to}&amp; (y,Z)\in\mathcal K^*.
-\end{array}
-\]</span> Then we have <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\min &amp; -\langle y,b\rangle+\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
-\text{subject to}&amp; y\in\mathbb R^n\\
-&amp; Z\in \mathbb S_+^n.
-\end{array}
-\]</span> We claim <strong>(This claim is very useful)</strong> <span class="math display">\[
-G=\Pi_{\mathbb S_+^n} (G)-\Pi_{\mathbb S_+^n} (-G).
-\]</span></p>
-<p>This property can be easily checked by the property of proximal operator. Since we have <span class="math inline">\(\delta_K^*(x)=\delta_{K^*}(-x)\)</span>, let us check the proximal. <span class="math display">\[
-\begin{array}{rcl}
-P_{\delta_K^*}(y)&amp;=&amp;\arg\min_x\{\delta_K^*(x)+\frac{1}{2}||x-y||^2\}\\
-&amp;=&amp;\arg\min_x\{\delta_{K^*}(-x)+\frac{1}{2}||x-y||^2\}\\
-&amp;=&amp;-\arg\min_x\{\delta_{K^*}(x)+\frac{1}{2}||x-(-y)||^2\}\\
-&amp;=&amp; -\Pi_{\delta_{K^*}}(-y).
-\end{array}
-\]</span> Therefore <span class="math display">\[
-\begin{array}{rcl}
-G&amp;=&amp;P_{\delta_{\mathbb S^n_+}}(G)+P_{(\delta_{\mathbb S^n_+})^*}(G)\\
-&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{(\mathbb S^n_+)^*}(-G)\\
-&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{\mathbb S^n_+}(-G).
-\end{array}
-\]</span></p>
-<p>Then by using this claim, we have <span class="math display">\[
-\begin{array}{l}
-\min\left\{||B+Z+\mathcal A^*(y)||\;|\; Z\in\ \mathbb S_+^n\right\}
-\\\quad =||B+\mathcal A^*(y)+\Pi_{\mathcal S_+^n}(-(B+\mathcal A^*(y)))||
-\\\quad=||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||.
-\end{array}
-\]</span> Therefore, <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\min &amp; \phi(y)=-\langle y,b\rangle+\frac{1}{2}||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||^2\\
-\text{subject to}&amp; y\in\mathbb R^n.
-\end{array}
-\]</span> In this case, the dual problem is unconstrained problem. Therefore, we can solve it by finding the root of the gradient, <span class="math display">\[
-0=\nabla \phi(y)=-b+\mathcal A \Pi_{\mathbb S_+^n}(B+\mathcal A^* (y)).
-\]</span> <strong>Example</strong> (Sparse regression problem) <span class="math display">\[
-\min\{\frac{1}{2}||Ax-b||^2+\lambda ||x||_1\;|\; x\in\mathbb R^n\},
-\]</span> where <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb R^m\)</span> are given data. Let <span class="math inline">\(u=b-Ax\)</span>, then we have <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(u)+g(x)\\
-\text{subject to}&amp; u+Ax=b,
-\end{array}
-\]</span> where <span class="math inline">\(f(u)=\frac{1}{2}||u||^2\)</span> and <span class="math inline">\(g(x)=\lambda ||x||_1\)</span>.</p>
-<p>The Lagrangian function is given as <span class="math display">\[
-\begin{array}{rcl}
-L(u,x,\xi)&amp;=&amp;f(u)+g(x)+\langle \xi,b-u-Ax\rangle\\
-&amp;=&amp; f(u)-\langle \xi,u\rangle +g(x)-\langle A^T\xi,x\rangle +\langle \xi,b\rangle.
-\end{array}
-\]</span> The Lagrangian dual function is given as <span class="math display">\[
-\theta(\xi)=\langle \xi,b\rangle+\min_u(f(u)-\langle \xi,u\rangle)+\min_x(g(x)-\langle A^T\xi,x\rangle)\\
-=\langle \xi,b\rangle-\max_u(\langle \xi,u\rangle-f(u))-\max_x(\langle A^T\xi,x\rangle-g(x)).
-\]</span> Both of the last two terms are conjugate functions. Therefore we have <span class="math display">\[
-\theta(\xi)=\langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(A^T\xi).
-\]</span> Therefore, the dual problem is <span class="math display">\[
--\min -\langle\xi,b\rangle +\frac{1}{2}||\xi||^2+\delta_{B_\lambda}(A^T\xi).
-\]</span> <strong>Definition</strong> (Lagrange Multipliers) <span class="math display">\[
-L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
-\]</span> where <span class="math inline">\(L\)</span> be the Lagrangian function for (COP). Assume that <span class="math inline">\(f\)</span> and <span class="math inline">\(G\)</span> are continuously differentiable. We say that <span class="math inline">\(\bar \mu \in\mathcal Y\)</span> is a Lagrange multiplier of (COP) at a feasible point <span class="math inline">\(\bar x\)</span>, if it satisfies the KKT condition, <span class="math display">\[
-0=\nabla _xL(\bar x,\bar \mu)=\nabla f(\bar x)-\nabla G(\bar x)\bar \mu,\quad 0\in \bar \mu+N_\mathcal K(G(\bar x)),
-\]</span> where <span class="math inline">\(N_\mathcal K (G(\bar x))\)</span> is the normal cone of <span class="math inline">\(\mathcal K\)</span> at <span class="math inline">\(G(\bar x)\in \mathcal Y\)</span>. We denote the set of all Lagrange multipliers at <span class="math inline">\(\bar x\)</span> as <span class="math inline">\(\mathcal M(\bar x)\)</span>. We call the pair <span class="math inline">\((\bar x,\bar \mu)\)</span> a KKT point.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li><p>If <span class="math inline">\(\mathcal C\)</span> is a closed convex cone, then <span class="math inline">\(\mathcal K = 0^{\mathcal U}\times \mathcal C\)</span> is a closed convex cone. <span class="math display">\[
-\begin{array}{rcl}
--\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle -\bar \mu,d-G(\bar x)\rangle \le 0,&amp;&amp;\forall d\in\mathcal K
-\end{array}
-\]</span> We choose <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=G(\bar x)\)</span>. Then we have <span class="math display">\[
-\begin{array}{rcl}
--\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\langle \bar \mu,d\rangle\ge 0,&amp;\forall d\in\mathcal K\\
-&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\bar \mu\in \mathcal K^*.
-\end{array}
-\]</span> In this case, the KKT conditions can be written as <span class="math display">\[
-(G(\bar x)\in\mathcal K)\perp (\bar \mu \in\mathcal K^*).
-\]</span></p></li>
-<li><p>The set of multipliers <span class="math inline">\(\mathcal M(\bar x)\)</span> may be <strong>empty</strong> or <strong>unbounded</strong>.</p></li>
+          <h2 id="adjoint-and-self-adjoint-operators">4.4 Adjoint and Self-Adjoint Operators</h2>
+<p>Let A be a bounded operator on a Hilbert Space H. For every fixed <span class="math inline">\(x_0\in H\)</span>, the functional <span class="math inline">\(f\)</span> defined on H by <span class="math display">\[
+f(x)=&lt;Ax,x_0&gt;
+\]</span> is bounded linear functional on H. Thus, by Riesz Representation Theorem, there exists unique <span class="math inline">\(y_0\in H\)</span> such that <span class="math inline">\(f(x)=&lt;x,y_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>, or, equivalently, <span class="math inline">\(&lt;Ax,x_0&gt;=&lt;x,y_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>. If we denote by <span class="math inline">\(A^*\)</span> the operator which to every <span class="math inline">\(x_0\in H\)</span> assigns that unique <span class="math inline">\(y_0\)</span>, then we have<span class="math inline">\(&lt;Ax,y&gt;=&lt;x,A^*y&gt;\)</span> for all <span class="math inline">\(x,y\in H\)</span>.</p>
+<p>==Definition 4.4.1== (Adjoint Operator)</p>
+<p>Let A be a bounded operator on a Hilbert Space H. The operator <span class="math inline">\(A^*:H\rightarrow H\)</span> defined by <span class="math display">\[
+&lt;Ax,y&gt;=&lt;x,A^*y&gt;\quad \forall x,y\in E
+\]</span> is called the adjoint operator of A.</p>
+<p>The following properties are direct consequences of the above definition. <span class="math display">\[
+(A+B)^*=A^*+B^*\\
+(\alpha A)^*=\bar \alpha A^*\\
+(A^*)^*=A\\
+\mathscr J^*=\mathscr J\\
+(AB)^*=B^*A^*
+\]</span> for arbitrary operators A and B and scalar <span class="math inline">\(\alpha\)</span>.</p>
+<p>==Theorem 4.4.1==</p>
+<p>The adjoint operator <span class="math inline">\(A^*\)</span> of a bounded operator A is bounded. Moreover, we have <span class="math inline">\(||A||=||A^*||\)</span> and <span class="math inline">\(||A^*A||=||A||^2\)</span></p>
+<p>In general, <span class="math inline">\(A\)</span> and <span class="math inline">\(A^*\)</span> need not be equal. Operators for which <span class="math inline">\(A=A^*\)</span> are of special interest.</p>
+<p>==Definition 4.4.2== (Self-adjoint Operator)</p>
+<p>If <span class="math inline">\(A^*=A\)</span>, i.e. <span class="math inline">\(&lt;Ax,y&gt;=&lt;x,Ay&gt;\)</span> for all <span class="math inline">\(x,y \in H\)</span>, then <span class="math inline">\(A\)</span> is called self-adjoint (or Hermitian).</p>
+<p>==Theorem 4.4.2==</p>
+<p>Let A be a bounded operator on a Hilbert Space H. The operator <span class="math inline">\(T_1=A^*A\)</span> and <span class="math inline">\(T_2=A+A^*\)</span> are self-adjoint.</p>
+<p>==Theorem 4.4.3==</p>
+<p>The product of two self-adjoint operators is self-adjoint if and only if the operators are commute.</p>
+<p>==Corollary 4.4.1==</p>
+<p>If A is self-adjoint, then so is any polynomial of A. <span class="math display">\[
+\alpha_n A^n+\dotsm+\alpha_1 A+\alpha_0\mathscr J
+\]</span> with real coefficients <span class="math inline">\(\alpha_n,\dotsm,\alpha_0\)</span>.</p>
+<p>In the definition of the adjoint operator of A we have assumed that the domain of A is the entire space H. Then the existence and uniqueness of the adjoint operator <span class="math inline">\(A^*\)</span> can be guaranteed by the Riesz Representation Theorem. In practice, we often deal with the operators defined on a proper subspace of H, for example, the differential operator. In such case, the adjoint operator can be defined as follows.</p>
+<p>Let <span class="math inline">\(A:\mathscr D(A)\rightarrow H\)</span> and <span class="math inline">\(B:\mathscr D(B)\rightarrow H\)</span> be operators, <span class="math inline">\(\mathscr D(A),\mathscr D(B)\subset H\)</span>. Without loss of generality, we can assume that <span class="math inline">\(\mathscr D(A)\)</span> and <span class="math inline">\(\mathscr D(B)\)</span> are vector spaces. Then B is called an adjoint operator of A if <span class="math display">\[
+&lt;Ax,y&gt;=&lt;x,By&gt;\quad\forall x\in\mathscr D(A),y\in\mathscr D(B)
+\]</span> In this case, an adjoint operator need not be unique. It can be proved that if <span class="math inline">\(\mathscr D(A)\)</span> is dense in H, the adjoint is unique. Operators defined on proper subspaces of Hilbert space will be discussed in more detail in section 4.12.</p>
+<p>==Theorem 4.4.5==</p>
+<p>Let T be a self-adjoint operator on a Hilbert Space H. Then <span class="math display">\[
+||T||=\sup_{||x||=1} |&lt;Tx,x&gt;|
+\]</span> ==Definition 4.4.3== (Anti-Hermitian Operator)</p>
+<p>An operator A is called anti-Hermitian if <span class="math inline">\(A=-A^*\)</span>.</p>
+<h2 id="invertible-normal-isometric-and-unitary-operators">4.5 Invertible, Normal, Isometric, and Unitary Operators</h2>
+<p>==Definition 4.5.1== (Inverse Operator)</p>
+<p>Let A be an operator defined on a vector space of E. An operator B defined on <span class="math inline">\(\mathscr R(A)\)</span> is called inverse of A if <span class="math inline">\(ABx=x\)</span> for all <span class="math inline">\(x\in \mathscr R(A)\)</span> and <span class="math inline">\(BAx=x\)</span> for all <span class="math inline">\(x\in \mathscr D(A)\)</span>. An operator which has an inverse is called invertible. The inverse of A will be denoted as <span class="math inline">\(A^{-1}\)</span>.</p>
+<p>If an operator has an inverse, then it is unique. Suppose <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> are inverses of A, then <span class="math display">\[
+B_1=B_1\mathscr J=B_1AB_2=\mathscr JB_2=B_2
+\]</span> Note also that <span class="math display">\[
+\mathscr D(A^{-1})=\mathscr R(A) \quad and\quad \mathscr R(A^{-1})=\mathscr D(A)
+\]</span> ==Theorem 4.5.1==</p>
+<ol type="a">
+<li><p>The inverse of a linear operator is a linear operator</p></li>
+<li><p>An operator A is invertible if and only if <span class="math inline">\(Ax=0\)</span> implies <span class="math inline">\(x=0\)</span></p></li>
+<li><p>If an operator A is invertible and vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span> are linearly independent, then <span class="math inline">\(Ax_1,Ax_2,\dotsm,Ax_n\)</span> are linearly independent.</p></li>
+<li><p>If operators A and B are invertible, then operator AB is invertible and we have <span class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span></p></li>
 </ol>
-<p><strong>Example</strong></p>
-<p>For basic NLP, let <span class="math inline">\(\bar \mu=(\lambda,\rho)\)</span>, and <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span>, and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, we have KKT conditions, <span class="math display">\[
-\begin{array}{rcl}
-\nabla f(\bar x)-\nabla g(\bar x)\lambda -\nabla h(\bar x)\rho&amp;=&amp;0\\
-G(\bar x)=(g(\bar x),h(\bar x))&amp;\in&amp; \mathcal K\\
-\langle h(\bar x),\rho\rangle &amp;=&amp;0\\
-\rho \in \mathcal C^*&amp;=&amp;\mathbb R_+^p.
-\end{array}
-\]</span> <strong>Example</strong></p>
-<p>Given <span class="math inline">\(B\in\mathbb S^n\)</span>, consider the doubly nonnegative projection problem, <span class="math display">\[
-\min \left\{\frac{1}{2}||X-B||^2\;|\; X\in\mathbb S_+^n\cap \mathcal N^n\right\}.
-\]</span> The above problem can be rewritten as <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\min &amp; f(X)=\frac{1}{2}||X-B||^2\\
-\text{subject to}&amp; G(X)=(X,X)\in\mathcal K=\mathbb S_+^n\times \mathcal N^n.
-\end{array}
-\]</span> The Lagrange function is for <span class="math inline">\(\mu=(Y,Z) \in \mathcal Y=\mathbb S^n\times \mathbb S^n\)</span>, <span class="math display">\[
-\begin{array}{rcl}
-L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
-&amp;=&amp;\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle.
-\end{array}
-\]</span> The Lagrange dual function is <span class="math display">\[
-\begin{array}{rcl}
-\theta(\mu)=\theta(Y,Z)&amp;=&amp;\min_{X\in\mathbb S^n} L(X,\mu)\\
-&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle\right)\\
-&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X||^2-\langle B+Y+Z,X\rangle+\frac{1}{2}||B||^2\right)\\
-&amp;=&amp;\frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right).
-\end{array}
-\]</span></p>
-<p>Therefore the dual problem is <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right)\\
-\text{subject to}&amp; (Y,Z)\in\mathcal K^*=\mathbb S^n_+\times  \mathcal N^n.
-\end{array}
-\]</span> Therefore, the KKT conditions are given as <span class="math display">\[
-0=\nabla _xL(\bar X,\bar Y,\bar Z)=\nabla f(\bar X)-\langle\nabla G(\bar X),(\bar Y,\bar Z)\rangle\\
-\mathcal K\ni G(\bar X)\perp (\bar Y,\bar Z) \in \mathcal K^*.
-\]</span> That is <span class="math display">\[
-\bar X- B-\bar Y-\bar Z=0\\
-\langle \bar X,\bar Y\rangle+\langle \bar X,\bar Z\rangle=0\\ 
-\bar X\in \mathbb S^n_+\cap \mathcal N^n\\
-(\bar Y,\bar Z)\in\mathbb S^n_+\times\mathcal N^n.
-\]</span></p>
+<p>It follows from (c) that if E is finite dimensional vector space and A is linear invertible operator on E, then <span class="math inline">\(\mathscr R(A)=E\)</span>. As the following example shows, in infinite dimensional vector space, it is not necessarily true.</p>
+<p>==Example 4.5.1== Let <span class="math inline">\(E=l^2\)</span>. Define an operator A on E by <span class="math display">\[
+A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
+\]</span> Clearly, this is a linear invertible operator on <span class="math inline">\(l^2\)</span> whose range is proper subspace of <span class="math inline">\(l^2\)</span>.</p>
+<p><strong>Invertible of a bounded operator is not necessarily bounded.</strong></p>
+<p>==Theorem 4.5.2==</p>
+<p>Let A be a bounded operator on a Hilbert space H such that <span class="math inline">\(\mathscr R(A)=H\)</span>. If A has a bounded inverses, then the adjoint <span class="math inline">\(A^*\)</span> is invertible and <span class="math inline">\((A^*)^{-1}=(A^{-1})^*\)</span>.</p>
+<p>==Corollary 4.5.1==</p>
+<p>If a bounded self-adjoint operator A has bounded inverse <span class="math inline">\(A^{-1}\)</span>, then <span class="math inline">\(A^{-1}\)</span> is self-adjoint.</p>
+<p>==Definition 4.5.2== (Normal Operator)</p>
+<p>A bounded operator <span class="math inline">\(T\)</span> is called a normal operator if it commutes with its adjoint. i.e. <span class="math inline">\(TT^*=T^*T\)</span>.</p>
+<p>==Theorem 4.5.3==</p>
+<p>A bounded operator T is normal if and only if <span class="math inline">\(||Tx||=||T^*x||\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
+<p>==Theorem 4.5.4==</p>
+<p>If <span class="math inline">\(A\)</span> is normal, then <span class="math inline">\((\alpha \mathscr J-A)\)</span> is normal for any <span class="math inline">\(\alpha \in C\)</span>.</p>
+<p>==Theorem 4.5.5== Let T be a bounded operator on a Hilbert space H and let A and B be self-adjoint operators on H such that <span class="math inline">\(T=A+iB\)</span>. Then <span class="math inline">\(T\)</span> is normal if and only if A and B commute.</p>
+<p>==Definition 4.5.3== (Isometric Operator)</p>
+<p>A bounded operator T on a Hilbert Space H is called an isometric operator if <span class="math inline">\(||Tx||=||x||\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
+<p>==Theorem 4.5.6==</p>
+<p>A bounded operator T defined on a Hilbert Space H is isometric if and only if <span class="math inline">\(T^*T=\mathscr J\)</span> on H.</p>
+<p>==Definition 4.5.4== (Unitary Operator)</p>
+<p>A bounded operator T on a Hilbert space H is called a unitary operator if <span class="math inline">\(T^*T=TT^*=\mathscr J\)</span> on H.</p>
+<p>==Theorem 4.5.7==</p>
+<p>An operator T is unitary if and only if it is invertible and <span class="math inline">\(T^{-1}=T^*\)</span>.</p>
+<p>==Theorem 4.5.8==</p>
+<p>Let T be a unitary operator. Then</p>
+<ol type="a">
+<li><p>T is isometric</p></li>
+<li><p>T is normal</p></li>
+<li><p><span class="math inline">\(T^{-1}\)</span> and <span class="math inline">\(T^{*}\)</span> are unitary.</p></li>
+</ol>
 
         
       

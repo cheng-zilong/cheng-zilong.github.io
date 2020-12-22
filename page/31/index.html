@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/11. State Estimation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5101 Linear Systems/11. State Estimation/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-20 13:35:08" itemprop="dateModified" datetime="2018-11-20T13:35:08+08:00">2018-11-20</time>
+                <time title="Modified: 2018-11-21 19:46:41" itemprop="dateModified" datetime="2018-11-21T19:46:41+08:00">2018-11-21</time>
               </span>
             
           
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/11. State Estimation/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/11. State Estimation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/11. State Estimation/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,96 +306,141 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="introduction">1. Introduction</h2>
-<p>Consider an MIMO system: <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx
-\]</span> or <span class="math display">\[
-Y(s)=C(sI-A)^{-1}BU(s)=G(s)U(s)
-\]</span> G(s) is <span class="math inline">\(m\times m\)</span> matrix</p>
-<p>==Decoupling==</p>
-<p>is to decouple a coupled plant such that feedback system is decoupled.</p>
-<h2 id="decoupling-by-state-feedback">2. Decoupling by State Feedback</h2>
-<p>Consider the system, to be decoupled by state feedback <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx\\
+          <h2 id="state-estimation">State Estimation</h2>
+<h3 id="why-state-estimation">1. Why State Estimation</h3>
+<p><span class="math display">\[
 u=-Kx+Fr
-\]</span> We have the feedback transfer function <span class="math display">\[
-H(s)=C(sI-A+BK)^{-1}BF
-\]</span> And we have the open loop transfer function <span class="math display">\[
-G(s)=C(sI-A)^{-1}B
-\]</span> it can be proved <span class="math display">\[
-H(s)=G(s)[I+K(sI-A)^{-1}B]^{-1}F
-\]</span> ==Calulation of <span class="math inline">\(\sigma_1\)</span>==</p>
-<p>Let i=1</p>
-<p>​ j=1 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^0B=c_1^TB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=1;goto \quad i=2 \\
-=0\rightarrow j=2
-\end{cases}
-\]</span> ​ j=2 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^1B=c_1^TAB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=2;goto \quad i=2 \\
-=0\rightarrow j=3
-\end{cases}
-\]</span> Then <span class="math display">\[
-B^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1-1}B\\
-c_2^TA^{\sigma_2-1}B\\
-\vdots \\
-c_m^TA^{\sigma_m-1}B
-\end{bmatrix} \\
-C^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1} \\
-c_2^TA^{\sigma_2} \\
-\vdots \\
-c_m^TA^{\sigma_m} \\
-\end{bmatrix}\\
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}C^*
-\]</span> Then <span class="math display">\[
-H(s)=diag(s^{-\sigma_1},s^{-\sigma_2},\dotsm,s^{-\sigma_m})
-\]</span> ==Decoupling with pole placement== <span class="math display">\[
-H(s)=
-\begin{bmatrix}
-\frac{1}{\Phi_{f_1}} &amp; 0 &amp; \dotsm &amp; 0 \\
-0 &amp; \frac{1}{\Phi_{f_2}} &amp; \dotsm &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \dotsm &amp; \frac{1}{\Phi_{f_m}}
-\end{bmatrix}
-\]</span> We just need <span class="math display">\[
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}
-\begin{bmatrix}
-c_1^T\Phi _{f_1}(A) \\
-c_2^T\Phi _{f_2}(A) \\
-\vdots \\
-c_m^T\Phi _{f_m}(A) \\
-\end{bmatrix}\\
-\Phi _{f_i}(A)=A^{\sigma_i}+\gamma_{i1}A^{\sigma_i-1}+\dotsm+\gamma_{i\sigma_i}A^{\sigma_i-\sigma_i}
 \]</span></p>
-<h2 id="decoupling-by-output-feedback">3. Decoupling by Output Feedback</h2>
-<p>in this section, we use a unity feedback controller. <span class="math display">\[
-H(s)=[I+G(s)K(s)]^{-1}G(s)K(s) \\
-H^{-1}=(GK)^{-1}[I+GK]=(GK)^{-1}+I
-\]</span> that means H is decoupled iff GK is decoupled. <span class="math display">\[
-K(s)=K_d(s)K_s(s)
-\]</span> <span class="math inline">\(K_d\)</span> is used for decoupler</p>
-<p><span class="math inline">\(K_s\)</span> is used for stabilizer</p>
-<p>==Design for Decoupler== <span class="math display">\[
-G(s)=\frac{N(s)}{d(s)}\\
-K_d(s)=adj(N(s))=det(N(s))*N^{-1}(s) \\
-G(s)K_d(s)=\frac{det(N(s))}{d(s)}I
-\]</span> ==Design for Stabilizer==</p>
-<p>For every single loop, make it stable</p>
-<p>==Refinement== <span class="math display">\[
-G(s)=diag\{\frac{1}{d_1}\quad \frac{1}{d_2} \quad \dotsm\quad \frac{1}{d_m}\}N_r(s)
-\]</span> every <span class="math inline">\(d_i\)</span> is a LCD if i-th row of G(s) <span class="math display">\[
-K_d=adj(N_r(s))
+<p>some x cannot be measured.</p>
+<p>we define an estimator <span class="math display">\[
+\dot{\hat x}=A \hat x+Bu+L(y-\hat y) \\
+\dot e=\dot x-\dot{\hat x}=A(x-\hat x)+L(Cx-C \hat x)=(A-LC)e
+\]</span> First, check the observability</p>
+<p>Second, design L, place observer poles 3-5 times faster than control poles.</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx \\
+A=\begin{bmatrix}
+0 &amp; 1\\ 0 &amp; 0
+\end{bmatrix}
+B=\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+C=\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\\
+M_o=\begin{bmatrix}
+C \\CA
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}\\
+A-LC=
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}-
+\begin{bmatrix}
+l_1 \\ l_2
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}=
+\begin{bmatrix}
+-l_1  &amp; 1 \\-l_2 &amp; 0
+\end{bmatrix}\\
+|\lambda I-(A-LC)|=\lambda^2+l_1\lambda+l_2
+\]</span> We choose two poles <span class="math inline">\(\lambda_1=\lambda_2=-5\)</span></p>
+<p>Then <span class="math inline">\(l_1=10 \quad l_2=25\)</span></p>
+<p>Ackerman's Formula: <span class="math inline">\(L=\Phi_o(A)M_o^{-1}[0 \quad \dotsm\quad 1]^T\)</span></p>
+<h3 id="reduced-order-observers">2. Reduced-Order Observers</h3>
+<p>For now we use output to get some states. We can design the observer <span class="math display">\[
+\hat x=
+\begin{bmatrix}
+C \\ T
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+y \\ \xi
+\end{bmatrix}
+\]</span> We define the observer <span class="math display">\[
+\dot \xi=D\xi+Eu+Gy
+\]</span> Then we have <span class="math display">\[
+\dot \xi-T\dot x=D[\xi-Tx]+(DT-TA-GC)x+(E-TB)u
+\]</span> To make <span class="math inline">\(\dot \xi \rightarrow T\dot x\)</span></p>
+<p>we need <span class="math display">\[
+DT-TA+GC=0 \\
+E-TB=0\\
+\text{D have negative real parts for all eigenvalues}
+\]</span> Design procedures for T D G E</p>
+<blockquote>
+<ol type="1">
+<li>Find the constraints on T such that <span class="math inline">\(\begin{bmatrix} C \\ T\end{bmatrix}\)</span> is nonsingular</li>
+<li>choose D such that its eigenvalues have negative real parts</li>
+<li>Solve DT-TA-GC=0 for T and G</li>
+<li>Calculate E=TB</li>
+</ol>
+</blockquote>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx \\
+A=\begin{bmatrix}
+0 &amp; 1\\ 0 &amp; 0
+\end{bmatrix}
+B=\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+C=\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\\
+\]</span> Design a reduced order observer <span class="math display">\[
+\begin{bmatrix}
+C \\T
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0 \\t_1 &amp; t_2
+\end{bmatrix}
+\]</span> The above is singular if <span class="math inline">\(t_2 \neq0\)</span></p>
+<p>The observer should be 2-1=1 order</p>
+<p>We choose <span class="math inline">\(D=[d]=[-3]\)</span></p>
+<p>Then <span class="math display">\[
+DT-TA+GC=0 \\
+-3\begin{bmatrix}
+t_1 &amp; t_2
+\end{bmatrix}-
+\begin{bmatrix}
+t_1&amp;t_2
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}+
+g\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}=0\\
+\begin{cases}
+t_1+3t_2=0 \\
+g=3t_1\\
+t_2 \neq0
+\end{cases}
+\]</span> try <span class="math display">\[
+g=1 \\
+t_1=\frac{1}{3}\\
+t_2=-\frac{1}{9}\\
+e=-\frac{1}{9}
+\]</span> Then the observer is <span class="math display">\[
+\dot \xi=D\xi+Eu+Gy \\
+=-3\xi-\frac{1}{9}u+y \\
+\hat x = 
+\begin{bmatrix}
+C \\ T
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+y \\ \xi
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0 \\ 3 &amp; -9
+\end{bmatrix}
+\begin{bmatrix}
+y \\ \xi
+\end{bmatrix}
 \]</span></p>
 
         
@@ -421,7 +466,7 @@ K_d=adj(N_r(s))
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/10. Servo Control/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -435,7 +480,7 @@ K_d=adj(N_r(s))
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/EE5101 Linear Systems/10. Servo Control/" class="post-title-link" itemprop="url">Untitled</a>
           
         </h1>
 
@@ -461,7 +506,7 @@ K_d=adj(N_r(s))
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-24 13:00:23" itemprop="dateModified" datetime="2018-11-24T13:00:23+08:00">2018-11-24</time>
+                <time title="Modified: 2018-11-21 19:53:12" itemprop="dateModified" datetime="2018-11-21T19:53:12+08:00">2018-11-21</time>
               </span>
             
           
@@ -480,7 +525,7 @@ K_d=adj(N_r(s))
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/10. Servo Control/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -498,7 +543,7 @@ K_d=adj(N_r(s))
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/10. Servo Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/10. Servo Control/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -512,79 +557,165 @@ K_d=adj(N_r(s))
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="problem-formulation-and-preliminaries">1. Problem Formulation and Preliminaries</h2>
-<p>The system is described as <span class="math display">\[
-\dot x = Ax +Bu \\
-y=Cx
-\]</span> The objective is to bring the state from non-zero initial value to zero. This is the regulation problem. The problem is cast into the following quadratic cost function. <span class="math display">\[
-J=\frac{1}{2}\int_0^\infty(x^TQx+u^TRu)dt
-\]</span> Using state feedback <span class="math inline">\(u=-Kx\)</span> to minimize the above equation.</p>
-<p>Q (semi-positive) and R (positive) can be made symmetric.</p>
-<p>Q and R appear most in diagonal form. <span class="math display">\[
-Q=\begin{bmatrix}
-q_1&amp;&amp;&amp;&amp;0 \\
-&amp;q_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;q_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;q_{n} \\
-\end{bmatrix}\\
-R=\begin{bmatrix}
-r_1&amp;&amp;&amp;&amp;0 \\
-&amp;r_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;r_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;r_{n} \\
-\end{bmatrix}
-\]</span> For later use, we define <span class="math display">\[
-Q=H^TH
+          <h2 id="introduction">1. Introduction</h2>
+<p>==Servo Control Problem==</p>
+<ol type="1">
+<li>Asymptotic Tracking</li>
+</ol>
+<p><span class="math display">\[
+\lim_{t\rightarrow\infty}e(t)=\lim_{t\rightarrow\infty}(r(t)-r(y))=0
 \]</span></p>
-<p>Three Assumptions</p>
-<ol type="1">
-<li>The system (A, B) is controllable</li>
-<li>The system (A, H) is observable</li>
-<li>R is positive definite, Q is semi-positive definite</li>
+<ol start="2" type="1">
+<li>Asymptotic Regulation (Disturbance Rejection)</li>
 </ol>
-<p>We have a symmetric positive definite matrix P satisfying the following Algebraic Riccati Equation (ARE) <span class="math display">\[
-A^TP+PA+Q=PBR^{-1}B^TP
-\]</span> Then <span class="math display">\[
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Selection of Q and R</p>
+<p>For <span class="math inline">\(r(t)=0,w(t)\neq0\)</span> <span class="math display">\[
+\lim_{t\rightarrow\infty}y(t)=0
+\]</span></p>
+<h2 id="polynomial-approach-to-siso-servo-problem">2. Polynomial Approach to SISO Servo Problem</h2>
+<p><span class="math display">\[
+G(s)=\frac{N(s)}{D(s)} \\
+K(s)=\frac{B(s)}{A(s)} \\
+H=\frac{GK}{1+GK}=\frac{NB}{DA+NB}
+\]</span></p>
+<p>If it is stable, then <span class="math inline">\(P_c=DA+NB\)</span> has only negative real parts.</p>
+<p>==Are there solutions==</p>
+<p>if N(s) and D(s) don't have the same common factor, then <span class="math inline">\(P_c\)</span> can be arbitrarily assigned.</p>
+<p>==What Is the Order==</p>
+<p>m=n-1, n is the order of G(s)</p>
+<p>==Are Solutions Proper==</p>
+<p>if <span class="math inline">\(P_c \neq0\)</span> , it is proper.</p>
+<p>For the next, we hope to see how to get asymptotic tracking and asymptotic regualtion</p>
+<p>We hope to change the mechanism <span class="math display">\[
+G(s)=\frac{N(s)}{D(s)} \\
+\tilde G(s)=\frac{N(s)}{D(s)Q(s)}
+\]</span></p>
+<p><span class="math inline">\(Q(s)\)</span> is the polynomial for all LCD unstable points of r(t) and w(t)</p>
+<p>Then <span class="math display">\[
+E_r(s)=R(s)-Y_r(s)=R(s)-\frac{\tilde G(s) \tilde K(s)}{1+\tilde G(s) \tilde K(s)}R(s)\\
+=\frac{1}{1+\frac{N(s)}{D(s)Q(s)}\frac{B(s)}{A(s)}}\frac{N_r(s)}{D_r(s)}\\
+=\frac{DAQ}{DAQ+NB}\frac{N_r}{D_r} \\
+E_w(s)=0-Y_w(s)=-\frac{1}{1+\tilde G(s) \tilde K(s)}W(s)\\
+=-\frac{1}{1+\frac{N(s)}{D(s)Q(s)}\frac{B(s)}{A(s)}}\frac{N_w(s)}{D_w(s)}\\
+=\frac{DAQ}{DAQ+NB}\frac{N_w}{D_w} \\
+\]</span></p>
+<p>Therefore,</p>
+<blockquote>
 <ol type="1">
-<li>Q and R are selected to be diagonal</li>
-<li>The larger Q, the larger K</li>
+<li>Determine Q</li>
+<li>Design <span class="math inline">\(\tilde K\)</span> to stable generalized <span class="math inline">\(\tilde G=\frac{N}{DQ}\)</span></li>
+<li><span class="math inline">\(K=\frac{1}{Q}\tilde K\)</span></li>
 </ol>
-<p>How to solve ARE</p>
-<p>Step1.</p>
-<p>Form <span class="math display">\[
-\Gamma=\begin{bmatrix}
-A &amp; -BR^{-1}B^T \\
--Q &amp; -A^T
-\end{bmatrix}
-\]</span> Then</p>
-<p>get the stable eigenvectors of <span class="math inline">\(\Gamma\)</span> <span class="math display">\[
+</blockquote>
+<h2 id="multivariable-integral-control">3. Multivariable Integral Control</h2>
+<p>For the MIMO system <span class="math display">\[
+\dot x= Ax+Bu+B_ww \\
+y=Cx \\
+e=r-y \\
+v=\int_0^te(\tau)d\tau
+\]</span> We can define the augmented system <span class="math display">\[
 \begin{bmatrix}
-v_i \\ \mu_i
+\dot x\\\dot v
+\end{bmatrix}=
+\overbrace{\begin{bmatrix}
+A &amp; 0 \\ -C &amp; 0
+\end{bmatrix}}^{\bar A}
+\overbrace{\begin{bmatrix}
+x \\ v
+\end{bmatrix}}^{\bar x}+
+\overbrace{\begin{bmatrix}
+B \\ 0
+\end{bmatrix}}^{\bar B}u+
+\overbrace{\begin{bmatrix}
+B_w \\ 0
+\end{bmatrix}}^{\bar B_w}w+
+\overbrace{\begin{bmatrix}
+0 \\ I
+\end{bmatrix}}^{\bar B_r}r\\
+y=\begin{bmatrix}
+C &amp; 0
 \end{bmatrix}
-\]</span> Then <span class="math display">\[
-P=[\mu_1 \quad\mu_2\quad\dotsm\quad \mu_n][v_1 \quad v_2\quad\dotsm\quad v_n]^{-1}\\
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Example <span class="math display">\[
-A=\begin{bmatrix}
-0&amp;1\\0&amp;0
+\begin{bmatrix}
+x \\ v
 \end{bmatrix}
-B=\begin{bmatrix}
-0\\1
+\]</span> if the augmented system is stable</p>
+<p>then <span class="math inline">\(\dot v \rightarrow0\)</span> , <span class="math inline">\(e\rightarrow0\)</span></p>
+<p>the augmented system is controllable iif</p>
+<ol type="1">
+<li>the plant is controllable</li>
+<li><span class="math inline">\(\text{rank} \begin{bmatrix} A &amp; B \\ C &amp; 0\end{bmatrix}=n+m\)</span></li>
+</ol>
+<p><span class="math display">\[
+u(t)=
+-\begin{bmatrix}
+K_1&amp;K_2
 \end{bmatrix}
-Q=\begin{bmatrix}
-1&amp;0\\0&amp;0
-\end{bmatrix}
-R=\begin{bmatrix}
-\beta
-\end{bmatrix}
+\begin{bmatrix}
+x\\v
+\end{bmatrix}\\
 \]</span></p>
-<p>Example</p>
+<p>The result feedback system is <span class="math display">\[
+\begin{bmatrix}
+\dot x\\\dot v
+\end{bmatrix}=
+\overbrace{\begin{bmatrix}
+A-BK_1 &amp; -BK_2 \\ -C &amp; 0
+\end{bmatrix}}^{\bar A_c}
+\overbrace{\begin{bmatrix}
+x \\ v
+\end{bmatrix}}^{\bar x}+
+\overbrace{\begin{bmatrix}
+B \\ 0
+\end{bmatrix}}^{\bar B}u+
+\overbrace{\begin{bmatrix}
+B_w \\ 0
+\end{bmatrix}}^{\bar B_w}w+
+\overbrace{\begin{bmatrix}
+0 \\ I
+\end{bmatrix}}^{\bar B_r}r\\
+y=\begin{bmatrix}
+C &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x \\ v
+\end{bmatrix}
+\]</span> Example <span class="math display">\[
+\dot x=
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}x+
+\begin{bmatrix}
+0 \\1
+\end{bmatrix}u+
+\begin{bmatrix}
+1 \\ 1
+\end{bmatrix}w \\
+y=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}x
+\]</span> Augmented system <span class="math display">\[
+\begin{bmatrix}
+\dot x\\ \dot v
+\end{bmatrix}=
+\begin{bmatrix}
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 \\
+-1 &amp; 0 &amp; 0 
+\end{bmatrix}
+\begin{bmatrix}
+x \\v
+\end{bmatrix}+
+\begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix}u+
+\begin{bmatrix}
+1 \\ 1 \\ 0
+\end{bmatrix}w+
+\begin{bmatrix}
+0 \\0 \\1
+\end{bmatrix}r
+\]</span> check and find it is controllable.</p>
+<p>Then the system can be controlled by LQR</p>
 
         
       

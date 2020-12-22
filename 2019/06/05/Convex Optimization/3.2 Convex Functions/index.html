@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="3.2 Operations that Preserve Convexity We describe some operations that preserve convexity or concavity of functions, or allow us to construct new convex and concave functions. 3.2.1 Nonnegative wei">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 3. Convex Functions (2)">
+<meta property="og:url" content="http://yoursite.com/2019/06/05/Convex Optimization/3.2 Convex Functions/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="3.2 Operations that Preserve Convexity We describe some operations that preserve convexity or concavity of functions, or allow us to construct new convex and concave functions. 3.2.1 Nonnegative wei">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-06-05T05:57:33.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3. Convex Functions (2)">
+<meta name="twitter:description" content="3.2 Operations that Preserve Convexity We describe some operations that preserve convexity or concavity of functions, or allow us to construct new convex and concave functions. 3.2.1 Nonnegative wei">
+  <link rel="canonical" href="http://yoursite.com/2019/06/05/Convex Optimization/3.2 Convex Functions/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Chapter 3. Convex Functions (2) | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/Convex Optimization/3.2 Convex Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Chapter 3. Convex Functions (2)
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-06-05 13:49:01 / Modified: 13:57:33" itemprop="dateCreated datePublished" datetime="2019-06-05T13:49:01+08:00">2019-06-05</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/06/05/Convex Optimization/3.2 Convex Functions/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3. Convex Functions (2)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/06/05/Convex Optimization/3.2 Convex Functions/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/06/05/Convex Optimization/3.2 Convex Functions/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="operations-that-preserve-convexity">3.2 Operations that Preserve Convexity</h2>
+<p>We describe some operations that preserve convexity or concavity of functions, or allow us to construct new convex and concave functions.</p>
+<h3 id="nonnegative-weighted-sums">3.2.1 Nonnegative weighted sums</h3>
+<p>A nonnegative weighted sum of convex functions <span class="math display">\[
+f=w_1f_1+\dotsm+w_mf_m,
+\]</span> is convex.</p>
+<p>These properties can be extended to infinite sums and integrals. For example, if <span class="math inline">\(f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span> for each <span class="math inline">\(y\in \mathcal A\)</span> and <span class="math inline">\(w(y)&gt;0\)</span>.</p>
+<p>The the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
+g(x)=\int_\mathcal Aw(y)f(x,y)dy
+\]</span> is convex.</p>
+<h3 id="composition-with-an-affine-mapping">3.2.2 Composition with an affine mapping</h3>
+<p>Suppose <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R,A\in \mathbb R^{n\times m}\)</span> and <span class="math inline">\(b\in \mathbb R^n\)</span>. Define <span class="math inline">\(g:\mathbb R^m\rightarrow \mathbb R\)</span> by <span class="math display">\[
+g(x)=f(Ax+b)
+\]</span> Then if <span class="math inline">\(f\)</span> is convex, so is <span class="math inline">\(g\)</span>.</p>
+<h3 id="pointwise-maximum-and-supremum">3.2.3 Pointwise maximum and supremum</h3>
+<p>If <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions then their pointwise maximum <span class="math inline">\(f\)</span>, defined by <span class="math display">\[
+f(x)=\max\{f_1(x),f_2(x)\}
+\]</span> with <span class="math inline">\(\text{dom} f=\text{dom} f_1\cap \text{dom} f_2\)</span> is also convex.</p>
+<p>proof</p>
+<p>if <span class="math inline">\(0\le \theta\le 1\)</span> and <span class="math inline">\(x,y \in \text{dom}f\)</span>, then <span class="math display">\[
+\begin{array}{rCl}
+f(\theta x+(1-\theta)y)
+&amp;=&amp;\max\{f_1(\theta x+(1-\theta)y),f_2(\theta_1x+(1-\theta)y)\}\\
+&amp;\le&amp;\max\{\theta f_1(x)+(1-\theta)f_1(y),\theta f_2(x)+(1-\theta)f_2(y)\}\\
+&amp;\le&amp;\theta\max\{f_1(x),f_2(x)\}+(1-\theta)\max\{f_1(y),f_2(y)\}\\
+&amp;=&amp;\theta f(x)+(1-\theta)f(y)
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>piecewise-linear functions is convex because every piecewise-linear function is affine, <span class="math display">\[
+f(x)=\max \{a_1^Tx+b_1,\dotsm,a_L^Tx+b_L\}.
+\]</span> The pointwise maximum property extends to pointwise supremum over an infinite set of convex functions. If for each <span class="math inline">\(y\in\mathcal A,f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span>, then the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
+g(x)=\sup_{y\in\mathcal A}f(x,y)
+\]</span> is convex. Here the domain of <span class="math inline">\(g\)</span> is <span class="math display">\[
+\text{dom} g=\{x\;|\;(x,y)\in\text{dom}f,\; \forall y\in\mathcal A,\;\sup_{y\in\mathcal A}f(x,y)&lt; \infty\}
+\]</span> <strong>Example</strong></p>
+<p>Support function of a set <span class="math display">\[
+S_C(x)=\sup\{x^Ty\;|\;y\in C\}
+\]</span> is convex where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> with <span class="math inline">\(C\neq \O\)</span>.</p>
+<p><strong>Example</strong> (Farthest point of a set)</p>
+<p>Distance to the farthest point of a set <span class="math display">\[
+f(x)=\sup_{y\in C}||x-y||
+\]</span> is convex.</p>
+<p><strong>Example</strong> (Least-square cost as a function of weights) <span class="math display">\[
+g(w)=\inf_x \sum_{i=1}^n w_i(a_i^Tx-b_i)^2.
+\]</span> Since <span class="math inline">\(g\)</span> is the infimum of a family of linear functions of <span class="math inline">\(w\)</span>, it is a concave function of <span class="math inline">\(w\)</span>.</p>
+<p>We can derive the solution explicitly. <span class="math display">\[
+g(w)=\inf_x\left((Ax-b)^TW(Ax-b)\right),
+\]</span> where <span class="math inline">\(W=\text{diag}(w)\)</span>.</p>
+<p><strong>Example</strong> (Maximum eigenvalue of a symmetric matrix)</p>
+<p>The function <span class="math inline">\(f(X)=\lambda_{max}(X)\)</span>, with <span class="math inline">\(\text{dom} f=\mathbb S^m\)</span> is convex. <span class="math display">\[
+f(X)=\sup\{y^TXy\;|\;||y||_2=1\}.
+\]</span> <strong>Example</strong></p>
+<p>Norm of a matrix <span class="math inline">\(f(X)=||X||_2\)</span>, we have <span class="math display">\[
+f(X)=\sup\{u^TXv\;|\; ||u||_2=1,||v||_2=1\}.
+\]</span></p>
+<h3 id="composition">2.2.4 Composition</h3>
+<p><span class="math display">\[
+f(x)=h(g(x)),\quad \text{dom} f=\{x\in \text{dom} g\;|\;g(x)\in \text{dom} h\}
+\]</span></p>
+<p>Scalar composition</p>
+<p>The second derivative of the composition function <span class="math inline">\(f=h\circ g\)</span> is given by <span class="math display">\[
+f&#39;&#39;(x)=h&#39;&#39;(g(x))g&#39;(x)^2+h&#39;(g(x))g&#39;&#39;(x),
+\]</span> that means if <span class="math inline">\(g\)</span> is convex and h is convex and none decreasing, <span class="math inline">\(f\)</span> is convex or <span class="math inline">\(h\)</span> is convex and none increasing, <span class="math inline">\(g\)</span> is concave.</p>
+<p>Vector composition <span class="math display">\[
+f(x)=h(g(x))=h(g_1(x),\dotsm,g_k(x))
+\]</span> Then <span class="math display">\[
+f&#39;&#39;(x)=g&#39;(x)^T\nabla^2h(g(x))g&#39;(x)+\nabla h(g(x))^Tg&#39;&#39;(x)
+\]</span> Then we can derive the following rules.</p>
+<p><span class="math inline">\(f\)</span> is convex if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none decreasing in each argument and <span class="math inline">\(g_i\)</span> are convex or if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none increasing in each argument and <span class="math inline">\(g_i\)</span> are concave.</p>
+<h3 id="minimization">3.2.5 Minimization</h3>
+<p>We haven seen that the maximum or supremum of an arbitrary family of convex functions is convex. Here we consider minimum function.</p>
+<p>If <span class="math inline">\(f\)</span> is convex in <span class="math inline">\((x, y)\)</span> and C is convex nonempty set, then the function <span class="math display">\[
+g(x)=\inf_{y\in C}f(x,y)
+\]</span> is convex in <span class="math inline">\(x\)</span> provided <span class="math inline">\(g(x)&gt;-\infty \space\forall x\)</span>.</p>
+<p>proof</p>
+<p>We have <span class="math inline">\(y_1,y_2\in C\)</span> <span class="math display">\[
+g(\theta x_1+(1-\theta)x_2)=\inf_{y\in C} f(\theta x_1+(1-\theta)x_2,y)\\
+\le f(\theta x_1+(1-\theta)x_2,\theta y_1+(1-\theta)y_2)\\
+\le\theta f(x_1,y_1)+(1-\theta)f(x_2,y_2)\\
+\le\theta g(x_1)+(1-\theta)g(x_2).
+\]</span></p>
+<p><strong>Example</strong> (Schur complement)</p>
+<p>Suppose the quadratic function <span class="math display">\[
+f(x,y)=x^TAx+2x^TBy+y^TCy,
+\]</span> is convex in (x,y), which means <span class="math display">\[
+\begin{bmatrix}
+A &amp; B\\B^T &amp; C
+\end{bmatrix}\succeq 0.
+\]</span> We can express <span class="math inline">\(g(x)=\inf _y f(x,y)\)</span> as <span class="math display">\[
+g(x)=x^T(A-BC^{-1}B^T)x.
+\]</span> By the minimization rule, <span class="math inline">\(g(x)\)</span> is also convex.</p>
+<h3 id="perspective-of-a-function">3.2.6 Perspective of a function</h3>
+<p>If <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> , then the perspective of <span class="math inline">\(f\)</span> is the function <span class="math inline">\(g: \mathbb R^{n+1}\rightarrow\mathbb R\)</span> defined by <span class="math display">\[
+g(x,t)=tf(\frac{x}{t})
+\]</span> Then the perspective operation preserves convexity: if <span class="math inline">\(f\)</span> is a convex function, then so is its perspective function <span class="math inline">\(g\)</span>.</p>
+<h2 id="the-conjugate-function">3.3 The conjugate function</h2>
+<h3 id="definition-and-examples">3.3.1 Definition and examples</h3>
+<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span>. The function <span class="math inline">\(f^*:\mathbb R^n\rightarrow\mathbb R\)</span> defined as <span class="math display">\[
+f^*(y)=\sup_{x\in \text{dom} f}(y^Tx-f(x))
+\]</span> is called the conjugate of the function <span class="math inline">\(f\)</span>. The <strong>domain</strong> of the <strong>conjugate function</strong> consists of <span class="math inline">\(y\in \mathbb R^n\)</span> for which the supremum is finite. We see immediately that <span class="math inline">\(f^*\)</span> is convex since it is the pointwise supremum of a family of convex (affine) functions of <span class="math inline">\(y\)</span>. That is true whether or not <span class="math inline">\(f\)</span> is convex.</p>
+<p>Let's start with some simple examples which allows us to derive an analytical expression for the conjugate of many common convex functions.</p>
+<p><strong>Example</strong></p>
+<p><strong>Affine function</strong>. <span class="math inline">\(f(x)=ax+b\)</span> As a function of x, <span class="math inline">\(yx-ax-b\)</span> is bounded if and only if <span class="math inline">\(y=a\)</span>, in which case it is a constant. Therefore, the domain of the convex function is a singleton <span class="math inline">\({a}\)</span> and <span class="math inline">\(f^*(a)=-b\)</span>.</p>
+<p><strong>Negative logarithm</strong>. <span class="math inline">\(f(x)=-\log x\)</span> with <span class="math inline">\(\text{dom} f\)</span> is <span class="math inline">\(\mathbb R_{++}\)</span>. Then the function <span class="math inline">\(xy+\log x\)</span> is unbounded above if <span class="math inline">\(y&gt;0\)</span> and reaches its maximum at <span class="math inline">\(x=-\frac{1}{y}\)</span> otherwise. Then <span class="math inline">\(\text{dom} f^*=-\mathbb R_{++}\)</span> and <span class="math inline">\(f^*(y)=-1-\log(-y)\)</span>.</p>
+<p><strong>Exponential</strong>. <span class="math inline">\(f(x)=e^x\)</span> . <span class="math inline">\(xy-e^x\)</span> is unbounded if <span class="math inline">\(y&lt;0\)</span> . For <span class="math inline">\(y&gt;0\)</span>, <span class="math inline">\(xy-e^x\)</span> reaches its maximum at <span class="math inline">\(x=\log y\)</span>, we have <span class="math inline">\(f^*(y)=y\log y-y\)</span> for <span class="math inline">\(\text{dom}f^*=\mathbb R_{++}\)</span>.</p>
+<p><strong>Negative Entropy</strong> <span class="math inline">\(f(x)=x\log x\)</span> . <span class="math inline">\(xy-x\log x\)</span> is bounded. <span class="math inline">\(f^*(y)=e^{y-1}\)</span>.</p>
+<h3 id="basic-properties">3.3.2 Basic properties</h3>
+<p><strong>Fenchel's inequality</strong> <span class="math display">\[
+f(x)+f^*(y)\ge x^Ty
+\]</span> <strong>Conjugate of the conjugate</strong></p>
+<p>If <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(f\)</span> is closed. Then <span class="math inline">\(f^{**}=f\)</span>.</p>
+<p><strong>Differentiable functions</strong></p>
+<p>Suppose <span class="math inline">\(f\)</span> is convex and differentiable, with <span class="math inline">\(\text{dom} f= \mathbb R^n\)</span>. Any maximizer <span class="math inline">\(x^*\)</span> of <span class="math inline">\(y^Tx-f(x)\)</span> satisfies <span class="math inline">\(y=\nabla f(x^*)\)</span>. Therefore, the conjugate function can be denoted as <span class="math display">\[
+f^*(y)=(x^*)^T\nabla f(x^*)-f(x^*).
+\]</span> <strong>Scaling and composition with affine transformation</strong></p>
+<p>For <span class="math inline">\(a&gt;0\)</span> and <span class="math inline">\(b\in \mathbb R\)</span>, the conjugate of <span class="math inline">\(g(x)=af(x)+b\)</span> is <span class="math inline">\(g^*(y)=af^*(y/a)-b\)</span>.</p>
+<p><strong>Sums of independent functions</strong></p>
+<p>If <span class="math inline">\(f(u,v)=f_1(u)+f_2(v)\)</span> where <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions with conjugates <span class="math inline">\(f_1^*\)</span> and <span class="math inline">\(f_2^*\)</span>. <span class="math display">\[
+f^*(w,z)=f_1^*(w)+f_2^*(z)
+\]</span></p>
+<h2 id="quasiconvex-functions">3.4 Quasiconvex functions</h2>
+<h3 id="definition-and-examples-1">3.4.1 Definition and examples</h3>
+<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconvex</strong> if its domain and all its sublevel sets <span class="math display">\[
+S_\alpha=\{x\in \text{dom} f\;|\; f(x)\le \alpha\}
+\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
+<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconcave</strong> if its domain and all its superlevel sets <span class="math display">\[
+S_\alpha=\{x\in \text{dom} f|\space f(x)\ge \alpha\}
+\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
+<p>A function that is both quasiconvex and quasiconcave is called quasilinear. If a function <span class="math inline">\(f\)</span> is quasilinear, then its domain and every level set <span class="math inline">\(\{x\;|\;f(x)=\alpha\}\)</span> is convex.</p>
+<p><strong>Example</strong></p>
+<p>Logarithm is quasiconvex and quasiconcave and therefore is quasilinear.</p>
+<p><strong>Example</strong></p>
+<p>Consider <span class="math inline">\(f:\mathbb R^2\rightarrow \mathbb R\)</span> with <span class="math inline">\(\text{dom} f =\mathbb R_+^2\)</span> and <span class="math inline">\(f(x_1, x_2)=x_1x_2\)</span> . This function is neither convex nor concave since its hessian matrix <span class="math display">\[
+\nabla^2f(x)=
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}.
+\]</span> However the function is quasiconcave since the superlevel sets <span class="math display">\[
+\{x\in \mathbb R_+^2\;|\;x_1x_2\ge \alpha\}
+\]</span> are convex sets for all <span class="math inline">\(\alpha\)</span>.</p>
+<h3 id="basic-properties-1">3.4.2 Basic Properties</h3>
+<p>A function <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for any <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , <span class="math display">\[
+f(\theta x+(1-\theta) y) \le \max \{f(x),f(y)\}.
+\]</span> That means the value of the function does not exceed the maximum of its values of the endpoints.</p>
+<p><span class="math inline">\(f\)</span> is quasiconvex if and only if its restriction to any line intersecting its domain is quasiconvex.</p>
+<p><strong>Quasiconvex Functions on <span class="math inline">\(\mathbb R\)</span></strong></p>
+<p>A continuous function <span class="math inline">\(f:\mathbb R\rightarrow\mathbb R\)</span> is quasiconvex if and only if at least one of the following condition holds:</p>
+<ol type="1">
+<li><span class="math inline">\(f\)</span> is nondecreasing</li>
+<li><span class="math inline">\(f\)</span> is nonincreasing</li>
+<li>there is a point <span class="math inline">\(c\in \text{dom} f\)</span> such that for <span class="math inline">\(t&lt;c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nonincreasing, and for <span class="math inline">\(t\ge c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nondecreasing.</li>
+</ol>
+<p>The point <span class="math inline">\(c\)</span> can be chosen as any point which is a global minimizer of <span class="math inline">\(f\)</span>.</p>
+<h3 id="differentiable-quasiconvex-functions">3.4.3 Differentiable quasiconvex functions</h3>
+<p><strong>First order conditions</strong></p>
+<p>Suppose <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is differentiable. Then <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for all <span class="math inline">\(x,y\in \text{dom} f\)</span> <span class="math display">\[
+f(y)\le f(x)\implies \nabla f(x)^T(y-x)\le 0
+\]</span> <strong>Second order conditions</strong></p>
+<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable. If <span class="math inline">\(f\)</span> is quasiconvex, then for all <span class="math inline">\(x \in \text{dom} f\)</span>, and for all <span class="math inline">\(y \in \mathbb R^n\)</span> we have <span class="math display">\[
+y^T\nabla f(x)=0\implies y^T\nabla^2f(x) y\ge 0.
+\]</span></p>
+<h3 id="operations-that-preserve-quasiconvexity">3.4.4 Operations that preserve quasiconvexity</h3>
+<p><strong>Nonnegative weighted maximum</strong> <span class="math display">\[
+f=\max\{w_1f_1,\dotsm,w_mf_m\}
+\]</span> The property can be expanded to general pointwise supremum. <span class="math display">\[
+f(x)=\sup_{y\in C}(w(y)g(x,y))
+\]</span> where <span class="math inline">\(w(y)\ge 0\)</span> and <span class="math inline">\(g(x,y)\)</span> is quasiconvex in x for each y.</p>
+<p><strong>Composition</strong></p>
+<p>If <span class="math inline">\(g:\mathbb R^n \rightarrow \mathbb R\)</span> is quasiconvex and <span class="math inline">\(h:\mathbb R\rightarrow \mathbb R\)</span> is non decreasing, then $f=g h $ is quasiconvex.</p>
+<p><strong>Minimization</strong></p>
+<p>If <span class="math inline">\(f(x,y)\)</span> is quasiconvex jointly in <span class="math inline">\(x,y\)</span> and <span class="math inline">\(C\)</span> is a convex set. Then the function <span class="math display">\[
+g(x)=\inf_{y\in C}f(x,y)
+\]</span> is quasiconvex.</p>
+<h3 id="representation-via-family-of-convex-functions">3.4.5 Representation via family of convex functions</h3>
+<p>In the sequel, it will be convenient to represent the sublevel sets of a quasiconvex function via inequalities of convex functions. We seek a family of convex functions <span class="math inline">\(\phi(t):\mathbb R^n\rightarrow \mathbb R\)</span> indexed by <span class="math inline">\(t\in \mathbb R\)</span>. <span class="math display">\[
+f(x)\le t \iff \phi_t(x)\le 0
+\]</span></p>
+<h2 id="log-concave-and-log-convex-functions">3.5 Log-concave and log-convex functions</h2>
+<h3 id="definition">3.5.1 Definition</h3>
+<p>A function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is logarithmically concave or log-concave if <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in \text{dom} f\)</span> and <span class="math inline">\(\log f\)</span> is concave. It is said to be logarithmically convex or log-convex if <span class="math inline">\(\log f\)</span> is convex. Thus <span class="math inline">\(f\)</span> is log-convex if and only if <span class="math inline">\(1/f\)</span> is log-concave. It is convenient to allow <span class="math inline">\(f\)</span> to take on the value zero, in which case we take <span class="math inline">\(\log f(x)=-\infty\)</span>. In the case we say <span class="math inline">\(f\)</span> is log-concave if the extended-value function <span class="math inline">\(\log f\)</span> is concave.</p>
+<p>We can express log-concave function directly without logarithms: a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> with convex domain and <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in dom f\)</span> is log-concave if and only if for all <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , we have <span class="math display">\[
+f(\theta x+(1-\theta) y)\ge f(x)^\theta f(y)^{1-\theta}
+\]</span> From the composition rules we know that <span class="math inline">\(e^h\)</span> is convex if <span class="math inline">\(h\)</span> is convex since the function <span class="math inline">\(e^x\)</span> is convex and nondecreasing and function <span class="math inline">\(h\)</span> is convex. So a log-convex function is convex. Similarly , a nonnegative concave function is log-concave since <span class="math inline">\(\log x\)</span> is concave and nondecreasing. It is also clear that a log-convex function is quasiconvex and a log-concave function is quasiconcave since the logarithm is monotone increasing.</p>
+<h3 id="properties">3.5.2 Properties</h3>
+<p>Twice differentiable log-convex/concave functions.</p>
+<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable, with <span class="math inline">\(\text{dom} f\)</span> is convex,so <span class="math display">\[
+\nabla^2 \log f(x)=\frac{1}{f(x)}\nabla^2 f(x)-\frac{1}{f(x)^2}\nabla f(x)\nabla f(x)^T.
+\]</span> We conclude that <span class="math inline">\(f\)</span> is log-convex if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
+f(x)\nabla^2 f(x)\succeq \nabla f(x)\nabla f(x)^T,
+\]</span> and log-concave if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
+f(x)\nabla^2 f(x)\preceq \nabla f(x)\nabla f(x)^T.
+\]</span> <strong>Multiplication, addition and integration</strong></p>
+<p>Log-convexity and log-concavity are closed under multiplication and positive scaling. For example, if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave, then so is the pointwise product. <span class="math inline">\(h(x)=f(x)g(x)\)</span></p>
+<p>Sum of log-concave functions is not in general log-concave. Log-convexity, however, preserved under sums.</p>
+<p>In some special case log-concavity is preserved by integration. If <span class="math inline">\(f: \mathbb R^n \times \mathbb R^m \rightarrow \mathbb R\)</span> is log-concave, then <span class="math display">\[
+g(x)=\int f(x,y)dy
+\]</span> is log-concave function of <span class="math inline">\(x\)</span> on <span class="math inline">\(\mathbb R^n\)</span>.</p>
+<p>Convolution: if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave on <span class="math inline">\(\mathbb R^n\)</span>, then so is the convolution <span class="math display">\[
+(f*g)(x)=\int f(x-y)g(y)dy.
+\]</span></p>
+<h2 id="convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</h2>
+<p>We now consider generalizations of notions of monotonicity and convexity, using generalized inequalities instead of the usual ordering on <span class="math inline">\(\mathbb R\)</span>.</p>
+<h3 id="monotonicity-with-respect-to-a-generalized-inequality">3.6.1 Monotonicity with respect to a generalized inequality</h3>
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>K-nondecreasing</strong> if <span class="math display">\[
+x\preceq_K y\implies f(x)\le f(y),
+\]</span> and <strong>K-increasing</strong> if <span class="math display">\[
+x\preceq_K y, x\neq y \implies f(x)&lt;f(y).
+\]</span> <strong>K-nonincreasing</strong> and <strong>K-decreasing</strong> functions are defined in a similar way.</p>
+<p><strong>Example</strong> (Matrix monotone function)</p>
+<p>A function <span class="math inline">\(f:\mathbb S^n\rightarrow \mathbb R\)</span> is called matrix monotone if it is monotone with respect to the positive semidefinite cone.</p>
+<ol type="1">
+<li><span class="math inline">\(\text{tr}(WX)\)</span>, where <span class="math inline">\(w\in\mathbb S^n\)</span>, is matrix nondecreasing if <span class="math inline">\(W\succeq 0\)</span> and the matrix increasing if <span class="math inline">\(W\succ 0\)</span>.</li>
+<li><span class="math inline">\(\text{tr}(X^{-1})\)</span> is matrix decreasing on <span class="math inline">\(\mathbb S^n_{++}\)</span>.</li>
+<li><span class="math inline">\(\text{det}(X)\)</span> is matrix increasing on <span class="math inline">\(\mathbb S^n_{++}\)</span> and matrix nondecreasing on <span class="math inline">\(\mathbb S^n_+\)</span>.</li>
+</ol>
+<p><strong>Gradient conditions for monotonicity</strong></p>
+<p>A differentiable function <span class="math inline">\(f\)</span>, with convex domain, is <strong>K-nondecreasing</strong> if and only if <span class="math display">\[
+\nabla f(x)\succeq_{K^*}0.
+\]</span> The function is <strong>K-increasing</strong> if (converse is not true) <span class="math display">\[
+\nabla f(x)\succ_{K^*}0.
+\]</span></p>
+<h3 id="convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</h3>
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> is called K-convex if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, <span class="math display">\[
+f(\theta x+(1-\theta)y) \preceq_K \theta f(x)+(1-\theta)f(y)
+\]</span> Strict convex if <span class="math display">\[
+f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y).
+\]</span></p>
+<p><strong>Example</strong> (Convexity with respect to componentwise inequality)</p>
+<p>A function is convex with respect to componentwise inequality (the generalized inequality is induced by <span class="math inline">\(\mathbb R^n_+\)</span>) if and only if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y).
+\]</span> <strong>Example</strong> (Matrix Convexity)</p>
+<p>suppose <span class="math inline">\(f\)</span> is a symmetric matrix valued function, i.e. <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^n\)</span>. The function <span class="math inline">\(f\)</span> is convex with respect to matrix inequality if <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y)
+\]</span> for any <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>.</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/06/02/Convex Optimization/3.1 Convex Functions/" rel="next" title="Chapter 3. Convex Functions (1)">
+                  <i class="fa fa-chevron-left"></i> Chapter 3. Convex Functions (1)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/" rel="prev" title="Chapter 4. Convex Optimization Problem (1)">
+                  Chapter 4. Convex Optimization Problem (1) <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#operations-that-preserve-convexity"><span class="nav-text">3.2 Operations that Preserve Convexity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nonnegative-weighted-sums"><span class="nav-text">3.2.1 Nonnegative weighted sums</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#composition-with-an-affine-mapping"><span class="nav-text">3.2.2 Composition with an affine mapping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pointwise-maximum-and-supremum"><span class="nav-text">3.2.3 Pointwise maximum and supremum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#composition"><span class="nav-text">2.2.4 Composition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimization"><span class="nav-text">3.2.5 Minimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perspective-of-a-function"><span class="nav-text">3.2.6 Perspective of a function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-conjugate-function"><span class="nav-text">3.3 The conjugate function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#definition-and-examples"><span class="nav-text">3.3.1 Definition and examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-properties"><span class="nav-text">3.3.2 Basic properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quasiconvex-functions"><span class="nav-text">3.4 Quasiconvex functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#definition-and-examples-1"><span class="nav-text">3.4.1 Definition and examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#basic-properties-1"><span class="nav-text">3.4.2 Basic Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#differentiable-quasiconvex-functions"><span class="nav-text">3.4.3 Differentiable quasiconvex functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operations-that-preserve-quasiconvexity"><span class="nav-text">3.4.4 Operations that preserve quasiconvexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#representation-via-family-of-convex-functions"><span class="nav-text">3.4.5 Representation via family of convex functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log-concave-and-log-convex-functions"><span class="nav-text">3.5 Log-concave and log-convex functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#definition"><span class="nav-text">3.5.1 Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#properties"><span class="nav-text">3.5.2 Properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convexity-with-respect-to-generalized-inequalities"><span class="nav-text">3.6 Convexity with respect to generalized inequalities</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#monotonicity-with-respect-to-a-generalized-inequality"><span class="nav-text">3.6.1 Monotonicity with respect to a generalized inequality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convexity-with-respect-to-a-generalized-inequality"><span class="nav-text">3.6.2 Convexity with respect to a generalized inequality</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

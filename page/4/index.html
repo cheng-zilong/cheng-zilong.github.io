@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Convex Optimization/2. Convex Set/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Convex Optimization/2. Convex Set/" class="post-title-link" itemprop="url">Chapter 2. Convex Sets</a>
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-title-link" itemprop="url">7. Nonlinear conic programming (1)</a>
           
         </h1>
 
@@ -244,11 +244,19 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:49:01 / Modified: 13:56:17" itemprop="dateCreated datePublished" datetime="2020-12-22T13:49:01+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-13 10:18:24" itemprop="dateModified" datetime="2019-11-13T10:18:24+08:00">2019-11-13</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -257,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
 
                 
                 
@@ -266,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/Convex Optimization/2. Convex Set/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 2. Convex Sets" title="Views">
+            <span id="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (1)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Convex Optimization/2. Convex Set/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Convex Optimization/2. Convex Set/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,327 +306,288 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="convex-sets">2. Convex Sets</h1>
-<h2 id="affine-and-convex-sets">2.1 Affine and Convex Sets</h2>
-<h3 id="lines-and-line-segments">2.1.1 Lines and line segments</h3>
-<p>Suppose <span class="math inline">\(x_1 \neq x_2\)</span> are two points in <span class="math inline">\(\mathbb R^n\)</span>. Points of the form <span class="math display">\[
-y=\theta x_1+(1-\theta)x_2,
-\]</span> where <span class="math inline">\(\theta\in \mathbb R\)</span>, form a line passing <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</p>
-<p>If <span class="math inline">\(0\le\theta\le 1\)</span>, the line is restricted between the two points, which is therefore a line segment.</p>
-<h3 id="affine-sets">2.1.2 Affine sets</h3>
-<p>A set <span class="math inline">\(C \subseteq \mathbb R^n\)</span> is <strong>affine</strong> if the line through any two distinct points in C lies in C, i.e. for any <span class="math inline">\(x_1, x_2\in C\)</span> and <span class="math inline">\(\theta\in R\)</span>, we have <span class="math inline">\(\theta x_1+(1-\theta)x_2 \in C\)</span>. We refer to a point of the form <span class="math inline">\(y=\theta_1 x_1 +\theta_2 x_2 +\dotsm+\theta_k x_k\)</span>, where <span class="math inline">\(\theta_1 + \theta_2+\dotsm+\theta_k=1\)</span> as an <strong>affine combination</strong> of the points <span class="math inline">\(x_1,x_2,\dotsm,x_k\)</span>. An <strong>affine set</strong> contains every <strong>affine combination</strong> of its points.</p>
-<p>If <span class="math inline">\(C\)</span> is an affine set and we have <span class="math inline">\(x_0 \in C\)</span>, then the set <span class="math display">\[
-V=C-x_0=\{x-x_0|x\in C\},
-\]</span> is a subspace (a set that is closed under sums and multiplication).</p>
-<p><strong>proof</strong></p>
-<p>If <span class="math inline">\(C\)</span> is an affine set and define <span class="math inline">\(V=C-x_0\)</span>, assume <span class="math inline">\(v_1, v_2 \in V\)</span>, <span class="math inline">\(\alpha, \beta \in \mathbb R\)</span>, and <span class="math inline">\(\alpha+\beta = 1\)</span>, <span class="math inline">\(x_0\in C\)</span>.</p>
-<p>Then we have <span class="math inline">\(v_1 + x_0 \in C\)</span> and <span class="math inline">\(v_2 + x_0 \in C\)</span>.</p>
-<p>To complete the proof, we need to prove $v_1+v_2 V $, that means we need to prove <span class="math inline">\(\alpha v_1+\beta v_2 + x_0 \in C\)</span>. <span class="math display">\[
-\alpha (v_1+x_0)+\beta(v_2+x_0)=\alpha v_1+\beta v_2+(\alpha+\beta)x_0\in C.
-\]</span> That means <span class="math inline">\(V\)</span> is a subset. <strong>Q.E.D.</strong></p>
-<p>Thus an affine set can be expressed as (a subspace plus an offset) <span class="math display">\[
-C=V+x_0=\{v+x_0|v\in V\}.
-\]</span> The set of all affine combinations of points in some set <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is called the affine hull of C, and denoted as <span class="math inline">\(\text{aff } C\)</span>. <span class="math display">\[
-\text{aff }C=\{\theta_1x_1+\dotsm+\theta_kx_k\;|\; x_1,\dotsm,x_k\in \mathbb R^n,\theta_1+\dotsm+\theta_k=1\}
-\]</span></p>
-<h3 id="affine-dimension-and-relative-interior">2.1.3 Affine dimension and relative interior</h3>
-<p>We define the <strong>affine dimension</strong> of a set <span class="math inline">\(C\)</span> as the dimension of its <strong>affine hull</strong>.</p>
-<p>We define the <strong>relative interior</strong> of the set <span class="math inline">\(C\)</span>, denoted as <span class="math inline">\(\text{relint }C\)</span>, as its interior relative to <span class="math inline">\(\text{aff }C\)</span>.</p>
-<p><strong>Difference between the interior and relative interior</strong>. Consider <span class="math inline">\(\mathbb R^3\)</span> with the standard Euclidean metric, and look at the set of points <span class="math inline">\((x,y,0)\)</span> such that <span class="math inline">\(x^2+y^2\le1\)</span> . A point is in the interior of a set if you can draw a small open ball around it which is itself contained in the set. But for any point in our set, any open ball around any point in it will contain points outside the <span class="math inline">\(x−y\)</span> plane, and so it has empty interior. That's technically correct, but it's undesirable behavior. The relative interior of a set is obtained by looking at the affine hull of the set, which in this case is <span class="math inline">\(\mathbb R^2\)</span>, and using the appropriate metric there. So while our set has empty interior, its relative interior is the interior of the unit disc, which is what it "really should be". (From Quora)</p>
-<p>We can then define the <strong>relative boundary</strong> of a set <span class="math inline">\(C\)</span> as <span class="math inline">\(\text{cl }C\backslash \text{relint }C\)</span>, where <span class="math inline">\(\text{cl } C\)</span> is the closure of <span class="math inline">\(C\)</span>.</p>
-<h3 id="convex-sets-1">2.1.4 Convex sets</h3>
-<p>A set <span class="math inline">\(C\)</span> is <strong>convex</strong> if the line segment between any two points in <span class="math inline">\(C\)</span> lies in <span class="math inline">\(C\)</span>.</p>
-<p>If for any <span class="math inline">\(x_1,x_2 \in C\)</span> and any <span class="math inline">\(\theta\)</span> with <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
-\theta x_1+(1-\theta)x_2\in C.
-\]</span> We call a point of the form <span class="math inline">\(\theta_1 x_1+\dotsm+\theta_kx_k\)</span>, where <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span> and <span class="math inline">\(\theta_i\ge 0\;\forall i\)</span>, a <strong>convex combination</strong> of the points <span class="math inline">\(x_1,\dotsm,x_k\)</span>. As with affine sets, it can be shown that a set is convex if and only if it contains every convex combination of its points.</p>
-<p>The <strong>convex hull</strong> of a set <span class="math inline">\(C\)</span>, denoted as <span class="math inline">\(\text{conv }C\)</span> or <span class="math inline">\(\text{co }C\)</span>, is the set of all convex combinations of points in <span class="math inline">\(C\)</span>. <span class="math display">\[
-\text{conv }C=\{\theta_1x_1+\dotsm+\theta_kx_k\;|\; x_1,\dotsm,x_k\in \mathbb R^n,\theta_1+\dotsm+\theta_k=1,\theta_i\ge 0\;\forall i\}
-\]</span> <strong>Attention: every affine set is convex.</strong></p>
-<p>The idea of convex combination can be generalized to include infinite sums, integrals and, in the most general form, probability distributions.</p>
-<p>Suppose <span class="math inline">\(p:\mathbb R^n \rightarrow \mathbb R\)</span> satisfies <span class="math inline">\(p(x)&gt;0\)</span> for all <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\int_Cp(x)dx =1\)</span>, where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is convex, then <span class="math display">\[
-\int_Cp(x)x dx\in C.
-\]</span></p>
-<h3 id="cones">2.1.5 Cones</h3>
-<p>A set <span class="math inline">\(C\)</span> is called <strong>cone</strong>, if for every <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\theta\ge0\)</span> ,we have <span class="math inline">\(\theta x\in C\)</span>.</p>
-<p>A set <span class="math inline">\(C\)</span> is called <strong>convex cone</strong> if it is convex and a cone, which means that for any <span class="math inline">\(x_1,x_2 \in C\)</span> and <span class="math inline">\(\theta_1,\theta_2\ge 0\)</span> (We do <strong>not</strong> need <span class="math inline">\(\theta_1+\theta_2=1\)</span> here), we have <span class="math display">\[
-\theta_1x_1+\theta_2 x_2 \in C.
-\]</span> We call a point of the form <span class="math inline">\(\theta_1 x_1+\dotsm+\theta_kx_k\)</span>, where <span class="math inline">\(\theta_i\ge 0\;\forall i\)</span>, a <strong>conic combination</strong> of the points <span class="math inline">\(x_1,\dotsm,x_k\)</span>.</p>
-<p>The <strong>conic hull</strong> of a set <span class="math inline">\(C\)</span> is the set of all <strong>conic combinations</strong> of points in C, i.e. <span class="math display">\[
-\{\theta_1x_1+\dotsm+\theta_kx_k|x_i\in C,\theta_i\ge0,i=1,\dotsm,k\}.
-\]</span></p>
-<hr>
-<p>We can do a summary here.</p>
-<p>We define three kinds of sets and combinations in this section: affine set (combination), convex set (combination), and cone (conic combination).</p>
-<ol type="1">
-<li>Affine combination: we need <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>, but we do not care about <span class="math inline">\(\theta_i\ge 0\)</span>.</li>
-<li>Conic combination: we need <span class="math inline">\(\theta_i\ge 0\)</span>, but we do not care about <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
-<li>Convex combination: we need <span class="math inline">\(\theta_i\ge 0\)</span> and <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
-</ol>
-<h2 id="some-important-examples">2.2 Some Important Examples</h2>
-<ol type="1">
-<li>The single point set, empty set, and the whole space set are both convex and affine.</li>
-<li>Any line is affine, and also hence convex.</li>
-<li>A line segment is convex but not affine.</li>
-<li>A ray is convex but not affine. It is a cone.</li>
-<li>Any subspace is affine, and therefore convex.</li>
-</ol>
-<h3 id="hyperplanes-and-halfspaces">2.2.1 Hyperplanes and halfspaces</h3>
-<p>A <strong>hyperplane</strong> is the set of the form <span class="math display">\[
-\{x|a^Tx=b\},
-\]</span> where <span class="math inline">\(a\in \mathbb R^n,a\neq0,b\in \mathbb R\)</span>.</p>
-<p>Geometrically, <span class="math inline">\(a\)</span> is the <strong>normal vector</strong>, <span class="math inline">\(b\)</span> determines the offset of the hyperplane from the origin. That can be understood by showing the form <span class="math display">\[
-\{x|a^T(x-x_0)=0\}.
-\]</span> A hyperplane divides <span class="math inline">\(\mathbb R^n\)</span> into two <strong>halfspaces</strong>. A (closed) halfspace is a set of the form, <span class="math display">\[
-\{x|a^Tx\le b\}.
-\]</span> Halfspaces are convex but not affine.</p>
-<p>The set <span class="math inline">\(\{x|a^Tx&lt; b\}\)</span> which is the interior of the (closed) halfspace is called an <strong>open halfspace</strong>.</p>
-<h3 id="euclidean-balls-and-ellipsoids">2.2.2 Euclidean balls and ellipsoids</h3>
-<p>A <strong>Euclidean ball</strong> in <span class="math inline">\(\mathbb R^n\)</span> has the form <span class="math display">\[
-B(x_c,r)=\{x\;|\;||x-x_c||_2\le r\}=\{x\;|\;\space(x-x_c)^T(x-x_c)\le r^2\}
-\]</span> A Euclidean ball is obviously a convex set, and it can be proved by, if <span class="math inline">\(||x_1-x_c||_2\le r\)</span> and <span class="math inline">\(||x_2-x_c||_2\le r\)</span> and <span class="math inline">\(0\le\theta\le 1\)</span>, then we check the point <span class="math inline">\(\theta x_1+(1-\theta)x_2\)</span></p>
-<p><span class="math display">\[
-||\theta x_1+(1-\theta)x_2-x_c||_2=||\theta(x_1-x_c)+(1-\theta)(x_2-x_c)||_2\\
-\le\theta||x_1-x_c||_2+(1-\theta)||x_2-x_c||_2\\
-\le r
-\]</span> That means the point is also in the set.</p>
-<hr>
-<p>A another common representation for the Euclidean ball is <span class="math display">\[
-B(x_c,r)=\{x_c+ru|\space||u||_2\le1\}.
-\]</span> A related family of convex sets is the <strong>ellipsoids</strong>, which have the form <span class="math display">\[
-\epsilon=\{x|\space(x-x_c)^TP^{-1}(x-x_c)\le r^2\},
-\]</span> where <span class="math inline">\(P\)</span> is symmetric and positive definite, i.e. <span class="math inline">\(P=P^T\succ 0\)</span>.</p>
-<p>Another common representation of an ellipsoid is <span class="math display">\[
-\varepsilon=\{x_c+Au\;|\;||u||_2\le1\},
-\]</span> where <span class="math inline">\(A\)</span> is square and nonsingular. It can be seen that <span class="math inline">\(A=P^{\frac{1}{2}}\)</span>. If <span class="math inline">\(A\)</span> is <strong>singular</strong>, then it is a degenerate ellipsoid which is also convex.</p>
-<h3 id="norm-balls-and-norm-cones">2.2.3 Norm balls and norm cones</h3>
-<p>Suppose <span class="math inline">\(||\cdot||\)</span> is any norm on <span class="math inline">\(\mathbb R^n\)</span>. From the general properties it can be seen the <strong>norm ball</strong> given by <span class="math display">\[
-\{x\;|\;||x-x_c||\le r\},
-\]</span> is convex.</p>
-<p>The norm cone is given by <span class="math display">\[
-\{(x,t)\;|\;||x||\le t\} \subseteq \mathbb R^{n+1},
-\]</span> is a convex cone.</p>
-<h3 id="polyhedra">2.2.4 Polyhedra</h3>
-<p>A <strong>polyhedron</strong> is defined as the solution set of a finite number of linear equalities and inequalities, i.e. <span class="math display">\[
-\mathcal P=\{x\;|\;a_j^Tx\le b_j,j=1,\dotsm,m,c_j^Tx=d_j,j=1,\dotsm,p\}.
-\]</span> Therefore, a polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes. Affine sets, rays, line segments, and halfspaces are all polyhedra. It is easily shown that polyhedra are convex sets (just use the definition). A <strong>bounded polyhedron</strong> is called <strong>polytope</strong>. It is convenient to use the compact notation <span class="math display">\[
-\mathcal P=\{x|Ax\preceq b,Cx=d\},
-\]</span> where <span class="math display">\[
-A=
+          <h1 id="nonlinear-conic-programming">7. Nonlinear Conic Programming</h1>
+<p>We consider the following optimization problem, <span class="math display">\[
+\text{(OP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g(x)=0\\
+&amp;h(x)\in \mathcal C,
+\end{array}
+\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,g:\mathcal X\rightarrow \mathcal U\)</span>, and <span class="math inline">\(h:\mathcal X\rightarrow \mathcal V\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X,\mathcal U\)</span> and <span class="math inline">\(\mathcal V\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induced norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\subseteq \mathcal V\)</span> is a closed convex set in <span class="math inline">\(\mathcal V\)</span>.</p>
+<p>Let <span class="math inline">\(\mathcal Y=\mathcal U\times \mathcal V\)</span>, <span class="math inline">\(\mathcal K=\{0^\mathcal U\}\times \mathcal C\subset \mathcal Y\)</span>. Define <span class="math inline">\(G:\mathcal X\rightarrow \mathcal Y\)</span> by <span class="math display">\[
+G(X)=(g(X),h(X)),\quad X\in\mathcal X.
+\]</span> The problem can be written as the following compact form, <span class="math display">\[
+\text{(COP)}\quad \begin{array}{rCl}
+\min &amp; f(X)\\
+\text{subject to}&amp; G(X)\in\mathcal K.
+\end{array}
+\]</span> Define the Lagrangian function <span class="math inline">\(L:\mathcal X\times \mathcal Y\rightarrow \mathbb R\)</span> for (COP) by <span class="math display">\[
+L(X,\mu)=f(X)-\langle \mu, G(X)\rangle,\quad X\in\mathcal X,\mu\in\mathcal Y.
+\]</span> There is no constraint on <span class="math inline">\(\mu\)</span> for the general Lagrangian function. Therefore, here is <span class="math inline">\(y\in\mathcal Y\)</span>. We will give further explanation in the later.</p>
+<p>The <strong>Lagrangian dual function</strong> is defined by <span class="math display">\[
+\theta(\mu)=\inf\left\{L(X,\mu )\;|\; X\in\mathcal X\right\},
+\]</span> which is an unconstrained function.</p>
+<p>The dual problem is <span class="math display">\[
+\max \{\theta(\mu)\;|\; \mu \in\mathcal K^*\},
+\]</span> where <span class="math inline">\(\mathcal K^* =\mathcal U\times \mathcal C^*\)</span> is the dual cone of <span class="math inline">\(\mathcal K\)</span>. Note that <span class="math inline">\((\{0^\mathcal U\})^*=\mathcal U\)</span> and <span class="math inline">\(\mathbb S_+^n\)</span> is <strong>self-dual</strong>.</p>
+<p>We can see in the conic programming, we only consider <span class="math inline">\(\mu\in \mathcal K^*\)</span> in the dual problem. However, if needed, we can also put this constraint to the Lagrangian dual function and Lagrangian function like what we usually do in the basic nonlinear programming.</p>
+<p>We also define the Lagrangian function in the conic programming as <span class="math inline">\(L(x,\mu)=f(x)\textbf{ minus } \langle \mu,G(x)\rangle\)</span> <strong>instead of plus</strong>. This is for convenience because the cone is usually defined as “positive”, which means <span class="math inline">\(h(x)\succeq 0\)</span> in the conic programming <strong>instead of</strong> <span class="math inline">\(h(x)\le 0\)</span> in the basic nonlinear programming is the common case.</p>
+<p><strong>Example</strong></p>
+<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb R^q\)</span> and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
+\text{(NLP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g(x)=0\\
+&amp;h(x)\ge 0.
+\end{array}
+\]</span> If we denote <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb R^n_+\)</span>, there exists <span class="math inline">\(\mu\in\mathbb R^m\times \mathbb R^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
+L(x,\mu)=f(x)-\langle \mu,G(x)\rangle.
+\]</span> The Lagrange dual function is defined as <span class="math display">\[
+\theta(\mu)=\min_x L(x,\mu)=\min_x\left(f(x)-\langle\mu,G(x)\rangle\right),\quad \mu\in\mathbb R^m\times \mathbb R^n.
+\]</span> Since <span class="math inline">\(\left(\mathbb R^n_+\right)^*=\mathbb R^n_+\)</span>, the Lagrange dual problem is defined as <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \theta (\mu)\\
+\text{subject to}&amp; \mu\in\mathcal K^*=\mathbb R^n\times \mathbb R^n_+.
+\end{array}
+\]</span> <strong>Example</strong> (semidefinite linear programming)</p>
+<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb S^n\)</span>, and <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(g(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(h(X)=X\)</span> and <span class="math inline">\(\mathcal C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; \langle C,X\rangle\\
+\text{subject to}&amp; \mathcal A(X)-b=0\\
+&amp;X\succeq 0(X\in\mathbb S^n_+),
+\end{array}
+\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
+\mathcal A(X)=
 \begin{bmatrix}
-a_1^T\\a_2^T\\\vdots\\a_m^T
-\end{bmatrix}
-\quad
-C=
-\begin{bmatrix}
-c_1^T\\c_2^T\\\vdots\\c_p^T
-\end{bmatrix}.\\
-\]</span> <strong>Simplexes</strong> are important family of polyhedra. Suppose <span class="math inline">\(k+1\)</span> points <span class="math inline">\(v_0,v_1,\dotsm,v_k\in \mathbb R^n\)</span> are <strong>affinely independent</strong> that means <span class="math inline">\(v_1-v_0,v_2-v_0,\dotsm,v_k-v_0\)</span> are linearly independent. Then the simplex is determined by <span class="math display">\[
-C=\text{conv }\{v_0,\dotsm,v_k\}=\{\theta_0v_0+\dotsm+\theta_k v_k\;|\;\theta\succeq0,1^T\theta=1\}.
-\]</span> <strong>Notation</strong></p>
-<p>Roughly speaking, affine independence is like linear independence but without the restriction that the subset of lower dimension the points lie in contains the origin. So three points in space are affinely independent if the smallest flat thing containing them is a plane. They're affinely dependent if they lie on a line (or are the same point).</p>
-<p>To describe the simplex as polyhedron, we define <span class="math display">\[
-y=(\theta_1,\dotsm,\theta_k)\\
-B=[v_1-v_0,\dotsm,v_k-v_0].
-\]</span> Then <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(x=v_0+By\)</span>, <span class="math inline">\(y\succeq0\)</span>, and <span class="math inline">\(1^T y\le 1\)</span>.</p>
-<p>Then we define <span class="math display">\[
-A_1B=I\quad A_2B=0.
-\]</span> Because B is linear independent, we have a nonsingular matrix, <span class="math display">\[
-A=\begin{bmatrix}
-A_1\\A_2
-\end{bmatrix}\in \mathbb R^{n\times n}.
-\]</span> Then we have <span class="math display">\[
-x=v_0+By\\ \iff\\
-Ax=Av_0+ \begin{bmatrix}
-I\\0
-\end{bmatrix} y \\\iff
-\\
-\begin{cases}
-A_1 x=A_1 v_0+y\\
-A_2 x=A_2 v_0
-\end{cases}
-\]</span> Then, <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(A_2 x=A_2 v_0\)</span>, and the vector <span class="math inline">\(y=A_1x-A_1v_0\)</span> satisfies <span class="math inline">\(y\succeq 0\)</span> and <span class="math inline">\(1^Ty\le 1\)</span> , that is same to <span class="math display">\[
-A_2x=A_2v_0\quad A_1x\succeq A_1v_0\quad 1^TA_1x\le1+1^TA_1v_0
-\]</span></p>
-<h3 id="positive-semi-definite-cone">2.2.5 Positive semi-definite cone</h3>
-<p>The set <span class="math inline">\(\mathbb S_+^n\)</span> is a convex cone, if <span class="math inline">\(\theta_1, \theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>. Then <span class="math inline">\(\theta_1 A+\theta_2B \in \mathbb S_+^n\)</span>. That can be easily checked by for any <span class="math inline">\(x\in \mathbb R^n\)</span> , if <span class="math inline">\(\theta_1,\theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>, <span class="math display">\[
-x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\ge0.
-\]</span> That means <span class="math inline">\((\theta_1A+\theta_2B) \in \mathbb S_+^n\)</span>.</p>
-<h2 id="operations-that-preserve-convexity">2.3 Operations That Preserve Convexity</h2>
-<p>In this section, we describe some operations that preserve convexity of sets, or allow us to construct convex set from others.</p>
-<h3 id="intersection">2.3.1 Intersection</h3>
-<p>Convexity is preserved under intersection. If <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, then <span class="math inline">\(S_1 \cap S_2\)</span> is convex. Every closed convex set is an intersection of halfspaces.</p>
-<h3 id="affine-function">2.3.2 Affine Function</h3>
-<p>Recall that a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R^m\)</span> is <strong>affine</strong> if it is a sum of linear function and a constant. That means it has the form <span class="math display">\[
-f(x)=Ax+b.
-\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in \mathbb R^m\)</span>.</p>
-<p>Suppose <span class="math inline">\(S\subseteq \mathbb R^n\)</span> is convex and <span class="math inline">\(f\)</span> is an affine function. Then the image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is convex. Similarly, the inverse image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is also convex. This affine function can be considered as a translation of a convex set.</p>
-<p>The <strong>projection</strong> of a convex set onto some of its coordinates is convex. if <span class="math inline">\(S\subseteq \mathbb R^m\times \mathbb R^n\)</span> is convex, that means the following is convex. <span class="math display">\[
-T=\{x_1\in \mathbb R^m\;|\;(x_1,x_2)\in S\text{ for some }x_2\in \mathbb R^n\}
-\]</span> The <strong>sum</strong> of two convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, the following set is also convex, <span class="math display">\[
-S_1+S_2=\{x+y\;|\; x\in S_1,y\in S_2\}.
-\]</span> The <strong>partial sum</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
-S=\{(x,y_1+y_2)|\space (x,y_1)\in S_1,(x,y_2)\in S_2\}.
-\]</span> The <strong>Cartesian product</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
-S_1\times S_2=\{(x_1,x_2)\;|\;x_1\in S_1,x_2\in S_2\}.
-\]</span> <strong>Example</strong> Polyhedron</p>
-<p>The polyhedron can be expressed as the inverse image of the Cartesian product of the nonnegative orthant and the origin under the affine function <span class="math inline">\(f(x)=(b-Ax,d-Cx)\)</span>: <span class="math display">\[
-\{x\;|\;Ax\preceq b,Cx=d\}=\{x\;|\;f(x)\in \mathbb R^m_+\times\{0\}\}.
-\]</span> The inverse image of S under the function <span class="math inline">\(f\)</span> means <span class="math display">\[
-f^{-1}(S)=\{x\;|\;f(x)\in S\}.
-\]</span> <strong>Example</strong> Solution set of linear matrix inequality (LMI), The condition <span class="math display">\[
-A(x)=x_1A_1+\dotsm+x_nA_n\preceq B
-\]</span> where <span class="math inline">\(B,A_i \in \mathbb S^m\)</span>, is called the linear matrix inequality (LMI) in <span class="math inline">\(x\)</span>.</p>
-<p>The solution set of a LMI <span class="math inline">\(\{x\;|\;A(x)\preceq B\}\)</span> is convex. Since it is the inverse image of the positive definite cone (2.2.5) under the affine function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^m\)</span> given by <span class="math display">\[
-f(x)=B-A(x).
-\]</span> That means the solution set is <span class="math display">\[
-\{x\;|\;f(x)=B-A(x)\in S_+^m\}.
-\]</span> <strong>Example</strong> Hyperbolic cone</p>
-<p>The set <span class="math display">\[
-\mathcal N=\{x\;|\;x^T Px\le(c^Tx)^2,c^Tx\ge0\}
-\]</span> where <span class="math inline">\(P\in \mathbb S_+^n\)</span> and <span class="math inline">\(c\in \mathbb R^n\)</span> is convex, since it is the inverse image of the second-order cone <span class="math display">\[
-\mathcal M=\{(z,t)\;|\;z^Tz\le t^2,t\ge 0 \},
-\]</span> under the affine function <span class="math inline">\(f(x)=(P^{1/2} x,c^Tx)\)</span>.</p>
-<p>That means the set <span class="math inline">\(\mathcal N\)</span> should be <span class="math display">\[
-\{x\;|\;f(x)\in\mathcal M\}=\{x\;|\;(P^{1/2} x,c^Tx)\in\mathcal M\}=\{x\;|\;x^TP^{1/2}P^{1/2}x\le(c^Tx)^2,c^Tx\ge 0\}=\mathcal N.
-\]</span> <strong>Example</strong> Ellipsoid</p>
-<p>The ellipsoid <span class="math display">\[
-\varepsilon = \{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\},
-\]</span> where <span class="math inline">\(P\in \mathbb S_{++}^n\)</span>, is the image of the unit Euclidean ball <span class="math inline">\(\{u|\space ||u||_2\le 1\}\)</span> under the affine mapping <span class="math display">\[
-f(u)=P^{1/2}u+x_c.
-\]</span> We can check <span class="math display">\[
-f(x)\in\{P^{1/2}u+x_c|\space||u||_2\le 1\}=\{x|\space||P^{-1/2}(x-x_c)||\le1\}\\=\{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\}=\varepsilon.
-\]</span></p>
-<h3 id="linear-fractional-and-perspective-functions">2.3.3 Linear-fractional and perspective functions</h3>
-<p>In this section, we explores a class of functions, called linear-fractional, that is more general than affine function but still preserve convexity.</p>
-<p><strong>Perspective Function</strong></p>
-<p>We define the perspective function <span class="math inline">\(P:\mathbb R^{n+1}\rightarrow \mathbb R^{n}\)</span>, with domain <span class="math inline">\(\text{dom }P=\mathbb R^n\times \mathbb R_{++}\)</span> as <span class="math inline">\(P(z,t)=z/t\)</span>.</p>
-<p>If <span class="math inline">\(C\subseteq \text{dom } P\)</span> is convex, then its image <span class="math display">\[
-P(C)=\{P(x)\;|\;x\in C\},
-\]</span> is convex.</p>
-<p>We consider <span class="math inline">\((\tilde x,x_{n+1}), (\tilde y,y_{n+1})\in \mathbb R^{n+1}\)</span> with <span class="math inline">\(x_{n+1}&gt;0\)</span> and <span class="math inline">\(y_{n+1} &gt; 0\)</span>, then for $0 $, we have <span class="math display">\[
-P(\theta x+(1-\theta)y)=\frac{\theta \tilde x+(1-\theta)\tilde y}{\theta x_{n+1}+(1-\theta) y_{n+1}}=\mu P(x)+(1-\mu)P(y)
-\]</span> where <span class="math inline">\(0\le\mu=\frac{\theta x_{n+1}}{\theta x_{n+1}+(1-\theta)y_{n+1}}\le1, P(x)=\frac{\tilde x}{x_{n+1}},P(y)=\frac{\tilde y}{y_{n+1}}\)</span>. This also shows that <span class="math inline">\(P([x,y])=[P(x),P(y)]\)</span>.</p>
-<p>The inverse image of a convex set under the perspective function is also convex.</p>
-<p>Proof is skipped.</p>
-<p><strong>Linear-fractional Function</strong></p>
-<p>A linear fractional function is formed by composing the perspective function with an affine function.</p>
-<p>Suppose <span class="math inline">\(g:\mathbb R^n\rightarrow \mathbb R^{m+1}\)</span> is affine, where <span class="math display">\[
-g(x)=
-\begin{bmatrix}
-A\\c^T
-\end{bmatrix}x+
-\begin{bmatrix}
-b\\d
-\end{bmatrix}.
-\]</span> The function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> given by <span class="math inline">\(f(x)=p\circ g\)</span>, <span class="math display">\[
-f(x)=\frac{Ax+b}{c^Tx+d},
-\]</span> where <span class="math inline">\(c^Tx+d&gt;0\)</span>, is called a linear fractional function, which preserve convexity. If <span class="math inline">\(C\)</span> is convex and lies in the <span class="math inline">\(\text{dom }f\)</span>, then its image <span class="math inline">\(f(C)\)</span> is also convex.</p>
-<p><strong>Example</strong> Conditional probabilities</p>
-<p>Suppose <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are random variables that take on values in <span class="math inline">\((1,\dotsm,m)\)</span> and <span class="math inline">\((1,\dotsm,n)\)</span> respectively. Let <span class="math inline">\(p_{ij}\)</span> denote probability of <span class="math inline">\(u=i, v=j\)</span>. Then the conditional probability is <span class="math display">\[
-\text{prob}(u=i|v=j)=\frac{p_{ij}}{\sum_{k=1}^np_{kj}}
-\]</span> Denote <span class="math inline">\(x=[p_{1j},p_{2j},\dotsm,p_{mj}]^T,A=I_{m\times m},b=0,c=1^T_m,d=0\)</span>. Thus <span class="math inline">\(f\)</span> is obtained by a linear fractional mapping from <span class="math inline">\(p\)</span>. Therefore, if the joint probabilities for <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> is convex, the conditional probability is also convex.</p>
-<h2 id="generalized-inequalities">2.4 Generalized Inequalities</h2>
-<h3 id="proper-cones-and-generalized-inequalities">2.4.1 Proper cones and generalized inequalities</h3>
-<p>A cone <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is called a <strong>proper cone</strong> if it satisfies the following</p>
-<ol type="1">
-<li>K is convex</li>
-<li>K is closed</li>
-<li>K is solid, which means it has nonempty interior</li>
-<li>K is pointed. It means there are no 2 points inside it which creates a line (not line segment) and the whole line is contained by the cone. (<span class="math inline">\(x\in K,-x\in K\implies x=0\)</span>) or (<span class="math inline">\(Q \cap -Q = \{0\}\)</span>).</li>
-</ol>
-<p>A proper cone can be used to define a generalized inequality, which is a partial ordering on <span class="math inline">\(\mathbb R^n\)</span> that has many of the properties of standard ordering on <span class="math inline">\(\mathbb R\)</span>. <span class="math display">\[
-x\preceq_K y \iff y-x\in K\\
-x\prec_K y \iff y-x\in \text{int } K
-\]</span></p>
-<p>The similar thing for <span class="math inline">\(\succ_K,\succeq_K\)</span>.</p>
-<p><strong>Example</strong> Nonnegative orthant and componentwise inequality</p>
-<p>When <span class="math inline">\(K=\mathbb R^m_+\)</span>. The associated generalized inequality <span class="math inline">\(x\preceq y\)</span> means that <span class="math inline">\(x_i\le y_i\)</span> for all elements.</p>
-<p><strong>Example</strong> Positive semidefinite cone and matrix inequality</p>
-<p>When <span class="math inline">\(K=\mathbb S^n_+\)</span>. The associated generalized inequality <span class="math inline">\(X\preceq Y\)</span> means <span class="math inline">\(Y-X\)</span> is positive semidefinite.</p>
-<p><strong>Properties of generalized inequalities</strong></p>
-<ol type="1">
-<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(u\preceq_K v\)</span>, then <span class="math inline">\(x+u\preceq_K y+v\)</span></li>
-<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(y\preceq_K z\)</span>, then $x_K $ z</li>
-<li>if <span class="math inline">\(\alpha\ge 0\)</span> and <span class="math inline">\(x\preceq_K y\)</span>, then <span class="math inline">\(\alpha x\preceq_K \alpha y\)</span></li>
-<li><span class="math inline">\(x\preceq_K x\)</span></li>
-<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(y\preceq_K x\)</span>, then <span class="math inline">\(x=y\)</span></li>
-<li>if <span class="math inline">\(x_i\preceq_K y_i\)</span>, <span class="math inline">\(\lim_{i\rightarrow \infty} x_i =x\)</span> and <span class="math inline">\(\lim_{i\rightarrow \infty} y_i =y\)</span> , then <span class="math inline">\(x\preceq_K y\)</span></li>
-<li>if <span class="math inline">\(x\prec_K y\)</span> then <span class="math inline">\(x\preceq_K y\)</span></li>
-</ol>
-<h3 id="minimum-and-minimal-elements">2.4.2 Minimum and minimal elements</h3>
-<p>We say that <span class="math inline">\(x\in S\)</span> is the <strong>minimum element</strong> of <span class="math inline">\(S\)</span> (with respect to the general inequality) if for every <span class="math inline">\(y\in S\)</span> we have <span class="math inline">\(x\preceq_K y\)</span>. A point <span class="math inline">\(x\in S\)</span> is the minimum element if and only if <span class="math display">\[
-S\subseteq x+K.
-\]</span> Something is <strong>minimum</strong> if it is the <strong>unique</strong> minimal element. (From Quora)</p>
-<p>We say that <span class="math inline">\(x\in S\)</span> is the minimal element of <span class="math inline">\(S\)</span> if <span class="math inline">\(y \in S, y\preceq_K x\)</span> only if <span class="math inline">\(y=x\)</span>. A point <span class="math inline">\(x\in S\)</span> is the minimal element if and only if <span class="math display">\[
-(x-K)\cap S=\{x\}.
-\]</span> Something is <strong>minimal</strong> if <strong>nothing is smaller</strong>. (From Quora)</p>
-<h2 id="separating-and-supporting-hyperplanes">2.5 Separating and Supporting hyperplanes</h2>
-<h3 id="separating-hyperplane-theorem">2.5.1 Separating hyperplane theorem</h3>
-<p>In this section, we describe an idea that will be important later. The use of hyperplanes or affine functions to separate convex set that do not intersect. The basic result is the <strong>separating hyperplane theorem</strong>: suppose <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> are two convex sets that do not intersect, then there exist $a $ and <span class="math inline">\(b\)</span> such that <span class="math inline">\(a^Tx\le b\)</span> for all <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(a^Tx\ge b\)</span> for all <span class="math inline">\(x\in D\)</span>.</p>
-<p>Proof is skipped.</p>
-<p><strong>Strict separation</strong> is the stronger condition on the separation, which means <span class="math inline">\(a^Tx&lt;b\;\forall x\in C\)</span> and <span class="math inline">\(a^Tx&gt;b\;\forall x\in D\)</span>.</p>
-<p><strong>Converse separating hyperplane theorems</strong></p>
-<p>Existence of a separating hyperplane implies that C and D do not intersect is <strong>NOT</strong> true. Consider the set <span class="math inline">\(C=D=\{0\}\)</span></p>
-<p>But we have the following theorem. Any two convex sets <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span>, at least one of which is <strong>open</strong>, are disjoint if and only if there exists a separating hyperplane.</p>
-<h3 id="supporting-hyperplanes">2.5.2 Supporting hyperplanes</h3>
-<p>Suppose <span class="math inline">\(C\subseteq \mathbb R^n\)</span>, <span class="math inline">\(x_0\)</span> is a point in this <strong>boundary</strong> <span class="math inline">\(\text{bd } C\)</span>, i.e. <span class="math inline">\(x_0\in\text{bd }C=\text{cl }C\backslash\text{int }C\)</span>. If <span class="math inline">\(a\neq0\)</span> satisfies <span class="math inline">\(a^Tx\le a^T x_0\)</span> for all <span class="math inline">\(x\in C\)</span> , then the hyperplane <span class="math inline">\(\{x\;|\;a^Tx=a^T x_0\}\)</span> is called a supporting hyperplane to <span class="math inline">\(C\)</span> at the point <span class="math inline">\(x_0\)</span>.</p>
-<p><strong>Supporting hyperplanes theorem</strong></p>
-<p>For any nonempty convex set <span class="math inline">\(C\)</span>, and any <span class="math inline">\(x_0\in \text{bd } C\)</span>, there exists a supporting hyperplane to <span class="math inline">\(C\)</span> at <span class="math inline">\(x_0\)</span>.</p>
-<p>There is also a partial converse of the supporting hyperplane theorem: If a set is <strong>closed</strong>, has <strong>nonempty interior</strong>, and has a supporting hyperplane at every point in its boundary, then it is convex.</p>
-<h2 id="dual-cones-and-generalized-inequalities">2.6 Dual Cones and Generalized Inequalities</h2>
-<h3 id="dual-cones">2.6.1 Dual cones</h3>
-<p>Let <span class="math inline">\(K\)</span> be a cone. The set <span class="math display">\[
-K^*=\{y\;|\;x^Ty\ge0\text{ for all }x\in K\}
-\]</span> is called a dual cone of <span class="math inline">\(K\)</span>. As the name suggests, <span class="math inline">\(K^*\)</span> is a cone, and is always convex even when the original cone <span class="math inline">\(K\)</span> is not. Geometrically, <span class="math inline">\(y\in K^*\)</span> if and only if <span class="math inline">\(-y\)</span> is the normal of a hyperplane that supports <span class="math inline">\(K\)</span> at the origin.</p>
-<p><strong>Example</strong> Nonnegative orthant. The cone <span class="math inline">\(\mathbb R_+^n\)</span> is its own dual (<strong>self-dual</strong>) <span class="math display">\[
-y^Tx\ge 0\space\forall x\succeq 0 \iff y\succeq 0.
-\]</span> <strong>Example</strong> Positive semidefinite cone. We use the <strong>standard inner product</strong> <span class="math display">\[
-\langle X,Y\rangle=\text{tr}(X^TY)=\text{tr}(XY)=\sum_{i,j=1}^n X_{ij}Y_{ij}.
-\]</span> The positive semidefinite cone is <strong>self-dual</strong> that means for <span class="math inline">\(X,Y \in \mathbb S^n\)</span> <span class="math display">\[
-\text{tr}(XY)\ge0 \space\forall X\succeq 0 \iff Y\succeq 0
-\]</span> To prove sufficiency</p>
-<p>We need to prove if <span class="math inline">\(Y\notin \mathbb S_+^n\)</span>, $ X(XY)$.</p>
-<p>Suppose <span class="math inline">\(Y\notin \mathbb S_+^n\)</span>. Then there exists <span class="math inline">\(q\in \mathbb R^n\)</span> with <span class="math display">\[
-q^TYq=\text{tr}(qq^TY)&lt; 0 \quad\text{trace property: }\text{tr}(AB)=\text{tr}(BA).
-\]</span> Then let <span class="math inline">\(X=qq^T\)</span> <span class="math display">\[
-q^TXYq=tr(q^Tqq^TYq)=q^Tqtr(q^TYq)&lt;0.
-\]</span> Sufficiency proved.</p>
-<p>To prove necessity, we need to prove, if <span class="math inline">\(Y\succeq 0\)</span>, <span class="math inline">\(\forall X\succeq 0 \;\text{tr}(XY)\ge0\)</span>.</p>
-<p>Suppose <span class="math inline">\(X, Y\in \mathbb S_+^n\)</span>. Then we can express <span class="math inline">\(X\)</span> in terms of it eigenvalue decomposition <span class="math display">\[
-X=\sum_{i=1}^n\lambda_i q_i q^T_i.
+\langle A_1,X\rangle \\ \vdots \\
+\langle A_m,X\rangle
+\end{bmatrix},\quad 
+X\in\mathbb S^n,
+\]</span> where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
+\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
+\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j, \\
+\mathbf 1^T\mathcal A^*yX \mathbf 1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \mathbf 1^TA_iX\mathbf 1\\
+&amp;=&amp; \mathbf 1^T\displaystyle\sum_{i=1}^m y_i A_iX\mathbf 1,
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
+<p>We have the Lagrange function, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
+&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
+\end{array}
 \]</span> Then <span class="math display">\[
-\text{tr}(YX)=\text{tr}\left(Y\sum_{i=1}^n\lambda_i q_i q^T_i\right)\\
-=\sum_{i=1}^n\lambda_i\text{tr}\left(Y q_i q^T_i\right)\quad (\text{tr}(A+B)=\text{tr}(A)+\text{tr}(B))\\
-=\sum_{i=1}^n\lambda_iq_i^TYq_i\ge 0.
-\]</span> Necessity proved.</p>
-<p><strong>Example</strong> Dual of a norm cone. Let <span class="math inline">\(||\cdot||\)</span> be a norm on <span class="math inline">\(\mathbb R^n\)</span>. The dual of the associated cone <span class="math display">\[
-K=\{(x,t)\in \mathbb R^{n+1}\;|\; ||x||\le t\}
-\]</span> is the cone defined by the dual norm <span class="math display">\[
-K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
-\]</span> where the dual norm is given by <span class="math inline">\(||u||_* = \sup\{u^Tx\;|\; ||x|| \le 1\}\)</span>. The dual norm of the second norm is the second norm itself.</p>
-<p>Proof skipped.</p>
-<p>Dual cones satisfy several properties such as</p>
+\begin{array}{rcl}
+\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Therefore, the dual problem is given by, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle\\
+\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
+&amp;Z\succeq 0.
+\end{array}
+\]</span> Also, we can consider the compact form. If we define <span class="math inline">\(G(X)=(\mathcal A(X)-b, X)\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S^n_+\)</span>, then we have <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; f(X)=\langle C,X\rangle\\
+\text{subject to}&amp; G(X)\in\mathcal K.
+\end{array}
+\]</span> Then there exists <span class="math inline">\(\mu=(y,Z)\in\mathbb R^n\times \mathbb S^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
+\begin{array}{rcl}
+L(X,\mu)=L(X,y,Z)&amp;=&amp;f(X)-\langle \mu, G(X)\rangle\\
+&amp;=&amp;\langle C,X\rangle-\langle y,\mathcal A(X)-b\rangle-\langle  Z,X\rangle\\
+&amp;=&amp;\langle C,X\rangle-\langle \mathcal A^*(y), X\rangle+\langle y,b\rangle-\langle  Z,X\rangle\\
+&amp;=&amp;\langle C-\mathcal A^*(y)-Z,X\rangle+\langle y,b\rangle.
+\end{array}
+\]</span> The we have the Lagrange dual function, <span class="math display">\[
+\begin{array}{rcl}
+\theta(y,Z)
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Then the Lagrange dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(y,Z)\\
+\text{subject to}&amp; (y,Z)\in\mathcal K^*=\mathbb R^n\times \mathbb S^n_+,
+\end{array}
+\]</span> that is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle\\
+\text{subject to}&amp; Z\in\mathbb S^n_+\\
+&amp;C-\mathcal A^*y-Z=0.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(G\in\mathbb R^{p\times n}\)</span> and <span class="math inline">\(H\in\mathbb R^{q\times n}\)</span> for the linear map <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^{p\times q}\)</span> defined by <span class="math inline">\(\mathcal A(X)=GXH^T\)</span>. Show that the adjoint map <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q} \rightarrow \mathbb S^n\)</span> is given by <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>.</p>
+<p>Proof. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A(X),Y\rangle&amp;=&amp; \langle GXH^T,Y\rangle\\
+&amp;=&amp; \text{tr}(HXG^TY)\\
+&amp;=&amp; \text{tr}(XG^TYH)\\
+&amp;=&amp; \frac{1}{2}\text{tr}\left(X(G^TYH+H^TY^TG)\right)\\
+&amp;=&amp;\langle X,\frac{1}{2}(G^TYH+H^TY^TG)\rangle.
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>. (<strong>ATTENTION</strong>: <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q}\rightarrow \mathbb S^n\)</span>)</p>
+<p><strong>Example</strong> (semidefinite programming least squares problem)</p>
+<p>If <span class="math inline">\(f(x)=\frac{1}{2}||X-B||^2\)</span> where <span class="math inline">\(B\in \mathbb S^n\)</span> is a given matrix. <span class="math display">\[
+\text{(SDPLS)}\quad \begin{array}{rCl}
+\min &amp; \frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; \mathcal A(X)=b\\
+&amp;X\succeq 0.
+\end{array}
+\]</span> In particular, when <span class="math inline">\(\mathcal A(X)=\text{diag} (X)\)</span> and <span class="math inline">\(b=e\)</span>, we get the nearest correlation matrix problem.</p>
+<p>The problem can be denoted as <span class="math display">\[
+\text{(SDPLS)}\quad \begin{array}{rCl}
+\min &amp; \frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; G(X)\in \mathcal K,
+\end{array}
+\]</span> where <span class="math inline">\(G(X)=(\mathcal A(X)-b,X)\)</span> and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S_+^n\)</span>.</p>
+<p>For <span class="math inline">\(X\in \mathbb S^n\)</span>, <span class="math inline">\(\mu = (y,Z)\in\mathcal Y=\mathbb R^m\times \mathbb S^n\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle y,b-\mathcal A(X)\rangle -\langle Z,X\rangle\\
+&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2+\frac{1}{2}||X||^2-\langle \mathcal A^*(y)+Z+B,X\rangle,
+\end{array}
+\]</span> Thus <span class="math inline">\(\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\)</span> can be found by setting, <span class="math display">\[
+\nabla _XL(X,y,Z)=X-(B+Z+\mathcal A^*(y))=0\implies X=B+Z+\mathcal A^*(y).
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+\theta (y,Z)&amp;=&amp;\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\\
+&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2.
+\end{array}
+\]</span> The dual problem is given by <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
+\text{subject to}&amp; (y,Z)\in\mathcal K^*.
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; -\langle y,b\rangle+\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
+\text{subject to}&amp; y\in\mathbb R^n\\
+&amp; Z\in \mathbb S_+^n.
+\end{array}
+\]</span> We claim <strong>(This claim is very useful)</strong> <span class="math display">\[
+G=\Pi_{\mathbb S_+^n} (G)-\Pi_{\mathbb S_+^n} (-G).
+\]</span></p>
+<p>This property can be easily checked by the property of proximal operator. Since we have <span class="math inline">\(\delta_K^*(x)=\delta_{K^*}(-x)\)</span>, let us check the proximal. <span class="math display">\[
+\begin{array}{rcl}
+P_{\delta_K^*}(y)&amp;=&amp;\arg\min_x\{\delta_K^*(x)+\frac{1}{2}||x-y||^2\}\\
+&amp;=&amp;\arg\min_x\{\delta_{K^*}(-x)+\frac{1}{2}||x-y||^2\}\\
+&amp;=&amp;-\arg\min_x\{\delta_{K^*}(x)+\frac{1}{2}||x-(-y)||^2\}\\
+&amp;=&amp; -\Pi_{\delta_{K^*}}(-y).
+\end{array}
+\]</span> Therefore <span class="math display">\[
+\begin{array}{rcl}
+G&amp;=&amp;P_{\delta_{\mathbb S^n_+}}(G)+P_{(\delta_{\mathbb S^n_+})^*}(G)\\
+&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{(\mathbb S^n_+)^*}(-G)\\
+&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{\mathbb S^n_+}(-G).
+\end{array}
+\]</span></p>
+<p>Then by using this claim, we have <span class="math display">\[
+\begin{array}{l}
+\min\left\{||B+Z+\mathcal A^*(y)||\;|\; Z\in\ \mathbb S_+^n\right\}
+\\\quad =||B+\mathcal A^*(y)+\Pi_{\mathcal S_+^n}(-(B+\mathcal A^*(y)))||
+\\\quad=||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||.
+\end{array}
+\]</span> Therefore, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \phi(y)=-\langle y,b\rangle+\frac{1}{2}||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||^2\\
+\text{subject to}&amp; y\in\mathbb R^n.
+\end{array}
+\]</span> In this case, the dual problem is unconstrained problem. Therefore, we can solve it by finding the root of the gradient, <span class="math display">\[
+0=\nabla \phi(y)=-b+\mathcal A \Pi_{\mathbb S_+^n}(B+\mathcal A^* (y)).
+\]</span> <strong>Example</strong> (Sparse regression problem) <span class="math display">\[
+\min\{\frac{1}{2}||Ax-b||^2+\lambda ||x||_1\;|\; x\in\mathbb R^n\},
+\]</span> where <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb R^m\)</span> are given data. Let <span class="math inline">\(u=b-Ax\)</span>, then we have <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(u)+g(x)\\
+\text{subject to}&amp; u+Ax=b,
+\end{array}
+\]</span> where <span class="math inline">\(f(u)=\frac{1}{2}||u||^2\)</span> and <span class="math inline">\(g(x)=\lambda ||x||_1\)</span>.</p>
+<p>The Lagrangian function is given as <span class="math display">\[
+\begin{array}{rcl}
+L(u,x,\xi)&amp;=&amp;f(u)+g(x)+\langle \xi,b-u-Ax\rangle\\
+&amp;=&amp; f(u)-\langle \xi,u\rangle +g(x)-\langle A^T\xi,x\rangle +\langle \xi,b\rangle.
+\end{array}
+\]</span> The Lagrangian dual function is given as <span class="math display">\[
+\theta(\xi)=\langle \xi,b\rangle+\min_u(f(u)-\langle \xi,u\rangle)+\min_x(g(x)-\langle A^T\xi,x\rangle)\\
+=\langle \xi,b\rangle-\max_u(\langle \xi,u\rangle-f(u))-\max_x(\langle A^T\xi,x\rangle-g(x)).
+\]</span> Both of the last two terms are conjugate functions. Therefore we have <span class="math display">\[
+\theta(\xi)=\langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(A^T\xi).
+\]</span> Therefore, the dual problem is <span class="math display">\[
+-\min -\langle\xi,b\rangle +\frac{1}{2}||\xi||^2+\delta_{B_\lambda}(A^T\xi).
+\]</span> <strong>Definition</strong> (Lagrange Multipliers) <span class="math display">\[
+L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
+\]</span> where <span class="math inline">\(L\)</span> be the Lagrangian function for (COP). Assume that <span class="math inline">\(f\)</span> and <span class="math inline">\(G\)</span> are continuously differentiable. We say that <span class="math inline">\(\bar \mu \in\mathcal Y\)</span> is a Lagrange multiplier of (COP) at a feasible point <span class="math inline">\(\bar x\)</span>, if it satisfies the KKT condition, <span class="math display">\[
+0=\nabla _xL(\bar x,\bar \mu)=\nabla f(\bar x)-\nabla G(\bar x)\bar \mu,\quad 0\in \bar \mu+N_\mathcal K(G(\bar x)),
+\]</span> where <span class="math inline">\(N_\mathcal K (G(\bar x))\)</span> is the normal cone of <span class="math inline">\(\mathcal K\)</span> at <span class="math inline">\(G(\bar x)\in \mathcal Y\)</span>. We denote the set of all Lagrange multipliers at <span class="math inline">\(\bar x\)</span> as <span class="math inline">\(\mathcal M(\bar x)\)</span>. We call the pair <span class="math inline">\((\bar x,\bar \mu)\)</span> a KKT point.</p>
+<p><strong>Remark</strong></p>
 <ol type="1">
-<li><span class="math inline">\(K^*\)</span> is closed and convex.</li>
-<li><span class="math inline">\(K_1 \subseteq K_2\)</span> implies <span class="math inline">\(K_2^*\subseteq K_1^*\)</span>.</li>
-<li>If <span class="math inline">\(K\)</span> has nonempty interior, then <span class="math inline">\(K^*\)</span> is pointed.</li>
-<li>If the closure of <span class="math inline">\(K\)</span> is pointed, then <span class="math inline">\(K^*\)</span> has nonempty interior.</li>
-<li>If <span class="math inline">\(K\)</span> is convex and closed, <span class="math inline">\(K^{**}=K\)</span>.</li>
+<li><p>If <span class="math inline">\(\mathcal C\)</span> is a closed convex cone, then <span class="math inline">\(\mathcal K = 0^{\mathcal U}\times \mathcal C\)</span> is a closed convex cone. <span class="math display">\[
+\begin{array}{rcl}
+-\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle -\bar \mu,d-G(\bar x)\rangle \le 0,&amp;&amp;\forall d\in\mathcal K
+\end{array}
+\]</span> We choose <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=G(\bar x)\)</span>. Then we have <span class="math display">\[
+\begin{array}{rcl}
+-\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\langle \bar \mu,d\rangle\ge 0,&amp;\forall d\in\mathcal K\\
+&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\bar \mu\in \mathcal K^*.
+\end{array}
+\]</span> In this case, the KKT conditions can be written as <span class="math display">\[
+(G(\bar x)\in\mathcal K)\perp (\bar \mu \in\mathcal K^*).
+\]</span></p></li>
+<li><p>The set of multipliers <span class="math inline">\(\mathcal M(\bar x)\)</span> may be <strong>empty</strong> or <strong>unbounded</strong>.</p></li>
 </ol>
-<h3 id="dual-generalized-inequalities">2.6.2 Dual generalized inequalities</h3>
-<p>Now suppose that the convex cone <span class="math inline">\(K\)</span> is proper. Then it induces a generalized inequality <span class="math inline">\(\preceq_K\)</span>. Then its dual cone <span class="math inline">\(K^*\)</span> is also proper, and therefore induces a generalized inequality.</p>
-<ol type="1">
-<li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x\le \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span></li>
-<li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x&lt; \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span>, <span class="math inline">\(\lambda \neq 0\)</span></li>
-</ol>
-<h3 id="minimum-and-minimal-elements-via-dual-inequalities">2.6.3 Minimum and minimal elements via dual inequalities</h3>
-<p>We can use dual generalized inequalities to charaterize minimum and minimal elements of a (possitively nonconvex) set <span class="math inline">\(S\subseteq \mathbb R^n\)</span> with respect to the generalized inequality induced by a proper cone <span class="math inline">\(K\)</span>.</p>
-<p><strong>Dual characterization of minimum element</strong> (Unique)</p>
-<p><span class="math inline">\(x\)</span> is the minimum element of <span class="math inline">\(S\)</span>, with respect to the generalized inequality <span class="math inline">\(\preceq_K\)</span>, if and only if for all <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, <span class="math inline">\(x\)</span> is the unique minimizer of <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>. Geometrically, this means that for any <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, the hyperplane <span class="math display">\[
-\{z\;|\;\lambda^T(z-x)=0\}
-\]</span> is strict supporting hyperplane to <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>. (By <strong>strict supporting plane</strong>, we mean the hyperplane only intersects <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>)</p>
-<p><strong>Dual characterization of minimal elements</strong> (Maybe many)</p>
-<p>We now turn to a similar characterization of minimal elements. Here there is a gap between the necessary and sufficient conditions. If <span class="math inline">\(\lambda\succeq_{K^*}0\)</span> and <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>, then <span class="math inline">\(x\)</span> is minimal. The converse is ingeneral false.</p>
+<p><strong>Example</strong></p>
+<p>For basic NLP, let <span class="math inline">\(\bar \mu=(\lambda,\rho)\)</span>, and <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span>, and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, we have KKT conditions, <span class="math display">\[
+\begin{array}{rcl}
+\nabla f(\bar x)-\nabla g(\bar x)\lambda -\nabla h(\bar x)\rho&amp;=&amp;0\\
+G(\bar x)=(g(\bar x),h(\bar x))&amp;\in&amp; \mathcal K\\
+\langle h(\bar x),\rho\rangle &amp;=&amp;0\\
+\rho \in \mathcal C^*&amp;=&amp;\mathbb R_+^p.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>Given <span class="math inline">\(B\in\mathbb S^n\)</span>, consider the doubly nonnegative projection problem, <span class="math display">\[
+\min \left\{\frac{1}{2}||X-B||^2\;|\; X\in\mathbb S_+^n\cap \mathcal N^n\right\}.
+\]</span> The above problem can be rewritten as <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; f(X)=\frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; G(X)=(X,X)\in\mathcal K=\mathbb S_+^n\times \mathcal N^n.
+\end{array}
+\]</span> The Lagrange function is for <span class="math inline">\(\mu=(Y,Z) \in \mathcal Y=\mathbb S^n\times \mathbb S^n\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
+&amp;=&amp;\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle.
+\end{array}
+\]</span> The Lagrange dual function is <span class="math display">\[
+\begin{array}{rcl}
+\theta(\mu)=\theta(Y,Z)&amp;=&amp;\min_{X\in\mathbb S^n} L(X,\mu)\\
+&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle\right)\\
+&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X||^2-\langle B+Y+Z,X\rangle+\frac{1}{2}||B||^2\right)\\
+&amp;=&amp;\frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right).
+\end{array}
+\]</span></p>
+<p>Therefore the dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right)\\
+\text{subject to}&amp; (Y,Z)\in\mathcal K^*=\mathbb S^n_+\times  \mathcal N^n.
+\end{array}
+\]</span> Therefore, the KKT conditions are given as <span class="math display">\[
+0=\nabla _xL(\bar X,\bar Y,\bar Z)=\nabla f(\bar X)-\langle\nabla G(\bar X),(\bar Y,\bar Z)\rangle\\
+\mathcal K\ni G(\bar X)\perp (\bar Y,\bar Z) \in \mathcal K^*.
+\]</span> That is <span class="math display">\[
+\bar X- B-\bar Y-\bar Z=0\\
+\langle \bar X,\bar Y\rangle+\langle \bar X,\bar Z\rangle=0\\ 
+\bar X\in \mathbb S^n_+\cap \mathcal N^n\\
+(\bar Y,\bar Z)\in\mathbb S^n_+\times\mathcal N^n.
+\]</span></p>
 
         
       
@@ -643,7 +612,7 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Convex Optimization/11. Interior-Point Methods/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -657,7 +626,7 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" class="post-title-link" itemprop="url">Chapter 11. Interior-point methods</a>
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/" class="post-title-link" itemprop="url">6. Basic Lagrange Duality and Saddle Point Optimality Conditions</a>
           
         </h1>
 
@@ -672,11 +641,19 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
                 
               
 
-              <time title="Created: 2020-12-22 13:49:01 / Modified: 14:00:59" itemprop="dateCreated datePublished" datetime="2020-12-22T13:49:01+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-11 20:26:54" itemprop="dateModified" datetime="2019-11-11T20:26:54+08:00">2019-11-11</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -685,7 +662,7 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
 
                 
                 
@@ -694,7 +671,7 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
           
 
           
-            <span id="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 11. Interior-point methods" title="Views">
+            <span id="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/" class="post-meta-item leancloud_visitors" data-flag-title="6. Basic Lagrange Duality and Saddle Point Optimality Conditions" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -712,7 +689,7 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Convex Optimization/11. Interior-Point Methods/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -726,162 +703,233 @@ K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="interior-point-methods">11. Interior-point methods</h1>
-<h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
-<p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0\\Ax=b
+          <p>You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/</p>
+<h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
+<p>Given an nonlinear programming problem, there is another nonlinear programming problem closely associated with it via the Lagrangian function. The former is called the <strong>primal problem</strong> and the latter is called the <strong>Lagrangian dual problem</strong>.</p>
+<h2 id="lagrangian-dual-problem">6.1 Lagrangian dual problem</h2>
+<p>Consider the following general nonlinear programming problem, which is known as a primal problem, <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
+&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
+&amp;x\in X,
 \end{array}
-\end{array}
-\]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
-\begin{array}{rcl}
-Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
-\lambda^\star &amp;\succeq&amp; 0\\
-\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
-\lambda_i^\star f_i(x^\star)&amp;=&amp;0
-\end{array}
-\]</span></p>
-<p>Interior-point method solve the problem by applying newton’s method to a sequence of equality constrained problem. We will concentrate on a particular interior-point method, called the barrier method, for which we give a proof of convergence and a complexity analysis. We also describe the primal-dual interior point method, but do note give analysis.</p>
-<p>We can view interior-point methods as another level in the hierarchy of convex optimization algorithms.</p>
+\]</span> where <span class="math inline">\(X\subseteq \mathbb R^n\)</span>.</p>
+<p><strong>Remark</strong></p>
+<p><span class="math inline">\(x\in X\)</span> is to impose additional requirements that we may wish to handle separately. Some examples are</p>
 <ol type="1">
-<li>Linear equality constrained quadratic problems are the simplest.</li>
-<li>Newton’s method is the next level.</li>
-<li>Interior-point method form the next level.</li>
+<li><span class="math inline">\(X=\{x\in\mathbb R^n\;|\; x_i\ge 0,\;\forall i=1,2,\dotsm,n\}\)</span>. The nonnegativity constraints on the variables.</li>
+<li><span class="math inline">\(X\)</span> could be a subset of $R^n $ with integer components.</li>
+<li><span class="math inline">\(X=\mathbb R^n\)</span> if no special requirement.</li>
 </ol>
-<h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
-<p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)+\sum_{i=1}^mI_-(f_i(x))
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
+<p>Let <span class="math display">\[
+\begin{array}{rcl}
+L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)}\\
+&amp;=&amp;f(x)+\lambda^T g(x)+\mu ^Th(x),
 \end{array}
+\]</span> where <span class="math inline">\(\mu\ge 0\)</span>.</p>
+<p>Define <span class="math display">\[
+\theta (\lambda,\mu)=\inf_x \left\{f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)}\right\},
+\]</span> which is called the <strong>Lagrange dual function</strong>.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li><p>Each equality constraint <span class="math inline">\(g_i(x)=0\)</span> is replaced by a term <span class="math inline">\(\lambda_ig_i(x)\)</span>, where <span class="math inline">\(\lambda_i\in \mathbb R,i=1,2,\dotsm,m\)</span>. This term gives a non-zero value whenever this equality is violated.</p></li>
+<li><p>Each inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is replaced by a term <span class="math inline">\(\mu_jh_j(x)\)</span>, where <span class="math inline">\(\mu_j\ge 0,j=1,2,\dotsm,p\)</span>. If an inequality constraint is violated, i.e., <span class="math inline">\(h_j(x)&gt;0\)</span>, then it is reflected by a positive value.</p></li>
+<li><p>In evaluating <span class="math inline">\(\theta (\lambda,\mu)\)</span> for each <span class="math inline">\(\lambda,\mu\)</span>, the following unconstrained problem (Lagrangian dual subproblem) <span class="math display">\[
+\begin{array}{rCl}
+\min &amp; f(x)+\lambda^Tg(x)+\mu^T h(x)\\
+\text{subject to} &amp;x\in X,
 \end{array}
-\]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
-<h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
-<p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
-\hat I_-(u)=-\frac{1}{t}\log (-u)
-\]</span> Then the problem becomes <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
+\]</span> must be solved.</p></li>
+</ol>
+<p>Suppose <span class="math inline">\(x^*\)</span> is an optimal solution of (P)​. Then <span class="math inline">\(g_i(x^*)=0\)</span> and <span class="math inline">\(h_j(x^*)\le 0\)</span>. Therefore, <span class="math display">\[
+\theta(\lambda,\mu)\le f(x^*)+\mu^T h(x^*)\le f(x^*).
+\]</span> This implies for any <span class="math inline">\(\lambda,\mu\)</span>, <span class="math inline">\(\theta(\lambda,\mu)\)</span> is the lower bound of the optimal objective value <span class="math inline">\(f^*(x)\)</span>.</p>
+<p>We hope to derive the greatest lower bound for <span class="math inline">\(f(x^*)\)</span>. This leads to the following nonlinear programming problem which is called the <strong>Lagrangian dual problem</strong> (D)​, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
+\text{subject to}&amp; \lambda\in \mathbb R^m\\
+&amp;\mu\in\mathbb R^p_+.
 \end{array}
+\]</span> <strong>Definition</strong> (Lagrange Dual Problem)</p>
+<p>For a given primal nonlinear programming problem (P), <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
+&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
+&amp;x\in X,
 \end{array}
-\]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
-<p>The function <span class="math display">\[
-\phi(x)=-\sum_{i=1}^m \log(-f_i(x))
-\]</span> is called the logarithmic barrier or log barrier for the problem.</p>
-<p>Of course, the problem is only an approximation of the original problem, so one may wondering how well. Intuitive suggests, the approximation improves as the parameter <span class="math inline">\(t\)</span> grows. One the other hand, when the parameter <span class="math inline">\(t\)</span> is large, the function <span class="math inline">\(f_0+(1/t)\phi\)</span> is difficult to minimize by Newton’ method, since the Hessian varies rapidly near the boundary feasible set. We will see that this problem can be circumvented by solving a sequence of problems, increasing the parameter <span class="math inline">\(t\)</span> (and therefore, accuracy of the approximation) at each step, and starting each Newton minimization at the solution of the problem for the previous value of <span class="math inline">\(t\)</span>.</p>
-<p>For future reference, we note that the gradient and Hessian of the logarithmic barrier function <span class="math inline">\(\phi\)</span> are given by <span class="math display">\[
-\nabla \phi(x)=\sum_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
-\nabla^2 \phi(x)=\sum_{i=1}^{m} \frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\sum_{i=1}^m  \frac{1}{-f_i(x)}\nabla^2 f_i(x)
+\]</span> where <span class="math inline">\(X\subseteq \mathbb R\)</span>. The <strong>Lagrange Dual Problem</strong> (D) is the following nonlinear programming problem, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
+\text{subject to}&amp; \lambda\in \mathbb R^m\\
+&amp;\mu\in\mathbb R^p_+.
+\end{array}
+\]</span> The dual variables <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\(\mu_j\)</span> are called <strong>Lagrangian dual variables</strong> or <strong>Lagrangian Multipliers</strong>.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li>Evaluation of <span class="math inline">\(\theta(\lambda,\mu)\)</span> can be called as the <strong>Lagrangian dual subproblem</strong>.</li>
+<li>For general nonlinear programming problems, it is <strong>not true</strong> that one has an optimal solution, then the other will have an optimal solution. However, this is true for convex programming problems.</li>
+<li>Under certain convexity assumptions and suitable constraint qualifications, the primal and dual problems have equal optimal objective value and hence it is possible to solve the primal problem indirectly by solving the dual problem. The dual problem is sometimes easier.</li>
+</ol>
+<p><strong>Example</strong></p>
+<p>Obtain the Lagrangian dual problem of the following nonlinear programming problem (P), <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)=x_1x_2x_3\\
+\text{subject to}&amp; x_1-x_2+5x_3=6\\
+&amp; x_1+2x_2^3\le 4\\
+&amp;(x_1-3)^3-4x_2^2+x_3\le 0\\
+&amp;x_1^2+x_2^2-x_3\le 4.
+\end{array}
+\]</span> The Lagrangian function is given by <span class="math display">\[
+\begin{array}{rcl}
+L(x,\lambda,\mu)&amp;=&amp;x_1x_2x_3\\
+&amp;&amp;+\lambda (x_1-x_2+5x_3-6)\\
+&amp;&amp;+\mu_1(x_1+2x_2^3-4)\\
+&amp;&amp;+\mu_2[(x_1-3)^3-4x_2^2+x_3]\\
+&amp;&amp;+\mu_3(x_1^2+x_2^2-x_3-4).
+\end{array}
+\]</span> The Lagrangian dual function is given by <span class="math display">\[
+\theta (\lambda,\mu)=\min_x L(x,\lambda,\mu).
+\]</span> The Lagrangian dual problem is given by <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \min_x L(x,\lambda,\mu)\\
+\text{subject to}&amp; \mu\ge 0.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>Solve the following convex program and its Lagrangian dual problem. <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)=x_1^2+x_2^2\\
+\text{subject to}&amp; h(x)=-x_1-x_2+4\le 0,\\
+&amp;x\in X=\left\{\begin{bmatrix}x_1\\x_2\end{bmatrix} \;\Bigg|\; x_1,x_2\ge 0\right\},
+\end{array}
+\]</span> Note that the optimal solution occurs at <span class="math inline">\(x^*=\begin{bmatrix}2\\2\end{bmatrix}\)</span>, and <span class="math inline">\(f(x^*)=8\)</span>.</p>
+<p>The Lagrangian function is <span class="math display">\[
+L(x,\mu)=x_1^2+x_2^2+\mu (-x_1-x_2+4).
+\]</span> The Lagrangian dual problem is <span class="math display">\[
+\begin{array}{rcl}
+\theta(\mu)&amp;=&amp;\inf_{x_1,x_2\ge 0}\left\{x_1^2+x_2^2+\mu (-x_1-x_2+4)\right\}\\
+&amp;=&amp;\inf_{x_1,x_2\ge 0}\left\{x_1^2-\mu x_1+x_2^2-\mu x_2+4 \mu \right\}\\
+&amp;=&amp;\inf_{x_1\ge 0}\left\{x_1^2-\mu x_1\right\}+\inf_{x_2\ge 0}\left\{x_2^2-\mu x_2\right\}+4 \mu\\
+&amp;=&amp;-\frac{\mu^2}{2}+4\mu\quad (x_1=\frac{\mu}{2},x_2=\frac{\mu}{2}).
+\end{array}
+\]</span> Thus the dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\mu)=-\frac{\mu^2}{2}+4\mu\\
+\text{subject to}&amp; \mu\ge 0.
+\end{array}
+\]</span> It is easy to see that <span class="math inline">\(\mu^*=4\)</span> and <span class="math inline">\(\theta(\mu^*)=8\)</span>. We can also obtain that <span class="math inline">\(x_1^*=x_2^*=\frac{\mu^*}{2}=2\)</span>.</p>
+<p><strong>Remark</strong></p>
+<p>In general, the dual function of a primal problem cannot be obtained explicitly. In this situation, the dual problem may include primal variables <span class="math inline">\((x)\)</span> as well as the dual variables <span class="math inline">\((\lambda,\mu)\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>Consider the problem <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)=\exp (x)\\
+\text{subject to}&amp; x^2-1\le 0.
+\end{array}
+\]</span> For <span class="math inline">\(\mu\ge 0\)</span>, the Lagrangian dual function is <span class="math display">\[
+\theta(\mu)=\inf_{x}\left(\exp(x)+\mu(x^2-1)\right),
+\]</span> which is convex on <span class="math inline">\(\mathbb R\)</span>. Therefore, any stationary point will be a global minimizer. Then we have if <span class="math inline">\(\mu&gt;0\)</span>, <span class="math display">\[
+\exp (x^*)+2\mu x^*=0,
+\]</span> otherwise <span class="math inline">\((\mu=0)\)</span>, <span class="math display">\[
+\theta(0)=0.
+\]</span> Therefore, we have <span class="math display">\[
+\theta(\mu)=
+\begin{cases}
+\exp(x)+\mu(x^2-1)&amp; \text{and}&amp;\exp(x)+2\mu x=0,&amp; \mu&gt;0\\
+0&amp;&amp;&amp;\mu=0.
+\end{cases}
+\]</span> Therefore, the dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\mu)=\exp (x)+\mu(x^2-1)\\
+\text{subject to}&amp; \exp(x)+2\mu x=0\\&amp;\mu&gt;0\\&amp;x\in\mathbb R.
+\end{array}
 \]</span></p>
-<h3 id="central-path">11.2.2 Central path</h3>
-<p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-tf_0(x)+\phi(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
-<p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
-Ax^\star(t)=b\\
-f_i(x^\star (t))&lt;0
-\]</span> and there exists a <span class="math inline">\(\hat v\)</span> such that <span class="math display">\[
-0=t\nabla f_0(x^\star(t))+\nabla \phi(x^\star(t))+A^T\hat v\\
-=t\nabla f_0(x^\star(t))+\sum_{i=1}^m \frac{1}{-f_i(x^\star(t))}\nabla f_i(x^\star(t))+A^T\hat v
-\]</span> <strong>Dual points from central path</strong></p>
-<p>From the above, we can derive an important property of the central path: every central point yields a dual feasible point, and hence a lower bound on the optimal <span class="math inline">\(p^\star\)</span>. We define <span class="math inline">\(\lambda_i^\star (t)=-\frac{1}{tf_i(x^\star(t))}\)</span>, <span class="math inline">\(v^\star(t)=\hat v/t\)</span></p>
+<h2 id="weak-and-strong-duality-theorems">6.2 Weak and strong duality theorems</h2>
+<p>We shall discuss the relationship between a nonlinear programming problem and its Lagrangian dual problem for a primal minimization problem.</p>
+<p><strong>Theorem</strong> (Weak Duality Theorem)</p>
+<p>Consider the primal nonlinear programming problem (P). Let <span class="math inline">\(x\)</span> be a feasible point to (P) and <span class="math inline">\((\lambda,\mu)\)</span> be a feasible solution to (D). Then <span class="math display">\[
+f(x)\ge \theta(\lambda,\mu).
+\]</span> <strong>Corollary</strong></p>
+<ol type="1">
+<li><p><span class="math inline">\(\min\{f(x)\;|\; x\in S\}\ge \max \{\theta(\lambda,\mu)\;|\; \lambda\in\mathbb R^m,\mu\in \mathbb R^p_+\}\)</span>.</p></li>
+<li><p>If <span class="math inline">\(x^*\)</span> is a feasible solution to (P) and <span class="math inline">\((\lambda^*,\mu^*)\)</span> is a feasible solution to (D) such that <span class="math display">\[
+f(x^*)=\theta(\lambda^*,\mu^*),
+\]</span> then <span class="math inline">\(x^*\)</span> is an optimal solution to (P) and <span class="math inline">\((\lambda^*,\mu^*)\)</span> is an optimal solution to (D).</p></li>
+</ol>
+<p>In general, the optimal primal objective value and the optimal dual objective value may not be equal. This leads to the following definition.</p>
+<p><strong>Definition</strong> (Duality Gap)</p>
+<p>The difference <span class="math display">\[
+\min\{f(x)\;|\; x\in S\}-\max \{\theta(\lambda,\mu)\;|\; \mu \in \mathbb R_+^p\},
+\]</span> is called the duality gap.</p>
+<p><strong>Theorem</strong> (Strong Duality Theorem)</p>
+<p>Consider the primal nonlinear programming problem. Suppose <span class="math inline">\(X\)</span> is a convex set, <span class="math inline">\(f,h_i,\;\forall i=1,\dotsm,p\)</span> are convex functions, and <span class="math inline">\(g_i,\;\forall i=1,\dotsm,m\)</span> are affine functions. If there exists <span class="math inline">\(\hat x\in X\)</span> such that <span class="math inline">\(h(\hat x)&lt;0\)</span>, <span class="math inline">\(g(\hat x)=0\)</span>, and <span class="math inline">\(0\in \text{int}(g(X))\)</span> where <span class="math inline">\(g(X)=\{g(x)\;|\; x\in X\}\)</span>. Then <span class="math display">\[
+\inf \{f(x)\;|\;g(x)=0,h(x)\le 0,x\in X\}=\sup\{\theta(\lambda,\mu)\;|\; \mu \in\mathbb R^p_+,\lambda\in \mathbb R^m\}.
+\]</span> Furthermore, if inf is finite, then sup is attained at some <span class="math inline">\(\lambda_*,\mu_*\)</span>. If inf is attained at <span class="math inline">\(x^*\)</span>, then <span class="math inline">\(\mu_*^Th(x^*)=0\)</span>.</p>
+<h2 id="saddle-point-optimality-condition-and-kkt-conditions">6.3 Saddle point optimality condition and KKT conditions</h2>
+<p>In this section, we discuss about the relationship between the saddle point of the Lagrangian function and KKT optimality conditions.</p>
+<p><strong>Definition</strong> (Saddle point of <span class="math inline">\(L\)</span>)</p>
+<p>A point <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is called a saddle point of the Lagrangian function <span class="math display">\[
+L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^T h(x),
+\]</span> if <span class="math inline">\(x^*\in X\)</span>, <span class="math inline">\(\mu^* \ge 0\)</span> and <span class="math display">\[
+L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li>For a fixed <span class="math inline">\(x^*\)</span>, <span class="math inline">\((\lambda^*,\mu ^*)\)</span> maximizes <span class="math inline">\(L(x^*,\lambda,\mu)\)</span> over all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu \ge 0\)</span>.</li>
+<li>For a fixed <span class="math inline">\((\lambda^*,\mu^*)\)</span>, <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(L(x,\lambda^*,\mu^*)\)</span> over all <span class="math inline">\(x\in X\)</span>.</li>
+</ol>
+<p><strong>Theorem</strong> (Saddle point optimality)</p>
+<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a saddle point of the Lagrangian function <span class="math display">\[
+L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^Th(x).
+\]</span> Then <span class="math inline">\(x^*\)</span> and <span class="math inline">\((\lambda^*,\mu^*)\)</span> are optimal solutions of the primal problem (P) and the dual problem <span class="math inline">\((D),\)</span> respectively.</p>
+<p><strong>Proof</strong></p>
+<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a saddle point of the Lagrangian function. Then we have <span class="math display">\[
+L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>. Thus we have <span class="math display">\[
+f(x^*)+\lambda^Tg(x^*)+\mu^Th(x^*)\le f(x^*)+(\lambda^*)^Tg(x^*)+(\mu^*)^Th(x^*),
+\]</span> for all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
+<p>Firstly, we prove that <span class="math inline">\(x^*\)</span> is a feasible point, which means <span class="math display">\[
+g(x^*)=0\\
+h(x^*)&lt;0.
+\]</span> Let <span class="math inline">\(\mu=\mu^*\)</span>, we have <span class="math display">\[
+(\lambda-\lambda^*)^T g(x^*)\le 0, \;\forall \lambda \in \mathbb R^n.
+\]</span> If <span class="math inline">\(g(x^*)\neq 0\)</span>, we can choose <span class="math inline">\(\lambda = \lambda^* +g(x^*)\)</span>, which leads to contradiction. Therefore, <span class="math inline">\(g(x^*)=0\)</span>.</p>
+<p>Let <span class="math inline">\(\lambda=\lambda^*\)</span>, we have <span class="math display">\[
+(\mu-\mu^*)^Th(x^*)\le 0,\;\forall \mu\ge 0.
+\]</span> If <span class="math inline">\(h(x^*)&gt;0\)</span>, then we can choose <span class="math inline">\(\mu = \mu^*+ h(x^*)\)</span>, which leads to contradiction. Therefore, <span class="math inline">\(h(x^*)\le 0\)</span>.</p>
+<p>Then we will prove <span class="math inline">\(x^*\)</span> is an optimal solution to (P).</p>
+<p>Let <span class="math inline">\(\mu = 0\)</span>, we have <span class="math inline">\((\mu^*)^T h(x^*)\ge 0\)</span>. Since <span class="math inline">\(\mu^*\ge 0\)</span> and <span class="math inline">\(h(x^*)\le 0\)</span>, we also have <span class="math inline">\((\mu^*)^T h(x^*)\le 0\)</span>. Therefore, <span class="math inline">\((\mu^*)^T h(x^*)= 0\)</span>.</p>
 <p>Then we have <span class="math display">\[
-\nabla f_0(x^\star(t))+\sum_{i=1}^m\lambda_i^\star (t)\nabla f_i(x^\star(t))+A^Tv^\star (t)=0
-\]</span> We see the optimal point <span class="math inline">\(x^\star(t)\)</span> minimizes the Lagrangian, <span class="math display">\[
-L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+v^T(Ax-b)
-\]</span> <strong>Interpretation via KKT conditions</strong> <span class="math display">\[
-\begin{array}{rcl}
-Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
-\lambda^\star &amp;\succeq&amp; 0\\
-\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
-\lambda_i^\star f_i(x^\star)&amp;=&amp;1/t
+f(x^*)=L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for every <span class="math inline">\(x\in S\)</span>. Therefore <span class="math inline">\(f(x^*)\le \inf\{L(x,\lambda^*,\mu^*)\}=\theta(\lambda^*,\mu^*)\)</span>.</p>
+<p>On the other hand, <span class="math display">\[
+\theta(\lambda^*,\mu^*)\le \max\{\theta(\lambda,\mu)\;|\;\mu\ge 0\}\le \min \{f(x)\;|\; x\in S\}=f(x^*).
+\]</span> Therefore, we have <span class="math display">\[
+f(x^*)=\theta(\lambda^*,\mu^*).
+\]</span> Q.E.D.</p>
+<p><strong>Corollary</strong></p>
+<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span>, with <span class="math inline">\(x^* \in \text{int}(X)\)</span> and <span class="math inline">\(\mu^*\ge 0\)</span>, is a saddle point of <span class="math inline">\(L(x,\lambda,\mu)\)</span>, then <span class="math inline">\(x^*\)</span> is a feasible solution to (P) and <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT conditions.</p>
+<h2 id="convex-program">6.4 Convex Program</h2>
+<p>The converse of the above corollary is not true in general. However, for a convex programming problem, the following result gives the relationship between a KKT point and a saddle point of the Lagrangian function.</p>
+<p><strong>Theorem</strong> (A KKT point of a convex program is a saddle point)</p>
+<p>Let <span class="math inline">\(S\)</span> be a feasible region of <span class="math display">\[
+\text{(CP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
+&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
+&amp;x\in X\subseteq \mathbb R^n.
 \end{array}
-\]</span> <strong>Force field interpretation</strong></p>
-<h2 id="the-barrier-method">11.3 The barrier method</h2>
-<p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-(m/\epsilon)f_0(x)+\phi(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
-<h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
-<p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
-<p>In other words, we compute <span class="math inline">\(x^\star(t)\)</span> for a sequence of increasing values of <span class="math inline">\(t\)</span>, until <span class="math inline">\(t\ge m/\epsilon\)</span>, which guarantee that we have an $-suboptimal $ solution of the original problem. When the method is proposed firstly, it is called sequential unconstrained minimization technique. Today, the method is usually called the <strong>barrier method</strong> or <strong>path-following</strong> method.</p>
-<h3 id="examples">11.3.2 Examples</h3>
-<h3 id="convergence-analysis">11.3.3 Convergence Analysis</h3>
-<h3 id="newton-step-for-modified-kkt-conditions">11.3.4 Newton step for modified KKT conditions</h3>
-<p>In the barrier method, the newton step <span class="math inline">\(\Delta x_{nt}\)</span>, and associated dual variables are given by the linear equations, <span class="math display">\[
-\begin{bmatrix}
-t\nabla^2f_0(x)+\nabla^2 \phi(x)&amp;A^T\\A&amp;0
-\end{bmatrix}
-\begin{bmatrix}
-\Delta x_{nt}\\v_{nt}
-\end{bmatrix}=-
-\begin{bmatrix}
-t\nabla f_0(x)+\nabla \phi(x)\\0
-\end{bmatrix}
-\]</span> In this section, we will show how these newton steps for the centering problem can be interpreted as Newton steps for directly solving the modified KKT equations, <span class="math display">\[
-\nabla f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+A^Tv=0\\
--\lambda_if_i(x)=1/t\\
-Ax=b
-\]</span> in a particular way.</p>
-<h2 id="feasibility-and-phase-i-methods">11.4 Feasibility and phase I methods</h2>
-<h2 id="complexity-analysis-via-self-concordance">11.5 Complexity analysis via self-concordance</h2>
-<h2 id="problems-with-generalized-inequalities">11.6 Problems with generalized inequalities</h2>
-<h2 id="primal-dual-interior-point-methods">11.7 Primal-dual Interior-point methods</h2>
-<p>In this section, we describe a basic primal-dual interior-point method. Primal-dual interior-point methods are very similar to the barrier method, with some differences.</p>
-<ol type="1">
-<li><strong>There is only one loop or iteration</strong>, i.e. there is no distinction between inner and outer iterations as in the barrier method. At each iteration, both the primal and dual variables are updated.</li>
-<li>The search direction in a primal-dual interior-point method are obtained from Newton’s method, applied to the <strong>modified KKT equations.</strong></li>
-<li>In a primal-dual interior-point method, the primal-dual iterates are not necessarily feasible.</li>
-</ol>
-<p>Primal-dual interior-point methods are often more efficient than the barrier method, especially when high accuracy is required, since they can exhibit better than linear convergence.</p>
-<h3 id="primal-dual-search-direction">11.7.1 Primal-dual search direction</h3>
-<p>As in the barrier method, we start with the modified KKT conditions, expressed as <span class="math inline">\(r_t(x,\lambda,v)=0\)</span>, where we define <span class="math display">\[
-r_t(x,\lambda,v)=
-\begin{bmatrix}
-\nabla f_0(x)+Df(x)^T\lambda+A^Tv\\
--diag(\lambda)f(x)-(1/t)1\\
-Ax-b
-\end{bmatrix}
-\]</span> If <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> satisfy <span class="math inline">\(r_t(x,\lambda,v)=0\)</span> (and <span class="math inline">\(f_i(x)&lt;0\)</span>), then <span class="math inline">\(x=x^\star (t)\)</span>, <span class="math inline">\(\lambda = \lambda^\star (t)\)</span>, <span class="math inline">\(v=v^\star (t)\)</span>. In particular, <span class="math inline">\(x\)</span> is primal feasible, and <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> are dual feasible, with duality gap <span class="math inline">\(m/t\)</span>.</p>
-<ol type="1">
-<li><span class="math inline">\(r_{dual}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>dual residual</strong>.</li>
-<li><span class="math inline">\(r_{pri}=Ax-b\)</span> is called the <strong>primal residual</strong>.</li>
-<li><span class="math inline">\(r_{cent}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>centrality residual</strong>.</li>
-</ol>
+\]</span> Suppose <span class="math inline">\(x^*\)</span> is a KKT point, i.e., there exists <span class="math inline">\(\lambda^*\in\mathbb R^n,\mu^*\ge 0\)</span> such that <span class="math display">\[
+\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p \mu_j^*\nabla  h_j(x^*)=0\\
+\mu_j^* h_j(x^*)=0,\;\forall j=1,\dotsm,p.
+\]</span> Then <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> us a saddle point of the Lagrangian function <span class="math inline">\(L(x,\lambda,\mu)\)</span>, i.e., <span class="math display">\[
+L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
+<p><strong>Corollary</strong></p>
+<p>Consider the convex problem (CP). If <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point, then <span class="math inline">\(x^*\)</span> and <span class="math inline">\((\lambda^*,\mu^*)\)</span> are optimal solutions of the primal problem (P) and the dual problem <span class="math inline">\((D),\)</span> respectively.</p>
+<p>Proof.</p>
+<p>By combining the two theorems.</p>
 
         
       
