@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="1. IO Pole Placement For a input-output model Plant:\(\frac{B(z)}{A(z)}\) Feedback controller:\(\frac{S(z)}{R(z)}\) Feedforward controller:\(\frac{T(z)}{R(z)}\) For the close loop:, We have clos">
+  <meta name="description" content="Model Predictive Control with Constraints From the last note, we derive the augmented state space model \[ x(k+1)=Ax(k)+B\Delta u(k) \\ y(k)=Cx(k) \\ Y = Fx(k)+\Phi\Delta U\\ J=\frac{1}{2}\Delta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="5. Pole Placement Problem IO Model">
-<meta property="og:url" content="http://yoursite.com/2020/12/22/EE5104 Computer Control/5. Pole Placement Problem IO Model/index.html">
+<meta property="og:title" content="8. MPC with Constraint">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="1. IO Pole Placement For a input-output model Plant:\(\frac{B(z)}{A(z)}\) Feedback controller:\(\frac{S(z)}{R(z)}\) Feedforward controller:\(\frac{T(z)}{R(z)}\) For the close loop:, We have clos">
+<meta property="og:description" content="Model Predictive Control with Constraints From the last note, we derive the augmented state space model \[ x(k+1)=Ax(k)+B\Delta u(k) \\ y(k)=Cx(k) \\ Y = Fx(k)+\Phi\Delta U\\ J=\frac{1}{2}\Delta">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-25T16:02:29.000Z">
+<meta property="og:updated_time" content="2018-11-26T16:03:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="5. Pole Placement Problem IO Model">
-<meta name="twitter:description" content="1. IO Pole Placement For a input-output model Plant:\(\frac{B(z)}{A(z)}\) Feedback controller:\(\frac{S(z)}{R(z)}\) Feedforward controller:\(\frac{T(z)}{R(z)}\) For the close loop:, We have clos">
-  <link rel="canonical" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/5. Pole Placement Problem IO Model/">
+<meta name="twitter:title" content="8. MPC with Constraint">
+<meta name="twitter:description" content="Model Predictive Control with Constraints From the last note, we derive the augmented state space model \[ x(k+1)=Ax(k)+B\Delta u(k) \\ y(k)=Cx(k) \\ Y = Fx(k)+\Phi\Delta U\\ J=\frac{1}{2}\Delta">
+  <link rel="canonical" href="http://yoursite.com/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/">
 
 
 <script id="page-configurations">
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>5. Pole Placement Problem IO Model | Orandragon's Blog</title>
+  <title>8. MPC with Constraint | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -220,7 +220,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/5. Pole Placement Problem IO Model/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">5. Pole Placement Problem IO Model
+        <h1 class="post-title" itemprop="name headline">8. MPC with Constraint
 
           
         </h1>
@@ -248,19 +248,11 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
+              <time title="Created: 2018-11-27 13:44:42 / Modified: 00:03:07" itemprop="dateCreated datePublished" datetime="2018-11-27T13:44:42+08:00">2018-11-27</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:02:29" itemprop="dateModified" datetime="2019-08-26T00:02:29+08:00">2019-08-26</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -278,7 +270,7 @@
           
 
           
-            <span id="/2020/12/22/EE5104 Computer Control/5. Pole Placement Problem IO Model/" class="post-meta-item leancloud_visitors" data-flag-title="5. Pole Placement Problem IO Model" title="Views">
+            <span id="/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/" class="post-meta-item leancloud_visitors" data-flag-title="8. MPC with Constraint" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -296,7 +288,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5104 Computer Control/5. Pole Placement Problem IO Model/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/5. Pole Placement Problem IO Model/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -310,186 +302,231 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="io-pole-placement">1. IO Pole Placement</h2>
-<p>For a input-output model</p>
-<p>Plant:<span class="math inline">\(\frac{B(z)}{A(z)}\)</span></p>
-<p>Feedback controller:<span class="math inline">\(\frac{S(z)}{R(z)}\)</span></p>
-<p>Feedforward controller:<span class="math inline">\(\frac{T(z)}{R(z)}\)</span></p>
-<p>For the close loop:,</p>
-<p>We have close loop t.f. <span class="math display">\[
-H_{cl}=\frac{RB}{AR+SB}\frac{T}{R}=\frac{TB}{AR+SB}
-\]</span> We have the c.p. <span class="math display">\[
-A_{cl}(z)=A_m(z)A_o(z)=A(z)R(z)+S(z)B(z)
-\]</span> If the order of the plant is n,</p>
-<p>we will have the following in order to tune all parameters <span class="math display">\[
-Deg \space A_{cl}=2n-1\\
-Deg \space S=n-1\\
-Deg \space R=n-1
+        <h2 id="model-predictive-control-with-constraints">Model Predictive Control with Constraints</h2>
+<p>From the last note, we derive the augmented state space model <span class="math display">\[
+x(k+1)=Ax(k)+B\Delta u(k) \\
+y(k)=Cx(k) \\
+Y = Fx(k)+\Phi\Delta U\\
+J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
+\]</span> If we denote <span class="math display">\[
+H=\Phi^T\Phi+\bar R \\
+f=-\Phi^T(R_s-Fx(k))
+\]</span> We have <span class="math display">\[
+J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f
+\]</span> Now we will discuss different kinds of constraints.</p>
+<h3 id="constraints-on-the-control-variable-incremental-variation">1. Constraints on the control variable incremental variation</h3>
+<p><span class="math display">\[
+\Delta U^{min}\le\Delta U \le\Delta U^{max}
 \]</span></p>
-<h2 id="reduce-order-by-pole-zero-cancellation">2.Reduce Order by Pole-Zero Cancellation</h2>
-<p>If we want to cancel out stable zeros, we can choose <span class="math display">\[
-A_{cl}=\bar{A}_{cl}B^+(z)\\
-\]</span> Then <span class="math display">\[
-H_{cl}=\frac{TB^{+}B^{-}}{\bar A_{cl}B^{+}}=\frac{TB^{-}}{\bar A_{cl}}
-\]</span> But we cannot cancel unstable zeros.</p>
-<p>and we can also cancel stable poles by choosing <span class="math display">\[
-T=\bar TA^+
-\]</span> and <span class="math display">\[
-A_{cl}=\bar{A}_{cl}A^+B^+(z)\\
-\]</span> and we can also cancel them at the same time.</p>
-<p>and the equation becomes <span class="math display">\[
-A^+A^-R+SB^+B^-=A_{cl}=\bar{A}_{cl}A^+B^+(z)
-\]</span> in order to cancel <span class="math inline">\(A^+B^+\)</span></p>
-<p>we need to choose <span class="math display">\[
-R=B^+\bar R\\
-S=A^+\bar S\\
-T=\bar TA^+\\
-\]</span> Then we have <span class="math display">\[
-A^-\bar R+\bar SB^-=\bar{A}_{cl}
-\]</span> The order of the equation is becoming less.</p>
-<h2 id="disturbance-rejection">3. Disturbance Rejection</h2>
-<p>we find the transfer function between disturbance and output is <span class="math display">\[
-H_{v}=\frac{Y(z)}{V(z)}=\frac{\frac{B}{A}}{1+\frac{SB}{RA}}=\frac{RB}{AR+SB}
-\]</span> if the disturbance is constant, we just need <span class="math inline">\(H_v(1)=0 \quad R(1)=0\)</span>.</p>
-<p>therefore, we just need <span class="math display">\[
-R(z)=(z-1)R&#39;
-\]</span> Tracking Problem</p>
-<p><span class="math inline">\(B(z)\)</span> is stable, i.e. the system has stable inverse.</p>
-<h2 id="design-steps">4. Design Steps</h2>
-<p>First build feedback controller and then build feedforward controller.</p>
-<p>how to build feedback controller</p>
-<ol type="1">
-<li>Design R, if zero cancelled, R needs to contain zero. if disturbance is cancelled, R needs to contain z-1.</li>
-<li>Design R and S by solving <span class="math inline">\(AR+BS=A_{cl}\)</span></li>
-<li>Choose T or <span class="math inline">\(H_{ff}\)</span> at the final stage.</li>
-</ol>
-<h2 id="io-example">5. IO Example</h2>
-<p>The Plant <span class="math display">\[
-G(z)=\frac{0.00058}{z-0.942}
-\]</span> The Desired Model <span class="math display">\[
-H_d(z)=\frac{0.0952z+0.0755}{z^2-1.331z+0.5016}
-\]</span> We need disturbance rejection <span class="math display">\[
-R=z-1\\
-S=s_0z+s_1\\
-A_{cl}=z^2-1.331z+0.5016\\
-AR+SB=(z-0.942)(z-1)+\\(s_0z+s_1)(0.00058)\\=z^2-1.331z+0.5016
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=1053.448\\
-s_1=-759.31
-\end{cases}
-\]</span> Then we have <span class="math display">\[
-R=z-1\\
-S=1053.448z-759.31
-\]</span> Then the feedback close loop system is <span class="math display">\[
-H_{fbc}=\frac{(z-1)0.00058}{z^2-1.331z+0.5016}
-\]</span> Now we will design the feedforward controller, <span class="math display">\[
-H_{fbc}H_{ff}=H_d\\
-H_{ff}=\frac{0.0952z+0.0755}{(z-1)0.00058}\\=\frac{16.41z+130.17}{z-1}
-\]</span> Therefore the controller is <span class="math display">\[
-U(z)=-H_{fb}(z)Y(z)+H_{ff}(z)U_c(z)\\
-H_{fb}=\frac{1053.448z-759.31}{z-1}\\
-H_{ff}=\frac{16.41z+130.17}{z-1}
-\]</span> Example</p>
-<p>Plant <span class="math display">\[
-H(z)=\frac{z+0.9}{z^2-2.5z+1}
-\]</span> The desired <span class="math display">\[
-A_m(z)=z^2-1.
-8z+0.9
-\]</span> a) The process zero is canceled</p>
-<p>The order of the plant is 2. <span class="math display">\[
-R=(z+0.9)\\
-S=s_0z+s_1\\
-A_{cl}=(z+0.9)(z^2-1.8z+0.9)
-\]</span> Then we have Diophantine Equation <span class="math display">\[
-AR+SB=(z^2-2.5z+1)(z+0.9)+(s_0z+s_1)(z+0.9)\\
-=A_{cl}=(z+0.9)(z^2-1.8z+0.9)\\
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=0.7\\
-s_1=-0.1\\
-\end{cases}
-\]</span> Then the close loop system is <span class="math display">\[
-H_{ff}=\frac{T}{R}
-\\H_{cl}=\frac{RB}{AR+SB}H_{ff}\\=\frac{TB}{AR+SB}\\=\frac{T}{z^2-1.8z+0.9}
-\]</span> We know <span class="math display">\[
-H_{cl}(1)=1
-\]</span> Then we have <span class="math display">\[
-T=0.1
-\]</span> Therefore <span class="math display">\[
-U(z)=-\frac{S}{R}Y(z)+\frac{T}{R}U(z)\\=-\frac{0.7z-0.1}{z+0.9}Y(z)+\frac{0.1}{z+0.9}U_c(z)
+<p>We will have <span class="math display">\[
+\Delta U\le \Delta U^{max}\\
+-\Delta U\le -\Delta U^{min}
+\]</span> Equally, we have <span class="math display">\[
+\begin{bmatrix}
+-I \\
+I
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-\Delta U^{min} \\
+\Delta U^{max}
+\end{bmatrix}
 \]</span></p>
-<ol start="2" type="a">
-<li>The process zero is not canceled <span class="math display">\[
-A_{cl}=zA_m=z^3-1.8z^2+0.9z\\
-S=s_0z+s_1\\
-R=z+r_1
-\]</span> Then we have Diophantine Equation <span class="math display">\[
-AR+SB=A_{cl}\\
-(z^2-2.5z+1)(z+r_1)+\\(s_0z+s_1)(z+0.9)=\\z^3-1.8z^2+0.9z
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-r_1=0.1618\\
-s_0=0.5382\\
-s_1=-0.1798
-\end{cases}
-\]</span> Then we design the feedforward controller. <span class="math display">\[
-H_{cl}=\frac{TB}{AR+SB}\\
-H_{cl}(1)=1\\
-T=0.05263\\
-\]</span></li>
-</ol>
-<p>Therefore, the controller is <span class="math display">\[
-U(z)=-\frac{0.5382z-0.1798}{z+0.1618}Y(z)\\+\frac{0.05263}{z+0.1618}U_c(z)
-\]</span></p>
-<p>Example <span class="math display">\[
-H(z)=\frac{z-0.5}{z^2-1}\\
-H_m(z)=\frac{1}{z^2}\\
-\]</span> (a)Desgin a controller in the form <span class="math inline">\(R(q)u(k)=T(q)u_c(k)-S(q)y(k)\)</span>. Match the reference model and reject disturbance. <span class="math display">\[
-R(z)=(z-1)(z-0.5)\\
-S(z)=s_0z^2+s_1z+s_2\\
-A_{cl}=A_oA_m=z^3(z-0.5)\\
-AR+SB=A_{cl}\\
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=1\\
-s_1=1\\
-s_2=-1\\
-\end{cases}
+<h3 id="constraints-on-the-amplitude-of-control-variable">2. Constraints on the amplitude of control variable</h3>
+<p><span class="math display">\[
+U^{min}\le U \le U^{max}
 \]</span></p>
 <p><span class="math display">\[
-\frac{RB}{AR+SB}\frac{T}{R}=H_m(z)\\
-\frac{zt_0}{z^3}=\frac{1}{z^2}\\
-t_0=1\\
+\overbrace{\begin{bmatrix}
+u(k)\\
+u(k+1)\\
+\vdots\\
+u(k+N_c-1)
+\end{bmatrix}}^{U}=
+\overbrace{\begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1
+\end{bmatrix}}^{C_1}u(k-1)+
+\overbrace{\begin{bmatrix}
+1 &amp; 0 &amp; \dotsm &amp; 0\\
+1 &amp; 1 &amp; \dotsm &amp; 0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+1&amp;1&amp;\dotsm&amp;1
+\end{bmatrix}}^{C_2}
+\overbrace{\begin{bmatrix}
+\Delta u(k)\\
+\Delta u(k+1)\\
+\vdots\\
+\Delta u(k+N_c-1)
+\end{bmatrix}}^{\Delta U}
 \]</span></p>
+<p>Equally, we have <span class="math display">\[
+U=C_1u(k-1)+C_2\Delta U
+\]</span> We can get the following result <span class="math display">\[
+\begin{bmatrix}
+-C_2 \\
+C_2
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-U^{min}+C_1u(k-1) \\
+U^{max}-C_1u(k-1)
+\end{bmatrix}
+\]</span></p>
+<h3 id="output-constraints">3. Output Constraints</h3>
 <p><span class="math display">\[
-U(z)=-\frac{z^2+z-1}{(z-1)(z-0.5)}Y(z)+\frac{z}{(z-1)(z-0.5)}U_c(z)\\
-(z^2-1.5z+0.5)U(z)=-(z^2+z-1)Y(z)+zU_c(z)\\
-u(k+2)-1.5u(k+1)+0.5u(k)=\\-y(k+2)-y(k+1)+y(k)+u_c(k+1)\\
-u(k)=1.5u(k-1)-0.5u(k-2)\\-y(k)-y(k-1)+y(k-2)+u_c(k-1)
+Y^{min}\le Y \le Y^{max}
 \]</span></p>
-<ol start="2" type="a">
-<li>Design controller in the form of <span class="math inline">\(u(k)=u_{fb}(k)+u_{ff}(k)\)</span> <span class="math display">\[
-R(z)=(z-1)(z+r_1)\\
-S(z)=s_0z^2+s_1z+s_2\\
-A_{cl}=A_oA_m=z^4\\
-AR+SB=\\(z^2-1)(z-1)(z+r_1)\\+(s_0z^2+s_1z+s_2)(z-0.5)\\
-=z^4\\
-\]</span> We can get the result <span class="math display">\[
-\begin{cases}
-r_1=-\frac{1}{3}\\
-s_0=\frac{4}{3}\\
-s_1=\frac{4}{3}\\
-s_2=-\frac{2}{3}\\
-\end{cases}
-\]</span></li>
-</ol>
+<p>We have the conclusion form the last note <span class="math display">\[
+Y=Fx(k)+\Phi\Delta U
+\]</span> We can derive the same result as the previous procedures <span class="math display">\[
+\begin{bmatrix}
+-\Phi \\
+\Phi
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-Y^{min}+Fx(k) \\
+Y^{max}-Fx(k) 
+\end{bmatrix}
+\]</span></p>
+<h3 id="conclusion">4. Conclusion</h3>
 <p><span class="math display">\[
-\frac{RB}{AR+SB}H_{ff}\\=\frac{(z-1)(z-\frac{1}{3})(z-0.5)}{z^4}H_{ff}\\
-=\frac{1}{z^2}\\
-H_{ff}(z)=\frac{z^2}{(z-1)(z-\frac{1}{3})(z-0.5)}\\
-U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H_{ff}U_c(z)
+\begin{bmatrix}
+-I \\
+I \\
+-C_2 \\
+C_2 \\
+-\Phi \\
+\Phi
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-\Delta U^{min} \\
+\Delta U^{max} \\
+-U^{min}+C_1u(k-1) \\
+U^{max}-C_1u(k-1) \\
+-Y^{min}+Fx(k) \\
+Y^{max}-Fx(k) 
+\end{bmatrix}\\
+C_1=\overbrace{\begin{bmatrix}
+1 &amp; 
+1 &amp; 
+\dotsm &amp; 
+1
+\end{bmatrix}^T}^{N_c}\\
+C_2=\overbrace{\begin{bmatrix}
+1 &amp; 0 &amp; \dotsm &amp; 0\\
+1 &amp; 1 &amp; \dotsm &amp; 0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+1&amp;1&amp;\dotsm&amp;1
+\end{bmatrix}}^{N_c}
 \]</span></p>
+<h3 id="example">5. Example</h3>
+<p>We have the state space model <span class="math display">\[
+x_p(k+1)=x_p(k)+u(k) \\
+y(k)=x_p(k)
+\]</span> The control horizon is 1 and the predictive horizon is 2. <span class="math display">\[
+N_c=1 \\
+N_p=2 \\
+r_w=5 \\
+r(k)=1\quad(k\ge0) \\
+Y^{max}=[1 \quad 1]^T
+\]</span> First we have the augmented state space model <span class="math display">\[
+A=\begin{bmatrix} 1 &amp; 0 \\ 1 &amp; 1\end{bmatrix}\quad 
+B=\begin{bmatrix} 1  \\ 1 \end{bmatrix}\quad
+C=\begin{bmatrix} 0 &amp; 1 \end{bmatrix}
+\]</span> Then we get <span class="math display">\[
+F=\begin{bmatrix} 1 &amp; 1 \\ 2&amp;1\end{bmatrix}\quad 
+\Phi=\begin{bmatrix} 1  \\ 2 \end{bmatrix}\quad
+\]</span> According to the question <span class="math display">\[
+\begin{bmatrix} 1 \\ 2 \end{bmatrix} 
+\Delta u(k) \le \begin{bmatrix} 1-x_1(k)-x_2(k) \\ 1-2x_1(k)-x_2(k) \end{bmatrix}
+\]</span> Also we need to calculate J <span class="math display">\[
+H=\Phi^T\Phi+\bar R = 10\\
+f=-\Phi^T(R_s-Fx(k)) = 5x_1(k)+3x_2(k)-3\\
+J=5\Delta u^2(k)+\Delta u(k)(5x_1(k)+3x_2(k)-3)
+\]</span> For k=0 <span class="math display">\[
+\Delta u(0)\le0.5 \\
+J=5\Delta u^2-3\Delta u
+\]</span> We can get <span class="math display">\[
+\Delta u(0)=0.3
+\]</span> For k=1 <span class="math display">\[
+x(1)=Ax(0)+B\Delta u(0)=[0.3 \quad 0.3]^T\\
+\Delta u(1) \le0.05 \\
+J=5\Delta u^2(1)-0.6\Delta u(1)
+\]</span> we can get <span class="math display">\[
+u(1)=0.05
+\]</span></p>
+<p>One more example</p>
+<p>We have an augmented state space <span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+1 &amp; 1\\
+0 &amp; 1
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}\Delta u(k)\\
+y(k)=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}x(k)
+\]</span></p>
+<p>We choose <span class="math display">\[
+N_c=2\quad N_p=3\quad r_w=1 \quad r(k)=15
+\]</span> The constraints are <span class="math display">\[
+Y\le Y_{max}=15\\
+\Delta U\ge\Delta U_{min}=-5
+\]</span> Then we have the constraint inequations <span class="math display">\[
+\begin{bmatrix}
+-I\\\Phi
+\end{bmatrix}\Delta U\le
+\begin{bmatrix}
+-\Delta U_{min}\\
+Y_{max}-Fx(k)
+\end{bmatrix}
+\]</span> We have <span class="math display">\[
+F=
+\begin{bmatrix}
+CA\\CA^2\\CA^3
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1\\
+1 &amp; 2\\
+1 &amp; 3\\
+\end{bmatrix}\quad
+\Phi=
+\begin{bmatrix}
+CB &amp; 0\\
+CAB &amp; CB\\
+CA^2B &amp; CAB
+\end{bmatrix}=
+\begin{bmatrix}
+0 &amp; 0\\
+1 &amp; 0\\
+2 &amp; 1\\
+\end{bmatrix}
+\]</span> And we have <span class="math display">\[
+H=\Phi^T\Phi+\bar R =
+\begin{bmatrix}
+6 &amp; 2\\
+2 &amp; 2
+\end{bmatrix}\\
+f=-\Phi^T(R_s-Fx(k))=
+\begin{bmatrix}
+-45+3x_1(k)+8x_2(k)\\
+-15+x_1(k)+3x_2(k)
+\end{bmatrix}\\
+J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
+\]</span> Not finished!!!</p>
 
     </div>
 
@@ -506,8 +543,8 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/22/EE5104 Computer Control/4. Pole Placement Problem SS Approach/" rel="next" title="4. Pole Placement Problem SS Approach">
-                  <i class="fa fa-chevron-left"></i> 4. Pole Placement Problem SS Approach
+                <a href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" rel="next" title="Chapter 8. Quadratic Optimal Control">
+                  <i class="fa fa-chevron-left"></i> Chapter 8. Quadratic Optimal Control
                 </a>
               
             </div>
@@ -516,8 +553,8 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/12/22/EE5104 Computer Control/6. Kalman Filter/" rel="prev" title="6. Kalman Filter">
-                  6. Kalman Filter <i class="fa fa-chevron-right"></i>
+                <a href="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" rel="prev" title="Chapter 9. Decoupling Control">
+                  Chapter 9. Decoupling Control <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -570,7 +607,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#io-pole-placement"><span class="nav-text">1. IO Pole Placement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce-order-by-pole-zero-cancellation"><span class="nav-text">2.Reduce Order by Pole-Zero Cancellation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#disturbance-rejection"><span class="nav-text">3. Disturbance Rejection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#design-steps"><span class="nav-text">4. Design Steps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io-example"><span class="nav-text">5. IO Example</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#model-predictive-control-with-constraints"><span class="nav-text">Model Predictive Control with Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#constraints-on-the-control-variable-incremental-variation"><span class="nav-text">1. Constraints on the control variable incremental variation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constraints-on-the-amplitude-of-control-variable"><span class="nav-text">2. Constraints on the amplitude of control variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#output-constraints"><span class="nav-text">3. Output Constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-text">4. Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-text">5. Example</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

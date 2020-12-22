@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/EE5101 Linear Systems/7. Pole Placement/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/" class="post-title-link" itemprop="url">Chapter 7. Pole Placement</a>
+            <a href="/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-title-link" itemprop="url">2. Computer Control and Discrete-Time Systems</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2018-11-21 13:33:56 / Modified: 14:22:29" itemprop="dateCreated datePublished" datetime="2018-11-21T13:33:56+08:00">2018-11-21</time>
+              <time title="Created: 2018-11-14 13:44:42 / Modified: 00:04:50" itemprop="dateCreated datePublished" datetime="2018-11-14T13:44:42+08:00">2018-11-14</time>
             </span>
           
             
@@ -257,7 +257,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
 
                 
                 
@@ -266,7 +266,7 @@
           
 
           
-            <span id="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 7. Pole Placement" title="Views">
+            <span id="/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-meta-item leancloud_visitors" data-flag-title="2. Computer Control and Discrete-Time Systems" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +284,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,246 +298,211 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="state-feedback">1. State Feedback</h2>
-<p>For a system <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx
-\]</span> We have a control law <span class="math display">\[
-u=-Kx+Fr
-\]</span> Then the system can be changed to <span class="math display">\[
-\dot x=(A-BK)x+BFr \\
-y=Cx
-\]</span> ==Lemma1==</p>
-<p>The controllability of the system is unaltered by state feedback</p>
-<p>==Lemma2==</p>
-<p>The closed-loop poles are affected only by feedback gain matrix K but independent of F.</p>
-<h2 id="why-pole-placement">2. Why Pole Placement</h2>
+          <h2 id="pole-cancellation">1. Pole Cancellation</h2>
+<p>If the whole system is stable, then the poles and zeros can be cancelled out each other, then the reduced transfer function is good approximation of the original one.</p>
+<p>If the common factors are related to the same variables, they must cancel out.</p>
+<p>If the common factors are related to different variables, they should remain.</p>
+<p>The best tools to check whether they can be cancelled out or not is time domain. Proof is omitted.</p>
+<p>Example</p>
+<p>---u------G1------v------G2------y <span class="math display">\[
+G_1=\frac{s-1}{s^2+s+1}\\
+G_2=\frac{1}{s-1}\\
+\]</span> Then <span class="math display">\[
+G_1G_2=\frac{s-1}{(s^2+s+1)(s-1)}\\
+\]</span> ---u------G2------v------G1------y <span class="math display">\[
+G_2G_1=\frac{1}{s^2+s+1}\\
+\]</span></p>
+<h2 id="zero-order-hold-discrete-instead-of-first-order-hold">2. Zero-order Hold Discrete instead of First Order Hold</h2>
+<p>Because you will never know what will happen in the next time. So we can only choose zero-order hold for the computer control system.</p>
+<h2 id="how-to-solve-the-differential-equation">3. How to Solve the Differential Equation</h2>
 <p><span class="math display">\[
-G(s)=\frac{\omega_n^2}{s^2+2\xi\omega_ns+\omega_n^2}
+x(t)=\underbrace{e^{At}x(0)}_{\text{zero input response}}+\underbrace{\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau}_{\text{zero-state response}}\\
 \]</span></p>
-<p>Rise time: <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
-<p>Peak overshoot: <span class="math inline">\(M_p=e^{\frac{-\pi \xi}{\sqrt{1-\xi^2}}}\)</span></p>
-<p>2% settling time: <span class="math inline">\(t_s=\frac{4}{\xi \omega_n}\)</span></p>
-<p>poles: <span class="math inline">\(\lambda=-\xi\omega_n\pm\omega_n\sqrt{\xi^2-1}\)</span></p>
-<h2 id="single-input-case">3.Single-input Case</h2>
-<p>Ackerman's Formula <span class="math display">\[
-k^T=\begin{matrix} [0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1] \end{matrix}M_c^{-1}\Phi(A)
+<p>For continuous time, we have differential equation, differentiation operator, Laplace Transform, continuous state space.</p>
+<p>For discrete time, we have difference equation, shift operator, Z Transform, discrete state space.</p>
+<h2 id="discrete-with-zero-order-hold">4. Discrete with Zero-Order Hold</h2>
+<p>For a constant in the whole interval <span class="math inline">\([t_k,t_{k+1})\)</span> <span class="math display">\[
+x(t)=e^{A(t-t_k)}x(t_k)+\int_{t_k}^{t}e^{A(t-\tau)}d\tau Bu(t_k)\\
+\]</span> For the second part we have <span class="math inline">\(v=t-\tau\)</span> <span class="math display">\[
+\int_{t_k}^{t}e^{A(t-\tau)}d\tau=\int_0^{t-t_k}e^{Av}dv\\
+\]</span> If the sampling time is h, we have <span class="math display">\[
+x(kh+h)=e^{Ah}x(kh)+\int_0^he^{Av}dvBu(kh)=\Phi x(kh)+\Gamma u(kh)\\
+\]</span> To be simple <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y=Cx\\
+\]</span> where <span class="math display">\[
+\Phi=e^{Ah} \\
+\Gamma=\int_0^he^{Av}dvB\\
 \]</span></p>
-<p>Choose two poles according to second order system and choose other poles 2~5 times left to these two dominant poles.</p>
-<h2 id="multi-input-case">4. Multi-input Case</h2>
-<p>For u <span class="math display">\[
-u=\begin{bmatrix}
-u_1 \\u_2\\\vdots\\u_m
-\end{bmatrix}
-\]</span> First we try direct comparison method</p>
-<p>Example <span class="math display">\[
-\dot x=\
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}x+
-\begin{bmatrix}
-1 &amp; 0\\0&amp;1
-\end{bmatrix}u
-\]</span> The desired polynomial is <span class="math display">\[
-s^2+2s+2
-\]</span> Then the controllability matrix is <span class="math display">\[
-M_c=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 0 &amp; 0
-\end{bmatrix}
-\]</span> The system is controllable.</p>
-<p>We choose <span class="math display">\[
-u=-Kx+Fr \\
-\dot x= Ax+Bu=Ax+B(-Kx+Fr)=(A-BK)x+BFr \\
-= 
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}-
-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
-k_{11} &amp; k_{12} \\
-k_{21} &amp; k_{22}
-\end{bmatrix}=
-\begin{bmatrix}
--k_{11} &amp;1-k_{12} \\
--k_{21} &amp; -k_{22}
-\end{bmatrix}
-\]</span> The determinant is <span class="math display">\[
-\lambda^2+(k_{11}+k_{12})\lambda+k_{11}k_{12}-k_{12}k_{21}-k_{21}
-\]</span> Obviously, there are infinite solutions.</p>
-<h3 id="unity-rank-k">4.1 Unity Rank K</h3>
-<p>We choose <span class="math display">\[
-u=\begin{bmatrix}
-q_1\\q_2\\\vdots\\q_n
-\end{bmatrix}v
-\]</span> We can have different weights for different input. Then the system becomes single input system <span class="math display">\[
-\dot x=Ax+Bqv
-\]</span> Algorithm</p>
-<blockquote>
-<ol type="1">
-<li><p>Choose the weight vector q</p></li>
-<li><p>use the single input design <span class="math inline">\(k^T\)</span></p></li>
-<li><p><span class="math inline">\(K=qk^T\)</span></p></li>
-</ol>
-</blockquote>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-A=\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix} \\
-B=\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\]</span> The desired polynomial is <span class="math display">\[
-s^2+2s+2
-\]</span> Choose weight vector <span class="math display">\[
-q=
-\begin{bmatrix}
-0 \\1
-\end{bmatrix} \\
-Bq=
-\begin{bmatrix}
-0 \\ 1
-\end{bmatrix}\\
-M_c=
-\begin{bmatrix}
-0 &amp; 1\\ 1 &amp; 0
-\end{bmatrix} \\
-M_c^{-1} = 
-\begin{bmatrix}
-0 &amp; 1\\ 1 &amp; 0
-\end{bmatrix} \\
-\Phi(A)=A^2+2A+2I=
-\begin{bmatrix}
-2&amp;2\\0&amp;2
-\end{bmatrix}\\
-k^T=[0 \quad 1]M_c^{-1}\Phi(A)=[2 \quad 2] \\
-K=qk^T=
-\begin{bmatrix}
-0&amp;0\\2&amp;2
-\end{bmatrix}
-\]</span> For this method, we need to choose q to make the single input system [A Bq] is controllable.</p>
-<h3 id="full-rank-method">4.2 Full Rank Method</h3>
-For the single input system $$ M_c^{-1}=
-<span class="math display">\[\begin{bmatrix}
-q_1^T \\ q_2^T \\ \vdots \\ q_n^T
-\end{bmatrix}\]</span>
-<p>\</p>
-T=
-<span class="math display">\[\begin{bmatrix}
-q_n^T \\q_n^TA \\ \vdots \\q_n^TA^{n-1}
-\end{bmatrix}\]</span>
-\ B=TB=
-<span class="math display">\[\begin{bmatrix}
-0 \\0 \\ \vdots \\0\\1
-\end{bmatrix}\]</span>
-<p>$$</p>
-<p>For the multi-input system, shown in example</p>
-<p>for the system <span class="math display">\[
-\dot x=Ax+Bu \\
+<p>Difference Equation <span class="math display">\[
+y(k+1)=a_1y(k)+a_2y(k-1)+b_0u(k)+b_1u(k-1)\\
+y(k+1)-a_1y(k)-a_2y(k-1)=b_0u(k)+b_1u(k-1)\\
+\]</span> We define shift-operator q <span class="math display">\[
+qf(k)=f(k+1)\\
+q^{-1}f(k)=f(k-1)\\
+\]</span> Then we will have <span class="math display">\[
+qy(k)-a_1y(k)-a_2q^{-1}y(k)=b_0u(k)+b_1q^{-1}u(k)\\
+\frac{y(k)}{u(k)}=\frac{b_0+b_1q^{-1}}{q-a_1-a_2q^{-1}}=\frac{b_0q+b_1}{q^2-a_1q-a_2}=\frac{B(q)}{A(q)}\\
+\]</span></p>
+<h2 id="z-transform">5. Z Transform</h2>
+<p>In continuous time domain, we have <span class="math display">\[
+u=e^{st}\quad y=H(s)e^{st}\\
+\]</span> In discrete time domain, we have <span class="math display">\[
+e^{st\quad\underrightarrow{t\rightarrow kh}}\quad e^{skh\quad\underrightarrow{e^{sh}\rightarrow a}} \quad a^k\\
+\]</span> Therefore, <span class="math display">\[
+u(k)=a^k\quad y(k)=H(a)a^k\\
+\]</span> Then we have the following calculation which has the same properties. <span class="math display">\[
+F(z)=\sum^\infty_{k=0}f(k)z^{-k}\\
+\]</span> Which is Z transform.</p>
+<p>For impulse signal, we have <span class="math inline">\(U(z)=1\)</span>.</p>
+<p>For <span class="math inline">\(u=a^k\)</span>, we have <span class="math inline">\(U(z)=\frac{1}{z-a}\)</span>.</p>
+<p>Inverse Z Transform e.g. <span class="math display">\[
+z^2Y(z)-Y(z)=zU(z)+2U \\
+\frac{Y}{U}=G(z)=\frac{z+2}{z^2-1}\\
+\frac{G(z)}{z}=\frac{z+2}{z(z+1)(z-1)}=\frac{A_1}{z}+\frac{A_2}{z+1}+\frac{A_3}{z-1} \\
+G(Z)=\frac{z+2}{z(z+1)(z-1)}=-1+\frac{0.5z}{z+1}+\frac{0.5z}{z-1} \\
+\]</span> After inverse z transform <span class="math display">\[
+y(k)=-\delta(k)+0.5(-1)^k+0.5 (1)^k
+\]</span> Apply z transform to state space equation <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k) = cx(k) \\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z) \\
+(zI-\Phi)X(z)=x(0)+\Gamma U(z) \\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z) \\
+Y(z)=cX(Z)=c(zI-\Phi)^{-1}x(0)+c(zI-\Phi)^{-1}\Gamma U(z)\\
+\]</span></p>
+<p>For s domain, steady state gain(SSG) is H(0).</p>
+<p>For z domain, SSG is H(1).</p>
+<p>Poles in continuous time domain(CTD) is <span class="math inline">\(\lambda\)</span> , in the discrete time is <span class="math inline">\(e^{h\lambda }\)</span></p>
+<p>In CTD, if <span class="math inline">\(\lambda = \sigma+j\omega\)</span> , <span class="math inline">\(e^{\sigma+j\omega}=e^{\sigma}(cos (\omega)+jsin(\omega))\)</span></p>
+<p>In DTD, <span class="math inline">\(e^{h\lambda}=e^{h(\sigma+jw)}=e^{h\sigma}e^{jhw}\)</span></p>
+<p>Therefore, we can map poles from continuous time domain to discrete time domain.</p>
+<h2 id="example">6. Example</h2>
+<p>We have one electrical system <span class="math inline">\(L=C=R=1\)</span> <span class="math display">\[
+L\frac{di}{dt}+Ri+\frac{1}{C}\int idt=e_i\\
+\frac{1}{C}\int idi=e_o
+\]</span> a) Derive transfer function. Input is <span class="math inline">\(e_i\)</span>. Output is <span class="math inline">\(e_o\)</span>. <span class="math display">\[
+s^2Y(s)+sY(s)+Y(s)=U(s)\\
+\frac{Y(s)}{U(s)}=\frac{1}{s^2+s+1}\\
+\]</span> b) Define <span class="math inline">\(x_1=e_o,x_2=\dot e_o\)</span>, derive state space representation. <span class="math display">\[
+\dot x_1=x_2\\
+\dot x_2=-x_2-x_1+u\\
+x=Ax+Bu\\
+y=Cx\\
 A=
 \begin{bmatrix}
--1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1\\0 &amp; 0 &amp; 2
-\end{bmatrix}
-B=
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}x+
 \begin{bmatrix}
-1 &amp; 1\\0 &amp; 0\\ 0 &amp; 1
-\end{bmatrix}
-\]</span> First we need the controllability matrix <span class="math inline">\(M_c\)</span> <span class="math display">\[
-M_c=
+0\\
+1
+\end{bmatrix}u\\
+y=
 \begin{bmatrix}
-B &amp; AB &amp; A^2B
-\end{bmatrix} = 
+1 &amp; 0
+\end{bmatrix}x\\
+\]</span> c) Discrete this system with h=1. <span class="math display">\[
+x(k+1)=\Phi x+\Gamma u\\
+y=Cx\\
+\Phi=e^{Ah}\\
+\]</span> According to Caley-Hamilton Equation <span class="math display">\[
+f(\lambda)=e^{\lambda t}\\
+h(\lambda)=\beta_0+\beta_1\lambda\\
+\lambda_1=-0.5+\frac{\sqrt3}{2}i\\
+\lambda_2=-0.5-\frac{\sqrt3}{2}i\\
+f(\lambda_1)=e^{(-0.5+\frac{\sqrt3}{2}i)t}=h(\lambda_1)=\beta_0+\beta_1(-0.5+\frac{\sqrt3}{2}i)\\
+f(\lambda_2)=e^{(-0.5-\frac{\sqrt3}{2}i)t}=h(\lambda_2)=\beta_0+\beta_1(-0.5-\frac{\sqrt3}{2}i)\\
+\]</span> Then we can solve that <span class="math display">\[
+\beta_0=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\\
+\beta_1=\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+\]</span> Then we have <span class="math display">\[
+f(A)=h(A)=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
 \begin{bmatrix}
-1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 &amp;2\\
-0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 3\\
-0 &amp; 1 &amp; 0 &amp; 2 &amp; 0 &amp; 4\\
-\end{bmatrix}
-\]</span></p>
-<p>Then we choose independent vectors from left to right and group them in C <span class="math display">\[
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}+
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}\\
+=\begin{bmatrix}
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]&amp;
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}&amp;
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t-\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\end{bmatrix}\\
+\]</span> Then we have <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+0.6597 &amp; 0.5335\\
+-0.5335 &amp; 0.1262\\
+\end{bmatrix}\\
+\Gamma=A^{-1}[e^{Ah}-I]B=
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}\\
 C=
 \begin{bmatrix}
-b_1 &amp; Ab_1 &amp; A^2b_1 &amp; \dotsm &amp; A^{d_1-1}b_1 &amp; | &amp; 
-b_2 &amp; Ab_2 &amp; A^2b_2 &amp; \dotsm &amp; A^{d_2-1}b_1 &amp; | &amp; \dotsm
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 1 &amp; -1 \\
-0 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 2
-\end{bmatrix}
-\]</span> 1 vector for the first input and 2 vectors for the second input</p>
-<p>We denote <span class="math inline">\(d_1=1\quad d_2=2\)</span></p>
-<p>Then we get <span class="math display">\[
-C^{-1}=
-\begin{bmatrix}
-1 &amp; 3 &amp; -1 \\
-0 &amp; -2 &amp; 1 \\
-0 &amp; 1 &amp; 0 \\
-\end{bmatrix}
-\]</span> And we choose <span class="math display">\[
-T=
-\begin{bmatrix}
-q_1 \\ q_3 \\ q_3A
-\end{bmatrix}=
-\begin{bmatrix}
-1&amp;3&amp;-1\\
-0&amp;1&amp;0\\
-0&amp;1&amp;1
+1 &amp; 0
 \end{bmatrix}\\
-T^{-1}=
-\begin{bmatrix}
-1 &amp; -4 &amp; 1 \\
-0 &amp; 1 &amp; 0 \\
-0 &amp; -1 &amp; 1 \\
-\end{bmatrix}\\
-\bar A=TAT^{-1}=
-\begin{bmatrix}
--1&amp;|&amp;7&amp;0\\\hdashline
-0&amp;|&amp;0&amp;1\\
-0&amp;\Big|&amp;-2&amp;3
-\end{bmatrix} \\
-\bar B=TB=
-\begin{bmatrix}
-1 &amp; 0\\\hdashline0&amp; 0\\0&amp; 1
+\]</span> d) Apply z-transform to c), and obtain input-output model <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k)=Cx(k)\\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z)\\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z)\\
+Y(z)=C(zI-\Phi)^{-1}x(0)+C(zI-\Phi)^{-1}\Gamma U(z)\\
+=\begin{bmatrix}
+1 &amp; 0
 \end{bmatrix}
-\]</span> Design the feedback gain matrix <span class="math display">\[
-\bar K=
+\frac{1}{z^2-0.7859z+0.3679}
 \begin{bmatrix}
-\bar k_{11}&amp;\bar k_{12}&amp;\bar k_{13}\\
-\bar k_{21}&amp;\bar k_{22}&amp;\bar k_{23}
-\end{bmatrix} \\
-\bar A-\bar B \bar K=
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}x(0)+\\
 \begin{bmatrix}
--1-\bar k_{11} &amp; 7-\bar k_{12} &amp; -\bar k_{13}\\
-0&amp;0&amp;1\\
--\bar k_{21} &amp; -2-\bar k_{22} &amp; 3-\bar k_{23}
+1 &amp; 0
 \end{bmatrix}
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}U(z)=\\
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}x(0)+\\
+\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+\]</span> We assume initial state is zero. <span class="math display">\[
+Y(z)=\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+y(k+2)-0.7859y(k+1)+0.3679y(k)=0.3403u(k+1)+0.2417u(k)\\
+y(k+1)=0.7859y(k)-0.3679y(k-1)+0.3403u(k)+0.2419u(k-1)\\
+\]</span> e) Assuming initial condition is <span class="math inline">\(x_1(0)=1,x_2(0)=0\)</span> , with step input, calculate the output <span class="math inline">\(y(k)\)</span>. <span class="math display">\[
+Y(z)=
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}
+(
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}z+
+\begin{bmatrix}
+0.3403\\
+0.5335\\
+\end{bmatrix}\frac{z}{z-1}
+)\\
+=\frac{z}{z-1}\\
 \]</span></p>
-<p>We have the desired the eigenvalues -1 -2 -3</p>
-<p>Then we can choose the polynomial <span class="math display">\[
-(s+1)(s+2)(s+3)=(s+1)(s^2+5s+6)
-\]</span> And choose the desired matrix <span class="math display">\[
-A_d=
-\begin{bmatrix}
--1 &amp;|&amp; 0 &amp; 0 \\\hdashline
-0&amp;|&amp;0&amp;1\\
-0&amp;|&amp;-6&amp;-5
-\end{bmatrix}
-\]</span> Then we can get the solution <span class="math display">\[
-\bar k_{11}=\bar k_{13}=\bar k_{21}=0 \\
-\bar k_{12}=7\\
-\bar k_{22}=4\\
-\bar k_{23}=8
-\]</span> Finally, <span class="math display">\[
-K=\bar KT=
-\begin{bmatrix}
-0 &amp; 7 &amp; 0 \\
-0 &amp; 12 &amp; 8 
-\end{bmatrix}
-\]</span></p>
+<p>Therefore, <span class="math inline">\(y(z)=1\)</span></p>
 
         
       
@@ -562,7 +527,7 @@ K=\bar KT=
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/EE5104 Computer Control/1. Computer Control Background/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -576,7 +541,7 @@ K=\bar KT=
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" class="post-title-link" itemprop="url">Chapter 6. Canonical Forms</a>
+            <a href="/2018/11/13/EE5104 Computer Control/1. Computer Control Background/" class="post-title-link" itemprop="url">1. Computer Control Background</a>
           
         </h1>
 
@@ -591,7 +556,7 @@ K=\bar KT=
                 
               
 
-              <time title="Created: 2018-11-17 13:33:56 / Modified: 14:21:59" itemprop="dateCreated datePublished" datetime="2018-11-17T13:33:56+08:00">2018-11-17</time>
+              <time title="Created: 2018-11-13 13:44:42 / Modified: 00:00:39" itemprop="dateCreated datePublished" datetime="2018-11-13T13:44:42+08:00">2018-11-13</time>
             </span>
           
             
@@ -604,7 +569,7 @@ K=\bar KT=
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
 
                 
                 
@@ -613,7 +578,7 @@ K=\bar KT=
           
 
           
-            <span id="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 6. Canonical Forms" title="Views">
+            <span id="/2018/11/13/EE5104 Computer Control/1. Computer Control Background/" class="post-meta-item leancloud_visitors" data-flag-title="1. Computer Control Background" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -631,7 +596,7 @@ K=\bar KT=
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2018/11/13/EE5104 Computer Control/1. Computer Control Background/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/13/EE5104 Computer Control/1. Computer Control Background/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -645,118 +610,78 @@ K=\bar KT=
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="controllable-canonical-form">Controllable Canonical Form</h2>
-<p>Proof of existence,</p>
-<p>When <span class="math inline">\(rank(M_c)=n\)</span>, then <span class="math inline">\(M_c^{-1}\)</span> exists. Let <span class="math inline">\(q^T\)</span> be the n<sup>th</sup> row of <span class="math inline">\(M_c^{-1}\)</span></p>
-<p>Then from <span class="math inline">\(M_c^{-1}M_c=I\)</span> , we have <span class="math display">\[
-q^TA^iB=0 \quad(i=0,1,2,\dotsm,n-2) \\
-q^TA^{n-1}B=1
-\]</span> Let the transfer function <span class="math display">\[
-T=\begin{bmatrix}
-q^T \\q^TA \\ \vdots \\q^TA^{n-1}
-\end{bmatrix}\\
-\bar B = TB=\begin{bmatrix} 0 \\0\\ \vdots \\1 \end{bmatrix} \\
-\bar AT=TA \\
-\bar A\begin{bmatrix}
-q^T \\q^TA \\ \vdots \\q^TA^{n-1}
-\end{bmatrix} = \begin{bmatrix}
-q^T \\q^TA \\ \vdots \\q^TA^{n-1}
-\end{bmatrix} A =\begin{bmatrix}
-q^TA \\q^TA^2 \\ \vdots \\q^TA^{n}
-\end{bmatrix}
-\]</span> Denote <span class="math inline">\(\bar A_i\)</span> is the i<sup>th</sup> line of <span class="math inline">\(\bar A_i\)</span></p>
-<p>We can observe the above equation and find the solution <span class="math display">\[
-\bar A_1=\begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; \dotsm &amp; 0 \end{bmatrix} \\
-\bar A_2=\begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; \dotsm &amp; 0 \end{bmatrix} \\
-\bar A_i=\begin{bmatrix} 0 &amp; 0 &amp; \overbrace{1}^{i} &amp; \dotsm &amp; 0 \end{bmatrix}
-\]</span> Then we need to solve the last line</p>
-<p>According to Caley-Hamilton Equation <span class="math display">\[
-A^n=-\sum_{i=0}^{n-1}a_iA^i
-\]</span> Therefore, <span class="math display">\[
-\bar A_n=\begin{bmatrix} -a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-1} \end{bmatrix}\\
-\]</span> Q.E.D.</p>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
-B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
-M_c= \begin{bmatrix}B &amp; AB \end{bmatrix} = \begin{bmatrix}1 &amp; -8\\ 2 &amp; -14 \end{bmatrix} \\
-M_c^{-1}=\begin{bmatrix}-7 &amp; 4 \\ -1 &amp; 0.5\end{bmatrix} \\
-q^T=[-1 \quad 0.5]\\
-T=\begin{bmatrix}
-q^T \\q^TA \\ \vdots \\q^TA^{n-1}
-\end{bmatrix}=\begin{bmatrix}-1 &amp; 0.5 \\ 0 &amp; 0.5\end{bmatrix}\\
-\bar B = TB = \begin{bmatrix}0 \\ 1 \end{bmatrix} \\
-\bar A= TAT^{-1} = \begin{bmatrix}0 &amp; 1 \\ 2 &amp; -7\end{bmatrix}
-\]</span> We get the Controllable Canonical Form.</p>
-<h2 id="observable-canonical-form">Observable Canonical Form</h2>
-<p><span class="math inline">\(w\)</span> is the last column of observability matrix inverse <span class="math inline">\(M_o^{-1}\)</span> <span class="math display">\[
-M_o=\begin{bmatrix}
-C\\
-CA\\
-\vdots\\
-CA^{n-1}
-\end{bmatrix}\\
-Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w] \\
-\bar A = Q^{-1}AQ \\
-\bar B = Q^{-1}B \\
-\bar C=CQ
-\]</span> Proof is similar to the previous</p>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
-B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
-C= \begin{bmatrix}1 &amp; 1 \end{bmatrix} \\
-M_o= \begin{bmatrix}C \\CA \end{bmatrix} =  \begin{bmatrix}1&amp;1 \\ -6 &amp; -8 \end{bmatrix} \\
-M_o^{-1}= \begin{bmatrix}4 &amp; 0.5 \\ -3&amp; -0.5 \end{bmatrix} \\
-w=\begin{bmatrix}0.5 \\ -0.5 \end{bmatrix} \\
-Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w]=\begin{bmatrix}0.5 &amp; 0.5 \\-0.5 &amp; 0.5\end{bmatrix} \\
-\bar A= Q^{-1}AQ=\begin{bmatrix}0 &amp; 2 \\1 &amp; -7\end{bmatrix}\\
-\bar B= Q^{-1}B=\begin{bmatrix}-1 \\3\end{bmatrix}\\
-\bar C=CQ=[0 \quad 1]
+          <h2 id="laplace-transform">1. Laplace Transform</h2>
+<p>Here we need to talk about Laplace Transform firstly. For the system <span class="math display">\[
+\ddot y-y=u
+\]</span> if <span class="math inline">\(u=e^{st} \quad y=H(s)e^{st}\)</span></p>
+<p>we can build the relationship between u and y. <span class="math display">\[
+s^2H(s)e^{st}-H(s)e^{st}=e^{st}
+\]</span> Then we can get the following equation <span class="math display">\[
+H(s)=\frac{1}{s^2-1}
+\]</span> The meaning of this equation is quite clear. If we choose one input <span class="math display">\[
+u=e^{2t}
+\]</span> Obviously, s=2.</p>
+<p>The output will be <span class="math display">\[
+y=H(2)e^{2t}=\frac{1}{3}e^{2t}
+\]</span> Now we will choose another general tool which has the same properties. <span class="math display">\[
+u(t)=\frac{1}{2\pi i}\int_{a-i\infty}^{a+i\infty}U(s)e^{st}ds
+\]</span> And then we can get U(s) <span class="math display">\[
+U(s)=\int_0^\infty u(t)e^{-st}dt
+\]</span> This is the famous Laplace Transform. Fourier Transform transforms domain form time to frequencies. Laplace transform is another kind of transformation which may not have very clear physical meaning. But it has the very convenient calculate properties.</p>
+<h2 id="stability">2. Stability</h2>
+<p>Stable: small deviation from the equilibrium will remain small.</p>
+<p>Asymptotic Stable: small deviation from the equilibrium point will be completely eliminated.</p>
+<p>Unstable: small deviation from the equilibrium point will result in huge deviation.</p>
+<p>We will introduce a invert pendulum to this introduction part.</p>
+<p>For a invert pendulum, we have the following equations derived from Newton's Second Law. <span class="math display">\[
+ml^2\ddot \theta=u(t)-mlgsin(\theta(t))
+\]</span> To make the problem simple, we have <span class="math display">\[
+ml^2=mgl=1\\
+\ddot \theta+sin(\theta(t))=u(t)
+\]</span> We can find two equilibrium points from physics <span class="math display">\[
+\theta=0,\dot \theta=0\quad\theta=\pi,\dot \theta=0
+\]</span> What is equilibrium in math?</p>
+<p>Equilibrium points are the state of the system if once <span class="math inline">\(x(t)\)</span> is equal to <span class="math inline">\(x^*\)</span> , it remains to <span class="math inline">\(x^*\)</span> for all future time.</p>
+<p>Because of <span class="math display">\[
+\tag{3.1}
+\dot{\mathbf x} = \mathbf f(\mathbf x)
+\]</span> We have <span class="math display">\[
+\mathbf f(\mathbf x^*)= \mathbf 0
+\]</span> For a LTI system <span class="math display">\[
+\dot{\mathbf x}=A\mathbf x\\
+A\mathbf x^*=0
+\]</span> If <span class="math inline">\(A\)</span> is nonsingular, that means there is no nontrivial solution for the equation, there is only trivial solution <span class="math inline">\(\mathbf x^*=0\)</span> , there is only one equilibrium for the system and if <span class="math inline">\(A\)</span> is singular, there are equilibriums same as the solutions for the above equation.​</p>
+<p>And if the equilibrium is not at the origin, we can transfer it to the origin. <span class="math display">\[
+\begin{array}{lll}
+\mathbf y = \mathbf x - \mathbf x^*\\
+\mathbf x= \mathbf y + \mathbf x^* \\
+{(\mathbf y + \mathbf x^*）&#39;}=\mathbf f(\mathbf y + \mathbf x^*) \\
+\dot{\mathbf y}=\mathbf f(\mathbf y + \mathbf x^*)
+\end{array}
+\]</span> Then we can say, for the invert pendulum, we have the following equations to get the equilibrium points. <span class="math display">\[
+\ddot \theta=0\quad\dot\theta=0\quad u=0
+\]</span> How to check whether the point is stable or not. Many methods. Here we talk about linearization.</p>
+<p>With the help of Taylor Series, we can easily find linear equations for a nonlinear system in one point and its close area. Therefore, we will use Taylor Series to expand the invert pendulum system. Then we can get the following form. <span class="math display">\[
+\ddot y(t)-y=u(t)
 \]</span></p>
-<h2 id="transfer-function">Transfer Function</h2>
-<p><span class="math display">\[
-\frac{Y(s)}{U(s)}=\frac{b_{n-1}s^{n-1}+b_{n-2}s^{n-2}+\dotsm+b_{1}s^{1}+b_0}{a_n+a_{n-1}s^{n-1}+a_{n-2}s^{n-2}+\dotsm+a_{1}s^{1}+a_0}
-\]</span></p>
-<p>Controllable Canonical Form <span class="math display">\[
-\bar A=
-\begin{bmatrix}
-0 &amp; 1  &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
-0 &amp; 0  &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
-0 &amp; 0  &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
--a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-2} &amp; -a_{n-1}
-\end{bmatrix}\\
-\bar B=\begin{bmatrix}
-0\\
-0\\
-\vdots\\
-0\\
-1
-\end{bmatrix}\\
-\bar C=\begin{bmatrix}
-b_0 &amp; b_1 &amp; \dotsm &amp; b_{n-2} &amp; b_{n-1}
-\end{bmatrix}
-\]</span> Observable Canonical Form <span class="math display">\[
-\bar A=
-\begin{bmatrix}
-0 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_0\\
-1 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_1\\
-0 &amp; 1  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_2\\
-\vdots  &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
-0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0 &amp;-a_{n-1}\\
-\end{bmatrix}\\
-\bar B=\begin{bmatrix}
-b_0\\
-b_1\\
-\vdots\\
-b_{n-2}\\
-b_{n-1}
-\end{bmatrix}\\
-\bar C=\begin{bmatrix}
-0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1
-\end{bmatrix}
-\]</span></p>
+<h2 id="section"></h2>
+<p>State space to time domain <span class="math display">\[
+x(t)=e^{At}x(0)+\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau
+\]</span> transfer function to time domain</p>
+<p>look up the table</p>
+<p>State space to transfer function <span class="math display">\[
+\begin{array}{}
+\dot x&amp;=&amp;Ax+Bu \\
+y&amp;=&amp;cx \\
+sX(s)&amp;=&amp;AX(s)+BU(s) \\
+X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
+\end{array}
+\]</span> Transfer function to state space</p>
+<p>(skip)</p>
+<p>==Second Order System==</p>
+<p>rise time <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
+<p>settling time <span class="math inline">\(t_r=\frac{4.6}{\xi\omega_n}\)</span></p>
+<p>overshoot <span class="math inline">\(e^{\frac{-\pi\xi}{\sqrt{1-\xi^2}}}\)</span></p>
 
         
       

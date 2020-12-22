@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" class="post-title-link" itemprop="url">Chapter 9. Decoupling Control</a>
+            <a href="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" class="post-title-link" itemprop="url">Chapter 6. Canonical Forms</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2018-11-28 13:33:56 / Modified: 14:23:09" itemprop="dateCreated datePublished" datetime="2018-11-28T13:33:56+08:00">2018-11-28</time>
+              <time title="Created: 2018-11-17 13:33:56 / Modified: 14:21:59" itemprop="dateCreated datePublished" datetime="2018-11-17T13:33:56+08:00">2018-11-17</time>
             </span>
           
             
@@ -266,7 +266,7 @@
           
 
           
-            <span id="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 9. Decoupling Control" title="Views">
+            <span id="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 6. Canonical Forms" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +284,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,96 +298,117 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="introduction">1. Introduction</h2>
-<p>Consider an MIMO system: <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx
-\]</span> or <span class="math display">\[
-Y(s)=C(sI-A)^{-1}BU(s)=G(s)U(s)
-\]</span> G(s) is <span class="math inline">\(m\times m\)</span> matrix</p>
-<p>==Decoupling==</p>
-<p>is to decouple a coupled plant such that feedback system is decoupled.</p>
-<h2 id="decoupling-by-state-feedback">2. Decoupling by State Feedback</h2>
-<p>Consider the system, to be decoupled by state feedback <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx\\
-u=-Kx+Fr
-\]</span> We have the feedback transfer function <span class="math display">\[
-H(s)=C(sI-A+BK)^{-1}BF
-\]</span> And we have the open loop transfer function <span class="math display">\[
-G(s)=C(sI-A)^{-1}B
-\]</span> it can be proved <span class="math display">\[
-H(s)=G(s)[I+K(sI-A)^{-1}B]^{-1}F
-\]</span> ==Calulation of <span class="math inline">\(\sigma_1\)</span>==</p>
-<p>Let i=1</p>
-<p>​ j=1 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^0B=c_1^TB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=1;goto \quad i=2 \\
-=0\rightarrow j=2
-\end{cases}
-\]</span> ​ j=2 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^1B=c_1^TAB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=2;goto \quad i=2 \\
-=0\rightarrow j=3
-\end{cases}
-\]</span> Then <span class="math display">\[
-B^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1-1}B\\
-c_2^TA^{\sigma_2-1}B\\
-\vdots \\
-c_m^TA^{\sigma_m-1}B
-\end{bmatrix} \\
-C^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1} \\
-c_2^TA^{\sigma_2} \\
-\vdots \\
-c_m^TA^{\sigma_m} \\
+          <h2 id="controllable-canonical-form">Controllable Canonical Form</h2>
+<p>Proof of existence,</p>
+<p>When <span class="math inline">\(rank(M_c)=n\)</span>, then <span class="math inline">\(M_c^{-1}\)</span> exists. Let <span class="math inline">\(q^T\)</span> be the n<sup>th</sup> row of <span class="math inline">\(M_c^{-1}\)</span></p>
+<p>Then from <span class="math inline">\(M_c^{-1}M_c=I\)</span> , we have <span class="math display">\[
+q^TA^iB=0 \quad(i=0,1,2,\dotsm,n-2) \\
+q^TA^{n-1}B=1
+\]</span> Let the transfer function <span class="math display">\[
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
 \end{bmatrix}\\
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}C^*
-\]</span> Then <span class="math display">\[
-H(s)=diag(s^{-\sigma_1},s^{-\sigma_2},\dotsm,s^{-\sigma_m})
-\]</span> ==Decoupling with pole placement== <span class="math display">\[
-H(s)=
-\begin{bmatrix}
-\frac{1}{\Phi_{f_1}} &amp; 0 &amp; \dotsm &amp; 0 \\
-0 &amp; \frac{1}{\Phi_{f_2}} &amp; \dotsm &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \dotsm &amp; \frac{1}{\Phi_{f_m}}
+\bar B = TB=\begin{bmatrix} 0 \\0\\ \vdots \\1 \end{bmatrix} \\
+\bar AT=TA \\
+\bar A\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} = \begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} A =\begin{bmatrix}
+q^TA \\q^TA^2 \\ \vdots \\q^TA^{n}
 \end{bmatrix}
-\]</span> We just need <span class="math display">\[
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}
-\begin{bmatrix}
-c_1^T\Phi _{f_1}(A) \\
-c_2^T\Phi _{f_2}(A) \\
-\vdots \\
-c_m^T\Phi _{f_m}(A) \\
+\]</span> Denote <span class="math inline">\(\bar A_i\)</span> is the i<sup>th</sup> line of <span class="math inline">\(\bar A_i\)</span></p>
+<p>We can observe the above equation and find the solution <span class="math display">\[
+\bar A_1=\begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_2=\begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_i=\begin{bmatrix} 0 &amp; 0 &amp; \overbrace{1}^{i} &amp; \dotsm &amp; 0 \end{bmatrix}
+\]</span> Then we need to solve the last line</p>
+<p>According to Caley-Hamilton Equation <span class="math display">\[
+A^n=-\sum_{i=0}^{n-1}a_iA^i
+\]</span> Therefore, <span class="math display">\[
+\bar A_n=\begin{bmatrix} -a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-1} \end{bmatrix}\\
+\]</span> Q.E.D.</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+M_c= \begin{bmatrix}B &amp; AB \end{bmatrix} = \begin{bmatrix}1 &amp; -8\\ 2 &amp; -14 \end{bmatrix} \\
+M_c^{-1}=\begin{bmatrix}-7 &amp; 4 \\ -1 &amp; 0.5\end{bmatrix} \\
+q^T=[-1 \quad 0.5]\\
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix}=\begin{bmatrix}-1 &amp; 0.5 \\ 0 &amp; 0.5\end{bmatrix}\\
+\bar B = TB = \begin{bmatrix}0 \\ 1 \end{bmatrix} \\
+\bar A= TAT^{-1} = \begin{bmatrix}0 &amp; 1 \\ 2 &amp; -7\end{bmatrix}
+\]</span> We get the Controllable Canonical Form.</p>
+<h2 id="observable-canonical-form">Observable Canonical Form</h2>
+<p><span class="math inline">\(w\)</span> is the last column of observability matrix inverse <span class="math inline">\(M_o^{-1}\)</span> <span class="math display">\[
+M_o=\begin{bmatrix}
+C\\
+CA\\
+\vdots\\
+CA^{n-1}
 \end{bmatrix}\\
-\Phi _{f_i}(A)=A^{\sigma_i}+\gamma_{i1}A^{\sigma_i-1}+\dotsm+\gamma_{i\sigma_i}A^{\sigma_i-\sigma_i}
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w] \\
+\bar A = Q^{-1}AQ \\
+\bar B = Q^{-1}B \\
+\bar C=CQ
+\]</span> Proof is similar to the previous</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+C= \begin{bmatrix}1 &amp; 1 \end{bmatrix} \\
+M_o= \begin{bmatrix}C \\CA \end{bmatrix} =  \begin{bmatrix}1&amp;1 \\ -6 &amp; -8 \end{bmatrix} \\
+M_o^{-1}= \begin{bmatrix}4 &amp; 0.5 \\ -3&amp; -0.5 \end{bmatrix} \\
+w=\begin{bmatrix}0.5 \\ -0.5 \end{bmatrix} \\
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w]=\begin{bmatrix}0.5 &amp; 0.5 \\-0.5 &amp; 0.5\end{bmatrix} \\
+\bar A= Q^{-1}AQ=\begin{bmatrix}0 &amp; 2 \\1 &amp; -7\end{bmatrix}\\
+\bar B= Q^{-1}B=\begin{bmatrix}-1 \\3\end{bmatrix}\\
+\bar C=CQ=[0 \quad 1]
 \]</span></p>
-<h2 id="decoupling-by-output-feedback">3. Decoupling by Output Feedback</h2>
-<p>in this section, we use a unity feedback controller. <span class="math display">\[
-H(s)=[I+G(s)K(s)]^{-1}G(s)K(s) \\
-H^{-1}=(GK)^{-1}[I+GK]=(GK)^{-1}+I
-\]</span> that means H is decoupled iff GK is decoupled. <span class="math display">\[
-K(s)=K_d(s)K_s(s)
-\]</span> <span class="math inline">\(K_d\)</span> is used for decoupler</p>
-<p><span class="math inline">\(K_s\)</span> is used for stabilizer</p>
-<p>==Design for Decoupler== <span class="math display">\[
-G(s)=\frac{N(s)}{d(s)}\\
-K_d(s)=adj(N(s))=det(N(s))*N^{-1}(s) \\
-G(s)K_d(s)=\frac{det(N(s))}{d(s)}I
-\]</span> ==Design for Stabilizer==</p>
-<p>For every single loop, make it stable</p>
-<p>==Refinement== <span class="math display">\[
-G(s)=diag\{\frac{1}{d_1}\quad \frac{1}{d_2} \quad \dotsm\quad \frac{1}{d_m}\}N_r(s)
-\]</span> every <span class="math inline">\(d_i\)</span> is a LCD if i-th row of G(s) <span class="math display">\[
-K_d=adj(N_r(s))
+<h2 id="transfer-function">Transfer Function</h2>
+<p><span class="math display">\[
+\frac{Y(s)}{U(s)}=\frac{b_{n-1}s^{n-1}+b_{n-2}s^{n-2}+\dotsm+b_{1}s^{1}+b_0}{a_n+a_{n-1}s^{n-1}+a_{n-2}s^{n-2}+\dotsm+a_{1}s^{1}+a_0}
+\]</span></p>
+<p>Controllable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 1  &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+0 &amp; 0  &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0  &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
+-a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-2} &amp; -a_{n-1}
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+0\\
+0\\
+\vdots\\
+0\\
+1
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+b_0 &amp; b_1 &amp; \dotsm &amp; b_{n-2} &amp; b_{n-1}
+\end{bmatrix}
+\]</span> Observable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_0\\
+1 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_1\\
+0 &amp; 1  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_2\\
+\vdots  &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0 &amp;-a_{n-1}\\
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+b_0\\
+b_1\\
+\vdots\\
+b_{n-2}\\
+b_{n-1}
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1
+\end{bmatrix}
 \]</span></p>
 
         
@@ -413,7 +434,7 @@ K_d=adj(N_r(s))
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -427,7 +448,7 @@ K_d=adj(N_r(s))
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-title-link" itemprop="url">Chapter 8. Quadratic Optimal Control</a>
+            <a href="/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/" class="post-title-link" itemprop="url">3. Analysis of Discrete Time System</a>
           
         </h1>
 
@@ -442,7 +463,7 @@ K_d=adj(N_r(s))
                 
               
 
-              <time title="Created: 2018-11-25 13:33:56 / Modified: 14:22:46" itemprop="dateCreated datePublished" datetime="2018-11-25T13:33:56+08:00">2018-11-25</time>
+              <time title="Created: 2018-11-16 13:44:42 / Modified: 00:04:46" itemprop="dateCreated datePublished" datetime="2018-11-16T13:44:42+08:00">2018-11-16</time>
             </span>
           
             
@@ -455,7 +476,7 @@ K_d=adj(N_r(s))
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
 
                 
                 
@@ -464,7 +485,7 @@ K_d=adj(N_r(s))
           
 
           
-            <span id="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 8. Quadratic Optimal Control" title="Views">
+            <span id="/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/" class="post-meta-item leancloud_visitors" data-flag-title="3. Analysis of Discrete Time System" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -482,7 +503,7 @@ K_d=adj(N_r(s))
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -496,79 +517,202 @@ K_d=adj(N_r(s))
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="problem-formulation-and-preliminaries">1. Problem Formulation and Preliminaries</h2>
-<p>The system is described as <span class="math display">\[
-\dot x = Ax +Bu \\
-y=Cx
-\]</span> The objective is to bring the state from non-zero initial value to zero. This is the regulation problem. The problem is cast into the following quadratic cost function. <span class="math display">\[
-J=\frac{1}{2}\int_0^\infty(x^TQx+u^TRu)dt
-\]</span> Using state feedback <span class="math inline">\(u=-Kx\)</span> to minimize the above equation.</p>
-<p>Q (semi-positive) and R (positive) can be made symmetric.</p>
-<p>Q and R appear most in diagonal form. <span class="math display">\[
-Q=\begin{bmatrix}
-q_1&amp;&amp;&amp;&amp;0 \\
-&amp;q_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;q_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;q_{n} \\
-\end{bmatrix}\\
-R=\begin{bmatrix}
-r_1&amp;&amp;&amp;&amp;0 \\
-&amp;r_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;r_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;r_{n} \\
-\end{bmatrix}
-\]</span> For later use, we define <span class="math display">\[
-Q=H^TH
+          <h2 id="stability">1. Stability</h2>
+<p>Jury's Stability Test</p>
+<p>For the system <span class="math display">\[
+\frac{1}{z^2+a_1z+a_2}
+\]</span> Using Jury's Stability Test <span class="math display">\[
+\begin{array}{ccc}
+1 &amp; a_1 &amp; a_2\\
+a_2 &amp; a_1 &amp; 1 &amp; \times -a_2\\ \hline
+1-a_2^2 &amp; a_1-a_1a_2\\ 
+a_1-a_1a_2 &amp; 1-a_2^2 &amp;  &amp; \times-\frac{a_1}{1+a_2}\\ \hline
+\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}
+\end{array}
+\]</span> If the system is stable, we have <span class="math display">\[
+1-a_2^2 &gt;0\\
+\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}&gt;0
 \]</span></p>
-<p>Three Assumptions</p>
-<ol type="1">
-<li>The system (A, B) is controllable</li>
-<li>The system (A, H) is observable</li>
-<li>R is positive definite, Q is semi-positive definite</li>
-</ol>
-<p>We have a symmetric positive definite matrix P satisfying the following Algebraic Riccati Equation (ARE) <span class="math display">\[
-A^TP+PA+Q=PBR^{-1}B^TP
-\]</span> Then <span class="math display">\[
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Selection of Q and R</p>
-<ol type="1">
-<li>Q and R are selected to be diagonal</li>
-<li>The larger Q, the larger K</li>
-</ol>
-<p>How to solve ARE</p>
-<p>Step1.</p>
-<p>Form <span class="math display">\[
-\Gamma=\begin{bmatrix}
-A &amp; -BR^{-1}B^T \\
--Q &amp; -A^T
+<h2 id="controllability">2. Controllability</h2>
+<p>Controllable: The system can be driven from any initial state to any other destination in finite time.</p>
+<p>For the system <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k)=Cx(k)\\
+\]</span> We have the initial state <span class="math inline">\(x(0)\)</span></p>
+<p>Then <span class="math display">\[
+x(1)=\Phi x(0)+\Gamma u(0)\\
+x(2)=\Phi x(1)+\Gamma u(1)=\Phi(\Phi x(0)+\Gamma u(0))+\Gamma u(1)\\
+=\Phi^2 x(0)+\Phi\Gamma u(0)+\Gamma u(1)\\
+\vdots\\
+x(n)=\Phi^nx(0)+\Phi^{n-1}\Gamma u(0)+\Phi^{n-2}\Gamma u(1)+\dotsm+\Gamma u(n-1)
+\]</span> If the system can be driven to any state in finite steps, we just need to ensure <span class="math display">\[
+W_c=\begin{bmatrix}
+\Gamma &amp; \Phi\Gamma &amp; \Phi^2\Gamma &amp; \dotsm &amp; \Phi^{n-1}\Gamma
 \end{bmatrix}
-\]</span> Then</p>
-<p>get the stable eigenvectors of <span class="math inline">\(\Gamma\)</span> <span class="math display">\[
+\]</span> is NONSINGULAR.</p>
+<p>If we cannot get to one state with n-1 steps, we cannot to get to one state with n steps.</p>
+<p>Proof <span class="math display">\[
+A(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\dotsm+\ a_n \\
+\]</span> Then we have <span class="math display">\[
+A(\Phi)=\Phi^n+a_1\Phi^{n-1}+a_2\Phi^{n-2}+\dotsm+\ a_nI \\
+\]</span> Similarly,</p>
+<p>We know <span class="math inline">\(\Phi^n\)</span> is linear combination of <span class="math inline">\(\Phi^0, \quad \Phi,\quad\dotsm\quad\Phi^{n-1}\)</span>.</p>
+<p>Therefore, we still cannot get to arbitrary desired state.</p>
+<p>Controllable Canonical Form <span class="math display">\[
+\Phi=
 \begin{bmatrix}
-v_i \\ \mu_i
+-a_{n} &amp; -a_{n-1} &amp; \dotsm &amp; -a_{2} &amp; -a_1\\
+1 &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0\\
 \end{bmatrix}
-\]</span> Then <span class="math display">\[
-P=[\mu_1 \quad\mu_2\quad\dotsm\quad \mu_n][v_1 \quad v_2\quad\dotsm\quad v_n]^{-1}\\
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Example <span class="math display">\[
-A=\begin{bmatrix}
-0&amp;1\\0&amp;0
+\Gamma=
+\begin{bmatrix}
+1\\
+0\\
+0\\
+\vdots\\
+0\\
 \end{bmatrix}
-B=\begin{bmatrix}
-0\\1
-\end{bmatrix}
-Q=\begin{bmatrix}
-1&amp;0\\0&amp;0
-\end{bmatrix}
-R=\begin{bmatrix}
-\beta
+C=
+\begin{bmatrix}
+b_n &amp; b_{n-1} &amp; \dotsm &amp; b_1
 \end{bmatrix}
 \]</span></p>
-<p>Example</p>
+<h2 id="observability">3. Observability</h2>
+<p>Observer <span class="math display">\[
+\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
+\hat y=C\hat x(k) \\
+e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
+\]</span> Observability Matrix <span class="math display">\[
+M_o^{-1}=\begin{bmatrix}
+C\\C\Phi\\C\Phi^2\\\vdots\\C\Phi^{n-1}
+\end{bmatrix}
+\]</span> Observable Canonical Form <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+-a_{n} &amp; 1 &amp; 0 &amp; \dotsm &amp; 0\\
+-a_{n-1} &amp; 0 &amp; 1 &amp; \dotsm  &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+-a_{2} &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
+-a_{1} &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+b_n\\
+b_{n-1}\\
+b_{n-2}\\
+\vdots\\
+b_1\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; \dotsm &amp; 0
+\end{bmatrix}
+\]</span></p>
+<h2 id="how-to-create-state-space-from-difference-equation">4. How to Create State Space From Difference Equation</h2>
+<p>Example <span class="math display">\[
+y(k+1)=-a_1y(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
+\]</span> First, we choose <span class="math display">\[
+x_1(k)=y(k)
+\]</span> Then we have <span class="math display">\[
+x_1(k+1)=y(k+1)=-a_1x_1(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
+\]</span> Then we choose <span class="math display">\[
+x_2(k)=-a_2y(k-1)-a_3y(k-2)+b_2u(k-1)+b_3u(k-2)\\
+x_2(k+1)=-a_2y(k)-a_3y(k-1)+b_2u(k)+b_3u(k-1)\\
+x_3(k)=-a_3y(k-1)+b_3u(k-1)\\
+x_3(k+1)=-a_3y(k)+b_3u(k)
+\]</span> Therefore, we have <span class="math display">\[
+x_1(k+1)=-a_1x_1+x_2(k)+b_1u(k)\\
+x_2(k+1)=-a_2x_1(k)+x_3(k)+b_2u(k)\\
+x_3(k+1)=-a_3x_1(k)+b_3u(k)\\
+\]</span> Therefore, <span class="math display">\[
+\Phi=\begin{bmatrix}
+-a_1 &amp; 1 &amp; 0\\
+-a_2 &amp; 0 &amp; 1\\
+-a_3 &amp; 0 &amp; 0
+\end{bmatrix}
+\Gamma=\begin{bmatrix}
+b_1\\b_2\\b_3
+\end{bmatrix}
+C=\begin{bmatrix}
+1 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<h2 id="some-useful-conclusions">5. Some Useful Conclusions</h2>
+<ol type="1">
+<li>The minimal realization has the same order as that of the transfer function. If higher, it is called non-minimal realization.</li>
+<li>The minimal realization can be always cast into the form of observable canonical form. Therefore, the minimal realization is always observable.</li>
+<li>If there are common zeros and poles, uncontrollable, otherwise, controllable.</li>
+</ol>
+<h2 id="example">6. Example</h2>
+<p>Example 1 <span class="math display">\[
+y(k+1)=3y(k)-2y(k-1)+u(k-1)+2u(k-2)
+\]</span> a) What is the Transfer Function? <span class="math display">\[
+zY(z)=3Y(z)-2z^{-1}Y(z)+z^{-1}U(z)+2z^{-2}U(z)\\
+\frac{Y(z)}{U(z)}=\frac{z^{-1}+2z^{-2}}{z-3+2z^{-1}}=\frac{z+2}{z^3-3z^2+2z}=\frac{z+2}{z(z-1)(z-2)}
+\]</span> b) is it possible to realize the system such that it is observable but not controllable.</p>
+<p>It is not controllable, therefore, it should have common zeros and poles. <span class="math display">\[
+G(z)=\frac{(z+2)(z+1)}{z(z-1)(z-2)(z+1)}=\frac{z^2+3z+2}{z^4-2z^3-z^2+2z}\\
+\]</span> The system is observable, therefore, we realize the system in observable canonical form. <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+2 &amp; 1 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 1 &amp; 0\\
+-2 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+\Gamma=
+\begin{bmatrix}
+0\\
+1\\
+3\\
+2\\
+\end{bmatrix}
+C=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0
+\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+M_C=
+\begin{bmatrix}
+0 &amp; 1 &amp; 5 &amp; 13\\
+1 &amp; 3 &amp; 3 &amp; 3\\
+3 &amp; 2 &amp; -2 &amp; -10\\
+2 &amp; 0 &amp; 0 &amp; 0\\
+\end{bmatrix}
+M_o=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+2 &amp; 1 &amp; 0 &amp; 0\\
+5 &amp; 2 &amp; 1 &amp; 0\\
+10 &amp; 5 &amp; 2 &amp; 1
+\end{bmatrix}\\
+\]</span></p>
+<p>Therefore, the system is observable but not controllable.</p>
+<p>However, we need to check if this space state is that transfer function. It is easy to find that it is exactly the G(z) instead of the transfer function in the question. Therefore, it is <strong>impossible</strong> to realize this system in observable but not controllable form.</p>
+<ol start="3" type="a">
+<li>is it possible to realize the system such that it is controllable but not observable.</li>
+</ol>
+<p>Same as the above, it is possible to realize.</p>
+<ol start="4" type="a">
+<li>is it possible to realize the system such that it is both controllable and observable.</li>
+</ol>
+<p>Obviously, it is possible.</p>
+<p>Example 2. <span class="math display">\[
+y(k+1)=3y(k-1)-2y(k-2)+u(k)-2u(k-1)+u(k-2)\\
+\]</span> The questions are same as the above.</p>
+<ol type="a">
+<li><p><span class="math display">\[
+zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
+\frac{Y(z)}{U(z)}=\frac{z^2-2z+1}{z^3-3z-2}=\frac{(z-1)^2}{(z-1)^2(z+2)}
+\]</span></p></li>
+<li><p>it is possible observable but not controllable</p></li>
+<li><p>it is not possible controllable but not observable</p></li>
+<li><p>it is not possible controllable and observable</p></li>
+</ol>
 
         
       
