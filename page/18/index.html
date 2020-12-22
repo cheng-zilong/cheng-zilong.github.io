@@ -215,6 +215,328 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-19 17:18:42" itemprop="dateModified" datetime="2019-08-19T17:18:42+08:00">2019-08-19</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="banach-spaces">1.5 Banach Spaces</h2>
+<p>Every Cauchy sequence of <strong>numbers</strong> converges. Every absolutely convergent series of <strong>numbers</strong> converges. Similar properties of a normed space would be of great importance. Not all normed spaces have the above properties. Those which do are called Banach Spaces.</p>
+<p>==Definition 1.5.1== Cauchy Sequence</p>
+<p>A sequence of vectors <span class="math inline">\((x_n)\)</span> in a normed space is called a Cauchy sequence if for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>.</p>
+<p>==Theorem 1.5.1==</p>
+<p>The following conditions are equivalent:</p>
+<ol type="a">
+<li><p><span class="math inline">\((x_n)\)</span> is a Cauchy sequence.</p></li>
+<li><p><span class="math inline">\(||x_{p_n}-x_{q_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, for every pair of increasing sequences of positive integers <span class="math inline">\((p_n)\)</span> and <span class="math inline">\((q_n)\)</span></p></li>
+<li><p><span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> for every increasing sequence of positive integers <span class="math inline">\((p_n)\)</span></p></li>
+</ol>
+<p>Proof. clearly <span class="math inline">\((a)\rightarrow (b)\rightarrow (c)\)</span></p>
+<p>we only need to prove <span class="math inline">\((c)\rightarrow (a)\)</span></p>
+<p>If <span class="math inline">\((x_n)\)</span> is not a Cauchy sequence, then <span class="math inline">\(\exists \epsilon&gt;0,\forall M&gt;0,\exists m,n&gt;M\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span>.</p>
+<p>That means <span class="math inline">\(\exists \epsilon&gt;0\)</span>, there are infinitely many <span class="math inline">\(m,n\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span></p>
+<p>Then there exists increasing sequence of positive integers <span class="math inline">\((p_n)\)</span> such that <span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\not \rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p>We can easily find such sequence. Q.E.D.</p>
+<p>Observe that every <strong>convergent sequence</strong> is a <strong>Cauchy sequence</strong>.</p>
+<p>If we have <span class="math inline">\(||x_n-x||\rightarrow 0\)</span>, then <span class="math inline">\(||x_{p_n}-x_{q_n}||\le||x_{p_n}-x||+||x_{q_{n}}-x||\rightarrow 0\)</span></p>
+<p>The converse is not true. A sequence of the rational number may converge to an irrational number.</p>
+<p>==Lemma 1.5.1==</p>
+<p>If <span class="math inline">\((x_n)\)</span> is a Cauchy sequence in a normed space, then the sequence of norms <span class="math inline">\((||x_n||)\)</span> converges.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>. <span class="math display">\[
+|\space||x_m||-||x_n||\space|\le||x_m-x_n||\rightarrow 0
+\]</span> ==Definition 1.5.2== Banach Space</p>
+<p>A normed space <span class="math inline">\(E\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(E\)</span> converges to an element of <span class="math inline">\(E\)</span>. A complete normed space is called a Banach Space.</p>
+<p>==Example 1.5.1== The space <span class="math inline">\(l^2\)</span> is complete.</p>
+<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(z_1,z_2,\dotsm \in E\)</span> satisfying that</p>
+<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
+||z_m-z_n||^2=\sum_{k=1}^\infty |z_{m,k}-z_{n,k}|^2&lt;\epsilon^2
+\]</span> that implies <span class="math inline">\(\forall k\in \mathbb N,\forall\epsilon&gt;0,\exists n_0&gt;0\)</span> <span class="math display">\[
+|z_{m,k}-z_{n,k}|&lt;\epsilon\quad \forall m,n&gt;n_0
+\]</span> that mean for every k, the sequence <span class="math inline">\((z_{n,k})\)</span> is Cauchy sequence and convergent. Then we denote <span class="math display">\[
+z_k=\lim_{n\rightarrow \infty} z_{n,k}\quad k=1,2,\dotsm\quad z=(z_k)
+\]</span> We need to prove that there exists an element <span class="math inline">\(z\in E\)</span> such that <span class="math inline">\(\forall \varepsilon&gt;0,\exists M&gt;0,\forall m&gt;M\)</span> such that <span class="math display">\[
+||z_m-z||=\sum_{k=1}^\infty |z_{m,k}-z_k|^2&lt;\varepsilon^2
+\]</span> By letting $n$, we can prove the second equation by the first equation.</p>
+<p>Then we need to prove that <span class="math inline">\(z\in E\)</span> <span class="math display">\[
+\sqrt{\sum_{k=1}^\infty|z_k|^2}=\sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}+z_{m,k}|^2}\\
+\le \sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}|^2}+\sqrt{\sum_{k=1}^\infty |z_{m,k}|^2}
+&lt; \infty
+\]</span> That means <span class="math inline">\(z_m \rightarrow z\)</span></p>
+<p>Q.E.D.</p>
+<p>==Example 1.5.2== Another important example of a Banach space is the space <span class="math inline">\(\mathscr C([a,b])\)</span> of continuous functions on an interval <span class="math inline">\([a,b]\)</span>.</p>
+<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(f_1,f_2,\dotsm \in E\)</span> satisfying that</p>
+<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
+||f_m-f_n||&lt;\epsilon\\
+\max_{x\in[a,b]} |f_m(x)-f_n(x)|&lt;\epsilon
+\]</span> that implies <span class="math display">\[
+|f_m(x)-f_n(x)|&lt;\epsilon \quad \forall n,m\ge n_0,\forall x\in[a,b]
+\]</span> that means <span class="math inline">\((f_n(x))\)</span> is Cauchy sequence <span class="math inline">\(\forall x\in[a,b]\)</span>.</p>
+<p>We denote <span class="math display">\[
+f(x)=\lim_{n\rightarrow \infty } f_n(x),\forall x\in[a,b]
+\]</span> Let $n$ , we have <span class="math display">\[
+|f_m(x)-f(x)|&lt;\epsilon,\forall m\ge n_0 ,\forall x\in[a,b]\\
+\max_{x\in[a,b]}|f_m(x)-f(x)|&lt;\epsilon \\
+||f_m-f|&lt;\epsilon
+\]</span> Then we prove <span class="math inline">\(f\in E\)</span></p>
+<p>Let <span class="math inline">\(\forall x_0\in[a,b]\)</span>. Since <span class="math inline">\(f_{n_0}\)</span> is continuous on <span class="math inline">\([a,b]\)</span>, there exists <span class="math inline">\(\delta &gt;0\)</span> such that <span class="math inline">\(|f_{n_0}(x_0)-f_{n_0}(y)|&lt;\epsilon\)</span> for every <span class="math inline">\(y\in[a,b]\)</span> and <span class="math inline">\(|x_0-y|&lt;\delta\)</span> <span class="math display">\[
+|f(x_0)-f(y)|= |f(x_0)-f_{n_0}(x_0)+f_{n_0}(x_0)-f_{n_0}(y)+f_{n_0}(y)-f(y)|\\
+\le |f(x_0)-f_{n_0}(x_0)|+|f_{n_0}(x_0)-f_{n_0}(y)|+|f_{n_0}(y)-f(y)|\\
+&lt; 3\epsilon
+\]</span> whenever <span class="math inline">\(|x_0-y|&lt;\delta\)</span>, that means <span class="math inline">\(f\)</span> is continuous.</p>
+<p>Q.E.D.</p>
+<p>==Definition 1.5.3== Convergent and Absolutely convergent series</p>
+<p>A series <span class="math inline">\(\sum_{n=1}^\infty x_n\)</span> converges in a normed space <span class="math inline">\(E\)</span> if the sequence of partial sums converges in <span class="math inline">\(E\)</span>.</p>
+<p>i.e. there exists <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_1+x_2+\dotsm+x_n-x||\rightarrow 0\)</span> as $n$ .</p>
+<p>In that case, we write <span class="math inline">\(\sum_{n=1}^\infty x_n=x\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty ||x_n||&lt;\infty\)</span>, then the series is called absolute convergent.</p>
+<p>==Theorem 1.5.2==</p>
+<p>A normed space is complete if and only if every absolutely convergent series converges.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>We will prove this by proving absolutely convergent series is a Cauchy series.</p>
+<p>We define a absolutely convergent series. Suppose <span class="math inline">\(x_n\in E\)</span> and <span class="math inline">\(\sum_{n=1}^\infty||x_n||&lt;\infty\)</span> and denote <span class="math display">\[
+s_n=\sum_{k=1}^nx_k
+\]</span> Because the sequence of partial sums converges in E, for every $&gt;0 $, there exists <span class="math inline">\(k&gt;0\)</span> such that <span class="math display">\[
+\sum_{n=k+1}^\infty ||x_n||&lt;\epsilon
+\]</span> To show <span class="math inline">\((s_n)\)</span> is a Cauchy sequence, <span class="math inline">\(\forall \epsilon&gt;0,\exists M,\forall m,n&gt;M\)</span> such that <span class="math display">\[
+||s_m-s_n||=||x_{n+1}+x_{n+2}+\dotsm+x_m||\le \sum_{r=n+1}^\infty ||x_r||&lt;\epsilon
+\]</span> (without loss of generality, we assume <span class="math inline">\(m&gt;n\)</span>)</p>
+<p>Since E is complete, <span class="math inline">\(s_n\)</span> converges.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>We need to prove if every absolutely convergent series in a norm space converges, then the normed space is complete.</p>
+<p>Let <span class="math inline">\((x_n)\)</span> be an Cauchy sequence in E and therefore <span class="math inline">\(\forall \epsilon&gt;0,\exists p_k\in N,\forall m,n&gt;p_k\)</span> such that <span class="math display">\[
+||x_m-x_n||&lt;2^{-k}
+\]</span> without loss of generality, we can assume <span class="math inline">\((p_k)\)</span> is strictly increasing.</p>
+<p>Then the series <span class="math inline">\(\sum_{k=1}^\infty (x_{p_{k+1}}-x_{p_k})\)</span> is absolutely convergent and therefore, convergent and therefore, the sequence <span class="math display">\[
+x_{p_k}=x_{p_1}+(x_{p_2}-x_{p_1})+(x_{p_3}-x_{p_2})+\dotsm+(x_{p_k}-x_{p_{k-1}})
+\]</span> converges to an element <span class="math inline">\(x\in E\)</span></p>
+<p>Then <span class="math display">\[
+||x_n-x||\le ||x_n-x_{p_n}||+||x_{p_n}-x||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Theorem 1.5.3==</p>
+<p>A closed vector subspace of a Banach space is a Banach space itself.</p>
+<h2 id="linear-mappings">1.6 Linear Mappings</h2>
+<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be vector spaces, and let L be a mapping from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span></p>
+<p>If <span class="math inline">\(y=L(x)\)</span>, then y is called the ==image== of x. If A is subset of <span class="math inline">\(E_1\)</span>, then <span class="math inline">\(L(A)\)</span> denotes the image of the set <span class="math inline">\(A\)</span>.</p>
+<p>If B is a subset of <span class="math inline">\(E_2\)</span>, then <span class="math inline">\(L^{-1}(B)\)</span> denote the ==inverse image== of B. i.e. <span class="math inline">\(L^{-1}(B)\)</span> is the set of all vectors in <span class="math inline">\(E_1\)</span> whose images are elements of B.</p>
+<p>We consider the mapping which are defined on a proper subset of a vector space. Then the ==domain== of <span class="math inline">\(L\)</span> will be denoted as <span class="math inline">\(\mathscr D(L)\)</span>. The set <span class="math inline">\(L(\mathscr D(L))\)</span> is called the ==range== of the L and denoted by <span class="math inline">\(\mathscr R (L)\)</span></p>
+<p>By the ==null space== of L, denoted by <span class="math inline">\(\mathscr N(L)\)</span>, we mean the set of all vectors <span class="math inline">\(x\in \mathscr D(L)\)</span> such that <span class="math inline">\(L(x)=0\)</span></p>
+<p>By the ==graph== if L, denoted by <span class="math inline">\(\mathscr G(L)\)</span>, we mean the subset of <span class="math inline">\(E_1\times E_2\)</span> defined as follows: <span class="math display">\[
+\mathscr G(L)=\{(x,y):x\in\mathscr D(L),y=L(x)\}
+\]</span> ==Definition 1.6.1== Linear Mappings</p>
+<p>A mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called a linear mapping if <span class="math display">\[
+L(\alpha x+\beta y)=\alpha L(x)+\beta L(y)
+\]</span> for all <span class="math inline">\(x,y\in E_1\)</span> and all scalars <span class="math inline">\(\alpha,\beta\)</span>.</p>
+<p>In the remaining part of this section, we will assume that both spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces.</p>
+<p>==Definition 1.6.2== Continuous Mappings</p>
+<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be normed spaces. A mapping <span class="math inline">\(F\)</span> from <span class="math inline">\(E_1\)</span> to <span class="math inline">\(E_2\)</span> is called continuous at <span class="math inline">\(x_0\in E_1\)</span> if for any sequence <span class="math inline">\((x_n)\)</span> of elements of <span class="math inline">\(E_1\)</span> convergent to <span class="math inline">\(x_0\)</span>, the sequence <span class="math inline">\((F(x_n))\)</span> converges to <span class="math inline">\(F(x_0)\)</span>. i.e. F is continuous at <span class="math inline">\(x_0\)</span> if <span class="math inline">\(||x_n-x_0||\rightarrow 0\)</span> implies <span class="math inline">\(||F(x_n)-F(x_0)||\rightarrow 0\)</span>. If F is continuous at every <span class="math inline">\(x\in E_1\)</span>, then we simply say that <span class="math inline">\(F\)</span> is continuous.</p>
+<p>==Example 1.6.1==</p>
+<p>The norm in a normed space <span class="math inline">\(E\)</span> is continuous mapping from <span class="math inline">\(E\)</span> into <span class="math inline">\(R\)</span>. <span class="math display">\[
+||x_n-x||\rightarrow 0\implies |\space ||x_n||-||x||\space |\le||x_n-x||\rightarrow 0
+\]</span> ==Theorem 1.6.1==</p>
+<p>Let <span class="math inline">\(F:E_1\rightarrow E_2\)</span>. The following conditions are equivalent:</p>
+<ol type="a">
+<li><p><span class="math inline">\(F\)</span> is continuous</p></li>
+<li><p>The inverse image <span class="math inline">\(F^{-1}(U)\)</span> of any open set U of <span class="math inline">\(E_2\)</span> is open in <span class="math inline">\(E_1\)</span></p></li>
+<li><p>The inverse image <span class="math inline">\(F^{-1}(S)\)</span> of any closed set S of <span class="math inline">\(E_2\)</span> is closed in <span class="math inline">\(E_1\)</span></p></li>
+</ol>
+<p>Proof.</p>
+<p><span class="math inline">\((a)\rightarrow (b)\)</span></p>
+<p>If there exists an open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is not open in <span class="math inline">\(E_1\)</span></p>
+<p>there exists <span class="math inline">\(x\in F^{-1}(U)\)</span>, for all <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math inline">\(B(x,\varepsilon)\)</span> contains elements in <span class="math inline">\(E_1\backslash F^{-1}(U)\)</span></p>
+<p>Then we can choose the sequence <span class="math inline">\(x_1,x_2,\dotsm\in E_1\backslash F^{-1}(U)\)</span> satisfying <span class="math inline">\(x_n\in B(x,\frac{1}{n})\)</span> that means <span class="math inline">\(||x_n-x||\rightarrow 0\)</span></p>
+<p>However, $y=F(x)U $ that means there exists <span class="math inline">\(\epsilon&gt;0\)</span> such that <span class="math inline">\(B(y,\epsilon) \subseteq U\)</span> . <span class="math inline">\(x_n\notin F^{-1}(U)\)</span> means <span class="math inline">\(F(x_n)\notin U\)</span>.</p>
+<p><span class="math inline">\(F(x_n)\)</span> cannot converge to <span class="math inline">\(F(x)\)</span>. Proved.</p>
+<p><span class="math inline">\((b)\rightarrow (a)\)</span></p>
+<p>If for any open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is open in <span class="math inline">\(E_1\)</span>, then F is continuous.</p>
+<p>For all <span class="math inline">\(a\in F^{-1}(U)\)</span>, <span class="math inline">\(F(a)\in U\)</span>, <span class="math inline">\(U\)</span> is open and therefore for every <span class="math inline">\(a\)</span>, there exists <span class="math inline">\(\epsilon_1\)</span> such that <span class="math inline">\(B(F(a),\epsilon_1)\subseteq U\)</span> and <span class="math inline">\(a\in F^{-1}(B(F(a),\epsilon_1))\)</span>. There exists <span class="math inline">\(\epsilon_2\)</span> such that <span class="math inline">\(B(a,\epsilon_2) \subset F^{-1}(B(F(a),\epsilon_1))\)</span></p>
+<p>That mean <span class="math inline">\(||x-a||&lt;\epsilon_2\)</span> implies <span class="math inline">\(||F(x)-F(a)||&lt;\epsilon_1\)</span>. Q.E.D.</p>
+<p>==Theorem 1.6.2==</p>
+<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is continuous if and only if it is continuous at a point.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(\implies\)</span> obviously</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Assume L is continuous at <span class="math inline">\(x_0 \in E\)</span>. We define sequence <span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for any point <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_n-x ||\rightarrow 0\)</span>.</p>
+<p>Since L is linear mapping, we have <span class="math display">\[
+||L(x_n-x+x_0-x_0)||=||L(x_n-x+x_0)-L(x_0)||
+\]</span> Since L is continuous at <span class="math inline">\(x_0\in E\)</span>, for every sequence converging to <span class="math inline">\(x_0\)</span>, the <span class="math inline">\(L\)</span> converges <span class="math inline">\(L(x_0)\)</span>. We have <span class="math display">\[
+||L(x_n-x+x_0)-L(x_0)||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Definition 1.6.3== Bounded linear mapping</p>
+<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called bounded if there exists a number K such that <span class="math display">\[
+||L(x)||\le K||x||
+\]</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
+<p>==Theorem 1.6.3==</p>
+<p>A linear mapping is continuous if and only if it is bounded.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>If the linear mapping is not bounded, that means for every number K, there exists some x such that <span class="math display">\[
+||L(x)||&gt;K||x||
+\]</span> then for every <span class="math inline">\(n-1\le|k_n|&lt; n\)</span>, there exists <span class="math inline">\(x_n \in E_1\)</span> such that <span class="math display">\[
+||L(x_n)||&gt;k_n||x_n||
+\]</span> We define the sequence <span class="math display">\[
+y_n=\frac{x_n}{k_n||x_n||}
+\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span> <span class="math display">\[
+||y_n||=\frac{1}{k_n}\rightarrow 0\\
+||L(y_n)||&gt;k_n||y_n||=1
+\]</span> Therefore, <span class="math inline">\(L\)</span> is not continuous.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>If L is bounded, then there exists a number K, for all <span class="math inline">\(x\in E_1\)</span> such that <span class="math display">\[
+||L(x)||\le K||x||
+\]</span> Then we define a sequence <span class="math inline">\((x_n)\)</span> converging to zero. When <span class="math inline">\(n\rightarrow \infty\)</span>, <span class="math display">\[
+||L(x_n)||\le K||x_n||\rightarrow 0
+\]</span> By theorem 1.6.2, The linear mapping L is continuous at zero point, then it is continuous linear mapping.</p>
+<p>Q.E.D.</p>
+<p>The space of all linear mapping from a vector space <span class="math inline">\(E_1\)</span> into a vector space <span class="math inline">\(E_2\)</span> becomes a vector space if addition and multiplication by scalars are defined as follows <span class="math display">\[
+(L_1+L_2)(x)=L_1(x)+L_2(x)\\
+(\lambda L)(x)=\lambda(L(x))
+\]</span> If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces, then the set of all bounded linear mappings from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span>, denoted by <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>, is a vector subspace of the space defined above.</p>
+<p>==Theorem 1.6.4==</p>
+<p>If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a normed space with norm defined by <span class="math display">\[
+||L||=\sup_{||x||=1}||L(x)||\quad \forall L\in \mathscr B(E_1,E_2)
+\]</span> Proof.</p>
+<p>Only show Triangle Inequality</p>
+<p><span class="math inline">\(\forall L_1,L_2\in \mathscr B(E_1,E_2)\)</span> <span class="math display">\[
+||L_1+L_2||=\sup_{||x||=1}||L_1(x)+L_2(x)||\le \sup_{||x||=1}||L_1(x)||+\sup_{||x||=1}||L_2(x)||=||L_1||+||L_2||
+\]</span> Q.E.D.</p>
+<p>It follows Theorem 1.6.4 that <span class="math inline">\(||L(x)||\le ||L||||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>. In fact, <span class="math inline">\(||L||\)</span> is the least number K such that <span class="math inline">\(||L(x)||\le K||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
+<p>The norm defined above is the standard norm in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>. It is usually called the ==operator norm==. Convergence with respect to this norm is called the uniform convergence of operator.</p>
+<p>==Theorem 1.6.5==</p>
+<p>If <span class="math inline">\(E_1\)</span> is normed space and <span class="math inline">\(E_2\)</span> is a Banach space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a Banach space.</p>
+<p>Proof.</p>
+<p>We only need to show that <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is complete.</p>
+<p>A normed space <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> converges to an element of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>.</p>
+<p>Let <span class="math inline">\((L_n)\)</span> be Cauchy sequence of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> and Let <span class="math inline">\(\forall x\in E_1\)</span></p>
+<p>We have <span class="math display">\[
+||L_m(x)-L_n(x)||\le ||L_m-L_n||||x||\rightarrow 0 \quad as\space n,m \rightarrow \infty
+\]</span> That means <span class="math inline">\((L_n(x))\)</span> is Cauchy sequence in <span class="math inline">\(E_2\)</span>. By completeness of <span class="math inline">\(E_2\)</span>, we have <span class="math inline">\(L(x)\in E_2\)</span> such that <span class="math display">\[
+L(x)=\lim_{n\rightarrow \infty} L_n(x)
+\]</span> Then we only need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> and <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span></p>
+<p>First we prove <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span>, we only need to prove <span class="math inline">\(\exists K,||L(x)||\le K||x||\)</span> <span class="math display">\[
+||L(x)||=||\lim_{n\rightarrow \infty }L_n(x)||=\lim_{n\rightarrow \infty}||L_n(x)||
+\]</span> Since <span class="math inline">\(E_2\)</span> is complete and Cauchy sequence <span class="math inline">\((L_n)\)</span> is bounded, that means <span class="math inline">\(||L_n||\le M\)</span> <span class="math display">\[
+\lim_{n\rightarrow \infty}||L_n(x)||\le M||x||\\
+||L(x)||\le M||x||
+\]</span> Then we need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> <span class="math display">\[
+||L_m-L_n||\rightarrow 0\\
+m\rightarrow \infty\\
+||L_n-L||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Theorem 1.6.6==</p>
+<p>Let L be a continuous linear mapping from a subspace of a normed space <span class="math inline">\(E_1\)</span> into a Banach space <span class="math inline">\(E_2\)</span>. Then L has a unique extension continuous linear mapping defined on the closure of the domain <span class="math inline">\(\mathscr D(L)\)</span>. In particular, if <span class="math inline">\(\mathscr D(L)\)</span> is dense in <span class="math inline">\(E_1\)</span>, then L has a unique extension to a continuous linear mapping defined on the whole space <span class="math inline">\(E_1\)</span>.</p>
+<p>==Theorem 1.6.7==</p>
+<p>If <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is a continuous linear mapping, then the null space <span class="math inline">\(\mathscr N(L)\)</span> is a closed subspace of <span class="math inline">\(E\)</span>. Moreover, if the domain <span class="math inline">\(\mathscr D(L)\)</span> is closed, then the graph <span class="math inline">\(\mathscr G(L)\)</span> is a closed subspace of <span class="math inline">\(E_1\times E_2\)</span>.</p>
+<p>==Theorem 1.6.9==</p>
+<p>Let <span class="math inline">\(\mathscr T\)</span> be a family of bounded linear mapping from a Banach space <span class="math inline">\(X\)</span> into a normed space <span class="math inline">\(Y\)</span>. If for every <span class="math inline">\(x\in X\)</span> there exists a constant <span class="math inline">\(M_x\)</span> such that <span class="math inline">\(||T(x)||\le M_x\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>, then there exists a constant <span class="math inline">\(M&gt;0\)</span> such that <span class="math inline">\(||T||\le M\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -538,193 +860,11 @@ B(x&#39;,\epsilon&#39;)\subseteq O
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-title-link" itemprop="url">Untitled</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:46:14" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:14+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-04-27 15:00:13" itemprop="dateModified" datetime="2019-04-27T15:00:13+08:00">2019-04-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="clustering-and-applications">Clustering and Applications</h1>
-<h2 id="what-is-cluster-analysis">1. What is Cluster Analysis</h2>
-<p>Finding groups of objects such that the objects in a group will be similar to one another and different from the objects in other groups.</p>
-<p>A clustering is a set of clusters.</p>
-<p>Partitional Clustering: A division of data objects into non-overlapping subsets, such that each data object is in exactly one subset.</p>
-<p>Hierarchical clustering: A set of nested clusters organized as a hierarchical tree.</p>
-<p>Exclusive and non-exclusive: In non-exclusive clustering, points may belong to multiple clusters.</p>
-<p>Fuzzy and non-fuzzy: In fuzzy clustering, a point belongs to every cluster with some weight between 0 and 1.</p>
-<p>Partial and Complete: In some cases, we only want to cluster some of the data.</p>
-<h2 id="k-means">2. K-means</h2>
-<ol type="1">
-<li>partitional clustering approach</li>
-<li>Each cluster is associated with a centroid</li>
-<li>Each point is assigned to a cluster with the closest centroid</li>
-<li>Number of clusters, K, must be specified</li>
-</ol>
-<p>Algorithm</p>
-<p>Select K points as the initial centroids</p>
-<p>repeat</p>
-<p>From K clusters by assigning all points to the closest centroid.</p>
-<p>Recompute the centroid of each cluster.</p>
-<p>until the centroid don't change</p>
-<h2 id="evaluating-k-means-clusters">3. Evaluating K-means Clusters</h2>
-<p>Most common measure is Sum of Squared Error (SSE) <span class="math display">\[
-SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
-\]</span> the initial chosen points are very important.</p>
-<p>Solutions to Initial centroids problem</p>
-<ol type="1">
-<li>Multiple runs</li>
-<li>Use hierarchical clustering to determine initial centroids</li>
-<li>Select more than K initial centroids and then select among these initial centroids (Select most widely separated)</li>
-<li>Postprocessing
-<ol type="1">
-<li>Eliminate small clusters that may represent outliers</li>
-<li>Split loose clusters (Clusters with relatively high SSE)</li>
-<li>Merge close clusters (Clusters with relatively low SSE)</li>
-</ol></li>
-</ol>
-<p>Limitations of K-means</p>
-<p>K-means has problems when clusters are of differing sizes, densities.</p>
-<p>when the data contains outliers (not belonging to any cluster).</p>
-<p>The similarity function is suitable or not.</p>
-<h2 id="hierarchical-clustering">4. Hierarchical Clustering</h2>
-<p>Do not have assume any particular number of clusters</p>
-<p>Any desired number of clusters can be obtained by cutting the dendrogram at the proper level</p>
-<p>Two main types of hierarchical clustering</p>
-<h3 id="agglomerative-clustering-algorithm">1. Agglomerative clustering algorithm</h3>
-<p>Agglomerative: Start with the points as individual clusters and at each step, merge the closest part of clusters until only one cluster (or k clusters) left. (More popular)</p>
-<p>Algorithm:</p>
-<p>Compute the proximity/distance matrix</p>
-<p>Let each point be a cluster</p>
-<p>repeat</p>
-<p>​ Merge the two closet clusters</p>
-<p>​ update the proximity/distance matrix</p>
-<p>until only a single cluster remains</p>
-<h3 id="divisive-clustering-algorithm">2. Divisive clustering algorithm</h3>
-<p>Divisive: Start with one, all-inclusive cluster and at each step, split a cluster until each cluster contains a point (or there are k clusters)</p>
-<p>Traditional hierarchical algorithms use a similarity or distance matrix to merge or split one cluster at a time</p>
-<h2 id="inter-cluster-similarity">5. Inter-cluster Similarity</h2>
-<p>MIN: most similar (closest) points in the different clusters</p>
-<p>MAX: two least similar (most distant) points in the different clusters</p>
-<p>Group Average: Proximity of two clusters is the average of pairwise proximity between points in the two clusters.</p>
-<p>Distance Between Centroids</p>
-<h2 id="problems-and-limitations">6. Problems and Limitations</h2>
-<p>No objective function is directly minimized</p>
-<p>Different schemes have problems with one or more of the following:</p>
-<p>Sensitivity to noise and outliers Difficulty handling different sized clusters Breaking large clusters</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -769,7 +909,7 @@ SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

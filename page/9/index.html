@@ -215,6 +215,348 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/" class="post-title-link" itemprop="url">6. Basic Lagrange Duality and Saddle Point Optimality Conditions</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-11 20:26:54" itemprop="dateModified" datetime="2019-11-11T20:26:54+08:00">2019-11-11</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/" class="post-meta-item leancloud_visitors" data-flag-title="6. Basic Lagrange Duality and Saddle Point Optimality Conditions" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/</p>
+<h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
+<p>Given an nonlinear programming problem, there is another nonlinear programming problem closely associated with it via the Lagrangian function. The former is called the <strong>primal problem</strong> and the latter is called the <strong>Lagrangian dual problem</strong>.</p>
+<h2 id="lagrangian-dual-problem">6.1 Lagrangian dual problem</h2>
+<p>Consider the following general nonlinear programming problem, which is known as a primal problem, <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
+&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
+&amp;x\in X,
+\end{array}
+\]</span> where <span class="math inline">\(X\subseteq \mathbb R^n\)</span>.</p>
+<p><strong>Remark</strong></p>
+<p><span class="math inline">\(x\in X\)</span> is to impose additional requirements that we may wish to handle separately. Some examples are</p>
+<ol type="1">
+<li><span class="math inline">\(X=\{x\in\mathbb R^n\;|\; x_i\ge 0,\;\forall i=1,2,\dotsm,n\}\)</span>. The nonnegativity constraints on the variables.</li>
+<li><span class="math inline">\(X\)</span> could be a subset of $R^n $ with integer components.</li>
+<li><span class="math inline">\(X=\mathbb R^n\)</span> if no special requirement.</li>
+</ol>
+<p>Let <span class="math display">\[
+\begin{array}{rcl}
+L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)}\\
+&amp;=&amp;f(x)+\lambda^T g(x)+\mu ^Th(x),
+\end{array}
+\]</span> where <span class="math inline">\(\mu\ge 0\)</span>.</p>
+<p>Define <span class="math display">\[
+\theta (\lambda,\mu)=\inf_x \left\{f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)}\right\},
+\]</span> which is called the <strong>Lagrange dual function</strong>.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li><p>Each equality constraint <span class="math inline">\(g_i(x)=0\)</span> is replaced by a term <span class="math inline">\(\lambda_ig_i(x)\)</span>, where <span class="math inline">\(\lambda_i\in \mathbb R,i=1,2,\dotsm,m\)</span>. This term gives a non-zero value whenever this equality is violated.</p></li>
+<li><p>Each inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is replaced by a term <span class="math inline">\(\mu_jh_j(x)\)</span>, where <span class="math inline">\(\mu_j\ge 0,j=1,2,\dotsm,p\)</span>. If an inequality constraint is violated, i.e., <span class="math inline">\(h_j(x)&gt;0\)</span>, then it is reflected by a positive value.</p></li>
+<li><p>In evaluating <span class="math inline">\(\theta (\lambda,\mu)\)</span> for each <span class="math inline">\(\lambda,\mu\)</span>, the following unconstrained problem (Lagrangian dual subproblem) <span class="math display">\[
+\begin{array}{rCl}
+\min &amp; f(x)+\lambda^Tg(x)+\mu^T h(x)\\
+\text{subject to} &amp;x\in X,
+\end{array}
+\]</span> must be solved.</p></li>
+</ol>
+<p>Suppose <span class="math inline">\(x^*\)</span> is an optimal solution of (P)​. Then <span class="math inline">\(g_i(x^*)=0\)</span> and <span class="math inline">\(h_j(x^*)\le 0\)</span>. Therefore, <span class="math display">\[
+\theta(\lambda,\mu)\le f(x^*)+\mu^T h(x^*)\le f(x^*).
+\]</span> This implies for any <span class="math inline">\(\lambda,\mu\)</span>, <span class="math inline">\(\theta(\lambda,\mu)\)</span> is the lower bound of the optimal objective value <span class="math inline">\(f^*(x)\)</span>.</p>
+<p>We hope to derive the greatest lower bound for <span class="math inline">\(f(x^*)\)</span>. This leads to the following nonlinear programming problem which is called the <strong>Lagrangian dual problem</strong> (D)​, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
+\text{subject to}&amp; \lambda\in \mathbb R^m\\
+&amp;\mu\in\mathbb R^p_+.
+\end{array}
+\]</span> <strong>Definition</strong> (Lagrange Dual Problem)</p>
+<p>For a given primal nonlinear programming problem (P), <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
+&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
+&amp;x\in X,
+\end{array}
+\]</span> where <span class="math inline">\(X\subseteq \mathbb R\)</span>. The <strong>Lagrange Dual Problem</strong> (D) is the following nonlinear programming problem, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
+\text{subject to}&amp; \lambda\in \mathbb R^m\\
+&amp;\mu\in\mathbb R^p_+.
+\end{array}
+\]</span> The dual variables <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\(\mu_j\)</span> are called <strong>Lagrangian dual variables</strong> or <strong>Lagrangian Multipliers</strong>.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li>Evaluation of <span class="math inline">\(\theta(\lambda,\mu)\)</span> can be called as the <strong>Lagrangian dual subproblem</strong>.</li>
+<li>For general nonlinear programming problems, it is <strong>not true</strong> that one has an optimal solution, then the other will have an optimal solution. However, this is true for convex programming problems.</li>
+<li>Under certain convexity assumptions and suitable constraint qualifications, the primal and dual problems have equal optimal objective value and hence it is possible to solve the primal problem indirectly by solving the dual problem. The dual problem is sometimes easier.</li>
+</ol>
+<p><strong>Example</strong></p>
+<p>Obtain the Lagrangian dual problem of the following nonlinear programming problem (P), <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)=x_1x_2x_3\\
+\text{subject to}&amp; x_1-x_2+5x_3=6\\
+&amp; x_1+2x_2^3\le 4\\
+&amp;(x_1-3)^3-4x_2^2+x_3\le 0\\
+&amp;x_1^2+x_2^2-x_3\le 4.
+\end{array}
+\]</span> The Lagrangian function is given by <span class="math display">\[
+\begin{array}{rcl}
+L(x,\lambda,\mu)&amp;=&amp;x_1x_2x_3\\
+&amp;&amp;+\lambda (x_1-x_2+5x_3-6)\\
+&amp;&amp;+\mu_1(x_1+2x_2^3-4)\\
+&amp;&amp;+\mu_2[(x_1-3)^3-4x_2^2+x_3]\\
+&amp;&amp;+\mu_3(x_1^2+x_2^2-x_3-4).
+\end{array}
+\]</span> The Lagrangian dual function is given by <span class="math display">\[
+\theta (\lambda,\mu)=\min_x L(x,\lambda,\mu).
+\]</span> The Lagrangian dual problem is given by <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \min_x L(x,\lambda,\mu)\\
+\text{subject to}&amp; \mu\ge 0.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>Solve the following convex program and its Lagrangian dual problem. <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)=x_1^2+x_2^2\\
+\text{subject to}&amp; h(x)=-x_1-x_2+4\le 0,\\
+&amp;x\in X=\left\{\begin{bmatrix}x_1\\x_2\end{bmatrix} \;\Bigg|\; x_1,x_2\ge 0\right\},
+\end{array}
+\]</span> Note that the optimal solution occurs at <span class="math inline">\(x^*=\begin{bmatrix}2\\2\end{bmatrix}\)</span>, and <span class="math inline">\(f(x^*)=8\)</span>.</p>
+<p>The Lagrangian function is <span class="math display">\[
+L(x,\mu)=x_1^2+x_2^2+\mu (-x_1-x_2+4).
+\]</span> The Lagrangian dual problem is <span class="math display">\[
+\begin{array}{rcl}
+\theta(\mu)&amp;=&amp;\inf_{x_1,x_2\ge 0}\left\{x_1^2+x_2^2+\mu (-x_1-x_2+4)\right\}\\
+&amp;=&amp;\inf_{x_1,x_2\ge 0}\left\{x_1^2-\mu x_1+x_2^2-\mu x_2+4 \mu \right\}\\
+&amp;=&amp;\inf_{x_1\ge 0}\left\{x_1^2-\mu x_1\right\}+\inf_{x_2\ge 0}\left\{x_2^2-\mu x_2\right\}+4 \mu\\
+&amp;=&amp;-\frac{\mu^2}{2}+4\mu\quad (x_1=\frac{\mu}{2},x_2=\frac{\mu}{2}).
+\end{array}
+\]</span> Thus the dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\mu)=-\frac{\mu^2}{2}+4\mu\\
+\text{subject to}&amp; \mu\ge 0.
+\end{array}
+\]</span> It is easy to see that <span class="math inline">\(\mu^*=4\)</span> and <span class="math inline">\(\theta(\mu^*)=8\)</span>. We can also obtain that <span class="math inline">\(x_1^*=x_2^*=\frac{\mu^*}{2}=2\)</span>.</p>
+<p><strong>Remark</strong></p>
+<p>In general, the dual function of a primal problem cannot be obtained explicitly. In this situation, the dual problem may include primal variables <span class="math inline">\((x)\)</span> as well as the dual variables <span class="math inline">\((\lambda,\mu)\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>Consider the problem <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(x)=\exp (x)\\
+\text{subject to}&amp; x^2-1\le 0.
+\end{array}
+\]</span> For <span class="math inline">\(\mu\ge 0\)</span>, the Lagrangian dual function is <span class="math display">\[
+\theta(\mu)=\inf_{x}\left(\exp(x)+\mu(x^2-1)\right),
+\]</span> which is convex on <span class="math inline">\(\mathbb R\)</span>. Therefore, any stationary point will be a global minimizer. Then we have if <span class="math inline">\(\mu&gt;0\)</span>, <span class="math display">\[
+\exp (x^*)+2\mu x^*=0,
+\]</span> otherwise <span class="math inline">\((\mu=0)\)</span>, <span class="math display">\[
+\theta(0)=0.
+\]</span> Therefore, we have <span class="math display">\[
+\theta(\mu)=
+\begin{cases}
+\exp(x)+\mu(x^2-1)&amp; \text{and}&amp;\exp(x)+2\mu x=0,&amp; \mu&gt;0\\
+0&amp;&amp;&amp;\mu=0.
+\end{cases}
+\]</span> Therefore, the dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(\mu)=\exp (x)+\mu(x^2-1)\\
+\text{subject to}&amp; \exp(x)+2\mu x=0\\&amp;\mu&gt;0\\&amp;x\in\mathbb R.
+\end{array}
+\]</span></p>
+<h2 id="weak-and-strong-duality-theorems">6.2 Weak and strong duality theorems</h2>
+<p>We shall discuss the relationship between a nonlinear programming problem and its Lagrangian dual problem for a primal minimization problem.</p>
+<p><strong>Theorem</strong> (Weak Duality Theorem)</p>
+<p>Consider the primal nonlinear programming problem (P). Let <span class="math inline">\(x\)</span> be a feasible point to (P) and <span class="math inline">\((\lambda,\mu)\)</span> be a feasible solution to (D). Then <span class="math display">\[
+f(x)\ge \theta(\lambda,\mu).
+\]</span> <strong>Corollary</strong></p>
+<ol type="1">
+<li><p><span class="math inline">\(\min\{f(x)\;|\; x\in S\}\ge \max \{\theta(\lambda,\mu)\;|\; \lambda\in\mathbb R^m,\mu\in \mathbb R^p_+\}\)</span>.</p></li>
+<li><p>If <span class="math inline">\(x^*\)</span> is a feasible solution to (P) and <span class="math inline">\((\lambda^*,\mu^*)\)</span> is a feasible solution to (D) such that <span class="math display">\[
+f(x^*)=\theta(\lambda^*,\mu^*),
+\]</span> then <span class="math inline">\(x^*\)</span> is an optimal solution to (P) and <span class="math inline">\((\lambda^*,\mu^*)\)</span> is an optimal solution to (D).</p></li>
+</ol>
+<p>In general, the optimal primal objective value and the optimal dual objective value may not be equal. This leads to the following definition.</p>
+<p><strong>Definition</strong> (Duality Gap)</p>
+<p>The difference <span class="math display">\[
+\min\{f(x)\;|\; x\in S\}-\max \{\theta(\lambda,\mu)\;|\; \mu \in \mathbb R_+^p\},
+\]</span> is called the duality gap.</p>
+<p><strong>Theorem</strong> (Strong Duality Theorem)</p>
+<p>Consider the primal nonlinear programming problem. Suppose <span class="math inline">\(X\)</span> is a convex set, <span class="math inline">\(f,h_i,\;\forall i=1,\dotsm,p\)</span> are convex functions, and <span class="math inline">\(g_i,\;\forall i=1,\dotsm,m\)</span> are affine functions. If there exists <span class="math inline">\(\hat x\in X\)</span> such that <span class="math inline">\(h(\hat x)&lt;0\)</span>, <span class="math inline">\(g(\hat x)=0\)</span>, and <span class="math inline">\(0\in \text{int}(g(X))\)</span> where <span class="math inline">\(g(X)=\{g(x)\;|\; x\in X\}\)</span>. Then <span class="math display">\[
+\inf \{f(x)\;|\;g(x)=0,h(x)\le 0,x\in X\}=\sup\{\theta(\lambda,\mu)\;|\; \mu \in\mathbb R^p_+,\lambda\in \mathbb R^m\}.
+\]</span> Furthermore, if inf is finite, then sup is attained at some <span class="math inline">\(\lambda_*,\mu_*\)</span>. If inf is attained at <span class="math inline">\(x^*\)</span>, then <span class="math inline">\(\mu_*^Th(x^*)=0\)</span>.</p>
+<h2 id="saddle-point-optimality-condition-and-kkt-conditions">6.3 Saddle point optimality condition and KKT conditions</h2>
+<p>In this section, we discuss about the relationship between the saddle point of the Lagrangian function and KKT optimality conditions.</p>
+<p><strong>Definition</strong> (Saddle point of <span class="math inline">\(L\)</span>)</p>
+<p>A point <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is called a saddle point of the Lagrangian function <span class="math display">\[
+L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^T h(x),
+\]</span> if <span class="math inline">\(x^*\in X\)</span>, <span class="math inline">\(\mu^* \ge 0\)</span> and <span class="math display">\[
+L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li>For a fixed <span class="math inline">\(x^*\)</span>, <span class="math inline">\((\lambda^*,\mu ^*)\)</span> maximizes <span class="math inline">\(L(x^*,\lambda,\mu)\)</span> over all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu \ge 0\)</span>.</li>
+<li>For a fixed <span class="math inline">\((\lambda^*,\mu^*)\)</span>, <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(L(x,\lambda^*,\mu^*)\)</span> over all <span class="math inline">\(x\in X\)</span>.</li>
+</ol>
+<p><strong>Theorem</strong> (Saddle point optimality)</p>
+<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a saddle point of the Lagrangian function <span class="math display">\[
+L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^Th(x).
+\]</span> Then <span class="math inline">\(x^*\)</span> and <span class="math inline">\((\lambda^*,\mu^*)\)</span> are optimal solutions of the primal problem (P) and the dual problem <span class="math inline">\((D),\)</span> respectively.</p>
+<p><strong>Proof</strong></p>
+<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a saddle point of the Lagrangian function. Then we have <span class="math display">\[
+L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>. Thus we have <span class="math display">\[
+f(x^*)+\lambda^Tg(x^*)+\mu^Th(x^*)\le f(x^*)+(\lambda^*)^Tg(x^*)+(\mu^*)^Th(x^*),
+\]</span> for all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
+<p>Firstly, we prove that <span class="math inline">\(x^*\)</span> is a feasible point, which means <span class="math display">\[
+g(x^*)=0\\
+h(x^*)&lt;0.
+\]</span> Let <span class="math inline">\(\mu=\mu^*\)</span>, we have <span class="math display">\[
+(\lambda-\lambda^*)^T g(x^*)\le 0, \;\forall \lambda \in \mathbb R^n.
+\]</span> If <span class="math inline">\(g(x^*)\neq 0\)</span>, we can choose <span class="math inline">\(\lambda = \lambda^* +g(x^*)\)</span>, which leads to contradiction. Therefore, <span class="math inline">\(g(x^*)=0\)</span>.</p>
+<p>Let <span class="math inline">\(\lambda=\lambda^*\)</span>, we have <span class="math display">\[
+(\mu-\mu^*)^Th(x^*)\le 0,\;\forall \mu\ge 0.
+\]</span> If <span class="math inline">\(h(x^*)&gt;0\)</span>, then we can choose <span class="math inline">\(\mu = \mu^*+ h(x^*)\)</span>, which leads to contradiction. Therefore, <span class="math inline">\(h(x^*)\le 0\)</span>.</p>
+<p>Then we will prove <span class="math inline">\(x^*\)</span> is an optimal solution to (P).</p>
+<p>Let <span class="math inline">\(\mu = 0\)</span>, we have <span class="math inline">\((\mu^*)^T h(x^*)\ge 0\)</span>. Since <span class="math inline">\(\mu^*\ge 0\)</span> and <span class="math inline">\(h(x^*)\le 0\)</span>, we also have <span class="math inline">\((\mu^*)^T h(x^*)\le 0\)</span>. Therefore, <span class="math inline">\((\mu^*)^T h(x^*)= 0\)</span>.</p>
+<p>Then we have <span class="math display">\[
+f(x^*)=L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for every <span class="math inline">\(x\in S\)</span>. Therefore <span class="math inline">\(f(x^*)\le \inf\{L(x,\lambda^*,\mu^*)\}=\theta(\lambda^*,\mu^*)\)</span>.</p>
+<p>On the other hand, <span class="math display">\[
+\theta(\lambda^*,\mu^*)\le \max\{\theta(\lambda,\mu)\;|\;\mu\ge 0\}\le \min \{f(x)\;|\; x\in S\}=f(x^*).
+\]</span> Therefore, we have <span class="math display">\[
+f(x^*)=\theta(\lambda^*,\mu^*).
+\]</span> Q.E.D.</p>
+<p><strong>Corollary</strong></p>
+<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span>, with <span class="math inline">\(x^* \in \text{int}(X)\)</span> and <span class="math inline">\(\mu^*\ge 0\)</span>, is a saddle point of <span class="math inline">\(L(x,\lambda,\mu)\)</span>, then <span class="math inline">\(x^*\)</span> is a feasible solution to (P) and <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT conditions.</p>
+<h2 id="convex-program">6.4 Convex Program</h2>
+<p>The converse of the above corollary is not true in general. However, for a convex programming problem, the following result gives the relationship between a KKT point and a saddle point of the Lagrangian function.</p>
+<p><strong>Theorem</strong> (A KKT point of a convex program is a saddle point)</p>
+<p>Let <span class="math inline">\(S\)</span> be a feasible region of <span class="math display">\[
+\text{(CP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
+&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
+&amp;x\in X\subseteq \mathbb R^n.
+\end{array}
+\]</span> Suppose <span class="math inline">\(x^*\)</span> is a KKT point, i.e., there exists <span class="math inline">\(\lambda^*\in\mathbb R^n,\mu^*\ge 0\)</span> such that <span class="math display">\[
+\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p \mu_j^*\nabla  h_j(x^*)=0\\
+\mu_j^* h_j(x^*)=0,\;\forall j=1,\dotsm,p.
+\]</span> Then <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> us a saddle point of the Lagrangian function <span class="math inline">\(L(x,\lambda,\mu)\)</span>, i.e., <span class="math display">\[
+L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
+\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
+<p><strong>Corollary</strong></p>
+<p>Consider the convex problem (CP). If <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point, then <span class="math inline">\(x^*\)</span> and <span class="math inline">\((\lambda^*,\mu^*)\)</span> are optimal solutions of the primal problem (P) and the dual problem <span class="math inline">\((D),\)</span> respectively.</p>
+<p>Proof.</p>
+<p>By combining the two theorems.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -793,317 +1135,11 @@ G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/" class="post-title-link" itemprop="url">4. Gradient Methods (2) - Proximal Algorithms</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-31 19:37:15" itemprop="dateModified" datetime="2019-10-31T19:37:15+08:00">2019-10-31</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/" class="post-meta-item leancloud_visitors" data-flag-title="4. Gradient Methods (2) - Proximal Algorithms" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="proximal-algorithms">4.6 Proximal Algorithms</h2>
-<p>In this section, some important algorithms for solving convex optimization problems will rely on the use of proximal operators.</p>
-<h3 id="proximal-minimization">4.6.1 Proximal minimization</h3>
-<p>The <strong>proximal minimization algorithm</strong>, also called <strong>proximal iteration</strong> or <strong>proximal point algorithm</strong>, is <span class="math display">\[
-x^{k+1}=P_{\lambda f}(x^k),
-\]</span> where <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R\cup \{+\infty\}\)</span> is a closed proper convex function, <span class="math inline">\(k\)</span> is the iteration number, and <span class="math inline">\(x^k\)</span> denotes the <span class="math inline">\(k\)</span>th iterate of the algorithm. We have shown that <span class="math inline">\(x^k\)</span> will converge to the optimal value. A variation of this method is to replace the constant <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda^k\)</span>. Convergence is guaranteed provided <span class="math inline">\(\lambda^k&gt;0\)</span> and <span class="math inline">\(\sum_{k=1}^\infty \lambda^k=\infty\)</span>.</p>
-<p><strong>Interpretations</strong></p>
-<p>The proximal minimization algorithm an be interpreted many ways. One simple perspective is that it is the standard gradient method applied to the Moreau envelope <span class="math inline">\(M_f\)</span> rather than <span class="math inline">\(f\)</span>. Another is that it is simple iteration for finding a fixed point of <span class="math inline">\(P_{\lambda f}\)</span>, which works because <span class="math inline">\(P_{\lambda f}\)</span> is firmly nonexpansive.</p>
-<p><em>Disappearing Tikhonov regularization</em></p>
-<p>Another simple interpretation is a quadratic regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. In each step, we solve the regularized problem, <span class="math display">\[
-\min_x f(x)+(1/2\lambda)||x-x^k||_2^2.
-\]</span></p>
-<p>The second term can be interpreted as regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. It is a damping term that encourages <span class="math inline">\(x^{k+1}\)</span> not to be very far from <span class="math inline">\(x^k\)</span>. As the proximal algorithm converges, <span class="math inline">\(x^{k+1}\)</span> gets close to <span class="math inline">\(x^k\)</span>, so the effect of the quadratic regularization goes to zero.</p>
-<p><em>Gradient flow</em></p>
-<p>Proximal minimization can be interpreted as a discretized method for solving a differential equation whose equilibrium points are the minimizers of a differentiable convex function <span class="math inline">\(f\)</span>. The differential equation <span class="math display">\[
-\frac{d}{dt}x(t)=-\nabla f(x(t)),
-\]</span> with variable <span class="math inline">\(x:\mathbb R_+\rightarrow \mathbb R^n\)</span>, is called the gradient flow for <span class="math inline">\(f\)</span>. The equilibrium points of the gradient flow are the zeros of <span class="math inline">\(\nabla f\)</span>, which are exactly the minimizers of <span class="math inline">\(f\)</span>.</p>
-<p>My thinking is that <span class="math inline">\(\dot x(t)\)</span> is the velocity in some position <span class="math inline">\(x(t)\)</span>, and the velocity is actually the gradient of the function in the position <span class="math inline">\(x(t)\)</span>. So the next position will go alongside the velocity.</p>
-<p>The idea of the gradient flow can be generalized to cases where <span class="math inline">\(f\)</span> is not differentiable via the subgradient differential inclusion, <span class="math display">\[
-\frac{d}{dt}x(t)\in-\partial f(x(t)).
-\]</span> Let <span class="math inline">\(x^k\)</span> be the approximation of <span class="math inline">\(x(kh)\)</span>, where <span class="math inline">\(h&gt;0\)</span> is a small step size. The simplest discretization is <span class="math display">\[
-\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k),
-\]</span> known as the <strong>forward Euler discretization</strong>. Then we have <span class="math display">\[
-x^{k+1}=x^k-h\nabla f(x^k).
-\]</span> This is the standard gradient descent iteration with step size <span class="math inline">\(h\)</span>.</p>
-<p>The <strong>backward Euler method</strong> uses the discretization, <span class="math display">\[
-\frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1}).
-\]</span> This method is known to have better approximation properties than forward Euler, especially for differential equations that converge. Its main disadvantage is that it cannot be rewritten as an iteration that gives <span class="math inline">\(x^{k+1}\)</span> <strong>explicitly</strong> in terms of <span class="math inline">\(x^k\)</span>. For this reason, it is also called <strong>implicit method</strong>. To find <span class="math inline">\(x^{k+1}\)</span>, we solve the equation, <span class="math display">\[
-x^{k+1}+h\nabla f(x^{k+1})=x^k,
-\]</span> which is equivalent to <span class="math display">\[
-x^{k+1}=P_{h\lambda}(x^k),
-\]</span> by using <span class="math inline">\(P_{\lambda f}=(I+\lambda \partial f)^{-1}\)</span>.</p>
-<p>Thus, the proximal minimization method is the backward Euler method for numerical integration applied to the gradient flow differential equation. The parameter <span class="math inline">\(\lambda\)</span> in the standard proximal minimization method corresponds to the time step used in the discretization.</p>
-<h3 id="proximal-gradient-method">4.6.2 Proximal gradient method</h3>
-<p>Consider the problem <span class="math display">\[
-\min f(x)+g(x),
-\]</span> where <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> and <span class="math inline">\(g:\mathbb R^n\rightarrow \mathbb R\cup\{+\infty\}\)</span> are closed proper convex and <span class="math inline">\(f\)</span> is differentiable. Since <span class="math inline">\(g\)</span> can be extended valued, it can be used to encode constraints on the variable <span class="math inline">\(x\)</span>. The proximal gradient method is <span class="math display">\[
-x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)),
-\]</span> where <span class="math inline">\(\lambda ^k&gt;0\)</span> is a step size.</p>
-<p>When <span class="math inline">\(\nabla f\)</span> is Lipschitz continuous with constant <span class="math inline">\(L\)</span>, this method can be shown to converge with rate <span class="math inline">\(\mathcal O(1/k)\)</span> when a fixed step size <span class="math inline">\(\lambda^k=\lambda \in (0,1/L]\)</span> is used. If <span class="math inline">\(L\)</span> is not known, the step sizes <span class="math inline">\(\lambda^k\)</span> can be found by a line search, that is, their values are chosen in each step. The simple one is shown in the following (by Beck and Teboulle).</p>
-<hr>
-<p><strong>Given</strong> <span class="math inline">\(x^k\)</span>, <span class="math inline">\(\lambda^{k-1}\)</span>, and parameter <span class="math inline">\(\beta \in (0,1)\)</span>.</p>
-<p><strong>Let</strong> <span class="math inline">\(\lambda = \lambda^{k-1}\)</span>.</p>
-<p><strong>Repeat</strong></p>
-<ol type="1">
-<li>Let <span class="math inline">\(z=P_{\lambda g}(x^k-\lambda \nabla f(x^k))\)</span>.</li>
-<li><strong>Break</strong> if <span class="math inline">\(f(z)\le \hat f_\lambda(z,x^k)\)</span>.</li>
-<li><strong>Update</strong> <span class="math inline">\(\lambda = \beta \lambda\)</span>.</li>
-</ol>
-<p><strong>Return</strong> <span class="math inline">\(\lambda^k=\lambda\)</span>, <span class="math inline">\(x^{k+1}=z\)</span>.</p>
-<hr>
-<p><strong>Special cases</strong></p>
-<p>The proximal gradient method reduces to other well-known algorithms in various special cases. When <span class="math inline">\(g=\delta_\mathcal C\)</span>, <span class="math inline">\(P_{\lambda g}\)</span> is projection onto <span class="math inline">\(\mathcal C\)</span>, in which cases it reduces to the <strong>projected gradient method</strong>. When <span class="math inline">\(f=0\)</span>, then it reduces to <strong>proximal minimization</strong>, and when <span class="math inline">\(g=0\)</span>, it reduces to the standard <strong>gradient descent method</strong>.</p>
-<p><strong>Interpretations</strong></p>
-<p><em>Majorization-minimization</em></p>
-<p>We first interpret the proximal gradient method as an example of a majorization-minimization algorithm, a large class of algorithms that includes the gradient method, Newton’s method, and the EM algorithm as special cases.</p>
-<p>A <strong>majorization-minimization</strong> algorithm for minimizing a function <span class="math inline">\(\varphi:\mathbb R^n\rightarrow \mathbb R\)</span> consists of the iteration, <span class="math display">\[
-x^{k+1}=\arg\min_{x}\hat \varphi (x,x^k),
-\]</span> where <span class="math inline">\(\hat \varphi(\cdot,x^k)\)</span> is a convex upper bound to <span class="math inline">\(\varphi\)</span> that is tight at <span class="math inline">\(x^k\)</span>, i.e., <span class="math inline">\(\hat \varphi(x,x^k)\ge \varphi(x)\)</span> and <span class="math inline">\(\hat \varphi(x,x)= \varphi(x)\)</span> for all <span class="math inline">\(x\)</span>. The reason for the name should be clear, such algorithms involve iteratively majorizing (upper bounding) the objective and then minimizing the majorization.</p>
-<p>For an upper bound of <span class="math inline">\(f\)</span>, consider the function <span class="math inline">\(\hat f_{\lambda }\)</span> given by <span class="math display">\[
-\hat f_{\lambda}(x,y)=f(y)+\nabla f(y)^T(x-y)+(1/2\lambda)||x-y||_2^2,
-\]</span> with <span class="math inline">\(\lambda&gt;0\)</span>. For fixed <span class="math inline">\(y\)</span>, this function is convex, satisfies <span class="math inline">\(\hat f_\lambda (x,x)=f(x)\)</span>, and is an upper bound on <span class="math inline">\(f\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>, where <span class="math inline">\(L\)</span> is a Lipschitz constant of <span class="math inline">\(\nabla f\)</span>. The algorithm <span class="math display">\[
-x^{k+1}=\arg\min_x\hat f_\lambda (x,x^k)
-\]</span> is thus majorization-minimization algorithm. In fact, it is precisely the standard gradient method for minimizing <span class="math inline">\(f\)</span>.</p>
-<p>Then the function <span class="math inline">\(q_\lambda\)</span> given by <span class="math display">\[
-q_\lambda(x,y)=\hat f_\lambda(x,y)+g(x)
-\]</span> is similarly a surrogate for <span class="math inline">\(f+g\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>. The majorization-minimization algorithm, <span class="math display">\[
-x^{k+1}=\arg\min_x q_\lambda (x,x^k)
-\]</span> can be shown to be equivalent to the proximal gradient iteration, <span class="math display">\[
-x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)).
-\]</span> <em>Fixed point iteration</em></p>
-<p>The proximal gradient algorithm can also be interpreted as a fixed point iteration. A point <span class="math inline">\(x^*\)</span> is a minimizer if and only if <span class="math display">\[
-0\in\nabla f(x^*)+\partial g(x^*).
-\]</span> For any <span class="math inline">\(\lambda &gt;0\)</span>, this optimality condition holds if and only if the following equivalent statements hold, <span class="math display">\[
-\begin{array}{rcl}
-0 &amp;\in&amp; \lambda\nabla f(x^*)+\lambda\partial g(x^*)\\
-0 &amp;\in&amp; \lambda\nabla f(x^*)-x^*+x^*+\lambda\partial g(x^*)\\
-(I+\lambda \partial g)(x^*) &amp;\ni&amp; (I-\lambda\nabla f)(x^*)\\
-x^* &amp;=&amp; (I+\lambda \partial g)^{-1}(I-\lambda\nabla f)(x^*)\\
-x^* &amp;=&amp; P_{\lambda g}(x^*-\lambda\nabla f(x^*)).
-\end{array}
-\]</span> The last two expressions hold with equality because proximal operator is single valued.</p>
-<p>The last two expression says that <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(f+g\)</span> if and only if it is a fixed point of the <strong>forward-backward operator</strong>, <span class="math display">\[
-(I+\lambda \partial g)^{-1}(I-\lambda\nabla f).
-\]</span> <em>Forward-backward integration of gradient flow</em></p>
-<p>The proximal gradient method can be interpreted using <strong>gradient flows</strong>. <span class="math display">\[
-\frac{d}{dt}x(t)=-\nabla f(x(t))-\nabla g(x(t)),
-\]</span> assuming that <span class="math inline">\(g\)</span> is also differentiable.</p>
-<p>Then we consider the following discretization, <span class="math display">\[
-\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k)-\nabla g(x^{k+1}).
-\]</span> Then we have <span class="math display">\[
-x^{k+1} = (I+h \nabla g)^{-1}(I-\lambda\nabla f)x^k.
-\]</span></p>
-<h3 id="accelerated-proximal-gradient-method">4.6.3 Accelerated proximal gradient method</h3>
-<p>So-called accelerated versions of the basic proximal gradient algorithm include an extrapolation step in the algorithm. One simple version is <span class="math display">\[
-y^{k+1}=x^k+w^k(x^k-x^{k-1})\\
-x^{k+1}=P_{\lambda^kg}(y^{k+1}-\lambda^k \nabla f(y^{k+1})).
-\]</span> These parameters must be chosen in specific ways to achieve the convergence acceleration. One simple choice takes <span class="math display">\[
-w^k=\frac{k}{k+3}.
-\]</span> When <span class="math inline">\(\nabla f\)</span> is Lipschitz continuous with constant <span class="math inline">\(L\)</span>, this method can be shown to converge in objective value with rate <span class="math inline">\(\mathcal O(1/k^2)\)</span> when a fixed step size <span class="math inline">\(\lambda^k=\lambda \in(0,1/L]\)</span> is used. If <span class="math inline">\(L\)</span> is not known, the step sizes <span class="math inline">\(\lambda^k\)</span> can be found by a line search.</p>
-<h3 id="alternating-direction-method-of-multipliers">4.6.4 Alternating direction method of multipliers</h3>
-<p>Consider the problem, <span class="math display">\[
-\min f(g)+g(x)
-\]</span> where <span class="math inline">\(f,g:\mathbb R^n\rightarrow \mathbb R\cup \{+\infty\}\)</span> are closed proper convex functions. Both <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be nonsmoothed. Then the <strong>alternating direction method of multipliers (ADMM)</strong> also known as <strong>Douglas-Rachford splitting</strong> is <span class="math display">\[
-\begin{array}{rcl}
-x^{k+1}&amp;=&amp;P_{\lambda f} (z^k-u^k)\\
-z^{k+1}&amp;=&amp; P_{\lambda g}(x^{k+1}+u^k)\\
-u^{k+1}&amp;=&amp; u^k+x^{k+1}-z^{k+1}.
-\end{array}
-\]</span> This method converges under more or less the most general possible conditions.</p>
-<p>While <span class="math inline">\(x^k\)</span> and <span class="math inline">\(z^k\)</span> converge to each other, and to optimality, they have slightly different properties. For example, <span class="math inline">\(x^k\in \text{dom}f\)</span> while <span class="math inline">\(z^k\in \text{dom}g\)</span>, so if <span class="math inline">\(g\)</span> encodes constraints, the iterates <span class="math inline">\(z^k\)</span> satisfy the constraints while the iterates <span class="math inline">\(x^k\)</span> satisfy the constraints only in the limit. If <span class="math inline">\(g=||\cdot||_2\)</span>, then <span class="math inline">\(z^k\)</span> will be sparse because <span class="math inline">\(P_{\lambda g}\)</span> is soft thresholding, while <span class="math inline">\(x^k\)</span> will only be close to <span class="math inline">\(z^k\)</span> (close to sparse).</p>
-<p>The advantage of ADMM is that the objective terms (which can both include constraints, since they can take on infinite values) are handle completely separately, the functions are accessed only through their proximal operators. ADMM is most useful when the proximal operators of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be efficiently evaluated but the proximal operator for <span class="math inline">\(f+g\)</span> is not easy to evaluate.</p>
-<p><strong>Special cases</strong></p>
-<p>When <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span>, its proximal operator <span class="math inline">\(P_{\lambda g}\)</span> reduces to projection onto <span class="math inline">\(\mathcal C\)</span>. In this case, ADMM is a method for solving the generic convex constrained problem of minimizing <span class="math inline">\(f\)</span> over <span class="math inline">\(\mathcal C\)</span>, that only uses the proximal operator of the objective and projection onto the constraint set. As further specialization, suppose that <span class="math inline">\(f\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span> and <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal D\)</span>. The problem of minimizing <span class="math inline">\(f+g\)</span> is then equivalent to the convex feasibility problem of finding a point <span class="math inline">\(x\in\mathcal C\cap \mathcal D\)</span>. Both proximal operators reduce to projections, so the ADMM algorithm for this problem becomes, <span class="math display">\[
-\begin{array}{rcl}
-x^{k+1}&amp;=&amp;\Pi_\mathcal C (z^k-u^k)\\
-z^{k+1}&amp;=&amp; \Pi_\mathcal D (x^{k+1}+u^k)\\
-u^{k+1}&amp;=&amp; u^k+x^{k+1}-z^{k+1}.
-\end{array}
-\]</span> <strong>Interpretations</strong></p>
-<p><em>Integral control of a dynamic system</em></p>
-<p>The first two steps in ADMM can be viewed as a discrete-time dynamic system with state <span class="math inline">\(z\)</span> and input or control <span class="math inline">\(u\)</span>, i.e., <span class="math inline">\(z^{k+1}\)</span> is a function of <span class="math inline">\(x^k\)</span> and <span class="math inline">\(u^k\)</span>. The goal is to choose <span class="math inline">\(u\)</span> to achieve <span class="math inline">\(x=z\)</span>, so the residual <span class="math inline">\(x^{k+1}-z^{k+1}\)</span> can be viewed as an error signal.</p>
-<p><em>Augmented Lagrangians</em></p>
-<p>One important interpretation relies on the idea of <strong>augmented lagrangian</strong>. We first write the problem of minimizing <span class="math inline">\(f(x)+g(x)\)</span> as <span class="math display">\[
-\begin{array}{rCl}
-\min &amp; f(x)+g(z)\\
-\text{subject to}&amp; x-z=0,
-\end{array}
-\]</span></p>
-<p>which is called <strong>consensus form</strong>. Here the variable has been split into two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and we have added the consensus constraint they must agree. This is evidently equivalent to minimizing <span class="math inline">\(f+g\)</span>.</p>
-<p>The <strong>augmented Lagrangian</strong> associated with the problem is <span class="math display">\[
-L_\rho(x,z;y)=f(x)+g(z)+y^T(x-z)+(\rho/2)||x-z||_2^2,
-\]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter and <span class="math inline">\(y\in\mathbb R^n\)</span> is a dual variable associated with the consensus constraint. This is the usual Lagrangian augmented with an additional quadratic penalty on the equality constraint function. ADMM can be then expressed as <span class="math display">\[
-\begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg\min_x L_\rho (x,z^k,y^k)\\
-z^{k+1}&amp;=&amp;\arg\min_z L_\rho (x^{k+1},z,y^k)\\
-y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
-\end{array}
-\]</span> (<strong>My thinking</strong>) The intuitive explanation of ADMM can be interpreted here. <span class="math inline">\(y^k\)</span> is actually the weighting parameter for the ALM, which balances the error between the parameter <span class="math inline">\(x\)</span> and the parameter <span class="math inline">\(z\)</span>. If <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> are not the same, the weighting of the error will grow up since the value of the <span class="math inline">\(y^k\)</span> can be accumulated. Therefore, the ADMM system will finally converge to the point where the error between <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> is zero, and the value of the ALM is minimized.</p>
-<p>In each of the <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> steps, <span class="math inline">\(L_\rho\)</span> is minimized over the variable, using the most resent value of the other primal variable and dual variable. The dual variable is the scaled running sum of the consensus errors. To see how it reduces to the proximal version, we start from <span class="math display">\[
-\begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+\langle y^{k},x\rangle +(\rho/2)||x-z^k||_2^2\right)\\
-z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)-\langle y^{k},z\rangle+(\rho/2)||x^{k+1}-z||_2^2\right)\\
-y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
-\end{array}
-\]</span> Pull the linear terms into the quadratic ones, and we get <span class="math display">\[
-\begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+(\rho/2)\left\|x-z^k+(1/\rho)y^k\right\|_2^2\right)\\
-z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)+(\rho/2)\left\|x^{k+1}-z-(1/\rho)y^k\right\|_2^2\right)\\
-y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
-\end{array}
-\]</span> If we choose <span class="math inline">\(u^k=(1/\rho)y^k\)</span> and <span class="math inline">\(\lambda = 1/\rho\)</span>, then we get the ADMM.</p>
-<p><em>Flow interpretation</em></p>
-<p>ADMM can also be interpreted as a method for solving a particular system of ordinary differential equations. Assume for simplicity that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are differentiable, the optimality conditions are <span class="math display">\[
-\nabla f(x)+v=0,\quad \nabla g(z)-v=0,\quad x-z=0,
-\]</span> where <span class="math inline">\(v\in\mathbb R^n\)</span> is a dual variable. Now consider the differential equation <span class="math display">\[
-\frac{d}{dt}
-\begin{bmatrix}
-x(t)\\z(t)
-\end{bmatrix}=
-\begin{bmatrix}
--\nabla f(x(t))-\rho u(t)-\rho r(t)\\
--\nabla g(x(t))+\rho u(t)+\rho r(t)\\
-\end{bmatrix},\quad
-\frac{d}{dt}u(t)=\rho r(t),
-\]</span> where <span class="math inline">\(r(t)=x(t)-z(t)\)</span> is the primal residual and <span class="math inline">\(\rho &gt;0\)</span>. The functions in the differential equation are the primal variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and the dual variable <span class="math inline">\(u\)</span>. It is easy to see that the equilibrium points of the saddle point flow are the same as the optimality conditions when <span class="math inline">\(v=\rho u\)</span>. It shows all trajectories of the saddle point flow converge to an equilibrium point. It follows that we can solve the problem by following any trajectory of the flow using numerical integration.</p>
-<p>We use the discretization given by <span class="math display">\[
-\frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1})-\rho (x^k-z^k+u^k)\\
-\frac{z^{k+1}-z^k}{h}=-\nabla g(x^{k+1})+\rho (x^{k+1}-z^k+u^k)\\
-\frac{u^{k+1}-u^k}{h}=\rho(x^{k+1}-z^{k+1}).
-\]</span> Choosing <span class="math inline">\(h=\lambda\)</span> and <span class="math inline">\(\rho=1/\lambda\)</span>, the discretization reduces directly to the proximal form of ADMM.</p>
-<p><em>Fixed point iteration</em></p>
-<p>ADMM can be viewed as a fixed point iteration for finding a point <span class="math inline">\(x^*\)</span> satisfying the optimality condition <span class="math display">\[
-0\in\partial f(x^*)+\partial g(x^*).
-\]</span> Fixed point <span class="math inline">\(x,z,u\)</span> of the ADMM iteration satisfy <span class="math display">\[
-x=P_{\lambda f}(z-u),\quad z=P_{\lambda g}(x+u),\quad u=u+x-z.
-\]</span> From the last equation we conclude <span class="math inline">\(x=z\)</span>, so <span class="math display">\[
-x=P_{\lambda f}(x-u),\quad x=P_{\lambda g}(x+u)
-\]</span> which can be written as <span class="math display">\[
-x=(I+\lambda \partial f)^{-1}(x-u),\quad x=(I+\lambda \partial g)^{-1}(x+u).
-\]</span> This is the same as <span class="math display">\[
-x-u\in x+\lambda \partial f(x),\quad x+u\in x+\lambda\partial g(x).
-\]</span> Adding these two equations show that <span class="math inline">\(x\)</span> satisfies the optimality condition.</p>
-<p><strong>Linearized ADMM</strong></p>
-<p>A variation of ADMM can be useful for solving problems of the form, <span class="math display">\[
-\min f(x)+g(Ax),
-\]</span> where <span class="math inline">\(f:\mathbb R\rightarrow \mathbb R\cup \{+\infty\}\)</span> and <span class="math inline">\(g:\mathbb R\rightarrow \mathbb R\cup \{+\infty\}\)</span> are closed proper convex and <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span>. This problem can be solved with standard ADMM by defining <span class="math inline">\(\tilde g(x)=g(Ax)\)</span> but the proximal operator of <span class="math inline">\(\tilde g\)</span> is complicated by the presence of <span class="math inline">\(A\)</span>, even when the proximal operator of <span class="math inline">\(g\)</span> is easy to evaluate. The linearized ADMM solves the problem using only the proximal operators of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> and multiplication by <span class="math inline">\(A\)</span> and <span class="math inline">\(A^T\)</span>; in particular, <span class="math inline">\(g\)</span> and <span class="math inline">\(A\)</span> are handled separately. <span class="math display">\[
-x^{k+1}=P_{\mu f}\left(x^k-(\mu/\lambda )A^T(Ax^k-z^k+u^k)\right)\\
-z^{k+1}=P_{\lambda g}\left(Ax^{k+1}+u^k\right)\\
-u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
-\]</span> where the algorithm parameters <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu\)</span> satisfy <span class="math inline">\(0\le \mu\le \lambda /||A||_2^2\)</span>. This reduces to standard ADMM when <span class="math inline">\(A=I\)</span> and <span class="math inline">\(\mu =\lambda\)</span>.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1148,7 +1184,7 @@ u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -215,6 +215,235 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5904 Neural Network/2.RBFN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/EE5904 Neural Network/2.RBFN/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:45:47" itemprop="dateCreated datePublished" datetime="2020-12-22T13:45:47+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-04-20 22:15:06" itemprop="dateModified" datetime="2019-04-20T22:15:06+08:00">2019-04-20</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/EE5904 Neural Network/2.RBFN/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/EE5904 Neural Network/2.RBFN/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5904 Neural Network/2.RBFN/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="radial-basis-function-networks">Radial-Basis Function Networks</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>The activation of a hidden unit is determined by the distance between the input vector and a prototype vector, the center. <span class="math display">\[
+\varphi(||x-c||)=\varphi(r)
+\]</span> Given a set of N data points and a set of N target values.</p>
+<p>The goal is to find a function <span class="math inline">\(f(x)\)</span> that pass through all the training data points.</p>
+<p>There are infinite number of solutions and RBFN is just one solution.</p>
+<p>For the RBFN, we have <span class="math display">\[
+f(x)=\sum_{i=1}^N w_i\varphi(||x-x_i||)
+\]</span></p>
+<h2 id="how-to-determine-the-weights">2. How to Determine the Weights</h2>
+<p>It becomes a typical algebraic problem. <span class="math display">\[
+f(x_j)=\sum_{i=1}^{N}w_i\varphi(||x_j-x_i||)=d_j
+\]</span> Then we can expand the equation to a matrix form <span class="math display">\[
+\begin{bmatrix}
+\varphi_{11}  &amp; \varphi_{12} &amp; \dotsm &amp; \varphi_{1N}\\
+\varphi_{21}  &amp; \varphi_{22} &amp; \dotsm &amp; \varphi_{2N}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_{N1}  &amp; \varphi_{N2} &amp; \dotsm &amp; \varphi_{NN}\\
+\end{bmatrix}
+\begin{bmatrix}
+w_1\\w_2\\\vdots\\w_N
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> Then we can have <span class="math display">\[
+w=\Phi^{-1}d
+\]</span> Once we have the weight, we have function that represents a continuous differentiable surface that pass exactly through each data point.</p>
+<h2 id="commonly-used-radial-basis-functions">3. Commonly Used Radial Basis Functions</h2>
+<p>Gaussian Function <span class="math display">\[
+\varphi(r)=\exp (-\frac{r^2}{2\sigma^2})
+\]</span> Inverse Multi-Quadric Function <span class="math display">\[
+\varphi(r)=(r^2+\sigma^2)^{-0.5}
+\]</span> But the network perform poorly for the noisy data for the perfect tracking and large date sets the network will be very cost.</p>
+<p>To summarize,</p>
+<ol type="1">
+<li>For a given set containing N points</li>
+<li>Choose a RBF function <span class="math inline">\(\varphi\)</span></li>
+<li>Calculate <span class="math inline">\(\varphi_{ji}=\varphi(||x_j-x_i||)\)</span></li>
+<li>Obtain the interpolation matrix <span class="math inline">\(\Phi\)</span></li>
+<li>Solve the linear equation <span class="math inline">\(\Phi w=d\)</span></li>
+<li>Get the Unique solution <span class="math inline">\(w\)</span></li>
+</ol>
+<h2 id="train-the-network">4. Train the Network</h2>
+<p>However, the network requires one hidden unit for each training data pattern, and so for large datasets the network will become very costly to evaluate. Therefore, it is not necessary to use the sampling points as the centers. We choose some sampling points <span class="math inline">\(\mu_i\)</span> and then we have <span class="math display">\[
+f(x)=\sum_{i=1}^Mw_i\varphi_i(||x-\mu_i||)+b\\
+\]</span></p>
+<p>Let <span class="math inline">\(\varphi_0=1\)</span>, then the bias can be included in the vector. We have <span class="math display">\[
+f(x)=\sum_{i=0}^Mw_i\varphi_i(||x-\mu_i||)\\
+\]</span> Then the centers, spread parameters, and the weights can be learned by training as that for MLP.</p>
+<p>For the case of Gaussian basis functions, we have <span class="math display">\[
+\varphi_i(||x-\mu_i||)=\exp(-\frac{||x-\mu_i||^2}{2\sigma_i^2})
+\]</span> In which we have basis center <span class="math inline">\(\mu_i\)</span> and standard deviations <span class="math inline">\(\sigma_i\)</span>.</p>
+<p>The aim is to develop a process for finding the appropriate values of the weights <span class="math inline">\(w_i\)</span> and the centers and spreads <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i\)</span> .</p>
+<p>We hope to find the parameters <span class="math inline">\(w_i,\mu_i,\sigma_i\)</span> such that the cost function <span class="math display">\[
+E(w)=\sum_{i=1}^N(d(i)-y(i))^2
+\]</span> is minimized.</p>
+<p>There are two stages to tune the parameters.</p>
+<p>Stage 1,</p>
+<p>Use unsupervised learning methods to find center <span class="math inline">\(\mu_i\)</span> and spread <span class="math inline">\(\sigma_i\)</span></p>
+<p>Stage 2,</p>
+<p>Use supervised learning methods to find weight values between hidden and output units.</p>
+<h2 id="finding-the-output-weights">5. Finding the Output Weights</h2>
+<p>Given the hidden unit activations <span class="math inline">\(\varphi(x,\mu_i,\sigma_i)\)</span> is fixed while we determine the output weight <span class="math inline">\(w_i\)</span> <span class="math display">\[
+\begin{bmatrix}
+\varphi_0(x_1) &amp; \varphi_1(x_1) &amp; \dotsm &amp; \varphi_M(x_1)\\
+\varphi_0(x_2) &amp; \varphi_1(x_2) &amp; \dotsm &amp; \varphi_M(x_2)\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_0(x_N) &amp; \varphi_1(x_N) &amp; \dotsm &amp; \varphi_M(x_N)
+\end{bmatrix}
+\begin{bmatrix}
+w_0\\w_1\\\vdots\\w_M
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> That is <span class="math inline">\(\Phi w=d\)</span></p>
+<p>We can solve this problem by linear least squares <span class="math display">\[
+w=(\Phi^T\Phi)^{-1}\Phi^Td
+\]</span></p>
+<h2 id="finding-the-center-and-spread">6. Finding the Center and Spread</h2>
+<p>There are numerous approaches in the literature to find the center and spread for the first stage.</p>
+<p>The simplest and quickest approach to setting the RBF parameters is to take their centers as fixed at M points selected at random from the N data points.</p>
+<p>Specially, we can use RBFs centered at <span class="math inline">\(\mu_i\)</span> defined by <span class="math display">\[
+\varphi_i(x)=\exp (-\frac{M}{d_{max}^2}||x-\mu_i||^2)
+\]</span> That means the spread is <span class="math display">\[
+\sigma_i=\frac{d_{max}}{\sqrt{2M}}
+\]</span> We can also use K-means clustering</p>
+<p>K-means clustering,</p>
+<ol type="1">
+<li>Initialization. Choose random values for the initial centers.</li>
+<li>Sampling. Draw a sample vector from the training set.</li>
+<li>Assignment. Compute the distance from the vector to each center and assign the vector to the closet center.</li>
+<li>Updating. After all vectors are assigned to a center. Calculate the new center by the assigned vectors.</li>
+<li>Do the previous steps until converged.</li>
+</ol>
+<h2 id="supervised-rbf-network-training">7. Supervised RBF Network Training</h2>
+<p>The obvious approach is to perform gradient decent on a sum squared output error function as we did for MLPs. <span class="math display">\[
+E=\frac{1}{2}\sum_{j=1}^N(e_j)^2\\
+e_j=d_j-y(x_j)=d_j-\sum_{i=0}^Mw_i\varphi_i(x_j,\mu_i,\sigma_i)
+\]</span> Then we can use the gradient decent method, <span class="math display">\[
+\Delta w=-\eta g(n)
+\]</span></p>
+<h2 id="regularization-theory-for-rbf-networks">8. Regularization Theory for RBF Networks</h2>
+<p>Cost function <span class="math display">\[
+F(w)=\frac{1}{2}\sum_{i=1}^N(y(i)-d(i))^2+\frac{1}{2}\lambda||w||^2=\frac{1}{2}(\Phi w-d)^T(\Phi w-d)+\frac{1}{2}\lambda w^Tw
+\]</span> We hope to get the optimal solution for w <span class="math display">\[
+\frac{\partial F(w)}{\partial w}=0
+\]</span> Then we have <span class="math display">\[
+w=(\Phi^T\Phi+\lambda I)^{-1}\Phi^Td
+\]</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is the regularization factor.</p>
+<p>RBFN can also be used in classification problem.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5904 Neural Network/1.MLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,351 +753,11 @@ h_{ki} = f_i(\sum_{j=1}^M w_{ij}x_j(k)+b_i)\in H
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/" class="post-title-link" itemprop="url">8. MPC with Constraint</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:44:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:44:42+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-26 00:03:07" itemprop="dateModified" datetime="2019-08-26T00:03:07+08:00">2019-08-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/" class="post-meta-item leancloud_visitors" data-flag-title="8. MPC with Constraint" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5104 Computer Control/8. MPC with Constraint/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="model-predictive-control-with-constraints">Model Predictive Control with Constraints</h2>
-<p>From the last note, we derive the augmented state space model <span class="math display">\[
-x(k+1)=Ax(k)+B\Delta u(k) \\
-y(k)=Cx(k) \\
-Y = Fx(k)+\Phi\Delta U\\
-J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
-\]</span> If we denote <span class="math display">\[
-H=\Phi^T\Phi+\bar R \\
-f=-\Phi^T(R_s-Fx(k))
-\]</span> We have <span class="math display">\[
-J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f
-\]</span> Now we will discuss different kinds of constraints.</p>
-<h3 id="constraints-on-the-control-variable-incremental-variation">1. Constraints on the control variable incremental variation</h3>
-<p><span class="math display">\[
-\Delta U^{min}\le\Delta U \le\Delta U^{max}
-\]</span></p>
-<p>We will have <span class="math display">\[
-\Delta U\le \Delta U^{max}\\
--\Delta U\le -\Delta U^{min}
-\]</span> Equally, we have <span class="math display">\[
-\begin{bmatrix}
--I \\
-I
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--\Delta U^{min} \\
-\Delta U^{max}
-\end{bmatrix}
-\]</span></p>
-<h3 id="constraints-on-the-amplitude-of-control-variable">2. Constraints on the amplitude of control variable</h3>
-<p><span class="math display">\[
-U^{min}\le U \le U^{max}
-\]</span></p>
-<p><span class="math display">\[
-\overbrace{\begin{bmatrix}
-u(k)\\
-u(k+1)\\
-\vdots\\
-u(k+N_c-1)
-\end{bmatrix}}^{U}=
-\overbrace{\begin{bmatrix}
-1\\
-1\\
-\vdots\\
-1
-\end{bmatrix}}^{C_1}u(k-1)+
-\overbrace{\begin{bmatrix}
-1 &amp; 0 &amp; \dotsm &amp; 0\\
-1 &amp; 1 &amp; \dotsm &amp; 0\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-1&amp;1&amp;\dotsm&amp;1
-\end{bmatrix}}^{C_2}
-\overbrace{\begin{bmatrix}
-\Delta u(k)\\
-\Delta u(k+1)\\
-\vdots\\
-\Delta u(k+N_c-1)
-\end{bmatrix}}^{\Delta U}
-\]</span></p>
-<p>Equally, we have <span class="math display">\[
-U=C_1u(k-1)+C_2\Delta U
-\]</span> We can get the following result <span class="math display">\[
-\begin{bmatrix}
--C_2 \\
-C_2
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--U^{min}+C_1u(k-1) \\
-U^{max}-C_1u(k-1)
-\end{bmatrix}
-\]</span></p>
-<h3 id="output-constraints">3. Output Constraints</h3>
-<p><span class="math display">\[
-Y^{min}\le Y \le Y^{max}
-\]</span></p>
-<p>We have the conclusion form the last note <span class="math display">\[
-Y=Fx(k)+\Phi\Delta U
-\]</span> We can derive the same result as the previous procedures <span class="math display">\[
-\begin{bmatrix}
--\Phi \\
-\Phi
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--Y^{min}+Fx(k) \\
-Y^{max}-Fx(k) 
-\end{bmatrix}
-\]</span></p>
-<h3 id="conclusion">4. Conclusion</h3>
-<p><span class="math display">\[
-\begin{bmatrix}
--I \\
-I \\
--C_2 \\
-C_2 \\
--\Phi \\
-\Phi
-\end{bmatrix}
-\Delta U
-\le
-\begin{bmatrix}
--\Delta U^{min} \\
-\Delta U^{max} \\
--U^{min}+C_1u(k-1) \\
-U^{max}-C_1u(k-1) \\
--Y^{min}+Fx(k) \\
-Y^{max}-Fx(k) 
-\end{bmatrix}\\
-C_1=\overbrace{\begin{bmatrix}
-1 &amp; 
-1 &amp; 
-\dotsm &amp; 
-1
-\end{bmatrix}^T}^{N_c}\\
-C_2=\overbrace{\begin{bmatrix}
-1 &amp; 0 &amp; \dotsm &amp; 0\\
-1 &amp; 1 &amp; \dotsm &amp; 0\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-1&amp;1&amp;\dotsm&amp;1
-\end{bmatrix}}^{N_c}
-\]</span></p>
-<h3 id="example">5. Example</h3>
-<p>We have the state space model <span class="math display">\[
-x_p(k+1)=x_p(k)+u(k) \\
-y(k)=x_p(k)
-\]</span> The control horizon is 1 and the predictive horizon is 2. <span class="math display">\[
-N_c=1 \\
-N_p=2 \\
-r_w=5 \\
-r(k)=1\quad(k\ge0) \\
-Y^{max}=[1 \quad 1]^T
-\]</span> First we have the augmented state space model <span class="math display">\[
-A=\begin{bmatrix} 1 &amp; 0 \\ 1 &amp; 1\end{bmatrix}\quad 
-B=\begin{bmatrix} 1  \\ 1 \end{bmatrix}\quad
-C=\begin{bmatrix} 0 &amp; 1 \end{bmatrix}
-\]</span> Then we get <span class="math display">\[
-F=\begin{bmatrix} 1 &amp; 1 \\ 2&amp;1\end{bmatrix}\quad 
-\Phi=\begin{bmatrix} 1  \\ 2 \end{bmatrix}\quad
-\]</span> According to the question <span class="math display">\[
-\begin{bmatrix} 1 \\ 2 \end{bmatrix} 
-\Delta u(k) \le \begin{bmatrix} 1-x_1(k)-x_2(k) \\ 1-2x_1(k)-x_2(k) \end{bmatrix}
-\]</span> Also we need to calculate J <span class="math display">\[
-H=\Phi^T\Phi+\bar R = 10\\
-f=-\Phi^T(R_s-Fx(k)) = 5x_1(k)+3x_2(k)-3\\
-J=5\Delta u^2(k)+\Delta u(k)(5x_1(k)+3x_2(k)-3)
-\]</span> For k=0 <span class="math display">\[
-\Delta u(0)\le0.5 \\
-J=5\Delta u^2-3\Delta u
-\]</span> We can get <span class="math display">\[
-\Delta u(0)=0.3
-\]</span> For k=1 <span class="math display">\[
-x(1)=Ax(0)+B\Delta u(0)=[0.3 \quad 0.3]^T\\
-\Delta u(1) \le0.05 \\
-J=5\Delta u^2(1)-0.6\Delta u(1)
-\]</span> we can get <span class="math display">\[
-u(1)=0.05
-\]</span></p>
-<p>One more example</p>
-<p>We have an augmented state space <span class="math display">\[
-x(k+1)=
-\begin{bmatrix}
-1 &amp; 1\\
-0 &amp; 1
-\end{bmatrix}x(k)+
-\begin{bmatrix}
-0\\
-1
-\end{bmatrix}\Delta u(k)\\
-y(k)=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}x(k)
-\]</span></p>
-<p>We choose <span class="math display">\[
-N_c=2\quad N_p=3\quad r_w=1 \quad r(k)=15
-\]</span> The constraints are <span class="math display">\[
-Y\le Y_{max}=15\\
-\Delta U\ge\Delta U_{min}=-5
-\]</span> Then we have the constraint inequations <span class="math display">\[
-\begin{bmatrix}
--I\\\Phi
-\end{bmatrix}\Delta U\le
-\begin{bmatrix}
--\Delta U_{min}\\
-Y_{max}-Fx(k)
-\end{bmatrix}
-\]</span> We have <span class="math display">\[
-F=
-\begin{bmatrix}
-CA\\CA^2\\CA^3
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 1\\
-1 &amp; 2\\
-1 &amp; 3\\
-\end{bmatrix}\quad
-\Phi=
-\begin{bmatrix}
-CB &amp; 0\\
-CAB &amp; CB\\
-CA^2B &amp; CAB
-\end{bmatrix}=
-\begin{bmatrix}
-0 &amp; 0\\
-1 &amp; 0\\
-2 &amp; 1\\
-\end{bmatrix}
-\]</span> And we have <span class="math display">\[
-H=\Phi^T\Phi+\bar R =
-\begin{bmatrix}
-6 &amp; 2\\
-2 &amp; 2
-\end{bmatrix}\\
-f=-\Phi^T(R_s-Fx(k))=
-\begin{bmatrix}
--45+3x_1(k)+8x_2(k)\\
--15+x_1(k)+3x_2(k)
-\end{bmatrix}\\
-J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
-\]</span> Not finished!!!</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -913,7 +802,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

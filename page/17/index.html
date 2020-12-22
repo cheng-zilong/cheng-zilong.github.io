@@ -215,6 +215,328 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-07-01 12:18:58" itemprop="dateModified" datetime="2019-07-01T12:18:58+08:00">2019-07-01</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="the-lebesgue-integral">The Lebesgue Integral</h1>
+<h2 id="introduction">2.1 Introduction</h2>
+<p>The main purpose of this book is a presentation of basic methods and applications of Hilbert spaces. One of the most important applications of the theory is the solution of differential equations. To this aim, we need, for example, a Hilbert space which contains all differentiable functions defined on some intervals [a,b] for which the inner product is defined by <span class="math display">\[
+\langle f,g \rangle = \int_a^bf(x)\overline{g(x)}dx
+\]</span> The smallest Hilbert space satisfying these conditions is the space of Lebesgue square integrable functions on [a,b]. Thus, the Lebesgue integral is essential for understanding some of the most important applications of Hilbert space theory.</p>
+<h2 id="step-functions">2.2 Step Functions</h2>
+<p>By a step function on the real line <span class="math inline">\(R\)</span> we mean a finite linear combination of characteristic functions of semi-open intervals <span class="math inline">\([a,b)\subseteq R\)</span>. Thus for every step function <span class="math inline">\(f\)</span>, there are intervals <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm,[a_n,b_n)\)</span> and numbers <span class="math inline">\(\lambda_1,\lambda_2,\dotsm,\lambda_n \in R\)</span> such that <span class="math display">\[
+f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)
+\]</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k)\)</span>. That means for <span class="math inline">\(x\in [a_k,b_k)\)</span>, <span class="math inline">\(f(x)=1\)</span>, and <span class="math inline">\(f(x)=0\)</span>, otherwise.</p>
+<p>If we assume that intervals are disjoint and the minimal number of intervals are used, then the representation can be unique. This representation is called basic representation of <span class="math inline">\(f\)</span> and we call <span class="math inline">\(f=0\)</span> the basic representation of the zero function.</p>
+<p>The collection of all step function on R is a vector space. The absolute value of a step function is again a step function.</p>
+<p>If <span class="math inline">\(f=\alpha_1f_1+\alpha_2f_2+\dotsm+\alpha_nf_n\)</span> is a basic representation of a step function, then <span class="math display">\[
+|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n
+\]</span> For any real value functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have <span class="math display">\[
+\min(f,g)=\frac{1}{2}(f+g-|f-g|)\quad \max(f,g)=\frac{1}{2}(f+g+|f-g|)
+\]</span> That means <span class="math inline">\(\min(f,g)\)</span> and <span class="math inline">\(\max(f,g)\)</span> are step functions.</p>
+<p>By the ==support== of a nonzero function <span class="math inline">\(f\)</span>, denoted by supp <span class="math inline">\(f\)</span>, we mean the set of all points <span class="math inline">\(x\in R\)</span> for which <span class="math inline">\(f(x)\neq 0\)</span>. The support of a nonzero step function is always a finite union of semi-open intervals. If <span class="math inline">\(f=0\)</span>, supp <span class="math inline">\(f=\empty\)</span></p>
+<p>==Definition 2.2.1== Integral of a step function</p>
+<p>The integral <span class="math inline">\(\int f\)</span> of a step function <span class="math inline">\(f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)\)</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k),k=1,\dotsm,n\)</span> is defined by <span class="math display">\[
+\int f=\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)
+\]</span> clearly, the value of <span class="math inline">\(\int f\)</span> is equal to the Riemann Integral of <span class="math inline">\(f\)</span>. From the properties of Riemann integral it follows that the defined integral does not depend on a particular representation.</p>
+<p>==Theorem 2.2.1==</p>
+<p>For any step functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have</p>
+<ol type="a">
+<li><p><span class="math inline">\(\int (f+g)=\int f+\int g\)</span></p></li>
+<li><p><span class="math inline">\(\int \lambda f=\lambda \int f\)</span>, <span class="math inline">\(\lambda \in R\)</span></p></li>
+<li><p><span class="math inline">\(f\le g\implies \int f\le \int g\)</span></p></li>
+<li><p><span class="math inline">\(|\int f|\le \int |f|\)</span></p></li>
+</ol>
+<p>Proof.</p>
+<ol type="a">
+<li><ol start="2" type="a">
+<li>can be proved directly from definition</li>
+</ol></li>
+<li>We only need to prove <span class="math inline">\(g-f\ge 0\implies \int (g-f)\ge 0\)</span> i.e. <span class="math inline">\(f\ge 0\implies \int f\ge 0\)</span></li>
+</ol>
+<p>If <span class="math inline">\(f\ge 0\)</span>, then all parameters are positive and <span class="math inline">\(\int f \ge 0\)</span></p>
+<ol start="4" type="a">
+<li><span class="math inline">\(|\int f|=|\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)|\)</span></li>
+</ol>
+<p><span class="math inline">\(\int |f|=|\lambda_1|(b_1-a_1)+|\lambda_2|(b_2-a_2)+\dotsm+|\lambda_n|(b_n-a_n)\)</span></p>
+<p>==Lemma 2.2.1==</p>
+<p>Let <span class="math inline">\(f\)</span> be a step function whose support is contained in the union of semi-open intervals <span class="math inline">\([a_1,b_1),\dotsm,[a_n,b_n)\)</span>. If <span class="math inline">\(|f|&lt;M\)</span> for some constant <span class="math inline">\(M&gt;0\)</span>, then <span class="math display">\[
+\int |f|\le M\sum_{k=1}^n(b_k-a_k)
+\]</span> Proof.</p>
+<p><span class="math inline">\(|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n\)</span>. Then we choose <span class="math inline">\(M &gt; \max\{|\alpha_1|,\dots,|\alpha_n|\}\)</span></p>
+<p>Then <span class="math display">\[
+\int |f|=|\alpha_1|(b_1-a_1)+|\alpha_2|(b_2-a_2)+\dotsm+|\alpha_n|(b_n-a_n)\\
+\le M(b_1-a_1)+M(b_2-a_2)+\dotsm+M(b_n-a_n)\\
+=M\sum_{k=1}^n(b_k-a_k)
+\]</span> ==Lemma 2.2.2==</p>
+<p>Let <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm\)</span> be disjoint subintervals of an interval <span class="math inline">\([a,b)\)</span> such that <span class="math display">\[
+\bigcup_{n=1}^\infty [a_n,b_n)=[a,b)
+\]</span> Then <span class="math display">\[
+\sum_{n=1}^\infty (b_n-a_n)=b-a
+\]</span> Proof.</p>
+<p>Let <span class="math inline">\(S \subset [a,b)\)</span> consist of all points <span class="math inline">\(c\)</span> such that the lemma holds for the interval <span class="math inline">\([a,c)\)</span> and for each of the subintervals <span class="math inline">\([a_n,b_n)\cap [a,c)\)</span> , S is not empty because <span class="math inline">\(a=a_{n_0}\)</span> for some <span class="math inline">\(n_0\in N\)</span> and then <span class="math inline">\(b_{n_0}\in S\)</span>. If <span class="math inline">\(c\in S\)</span>, then <span class="math inline">\(\sum_n(b_{c,n}-a_n)\)</span> where <span class="math inline">\(b_{c,n}=\min \{b_n,c\}\)</span>. It suffices to prove <span class="math inline">\(b\in S\)</span>.</p>
+<p>To this end, we first prove lub <span class="math inline">\(S \in S\)</span>. Indeed, if <span class="math inline">\(s=\)</span> lub S and <span class="math inline">\(\{s_n\}\)</span> is a non-decreasing sequence of elements of S convergent to s, then <span class="math display">\[
+s_n-a=\sum_m (b_{s_n,m}-a_m)\le \sum_m(b_{s,m}-a_m)\le s-a
+\]</span> Then <span class="math inline">\(s_n-a\rightarrow s-a\implies \sum_m(b_{s,m}-a_m)= s-a\)</span>, then <span class="math inline">\(s\in S\)</span>, then easily <span class="math inline">\(s=b\)</span></p>
+<p>Q.E.D.</p>
+<p>==Theorem 2.2.2==</p>
+<p>Let <span class="math inline">\((f_n)\)</span> be a non-increasing sequence of non-negative step functions such that <span class="math inline">\(\lim_{n\rightarrow \infty} f_n(x)=0\)</span> for every <span class="math inline">\(x\in R\)</span>. Then <span class="math inline">\(\lim_{n\rightarrow \infty} \int f_n=0\)</span>.</p>
+<p>Proof.</p>
+<p><span class="math inline">\((f_n)\)</span> is non-increasing sequence, and therefore $f_{n+1}f_nf_{n+1}f_n $</p>
+<p><span class="math inline">\(f_n \ge 0\implies \int f_n \ge 0\)</span></p>
+<p>Therefore <span class="math inline">\((\int f_n)\)</span> is non-increasing and bounded from below, it converges.</p>
+<p>Let <span class="math display">\[
+\lim_{n\rightarrow \infty} \int f_n=\varepsilon&gt;0
+\]</span> Let <span class="math inline">\([a,b)\)</span> be an interval containing all the support of <span class="math inline">\(f_1\)</span> (and therefore, <span class="math inline">\(f_n\)</span>). Put <span class="math inline">\(\alpha=\varepsilon /(2(b-a))\)</span> <span class="math display">\[
+A_n=\{x\in[a,b):f_n(x)&lt;\alpha\}\\
+\begin{array}{rcl}
+B_1=A_1 &amp; B_2=A_2\backslash A_1 &amp; B_2=A_3\backslash A_2\dotsm
+\end{array}
+\]</span> Note that <span class="math inline">\(B_n\)</span> are disjoint and <span class="math inline">\(\bigcup_{n=1}^\infty B_n=[a,b)\)</span></p>
+<p>Because <span class="math inline">\(f_n\)</span> are step functions, <span class="math display">\[
+B_n=[a_{n,1},b_{n,1})\cup\dotsm \cup[a_{n,k_n},b_{n,k_n})
+\]</span> By lemma 2.2.2, <span class="math display">\[
+\sum_{n=1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})=b-a
+\]</span> Let <span class="math inline">\(n_0 \in N\)</span> such that <span class="math display">\[
+\sum_{n=n_0+1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})&lt;\delta
+\]</span> where <span class="math inline">\(\delta = \varepsilon/(2\max|f_1|)\)</span>.</p>
+<p>Define <span class="math display">\[
+F=[a_{1,1},b_{1,1})\cup \dotsm\cup [a_{1,k_1},b_{1,k_1})\cup\dotsm\cup[a_{n_0,1},b_{n_0,1})\cup\dotsm\cup[a_{n_0,k_{n_0}},b_{n_0,k_{n_0}})
+\]</span> Then, <span class="math display">\[
+g(x)=
+\begin{cases}
+f_{n_0}(x) &amp; x\in F\\
+0 &amp; otherwise
+\end{cases}\\
+h(x)=
+\begin{cases}
+0 &amp; x\in F\\
+f_{n_0}(x) &amp; otherwise
+\end{cases}
+\]</span> <span class="math inline">\(x\in F\implies x\in A_{n_0}\)</span>, and thus <span class="math inline">\(f_{n_0}(x)&lt;\alpha\)</span> <span class="math display">\[
+\int g&lt;\alpha(b-a)=\frac{\varepsilon }{2} 
+\]</span> and, <span class="math display">\[
+\int h&lt;\delta \max|f_{n_0}|\le \delta\max|f_{1}|=\frac{\varepsilon }{2} 
+\]</span> Therefore, <span class="math display">\[
+\int f=\int g+\int h &lt;\varepsilon
+\]</span> Q.E.D.</p>
+<p>==Lemma 2.2.3==</p>
+<p>Let <span class="math inline">\((g_n)\)</span> and <span class="math inline">\((h_n)\)</span> be non-decreasing sequences of step functions. If <span class="math inline">\(\lim_{n\rightarrow \infty} h_n(x)\le \lim_{n\rightarrow \infty} g_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span>, then <span class="math inline">\(\lim_{n\rightarrow \infty} \int h_n(x)\le \lim_{n\rightarrow \infty} \int g_n(x)\)</span></p>
+<p>Proof.</p>
+<p>Fix <span class="math inline">\(k\in N\)</span>. $h_k-(h_k,g_n)(n) $ is non-decreasing sequence converging to zero for every <span class="math inline">\(x\in R\)</span></p>
+<p>By theorem 2.2.2 <span class="math display">\[
+0=\lim_{n\rightarrow \infty}\int (h_k-\min(h_k,g_n))\\
+=\lim_{n\rightarrow \infty}\int h_k-\lim_{n\rightarrow \infty}\int\min(h_k,g_n)\\
+\]</span> Q.E.D.</p>
+<h2 id="lebesgue-integrable-functions">2.3 Lebesgue Integrable Functions</h2>
+<p>==Definition 2.3.1== (Lebesgue Integral)</p>
+<p>A real-valued function <span class="math inline">\(f\)</span> defined on <span class="math inline">\(R\)</span> is called Lebesgue integrable if there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that the following two conditions are satisfied:</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>The integral of <span class="math inline">\(f\)</span> is then defined by <span class="math display">\[
+\int f=\sum_{n=1}^\infty \int f_n
+\]</span> If a function <span class="math inline">\(f\)</span> and a sequence of step function <span class="math inline">\((f_n)\)</span> satisfy (a) and (b), then we will write <span class="math display">\[
+f \simeq \sum_{n=1}^\infty f_n\text{ or } f\simeq f_1+f_2+\dotsm
+\]</span> ==Theorem 2.3.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(f\ge 0\)</span>, then <span class="math inline">\(\int f_1+\int f_2 +\dotsm \ge 0\)</span></p>
+<p>Proof</p>
+<p><span class="math display">\[
+\forall \varepsilon&gt;0,\exists n_0\in N\quad \sum_{n=n_0+1}^\infty \int |f_n|&lt;\varepsilon
+\]</span> Then define <span class="math display">\[
+g_n = f_1+\dotsm+f_{n_0}+|f_{n_0+1}|+\dotsm+|f_{n_0+n}|\\
+h_n=\max (g_n,0)\\
+\]</span> and <span class="math inline">\(g_n\)</span> and <span class="math inline">\(h_n\)</span> are non-decreasing sequences</p>
+<p>Then <span class="math display">\[
+\lim _{n\rightarrow \infty }g_n=\lim_{n \rightarrow \infty} h_n \implies \\
+\lim _{n\rightarrow \infty }\int g_n=\lim_{n \rightarrow \infty}\int  h_n\ge0
+\]</span> and this <span class="math display">\[
+\int f_1+\dotsm+\int f_{n_0}+\int |f_{n_0+1}|+\dotsm\ge 0 \\
+\int f_1+\dotsm+2\sum_{n=n_0+1}^\infty\int |f_{n}|\ge 0 \\
+\int f_1+\dotsm+2\varepsilon\ge 0 \\
+\]</span> because <span class="math inline">\(\varepsilon\)</span> is arbitrary, Q.E.D.</p>
+<p>==Corollary 2.3.1==</p>
+<p>If <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span> and <span class="math inline">\(f\simeq \sum_{n=1}^\infty g_n\)</span>. then <span class="math inline">\(\sum_{n=1}^\infty \int f_n=\sum_{n=1}^\infty \int g_n\)</span></p>
+<p>By theorem 2.3.1. Q.E.D.</p>
+<p>The space of all ==Lebesgue integrable functions== defined on R will be denoted as <span class="math inline">\(L^1(R)\)</span>. In the sequel, Lebesgue integrable functions will be called simply ==integrable==.</p>
+<p>It will be proved that every Riemann integrable function is Lebesgue integrable and both integrals are equal.</p>
+<p>==Theorem 2.3.2==</p>
+<p><span class="math inline">\(L^1(R)\)</span> is a vector space and <span class="math inline">\(\int\)</span> is a linear functional on <span class="math inline">\(L^1(R)\)</span>.</p>
+<p>==Theorem 2.3.3==</p>
+<p>If <span class="math inline">\(f,g \in L^1(R)\)</span> and <span class="math inline">\(f&lt;g\)</span>, then <span class="math inline">\(\int f\le \int g\)</span></p>
+<p>Definition 2.3.1 is fairly simple although it may be a little disturbing.</p>
+<h2 id="the-absolute-value-of-an-integrable-function">2.4 The absolute value of an integrable function</h2>
+<p>In the previous section, we mentioned that all Riemann integrable functions are Lebesgue integrable.</p>
+<p>For improper integrals it is not so. For instance, the integral <span class="math display">\[
+\int_{-\infty}^\infty \frac{\sin x}{x}dx
+\]</span> converges, although the function is not Lebesgue integrable. It is clear from the following theorem,</p>
+<p>==Theorem 2.4.1==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(|f|\in L^1(R)\)</span> and <span class="math inline">\(|\int f| \le \int |f|\)</span></p>
+<p><span class="math inline">\(f\in L^1(R)\)</span> means</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>Let <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> and define <span class="math display">\[
+Z=\{x\in R:\sum_{n=1}^\infty |f_n(x)|&lt;\infty\}\\
+s_n=f_1+f_2+\dotsm+f_n
+\]</span> Then <span class="math display">\[
+f(x)=\lim_{n\rightarrow \infty} s_n(x)\\
+|f(x)|=|\lim_{n\rightarrow \infty} s_n(x)|=\lim_{n\rightarrow \infty} |s_n(x)|\\
+=|s_1|+(|s_2|-|s_1|)+(|s_3|-|s_2|)\dotsm
+\]</span> define <span class="math inline">\(g_1=|s_1|\)</span>, <span class="math inline">\(g_n=|s_n|-|s_{n-1}|\)</span> <span class="math display">\[
+|f(x)|=\sum_{n=1}^\infty g_n(x)
+\]</span> Then we have <span class="math display">\[
+|g_n|\le |s_n-s_{n-1}|=|f_n|\\
+\int |g_n|\le \int |f_n|\\
+\sum_{n=1}^\infty \int |g_n|&lt;\infty
+\]</span> Q.E.D.</p>
+<p>==Corollary 2.4.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(\int |f|\le \sum_{n=1}^\infty\int |f_n|\)</span></p>
+<p>==Corollary 2.4.2==</p>
+<p>If <span class="math inline">\(f,g\in L^1(R)\)</span>, then <span class="math inline">\(\min(f,g),\max(f,g) \in L^1(R)\)</span>.</p>
+<p>==Theorem 2.4.2==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(\lim_{t\rightarrow 0}\int |f(x+t)-f(x)|dx=0\)</span></p>
+<h2 id="series-of-integrable-functions">2.5 Series of integrable functions</h2>
+<p>In the construction described in the preceding sections, we start with an integral of step functions and extend it to a larger class of functions by expanding them in series of step functions <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>. The functions in that class have a well-defined integral. This result is a form of completeness of the space of Lebesgue integrable functions. It is of fundamental importance for the theory of the Lebesgue integral.</p>
+<p>==Definition 2.5.1==</p>
+<p>Let <span class="math inline">\(f\)</span> be a real-valued function and let <span class="math inline">\((f_n)\)</span> be a sequence of <strong>integrable functions</strong> (Not step functions). If</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>then we write <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> or <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span></p>
+<p>==Lemma 2.5.1==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then for every <span class="math inline">\(\epsilon&gt;0\)</span> there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(\sum_{n=1}^\infty\int |f_n|\le \int |f|+\epsilon\)</span></p>
+<p>Proof.</p>
+<p>Define, <span class="math inline">\(f\simeq g_1+g_2+\dotsm\)</span>, for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists <span class="math inline">\(n_0\in N\)</span> such that <span class="math display">\[
+\sum_{n=n_0+1}^\infty \int |g_n|&lt;\frac{\varepsilon}{2}
+\]</span> Define <span class="math display">\[
+f_1=g_1+\dotsm+g_n\\
+f_n=g_{n_0+n-1}\\
+f\simeq f_1+f_2+\dotsm\\
+f-f_1\simeq f_2+f_3+\dotsm\\
+\int |f_1|-\int |f|\le\int |f-f_1|\le \sum_{n=2}^\infty |f_n|\\
+\sum_{n=1}^\infty \int |f_n|=\int |f_1|+\sum_{n=2}^\infty |f_n|\\
+\le \int |f|+2\sum_{n=2}^\infty |f_n|\\
+=\int |f|+\varepsilon
+\]</span> ==Theorem 2.5.1==</p>
+<p>If <span class="math inline">\((f_n)\)</span> is a sequence of integrable functions and <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int f=\int f_1+\int f_2+\dotsm\)</span></p>
+<p>==Corollary 2.5.1==</p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span>, then there exists an integrable function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f=f_1+f_2+\dotsm\)</span>.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -342,333 +664,11 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-title-link" itemprop="url">Untitled</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-19 17:18:42" itemprop="dateModified" datetime="2019-08-19T17:18:42+08:00">2019-08-19</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="banach-spaces">1.5 Banach Spaces</h2>
-<p>Every Cauchy sequence of <strong>numbers</strong> converges. Every absolutely convergent series of <strong>numbers</strong> converges. Similar properties of a normed space would be of great importance. Not all normed spaces have the above properties. Those which do are called Banach Spaces.</p>
-<p>==Definition 1.5.1== Cauchy Sequence</p>
-<p>A sequence of vectors <span class="math inline">\((x_n)\)</span> in a normed space is called a Cauchy sequence if for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>.</p>
-<p>==Theorem 1.5.1==</p>
-<p>The following conditions are equivalent:</p>
-<ol type="a">
-<li><p><span class="math inline">\((x_n)\)</span> is a Cauchy sequence.</p></li>
-<li><p><span class="math inline">\(||x_{p_n}-x_{q_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, for every pair of increasing sequences of positive integers <span class="math inline">\((p_n)\)</span> and <span class="math inline">\((q_n)\)</span></p></li>
-<li><p><span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> for every increasing sequence of positive integers <span class="math inline">\((p_n)\)</span></p></li>
-</ol>
-<p>Proof. clearly <span class="math inline">\((a)\rightarrow (b)\rightarrow (c)\)</span></p>
-<p>we only need to prove <span class="math inline">\((c)\rightarrow (a)\)</span></p>
-<p>If <span class="math inline">\((x_n)\)</span> is not a Cauchy sequence, then <span class="math inline">\(\exists \epsilon&gt;0,\forall M&gt;0,\exists m,n&gt;M\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span>.</p>
-<p>That means <span class="math inline">\(\exists \epsilon&gt;0\)</span>, there are infinitely many <span class="math inline">\(m,n\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span></p>
-<p>Then there exists increasing sequence of positive integers <span class="math inline">\((p_n)\)</span> such that <span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\not \rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span></p>
-<p>We can easily find such sequence. Q.E.D.</p>
-<p>Observe that every <strong>convergent sequence</strong> is a <strong>Cauchy sequence</strong>.</p>
-<p>If we have <span class="math inline">\(||x_n-x||\rightarrow 0\)</span>, then <span class="math inline">\(||x_{p_n}-x_{q_n}||\le||x_{p_n}-x||+||x_{q_{n}}-x||\rightarrow 0\)</span></p>
-<p>The converse is not true. A sequence of the rational number may converge to an irrational number.</p>
-<p>==Lemma 1.5.1==</p>
-<p>If <span class="math inline">\((x_n)\)</span> is a Cauchy sequence in a normed space, then the sequence of norms <span class="math inline">\((||x_n||)\)</span> converges.</p>
-<p>Proof.</p>
-<p><span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>. <span class="math display">\[
-|\space||x_m||-||x_n||\space|\le||x_m-x_n||\rightarrow 0
-\]</span> ==Definition 1.5.2== Banach Space</p>
-<p>A normed space <span class="math inline">\(E\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(E\)</span> converges to an element of <span class="math inline">\(E\)</span>. A complete normed space is called a Banach Space.</p>
-<p>==Example 1.5.1== The space <span class="math inline">\(l^2\)</span> is complete.</p>
-<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(z_1,z_2,\dotsm \in E\)</span> satisfying that</p>
-<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
-||z_m-z_n||^2=\sum_{k=1}^\infty |z_{m,k}-z_{n,k}|^2&lt;\epsilon^2
-\]</span> that implies <span class="math inline">\(\forall k\in \mathbb N,\forall\epsilon&gt;0,\exists n_0&gt;0\)</span> <span class="math display">\[
-|z_{m,k}-z_{n,k}|&lt;\epsilon\quad \forall m,n&gt;n_0
-\]</span> that mean for every k, the sequence <span class="math inline">\((z_{n,k})\)</span> is Cauchy sequence and convergent. Then we denote <span class="math display">\[
-z_k=\lim_{n\rightarrow \infty} z_{n,k}\quad k=1,2,\dotsm\quad z=(z_k)
-\]</span> We need to prove that there exists an element <span class="math inline">\(z\in E\)</span> such that <span class="math inline">\(\forall \varepsilon&gt;0,\exists M&gt;0,\forall m&gt;M\)</span> such that <span class="math display">\[
-||z_m-z||=\sum_{k=1}^\infty |z_{m,k}-z_k|^2&lt;\varepsilon^2
-\]</span> By letting $n$, we can prove the second equation by the first equation.</p>
-<p>Then we need to prove that <span class="math inline">\(z\in E\)</span> <span class="math display">\[
-\sqrt{\sum_{k=1}^\infty|z_k|^2}=\sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}+z_{m,k}|^2}\\
-\le \sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}|^2}+\sqrt{\sum_{k=1}^\infty |z_{m,k}|^2}
-&lt; \infty
-\]</span> That means <span class="math inline">\(z_m \rightarrow z\)</span></p>
-<p>Q.E.D.</p>
-<p>==Example 1.5.2== Another important example of a Banach space is the space <span class="math inline">\(\mathscr C([a,b])\)</span> of continuous functions on an interval <span class="math inline">\([a,b]\)</span>.</p>
-<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(f_1,f_2,\dotsm \in E\)</span> satisfying that</p>
-<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
-||f_m-f_n||&lt;\epsilon\\
-\max_{x\in[a,b]} |f_m(x)-f_n(x)|&lt;\epsilon
-\]</span> that implies <span class="math display">\[
-|f_m(x)-f_n(x)|&lt;\epsilon \quad \forall n,m\ge n_0,\forall x\in[a,b]
-\]</span> that means <span class="math inline">\((f_n(x))\)</span> is Cauchy sequence <span class="math inline">\(\forall x\in[a,b]\)</span>.</p>
-<p>We denote <span class="math display">\[
-f(x)=\lim_{n\rightarrow \infty } f_n(x),\forall x\in[a,b]
-\]</span> Let $n$ , we have <span class="math display">\[
-|f_m(x)-f(x)|&lt;\epsilon,\forall m\ge n_0 ,\forall x\in[a,b]\\
-\max_{x\in[a,b]}|f_m(x)-f(x)|&lt;\epsilon \\
-||f_m-f|&lt;\epsilon
-\]</span> Then we prove <span class="math inline">\(f\in E\)</span></p>
-<p>Let <span class="math inline">\(\forall x_0\in[a,b]\)</span>. Since <span class="math inline">\(f_{n_0}\)</span> is continuous on <span class="math inline">\([a,b]\)</span>, there exists <span class="math inline">\(\delta &gt;0\)</span> such that <span class="math inline">\(|f_{n_0}(x_0)-f_{n_0}(y)|&lt;\epsilon\)</span> for every <span class="math inline">\(y\in[a,b]\)</span> and <span class="math inline">\(|x_0-y|&lt;\delta\)</span> <span class="math display">\[
-|f(x_0)-f(y)|= |f(x_0)-f_{n_0}(x_0)+f_{n_0}(x_0)-f_{n_0}(y)+f_{n_0}(y)-f(y)|\\
-\le |f(x_0)-f_{n_0}(x_0)|+|f_{n_0}(x_0)-f_{n_0}(y)|+|f_{n_0}(y)-f(y)|\\
-&lt; 3\epsilon
-\]</span> whenever <span class="math inline">\(|x_0-y|&lt;\delta\)</span>, that means <span class="math inline">\(f\)</span> is continuous.</p>
-<p>Q.E.D.</p>
-<p>==Definition 1.5.3== Convergent and Absolutely convergent series</p>
-<p>A series <span class="math inline">\(\sum_{n=1}^\infty x_n\)</span> converges in a normed space <span class="math inline">\(E\)</span> if the sequence of partial sums converges in <span class="math inline">\(E\)</span>.</p>
-<p>i.e. there exists <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_1+x_2+\dotsm+x_n-x||\rightarrow 0\)</span> as $n$ .</p>
-<p>In that case, we write <span class="math inline">\(\sum_{n=1}^\infty x_n=x\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty ||x_n||&lt;\infty\)</span>, then the series is called absolute convergent.</p>
-<p>==Theorem 1.5.2==</p>
-<p>A normed space is complete if and only if every absolutely convergent series converges.</p>
-<p><span class="math inline">\(\implies\)</span></p>
-<p>We will prove this by proving absolutely convergent series is a Cauchy series.</p>
-<p>We define a absolutely convergent series. Suppose <span class="math inline">\(x_n\in E\)</span> and <span class="math inline">\(\sum_{n=1}^\infty||x_n||&lt;\infty\)</span> and denote <span class="math display">\[
-s_n=\sum_{k=1}^nx_k
-\]</span> Because the sequence of partial sums converges in E, for every $&gt;0 $, there exists <span class="math inline">\(k&gt;0\)</span> such that <span class="math display">\[
-\sum_{n=k+1}^\infty ||x_n||&lt;\epsilon
-\]</span> To show <span class="math inline">\((s_n)\)</span> is a Cauchy sequence, <span class="math inline">\(\forall \epsilon&gt;0,\exists M,\forall m,n&gt;M\)</span> such that <span class="math display">\[
-||s_m-s_n||=||x_{n+1}+x_{n+2}+\dotsm+x_m||\le \sum_{r=n+1}^\infty ||x_r||&lt;\epsilon
-\]</span> (without loss of generality, we assume <span class="math inline">\(m&gt;n\)</span>)</p>
-<p>Since E is complete, <span class="math inline">\(s_n\)</span> converges.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>We need to prove if every absolutely convergent series in a norm space converges, then the normed space is complete.</p>
-<p>Let <span class="math inline">\((x_n)\)</span> be an Cauchy sequence in E and therefore <span class="math inline">\(\forall \epsilon&gt;0,\exists p_k\in N,\forall m,n&gt;p_k\)</span> such that <span class="math display">\[
-||x_m-x_n||&lt;2^{-k}
-\]</span> without loss of generality, we can assume <span class="math inline">\((p_k)\)</span> is strictly increasing.</p>
-<p>Then the series <span class="math inline">\(\sum_{k=1}^\infty (x_{p_{k+1}}-x_{p_k})\)</span> is absolutely convergent and therefore, convergent and therefore, the sequence <span class="math display">\[
-x_{p_k}=x_{p_1}+(x_{p_2}-x_{p_1})+(x_{p_3}-x_{p_2})+\dotsm+(x_{p_k}-x_{p_{k-1}})
-\]</span> converges to an element <span class="math inline">\(x\in E\)</span></p>
-<p>Then <span class="math display">\[
-||x_n-x||\le ||x_n-x_{p_n}||+||x_{p_n}-x||\rightarrow 0
-\]</span> Q.E.D.</p>
-<p>==Theorem 1.5.3==</p>
-<p>A closed vector subspace of a Banach space is a Banach space itself.</p>
-<h2 id="linear-mappings">1.6 Linear Mappings</h2>
-<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be vector spaces, and let L be a mapping from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span></p>
-<p>If <span class="math inline">\(y=L(x)\)</span>, then y is called the ==image== of x. If A is subset of <span class="math inline">\(E_1\)</span>, then <span class="math inline">\(L(A)\)</span> denotes the image of the set <span class="math inline">\(A\)</span>.</p>
-<p>If B is a subset of <span class="math inline">\(E_2\)</span>, then <span class="math inline">\(L^{-1}(B)\)</span> denote the ==inverse image== of B. i.e. <span class="math inline">\(L^{-1}(B)\)</span> is the set of all vectors in <span class="math inline">\(E_1\)</span> whose images are elements of B.</p>
-<p>We consider the mapping which are defined on a proper subset of a vector space. Then the ==domain== of <span class="math inline">\(L\)</span> will be denoted as <span class="math inline">\(\mathscr D(L)\)</span>. The set <span class="math inline">\(L(\mathscr D(L))\)</span> is called the ==range== of the L and denoted by <span class="math inline">\(\mathscr R (L)\)</span></p>
-<p>By the ==null space== of L, denoted by <span class="math inline">\(\mathscr N(L)\)</span>, we mean the set of all vectors <span class="math inline">\(x\in \mathscr D(L)\)</span> such that <span class="math inline">\(L(x)=0\)</span></p>
-<p>By the ==graph== if L, denoted by <span class="math inline">\(\mathscr G(L)\)</span>, we mean the subset of <span class="math inline">\(E_1\times E_2\)</span> defined as follows: <span class="math display">\[
-\mathscr G(L)=\{(x,y):x\in\mathscr D(L),y=L(x)\}
-\]</span> ==Definition 1.6.1== Linear Mappings</p>
-<p>A mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called a linear mapping if <span class="math display">\[
-L(\alpha x+\beta y)=\alpha L(x)+\beta L(y)
-\]</span> for all <span class="math inline">\(x,y\in E_1\)</span> and all scalars <span class="math inline">\(\alpha,\beta\)</span>.</p>
-<p>In the remaining part of this section, we will assume that both spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces.</p>
-<p>==Definition 1.6.2== Continuous Mappings</p>
-<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be normed spaces. A mapping <span class="math inline">\(F\)</span> from <span class="math inline">\(E_1\)</span> to <span class="math inline">\(E_2\)</span> is called continuous at <span class="math inline">\(x_0\in E_1\)</span> if for any sequence <span class="math inline">\((x_n)\)</span> of elements of <span class="math inline">\(E_1\)</span> convergent to <span class="math inline">\(x_0\)</span>, the sequence <span class="math inline">\((F(x_n))\)</span> converges to <span class="math inline">\(F(x_0)\)</span>. i.e. F is continuous at <span class="math inline">\(x_0\)</span> if <span class="math inline">\(||x_n-x_0||\rightarrow 0\)</span> implies <span class="math inline">\(||F(x_n)-F(x_0)||\rightarrow 0\)</span>. If F is continuous at every <span class="math inline">\(x\in E_1\)</span>, then we simply say that <span class="math inline">\(F\)</span> is continuous.</p>
-<p>==Example 1.6.1==</p>
-<p>The norm in a normed space <span class="math inline">\(E\)</span> is continuous mapping from <span class="math inline">\(E\)</span> into <span class="math inline">\(R\)</span>. <span class="math display">\[
-||x_n-x||\rightarrow 0\implies |\space ||x_n||-||x||\space |\le||x_n-x||\rightarrow 0
-\]</span> ==Theorem 1.6.1==</p>
-<p>Let <span class="math inline">\(F:E_1\rightarrow E_2\)</span>. The following conditions are equivalent:</p>
-<ol type="a">
-<li><p><span class="math inline">\(F\)</span> is continuous</p></li>
-<li><p>The inverse image <span class="math inline">\(F^{-1}(U)\)</span> of any open set U of <span class="math inline">\(E_2\)</span> is open in <span class="math inline">\(E_1\)</span></p></li>
-<li><p>The inverse image <span class="math inline">\(F^{-1}(S)\)</span> of any closed set S of <span class="math inline">\(E_2\)</span> is closed in <span class="math inline">\(E_1\)</span></p></li>
-</ol>
-<p>Proof.</p>
-<p><span class="math inline">\((a)\rightarrow (b)\)</span></p>
-<p>If there exists an open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is not open in <span class="math inline">\(E_1\)</span></p>
-<p>there exists <span class="math inline">\(x\in F^{-1}(U)\)</span>, for all <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math inline">\(B(x,\varepsilon)\)</span> contains elements in <span class="math inline">\(E_1\backslash F^{-1}(U)\)</span></p>
-<p>Then we can choose the sequence <span class="math inline">\(x_1,x_2,\dotsm\in E_1\backslash F^{-1}(U)\)</span> satisfying <span class="math inline">\(x_n\in B(x,\frac{1}{n})\)</span> that means <span class="math inline">\(||x_n-x||\rightarrow 0\)</span></p>
-<p>However, $y=F(x)U $ that means there exists <span class="math inline">\(\epsilon&gt;0\)</span> such that <span class="math inline">\(B(y,\epsilon) \subseteq U\)</span> . <span class="math inline">\(x_n\notin F^{-1}(U)\)</span> means <span class="math inline">\(F(x_n)\notin U\)</span>.</p>
-<p><span class="math inline">\(F(x_n)\)</span> cannot converge to <span class="math inline">\(F(x)\)</span>. Proved.</p>
-<p><span class="math inline">\((b)\rightarrow (a)\)</span></p>
-<p>If for any open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is open in <span class="math inline">\(E_1\)</span>, then F is continuous.</p>
-<p>For all <span class="math inline">\(a\in F^{-1}(U)\)</span>, <span class="math inline">\(F(a)\in U\)</span>, <span class="math inline">\(U\)</span> is open and therefore for every <span class="math inline">\(a\)</span>, there exists <span class="math inline">\(\epsilon_1\)</span> such that <span class="math inline">\(B(F(a),\epsilon_1)\subseteq U\)</span> and <span class="math inline">\(a\in F^{-1}(B(F(a),\epsilon_1))\)</span>. There exists <span class="math inline">\(\epsilon_2\)</span> such that <span class="math inline">\(B(a,\epsilon_2) \subset F^{-1}(B(F(a),\epsilon_1))\)</span></p>
-<p>That mean <span class="math inline">\(||x-a||&lt;\epsilon_2\)</span> implies <span class="math inline">\(||F(x)-F(a)||&lt;\epsilon_1\)</span>. Q.E.D.</p>
-<p>==Theorem 1.6.2==</p>
-<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is continuous if and only if it is continuous at a point.</p>
-<p>Proof.</p>
-<p><span class="math inline">\(\implies\)</span> obviously</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Assume L is continuous at <span class="math inline">\(x_0 \in E\)</span>. We define sequence <span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for any point <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_n-x ||\rightarrow 0\)</span>.</p>
-<p>Since L is linear mapping, we have <span class="math display">\[
-||L(x_n-x+x_0-x_0)||=||L(x_n-x+x_0)-L(x_0)||
-\]</span> Since L is continuous at <span class="math inline">\(x_0\in E\)</span>, for every sequence converging to <span class="math inline">\(x_0\)</span>, the <span class="math inline">\(L\)</span> converges <span class="math inline">\(L(x_0)\)</span>. We have <span class="math display">\[
-||L(x_n-x+x_0)-L(x_0)||\rightarrow 0
-\]</span> Q.E.D.</p>
-<p>==Definition 1.6.3== Bounded linear mapping</p>
-<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called bounded if there exists a number K such that <span class="math display">\[
-||L(x)||\le K||x||
-\]</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
-<p>==Theorem 1.6.3==</p>
-<p>A linear mapping is continuous if and only if it is bounded.</p>
-<p>Proof.</p>
-<p><span class="math inline">\(\implies\)</span></p>
-<p>If the linear mapping is not bounded, that means for every number K, there exists some x such that <span class="math display">\[
-||L(x)||&gt;K||x||
-\]</span> then for every <span class="math inline">\(n-1\le|k_n|&lt; n\)</span>, there exists <span class="math inline">\(x_n \in E_1\)</span> such that <span class="math display">\[
-||L(x_n)||&gt;k_n||x_n||
-\]</span> We define the sequence <span class="math display">\[
-y_n=\frac{x_n}{k_n||x_n||}
-\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span> <span class="math display">\[
-||y_n||=\frac{1}{k_n}\rightarrow 0\\
-||L(y_n)||&gt;k_n||y_n||=1
-\]</span> Therefore, <span class="math inline">\(L\)</span> is not continuous.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>If L is bounded, then there exists a number K, for all <span class="math inline">\(x\in E_1\)</span> such that <span class="math display">\[
-||L(x)||\le K||x||
-\]</span> Then we define a sequence <span class="math inline">\((x_n)\)</span> converging to zero. When <span class="math inline">\(n\rightarrow \infty\)</span>, <span class="math display">\[
-||L(x_n)||\le K||x_n||\rightarrow 0
-\]</span> By theorem 1.6.2, The linear mapping L is continuous at zero point, then it is continuous linear mapping.</p>
-<p>Q.E.D.</p>
-<p>The space of all linear mapping from a vector space <span class="math inline">\(E_1\)</span> into a vector space <span class="math inline">\(E_2\)</span> becomes a vector space if addition and multiplication by scalars are defined as follows <span class="math display">\[
-(L_1+L_2)(x)=L_1(x)+L_2(x)\\
-(\lambda L)(x)=\lambda(L(x))
-\]</span> If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces, then the set of all bounded linear mappings from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span>, denoted by <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>, is a vector subspace of the space defined above.</p>
-<p>==Theorem 1.6.4==</p>
-<p>If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a normed space with norm defined by <span class="math display">\[
-||L||=\sup_{||x||=1}||L(x)||\quad \forall L\in \mathscr B(E_1,E_2)
-\]</span> Proof.</p>
-<p>Only show Triangle Inequality</p>
-<p><span class="math inline">\(\forall L_1,L_2\in \mathscr B(E_1,E_2)\)</span> <span class="math display">\[
-||L_1+L_2||=\sup_{||x||=1}||L_1(x)+L_2(x)||\le \sup_{||x||=1}||L_1(x)||+\sup_{||x||=1}||L_2(x)||=||L_1||+||L_2||
-\]</span> Q.E.D.</p>
-<p>It follows Theorem 1.6.4 that <span class="math inline">\(||L(x)||\le ||L||||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>. In fact, <span class="math inline">\(||L||\)</span> is the least number K such that <span class="math inline">\(||L(x)||\le K||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
-<p>The norm defined above is the standard norm in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>. It is usually called the ==operator norm==. Convergence with respect to this norm is called the uniform convergence of operator.</p>
-<p>==Theorem 1.6.5==</p>
-<p>If <span class="math inline">\(E_1\)</span> is normed space and <span class="math inline">\(E_2\)</span> is a Banach space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a Banach space.</p>
-<p>Proof.</p>
-<p>We only need to show that <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is complete.</p>
-<p>A normed space <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> converges to an element of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>.</p>
-<p>Let <span class="math inline">\((L_n)\)</span> be Cauchy sequence of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> and Let <span class="math inline">\(\forall x\in E_1\)</span></p>
-<p>We have <span class="math display">\[
-||L_m(x)-L_n(x)||\le ||L_m-L_n||||x||\rightarrow 0 \quad as\space n,m \rightarrow \infty
-\]</span> That means <span class="math inline">\((L_n(x))\)</span> is Cauchy sequence in <span class="math inline">\(E_2\)</span>. By completeness of <span class="math inline">\(E_2\)</span>, we have <span class="math inline">\(L(x)\in E_2\)</span> such that <span class="math display">\[
-L(x)=\lim_{n\rightarrow \infty} L_n(x)
-\]</span> Then we only need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> and <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span></p>
-<p>First we prove <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span>, we only need to prove <span class="math inline">\(\exists K,||L(x)||\le K||x||\)</span> <span class="math display">\[
-||L(x)||=||\lim_{n\rightarrow \infty }L_n(x)||=\lim_{n\rightarrow \infty}||L_n(x)||
-\]</span> Since <span class="math inline">\(E_2\)</span> is complete and Cauchy sequence <span class="math inline">\((L_n)\)</span> is bounded, that means <span class="math inline">\(||L_n||\le M\)</span> <span class="math display">\[
-\lim_{n\rightarrow \infty}||L_n(x)||\le M||x||\\
-||L(x)||\le M||x||
-\]</span> Then we need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> <span class="math display">\[
-||L_m-L_n||\rightarrow 0\\
-m\rightarrow \infty\\
-||L_n-L||\rightarrow 0
-\]</span> Q.E.D.</p>
-<p>==Theorem 1.6.6==</p>
-<p>Let L be a continuous linear mapping from a subspace of a normed space <span class="math inline">\(E_1\)</span> into a Banach space <span class="math inline">\(E_2\)</span>. Then L has a unique extension continuous linear mapping defined on the closure of the domain <span class="math inline">\(\mathscr D(L)\)</span>. In particular, if <span class="math inline">\(\mathscr D(L)\)</span> is dense in <span class="math inline">\(E_1\)</span>, then L has a unique extension to a continuous linear mapping defined on the whole space <span class="math inline">\(E_1\)</span>.</p>
-<p>==Theorem 1.6.7==</p>
-<p>If <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is a continuous linear mapping, then the null space <span class="math inline">\(\mathscr N(L)\)</span> is a closed subspace of <span class="math inline">\(E\)</span>. Moreover, if the domain <span class="math inline">\(\mathscr D(L)\)</span> is closed, then the graph <span class="math inline">\(\mathscr G(L)\)</span> is a closed subspace of <span class="math inline">\(E_1\times E_2\)</span>.</p>
-<p>==Theorem 1.6.9==</p>
-<p>Let <span class="math inline">\(\mathscr T\)</span> be a family of bounded linear mapping from a Banach space <span class="math inline">\(X\)</span> into a normed space <span class="math inline">\(Y\)</span>. If for every <span class="math inline">\(x\in X\)</span> there exists a constant <span class="math inline">\(M_x\)</span> such that <span class="math inline">\(||T(x)||\le M_x\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>, then there exists a constant <span class="math inline">\(M&gt;0\)</span> such that <span class="math inline">\(||T||\le M\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -713,7 +713,7 @@ m\rightarrow \infty\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

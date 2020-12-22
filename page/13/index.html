@@ -215,6 +215,203 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-07-07 23:51:33" itemprop="dateModified" datetime="2019-07-07T23:51:33+08:00">2019-07-07</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="adjoint-and-self-adjoint-operators">4.4 Adjoint and Self-Adjoint Operators</h2>
+<p>Let A be a bounded operator on a Hilbert Space H. For every fixed <span class="math inline">\(x_0\in H\)</span>, the functional <span class="math inline">\(f\)</span> defined on H by <span class="math display">\[
+f(x)=&lt;Ax,x_0&gt;
+\]</span> is bounded linear functional on H. Thus, by Riesz Representation Theorem, there exists unique <span class="math inline">\(y_0\in H\)</span> such that <span class="math inline">\(f(x)=&lt;x,y_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>, or, equivalently, <span class="math inline">\(&lt;Ax,x_0&gt;=&lt;x,y_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>. If we denote by <span class="math inline">\(A^*\)</span> the operator which to every <span class="math inline">\(x_0\in H\)</span> assigns that unique <span class="math inline">\(y_0\)</span>, then we have<span class="math inline">\(&lt;Ax,y&gt;=&lt;x,A^*y&gt;\)</span> for all <span class="math inline">\(x,y\in H\)</span>.</p>
+<p>==Definition 4.4.1== (Adjoint Operator)</p>
+<p>Let A be a bounded operator on a Hilbert Space H. The operator <span class="math inline">\(A^*:H\rightarrow H\)</span> defined by <span class="math display">\[
+&lt;Ax,y&gt;=&lt;x,A^*y&gt;\quad \forall x,y\in E
+\]</span> is called the adjoint operator of A.</p>
+<p>The following properties are direct consequences of the above definition. <span class="math display">\[
+(A+B)^*=A^*+B^*\\
+(\alpha A)^*=\bar \alpha A^*\\
+(A^*)^*=A\\
+\mathscr J^*=\mathscr J\\
+(AB)^*=B^*A^*
+\]</span> for arbitrary operators A and B and scalar <span class="math inline">\(\alpha\)</span>.</p>
+<p>==Theorem 4.4.1==</p>
+<p>The adjoint operator <span class="math inline">\(A^*\)</span> of a bounded operator A is bounded. Moreover, we have <span class="math inline">\(||A||=||A^*||\)</span> and <span class="math inline">\(||A^*A||=||A||^2\)</span></p>
+<p>In general, <span class="math inline">\(A\)</span> and <span class="math inline">\(A^*\)</span> need not be equal. Operators for which <span class="math inline">\(A=A^*\)</span> are of special interest.</p>
+<p>==Definition 4.4.2== (Self-adjoint Operator)</p>
+<p>If <span class="math inline">\(A^*=A\)</span>, i.e. <span class="math inline">\(&lt;Ax,y&gt;=&lt;x,Ay&gt;\)</span> for all <span class="math inline">\(x,y \in H\)</span>, then <span class="math inline">\(A\)</span> is called self-adjoint (or Hermitian).</p>
+<p>==Theorem 4.4.2==</p>
+<p>Let A be a bounded operator on a Hilbert Space H. The operator <span class="math inline">\(T_1=A^*A\)</span> and <span class="math inline">\(T_2=A+A^*\)</span> are self-adjoint.</p>
+<p>==Theorem 4.4.3==</p>
+<p>The product of two self-adjoint operators is self-adjoint if and only if the operators are commute.</p>
+<p>==Corollary 4.4.1==</p>
+<p>If A is self-adjoint, then so is any polynomial of A. <span class="math display">\[
+\alpha_n A^n+\dotsm+\alpha_1 A+\alpha_0\mathscr J
+\]</span> with real coefficients <span class="math inline">\(\alpha_n,\dotsm,\alpha_0\)</span>.</p>
+<p>In the definition of the adjoint operator of A we have assumed that the domain of A is the entire space H. Then the existence and uniqueness of the adjoint operator <span class="math inline">\(A^*\)</span> can be guaranteed by the Riesz Representation Theorem. In practice, we often deal with the operators defined on a proper subspace of H, for example, the differential operator. In such case, the adjoint operator can be defined as follows.</p>
+<p>Let <span class="math inline">\(A:\mathscr D(A)\rightarrow H\)</span> and <span class="math inline">\(B:\mathscr D(B)\rightarrow H\)</span> be operators, <span class="math inline">\(\mathscr D(A),\mathscr D(B)\subset H\)</span>. Without loss of generality, we can assume that <span class="math inline">\(\mathscr D(A)\)</span> and <span class="math inline">\(\mathscr D(B)\)</span> are vector spaces. Then B is called an adjoint operator of A if <span class="math display">\[
+&lt;Ax,y&gt;=&lt;x,By&gt;\quad\forall x\in\mathscr D(A),y\in\mathscr D(B)
+\]</span> In this case, an adjoint operator need not be unique. It can be proved that if <span class="math inline">\(\mathscr D(A)\)</span> is dense in H, the adjoint is unique. Operators defined on proper subspaces of Hilbert space will be discussed in more detail in section 4.12.</p>
+<p>==Theorem 4.4.5==</p>
+<p>Let T be a self-adjoint operator on a Hilbert Space H. Then <span class="math display">\[
+||T||=\sup_{||x||=1} |&lt;Tx,x&gt;|
+\]</span> ==Definition 4.4.3== (Anti-Hermitian Operator)</p>
+<p>An operator A is called anti-Hermitian if <span class="math inline">\(A=-A^*\)</span>.</p>
+<h2 id="invertible-normal-isometric-and-unitary-operators">4.5 Invertible, Normal, Isometric, and Unitary Operators</h2>
+<p>==Definition 4.5.1== (Inverse Operator)</p>
+<p>Let A be an operator defined on a vector space of E. An operator B defined on <span class="math inline">\(\mathscr R(A)\)</span> is called inverse of A if <span class="math inline">\(ABx=x\)</span> for all <span class="math inline">\(x\in \mathscr R(A)\)</span> and <span class="math inline">\(BAx=x\)</span> for all <span class="math inline">\(x\in \mathscr D(A)\)</span>. An operator which has an inverse is called invertible. The inverse of A will be denoted as <span class="math inline">\(A^{-1}\)</span>.</p>
+<p>If an operator has an inverse, then it is unique. Suppose <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span> are inverses of A, then <span class="math display">\[
+B_1=B_1\mathscr J=B_1AB_2=\mathscr JB_2=B_2
+\]</span> Note also that <span class="math display">\[
+\mathscr D(A^{-1})=\mathscr R(A) \quad and\quad \mathscr R(A^{-1})=\mathscr D(A)
+\]</span> ==Theorem 4.5.1==</p>
+<ol type="a">
+<li><p>The inverse of a linear operator is a linear operator</p></li>
+<li><p>An operator A is invertible if and only if <span class="math inline">\(Ax=0\)</span> implies <span class="math inline">\(x=0\)</span></p></li>
+<li><p>If an operator A is invertible and vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span> are linearly independent, then <span class="math inline">\(Ax_1,Ax_2,\dotsm,Ax_n\)</span> are linearly independent.</p></li>
+<li><p>If operators A and B are invertible, then operator AB is invertible and we have <span class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span></p></li>
+</ol>
+<p>It follows from (c) that if E is finite dimensional vector space and A is linear invertible operator on E, then <span class="math inline">\(\mathscr R(A)=E\)</span>. As the following example shows, in infinite dimensional vector space, it is not necessarily true.</p>
+<p>==Example 4.5.1== Let <span class="math inline">\(E=l^2\)</span>. Define an operator A on E by <span class="math display">\[
+A(x_1,x_2,\dotsm)=(0,x_1,x_2,\dotsm).
+\]</span> Clearly, this is a linear invertible operator on <span class="math inline">\(l^2\)</span> whose range is proper subspace of <span class="math inline">\(l^2\)</span>.</p>
+<p><strong>Invertible of a bounded operator is not necessarily bounded.</strong></p>
+<p>==Theorem 4.5.2==</p>
+<p>Let A be a bounded operator on a Hilbert space H such that <span class="math inline">\(\mathscr R(A)=H\)</span>. If A has a bounded inverses, then the adjoint <span class="math inline">\(A^*\)</span> is invertible and <span class="math inline">\((A^*)^{-1}=(A^{-1})^*\)</span>.</p>
+<p>==Corollary 4.5.1==</p>
+<p>If a bounded self-adjoint operator A has bounded inverse <span class="math inline">\(A^{-1}\)</span>, then <span class="math inline">\(A^{-1}\)</span> is self-adjoint.</p>
+<p>==Definition 4.5.2== (Normal Operator)</p>
+<p>A bounded operator <span class="math inline">\(T\)</span> is called a normal operator if it commutes with its adjoint. i.e. <span class="math inline">\(TT^*=T^*T\)</span>.</p>
+<p>==Theorem 4.5.3==</p>
+<p>A bounded operator T is normal if and only if <span class="math inline">\(||Tx||=||T^*x||\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
+<p>==Theorem 4.5.4==</p>
+<p>If <span class="math inline">\(A\)</span> is normal, then <span class="math inline">\((\alpha \mathscr J-A)\)</span> is normal for any <span class="math inline">\(\alpha \in C\)</span>.</p>
+<p>==Theorem 4.5.5== Let T be a bounded operator on a Hilbert space H and let A and B be self-adjoint operators on H such that <span class="math inline">\(T=A+iB\)</span>. Then <span class="math inline">\(T\)</span> is normal if and only if A and B commute.</p>
+<p>==Definition 4.5.3== (Isometric Operator)</p>
+<p>A bounded operator T on a Hilbert Space H is called an isometric operator if <span class="math inline">\(||Tx||=||x||\)</span> for all <span class="math inline">\(x\in H\)</span>.</p>
+<p>==Theorem 4.5.6==</p>
+<p>A bounded operator T defined on a Hilbert Space H is isometric if and only if <span class="math inline">\(T^*T=\mathscr J\)</span> on H.</p>
+<p>==Definition 4.5.4== (Unitary Operator)</p>
+<p>A bounded operator T on a Hilbert space H is called a unitary operator if <span class="math inline">\(T^*T=TT^*=\mathscr J\)</span> on H.</p>
+<p>==Theorem 4.5.7==</p>
+<p>An operator T is unitary if and only if it is invertible and <span class="math inline">\(T^{-1}=T^*\)</span>.</p>
+<p>==Theorem 4.5.8==</p>
+<p>Let T be a unitary operator. Then</p>
+<ol type="a">
+<li><p>T is isometric</p></li>
+<li><p>T is normal</p></li>
+<li><p><span class="math inline">\(T^{-1}\)</span> and <span class="math inline">\(T^{*}\)</span> are unitary.</p></li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -435,221 +632,11 @@ f(x)=\phi(x,x_f)\quad \forall x\in H
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-title-link" itemprop="url">Untitled</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-07 22:02:17" itemprop="dateModified" datetime="2019-07-07T22:02:17+08:00">2019-07-07</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="orthogonal-and-orthonormal-system">3.6 Orthogonal and Orthonormal system</h2>
-<p>By a basis of a vector space E, we mean a linearly independent family <span class="math inline">\(\mathscr B\)</span> of vectors from E such that any vector <span class="math inline">\(x\in E\)</span> can be written as <span class="math inline">\(x=\sum_{n=1}^m \lambda_nx_n\)</span> where <span class="math inline">\(x_n\in \mathscr B\)</span> and <span class="math inline">\(\lambda_n\)</span>’s are scalars. In the inner product space, orthonormal bases are of much greater importance. Instead of finite combinations <span class="math inline">\(\sum_{n=1}^m \lambda_nx_n\)</span>, infinite sums are allowed and the ==condition of linear independence== is replaced by orthogonality.</p>
-<p>==Definition 3.6.1== (Orthogonal and Orthonormal systems)</p>
-<p>Let E be an inner product space. A family S of non-zero vectors in E is called an orthogonal system if <span class="math inline">\(x\perp y\)</span> for any two distinct elements of S. If, in addition, <span class="math inline">\(||x||=1\)</span> for all <span class="math inline">\(x\in S\)</span>, then S is called an orthonormal system.</p>
-<p>Every orthogonal set of non-zero vectors can be normalized. If S is an orthogonal system, then the family <span class="math display">\[
-S_1=\{\frac{x}{||x||}:x\in S\} 
-\]</span> is an orthonormal system.</p>
-<p>==Theorem 3.6.1==</p>
-<p>Orthogonal systems are linearly independent.</p>
-<p>==Definition 3.6.2== (Orthonormal sequence)</p>
-<p>A sequence of vectors which constitute an orthonormal system is called an orthonormal sequence.</p>
-<p>The condition of orthogonality of a sequence <span class="math inline">\((x_n)\)</span> can be expressed in terms of the Kronecker delta symbol <span class="math display">\[
-&lt;x_m,x_n&gt;=\delta_{mn}=\begin{cases}0&amp;m\neq n\\1&amp;m=n\end{cases}
-\]</span> ==Example 3.6.1==</p>
-<h2 id="properties-of-orthonormal-systems">3.7 Properties of Orthonormal systems</h2>
-<p>In section 3.3, we proved that Pythagorean formula holds for any pair of orthogonal vectors in an inner product space. It turns out that it can be generalized to any finite number of orthogonal vectors.</p>
-<p>==Theorem 3.7.1== (Pythagorean formula)</p>
-<p>If <span class="math inline">\(x_1,\dotsm,x_n\)</span> are orthogonal vectors in an inner product space, then <span class="math display">\[
-||\sum_{k=1}^nx_k||^2=\sum_{k=1}^n||x_k||^2
-\]</span> ==Theorem 3.7.2== Bessel’s equality and inequality</p>
-<p>Let <span class="math inline">\(x_1,\dotsm,x_n\)</span> be an orthonormal set of vectors in an inner product space E. Then, for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
-\left|\left|x-\sum_{k=1}^n &lt;x,x_k&gt;x_k\right|\right|^2=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2
-\]</span> and <span class="math display">\[
-\sum_{k=1}^n|&lt;x,x_k&gt;|^2\le ||x||^2
-\]</span> Proof.</p>
-<p>In view of the Pythagorean Formula, we have <span class="math display">\[
-\left|\left|\sum_{k=1}^n\alpha_kx_k\right|\right|^2=\sum_{k=1}^n|\alpha_k|^2
-\]</span> Then <span class="math display">\[
-\left|\left|x-\sum_{k=1}^n\alpha_kx_k\right|\right|^2\\
-=\left\langle x-\sum_{k=1}^n\alpha_kx_k,x-\sum_{k=1}^n\alpha_kx_k \right\rangle\\
-=||x||^2
--\sum_{k=1}^n\bar \alpha_k\left\langle x,x_k\right\rangle
--\sum_{k=1}^n\alpha_k\overline{\left\langle x,x_k \right\rangle}
-+\sum_{k=1}^n|\alpha_k|^2||x_k||^2\\
-=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2+\sum_{k=1}^n |&lt;x,x_k&gt;-\alpha_k|^2
-\]</span> Then let <span class="math inline">\(\alpha_k=&lt;x,x_k&gt;\)</span>, Q.E.D.</p>
-<ol type="1">
-<li><p>This choice of <span class="math inline">\(\alpha_k\)</span>’s minimizes <span class="math inline">\(||x-\sum_{k=1}^n\alpha_kx_k||\)</span> and thus it provides the best approximation of <span class="math inline">\(x\)</span> by a linear combination of vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span>.</p></li>
-<li><p>If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence of vectors in an inner product space E, then we have <span class="math display">\[
-\sum_{n=1}^\infty |&lt;x,x_k&gt;|^2\le ||x||^2
-\]</span> This shows that the series <span class="math inline">\(\sum_{k=1}^\infty |&lt;x,x_k&gt;|^2\)</span> converges for every <span class="math inline">\(x\in E\)</span>.</p>
-<p>In another words, the sequence <span class="math inline">\((&lt;x,x_n&gt;)\)</span> is an elements of <span class="math inline">\(l^2\)</span>. We can say that an orthonormal sequence in E induces a mapping from E into <span class="math inline">\(l^2\)</span>. <span class="math display">\[
-x\sim \sum_{n=1}^\infty &lt;x,x_n&gt;x_n
-\]</span> is called generalized Fourier series of <span class="math inline">\(x\)</span>. In general we do not know whether the series if convergent. However, the next theorem show that the completeness of the space ensures the convergence.</p></li>
-</ol>
-<p>==Theorem 3.7.3==</p>
-<p>Let <span class="math inline">\((x_n)\)</span> be an orthonormal sequence in a Hilbert space H and let <span class="math inline">\((\alpha_n)\)</span> be a sequence of complex numbers. Then the series <span class="math inline">\(\sum_{n=1}^\infty\alpha_n x_n\)</span> converges if and only if $_{n=1}^|_n|^2&lt;$, and in that case <span class="math display">\[
-||\sum_{n=1}^\infty \alpha_nx_n||^2=\sum_{n=1}^\infty |\alpha_n|^2
-\]</span> The proceeding theorem imply that in a Hilbert space H the series <span class="math inline">\(\sum_{n=1}^\infty &lt;x,x_n&gt;x_n\)</span> converges for every <span class="math inline">\(x\in H\)</span>. However, it can happen that it converges to an element different from <span class="math inline">\(x\)</span>.</p>
-<p>==Example 3.7.1==</p>
-<p>Let <span class="math inline">\(H=L^2([-\pi,\pi])\)</span> and let <span class="math inline">\(x_n=\frac{1}{\sqrt \pi}\sin nt\)</span> for <span class="math inline">\(n=1,2,\dotsm\)</span>. The sequence <span class="math inline">\((x_n)\)</span> is an orthonormal set in H. On the other hand, for <span class="math inline">\(x(t)=\cos t\)</span>, we have <span class="math display">\[
-\sum_{n=1}^\infty &lt;x,x_n&gt;x_n(t)=\sum_{n=1}^\infty [\frac{1}{\sqrt \pi}\int _{-\pi}^\pi \cos t\sin nt dt]\frac{\sin nt}{\sqrt \pi}=0\neq \cos t
-\]</span> If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence in an inner product space E, then for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
-\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2&lt;\infty
-\]</span> and consequently, <span class="math display">\[
-\lim_{n\rightarrow \infty }&lt;x,x_n&gt;=0
-\]</span> Therefore, orthonormal sequence are weakly convergent to zero. But <span class="math inline">\(||x_n||=1\)</span>, they are not strongly convergent.</p>
-<p>==Definition 3.7.1== (Complete orthonormal sequence)</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in an inner product space E is said to be complete if for every <span class="math inline">\(x\in E\)</span> we have <span class="math display">\[
-x=\sum_{n=1}^\infty &lt;x,x_n&gt;x_n
-\]</span> ==Definition 3.7.2== (Orthonormal basis)</p>
-<p>An orthonormal system B in an inner product space E is called an orthonormal basis if every <span class="math inline">\(x\in E\)</span> has a unique representation <span class="math display">\[
-x=\sum_{n=1}^\infty \alpha_nx_n
-\]</span> where <span class="math inline">\(\alpha_n \in C\)</span> and <span class="math inline">\(x_n\)</span>’s are distinct elements of B.</p>
-<p>==Theorem 3.7.4==</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math inline">\(&lt;x,x_n&gt;=0\)</span> for all <span class="math inline">\(n\in N\)</span> implies <span class="math inline">\(x=0\)</span></p>
-<p>==Theorem 3.7.5== (Parseval’s Formula)</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math display">\[
-||x||^2=\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2
-\]</span> for every <span class="math inline">\(x\in H\)</span>.</p>
-<h2 id="orthogonal-complements-and-projection-theorem">3.9 Orthogonal Complements and projection theorem</h2>
-<p>By a subspace of a Hilbert space, we mean a vector subspace of H. A subspace of a Hilbert space is an inner product space. If we additionally assume that S is a closed subspace of H, then S is a Hilbert space itself, because a closed subspace of complete normed space is complete.</p>
-<p>==Definition 3.9.1== Orthogonal Complement</p>
-<p>Let S be a non-empty subset of a Hilbert space H. An element <span class="math inline">\(x\in H\)</span> is said to be orthogonal to S, denoted by <span class="math inline">\(x\perp S\)</span>, if <span class="math inline">\(&lt;x,y&gt;=0\)</span> for every <span class="math inline">\(y\in S\)</span>. The set of all elements of H orthogonal to S, denoted by <span class="math inline">\(S^\perp\)</span> is called the orthogonal complement of S. In symbols, <span class="math display">\[
-S^\perp =\{x\in H,x\perp S\}
-\]</span> The orthogonal complement of <span class="math inline">\(S^\perp\)</span> is denoted by <span class="math inline">\(S^{\perp\perp}\)</span></p>
-<p>Two subsets of A and B is said to be orthogonal if <span class="math inline">\(x\perp y\)</span> for every <span class="math inline">\(x\in A\)</span> and <span class="math inline">\(y\in B\)</span>. This is denoted by <span class="math inline">\(A\perp B\)</span>. Note that if <span class="math inline">\(A\perp B\)</span>, then <span class="math inline">\(A\bigcap B=\empty\)</span></p>
-<p>==Theorem 3.9.1==</p>
-<p>For any subset S of a Hilbert space H, the set <span class="math inline">\(S^\perp\)</span> is a closed subspace of H.</p>
-<p>==Definition 3.9.2== (Convex sets)</p>
-<p>A set <span class="math inline">\(U\)</span> in a vector space is called convex if for any <span class="math inline">\(x,y \in U\)</span> and <span class="math inline">\(\alpha\in(0,1)\)</span>, we have <span class="math inline">\(\alpha x+(1-\alpha)y \in U\)</span></p>
-<p>The following theorem, concerning the minimization of the norm, is of fundamental importance in approximation theory.</p>
-<p>==Theorem 3.9.2== (The closet point property)</p>
-<p>Let S be a closed convex subset of a Hilbert space H. For every point <span class="math inline">\(x\in H\)</span> there exists a unique point <span class="math inline">\(y\in S\)</span> such that <span class="math display">\[
-||x-y||=\inf_{z\in S}||x-z||
-\]</span> ==Theorem 3.9.3==</p>
-<p>Let S be a closed convex subset of a real Hilbert space H, <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(x\in H\)</span>. Then the following conditions are equivalent.</p>
-<ol type="a">
-<li><p><span class="math inline">\(||x-y||=\inf_{z\in S}||x-z||\)</span></p></li>
-<li><p><span class="math inline">\(&lt;x-y,z-y&gt;\le 0\)</span> for all <span class="math inline">\(z\in S\)</span></p></li>
-</ol>
-<p>==Theorem 3.9.4== (Orthogonal projection)</p>
-<p>If S is a closed subspace of a Hilbert space H, then every element <span class="math inline">\(x\in H\)</span> has a unique decomposition in the form <span class="math inline">\(x=y+z\)</span> where <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(z\in S^\perp\)</span></p>
-<p>==Theorem 3.9.5==</p>
-<p>If S is a closed subspace of a Hilbert space H, then <span class="math inline">\(S^{\perp\perp}=S\)</span>.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -694,7 +681,7 @@ S^\perp =\{x\in H,x\perp S\}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

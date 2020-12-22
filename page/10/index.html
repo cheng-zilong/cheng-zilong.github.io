@@ -215,6 +215,312 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/" class="post-title-link" itemprop="url">4. Gradient Methods (2) - Proximal Algorithms</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-31 19:37:15" itemprop="dateModified" datetime="2019-10-31T19:37:15+08:00">2019-10-31</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/" class="post-meta-item leancloud_visitors" data-flag-title="4. Gradient Methods (2) - Proximal Algorithms" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="proximal-algorithms">4.6 Proximal Algorithms</h2>
+<p>In this section, some important algorithms for solving convex optimization problems will rely on the use of proximal operators.</p>
+<h3 id="proximal-minimization">4.6.1 Proximal minimization</h3>
+<p>The <strong>proximal minimization algorithm</strong>, also called <strong>proximal iteration</strong> or <strong>proximal point algorithm</strong>, is <span class="math display">\[
+x^{k+1}=P_{\lambda f}(x^k),
+\]</span> where <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R\cup \{+\infty\}\)</span> is a closed proper convex function, <span class="math inline">\(k\)</span> is the iteration number, and <span class="math inline">\(x^k\)</span> denotes the <span class="math inline">\(k\)</span>th iterate of the algorithm. We have shown that <span class="math inline">\(x^k\)</span> will converge to the optimal value. A variation of this method is to replace the constant <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda^k\)</span>. Convergence is guaranteed provided <span class="math inline">\(\lambda^k&gt;0\)</span> and <span class="math inline">\(\sum_{k=1}^\infty \lambda^k=\infty\)</span>.</p>
+<p><strong>Interpretations</strong></p>
+<p>The proximal minimization algorithm an be interpreted many ways. One simple perspective is that it is the standard gradient method applied to the Moreau envelope <span class="math inline">\(M_f\)</span> rather than <span class="math inline">\(f\)</span>. Another is that it is simple iteration for finding a fixed point of <span class="math inline">\(P_{\lambda f}\)</span>, which works because <span class="math inline">\(P_{\lambda f}\)</span> is firmly nonexpansive.</p>
+<p><em>Disappearing Tikhonov regularization</em></p>
+<p>Another simple interpretation is a quadratic regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. In each step, we solve the regularized problem, <span class="math display">\[
+\min_x f(x)+(1/2\lambda)||x-x^k||_2^2.
+\]</span></p>
+<p>The second term can be interpreted as regularization centered at the previous iterate <span class="math inline">\(x^k\)</span>. It is a damping term that encourages <span class="math inline">\(x^{k+1}\)</span> not to be very far from <span class="math inline">\(x^k\)</span>. As the proximal algorithm converges, <span class="math inline">\(x^{k+1}\)</span> gets close to <span class="math inline">\(x^k\)</span>, so the effect of the quadratic regularization goes to zero.</p>
+<p><em>Gradient flow</em></p>
+<p>Proximal minimization can be interpreted as a discretized method for solving a differential equation whose equilibrium points are the minimizers of a differentiable convex function <span class="math inline">\(f\)</span>. The differential equation <span class="math display">\[
+\frac{d}{dt}x(t)=-\nabla f(x(t)),
+\]</span> with variable <span class="math inline">\(x:\mathbb R_+\rightarrow \mathbb R^n\)</span>, is called the gradient flow for <span class="math inline">\(f\)</span>. The equilibrium points of the gradient flow are the zeros of <span class="math inline">\(\nabla f\)</span>, which are exactly the minimizers of <span class="math inline">\(f\)</span>.</p>
+<p>My thinking is that <span class="math inline">\(\dot x(t)\)</span> is the velocity in some position <span class="math inline">\(x(t)\)</span>, and the velocity is actually the gradient of the function in the position <span class="math inline">\(x(t)\)</span>. So the next position will go alongside the velocity.</p>
+<p>The idea of the gradient flow can be generalized to cases where <span class="math inline">\(f\)</span> is not differentiable via the subgradient differential inclusion, <span class="math display">\[
+\frac{d}{dt}x(t)\in-\partial f(x(t)).
+\]</span> Let <span class="math inline">\(x^k\)</span> be the approximation of <span class="math inline">\(x(kh)\)</span>, where <span class="math inline">\(h&gt;0\)</span> is a small step size. The simplest discretization is <span class="math display">\[
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k),
+\]</span> known as the <strong>forward Euler discretization</strong>. Then we have <span class="math display">\[
+x^{k+1}=x^k-h\nabla f(x^k).
+\]</span> This is the standard gradient descent iteration with step size <span class="math inline">\(h\)</span>.</p>
+<p>The <strong>backward Euler method</strong> uses the discretization, <span class="math display">\[
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1}).
+\]</span> This method is known to have better approximation properties than forward Euler, especially for differential equations that converge. Its main disadvantage is that it cannot be rewritten as an iteration that gives <span class="math inline">\(x^{k+1}\)</span> <strong>explicitly</strong> in terms of <span class="math inline">\(x^k\)</span>. For this reason, it is also called <strong>implicit method</strong>. To find <span class="math inline">\(x^{k+1}\)</span>, we solve the equation, <span class="math display">\[
+x^{k+1}+h\nabla f(x^{k+1})=x^k,
+\]</span> which is equivalent to <span class="math display">\[
+x^{k+1}=P_{h\lambda}(x^k),
+\]</span> by using <span class="math inline">\(P_{\lambda f}=(I+\lambda \partial f)^{-1}\)</span>.</p>
+<p>Thus, the proximal minimization method is the backward Euler method for numerical integration applied to the gradient flow differential equation. The parameter <span class="math inline">\(\lambda\)</span> in the standard proximal minimization method corresponds to the time step used in the discretization.</p>
+<h3 id="proximal-gradient-method">4.6.2 Proximal gradient method</h3>
+<p>Consider the problem <span class="math display">\[
+\min f(x)+g(x),
+\]</span> where <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> and <span class="math inline">\(g:\mathbb R^n\rightarrow \mathbb R\cup\{+\infty\}\)</span> are closed proper convex and <span class="math inline">\(f\)</span> is differentiable. Since <span class="math inline">\(g\)</span> can be extended valued, it can be used to encode constraints on the variable <span class="math inline">\(x\)</span>. The proximal gradient method is <span class="math display">\[
+x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)),
+\]</span> where <span class="math inline">\(\lambda ^k&gt;0\)</span> is a step size.</p>
+<p>When <span class="math inline">\(\nabla f\)</span> is Lipschitz continuous with constant <span class="math inline">\(L\)</span>, this method can be shown to converge with rate <span class="math inline">\(\mathcal O(1/k)\)</span> when a fixed step size <span class="math inline">\(\lambda^k=\lambda \in (0,1/L]\)</span> is used. If <span class="math inline">\(L\)</span> is not known, the step sizes <span class="math inline">\(\lambda^k\)</span> can be found by a line search, that is, their values are chosen in each step. The simple one is shown in the following (by Beck and Teboulle).</p>
+<hr>
+<p><strong>Given</strong> <span class="math inline">\(x^k\)</span>, <span class="math inline">\(\lambda^{k-1}\)</span>, and parameter <span class="math inline">\(\beta \in (0,1)\)</span>.</p>
+<p><strong>Let</strong> <span class="math inline">\(\lambda = \lambda^{k-1}\)</span>.</p>
+<p><strong>Repeat</strong></p>
+<ol type="1">
+<li>Let <span class="math inline">\(z=P_{\lambda g}(x^k-\lambda \nabla f(x^k))\)</span>.</li>
+<li><strong>Break</strong> if <span class="math inline">\(f(z)\le \hat f_\lambda(z,x^k)\)</span>.</li>
+<li><strong>Update</strong> <span class="math inline">\(\lambda = \beta \lambda\)</span>.</li>
+</ol>
+<p><strong>Return</strong> <span class="math inline">\(\lambda^k=\lambda\)</span>, <span class="math inline">\(x^{k+1}=z\)</span>.</p>
+<hr>
+<p><strong>Special cases</strong></p>
+<p>The proximal gradient method reduces to other well-known algorithms in various special cases. When <span class="math inline">\(g=\delta_\mathcal C\)</span>, <span class="math inline">\(P_{\lambda g}\)</span> is projection onto <span class="math inline">\(\mathcal C\)</span>, in which cases it reduces to the <strong>projected gradient method</strong>. When <span class="math inline">\(f=0\)</span>, then it reduces to <strong>proximal minimization</strong>, and when <span class="math inline">\(g=0\)</span>, it reduces to the standard <strong>gradient descent method</strong>.</p>
+<p><strong>Interpretations</strong></p>
+<p><em>Majorization-minimization</em></p>
+<p>We first interpret the proximal gradient method as an example of a majorization-minimization algorithm, a large class of algorithms that includes the gradient method, Newton’s method, and the EM algorithm as special cases.</p>
+<p>A <strong>majorization-minimization</strong> algorithm for minimizing a function <span class="math inline">\(\varphi:\mathbb R^n\rightarrow \mathbb R\)</span> consists of the iteration, <span class="math display">\[
+x^{k+1}=\arg\min_{x}\hat \varphi (x,x^k),
+\]</span> where <span class="math inline">\(\hat \varphi(\cdot,x^k)\)</span> is a convex upper bound to <span class="math inline">\(\varphi\)</span> that is tight at <span class="math inline">\(x^k\)</span>, i.e., <span class="math inline">\(\hat \varphi(x,x^k)\ge \varphi(x)\)</span> and <span class="math inline">\(\hat \varphi(x,x)= \varphi(x)\)</span> for all <span class="math inline">\(x\)</span>. The reason for the name should be clear, such algorithms involve iteratively majorizing (upper bounding) the objective and then minimizing the majorization.</p>
+<p>For an upper bound of <span class="math inline">\(f\)</span>, consider the function <span class="math inline">\(\hat f_{\lambda }\)</span> given by <span class="math display">\[
+\hat f_{\lambda}(x,y)=f(y)+\nabla f(y)^T(x-y)+(1/2\lambda)||x-y||_2^2,
+\]</span> with <span class="math inline">\(\lambda&gt;0\)</span>. For fixed <span class="math inline">\(y\)</span>, this function is convex, satisfies <span class="math inline">\(\hat f_\lambda (x,x)=f(x)\)</span>, and is an upper bound on <span class="math inline">\(f\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>, where <span class="math inline">\(L\)</span> is a Lipschitz constant of <span class="math inline">\(\nabla f\)</span>. The algorithm <span class="math display">\[
+x^{k+1}=\arg\min_x\hat f_\lambda (x,x^k)
+\]</span> is thus majorization-minimization algorithm. In fact, it is precisely the standard gradient method for minimizing <span class="math inline">\(f\)</span>.</p>
+<p>Then the function <span class="math inline">\(q_\lambda\)</span> given by <span class="math display">\[
+q_\lambda(x,y)=\hat f_\lambda(x,y)+g(x)
+\]</span> is similarly a surrogate for <span class="math inline">\(f+g\)</span> when <span class="math inline">\(\lambda \in (0,1/L]\)</span>. The majorization-minimization algorithm, <span class="math display">\[
+x^{k+1}=\arg\min_x q_\lambda (x,x^k)
+\]</span> can be shown to be equivalent to the proximal gradient iteration, <span class="math display">\[
+x^{k+1}=P_{\lambda^k g}(x^k-\lambda ^k\nabla f(x^k)).
+\]</span> <em>Fixed point iteration</em></p>
+<p>The proximal gradient algorithm can also be interpreted as a fixed point iteration. A point <span class="math inline">\(x^*\)</span> is a minimizer if and only if <span class="math display">\[
+0\in\nabla f(x^*)+\partial g(x^*).
+\]</span> For any <span class="math inline">\(\lambda &gt;0\)</span>, this optimality condition holds if and only if the following equivalent statements hold, <span class="math display">\[
+\begin{array}{rcl}
+0 &amp;\in&amp; \lambda\nabla f(x^*)+\lambda\partial g(x^*)\\
+0 &amp;\in&amp; \lambda\nabla f(x^*)-x^*+x^*+\lambda\partial g(x^*)\\
+(I+\lambda \partial g)(x^*) &amp;\ni&amp; (I-\lambda\nabla f)(x^*)\\
+x^* &amp;=&amp; (I+\lambda \partial g)^{-1}(I-\lambda\nabla f)(x^*)\\
+x^* &amp;=&amp; P_{\lambda g}(x^*-\lambda\nabla f(x^*)).
+\end{array}
+\]</span> The last two expressions hold with equality because proximal operator is single valued.</p>
+<p>The last two expression says that <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(f+g\)</span> if and only if it is a fixed point of the <strong>forward-backward operator</strong>, <span class="math display">\[
+(I+\lambda \partial g)^{-1}(I-\lambda\nabla f).
+\]</span> <em>Forward-backward integration of gradient flow</em></p>
+<p>The proximal gradient method can be interpreted using <strong>gradient flows</strong>. <span class="math display">\[
+\frac{d}{dt}x(t)=-\nabla f(x(t))-\nabla g(x(t)),
+\]</span> assuming that <span class="math inline">\(g\)</span> is also differentiable.</p>
+<p>Then we consider the following discretization, <span class="math display">\[
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^k)-\nabla g(x^{k+1}).
+\]</span> Then we have <span class="math display">\[
+x^{k+1} = (I+h \nabla g)^{-1}(I-\lambda\nabla f)x^k.
+\]</span></p>
+<h3 id="accelerated-proximal-gradient-method">4.6.3 Accelerated proximal gradient method</h3>
+<p>So-called accelerated versions of the basic proximal gradient algorithm include an extrapolation step in the algorithm. One simple version is <span class="math display">\[
+y^{k+1}=x^k+w^k(x^k-x^{k-1})\\
+x^{k+1}=P_{\lambda^kg}(y^{k+1}-\lambda^k \nabla f(y^{k+1})).
+\]</span> These parameters must be chosen in specific ways to achieve the convergence acceleration. One simple choice takes <span class="math display">\[
+w^k=\frac{k}{k+3}.
+\]</span> When <span class="math inline">\(\nabla f\)</span> is Lipschitz continuous with constant <span class="math inline">\(L\)</span>, this method can be shown to converge in objective value with rate <span class="math inline">\(\mathcal O(1/k^2)\)</span> when a fixed step size <span class="math inline">\(\lambda^k=\lambda \in(0,1/L]\)</span> is used. If <span class="math inline">\(L\)</span> is not known, the step sizes <span class="math inline">\(\lambda^k\)</span> can be found by a line search.</p>
+<h3 id="alternating-direction-method-of-multipliers">4.6.4 Alternating direction method of multipliers</h3>
+<p>Consider the problem, <span class="math display">\[
+\min f(g)+g(x)
+\]</span> where <span class="math inline">\(f,g:\mathbb R^n\rightarrow \mathbb R\cup \{+\infty\}\)</span> are closed proper convex functions. Both <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be nonsmoothed. Then the <strong>alternating direction method of multipliers (ADMM)</strong> also known as <strong>Douglas-Rachford splitting</strong> is <span class="math display">\[
+\begin{array}{rcl}
+x^{k+1}&amp;=&amp;P_{\lambda f} (z^k-u^k)\\
+z^{k+1}&amp;=&amp; P_{\lambda g}(x^{k+1}+u^k)\\
+u^{k+1}&amp;=&amp; u^k+x^{k+1}-z^{k+1}.
+\end{array}
+\]</span> This method converges under more or less the most general possible conditions.</p>
+<p>While <span class="math inline">\(x^k\)</span> and <span class="math inline">\(z^k\)</span> converge to each other, and to optimality, they have slightly different properties. For example, <span class="math inline">\(x^k\in \text{dom}f\)</span> while <span class="math inline">\(z^k\in \text{dom}g\)</span>, so if <span class="math inline">\(g\)</span> encodes constraints, the iterates <span class="math inline">\(z^k\)</span> satisfy the constraints while the iterates <span class="math inline">\(x^k\)</span> satisfy the constraints only in the limit. If <span class="math inline">\(g=||\cdot||_2\)</span>, then <span class="math inline">\(z^k\)</span> will be sparse because <span class="math inline">\(P_{\lambda g}\)</span> is soft thresholding, while <span class="math inline">\(x^k\)</span> will only be close to <span class="math inline">\(z^k\)</span> (close to sparse).</p>
+<p>The advantage of ADMM is that the objective terms (which can both include constraints, since they can take on infinite values) are handle completely separately, the functions are accessed only through their proximal operators. ADMM is most useful when the proximal operators of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be efficiently evaluated but the proximal operator for <span class="math inline">\(f+g\)</span> is not easy to evaluate.</p>
+<p><strong>Special cases</strong></p>
+<p>When <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span>, its proximal operator <span class="math inline">\(P_{\lambda g}\)</span> reduces to projection onto <span class="math inline">\(\mathcal C\)</span>. In this case, ADMM is a method for solving the generic convex constrained problem of minimizing <span class="math inline">\(f\)</span> over <span class="math inline">\(\mathcal C\)</span>, that only uses the proximal operator of the objective and projection onto the constraint set. As further specialization, suppose that <span class="math inline">\(f\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal C\)</span> and <span class="math inline">\(g\)</span> is the indicator function of a closed convex set <span class="math inline">\(\mathcal D\)</span>. The problem of minimizing <span class="math inline">\(f+g\)</span> is then equivalent to the convex feasibility problem of finding a point <span class="math inline">\(x\in\mathcal C\cap \mathcal D\)</span>. Both proximal operators reduce to projections, so the ADMM algorithm for this problem becomes, <span class="math display">\[
+\begin{array}{rcl}
+x^{k+1}&amp;=&amp;\Pi_\mathcal C (z^k-u^k)\\
+z^{k+1}&amp;=&amp; \Pi_\mathcal D (x^{k+1}+u^k)\\
+u^{k+1}&amp;=&amp; u^k+x^{k+1}-z^{k+1}.
+\end{array}
+\]</span> <strong>Interpretations</strong></p>
+<p><em>Integral control of a dynamic system</em></p>
+<p>The first two steps in ADMM can be viewed as a discrete-time dynamic system with state <span class="math inline">\(z\)</span> and input or control <span class="math inline">\(u\)</span>, i.e., <span class="math inline">\(z^{k+1}\)</span> is a function of <span class="math inline">\(x^k\)</span> and <span class="math inline">\(u^k\)</span>. The goal is to choose <span class="math inline">\(u\)</span> to achieve <span class="math inline">\(x=z\)</span>, so the residual <span class="math inline">\(x^{k+1}-z^{k+1}\)</span> can be viewed as an error signal.</p>
+<p><em>Augmented Lagrangians</em></p>
+<p>One important interpretation relies on the idea of <strong>augmented lagrangian</strong>. We first write the problem of minimizing <span class="math inline">\(f(x)+g(x)\)</span> as <span class="math display">\[
+\begin{array}{rCl}
+\min &amp; f(x)+g(z)\\
+\text{subject to}&amp; x-z=0,
+\end{array}
+\]</span></p>
+<p>which is called <strong>consensus form</strong>. Here the variable has been split into two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and we have added the consensus constraint they must agree. This is evidently equivalent to minimizing <span class="math inline">\(f+g\)</span>.</p>
+<p>The <strong>augmented Lagrangian</strong> associated with the problem is <span class="math display">\[
+L_\rho(x,z;y)=f(x)+g(z)+y^T(x-z)+(\rho/2)||x-z||_2^2,
+\]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter and <span class="math inline">\(y\in\mathbb R^n\)</span> is a dual variable associated with the consensus constraint. This is the usual Lagrangian augmented with an additional quadratic penalty on the equality constraint function. ADMM can be then expressed as <span class="math display">\[
+\begin{array}{rcl}
+x^{k+1}&amp;=&amp;\arg\min_x L_\rho (x,z^k,y^k)\\
+z^{k+1}&amp;=&amp;\arg\min_z L_\rho (x^{k+1},z,y^k)\\
+y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
+\end{array}
+\]</span> (<strong>My thinking</strong>) The intuitive explanation of ADMM can be interpreted here. <span class="math inline">\(y^k\)</span> is actually the weighting parameter for the ALM, which balances the error between the parameter <span class="math inline">\(x\)</span> and the parameter <span class="math inline">\(z\)</span>. If <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> are not the same, the weighting of the error will grow up since the value of the <span class="math inline">\(y^k\)</span> can be accumulated. Therefore, the ADMM system will finally converge to the point where the error between <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> is zero, and the value of the ALM is minimized.</p>
+<p>In each of the <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> steps, <span class="math inline">\(L_\rho\)</span> is minimized over the variable, using the most resent value of the other primal variable and dual variable. The dual variable is the scaled running sum of the consensus errors. To see how it reduces to the proximal version, we start from <span class="math display">\[
+\begin{array}{rcl}
+x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+\langle y^{k},x\rangle +(\rho/2)||x-z^k||_2^2\right)\\
+z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)-\langle y^{k},z\rangle+(\rho/2)||x^{k+1}-z||_2^2\right)\\
+y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
+\end{array}
+\]</span> Pull the linear terms into the quadratic ones, and we get <span class="math display">\[
+\begin{array}{rcl}
+x^{k+1}&amp;=&amp;\arg\min_x \left(f(x)+(\rho/2)\left\|x-z^k+(1/\rho)y^k\right\|_2^2\right)\\
+z^{k+1}&amp;=&amp;\arg\min_z \left(g(z)+(\rho/2)\left\|x^{k+1}-z-(1/\rho)y^k\right\|_2^2\right)\\
+y^{k+1}&amp;=&amp; y^k+\rho(x^{k+1}-z^{k+1}).
+\end{array}
+\]</span> If we choose <span class="math inline">\(u^k=(1/\rho)y^k\)</span> and <span class="math inline">\(\lambda = 1/\rho\)</span>, then we get the ADMM.</p>
+<p><em>Flow interpretation</em></p>
+<p>ADMM can also be interpreted as a method for solving a particular system of ordinary differential equations. Assume for simplicity that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are differentiable, the optimality conditions are <span class="math display">\[
+\nabla f(x)+v=0,\quad \nabla g(z)-v=0,\quad x-z=0,
+\]</span> where <span class="math inline">\(v\in\mathbb R^n\)</span> is a dual variable. Now consider the differential equation <span class="math display">\[
+\frac{d}{dt}
+\begin{bmatrix}
+x(t)\\z(t)
+\end{bmatrix}=
+\begin{bmatrix}
+-\nabla f(x(t))-\rho u(t)-\rho r(t)\\
+-\nabla g(x(t))+\rho u(t)+\rho r(t)\\
+\end{bmatrix},\quad
+\frac{d}{dt}u(t)=\rho r(t),
+\]</span> where <span class="math inline">\(r(t)=x(t)-z(t)\)</span> is the primal residual and <span class="math inline">\(\rho &gt;0\)</span>. The functions in the differential equation are the primal variables <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span>, and the dual variable <span class="math inline">\(u\)</span>. It is easy to see that the equilibrium points of the saddle point flow are the same as the optimality conditions when <span class="math inline">\(v=\rho u\)</span>. It shows all trajectories of the saddle point flow converge to an equilibrium point. It follows that we can solve the problem by following any trajectory of the flow using numerical integration.</p>
+<p>We use the discretization given by <span class="math display">\[
+\frac{x^{k+1}-x^k}{h}=-\nabla f(x^{k+1})-\rho (x^k-z^k+u^k)\\
+\frac{z^{k+1}-z^k}{h}=-\nabla g(x^{k+1})+\rho (x^{k+1}-z^k+u^k)\\
+\frac{u^{k+1}-u^k}{h}=\rho(x^{k+1}-z^{k+1}).
+\]</span> Choosing <span class="math inline">\(h=\lambda\)</span> and <span class="math inline">\(\rho=1/\lambda\)</span>, the discretization reduces directly to the proximal form of ADMM.</p>
+<p><em>Fixed point iteration</em></p>
+<p>ADMM can be viewed as a fixed point iteration for finding a point <span class="math inline">\(x^*\)</span> satisfying the optimality condition <span class="math display">\[
+0\in\partial f(x^*)+\partial g(x^*).
+\]</span> Fixed point <span class="math inline">\(x,z,u\)</span> of the ADMM iteration satisfy <span class="math display">\[
+x=P_{\lambda f}(z-u),\quad z=P_{\lambda g}(x+u),\quad u=u+x-z.
+\]</span> From the last equation we conclude <span class="math inline">\(x=z\)</span>, so <span class="math display">\[
+x=P_{\lambda f}(x-u),\quad x=P_{\lambda g}(x+u)
+\]</span> which can be written as <span class="math display">\[
+x=(I+\lambda \partial f)^{-1}(x-u),\quad x=(I+\lambda \partial g)^{-1}(x+u).
+\]</span> This is the same as <span class="math display">\[
+x-u\in x+\lambda \partial f(x),\quad x+u\in x+\lambda\partial g(x).
+\]</span> Adding these two equations show that <span class="math inline">\(x\)</span> satisfies the optimality condition.</p>
+<p><strong>Linearized ADMM</strong></p>
+<p>A variation of ADMM can be useful for solving problems of the form, <span class="math display">\[
+\min f(x)+g(Ax),
+\]</span> where <span class="math inline">\(f:\mathbb R\rightarrow \mathbb R\cup \{+\infty\}\)</span> and <span class="math inline">\(g:\mathbb R\rightarrow \mathbb R\cup \{+\infty\}\)</span> are closed proper convex and <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span>. This problem can be solved with standard ADMM by defining <span class="math inline">\(\tilde g(x)=g(Ax)\)</span> but the proximal operator of <span class="math inline">\(\tilde g\)</span> is complicated by the presence of <span class="math inline">\(A\)</span>, even when the proximal operator of <span class="math inline">\(g\)</span> is easy to evaluate. The linearized ADMM solves the problem using only the proximal operators of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> and multiplication by <span class="math inline">\(A\)</span> and <span class="math inline">\(A^T\)</span>; in particular, <span class="math inline">\(g\)</span> and <span class="math inline">\(A\)</span> are handled separately. <span class="math display">\[
+x^{k+1}=P_{\mu f}\left(x^k-(\mu/\lambda )A^T(Ax^k-z^k+u^k)\right)\\
+z^{k+1}=P_{\lambda g}\left(Ax^{k+1}+u^k\right)\\
+u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
+\]</span> where the algorithm parameters <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu\)</span> satisfy <span class="math inline">\(0\le \mu\le \lambda /||A||_2^2\)</span>. This reduces to standard ADMM when <span class="math inline">\(A=I\)</span> and <span class="math inline">\(\mu =\lambda\)</span>.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/4.1 Gradient methods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -569,657 +875,11 @@ E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/3.9 Cones/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/3.9 Cones/" class="post-title-link" itemprop="url">3. Basic Convex Analysis (2)</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-01 14:29:29" itemprop="dateModified" datetime="2019-11-01T14:29:29+08:00">2019-11-01</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/MA6268 Nonlinear Optimization/3.9 Cones/" class="post-meta-item leancloud_visitors" data-flag-title="3. Basic Convex Analysis (2)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/3.9 Cones/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/3.9 Cones/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="cones">3.9 Cones</h2>
-<p><strong>Definition</strong></p>
-<p>Consider <span class="math inline">\(p:\mathcal E\rightarrow (-\infty,\infty]\)</span>.</p>
-<ol type="1">
-<li><span class="math inline">\(p\)</span> is said to be a <strong>proper function</strong> if <span class="math inline">\(p(x)\)</span> is not identically equal to <span class="math inline">\(\infty\)</span>.</li>
-<li><span class="math inline">\(p\)</span> is said to be <strong>closed</strong> if its epi-graph <span class="math inline">\(\text{epi}(p):=\{(\alpha,x)\in \mathbb R\times \mathcal E\;|\; p(x)\le\alpha\}\)</span> is a closed subset of <span class="math inline">\(\mathbb R\times \mathcal E\)</span>.</li>
-<li>The <strong>domain</strong> of <span class="math inline">\(p\)</span> is defined to be the set</li>
-</ol>
-<p><span class="math display">\[
-\text{dom} (p)=\{x\in \mathbb R^n\;|\;f(x)&lt;\infty\}.
-\]</span></p>
-<p>For a nonempty closed set <span class="math inline">\(C\subset \mathbb R^n\)</span>, <span class="math inline">\(\delta_C\)</span> is a proper closed function.</p>
-<p><strong>Definition</strong></p>
-<ol type="1">
-<li><p><strong>Linearity space</strong></p>
-<p>Let <span class="math inline">\(C\subset \mathbb R^n\)</span> be a closed convex cone. The linearity space of <span class="math inline">\(C\)</span> is the set <span class="math display">\[
-\text{lin} (C)=C\cap(-C).
-\]</span></p>
-<p>It is the largest linear subspace of <span class="math inline">\(\mathcal E\)</span> contained in C.</p></li>
-<li><p><strong>Dual and polar cone</strong></p>
-<p>The dual of any cone <span class="math inline">\(S\)</span> (not necessarily convex) is defined by</p></li>
-</ol>
-<p><span class="math display">\[
-   S^* =\{y\in\mathcal E\;|\;\langle x,y\rangle\ge 0\;\forall x\in S\}.
-\]</span> The polar cone of <span class="math inline">\(S\)</span> is <span class="math inline">\(S^o=-S^*\)</span>.</p>
-<ol start="3" type="1">
-<li><p><strong>Self-dual</strong></p>
-<p>Let <span class="math inline">\(C\)</span> be a cone in <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(C^*=C\)</span>, then <span class="math inline">\(C\)</span> is said to be self-dual.</p></li>
-</ol>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(C\)</span> be a cone in <span class="math inline">\(\mathcal E\)</span>.</p>
-<ol type="1">
-<li><span class="math inline">\(C^*\)</span> is a closed convex cone.</li>
-<li>If <span class="math inline">\(C\)</span> is a <strong>nonempty closed convex</strong> cone, then <span class="math inline">\((C^*)^*=C\)</span>.</li>
-</ol>
-<p>Proof.</p>
-<ol type="1">
-<li>Suppose <span class="math inline">\(u,v \in C^*\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>. <span class="math display">\[
- \langle x,\alpha u+\beta v\rangle=\alpha \langle x,u\rangle+\beta \langle x,y\rangle\ge 0
- \]</span> Q.E.D.</li>
-</ol>
-<p><strong>Example</strong></p>
-<p>If <span class="math inline">\(\mathcal E=\mathbb R^n\)</span>, and <span class="math inline">\(C=\mathbb R_+^n\)</span>. Then</p>
-<ol type="1">
-<li><span class="math inline">\(\text{aff} (C)=\mathbb R^n\)</span></li>
-<li><span class="math inline">\(\text{lin} (C)=\{0\}\)</span></li>
-<li><span class="math inline">\(C^*=\mathbb R_+^n\)</span>.</li>
-</ol>
-<p><strong>Examples</strong></p>
-<ol type="1">
-<li><p>Let <span class="math inline">\(\mathcal E=\mathbb S^n\)</span> be the space of <span class="math inline">\(n\times n\)</span> real symmetric matrices. Then the space <span class="math inline">\(\mathbb S_+^n\)</span> of <span class="math inline">\(n\times n\)</span> symmetric positive semidefinite matrices is a closed convex cone in <span class="math inline">\(\mathbb S^n\)</span>.</p>
-<p>Proof of convexity.</p>
-<p>For any <span class="math inline">\(X,Y\in \mathbb S_+^n\)</span> and <span class="math inline">\(\alpha,\beta\in \mathbb R_+\)</span>, we have <span class="math inline">\(\alpha X+\beta Y\in \mathbb S_+^n\)</span>.</p></li>
-<li><p><strong>second-order cone</strong>. Let <span class="math inline">\(\mathcal E =\mathbb R^n\)</span>. The set <span class="math display">\[
- C=\{(x_1;\bar x)\in \mathbb R^n\;|\; ||\bar x||\le x_1\}
- \]</span> is a cone, which is known as a <strong>second-order cone</strong>.</p>
-<p>Proof of convexity.</p>
-<p>For any <span class="math inline">\((x_1;\bar x),(y_1;\bar y)\in C\)</span> and <span class="math inline">\(\alpha,\beta \in\mathbb R_+\)</span>, we have <span class="math display">\[
-    \alpha (x_1;\bar x)+\beta (y_1;\bar y)=(\alpha x_1+\beta y_1,\alpha\bar x+\beta \bar y).
-\]</span> Then we check <span class="math display">\[
-    ||\alpha \bar x+\beta \bar y||\le \alpha||\bar x||+\beta ||\bar y||\le \alpha x_1+\beta y_1.
-\]</span> Q.E.D.</p>
-<p>Since <span class="math inline">\(f(x)=||x||\)</span> is convex, <span class="math inline">\(C\)</span> is its epigraph and therefore convex.</p>
-<p>Q.E.D.</p></li>
-<li><p><strong>polyhedral cone</strong>. A cone that is formed by the intersection of finitely many half space is known as a <strong>polyhedral cone</strong>, and it has the form: <span class="math inline">\(\{x\in\mathbb R^n\;|\;Ax\le 0\}\)</span>, where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>.</p>
-<p>Proof of convexity.</p>
-<p>It is straightforward to show the convexity. (Intersection of finite (infinite) convex set is convex)</p></li>
-<li><p><strong>Exponential cone</strong>. Consider the set <span class="math display">\[
-    K=\{(x,y,z)\in\mathbb R^3\;|\;y\exp(x/y)\le z,y&gt;0\}.
- \]</span> The exponential cone is <span class="math inline">\(C=\text{cl }(K)\)</span>.</p>
-<p>Proof convexity.</p>
-<p>We define <span class="math inline">\(f(x,y)=y\exp(x/y)\)</span>, then we find the Hessian matrix is positive definite for all <span class="math inline">\(y&gt;0\)</span>.</p>
-<p>Since <span class="math inline">\(y\exp(x/y)\le z\)</span> is the epigraph of the convex function, and the closure of a convex set is convex. Then we finish the proof.</p></li>
-<li><p><strong>Power cone</strong>. For <span class="math inline">\(\alpha =(\alpha_1;\dotsm,\alpha_n)&gt;0\)</span> and <span class="math inline">\(\sum_{i=1}^n\alpha_i=1\)</span>, <span class="math display">\[
- K_\alpha = \{(x;y)\in\mathbb R_+^n\times \mathbb R\;|\;|y|\le x_1^{\alpha_1}\dotsm x_n^{\alpha_n}\}.
- \]</span></p></li>
-<li><p><strong>Spectral cone</strong> and <strong>nuclear-norm cone</strong>.</p>
-<p>Suppose <span class="math inline">\(X\in \mathbb R^{m\times n}\)</span> with <span class="math inline">\(m\le n\)</span>. Let the singular value decomposition of <span class="math inline">\(X\)</span> be <span class="math display">\[
-X=U[\Sigma, 0]V^T
-\]</span> where <span class="math inline">\(U\in \mathbb R^{n\times n}\)</span> and <span class="math inline">\(V\in\mathbb R^{m\times m}\)</span> are unitary matrices, and <span class="math inline">\(\Sigma=\text{diag }(\sigma_1,\dots,\sigma_m)\)</span> with <span class="math inline">\(\sigma_1\ge \dotsm\ge \sigma_m\ge 0\)</span>. We can define the following cones: <span class="math display">\[
-\mathcal K=\{(t,X)\in \mathbb R\times \mathbb R^{m\times n}\;|\;||X||_*\le t\}\\
-   \mathcal C=\{(t,X)\in\mathbb R\times \mathbb R^{m\times n}\;|\; ||X||_2\le t\}
-\]</span> where <span class="math inline">\(||X||_*=\sum_{i=1}^m\sigma _i(X)\)</span> and <span class="math inline">\(||X||_2=\sigma_1(X)\)</span>.</p>
-<p>Proof of (<span class="math inline">\(\mathcal K^*=\mathcal C\)</span>).</p>
-<p>Firstly, we will prove <span class="math inline">\(\mathcal C\subseteq \mathcal K^*\)</span>, where <span class="math display">\[
-\begin{array}{rcl}
-\mathcal K^*&amp;=&amp;\left\{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; \langle(x,X),(y,Y)\rangle \ge 0\; ,\forall (x,X)\in \mathcal K\right\}\\
-&amp;=&amp;\left\{(y,Y)\in\mathbb R\times\mathbb R^{m\times n}\;|\; xy+\langle X,Y\rangle \ge 0\;, ||X||_*\le x\right\}.
-\end{array}
-\]</span> Assume <span class="math inline">\((y,Y)\in \mathcal C\)</span>, and then we have <span class="math display">\[
-||Y||_2\le y\iff\sigma_1(Y)\le y.
-\]</span> For any <span class="math inline">\((x,X)\in \mathcal K\)</span>, we have <span class="math display">\[
-||X||_*\le x\iff \sigma_1(X)+\dotsm+\sigma_m(X)\le x.
-\]</span> Since we have <span class="math display">\[
-\langle -X,Y\rangle\le ||X||_*||Y||_2\le xy,
-\]</span></p>
-<p>then for any <span class="math inline">\((x,X)\in \mathcal K\)</span>, we have <span class="math display">\[
- \langle X,Y\rangle+xy\ge 0,
-\]</span> which means <span class="math inline">\((y,Y)\in \mathcal K^*\)</span>.</p>
-<p>Conversely, we will prove <span class="math inline">\(\mathcal K^*\subseteq \mathcal C\)</span>. We will prove this by contradiction. Assume <span class="math inline">\((y,Y)\in\mathcal K^*\)</span>, and define <span class="math inline">\(Y=U_y[\Sigma_y,0]V_y^T\)</span>, where <span class="math inline">\(U_y\)</span> and <span class="math inline">\(V_y\)</span> are unitary matrices and <span class="math inline">\(\Sigma_y=\text{diag}(\sigma_{y1},\dots,\sigma_{ym})\)</span> with <span class="math inline">\(\sigma_{y1}\ge \dotsm\ge \sigma_{ym}\ge 0\)</span>. Then for any <span class="math inline">\((x,X)\in \mathcal K\)</span>, i.e., <span class="math inline">\(||X||_*\le x\)</span>, we have <span class="math display">\[
- 0\le xy+\langle X,Y\rangle.
-\]</span></p>
-<p>Assume <span class="math inline">\((y,Y)\notin \mathcal C\)</span>, i.e., <span class="math inline">\(||Y||_2&gt;y\)</span>. We choose <span class="math inline">\(X^*=-[\text{diag}\{1,0,0\dotsm\},0]\)</span> and <span class="math inline">\(x^*=1\)</span>. It is straightforward to see that <span class="math display">\[
- ||X^*||_2=1=x^*,
-\]</span> which means <span class="math inline">\((x^*,X^*)\in \mathcal K\)</span>. Then we have <span class="math display">\[
-\begin{array}{rcl}
-x^*y+\text{Tr}\left((X^*)^TY\right)&amp;=&amp;x^*y-\text{Tr}([\text{diag}\{1,0,0\dotsm\},0]^T U_y[\Sigma_y\;0]V_y^T)\\
- &amp;=&amp;x^*y-\text{Tr}([\text{diag}\{1,0,0\dotsm\},0]^T U_y[\Sigma_y\;0])\\
- &amp;=&amp;x^*y-\text{Tr}([\Sigma_y\;0][\text{diag}\{1,0,0\dotsm\},0]^T)\\
- &amp;=&amp;x^*y-\text{Tr}(\Sigma_y\text{diag}\{1,0,0\dotsm\})\\
- &amp;=&amp;y-||Y||_2\\
- &amp;&lt;&amp; 0,
- \end{array}
-\]</span> which contradicts that <span class="math inline">\(0\le xy+\langle X,Y\rangle\)</span> for any <span class="math inline">\((x,X)\in \mathcal K\)</span>.</p>
-<p>Q.E.D.</p></li>
-<li><p><strong>Copositive and completely positive cones</strong>.</p>
-<ol type="1">
-<li><p>Copositive cone: <span class="math inline">\(\text{COP}_n=\{X\in\mathbb S^n\;|\; v^TXv\ge 0\;\forall v\in \mathbb R_+^n\}\)</span></p></li>
-<li><p>Completely positive cone:</p></li>
-</ol>
-<p><span class="math display">\[
-\begin{array}{rcl}
-\text{CPP}_n&amp;=&amp;\{X\in\mathbb S^n\;|\; X=VV^T\;\exists V\in\mathbb R_+^n\}\\
-&amp;=&amp;\left\{\sum_{i=1}^r v_iv_i^T\;|\;v_i\in\mathbb R_+^n\;\forall i=1,\dotsm,r,\;r\in Z_+ \right\}.
-\end{array}
-\]</span></p>
-<p>Proof of (<span class="math inline">\(\text{CPP}_n^*=\text{COP}_n\)</span>)</p>
-<p><span class="math display">\[
-\text{CPP}_n^* =\{Y\in\mathbb S^n\;|\;\langle X,Y\rangle\ge 0\;\forall X\in \text{CPP}_n\}
-\]</span> We first prove that <span class="math inline">\(\text{COP}_n\subseteq \text{CPP}_n^*\)</span>. Assume <span class="math inline">\(Y\in \text{COP}_n\)</span>. Then for any <span class="math inline">\(v\in\mathbb R^n_+\)</span>, it follows <span class="math display">\[
-v^TYv\ge0\iff\langle Y,vv^T\rangle\ge 0\iff\langle Y,X\rangle \ge 0,\forall X\in \text{CPP}_n.
-\]</span> That means <span class="math inline">\(Y\in \text{CPP}_n^*\)</span>. Every step we have equal conditions.</p>
-<p>Q.E.D.</p></li>
-<li><p><strong>Doubly nonnegative cone</strong>.</p>
-<p><span class="math inline">\(\mathbb D_n=\mathbb S_+^n\cap \mathcal N^n\)</span> where <span class="math inline">\(\mathcal N^n\)</span> is the set of symmetric <span class="math inline">\(n\times n\)</span> nonnegative matrices (a matrix in which all the elements are equal to or greater than zero). We can also define <span class="math inline">\(\mathbb D_n\)</span> as <span class="math display">\[
-\mathbb D_n=\{X|X=X^T,\forall d\in \mathbb R^n,d^TXd\ge 0,X\ge 0\}.
-\]</span> Proof. (<span class="math inline">\(\mathbb D_n^*=\mathbb S_+^n+\mathcal N^n\)</span>)</p>
-<p>Firstly we prove that <span class="math inline">\(\mathbb S_+^n+\mathcal N^n\subseteq \mathbb D_n^*\)</span>.</p>
-<p>If <span class="math inline">\(Y_1\in \mathbb S_+^n\)</span> and <span class="math inline">\(Y_2 \in \mathcal N^n\)</span>, then we have <span class="math inline">\(Y=Y_1+Y_2\in\mathbb S_+^n+\mathcal N^n\)</span>.</p>
-<p>Then for any <span class="math inline">\(X\in\mathbb D_n\)</span>, it follows <span class="math display">\[
-\langle X,Y\rangle=\langle X,Y_1+Y_2\rangle=\langle X,Y_1\rangle+\langle X,Y_2\rangle\ge 0.
-\]</span> Therefore, <span class="math inline">\(\mathbb S_+^n+\mathcal N^n\subseteq \mathbb D_n^*\)</span>.</p>
-<p>Then we prove $D_n^*S_+<sup>n+N</sup>n $.</p>
-<p>If <span class="math inline">\(Y\in \mathbb D_n^*\)</span>, then we have <span class="math display">\[
-\langle X,Y\rangle\ge 0,d^TXd\ge 0,X\ge0\\
-\langle X,Y_1\rangle+ \langle X,Y_2\rangle\ge 0,d^TXd\ge 0,X\ge0.
-\]</span> Since we have <span class="math inline">\(X\)</span> is positive definite, we can choose any <span class="math inline">\(Y_1\in \mathcal N^n\)</span> and any <span class="math inline">\(Y_2\in S_+^n\)</span>.</p>
-<p>Q.E.D.</p></li>
-</ol>
-<p><strong>Example</strong></p>
-<p>Let <span class="math inline">\(C\)</span> be a closed convex cone in <span class="math inline">\(\mathcal E\)</span>. Show that for any <span class="math inline">\(z\in\mathcal E\)</span>, <span class="math display">\[
-z-\Pi_C(z)=\Pi_{C^o}(z).
-\]</span> Proof.</p>
-<p>Let <span class="math inline">\(w=z-\Pi_C(z)\)</span>. Then we have <span class="math display">\[
-\langle y-w,z-w\rangle\le 0\;\forall y\in{C^o},
-\]</span> which also means <span class="math inline">\(w=\Pi_{C^o}(z)\)</span>.</p>
-<h2 id="normal-cones">3.10 Normal cones</h2>
-<p><strong>Definition</strong> (Normal cone)</p>
-<p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x\in C\)</span>. The normal cone of <span class="math inline">\(C\)</span> at <span class="math inline">\(\bar x\in C\)</span> is defined by <span class="math display">\[
-N_C(\bar x)=\{z\in \mathcal E\;|\;\langle z,x-\bar x\rangle\le 0\quad \forall x\in C\}
-\]</span> By convention, we let <span class="math inline">\(N_C(\bar x)=\O\)</span> if <span class="math inline">\(\bar x\notin C\)</span>.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be a convex set and <span class="math inline">\(\bar x \in C\)</span>. Then</p>
-<ol type="1">
-<li><span class="math inline">\(N_C(\bar x)\)</span> is a closed convex cone.</li>
-<li>If <span class="math inline">\(\bar x\in \text{int} (C)\)</span>, then <span class="math inline">\(N_C(\bar x)=\{0\}\)</span>.</li>
-<li>If <span class="math inline">\(C\)</span> is also a cone, then <span class="math inline">\(N_C(\bar x)\subset C^o\)</span>.</li>
-</ol>
-<p>Proof.</p>
-<ol type="1">
-<li><p>If <span class="math inline">\(z_1,z_2\in N_c(\bar x)\)</span> and <span class="math inline">\(\alpha,\beta \in\mathbb R\)</span>, we have <span class="math display">\[
-\langle \alpha z_1+\beta z_2,x-\bar x\rangle \le 0\;\forall x\in C.
-\]</span> Q.E.D.</p></li>
-<li><p>If <span class="math inline">\(\bar x\in \text{int} (C)\)</span>, then we have <span class="math inline">\(\varepsilon &gt;0\)</span>, such that the ball <span class="math inline">\(B_{\varepsilon}(\bar x)\subseteq C\)</span>. Then we can choose <span class="math inline">\(x=\bar x+\lambda z\in B_\varepsilon (\bar x)\)</span>, and we have <span class="math display">\[
-\langle z,\lambda z\rangle \ge0.
-\]</span> Therefore, <span class="math inline">\(z=0\)</span>.</p></li>
-<li><p>If <span class="math inline">\(C\)</span> is a cone, then we have <span class="math inline">\(x+\bar x\in C\;\forall x\in C\)</span>. Thus for any <span class="math inline">\(z\in N_C(\bar x)\)</span>, we have <span class="math display">\[
-\langle z,x\rangle = \langle z,(x+\bar x)-\bar x\rangle\le 0\;\forall x\in C,
-\]</span> Hence <span class="math inline">\(z\in C^o\)</span>. Q.E.D.</p></li>
-</ol>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(C\subset \mathbb R^n\)</span> be a closed convex set. Then for any <span class="math inline">\(u,y\in C\)</span>, <span class="math display">\[
-u\in N_C(y)\iff y=\Pi_C(y+u)
-\]</span> Proof.</p>
-<p><span class="math inline">\(\implies\)</span></p>
-<p>Assume <span class="math inline">\(u\in N_C(y)\)</span>, i.e. <span class="math inline">\(\langle u,z-y\rangle \le 0\;\forall z\in C\)</span>, we need to prove <span class="math display">\[
-\langle y+u-y,z-y\rangle \le 0\;\forall z\in C\\
-\iff\\
-\langle u,z-y\rangle\le \;\forall z\in C
-\]</span> <span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Same as the above. Q.E.D.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(C_1,C_2 \subset \mathbb R^n\)</span> be convex sets such that <span class="math inline">\(\bar x\in C_1\cap C_2\)</span>.</p>
-<ol type="1">
-<li>It holds that <span class="math inline">\(N_{C_1}(\bar x)+N_{C_2}(\bar x)\subset N_{C_1\cap C_2}(\bar x)\)</span></li>
-<li>If the following relative interior condition holds</li>
-</ol>
-<p><span class="math display">\[
-\text{ri}(C_1)\cap \text{ri}(C_2)\neq \O
-\]</span></p>
-<p>​ then we also have <span class="math display">\[
-N_{C_1\cap C_2}(\bar x)\subset N_{c_1}(\bar x)+N_{c_2}(\bar x)
-\]</span></p>
-<p>Proof.</p>
-<ol type="1">
-<li><p>Assume <span class="math inline">\(x_1\in N_{C_1}(\bar x)\)</span> and <span class="math inline">\(x_2\in N_{C_2}(\bar x)\)</span>. Then we need to prove that <span class="math inline">\(x_1+x_2\in N_{C_1\cap C_2}(\bar x)\)</span>. <span class="math display">\[
-x_1\in N_{C_1}(\bar x)\iff \langle x_1,x-\bar x\rangle \le 0\;\forall x\in C_1\\
-x_2\in N_{C_2}(\bar x)\iff \langle x_2,x-\bar x\rangle \le 0\;\forall x\in C_2
-\]</span> We need to prove <span class="math display">\[
-(x_1+x_2) \in N_{C_1\cap C_2}(\bar x)\iff \langle x_1+x_2,x-\bar x\rangle \le 0\;\forall x\in C_1\cap C_2
-\]</span> It is straightforward to prove that.</p></li>
-<li><p>Not done.</p></li>
-</ol>
-<h2 id="subgradients">3.11 Subgradients</h2>
-<p><strong>Definition</strong></p>
-<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a convex function. A vector <span class="math inline">\(v\)</span> is a subgradient of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\in\text{dom}(f)\)</span> if <span class="math display">\[
-f(z)\ge f(x)+\langle v,z-x\rangle \;\forall z\in\mathcal E.
-\]</span> The set of all subgradients at <span class="math inline">\(x\)</span> is called the subdifferential of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, and denoted as <span class="math inline">\(\partial f(x)\)</span>. By convention, <span class="math inline">\(\partial f(x)=\O\)</span> for any <span class="math inline">\(x\notin\text{dom} (f)\)</span>.</p>
-<p><strong>Proposition</strong></p>
-<p><span class="math inline">\(\partial f:\mathcal E\rightarrow \mathcal E\)</span> is a monotone mapping. That is <span class="math display">\[
-\langle v-u,y-x\rangle \ge 0\;\forall u\in \partial f(x),v\in \partial f(y).
-\]</span> Proof.</p>
-<p>By the definition, we have <span class="math display">\[
-f(y)\ge f(x)+\langle u,y-x\rangle \\
-f(x)\ge f(y)-\langle v,y-x\rangle.
-\]</span> It is straightforward to get proved.</p>
-<p><strong>Example</strong></p>
-<ol type="1">
-<li><p>If <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(x\)</span>, then <span class="math inline">\(\partial f(x)=\{\nabla f(x)\}\)</span>.</p></li>
-<li><p>Let <span class="math inline">\(C\)</span> be a convex subset of <span class="math inline">\(\mathbb R^n\)</span>. Then <span class="math display">\[
-\partial \delta_C(x)=
-\begin{cases}\O&amp;\text{if }x\notin C\\ N_C(x)&amp;\text{if }x\in C \end{cases}
-\]</span></p></li>
-<li><p>Let <span class="math inline">\(f(x)=||x||_1\)</span> for <span class="math inline">\(x\in \mathbb R^n\)</span>. Show that <span class="math display">\[
-\partial f(0)=\{y\in\mathbb R^n\;|\; ||y||_\infty\le 1\}
-\]</span> Proof.</p>
-<p><span class="math inline">\(\implies\)</span></p>
-<p>Assume <span class="math inline">\(||y||_\infty \le 1\)</span>. Then we need to prove <span class="math inline">\(f(z)\ge f(0)+\langle y,z-0\rangle=\langle y,z\rangle\;\forall z\in\mathbb R^n\)</span>, i.e., <span class="math display">\[
-||z||_1\ge \langle y,z\rangle\;\forall z\in\mathbb R^n.
-\]</span> Then <span class="math display">\[
-\langle y,z\rangle =y_1z_1+\dotsm+y_nz_n\le |y_1z_1|+\dotsm|y_nz_n|\\
-\le |y_1||z_1|+\dotsm+|y_n||z_n|\le |z_1|+\dotsm+|z_n|=||z||_1.
-\]</span> <span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Assume <span class="math inline">\(||z||_1\ge \langle y,z\rangle\;\forall z\in \mathbb R^n\)</span>. We need to prove <span class="math inline">\(||y||_\infty\le 1\)</span>. We will prove by contradiction. Assume <span class="math inline">\(||y||_\infty &gt;1\)</span>. Let <span class="math inline">\(i\)</span> be the index of the largest value of <span class="math inline">\(y\)</span>. Choose <span class="math inline">\(z\)</span> such that the <span class="math inline">\(i\)</span>th entry is one, and the others are zero. Then it follows <span class="math inline">\(||z||_1=1\)</span> and <span class="math inline">\(\langle y,z\rangle &gt;1\)</span>, which contradicts <span class="math inline">\(||z||_1\ge \langle y,z\rangle\;\forall z\in \mathbb R^n\)</span>.</p>
-<p>Q.E.D.</p></li>
-</ol>
-<p><strong>Definition</strong></p>
-<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be an extended real-valued function. Define epigraph and effective domain as <span class="math display">\[
-\text{epi}f=\{(x,\mu)\in\mathcal E\times \mathbb R\;|\;f(x)\le \mu\}\\
-\text{dom} f=\{x\in\mathcal E\;|\;f(x)&lt;\infty\}.
-\]</span></p>
-<ol type="1">
-<li><span class="math inline">\(f\)</span> is said to be <strong>convex (closed)</strong> if <span class="math inline">\(\text{epi }f\)</span> is convex (closed).</li>
-<li><span class="math inline">\(f\)</span> is said to be <strong>proper</strong> if <span class="math inline">\(\text{dom}f\)</span> is nonempty.</li>
-<li><span class="math inline">\(f\)</span> is said to be positively homogeneous if <span class="math inline">\(f(\lambda x)=\lambda f(x)\)</span>for all <span class="math inline">\(x\in\mathcal E\)</span> and <span class="math inline">\(\lambda &gt;0\)</span>. Any norm function on <span class="math inline">\(\mathcal E\)</span> is positively homogenous.</li>
-</ol>
-<p><strong>Definition</strong></p>
-<p>A function <span class="math inline">\(F:\mathcal E_1\rightarrow \mathcal E_2\)</span> is said to be locally Lipschitz continuous if for any open set <span class="math inline">\(\mathcal O\subset \mathcal E_1\)</span>, there exists a constant <span class="math inline">\(L\)</span> (depending on <span class="math inline">\(\mathcal O\)</span>) such that <span class="math display">\[
-||F(x)-f(y)||\le L||x-y||\;\forall x,y\in\mathcal O.
-\]</span> If <span class="math inline">\(\mathcal O=\mathcal E_1\)</span>, then <span class="math inline">\(F\)</span> is said to be globally Lipschitz continuous.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(f\)</span> be an extended real-valued proper convex function on <span class="math inline">\(\mathcal E\)</span>. Then <span class="math inline">\(f\)</span> is locally Lipschitz continuous on <span class="math inline">\(\text{ri}(\text{dom}(f))\)</span>, the relative interior of <span class="math inline">\(\text{dom}(f)\)</span>. Moreover, <span class="math inline">\(f\)</span> is Lipschitz continuous on any closed bounded subset of <span class="math inline">\(\text{ri}(\text{dom}(f))\)</span>.</p>
-<p><strong>Theorem</strong></p>
-<p>Let <span class="math inline">\(\mathcal O\)</span> be a open subset of <span class="math inline">\(\mathcal E_1\)</span> and <span class="math inline">\(F:\mathcal O\rightarrow \mathcal E_2\)</span> is locally Lipschitz on <span class="math inline">\(\mathcal O\)</span>, then <span class="math inline">\(F\)</span> is almost everywhere Fréchet differentiable on <span class="math inline">\(\mathcal O\)</span>.</p>
-<p><strong>Definition</strong></p>
-<p>A function <span class="math inline">\(F:\mathcal E_1\rightarrow \mathcal E_2\)</span> is locally Lipschitz continuous. Let <span class="math display">\[
-\mathcal D_F=\{x\in\mathcal E_1\;|\;F&#39;(x)\;\text{exists}\}
-\]</span> The B-subdifferential of <span class="math inline">\(F\)</span> at <span class="math inline">\(x\)</span> is defined by <span class="math display">\[
-\partial _BF(x)=\left\{\lim_{x^k(\in \mathcal D_F)\rightarrow x}F&#39;(x^k)\right\}.
-\]</span> The Clarke generalized Jacobian is defined by <span class="math display">\[
-\partial F(x)=\text{conv} (\partial _BF(x)).
-\]</span> In mathematics, <strong>Clarke's generalized Jacobian</strong> is a generalization of the Jacobian matrix of a smooth function to non-smooth functions.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(f\)</span> be an extended real-valued convex function on <span class="math inline">\(\mathcal E\)</span>. Then</p>
-<ol type="1">
-<li><p>If <span class="math inline">\(f\)</span> is proper, then <span class="math inline">\(\text{ri}(\text{dom}(f))\neq \O\)</span> and <span class="math inline">\(\partial f(x)\neq \O\)</span> for any <span class="math inline">\(x\in \text{ri}(\text{dom}(f))\)</span>. Moreover, <span class="math inline">\(\partial f(x)\)</span> is bounded if and only if <span class="math inline">\(x\in\text{int}(\text{dom}(f))\)</span>.</p></li>
-<li><p><span class="math inline">\(\partial f\)</span> is monotone, i.e., for any <span class="math inline">\(x,y\in\mathcal E\)</span>, <span class="math display">\[
-\langle u-v,x-y\rangle \ge 0\;\forall u\in \partial f(x),v\in\partial f(y).
-\]</span></p></li>
-<li><p>Let <span class="math inline">\(f,g\)</span> be proper convex functions on <span class="math inline">\(\mathcal E\)</span>. If <span class="math inline">\(\text{ri}(\text{dom}(f))\cap\text{ri}(\text{dom}(g))\neq \O\)</span>, then <span class="math display">\[
-\partial(f+g)(x)=\partial f(x)+\partial g(x)\;\forall x\in\mathcal E.
-\]</span></p></li>
-<li><p>If <span class="math inline">\(f\)</span> is closed and proper, then <span class="math inline">\(\min_{z\in\mathcal E}f(z)\)</span> is attained at <span class="math inline">\(x\)</span> if and only if <span class="math inline">\(0\in \partial f(x)\)</span>.</p></li>
-<li><p>If <span class="math inline">\(f\)</span> is closed and proper, then <span class="math inline">\(\partial f\)</span> is upper semicontinuous, i.e. for any <span class="math inline">\(v_k\in\partial f(x_k)\)</span> s.t. <span class="math inline">\(v_k\rightarrow v\)</span> and <span class="math inline">\(x_k\rightarrow x\)</span>, we have <span class="math inline">\(v\in \partial f(x)\)</span>.</p></li>
-<li><p>If <span class="math inline">\(f(x)\)</span> is finite, then <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(x\)</span> if and only if <span class="math inline">\(\partial f(x)\)</span> is a singleton.</p></li>
-<li><p>If <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(f(x)\)</span> is finite, then the directional derivative <span class="math inline">\(f&#39;(x;h)\)</span> exists for any <span class="math inline">\(h\in\mathcal E\)</span>.</p></li>
-<li><p>If <span class="math inline">\(f\)</span> is proper, <span class="math inline">\(f&#39;(x;h)\)</span> is an upper semicontinuous function of <span class="math inline">\((x,h)\in \text{int}(\text{dom}(f))\times \mathcal E\)</span>. Moreover, given any <span class="math inline">\(x\in\text{int}(\text{dom}(f))\)</span> and any <span class="math inline">\(\varepsilon &gt;0\)</span>, there exists a <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math display">\[
-\partial f(z)\subset \partial f(x)+\varepsilon B\;,\forall z\in(x+\delta B).
-\]</span></p></li>
-</ol>
-<h2 id="fenchel-conjugate">3.12 Fenchel conjugate</h2>
-<p>Let <span class="math inline">\(f\)</span> be an extended real-valued function on <span class="math inline">\(\mathcal E\)</span>. Then we define Fenchel conjugate <span class="math display">\[
-f^*(y)=\sup\{\langle y,x \rangle-f(x)\;|\;x\in \mathcal E\},\;y\in\mathcal E.
-\]</span> <span class="math inline">\(f^*\)</span> is always closed and convex, even if <span class="math inline">\(f\)</span> is non-convex or not closed.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(f\)</span> be a closed proper convex function on <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\in\mathcal E\)</span>, we have the following equivalent conditions for a vector <span class="math inline">\(x^* \in\mathcal E\)</span>:</p>
-<ol type="1">
-<li><span class="math inline">\(f(x)+f^*(x^*)=\langle x,x^*\rangle\)</span></li>
-<li><span class="math inline">\(x^*\in \partial f(x)\)</span></li>
-<li><span class="math inline">\(x\in \partial f^*(x^*)\)</span></li>
-<li><span class="math inline">\(\langle x,x^*\rangle -f(x)=\max_{z\in \mathcal E}\{\langle z,x^*\rangle -f(z)\}\)</span></li>
-<li><span class="math inline">\(\langle x,x^*\rangle -f^*(x^*)=\max_{z^*\in \mathcal E}\{\langle x,z^*\rangle -f^*(z^*)\}\)</span></li>
-</ol>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li><p>For a convex set <span class="math inline">\(C\)</span>, we have <span class="math display">\[
-\delta_C^*(x)=\sup\{\langle x,y\rangle-\delta_C(y)\}=\sup\{\langle x,y\rangle\;|\;y\in C\}.
-\]</span></p></li>
-<li><p>If <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> is a closed proper convex function, then <span class="math inline">\((f^*)^*=f\)</span>.</p></li>
-<li><p>If <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> is a closed proper convex function, positively homogeneous and <span class="math inline">\(f(0)=0\)</span>, then <span class="math display">\[
-f^*=\delta_C,\;where\; C=\partial f(0).
-\]</span></p></li>
-</ol>
-<p><strong>Example</strong></p>
-<p>Let <span class="math inline">\(f(x)=||x||_\#\)</span> be any norm function defined on <span class="math inline">\(\mathcal E\)</span> and <span class="math inline">\(||\cdot||_*\)</span> be the dual norm of <span class="math inline">\(||\cdot||_\#\)</span>, i.e., for any <span class="math inline">\(x\in \mathcal E\)</span>, <span class="math inline">\(||x||_*=\sup_{y\in\mathcal E}\{\langle x,y \rangle\;|\;||y||_\#\le 1\}\)</span>. Since <span class="math inline">\(f\)</span> is a positively homogeneous closed convex function, <span class="math inline">\(f^*=\delta_C\)</span> where <span class="math display">\[
-C=\partial f(0)=B_*=\{x\in\mathcal E\;|\;||x||_*\le 1\}.
-\]</span> <strong>Example</strong></p>
-<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> be defined by <span class="math inline">\(f(x)=\max_{i=1,\dotsm,n}x_i\)</span>. Then <span class="math display">\[
-S=\partial f(0)=\{x\in\mathbb R^n\;|\; \sum_{i=1}^nx_i=1,x\ge 0\}.
-\]</span> Since <span class="math inline">\(f\)</span> is proper closed convex function, positively homogeneous and <span class="math inline">\(f(0)=0\)</span>, <span class="math inline">\(f^*=\delta_S\)</span>.</p>
-<p><strong>Example</strong></p>
-<p>Let <span class="math inline">\(g(x)=\max_{i=1,\dotsm,n}x_i\)</span> and <span class="math inline">\(f(x)=g(x)+\delta_{\mathbb R^n_+}(x)\)</span>. Clearly, <span class="math inline">\(f(\cdot)\)</span> is a positively homogeneous convex function. Then <span class="math display">\[
-\partial f(0)=\partial g(0)+\partial \delta_{\mathbb R^n_+}(0)=S-\mathbb R_+^n=\{x\in\mathbb R^n\;|\;e^Tx^+\le 1\},
-\]</span> where <span class="math inline">\(S\)</span> is defined in the above example and <span class="math inline">\(x_i^+=\max(x_i,0)\)</span>. Let <span class="math inline">\(x\in \mathbb R^{n}\)</span> be given. Define <span class="math inline">\(I_+=\{i\;|\;x_i\ge 0\}\)</span>, <span class="math inline">\(I_-=\{i\;|\;x_i&lt; 0\}\)</span>, and <span class="math inline">\(C=\{\xi \in R^{|I_+|}\;|\; e^T\xi\le 1,\xi \ge 0\}\)</span>. The projection <span class="math inline">\(\bar x=\Pi_{\partial f(0)}(x)\)</span> is given by <span class="math display">\[
-\begin{array}{rCl}
-\bar x_{I_+}&amp;=&amp;\Pi_C(x_{I_+})\\
-\bar x_{I_-}&amp;=&amp;x_{I_-}
-\end{array}
-\]</span></p>
-<h2 id="semismoothness-of-convex-functions">3.13 Semismoothness of convex functions</h2>
-<p><strong>Definition 3.14</strong> (Semismoothness)</p>
-<p>Let <span class="math inline">\(\Omega\)</span> be an open subset of <span class="math inline">\(\mathcal E\)</span>. Let <span class="math inline">\(f:\Omega\rightarrow \mathbb R\)</span> be a locally Lipschitz continuous function (not necessarily convex).</p>
-<ol type="1">
-<li><p><span class="math inline">\(f\)</span> is said to be semismooth at <span class="math inline">\(x\)</span> if it is directionally differentiable at <span class="math inline">\(x\)</span> and <span class="math display">\[
-f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||)\;\forall h\rightarrow 0,x+h\in \mathcal D_f
-\]</span> where <span class="math inline">\(\mathcal D_f = \{y\in\Omega\;|\; f \text{ is differentiable at }y\}\)</span>.</p></li>
-<li><p>Moreover, <span class="math inline">\(f\)</span> is said to be strongly semismooth at <span class="math inline">\(x\)</span> if <span class="math display">\[
-f(x+h)-f(x)-\langle \nabla f(x+h),h\rangle = O(||h||^2)\;\forall h\rightarrow 0,x+h\in \mathcal D_f
-\]</span></p></li>
-</ol>
-<p><strong>Theorem</strong></p>
-<p>Any convex function <span class="math inline">\(f:\mathcal E\rightarrow \mathbb R\)</span> is semismooth.</p>
-<p><strong>Remark</strong> Piecewise smooth functions are semismooth functions.</p>
-<h2 id="moreau-yosida-my-regularization-and-proximal-mapping">3.14 Moreau-Yosida (MY) regularization and proximal mapping</h2>
-<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a closed proper convex function.</p>
-<p><strong>MY regularization</strong> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
-M_f(x)=\min_{y\in \mathcal E}\left\{f(y)+\frac{1}{2}||y-x||^2\right\}.
-\]</span> <strong>Proximal mapping</strong> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, <span class="math display">\[
-P_f(x)=\arg\min_{y\in\mathcal E} \left\{f(y)+\frac{1}{2}||y-x||^2\right\}.
-\]</span> We also have <span class="math display">\[
-P_{\lambda f}(x)=\arg\min_{y\in\mathcal E}\left\{f(y)+\frac{1}{2\lambda}||y-x||^2\right\}.
-\]</span> And <span class="math display">\[
-M_{\lambda f}(x)=\min_{y\in \mathcal E}\left\{f(y)+\frac{1}{2\lambda}||y-x||^2\right\}.
-\]</span> <strong>MY regularization</strong> is also referred to as the <strong>Moreau envelope</strong> of <span class="math inline">\(f\)</span> with parameter <span class="math inline">\(\lambda\)</span>.</p>
-<p>The Moreau envelope <span class="math inline">\(M_f\)</span> is essentially a <strong>smoothed</strong> or <strong>regularized</strong> form of <span class="math inline">\(f\)</span>, it has <strong>domain</strong> <span class="math inline">\(\mathbb R^n\)</span> even when <span class="math inline">\(f\)</span> does not, and it is <strong>continuously differentiable</strong>, even when <span class="math inline">\(f\)</span> is not. In addition, the sets of minimizer of <span class="math inline">\(f\)</span> and <span class="math inline">\(M_f\)</span> are the same. The problems of minimizing <span class="math inline">\(f\)</span> and <span class="math inline">\(M_f\)</span> are thus equivalent, and the latter is always a smooth optimization problem (<span class="math inline">\(M_f\)</span> may be difficult to evaluate). To see why <span class="math inline">\(M_f\)</span> is a smoothed form of <span class="math inline">\(f\)</span>, we have <span class="math display">\[
-M_f=(f^*+(1/2)||\cdot||^2_2)^*.
-\]</span> Because we have <span class="math inline">\(M_f^{**}=M_f\)</span>, it can be interpreted as obtaining a smooth approximation to a function by taking its conjugate, adding regularization, and then taking the conjugate again. With no regularization, it would simply give the original function; with the quadratic regularization, it gives a smooth approximation.</p>
-<p>The <strong>proximal operator</strong> and <strong>Moreau envelope</strong> of <span class="math inline">\(f\)</span> share many relationships. For example, <span class="math inline">\(P_f\)</span> returns the (unique) point that actually achieves the infimum that defines <span class="math inline">\(M_f\)</span>, i.e., <span class="math display">\[
-M_f(x)=f(P_f(x))+(1/2)||x-P_f(x)||_2^2.
-\]</span> In addition, the gradient of Moreau envelope is given by <span class="math display">\[
-\nabla M_{\lambda f}(x)=(1/\lambda)(x-P_{\lambda f}(x)).
-\]</span> This can be rewritten as <span class="math display">\[
-P_{\lambda f}(x)=x-\lambda \nabla M_{\lambda f}(x),
-\]</span> which shows that <span class="math inline">\(P_{\lambda f}\)</span> can be viewed as a gradient step, with step size <span class="math inline">\(\lambda\)</span>, for minimizing <span class="math inline">\(M_{\lambda f}\)</span> (which has the same minimizers as <span class="math inline">\(f\)</span>).</p>
-<p>The definition indicates that <span class="math inline">\(P_f(x)\)</span> is a point that compromises between minimizing <span class="math inline">\(f\)</span> and being near to <span class="math inline">\(x\)</span>. For this reason, <span class="math inline">\(P_f(x)\)</span> is sometimes called a <strong>proximal point</strong> of <span class="math inline">\(x\)</span> with respect to <span class="math inline">\(f\)</span>. In <span class="math inline">\(P_{\lambda f}\)</span>, the parameter <span class="math inline">\(\lambda\)</span> can be interpreted as a relative weight or trade-off parameter between these terms.</p>
-<p>There are many useful properties for the proximal operator.</p>
-<p><strong>Separable sum</strong></p>
-<p>If <span class="math inline">\(f\)</span> is separable across two variables, so <span class="math inline">\(f(x,y)=\varphi(x)+\psi(y)\)</span>, then <span class="math display">\[
-P_f(v,w)=(P_\varphi(v),P_\psi(w)).
-\]</span> <strong>Basic operations</strong></p>
-<p>Postcomposition</p>
-<p>If <span class="math inline">\(f(x)=\alpha \varphi(x)+b\)</span>, with <span class="math inline">\(\alpha &gt;0\)</span>, then <span class="math display">\[
-P_{\lambda f}(v)=P_{\alpha \lambda \varphi}(v).
-\]</span> Precomposition</p>
-<p>If <span class="math inline">\(f(x)=\varphi (\alpha x+b)\)</span>, with <span class="math inline">\(\alpha\neq 0\)</span>, then <span class="math display">\[
-P_{\lambda f}(v)=\frac{1}{\alpha}\left(P_{\alpha^2 \lambda \varphi}(\alpha v+b)-b\right).
-\]</span> If <span class="math inline">\(f(x)=\varphi(Qx)\)</span>, where <span class="math inline">\(Q\)</span> is orthogonal <span class="math inline">\(QQ^T=Q^TQ=I\)</span>, then <span class="math display">\[
-P_{\lambda f}(v)=Q^TP_{\lambda\varphi}(Qv).
-\]</span> Affine addition</p>
-<p>If <span class="math inline">\(f(x)=\varphi(x)+a^Tx+b\)</span>, then <span class="math display">\[
-P_{\lambda f}(v)=P_{\lambda \varphi}(v-\lambda a).
-\]</span> Regularization</p>
-<p>If <span class="math inline">\(f(x)=\varphi(x)+(\rho/2)||x-a||_2^2\)</span>, then <span class="math display">\[
-P_{\lambda f}(v)=P_{\tilde \lambda \varphi}\left(\left(\tilde \lambda/\lambda\right)v+(\rho\tilde \lambda)a\right)
-\]</span> where <span class="math inline">\(\tilde \lambda=\lambda/(1+\lambda \rho)\)</span>.</p>
-<p><strong>Fixed point algorithms</strong></p>
-<p>The point <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(f\)</span> if and only if <span class="math display">\[
-x^*=P_f(x^*),
-\]</span> i.e., if <span class="math inline">\(x^*\)</span> is a fixed point of <span class="math inline">\(P_f\)</span>. This fundamental property gives a link between proximal operator and fixed point theory. Many proximal algorithms for optimization can be interpreted as methods for finding fixed points of appropriate operators. Since minimizers of <span class="math inline">\(f\)</span> are fixed points of <span class="math inline">\(P_f\)</span>, we can minimize <span class="math inline">\(f\)</span> by finding a fixed point of its proximal operator.</p>
-<p>If <span class="math inline">\(P_f\)</span> were a <strong>contraction</strong>, i.e. it is Lipschitz continuous with constant less than 1, repeatedly applying <span class="math inline">\(P_f\)</span> would find a fixed point. It turns out that while <span class="math inline">\(P_f\)</span> need not be a contraction (unless <span class="math inline">\(f\)</span> is strongly convex), it does have a different property, <strong>firm nonexpansiveness</strong>, sufficient for fixed point iteration, <span class="math display">\[
-||P_f(x)-P_y(y)||^2_2\le (x-y)^T(P_f(x)-P_f(y))\quad \forall x,y\in\mathbb R^n.
-\]</span> Firmly nonexpansive operator are special case of <strong>nonexpansive operators</strong> (Lipschitz continuous with constant 1). Iteration of a general nonexpansiveness operator need not converge to a fixed point (consider operators like <span class="math inline">\(-I\)</span>). However, it turns out that if <span class="math inline">\(N\)</span> is nonexpansive, then the operator <span class="math inline">\(T=(1-\alpha)I+\alpha N\)</span>, where <span class="math inline">\(\alpha \in(0,1)\)</span>, has the same fixed point as <span class="math inline">\(N\)</span> and simple iteration of <span class="math inline">\(T\)</span> will converge to a fixed point of <span class="math inline">\(T\)</span> (and thus <span class="math inline">\(N\)</span>), i.e., the sequence <span class="math display">\[
-x^{k+1}=(1-\alpha) x^k+\alpha N(x^k)
-\]</span> will converge to a fixed point of <span class="math inline">\(N\)</span>, i.e., <strong>Damped iteration</strong> of a nonexpansive operator will converge to one of its fixed points. Operators that can denoted in the form <span class="math inline">\((1-\alpha)I+\alpha N\)</span>, where <span class="math inline">\(N\)</span> is nonexpansive and <span class="math inline">\(\alpha \in (0,1)\)</span>, are called <span class="math inline">\(\alpha\)</span><strong>-averaged operators</strong>. Firmly nonexpansive operators are averaged, indeed, the <span class="math inline">\((1/2)\)</span>-averaged operators. In summary, both <strong>contractions</strong> and <strong>firm nonexpansions</strong> are subsets of the class of averaged operators, which in turn are a subset of all nonexpansive operators.</p>
-<p><strong>Averaged operators</strong> are useful because they satisfy some properties that are desirable in devising fixed point methods, and because they are a common parent of contractions and firm nonexpansions. The class of averaged operators is closed under composition, unlike the firm nonexpansions, i.e., the composition of firmly nonexpansive operators need not be firmly nonexpansive but is always averaged. In addition, simple iteration of an averaged operator will converge to a fixed point if one exists. <span class="math display">\[
-x^{k+1}=T(x^k)
-\]</span> with arbitrary <span class="math inline">\(x^0\)</span>. Then <span class="math inline">\(||T(x^k)-x^k||\rightarrow 0\)</span> as <span class="math inline">\(k\rightarrow 0\)</span> and <span class="math inline">\(x^k\)</span> converges to a fixed point of <span class="math inline">\(T\)</span>. This immediately suggests the simplest proximal method, <span class="math display">\[
-x^{k+1}=P_{\lambda f} (x^k),
-\]</span> which is called <strong>proximal minimization</strong> or the <strong>proximal point algorithm</strong>.</p>
-<p><strong>Proximal average</strong></p>
-<p>Let <span class="math inline">\(f_1,f_2,\dotsm,f_m\)</span> be closed proper convex functions. Then we have that <span class="math display">\[
-\frac{1}{m}\sum_{i=1}^m P_{f_i}=P_g,
-\]</span> where <span class="math inline">\(g\)</span> is a function called the <strong>proximal average</strong> of <span class="math inline">\(f_1,f_2,\dotsm,f_m\)</span>. In the other words, the average of the proximal operators of a set of functions is itself the proximal operator of some function, and this function is called the <strong>proximal average</strong>.</p>
-<p><strong>Resolvent of subdifferential operator</strong></p>
-<p>We can view the subdifferential operator <span class="math inline">\(\partial f\)</span> of a closed proper convex function <span class="math inline">\(f\)</span> as a <strong>point-to-set mapping</strong> or a <strong>relation</strong> on <span class="math inline">\(\mathbb R^n\)</span>, i.e., <span class="math inline">\(\partial f\)</span> takes each point <span class="math inline">\(x\in\text{dom}f\)</span> to the set <span class="math inline">\(\partial f(x)\)</span>. Any point <span class="math inline">\(y\in\partial f(x)\)</span> is called a subgradient of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>. We refer to the (point-to-point) mapping <span class="math inline">\(\nabla f\)</span> from <span class="math inline">\(x\in \text{dom} f\)</span> as the <strong>gradient mapping</strong>.</p>
-<p><strong>Proposition</strong></p>
-<p>The proximal operator <span class="math inline">\(P_{\lambda f}\)</span> and the differential operator <span class="math inline">\(\partial f\)</span> are related as follows, <span class="math display">\[
-P_{\lambda f}=(I+\lambda \partial f)^{-1}.
-\]</span> The (point-to-point) mapping <span class="math inline">\((I+\lambda \partial f)^{-1}\)</span> is called the resolvent of the operator <span class="math inline">\(\partial f\)</span> with parameter <span class="math inline">\(\lambda &gt;0\)</span>, so the proximal operator is the resolvent of the subdifferential operator. This relation has domain <span class="math inline">\(\mathbb R^n\)</span>, is single-valued, and so is a <strong>function</strong>, even though <span class="math inline">\(\partial f\)</span> is not.</p>
-<p>Proof.</p>
-<p>We assume that <span class="math inline">\(f\)</span> is subdifferentiable on its domain. By definition if <span class="math inline">\(z\in(I+\lambda \partial f)^{-1}(x)\)</span>, then <span class="math display">\[
-x\in(I+\lambda \partial f)(z)=z+\lambda \partial f(z).
-\]</span> This can be expressed as <span class="math display">\[
-0\in \partial f(z)+(1/\lambda )(z-x),
-\]</span> which can be rewritten as <span class="math display">\[
-0\in\partial_z\left(f(z)+(1/2\lambda)||z-x||_2^2\right).
-\]</span> This is the necessary and sufficient condition for <span class="math inline">\(z\)</span> to minimize the strongly convex function, which is <span class="math display">\[
-z=\arg\min_u\left(f(u)+(1/2\lambda)||u-x||_2^2\right).
-\]</span> Therefore, we have <span class="math inline">\(z=P_{\lambda f}(x)\)</span> and, in particular, that <span class="math inline">\((I+\lambda \partial f)^{-1}\)</span> is single-valued.</p>
-<p><strong>Modified gradient step</strong></p>
-<p>We have already seen that <span class="math display">\[
-P_{\lambda f}(x)=x-\lambda \nabla M_{\lambda f}(x),
-\]</span> i.e., <span class="math inline">\(P_{\lambda f}\)</span> is a gradient step for minimizing the Moreau envelope of <span class="math inline">\(f\)</span> with step size <span class="math inline">\(\lambda\)</span>.</p>
-<p>If <span class="math inline">\(f\)</span> is twice differentiable at <span class="math inline">\(x\)</span>, with <span class="math inline">\(\nabla f(x)\succ0\)</span>, then as <span class="math inline">\(\lambda \rightarrow 0\)</span>, we have <span class="math display">\[
-P_{\lambda f}(x)=(I+\lambda \nabla f)^{-1}(x)=x-\lambda \nabla f(x)+o(\lambda).
-\]</span> In other words, for small <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(P_{\lambda f}(x)\)</span> converges to a gradient step in <span class="math inline">\(f\)</span> with step length <span class="math inline">\(\lambda\)</span>.</p>
-<p><strong>Trust region problem</strong></p>
-<p>Solution of the trust region problem can be transferred to a solution of the proximal problem. (See "Proximal Algorithm" - Boyd).</p>
-<p>We also have some propositions for MY regularization and proximal mapping.</p>
-<p><strong>Proposition</strong></p>
-<ol type="1">
-<li><span class="math inline">\(P_f(x)\)</span> exists and is unique.</li>
-<li><span class="math inline">\(M_f(x)\le f(x)\)</span> for all <span class="math inline">\(x\in\mathcal E\)</span>.</li>
-</ol>
-<p><strong>Proposition</strong> (IMPORTANT)</p>
-<p>Let <span class="math inline">\(f:\mathcal E\rightarrow (-\infty,\infty]\)</span> be a closed proper convex function. Then <span class="math display">\[
-\arg\min\{f(x)\;|\; x\in\mathcal E\}=\arg\min\{M_f(x)\;|\; x\in\mathcal E\}.
-\]</span> Proof.</p>
-<p>Suppose <span class="math inline">\(x^*\)</span> is a minimizer of <span class="math inline">\(f\)</span>. Then <span class="math inline">\(f(x^*)\le f(x)\)</span> for all <span class="math inline">\(x\in\mathcal E\)</span>. Thus for any <span class="math inline">\(x\in \mathcal E\)</span>, <span class="math display">\[
-\begin{array}{rcl}
-M_f(x^*)&amp;=&amp;\min_{y\in \mathcal E}\{f(y)+\frac{1}{2}||y-x^*||^2\}\\
-&amp;\le&amp; f(x^*)\;\;(y=x^*)\\
-&amp;\le&amp; f(y)+\frac{1}{2}||y-x||^2\;\forall y\in\mathcal E
-\end{array}
-\]</span> That means <span class="math inline">\(M_f(x^*)\le \min_{y\in\mathcal E }\{f(y)+\frac{1}{2}||y-x||^2\}=M_f(x)\)</span>.</p>
-<p>Conversely, suppose <span class="math inline">\(x^*\)</span> is a minimizer of <span class="math inline">\(M_f\)</span>. Then <span class="math display">\[
-f(P_f(x^*))+\frac{1}{2}||P_f(x^*)-x^*||^2=M_f(x^*)\le M_f(x)\le f(x).
-\]</span> Let <span class="math inline">\(x=P_f(x^*)\)</span>, then we have <span class="math inline">\(P_f(x^*)=x^*\)</span>. Q.E.D.</p>
-<p><strong>Theorem</strong> (Moreau decomposition)</p>
-<p>Let <span class="math inline">\(f\)</span> be closed proper convex and <span class="math inline">\(f^*\)</span> be its conjugate. Then <span class="math display">\[
-x=P_f(x)+P_{f^*} (x)\quad \forall x\in\mathcal E\\
-\frac{1}{2}||x\|^2=M_f(x)+M_{f^*} (x).
-\]</span> For any <span class="math inline">\(t&gt;0\)</span>, <span class="math display">\[
-x=P_{tf}(x)+tP_{f^*/t}(x/t)\quad \forall x\in\mathcal E\\
-\frac{1}{2}||x||^2=M_{tf}(x)+t^2M_{f^*/t}(x/t).
-\]</span> <strong>Example</strong></p>
-<p>Let <span class="math inline">\(f(x)=\lambda ||x||_1\)</span> for <span class="math inline">\(x\in\mathbb R^n\)</span>. Then <span class="math inline">\(f^*(z)=\delta_C(z)\)</span> where <span class="math inline">\(C=\partial f(0)=\{z\in\mathbb R^n\;|\;||z||_\infty\le \lambda\}\)</span>.</p>
-<p>Proof.</p>
-<p><span class="math inline">\(f(x)\)</span> is a closed proper convex function, positively homogeneous and <span class="math inline">\(f(0)=0\)</span>, then <span class="math display">\[
-f^*=\delta_C,\;\text{where}\; C=\partial f(0).
-\]</span> For any <span class="math inline">\(v\in\partial f(0)\)</span>, we have <span class="math display">\[
-\begin{array}{rcl}
-f(z)&amp;\ge&amp; f(0)+\langle v,z-0\rangle \;\forall z\\
-&amp;=&amp;\langle v,z\rangle \;\forall z\iff\\
-\lambda ||z||_1&amp;\ge&amp; \langle v,z\rangle\;\forall z\iff\\
-||v||_\infty &amp;\le&amp; \lambda.
-\end{array}
-\]</span> <strong>Example</strong></p>
-<p>Let <span class="math inline">\(C\subset \mathcal E\)</span> be closed and convex. For <span class="math inline">\(f=\delta _C\)</span>, <span class="math display">\[
-P_{\delta _C}(x)=\arg\min_{y\in\mathcal E}\{\delta_C(y)+\frac{1}{2}||y-x||\}=\arg\min_{y\in C}\frac{1}{2}||y-x||^2=\Pi_C(x).
-\]</span> Suppose <span class="math inline">\(C=\mathbb S_+^n\)</span>, the cone of <span class="math inline">\(n\times n\)</span> symmetric PSD matrices. Then <span class="math display">\[
-\Pi_C(x)=Q\text{diag} (d_+)Q^T. (PSD)
-\]</span> <strong>Theorem</strong></p>
-<ol type="1">
-<li><p><span class="math inline">\(P_f\)</span> and <span class="math inline">\(Q_f=I-P_f\)</span> are firmly nonexpansive, i.e., <span class="math display">\[
-||P_f(x)-P_f(y)||^2\le \langle P_f(x)-P_f(y),x-y\rangle \quad \forall x,y\in\mathcal E\\
-||Q_f(x)-Q_f(y)||^2\le \langle Q_f(x)-Q_f(y),x-y\rangle \quad \forall x,y\in\mathcal E.
-\]</span> Hence <span class="math inline">\(||P_f(x)-P_f(y)||\le ||x-y||\)</span>. That is, <span class="math inline">\(P_f\)</span> is Lipschitz continuous with modules 1. The same statement also holds for <span class="math inline">\(Q_f\)</span>.</p></li>
-<li><p><span class="math inline">\(M_f\)</span> is continuously differentiable and <span class="math inline">\(\nabla M_f(x)=x-P_f(x)\;\forall x\in\mathcal E\)</span>.</p></li>
-<li><p><span class="math inline">\(\nabla M_{tf}(x)=tP_{f^*/t}(x/t)\)</span> and <span class="math inline">\(\nabla M_{f^*/t}(x)=t^{-1}P_{tf}(tx)\)</span>.</p></li>
-</ol>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(f\)</span> be a closed proper convex function on <span class="math inline">\(\mathcal E\)</span>. For any <span class="math inline">\(x\in\mathcal E\)</span>, <span class="math inline">\(\partial P_f(x)\)</span> has the following properties,</p>
-<ol type="1">
-<li>Any <span class="math inline">\(V\in\partial P_f(x)\)</span> is self-adjoint.</li>
-<li><span class="math inline">\(\langle Vd,d\rangle \ge ||Vd||^2\)</span> for any <span class="math inline">\(V\in\partial P_f(x)\)</span> and <span class="math inline">\(d\in\mathcal E\)</span>.</li>
-</ol>
-<h2 id="directional-derivatives-of-matrix-valued-functions">3.15 Directional derivatives of matrix-valued functions</h2>
-<p>Suppose <span class="math inline">\(X\in\mathbb S^n\)</span> has spectral decomposition <span class="math inline">\(X=\bar P\Lambda \bar P^T\)</span> with its eigenvalues contained in an bounded open subset <span class="math inline">\(I\)</span> of <span class="math inline">\(\mathbb R\)</span>. Let <span class="math inline">\(f:I\rightarrow \mathbb R\)</span> be a scalar function. The Lowner spectral operator is defined by <span class="math display">\[
-F(X)=\bar P\text{diag}(f(\lambda_1),\dots,f(\lambda_2))\bar P^T.
-\]</span> <strong>Proposition</strong></p>
-<p>The Lowner operator <span class="math inline">\(F(\cdot)\)</span> is differentiable at <span class="math inline">\(X\)</span> if and only if <span class="math inline">\(f(\cdot)\)</span> is differentiable at each <span class="math inline">\(\lambda_i (X)\)</span>. In this case, the Fréchet derivative is given by <span class="math display">\[
-F&#39;(X)[H]=\bar P[f^{[1]}(\Lambda)\circ (\bar P^TH\bar P)]\bar P^T\quad \forall H\in \mathbb S^n,
-\]</span> where <span class="math inline">\(\circ\)</span> denote the Schur product (elementwise product). Here given <span class="math inline">\(D=\text{diag}(d)\)</span>, <span class="math inline">\(f^{[1]}(D)\in \mathbb S^n\)</span> is defined by <span class="math display">\[
-(f^{[1]}(D))_{ij}=
-\begin{cases}
-\frac{f(d_i)-f(d_j)}{d_i-d_j}&amp; d_i \neq d_j\\
-f&#39;(d_i)&amp; d_i=d_j.
-\end{cases}
-\]</span></p>
-<p>Proof.</p>
-<p>Here we only give the proof for the case where <span class="math inline">\(f(t)=t^p\)</span> where <span class="math inline">\(p\)</span> is a positive integer. The general case for an arbitrary continuously differentiable function can be proved by a continuity argument and approximation by polynomials.</p>
-<p>We have for any <span class="math inline">\(H\in \mathbb S^n\)</span>, <span class="math display">\[
-\begin{array}{rcl}
-F(\Lambda+H)-F(\Lambda)&amp;=&amp;(\Lambda+H)^p-\Lambda^p\\
-&amp;=&amp;\sum_{k=1}^p\Lambda^{k-1}H\Lambda^{p-k}+O(||H||^2)\\
-&amp;=&amp;f^{[1]}(\Lambda)\circ H.
-\end{array}
-\]</span> Further explanations, as for the matrix <span class="math inline">\((i,j)\)</span> entry for the matrix <span class="math inline">\(\Gamma = \sum_{k=1}^p\Lambda^{k-1}H\Lambda^{p-k}\)</span>, since the matrix <span class="math inline">\(\Lambda\)</span> is diagonal, we have <span class="math inline">\(\Gamma_{ij}=\sum_{k=1}^p \lambda_i^{k-1}\lambda_j^{p-k}h_{ij}\)</span>. We also check the <span class="math inline">\((i,j)\)</span> entry for <span class="math inline">\(f^{[1]}(\Lambda)\)</span>. <span class="math display">\[
-(f^{[1]}(\Lambda))_{ij}=
-\begin{cases}
-\frac{f(\lambda_i)-f(\lambda_j)}{\lambda_i-\lambda_j}=\frac{\lambda_i^p-\lambda_j^p}{\lambda_i-\lambda_j}=\Gamma _{ij},&amp; d_i \neq d_j\\
-f&#39;(\lambda_i)=p\lambda_i^{p-1}=\Gamma_{ij},&amp; \lambda_i=\lambda_j.
-\end{cases}
-\]</span> The remaining proof is very simple.</p>
-<p><strong>Example</strong></p>
-<p>Suppose <span class="math inline">\(f(t)=t^+=\max \{0,t\}\)</span>. Suppose that <span class="math display">\[
-\lambda_1\ge \lambda _2\ge \dotsm\ge \lambda_r&gt; 0\ge \lambda_{r+1}\ge \dotsm\ge \lambda _n.
-\]</span> Then we have <span class="math display">\[
-F(X)=\bar P\text{diag}(\lambda_1,\lambda_2,\dotsm,\lambda_r,0,\dotsm,0)\bar P^T.
-\]</span> Then we have <span class="math display">\[
-F&#39;(X)[H]=\bar P[\Omega\circ(\bar P^TH\bar P)]\bar P^T,
-\]</span> where <span class="math display">\[
-\Omega=\begin{cases}
-1 &amp; i,j=1,\dotsm,r\\
-\frac{\lambda_i}{\lambda_i+|\lambda_j|}&amp; i=1,\dotsm,r,j=r+1,\dotsm,n\\
-0&amp;i,j=r+1,\dotsm,n.
-\end{cases}
-\]</span> That is <span class="math display">\[
-\Omega=\begin{bmatrix}1_r1_r^T&amp;\Omega_{12}\\ \Omega_{12}^T&amp; 0_{(n-r)\times(n-r)}\end{bmatrix}.
-\]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1264,7 +924,7 @@ F&#39;(X)[H]=\bar P[\Omega\circ(\bar P^TH\bar P)]\bar P^T,
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
