@@ -56,13 +56,14 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Orandragon&#39;s Blog">
+  <meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheng-Zilong">
 <meta property="og:url" content="http://yoursite.com/page/13/index.html">
-<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:site_name" content="Cheng-Zilong">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Orandragon&#39;s Blog">
+<meta name="twitter:title" content="Cheng-Zilong">
   <link rel="canonical" href="http://yoursite.com/page/13/">
 
 
@@ -77,7 +78,7 @@
   };
 </script>
 
-  <title>Orandragon's Blog</title>
+  <title>Cheng-Zilong</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -126,10 +127,12 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Orandragon's Blog</span>
+        <span class="site-title">Cheng-Zilong</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
   </div>
 
   <div class="site-nav-toggle">
@@ -215,16 +218,229 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/Introduction to Hilbert Spaces with Applications/2.12 The Lebesgue Integral/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/Convex Optimization/9. Unconstraint Minimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="name" content="Cheng-Zilong">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" class="post-title-link" itemprop="url">Chapter 9. Unconstraint Minimization</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-11 13:49:01 / Modified: 13:58:04" itemprop="dateCreated datePublished" datetime="2019-08-11T13:49:01+08:00">2019-08-11</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 9. Unconstraint Minimization" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="unconstrained-minimization">9. Unconstrained minimization</h1>
+<h2 id="unconstrained-minimization-problem">9.1 Unconstrained minimization problem</h2>
+<p>In this chapter, we discuss methods for solving the unconstrained optimization problem <span class="math display">\[
+\text{minimize } f(x)
+\]</span> where <span class="math inline">\(f\)</span> is convex and twice differentiable.</p>
+<p>We denote the optimal value <span class="math inline">\(\inf_x f(x)=f(x^\star)\)</span>, and we know that <span class="math inline">\(\nabla f(x^\star)=0\)</span></p>
+<p>Sometimes we can solve the problem analytically, but most of the time, we need to use iterative method.</p>
+<p><strong>Initial point and sublevel set</strong></p>
+<p>The method described in this chapter require a suitable starting point <span class="math inline">\(x^{(0)}\)</span>. The starting point must lie in <span class="math inline">\(dom f\)</span>, and in addition the sublevel set <span class="math display">\[
+S=\{x\in dom f| f(x)\le f(x^{(0)})\}
+\]</span> must be closed.</p>
+<h3 id="examples">9.1.1 Examples</h3>
+<p><strong>Quadratic minimization and least-squares</strong> <span class="math display">\[
+\text{minimize } (1/2)x^TPx+q^Tx+r
+\]</span> For the optimal value, we have <span class="math display">\[
+Px^\star+q=0
+\]</span> <strong>Unconstrained geometric programming</strong> <span class="math display">\[
+\text{minimize }f(x)=\log \left(\sum_{i=1}^m \exp (a_i^Tx+b_i)\right)
+\]</span> The optimality condition is <span class="math display">\[
+\nabla f(x^\star)=\frac{1}{\sum_{i=1}^m \exp(a_i^Tx^\star+b_i)}\sum_{i=1}^m \exp (a_i^Tx^\star+b_i)a_i=0
+\]</span> The above in general has no analytical solution, therefore we need to use iterative method.</p>
+<p><strong>Analytic center of linear inequalities</strong></p>
+<p>We consider the optimization problem <span class="math display">\[
+\text{minimize }f(x)=-\sum_{i=1}^m \log (b_i-a_ix^T)
+\]</span> The objective function <span class="math inline">\(f\)</span> in this problem is called logarithmic barrier for the inequalities. The solution if exists, is called analytic center of the inequalities.</p>
+<p><strong>Analytic center of a linear matrix inequality</strong> <span class="math display">\[
+\text{minimize } f(x)=\log\det F(x)^{-1}\\
+F(x)=F_0+x_1F_1+\dotsm+x_nF_n
+\]</span></p>
+<h3 id="strong-convexity-and-implications">9.1.2 Strong convexity and implications</h3>
+<p>In much of this chapter, we assume the objective function is strongly convex <span class="math display">\[
+\nabla^2f(x)\succeq m I
+\]</span> As the same, we have for <span class="math inline">\(x,y \in S\)</span> <span class="math display">\[
+f(y)=f(x)+\nabla f(x)^T(y-x)+\frac{1}{2} (y-x)^T \nabla^2f(z)(y-x)
+\]</span> where <span class="math inline">\(z\)</span> is on the line segment <span class="math inline">\([x,y]\)</span>.</p>
+<p>By the strong convexity, we have <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{m}{2}||y-x||_2^2
+\]</span> We find that <span class="math inline">\(\tilde y= x-(1/m)\nabla f(x)\)</span> minimizes the right hand side, therefore, we have <span class="math display">\[
+f(y)\ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
+\]</span> And we have <span class="math display">\[
+p^\star \ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
+\]</span> That means <span class="math display">\[
+||\nabla f(x)||_2\le (2m\epsilon)^{1/2} \implies f(x)-p^\star \le \epsilon
+\]</span> The inequality shows that when the gradient is small, then the point is nearly optimal. We can also derive a bound on <span class="math inline">\(||x-x^*||_2\)</span>, the distance between <span class="math inline">\(x\)</span> and any optimal point <span class="math inline">\(x^\star\)</span>, in terms of <span class="math inline">\(||\nabla f(x)||_2\)</span>: <span class="math display">\[
+||x-x^\star||_2\le \frac{2}{m}||\nabla f(x)||_2
+\]</span></p>
+<p><strong>Upper bound on <span class="math inline">\(\nabla^2f(x)\)</span></strong> There exists a constant <span class="math inline">\(M\)</span> such that <span class="math display">\[
+\nabla^2 f(x)\preceq MI
+\]</span></p>
+<p>Then we have <span class="math display">\[
+f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{M}{2}||y-x||_2^2
+\]</span> Then <span class="math display">\[
+p^\star \le f(x)-\frac{1}{2M}||\nabla f(x)||^2_2
+\]</span> <strong>Condition number of sublevel sets</strong></p>
+<p>From the strong convexity inequality, we have <span class="math display">\[
+mI\preceq \nabla^2f(x)\preceq MI
+\]</span> for all <span class="math inline">\(x\in S\)</span>. The ratio <span class="math inline">\(k=M/m\)</span> is thus an upper bound on the condition number of the matrix <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. the ratio of its largest eigenvalue to its smallest eigenvalue.</p>
+<p><strong>The Strong Convexity constants</strong></p>
+<p>It must be kept in mind that the constants <span class="math inline">\(m\)</span> and <span class="math inline">\(M\)</span> are known only in rare cases.</p>
+<h2 id="descent-method">9.2 Descent Method</h2>
+<p>The algorithm described in this chapter produce a minimizing sequence <span class="math inline">\(x^{(k)}\)</span> , where <span class="math display">\[
+x^{(k+1)}=x^{(k)}+t \Delta x^{(k)}
+\]</span> All methods we study are descent methods, which means <span class="math display">\[
+f(x^{(k+1)})&lt; f(x^{(k)})
+\]</span></p>
+<p>except when <span class="math inline">\(x^{(k)}\)</span> is optimal.</p>
+<p>From convexity, we know that <span class="math inline">\(\nabla f(x^{(k)})^T(y-x^{(k)})\ge 0\)</span> implies <span class="math inline">\(f(y)\ge f(x^{(k)})\)</span>, so the search direction must be made as an acute angle with the negative gradient. <span class="math display">\[
+\nabla f(x^{(k)})^T\Delta x^{(k)}&lt; 0
+\]</span> <strong>Exact line search</strong></p>
+<p>One line search method sometimes used in practice is exact line search, in which <span class="math inline">\(t\)</span> is chosen to minimize <span class="math inline">\(f\)</span> along the ray <span class="math inline">\(\{x+t\Delta x|t \ge 0\}\)</span>: <span class="math display">\[
+t=\arg\min_{s\ge 0} f(x+s\Delta x)
+\]</span> An exact line search is used when the cost of the minimization problem with one variable, require in the above equation, is low compared to the cost of computing the search direction itself.</p>
+<p><strong>Backtracking line search</strong></p>
+<p>Most line search used in practice are inexact: the step length is chose to appropriately minimize <span class="math inline">\(f\)</span> along the ray.</p>
+<p>Backtracking line search based on two variables <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, with <span class="math inline">\(0&lt;\alpha&lt;0.5\)</span>, <span class="math inline">\(0&lt;\beta&lt;1\)</span>.</p>
+<h2 id="gradient-descent-method">9.3 Gradient Descent Method</h2>
+<p>A natural choice for the search direction is the negative gradient <span class="math inline">\(\Delta x=-\nabla f(x)\)</span>.</p>
+<h2 id="steepest-descent-method">9.4 Steepest descent method</h2>
+<p>The first order Taylor approximation of the function <span class="math inline">\(f(x+v)\)</span> around <span class="math inline">\(x\)</span> is <span class="math display">\[
+f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x) v
+\]</span></p>
+<p>Now the question is how we choose <span class="math inline">\(v\)</span> to make the second term as negative as possible. Since the directional derivative <span class="math inline">\(\nabla f(x)^Tv\)</span> is linear in <span class="math inline">\(v\)</span>, it can be negative as we like by taking <span class="math inline">\(v\)</span> large. To make the question sensible, we have to limit the size of <span class="math inline">\(v\)</span>, or normalize by the length of <span class="math inline">\(v\)</span>. We define the normalized steepest descent direction as <span class="math display">\[
+\Delta x_{nsd}= \arg\min \{\nabla f(x)^Tv| \space ||v||=1\}
+\]</span></p>
+<p>It is also convenient to consider a steepest descent step <span class="math inline">\(\Delta x_{sd}\)</span> is unnormalized, by scaling the normalized steepest descent direction in a particular way: <span class="math display">\[
+\Delta x_{sd}=||\nabla f(x)||_* \Delta x_{nsd}
+\]</span></p>
+<h2 id="newtons-method">9.5 Newton's Method</h2>
+<p>For <span class="math inline">\(x\in dom f\)</span>, the vector <span class="math display">\[
+\Delta x_{nt}=-\nabla^2f(x)^{-1}\nabla f(x)
+\]</span> is called the newton step. Positive definiteness of <span class="math inline">\(\nabla^2f(x)\)</span> implies the Newton step is a decent direction.</p>
+<p><strong>Minimizer of the second-order approximation</strong> The second-order Taylor approximation <span class="math inline">\(\hat f\)</span> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> is <span class="math display">\[
+f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x)^Tv+\frac{1}{2}v^T \nabla^2 f(x) v
+\]</span> which is a convex quadratic function of <span class="math inline">\(v\)</span>, and is minimized when <span class="math inline">\(v=\Delta x_{nt}\)</span>.</p>
+<p><strong>Steepest descent direction in Hessian norm</strong> The Newton Step is also the steepest descent direction at <span class="math inline">\(x\)</span>, for the quadratic norm defined by the Hessian <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. <span class="math display">\[
+||u||_{\nabla^2f(x)} =(u^T\nabla^2f(x)u)^{1/2}
+\]</span></p>
+<p><strong>Solution of linearized optimality condition</strong> Since we know the optimality condition is <span class="math inline">\(\nabla f(x^\star) =0\)</span>, if we linearize <span class="math inline">\(\nabla f(x)\)</span> near <span class="math inline">\(x\)</span> we have <span class="math display">\[
+\nabla f(x+v) \approx \nabla f(x)+\nabla^2 f(x)v=0
+\]</span> Then we can use first-order numerical method to solve this equation.</p>
+<p><strong>Affine invariance of the Newton step</strong> An important feature of the Newton step is that it is independent of linear changes of the coordinates.</p>
+<p><strong>The Newton decrement</strong> The quantity <span class="math display">\[
+\lambda (x)=(\nabla f(x)^T\nabla^2f(x)\nabla f(x))^{1/2}
+\]</span> is called Newton decrement at <span class="math inline">\(x\)</span>. We will see that the Newton decrement plays an important role in the analysis of Newton's method, and is also useful as a stopping criterion. We can relate the Newton decrement to the quantity <span class="math inline">\(f(x)-\inf_y\hat f(y)\)</span>, where <span class="math inline">\(\hat f\)</span> is the second-order approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[
+f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
+\]</span> Thus <span class="math inline">\(\lambda^2/2\)</span> is the estimate of <span class="math inline">\(f(x)-p^\star\)</span>, based on the quadratic approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/Introduction to Hilbert Spaces with Applications/2.12 The Lebesgue Integral/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -382,325 +598,11 @@ f=\lambda_1\mathcal X_{I_1}+\dotsm+\lambda_1\mathcal X_{I_N}
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" class="post-title-link" itemprop="url">Chapter 2-1. The Lebesgue Integral</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-07-28 13:48:00 / Modified: 14:58:52" itemprop="dateCreated datePublished" datetime="2019-07-28T13:48:00+08:00">2019-07-28</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 2-1. The Lebesgue Integral" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="the-lebesgue-integral">The Lebesgue Integral</h1>
-<h2 id="introduction">2.1 Introduction</h2>
-<p>The main purpose of this book is a presentation of basic methods and applications of Hilbert spaces. One of the most important applications of the theory is the solution of differential equations. To this aim, we need, for example, a Hilbert space which contains all differentiable functions defined on some intervals [a,b] for which the inner product is defined by <span class="math display">\[
-\langle f,g \rangle = \int_a^bf(x)\overline{g(x)}dx
-\]</span> The smallest Hilbert space satisfying these conditions is the space of Lebesgue square integrable functions on [a,b]. Thus, the Lebesgue integral is essential for understanding some of the most important applications of Hilbert space theory.</p>
-<h2 id="step-functions">2.2 Step Functions</h2>
-<p>By a step function on the real line <span class="math inline">\(R\)</span> we mean a finite linear combination of characteristic functions of semi-open intervals <span class="math inline">\([a,b)\subseteq R\)</span>. Thus for every step function <span class="math inline">\(f\)</span>, there are intervals <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm,[a_n,b_n)\)</span> and numbers <span class="math inline">\(\lambda_1,\lambda_2,\dotsm,\lambda_n \in R\)</span> such that <span class="math display">\[
-f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)
-\]</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k)\)</span>. That means for <span class="math inline">\(x\in [a_k,b_k)\)</span>, <span class="math inline">\(f(x)=1\)</span>, and <span class="math inline">\(f(x)=0\)</span>, otherwise.</p>
-<p>If we assume that intervals are disjoint and the minimal number of intervals are used, then the representation can be unique. This representation is called basic representation of <span class="math inline">\(f\)</span> and we call <span class="math inline">\(f=0\)</span> the basic representation of the zero function.</p>
-<p>The collection of all step function on R is a vector space. The absolute value of a step function is again a step function.</p>
-<p>If <span class="math inline">\(f=\alpha_1f_1+\alpha_2f_2+\dotsm+\alpha_nf_n\)</span> is a basic representation of a step function, then <span class="math display">\[
-|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n
-\]</span> For any real value functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have <span class="math display">\[
-\min(f,g)=\frac{1}{2}(f+g-|f-g|)\quad \max(f,g)=\frac{1}{2}(f+g+|f-g|)
-\]</span> That means <span class="math inline">\(\min(f,g)\)</span> and <span class="math inline">\(\max(f,g)\)</span> are step functions.</p>
-<p>By the ==support== of a nonzero function <span class="math inline">\(f\)</span>, denoted by supp <span class="math inline">\(f\)</span>, we mean the set of all points <span class="math inline">\(x\in R\)</span> for which <span class="math inline">\(f(x)\neq 0\)</span>. The support of a nonzero step function is always a finite union of semi-open intervals. If <span class="math inline">\(f=0\)</span>, supp <span class="math inline">\(f=\empty\)</span></p>
-<p>==Definition 2.2.1== Integral of a step function</p>
-<p>The integral <span class="math inline">\(\int f\)</span> of a step function <span class="math inline">\(f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)\)</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k),k=1,\dotsm,n\)</span> is defined by <span class="math display">\[
-\int f=\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)
-\]</span> clearly, the value of <span class="math inline">\(\int f\)</span> is equal to the Riemann Integral of <span class="math inline">\(f\)</span>. From the properties of Riemann integral it follows that the defined integral does not depend on a particular representation.</p>
-<p>==Theorem 2.2.1==</p>
-<p>For any step functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have</p>
-<ol type="a">
-<li><p><span class="math inline">\(\int (f+g)=\int f+\int g\)</span></p></li>
-<li><p><span class="math inline">\(\int \lambda f=\lambda \int f\)</span>, <span class="math inline">\(\lambda \in R\)</span></p></li>
-<li><p><span class="math inline">\(f\le g\implies \int f\le \int g\)</span></p></li>
-<li><p><span class="math inline">\(|\int f|\le \int |f|\)</span></p></li>
-</ol>
-<p>Proof.</p>
-<ol type="a">
-<li><ol start="2" type="a">
-<li>can be proved directly from definition</li>
-</ol></li>
-<li>We only need to prove <span class="math inline">\(g-f\ge 0\implies \int (g-f)\ge 0\)</span> i.e. <span class="math inline">\(f\ge 0\implies \int f\ge 0\)</span></li>
-</ol>
-<p>If <span class="math inline">\(f\ge 0\)</span>, then all parameters are positive and <span class="math inline">\(\int f \ge 0\)</span></p>
-<ol start="4" type="a">
-<li><span class="math inline">\(|\int f|=|\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)|\)</span></li>
-</ol>
-<p><span class="math inline">\(\int |f|=|\lambda_1|(b_1-a_1)+|\lambda_2|(b_2-a_2)+\dotsm+|\lambda_n|(b_n-a_n)\)</span></p>
-<p>==Lemma 2.2.1==</p>
-<p>Let <span class="math inline">\(f\)</span> be a step function whose support is contained in the union of semi-open intervals <span class="math inline">\([a_1,b_1),\dotsm,[a_n,b_n)\)</span>. If <span class="math inline">\(|f|&lt;M\)</span> for some constant <span class="math inline">\(M&gt;0\)</span>, then <span class="math display">\[
-\int |f|\le M\sum_{k=1}^n(b_k-a_k)
-\]</span> Proof.</p>
-<p><span class="math inline">\(|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n\)</span>. Then we choose <span class="math inline">\(M &gt; \max\{|\alpha_1|,\dots,|\alpha_n|\}\)</span></p>
-<p>Then <span class="math display">\[
-\int |f|=|\alpha_1|(b_1-a_1)+|\alpha_2|(b_2-a_2)+\dotsm+|\alpha_n|(b_n-a_n)\\
-\le M(b_1-a_1)+M(b_2-a_2)+\dotsm+M(b_n-a_n)\\
-=M\sum_{k=1}^n(b_k-a_k)
-\]</span> ==Lemma 2.2.2==</p>
-<p>Let <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm\)</span> be disjoint subintervals of an interval <span class="math inline">\([a,b)\)</span> such that <span class="math display">\[
-\bigcup_{n=1}^\infty [a_n,b_n)=[a,b)
-\]</span> Then <span class="math display">\[
-\sum_{n=1}^\infty (b_n-a_n)=b-a
-\]</span> Proof.</p>
-<p>Let <span class="math inline">\(S \subset [a,b)\)</span> consist of all points <span class="math inline">\(c\)</span> such that the lemma holds for the interval <span class="math inline">\([a,c)\)</span> and for each of the subintervals <span class="math inline">\([a_n,b_n)\cap [a,c)\)</span> , S is not empty because <span class="math inline">\(a=a_{n_0}\)</span> for some <span class="math inline">\(n_0\in N\)</span> and then <span class="math inline">\(b_{n_0}\in S\)</span>. If <span class="math inline">\(c\in S\)</span>, then <span class="math inline">\(\sum_n(b_{c,n}-a_n)\)</span> where <span class="math inline">\(b_{c,n}=\min \{b_n,c\}\)</span>. It suffices to prove <span class="math inline">\(b\in S\)</span>.</p>
-<p>To this end, we first prove lub <span class="math inline">\(S \in S\)</span>. Indeed, if <span class="math inline">\(s=\)</span> lub S and <span class="math inline">\(\{s_n\}\)</span> is a non-decreasing sequence of elements of S convergent to s, then <span class="math display">\[
-s_n-a=\sum_m (b_{s_n,m}-a_m)\le \sum_m(b_{s,m}-a_m)\le s-a
-\]</span> Then <span class="math inline">\(s_n-a\rightarrow s-a\implies \sum_m(b_{s,m}-a_m)= s-a\)</span>, then <span class="math inline">\(s\in S\)</span>, then easily <span class="math inline">\(s=b\)</span></p>
-<p>Q.E.D.</p>
-<p>==Theorem 2.2.2==</p>
-<p>Let <span class="math inline">\((f_n)\)</span> be a non-increasing sequence of non-negative step functions such that <span class="math inline">\(\lim_{n\rightarrow \infty} f_n(x)=0\)</span> for every <span class="math inline">\(x\in R\)</span>. Then <span class="math inline">\(\lim_{n\rightarrow \infty} \int f_n=0\)</span>.</p>
-<p>Proof.</p>
-<p><span class="math inline">\((f_n)\)</span> is non-increasing sequence, and therefore $f_{n+1}f_nf_{n+1}f_n $</p>
-<p><span class="math inline">\(f_n \ge 0\implies \int f_n \ge 0\)</span></p>
-<p>Therefore <span class="math inline">\((\int f_n)\)</span> is non-increasing and bounded from below, it converges.</p>
-<p>Let <span class="math display">\[
-\lim_{n\rightarrow \infty} \int f_n=\varepsilon&gt;0
-\]</span> Let <span class="math inline">\([a,b)\)</span> be an interval containing all the support of <span class="math inline">\(f_1\)</span> (and therefore, <span class="math inline">\(f_n\)</span>). Put <span class="math inline">\(\alpha=\varepsilon /(2(b-a))\)</span> <span class="math display">\[
-A_n=\{x\in[a,b):f_n(x)&lt;\alpha\}\\
-\begin{array}{rcl}
-B_1=A_1 &amp; B_2=A_2\backslash A_1 &amp; B_2=A_3\backslash A_2\dotsm
-\end{array}
-\]</span> Note that <span class="math inline">\(B_n\)</span> are disjoint and <span class="math inline">\(\bigcup_{n=1}^\infty B_n=[a,b)\)</span></p>
-<p>Because <span class="math inline">\(f_n\)</span> are step functions, <span class="math display">\[
-B_n=[a_{n,1},b_{n,1})\cup\dotsm \cup[a_{n,k_n},b_{n,k_n})
-\]</span> By lemma 2.2.2, <span class="math display">\[
-\sum_{n=1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})=b-a
-\]</span> Let <span class="math inline">\(n_0 \in N\)</span> such that <span class="math display">\[
-\sum_{n=n_0+1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})&lt;\delta
-\]</span> where <span class="math inline">\(\delta = \varepsilon/(2\max|f_1|)\)</span>.</p>
-<p>Define <span class="math display">\[
-F=[a_{1,1},b_{1,1})\cup \dotsm\cup [a_{1,k_1},b_{1,k_1})\cup\dotsm\cup[a_{n_0,1},b_{n_0,1})\cup\dotsm\cup[a_{n_0,k_{n_0}},b_{n_0,k_{n_0}})
-\]</span> Then, <span class="math display">\[
-g(x)=
-\begin{cases}
-f_{n_0}(x) &amp; x\in F\\
-0 &amp; otherwise
-\end{cases}\\
-h(x)=
-\begin{cases}
-0 &amp; x\in F\\
-f_{n_0}(x) &amp; otherwise
-\end{cases}
-\]</span> <span class="math inline">\(x\in F\implies x\in A_{n_0}\)</span>, and thus <span class="math inline">\(f_{n_0}(x)&lt;\alpha\)</span> <span class="math display">\[
-\int g&lt;\alpha(b-a)=\frac{\varepsilon }{2} 
-\]</span> and, <span class="math display">\[
-\int h&lt;\delta \max|f_{n_0}|\le \delta\max|f_{1}|=\frac{\varepsilon }{2} 
-\]</span> Therefore, <span class="math display">\[
-\int f=\int g+\int h &lt;\varepsilon
-\]</span> Q.E.D.</p>
-<p>==Lemma 2.2.3==</p>
-<p>Let <span class="math inline">\((g_n)\)</span> and <span class="math inline">\((h_n)\)</span> be non-decreasing sequences of step functions. If <span class="math inline">\(\lim_{n\rightarrow \infty} h_n(x)\le \lim_{n\rightarrow \infty} g_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span>, then <span class="math inline">\(\lim_{n\rightarrow \infty} \int h_n(x)\le \lim_{n\rightarrow \infty} \int g_n(x)\)</span></p>
-<p>Proof.</p>
-<p>Fix <span class="math inline">\(k\in N\)</span>. $h_k-(h_k,g_n)(n) $ is non-decreasing sequence converging to zero for every <span class="math inline">\(x\in R\)</span></p>
-<p>By theorem 2.2.2 <span class="math display">\[
-0=\lim_{n\rightarrow \infty}\int (h_k-\min(h_k,g_n))\\
-=\lim_{n\rightarrow \infty}\int h_k-\lim_{n\rightarrow \infty}\int\min(h_k,g_n)\\
-\]</span> Q.E.D.</p>
-<h2 id="lebesgue-integrable-functions">2.3 Lebesgue Integrable Functions</h2>
-<p>==Definition 2.3.1== (Lebesgue Integral)</p>
-<p>A real-valued function <span class="math inline">\(f\)</span> defined on <span class="math inline">\(R\)</span> is called Lebesgue integrable if there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that the following two conditions are satisfied:</p>
-<ol type="a">
-<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
-<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
-</ol>
-<p>The integral of <span class="math inline">\(f\)</span> is then defined by <span class="math display">\[
-\int f=\sum_{n=1}^\infty \int f_n
-\]</span> If a function <span class="math inline">\(f\)</span> and a sequence of step function <span class="math inline">\((f_n)\)</span> satisfy (a) and (b), then we will write <span class="math display">\[
-f \simeq \sum_{n=1}^\infty f_n\text{ or } f\simeq f_1+f_2+\dotsm
-\]</span> ==Theorem 2.3.1==</p>
-<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(f\ge 0\)</span>, then <span class="math inline">\(\int f_1+\int f_2 +\dotsm \ge 0\)</span></p>
-<p>Proof</p>
-<p><span class="math display">\[
-\forall \varepsilon&gt;0,\exists n_0\in N\quad \sum_{n=n_0+1}^\infty \int |f_n|&lt;\varepsilon
-\]</span> Then define <span class="math display">\[
-g_n = f_1+\dotsm+f_{n_0}+|f_{n_0+1}|+\dotsm+|f_{n_0+n}|\\
-h_n=\max (g_n,0)\\
-\]</span> and <span class="math inline">\(g_n\)</span> and <span class="math inline">\(h_n\)</span> are non-decreasing sequences</p>
-<p>Then <span class="math display">\[
-\lim _{n\rightarrow \infty }g_n=\lim_{n \rightarrow \infty} h_n \implies \\
-\lim _{n\rightarrow \infty }\int g_n=\lim_{n \rightarrow \infty}\int  h_n\ge0
-\]</span> and this <span class="math display">\[
-\int f_1+\dotsm+\int f_{n_0}+\int |f_{n_0+1}|+\dotsm\ge 0 \\
-\int f_1+\dotsm+2\sum_{n=n_0+1}^\infty\int |f_{n}|\ge 0 \\
-\int f_1+\dotsm+2\varepsilon\ge 0 \\
-\]</span> because <span class="math inline">\(\varepsilon\)</span> is arbitrary, Q.E.D.</p>
-<p>==Corollary 2.3.1==</p>
-<p>If <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span> and <span class="math inline">\(f\simeq \sum_{n=1}^\infty g_n\)</span>. then <span class="math inline">\(\sum_{n=1}^\infty \int f_n=\sum_{n=1}^\infty \int g_n\)</span></p>
-<p>By theorem 2.3.1. Q.E.D.</p>
-<p>The space of all ==Lebesgue integrable functions== defined on R will be denoted as <span class="math inline">\(L^1(R)\)</span>. In the sequel, Lebesgue integrable functions will be called simply ==integrable==.</p>
-<p>It will be proved that every Riemann integrable function is Lebesgue integrable and both integrals are equal.</p>
-<p>==Theorem 2.3.2==</p>
-<p><span class="math inline">\(L^1(R)\)</span> is a vector space and <span class="math inline">\(\int\)</span> is a linear functional on <span class="math inline">\(L^1(R)\)</span>.</p>
-<p>==Theorem 2.3.3==</p>
-<p>If <span class="math inline">\(f,g \in L^1(R)\)</span> and <span class="math inline">\(f&lt;g\)</span>, then <span class="math inline">\(\int f\le \int g\)</span></p>
-<p>Definition 2.3.1 is fairly simple although it may be a little disturbing.</p>
-<h2 id="the-absolute-value-of-an-integrable-function">2.4 The absolute value of an integrable function</h2>
-<p>In the previous section, we mentioned that all Riemann integrable functions are Lebesgue integrable.</p>
-<p>For improper integrals it is not so. For instance, the integral <span class="math display">\[
-\int_{-\infty}^\infty \frac{\sin x}{x}dx
-\]</span> converges, although the function is not Lebesgue integrable. It is clear from the following theorem,</p>
-<p>==Theorem 2.4.1==</p>
-<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(|f|\in L^1(R)\)</span> and <span class="math inline">\(|\int f| \le \int |f|\)</span></p>
-<p><span class="math inline">\(f\in L^1(R)\)</span> means</p>
-<ol type="a">
-<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
-<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
-</ol>
-<p>Let <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> and define <span class="math display">\[
-Z=\{x\in R:\sum_{n=1}^\infty |f_n(x)|&lt;\infty\}\\
-s_n=f_1+f_2+\dotsm+f_n
-\]</span> Then <span class="math display">\[
-f(x)=\lim_{n\rightarrow \infty} s_n(x)\\
-|f(x)|=|\lim_{n\rightarrow \infty} s_n(x)|=\lim_{n\rightarrow \infty} |s_n(x)|\\
-=|s_1|+(|s_2|-|s_1|)+(|s_3|-|s_2|)\dotsm
-\]</span> define <span class="math inline">\(g_1=|s_1|\)</span>, <span class="math inline">\(g_n=|s_n|-|s_{n-1}|\)</span> <span class="math display">\[
-|f(x)|=\sum_{n=1}^\infty g_n(x)
-\]</span> Then we have <span class="math display">\[
-|g_n|\le |s_n-s_{n-1}|=|f_n|\\
-\int |g_n|\le \int |f_n|\\
-\sum_{n=1}^\infty \int |g_n|&lt;\infty
-\]</span> Q.E.D.</p>
-<p>==Corollary 2.4.1==</p>
-<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(\int |f|\le \sum_{n=1}^\infty\int |f_n|\)</span></p>
-<p>==Corollary 2.4.2==</p>
-<p>If <span class="math inline">\(f,g\in L^1(R)\)</span>, then <span class="math inline">\(\min(f,g),\max(f,g) \in L^1(R)\)</span>.</p>
-<p>==Theorem 2.4.2==</p>
-<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(\lim_{t\rightarrow 0}\int |f(x+t)-f(x)|dx=0\)</span></p>
-<h2 id="series-of-integrable-functions">2.5 Series of integrable functions</h2>
-<p>In the construction described in the preceding sections, we start with an integral of step functions and extend it to a larger class of functions by expanding them in series of step functions <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>. The functions in that class have a well-defined integral. This result is a form of completeness of the space of Lebesgue integrable functions. It is of fundamental importance for the theory of the Lebesgue integral.</p>
-<p>==Definition 2.5.1==</p>
-<p>Let <span class="math inline">\(f\)</span> be a real-valued function and let <span class="math inline">\((f_n)\)</span> be a sequence of <strong>integrable functions</strong> (Not step functions). If</p>
-<ol type="a">
-<li><p><span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span></p></li>
-<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
-</ol>
-<p>then we write <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> or <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span></p>
-<p>==Lemma 2.5.1==</p>
-<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then for every <span class="math inline">\(\epsilon&gt;0\)</span> there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(\sum_{n=1}^\infty\int |f_n|\le \int |f|+\epsilon\)</span></p>
-<p>Proof.</p>
-<p>Define, <span class="math inline">\(f\simeq g_1+g_2+\dotsm\)</span>, for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists <span class="math inline">\(n_0\in N\)</span> such that <span class="math display">\[
-\sum_{n=n_0+1}^\infty \int |g_n|&lt;\frac{\varepsilon}{2}
-\]</span> Define <span class="math display">\[
-f_1=g_1+\dotsm+g_n\\
-f_n=g_{n_0+n-1}\\
-f\simeq f_1+f_2+\dotsm\\
-f-f_1\simeq f_2+f_3+\dotsm\\
-\int |f_1|-\int |f|\le\int |f-f_1|\le \sum_{n=2}^\infty |f_n|\\
-\sum_{n=1}^\infty \int |f_n|=\int |f_1|+\sum_{n=2}^\infty |f_n|\\
-\le \int |f|+2\sum_{n=2}^\infty |f_n|\\
-=\int |f|+\varepsilon
-\]</span> ==Theorem 2.5.1==</p>
-<p>If <span class="math inline">\((f_n)\)</span> is a sequence of integrable functions and <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int f=\int f_1+\int f_2+\dotsm\)</span></p>
-<p>==Corollary 2.5.1==</p>
-<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span>, then there exists an integrable function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f=f_1+f_2+\dotsm\)</span>.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -737,7 +639,7 @@ f-f_1\simeq f_2+f_3+\dotsm\\
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
   <div class="site-description" itemprop="description"></div>
 </div>
   <nav class="site-state motion-element">
@@ -745,7 +647,7 @@ f-f_1\simeq f_2+f_3+\dotsm\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -812,7 +714,7 @@ f-f_1\simeq f_2+f_3+\dotsm\\
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>

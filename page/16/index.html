@@ -56,13 +56,14 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Orandragon&#39;s Blog">
+  <meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheng-Zilong">
 <meta property="og:url" content="http://yoursite.com/page/16/index.html">
-<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:site_name" content="Cheng-Zilong">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Orandragon&#39;s Blog">
+<meta name="twitter:title" content="Cheng-Zilong">
   <link rel="canonical" href="http://yoursite.com/page/16/">
 
 
@@ -77,7 +78,7 @@
   };
 </script>
 
-  <title>Orandragon's Blog</title>
+  <title>Cheng-Zilong</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -126,10 +127,12 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Orandragon's Blog</span>
+        <span class="site-title">Cheng-Zilong</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
   </div>
 
   <div class="site-nav-toggle">
@@ -215,16 +218,336 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/Convex Optimization/4.2 Convex Optimization Problems/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="name" content="Cheng-Zilong">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/11/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" class="post-title-link" itemprop="url">Chapter 1-1. Normed Vector Spaces</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-07-11 13:48:00 / Modified: 14:58:29" itemprop="dateCreated datePublished" datetime="2019-07-11T13:48:00+08:00">2019-07-11</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/07/11/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 1-1. Normed Vector Spaces" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/07/11/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/11/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="normed-vector-spaces">Normed Vector Spaces</h1>
+<h2 id="introduction">1.1 Introduction</h2>
+<p>The basic algebraic concepts in the theory of Hilbert spaces are those of a <strong>vector space</strong> and an <strong>inner product</strong>. The inner product defines a norm, and therefore, every Hilbert space is a norm space. Since the norm plays a very important role in the theory. It is not possible to study Hilbert space without familiarity with basic concepts and properties of normed spaces.</p>
+<h2 id="vector-spaces">1.2 Vector spaces</h2>
+<p>We will consider <strong>real vector spaces</strong> and <strong>complex vector spaces</strong>. The field of real number will be denoted by <span class="math inline">\(\mathbb R\)</span> and the filed of complex number will be denoted as <span class="math inline">\(\mathbb C\)</span>. We will use <span class="math inline">\(\mathbb F\)</span> to denote either <span class="math inline">\(\mathbb R\)</span> or <span class="math inline">\(\mathbb C\)</span>.</p>
+<p>==Definition 1.2.1== Vector Space</p>
+<p>By a vector space, we mean a nonempty set <span class="math inline">\(E\)</span> with two operations</p>
+<p>a mapping <span class="math inline">\((x,y)\mapsto x+y\)</span> from <span class="math inline">\(E\times E\)</span> into <span class="math inline">\(E\)</span> is called <strong>addition</strong>.</p>
+<p>a mapping <span class="math inline">\((\lambda,x)\mapsto \lambda x\)</span> from <span class="math inline">\(F\times E\)</span> into <span class="math inline">\(E\)</span> is called <strong>multiplication</strong> by scalars.</p>
+<p>==Example 1.2.1== The scalar fields <span class="math inline">\(\mathbb R\)</span> and <span class="math inline">\(\mathbb C\)</span> are the simplest non-trivial vector space.</p>
+<p>==Example 1.2.2== Function Spaces</p>
+<p>Let <span class="math inline">\(X\)</span> be an arbitrary non-empty set and let <span class="math inline">\(E\)</span> be a vector space. Denote by <span class="math inline">\(F\)</span> the space of all functions from <span class="math inline">\(X\)</span> into <span class="math inline">\(E\)</span>. Then <span class="math inline">\(F\)</span> becomes a vector space if addition and multiplication by scalars are defined. The zero vector in <span class="math inline">\(F\)</span> is the function which assigns the zeros vector of <span class="math inline">\(E\)</span> to every element of <span class="math inline">\(X\)</span>. <span class="math display">\[
+(f+g)(x)=f(x)+g(x)\\
+(\lambda f)(x)=\lambda f(x)
+\]</span> A subset <span class="math inline">\(E_1\)</span> of a vector space <span class="math inline">\(E\)</span> is called a ==vector subspace== if for every <span class="math inline">\(\alpha,\beta \in \mathbb F\)</span> and <span class="math inline">\(x,y\in E_1\)</span>, the vector <span class="math inline">\(\alpha x+\beta y\in E_1\)</span>.</p>
+<p><span class="math inline">\(E_1\)</span> is a ==proper subspace== of <span class="math inline">\(E\)</span> if <span class="math inline">\(E_1\)</span> is a subspace of <span class="math inline">\(E\)</span> and <span class="math inline">\(E_1\neq E\)</span>.</p>
+<p>==Example 1.2.3==</p>
+Let <span class="math inline">\(\Omega\)</span> be an open subset of <span class="math inline">\(\mathbb R^N\)</span>. The following are subspaces of the space of all functions from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb C\)</span>. $$
+<span class="math display">\[\begin{array}{rcl}
+\mathscr C(\Omega)&amp;=&amp;\text{The space of all continuous complex-valued functions defined on }\Omega\\
+
+\mathscr C^k(\Omega)&amp;=&amp;\text{The space of all complex-valued functions defined on }\Omega \\
+&amp;&amp;\text{ with continuous partial derivatives of order k}\\
+
+\mathscr C^\infty(\Omega)&amp;=&amp;\text{The space of all complex-valued 
+}\\
+&amp;&amp;\text{functions defined on }\Omega \text{ with continuous partial derivatives of order infty}\\
+
+\mathscr P(\Omega)&amp;=&amp;\text{The space of all polynomials of $N$ variables}
+\end{array}\]</span>
+<p>$$ ==Example1.2.4== Sequence spaces</p>
+<p>If the set <span class="math inline">\(X\)</span> in function spaces is the set <span class="math inline">\(\mathbb N\)</span> of all positive integers. Then the corresponding function space is actually a space of sequences. <span class="math display">\[
+(x_1,x_2,\dotsm)+(y_1,y_2,\dotsm)=(x_1+y_1,x_2+y_2,\dotsm)\\
+\lambda(x_1,x_2,\dotsm)=(\lambda x_1,\lambda x_2,\dotsm)
+\]</span> ==Example 1.2.5== <span class="math inline">\(l^p\)</span>-Spaces</p>
+<p>Denote by <span class="math inline">\(l^p\)</span>, for <span class="math inline">\(p\ge 1\)</span>, the space of all infinite sequences <span class="math inline">\((z_n)\)</span> of complex numbers such that <span class="math inline">\(\sum_{n=1}^\infty |z_n|^p&lt;\infty\)</span></p>
+<p>We are going to show that <span class="math inline">\(l^p\)</span> is a vector space.</p>
+<p>if <span class="math inline">\((x_n),(y_n)\in l^p\)</span> and <span class="math inline">\(\lambda \in C\)</span>. <span class="math display">\[
+\sum_{n=1}^\infty|x_n+y_n|^p&lt;\infty
+\]</span> from Minkowski's inequality <span class="math inline">\((\sum_{n=1}^\infty |x_n+y_n|^p)^{1/p} \le (\sum_{n=1}^\infty |x_n|^p)^{1/p}+(\sum_{n=1}^\infty |y_n|^p)^{1/p}\)</span></p>
+<p>And <span class="math display">\[
+\sum_{n=1}^\infty |\lambda x_n|^p=|\lambda|^p \sum_{n=1}^\infty |x_n|^p&lt;\infty
+\]</span> Cartesian Product of Vector Spaces</p>
+<p>Let <span class="math inline">\(E_1,\dotsm,E_n\)</span> be vector spaces over the same scalar field <span class="math inline">\(F\)</span>. <span class="math display">\[
+E=\{(x_1,\dotsm,x_n):x_1\in E_1,x_2\in E_2,\dotsm,x_n\in E_n\}=E_1\times\dotsm\times E_n
+\]</span></p>
+<h2 id="linear-independence-basis-dimension">1.3 Linear Independence, Basis, Dimension</h2>
+<p>==Definition 1.3.1== Linear combination</p>
+<p>Let <span class="math inline">\(x_1,\dotsm,x_k\)</span> be elements of a vector space <span class="math inline">\(E\)</span>. A vector <span class="math inline">\(x\in E\)</span> is called a linear combination of vectors if there exists scalars <span class="math inline">\(\alpha_1,\dotsm,\alpha_k\)</span> such that <span class="math display">\[
+x=\alpha_1x_1+\dotsm+\alpha_kx_k
+\]</span> ==Definition 1.3.2== Linear independence</p>
+<p>A <strong>finite</strong> collection of vectors is called linearly independent if <span class="math inline">\(\alpha_1x_1+\dotsm+\alpha_kx_k=0\)</span> implies <span class="math inline">\(\alpha_1,\alpha_2,\dotsm, \alpha_k=0\)</span>.</p>
+<p>An <strong>infinite</strong> collection of vectors <span class="math inline">\(\mathscr A\)</span> is called linearly independent if every finite subcollection of <span class="math inline">\(\mathscr A\)</span> is linearly independent.</p>
+<p>==Definition1.3.3== Basis</p>
+<p>A set of vectors <span class="math inline">\(\mathscr B\subset E\)</span> is called a basis of <span class="math inline">\(E\)</span> if <span class="math inline">\(\mathscr B\)</span> is linearly independent and <span class="math inline">\(span \space \mathscr B=E\)</span></p>
+<p>If there exists a finite basis in <span class="math inline">\(E\)</span>, then <span class="math inline">\(E\)</span> is called finite dimensional vector space.</p>
+<p><span class="math inline">\(E\)</span> has a basis that consists exactly n vectors, then any other basis has exactly n vectors. In such a case n is called the dimension of <span class="math inline">\(E\)</span>. <span class="math inline">\(\text{dim }E=n\)</span>. Spaces <span class="math inline">\(\mathscr C(\Omega), \mathscr C^k(\mathbb R^N), \mathscr C^\infty (\mathbb R^N)\)</span> are infinite dimensional.</p>
+<h2 id="normed-spaces">1.4 Normed Spaces</h2>
+<p>In general, it does not make sense to ask what is the length or magnitude of a vector in a vector space. The concept of a norm is an abstract generalization of the length of a vector.</p>
+<p>==Definition 1.4.1== Norm</p>
+<p>A function <span class="math inline">\(x\mapsto ||x||\)</span> from a vector space <span class="math inline">\(E\)</span> into <span class="math inline">\(R\)</span> is called a norm if it satisfies the following conditions</p>
+<ol type="a">
+<li><p><span class="math inline">\(||x||=0\)</span> if and only if <span class="math inline">\(x=0\)</span></p></li>
+<li><p><span class="math inline">\(||\lambda x||=|\lambda|\space ||x||\)</span> for every <span class="math inline">\(x\in E\)</span> and <span class="math inline">\(\lambda \in F\)</span></p></li>
+<li><p><span class="math inline">\(||x+y||\le ||x||+||y||\)</span> for every <span class="math inline">\(x,y \in E\)</span></p></li>
+</ol>
+<p>For nonnegativity, <span class="math inline">\(0=||0||=||x-x||\le ||x||+||-x||=2||x||\)</span></p>
+<p>Example</p>
+<ol type="1">
+<li><p>The function defined by <span class="math inline">\(||x||=\sqrt{x_1^2+\dotsm+x_N^2}\)</span> is a norm in <span class="math inline">\(R^N\)</span>. This norm is often called the Euclidean norm</p>
+<p>The following are also norms <span class="math display">\[
+||x||=|x_1|+\dotsm+|x_N|\\
+||x||=\max\{|x_1|,\dotsm,|x_N|\}
+\]</span></p></li>
+<li><p>The formula <span class="math inline">\(||z||=\sqrt{|z_1|^2+\dotsm+|z_n|^2}\)</span> defines a norm in <span class="math inline">\(C^N\)</span></p></li>
+<li><p>Let <span class="math inline">\(\Omega\)</span> be a closed bounded subset of <span class="math inline">\(R^n\)</span>. The function $||f||=_{x}|f(x)| $ defines a norm in <span class="math inline">\(\mathscr C(\Omega)\)</span></p></li>
+<li><p>Let <span class="math inline">\(z=(z_n)\in l^p\)</span>. The function defined by <span class="math inline">\(||z||=(\sum_{n=1}^\infty|z_n|^p)^{1/p}\)</span> is a norm in <span class="math inline">\(l^p\)</span></p></li>
+</ol>
+<p>==Definition 1.4.2== Normed Space</p>
+<p>A vector space with a norm is called a normed space.</p>
+<p>We can say a normed space is a pair <span class="math inline">\((E,||\cdot||)\)</span>, where <span class="math inline">\(E\)</span> is a vector space and <span class="math inline">\(||\cdot||\)</span> is a norm defined on <span class="math inline">\(E\)</span>.</p>
+<p>It is possible to define different norms on the same vector space. Therefore, to define a normed space, we need to specify both the vector space and the norm.</p>
+<p>==Definition 1.4.3== Convergence in a normed space</p>
+<p>Let <span class="math inline">\((E,||\cdot||)\)</span> be a normed space. We say that a sequence <span class="math inline">\((x_n)\)</span> of elements of <span class="math inline">\(E\)</span> converges to some <span class="math inline">\(x\in E\)</span> if for every <span class="math inline">\(\varepsilon &gt;0\)</span>, there exists a number M such that for every <span class="math inline">\(n\ge M\)</span> we have <span class="math inline">\(||x_n-x||&lt;\varepsilon\)</span>. In such case, we write <span class="math inline">\(\lim_{n\rightarrow \infty} x_n=x\)</span> or <span class="math inline">\(x_n\rightarrow x\)</span>.</p>
+<p>If we have a normed space <span class="math inline">\(E\)</span>, then we automatically have a convergence defined in <span class="math inline">\(E\)</span>. However, not every convergence definition can be defined with norm (pointwise convergence).</p>
+<p>Here are some examples.</p>
+<p>==Example 1.4.2== Uniform Convergence</p>
+<p>Consider the space <span class="math inline">\(\mathscr C(\Omega)\)</span> of all continuous functions defined on a closed bounded set <span class="math inline">\(\Omega \subset R^n\)</span>. Let <span class="math inline">\(f,f_1,f_2,\dotsm\in \mathscr C(\Omega)\)</span></p>
+<p>We say that the sequence <span class="math inline">\((f_n)\)</span> converges uniformly to <span class="math inline">\(f\)</span> if for every <span class="math inline">\(\epsilon&gt;0\)</span> there exists a constant M such that for all <span class="math inline">\(x\in \Omega\)</span> and for all indices <span class="math inline">\(n\ge M\)</span> we have <span class="math inline">\(||f(x)-f_n(x)||&lt;\epsilon\)</span>. For the norm defined in the above example, we have <span class="math display">\[
+f_1,f_2,\dotsm\text{ converges uniformly to $f$ if and ony if }\max_{x\in\Omega}|f_n(x)-f(x)|\rightarrow 0
+\]</span> ==Definition 1.4.4== Equivalence of Norms</p>
+<p>Two norms defined on the same vector space is called equivalent if they define the same convergence. More precisely, norms <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> in <span class="math inline">\(E\)</span> are equivalent if for any sequence <span class="math inline">\((x_n)\)</span> in <span class="math inline">\(E\)</span> and <span class="math inline">\(x\in E\)</span>, <span class="math display">\[
+||x_n-x||_1\rightarrow 0\text{ if and only if }||x_n-x||_2\rightarrow0
+\]</span> ==Example 1.4.4==</p>
+<p>The norms <span class="math display">\[
+||(x,y)||_1=\sqrt{x^2+y^2}\\
+||(x,y)||_2=|x|+|y|\\
+||(x,y)||_3=\max\{|x|,|y|\}
+\]</span> are equivalent in <span class="math inline">\(R^2\)</span>.</p>
+<p>It can be proved any two norms in a finite dimensional vector space are <strong>equivalent</strong>.</p>
+<p>The following theorem gives another useful criterion for equivalence of norms and often used as a definition of equivalence of norms.</p>
+<p>==Theorem 1.4.1== Let <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> be norms in a vector space <span class="math inline">\(E\)</span>. Then <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> are equivalent if and only if there exists positive numbers <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> such that, <span class="math display">\[
+\alpha||x||_1\le ||x||_2\le \beta||x||_1 \quad \forall x\in E
+\]</span></p>
+<p>Proof.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span> <span class="math display">\[
+\alpha||x_n-x||_1\le ||x_n-x||_2\le \beta||x_n-x||_1
+\]</span> Then if $||x_n-x||_1 $ , then <span class="math inline">\(||x_n-x||_2\rightarrow 0\)</span>. If <span class="math inline">\(||x_n-x||_2\rightarrow 0\)</span>, then <span class="math inline">\(||x_n-x||_1\rightarrow 0\)</span></p>
+<p><span class="math inline">\(\Longrightarrow\)</span></p>
+<p>If now we have <span class="math inline">\(||x_n-x||_1\rightarrow 0\text{ if and only if }||x_n-x||_2\rightarrow0\)</span></p>
+<p>Suppose there is no $&gt;0 $ such that <span class="math inline">\(\forall x\in E,\alpha||x||_1\le ||x||_2\)</span></p>
+<p>That means <span class="math inline">\(\forall \alpha &gt; 0\)</span> such that <span class="math inline">\(\exists x\in E\)</span>, <span class="math inline">\(\alpha||x||_1 &gt;||x||_2\)</span></p>
+<p>For every <span class="math inline">\(n\in \mathbb N\)</span>, there exists <span class="math inline">\(x_n \in E\)</span> such that <span class="math display">\[
+\frac{1}{n}||x_n||_1&gt;||x_n||_2
+\]</span> We define <span class="math display">\[
+y_n=\frac{1}{\sqrt n}\frac{x_n}{||x_n||_2} \in E
+\]</span> Then we have <span class="math display">\[
+||y_n||_1=\frac{1}{\sqrt n}\frac{||x_n||_1}{||x_n||_2}\\
+||y_n||_2=\frac{1}{\sqrt n}\\
+||y_n||_1\ge n||y_n||_2=\sqrt n\\
+\]</span> Then we find that <span class="math inline">\(||y_n||_2\rightarrow 0\)</span> but <span class="math inline">\(||y_n||_1\)</span> does not converge, that contradiction show that number with required property exists.</p>
+<p>In the metric space, the metric is defined by <span class="math inline">\(d(x,y)=||x-y||\)</span>. The metric in E defines a topology in <span class="math inline">\(E\)</span>, i.e. open set and closed set and these all notions can be defined in terms of open set and closed sets. It is not necessary to define the topology using metric. Here we define the basic topological notions in terms of the norm.</p>
+<p>==Definition 1.4.5== Open balls, closed balls, spheres</p>
+<p>Let <span class="math inline">\(x\)</span> be an element of a normed space <span class="math inline">\(E\)</span> and let <span class="math inline">\(r\)</span> be a positive number. We use the following notion:</p>
+<p><span class="math inline">\(B(x,r)=\{y\in E:||y-x||&lt;r\}\)</span> (open ball)</p>
+<p><span class="math inline">\(\bar B(x,r)=\{y\in E:||y-x||\le r\}\)</span> (closed ball)</p>
+<p><span class="math inline">\(S(x,r)=\{y\in E:||y-x||=r\}\)</span> (sphere)</p>
+<p>==Definition 1.4.6== Open and closed sets</p>
+<p>A subset S of a normed space E is called open if for every <span class="math inline">\(x\in S\)</span> there exists <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math inline">\(B(x,\varepsilon)\subseteq S\)</span>.</p>
+<p>A subset is closed if its complement is open. In topology space, a closed set can be defined as a set which contains all its limit points.</p>
+<p>==Theorem 1.4.2==</p>
+<ol type="a">
+<li><p>The union of any number of open sets is open</p></li>
+<li><p>The intersection of finite number of open sets is open</p></li>
+<li><p>The union of a finite number of closed sets is closed</p></li>
+<li><p>The intersection of any number of closed sets is closed.</p></li>
+<li><p>The empty set and the whole space are both open and closed.</p></li>
+</ol>
+<p>==Theorem 1.4.3==</p>
+<p>A subset S of a normed space E is closed if and only if every sequence of elements of S convergent in E has its limit in S, i.e.,</p>
+<p>A subset S of a normed space E is closed if and only if <span class="math display">\[
+x_1,x_2,\dotsm \in S \text{ and } x_n\rightarrow x\quad \implies \quad x\in S
+\]</span> <span class="math inline">\(\Longrightarrow\)</span></p>
+<p>Assume a subset S of a normed space E is closed. <span class="math inline">\(\exists x_1,x_2,\dotsm \in S\)</span> and <span class="math inline">\(x\in E\backslash S\)</span>. <span class="math inline">\((x_n)\)</span> convergent to <span class="math inline">\(x\)</span> means that <span class="math inline">\(\forall \epsilon&gt;0\)</span>, there exists <span class="math inline">\(M\)</span> such that <span class="math inline">\(\forall m&gt;M\)</span>, <span class="math inline">\(||x_m-x||&lt;\epsilon\)</span> . We will show that is impossible.</p>
+<p>S is closed therefore, <span class="math inline">\(E\backslash S\)</span> is open and <span class="math inline">\(x\in E\backslash S\)</span>. That means for every point including <span class="math inline">\(x\)</span>, there exists $_2 &gt;0 $ such that <span class="math inline">\(B(x,\epsilon_2) \subset E\backslash S\)</span>.</p>
+<p>Since <span class="math inline">\((x_n)\)</span> convergent to <span class="math inline">\(x\)</span>, For every <span class="math inline">\(\epsilon_2 &gt;0\)</span>, there exist <span class="math inline">\(m&gt;M\)</span>, <span class="math inline">\(||x_m-x||&lt;\epsilon_2\)</span>, that means <span class="math inline">\(x_m\in B(x,\epsilon_2)\)</span> that contradicts <span class="math inline">\(B(x,\epsilon_2)\subset E\backslash S\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Assume every sequence of elements of S convergent in E has its limit in S, then a subset S of a normed space E is closed, that means whenever <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span>, $x_nx $ and <span class="math inline">\(x\in S\)</span>, the subset S of a normed space E is closed.</p>
+<p>If S is not closed, then <span class="math inline">\(E\backslash S\)</span> is not open.</p>
+<p>A subset Eof a normed space E is not ==open== if there exists <span class="math inline">\(x\in E\backslash S\)</span>, for all <span class="math inline">\(\epsilon &gt;0\)</span>, such that <span class="math inline">\(B(x,\epsilon)\)</span> contains elements of S. Consequently, we can find a sequence <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. But then <span class="math inline">\(x_n\rightarrow x\)</span>. That contradicts every sequence of elements of S convergent in E has its limit in S.</p>
+<p>==Definition 1.4.7== Closure</p>
+<p>Let S be a subset of a normed space E. By the closure of S, denoted by cl S, we mean the intersection of all closed sets containing S.</p>
+<p>The closure of a set is always a closed set. It is the smallest closed set which contains S.</p>
+<p>==Theorem 1.4.4==</p>
+<p>Let S be a subset of a normed space E. The closure of S is the set of limits of all convergent sequences of elements of S. <span class="math display">\[
+\text{cl S}=\{x\in E:\text{there exist }x_1,x_2,\dotsm\in S\text{ such that }x_n\rightarrow x\}
+\]</span> Lemma, if $x$ cl S, there exists <span class="math inline">\(\epsilon&gt;0\)</span> and <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>.</p>
+<p>Since cl S is intersection of any closed sets, therefore cl S is closed. Then <span class="math inline">\(E\backslash clS\)</span> is open set. For all <span class="math inline">\(x\in E\backslash clS\)</span>, there exists <span class="math inline">\(\epsilon &gt;0\)</span> such that $B(x,)ES $. Therefore, for all <span class="math inline">\(x\notin cl S\)</span>, there exists <span class="math inline">\(\epsilon &gt;0\)</span>, <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>For any convergent sequences <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> and <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
+\forall \epsilon &gt;0\quad \exist M\quad \forall m&gt;M\quad ||x_m-x||&lt;\epsilon
+\]</span> therefore, for limits of all convergent sequences of elements of S, there is no arbitrarily small <span class="math inline">\(\epsilon\)</span> such that <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>, that means <span class="math inline">\(x\in\)</span> cl S.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>If <span class="math inline">\(x\in\)</span> cl S, then <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x,\epsilon)\cap S\neq \empty\)</span></p>
+<p>we can find a sequence <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. But then <span class="math inline">\(x_n\rightarrow x\)</span> that means every sequence of elements of S convergent in E has its limit in cl S.</p>
+<p>The Weierstrass theorem says that every continuous function on an interval [a,b] can be approximated uniformly by polynomials. This can be expressed as follows: The closure of the set of all polynomials on [a,b] is the whole space <span class="math inline">\(\mathscr C([a,b])\)</span>.</p>
+<p>==Definition 1.4.8== Dense subsets</p>
+<p>A subset S of a normed space E is called dense in E if cl S=E.</p>
+<p>The set of all polynomials on [a,b] is dense in <span class="math inline">\(\mathscr C([a,b])\)</span></p>
+<p>==Theorem 1.4.5==</p>
+<p>Let S be a subset of a normed space E. The following conditions are equivalent.</p>
+<ol type="a">
+<li><p>S is dense in E</p></li>
+<li><p>For every <span class="math inline">\(x\in E\)</span> there exists <span class="math inline">\(x_1,x_2,\dotsm \in S\)</span> such that <span class="math inline">\(x_n\rightarrow x\)</span></p></li>
+<li><p>Every non-empty open subset of E contains elements of S.</p></li>
+</ol>
+<p>Proof.</p>
+<ol type="a">
+<li><p>— (b) Theorem 1.4.4</p></li>
+<li><p>to (c)</p></li>
+</ol>
+<p>proof method 1.</p>
+<p>cl S=E.</p>
+<p>For all <span class="math inline">\(x\in E\)</span>, we have <span class="math inline">\(x\in\)</span> cl S. That means <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x,\epsilon)\cap S\neq \empty\)</span></p>
+<p>if there exists one non-empty open subsets O of E contains no element of S, we choose <span class="math inline">\(x&#39;\in O\)</span>, then <span class="math inline">\(\exist\epsilon&#39;&gt;0\)</span>, we have <span class="math display">\[
+B(x&#39;,\epsilon&#39;)\subseteq O
+\]</span> However, <span class="math inline">\(x&#39;\in E\)</span>, that contradicts <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x&#39;,\epsilon)\cap S\neq \empty\)</span>.</p>
+<p>Proof method 2</p>
+<p>If there exists non-empty open subset O of E contains no element of S.</p>
+<p>Then <span class="math inline">\(O \not \subset clS\)</span></p>
+<p>However <span class="math inline">\(O\subset E\)</span></p>
+<p>That means <span class="math inline">\(clS\neq E\)</span></p>
+<ol start="3" type="a">
+<li>to (a)</li>
+</ol>
+<p>Proof method 1,</p>
+<p>Every non-empty open subset of E contains an element of S means S is dense in E.</p>
+<p>If S is not dense in E, we have $xE$cl S, since cl S is closed set, <span class="math inline">\(E\backslash\)</span>cl S is an open set. There exists <span class="math inline">\(\epsilon\)</span> such that <span class="math inline">\(B(x,\epsilon)\subseteq E\backslash\)</span>cl S. Q.E.D.</p>
+<p>==Definition 1.4.9== Compact sets</p>
+<p>A subset S of a normed subspace E is called compact if every sequence <span class="math inline">\((x_n)\)</span> in S contains a convergent subsequence whose limit belongs to S.</p>
+<p>For <span class="math inline">\(R^N\)</span> and <span class="math inline">\(C^N\)</span>, every bounded closed set is compact.</p>
+<p>==Theorem 1.4.6==</p>
+<p>Compact sets are closed and bounded.</p>
+<p>==Definition 1.4.10== Bounded</p>
+<p><span class="math inline">\(\exists x\in E\)</span> and <span class="math inline">\(\exists r&gt;0\)</span> such that <span class="math inline">\(\forall s\in S\)</span>, <span class="math inline">\(||s-x||&lt;r\)</span></p>
+<p>A subset S of a normed subspace E is not closed, that means Eis not an open set.</p>
+<p>That means <span class="math inline">\(\exists x\in E\backslash S\quad \forall \epsilon&gt;0 \quad B(x,\epsilon)\)</span> contains elements in S.</p>
+<p>Then we can choose sequence in S, <span class="math inline">\(x_1,x_2,\dotsm \in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. <span class="math inline">\(x_n\rightarrow x\)</span>. That means this sequence belongs to S but does not have a convergent subsequence whose limit belongs to S (because the limit belongs to E).</p>
+<p>Then we prove compact sets are bounded.</p>
+<p>If <span class="math inline">\(S\subseteq E\)</span> is compact but not bounded, that means every sequence <span class="math inline">\((x_n)\)</span> in S contains a convergent subsequence whose limit belongs to S but <span class="math inline">\(\forall x\in E\)</span> and <span class="math inline">\(\forall r&gt;0\)</span> such that <span class="math inline">\(\exists s\in S\)</span>, <span class="math inline">\(||x-s||\ge r\)</span></p>
+<p>From the definition of not bounded, we can construct a sequence (For all <span class="math inline">\(x\)</span>, we choose <span class="math inline">\(x=0\)</span>. For all <span class="math inline">\(r\)</span> we choose <span class="math inline">\(r=n\)</span>) <span class="math display">\[
+||x_n||&gt;n
+\]</span> Obviously these sequences do not have a convergent subsequence.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/Convex Optimization/4.2 Convex Optimization Problems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -720,519 +1043,11 @@ K_i=\{(y,t)\in \mathbb R^{n_i+1}|\space ||y||_2\le t\}.
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/" class="post-title-link" itemprop="url">Chapter 4. Convex Optimization Problem (1)</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-06-17 13:49:01 / Modified: 13:57:42" itemprop="dateCreated datePublished" datetime="2019-06-17T13:49:01+08:00">2019-06-17</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 4. Convex Optimization Problem (1)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="convex-optimization-problem">4. Convex Optimization Problem</h1>
-<h2 id="optimization-problems">4.1 Optimization Problems</h2>
-<h3 id="basic-terminology">4.1.1 Basic terminology</h3>
-<p>We use the notation <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le0,\quad i=1,\dotsm,m \\h_i(x)=0,\quad i=1,\dotsm,p
-\end{array}
-\end{array}
-\]</span> to describe the problem of finding an <span class="math inline">\(x\)</span> that minimize <span class="math inline">\(f_0(x)\)</span> among all <span class="math inline">\(x\)</span> that satisfy the conditions <span class="math inline">\(f_i(x)\le 0,i=1,\dotsm,m\)</span> and <span class="math inline">\(h_i(x)=0,i=1,\dotsm,p\)</span>. We call <span class="math inline">\(x\in \mathbb R^n\)</span> the <strong>optimization variable</strong> and the function <span class="math inline">\(f_0: \mathbb R^n\rightarrow \mathbb R\)</span> the <strong>objective function</strong> or <strong>cost function</strong>. The inequalities <span class="math inline">\(f_i(x)\le 0\)</span> is called <strong>inequality constraints</strong> and the corresponding functions are called <strong>inequality constraints functions</strong>. The equations <span class="math inline">\(h_i(x)=0\)</span> are called <strong>equality constraints</strong> and the functions are called <strong>equality constraints functions</strong>. If there is no constraint, we say the problem is <strong>unconstraint</strong>.</p>
-<p>The set of points for which the objective and all constraint functions are defined, <span class="math display">\[
-\mathcal D=\bigcap_{i=0}^m \text{dom} (f_i)\cap\bigcap_{i=1}^p \text{dom}(h_i)
-\]</span> is called the <strong>domain</strong> of the optimization problem. A point <span class="math inline">\(x\in \mathcal D\)</span> is <strong>feasible</strong> if it satisfies the constraints <span class="math inline">\(f_i(x)\le 0\)</span> and <span class="math inline">\(h_i(x)=0\)</span> . The problem is said to be <strong>feasible</strong> if there exists at least one feasible point. The set of all feasible points is called a <strong>feasible set</strong> of the <strong>constraint set</strong>. The optimal value <span class="math inline">\(p^\star\)</span> of the problem is defined as <span class="math display">\[
-p^\star = \inf \left\{f_0(x)\;\Bigg|\;
-\begin{array}{rcll}
-f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
-h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\end{array}\right\}.
-\]</span> If the problem is infeasible, <span class="math inline">\(p^\star = \infty\)</span>. If there are feasible points <span class="math inline">\(x_k\)</span> with <span class="math inline">\(f_0(x_k)\rightarrow \infty\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span>, then <span class="math inline">\(p^\star = - \infty\)</span> , and we say the problem is <strong>unbounded below</strong>.</p>
-<p><strong>Optimal and locally optimal points</strong></p>
-<p>We say <span class="math inline">\(x^\star\)</span> is an <strong>optimal point</strong> if <span class="math inline">\(x^\star\)</span> is feasible and <span class="math inline">\(f_0(x^\star)=p^\star\)</span> . The set of all optimal points is the optimal set, denoted <span class="math display">\[
-X_{opt}=\left\{f_0(x)\;\;
-\begin{array}{|rcll}
-f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
-h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
-\;f_0(x^\star)&amp;=&amp;p^\star\end{array}\right\}.
-\]</span> If there exits an optimal point for the problem, we say the optimal value is <strong>attained</strong> or <strong>achieved</strong>, and the problem is <strong>solvable</strong>. If <span class="math inline">\(X_{opt}\)</span> is empty, we say the optimal point is <strong>not attained</strong> or <strong>not achieved</strong>. This always occurs when the problem is unbounded below. A feasible point <span class="math inline">\(x\)</span> with <span class="math inline">\(f_0(x) \le p^\star +\epsilon\)</span> is called <span class="math inline">\(\epsilon\)</span>-suboptimal and the set of all <span class="math inline">\(\epsilon\)</span>-suboptimal points is called the <span class="math inline">\(\epsilon\)</span>-suboptimal set for the problem.</p>
-<p>We say feasible point <span class="math inline">\(x\)</span> is locally optimal (local minimizer) if there is an <span class="math inline">\(R&gt;0\)</span> such that <span class="math display">\[
-f_0(x)=\inf \left\{f_0(x)\;\;
-\begin{array}{|rcll}
-f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
-h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
-\;||z-x||_2&amp;\le&amp; R\end{array}\right\}.
-\]</span> Roughly speaking, this means <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(f_0\)</span> over nearby points in the feasible set. Throughout the book, optimal will mean globally optimal.</p>
-<p>If <span class="math inline">\(x\)</span> is feasible and <span class="math inline">\(f_i(x)=0\)</span>, we say that <span class="math inline">\(i\)</span>th inequality constraint <span class="math inline">\(f_i(x)\le 0\)</span> is <strong>active</strong>. otherwise it is <strong>inactive</strong>. We say that a constraint is redundant if deleting it does not change the feasible set.</p>
-<p><strong>Feasibility problem</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-x
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0,\quad i=1,\dotsm,m\\
-h_i(x)=0,\quad i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span> The feasibility problem is to determine whether the constraints are consistent, and if so, find a point that satisfies them.</p>
-<h3 id="expressing-problems-in-standard-form">4.1.2 Expressing problems in standard form</h3>
-<p><span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le0,\quad i=1,\dotsm,m \\
-h_i(x)=0,\quad i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span></p>
-<p><strong>Maximization problems</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
--f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le0,\quad i=1,\dotsm,m \\
-h_i(x)=0,\quad i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span></p>
-<h3 id="equivalent-problems">4.1.3 Equivalent problems</h3>
-<p>We call two problems <strong>equivalent</strong> if from a solution of one, a solution of the other is readily found. (informal definition)</p>
-<p>We now describe some general transformations that yield equivalent problems.</p>
-<p><strong>Change of variables</strong></p>
-<p>Suppose <span class="math inline">\(\phi:\mathbb R^n\rightarrow \mathbb R^n\)</span> is <strong>one-to-one</strong>, with image covering the problem domain <span class="math inline">\(\mathcal D\)</span> , that means <span class="math inline">\(\mathcal D\subseteq \phi(\text{dom} \phi)\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as <span class="math display">\[
-\tilde f_i(z)=f_i(\phi(z)),i=0,\dotsm,m\\
-\tilde h_i(z)=h_i(\phi(z)),i=1,\dotsm,p.
-\]</span> Now consider the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\tilde f_0(z)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-\tilde f_i(z)\le 0, i=1,\dotsm, m\\
-\tilde h_i(z)=0,i=1,\dots,p
-\end{array}
-\end{array}.
-\]</span> Then the problem is related to the original problem by <span class="math inline">\(x=\phi(z)\)</span> . If <span class="math inline">\(z\)</span> solves the problem, then <span class="math inline">\(x=\phi(z)\)</span> solves the original problem.</p>
-<p><strong>Transformation of objective and constraint functions</strong></p>
-<p>Suppose <span class="math inline">\(\varphi_0:\mathbb R\rightarrow \mathbb R\)</span> is <strong>monotone increasing</strong>, <span class="math inline">\(\varphi_1,\dots,\varphi_m: \mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(u)\le 0\)</span> if and only if <span class="math inline">\(u\le 0\)</span>, and <span class="math inline">\(\varphi_{m+1},\dotsm,\varphi_{m+p}:\mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(0)=0\)</span> if and only if <span class="math inline">\(u=0\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as the compositions <span class="math display">\[
-\tilde f_i(x)=\varphi_i(f_i(x)),i=0,\dotsm,m\\\quad \tilde h_i(x)=\varphi_{m+i}(h_i(x)),i=1,\dotsm,p.
-\]</span> The associated problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\tilde f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-\tilde f_i(x)\le 0\quad i=1,\dotsm,m\\
-\tilde h_i(x)=0\quad i=1,\dotsm,p
-\end{array}
-\end{array},
-\]</span> and the standard form problem are equivalent; indeed the feasible sets are identical, and the optimal points are identical.</p>
-<p><strong>Slack variables</strong></p>
-<p>One simple transformation is based on the observation that <span class="math inline">\(f_i(x)\le 0\)</span> if and only if there is an <span class="math inline">\(s_i\ge 0\)</span> that satisfies <span class="math inline">\(f_i(x)+s_i=0\)</span>. Using this transformation we obtain the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-s_i\ge0 &amp; i=1,\dotsm,m\\
-f_i(x)+s_i=0 &amp; i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span> The new variable <span class="math inline">\(s_i\)</span> is called slack variable associated with the original inequality constraints. Indeed, if <span class="math inline">\((x,s)\)</span> is feasible for the above problem, then <span class="math inline">\(x\)</span> is feasible for the original problem. Conversely, if <span class="math inline">\(x\)</span> is feasible for the original problem, then <span class="math inline">\((x,s)\)</span> is feasible for the above problem. Thant means <span class="math inline">\(x\)</span> is optimal for the original problem if and only if <span class="math inline">\((x,s)\)</span> is optimal for the above problem.</p>
-<p><strong>Eliminating equality constraints</strong></p>
-<p>If we can explicitly parametrize all solutions of the equality constraints <span class="math display">\[
-h_i(x)=0,\quad i=1,\dotsm,p,
-\]</span> using some parameters <span class="math inline">\(z\in \mathbb R^k\)</span>. That means suppose the function <span class="math inline">\(\phi:\mathbb R^k\rightarrow \mathbb R^n\)</span> is such that <span class="math inline">\(x\)</span> satisfies the above if and only if there is some <span class="math inline">\(z\in \mathbb R^k\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> . The optimization problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\tilde f_0(z)=f_0(\phi(z))
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-\tilde f_i(z)=f_i(\phi(z))\le0 &amp; i=1,\dotsm,m
-\end{array}
-\end{array}.
-\]</span> is equivalent to the original problem. If <span class="math inline">\(z\)</span> is optimal for the transformed problem, then <span class="math inline">\(x=\phi(z)\)</span> is optimal for the original problem. Conversely, if <span class="math inline">\(x\)</span> is optimal for the original problem, then there is at least one <span class="math inline">\(z\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> which is optimal for the transformed problem.</p>
-<p><strong>Eliminating linear equality constraints</strong></p>
-<p>When the constraints are all linear, i.e. <span class="math inline">\(Ax=b\)</span>. if <span class="math inline">\(b\notin \mathcal R(A)\)</span> then the problem is infeasible. Let <span class="math inline">\(F\in \mathbb R^{n\times k}\)</span> be any matrix with <span class="math inline">\(\mathcal R(F)=\mathcal N(A)\)</span>, so the general solution of the linear equations <span class="math inline">\(Ax=b\)</span> is given by <span class="math inline">\(Fz+x_0\)</span> .</p>
-<p>Then the original problem is equivalent to <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(Fz+x_0)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(Fz+x_0)\le 0 &amp; i=1,\dotsm,m
-\end{array}
-\end{array}.
-\]</span> <strong>Introducing equality constraints</strong></p>
-<p>Consider the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(A_0 x+b_0)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(A_ix+b_i)\le 0 &amp; i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span> Then the problem is equivalent to <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(y_0)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(y_i)\le0 &amp; i=1,\dotsm,m\\
-y_i=A_ix+b_i &amp; i=0,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span> <strong>Optimizing over some variables</strong></p>
-<p>We always have <span class="math display">\[
-\inf_{x,y}f(x,y)=\inf_x \tilde f(x)
-\]</span> where <span class="math display">\[
-\tilde f(x)=\inf_y f(x,y)
-\]</span> That means we can minimize a function by first minimizing over some of the variables and then minimizing over the remaining ones.</p>
-<p>For the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x_1,x_2)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x_1)\le0 &amp; i=1,\dotsm,m_1\\
-\tilde f_i(x_2)\le 0 &amp; i=1,\dotsm,m_2
-\end{array}
-\end{array}.
-\]</span> We first minimize over <span class="math inline">\(x_2\)</span> . Define the function <span class="math inline">\(\tilde f_0\)</span> of <span class="math inline">\(x_1\)</span> by <span class="math display">\[
-\tilde f_0(x_1)=\inf \{f_0(x_1,z)|\tilde f_i(z)\le 0,i=1,\dotsm,m_2\}.
-\]</span> Then we have the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\tilde f_0(x_1)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x_1)\le 0 &amp; i=1,\dotsm,m_1
-\end{array}
-\end{array}.
-\]</span> <strong>Epigraph problem form</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-t
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_0(x)-t\le 0\\
-f_i(x)\le 0 &amp; i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span> <strong>Implicit and explicit constraints</strong></p>
-<p>We can make the implicit constraint explicit which will be clear for solution.</p>
-<p>The implicit problem <span class="math display">\[
-\text {minimize}\quad f(x)
-\]</span> where the function <span class="math inline">\(f(x)\)</span> is given by <span class="math display">\[
-f(x)=
-\begin{cases}
-x^Tx\quad Ax=b\\
-\infty\quad otherwise
-\end{cases}
-\]</span> We can make the problem constraint explicit by <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-x^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}.
-\]</span></p>
-<h2 id="convex-optimization">4.2 Convex Optimization</h2>
-<h3 id="convex-optimization-problems-in-standard-form">4.2.1 Convex optimization problems in standard form</h3>
-<p>A convex optimization problem is one of the form <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0 &amp; i=1,\dotsm,m\\
-a_i^Tx=b_i &amp; i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span> where <span class="math inline">\(f_0,\dotsm,f_m\)</span> are convex functions. There are three additional requirements,</p>
-<ol type="1">
-<li>The objective function must be <strong>convex</strong>.</li>
-<li>The inequality constraint functions must be <strong>convex</strong>.</li>
-<li>The equality constraint functions <span class="math inline">\(h_i(x)=a_i^Tx-b_i\)</span> must be <strong>affine</strong>.</li>
-</ol>
-<p>We immediately note a important property: The feasible set of a convex optimization problem is convex since it is the intersection of the domain of the problem <span class="math display">\[
-\mathcal D=\bigcap_{i=0}^m \text{dom} (f_{i}),
-\]</span> which is a convex set with <span class="math inline">\(m\)</span> sublevel sets <span class="math inline">\(\{x\;|\;f_i(x)\le 0\}\)</span> and <span class="math inline">\(p\)</span> hyperplanes <span class="math inline">\(\{x\;|\;a_i^T x=b_i\}\)</span>.</p>
-<p>If <span class="math inline">\(f_0\)</span> is quasiconvex instead of convex, we say the above problem is <strong>quasiconvex optimization problem</strong>.</p>
-<p>If the objective function is strictly convex, then the optimal set contains at most one point.</p>
-<p><strong>Concave maximization problems</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
--f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0 &amp; i=1,\dotsm,m\\
-a_i^Tx=b_i &amp; i=1,\dotsm,p
-\end{array}
-\end{array}.
-\]</span> <strong>Abstract form convex optimization problem</strong></p>
-<p>This book consider the convex problems without the standard form (Abstract convex optimization problem) as not convex problems.</p>
-<h3 id="local-and-global-optima">4.2.2 Local and global optima</h3>
-<p>A fundamental property of convex optimization problem is that any locally optimal point is also (globally) optimal.</p>
-<h3 id="an-optimality-criterion-for-differentiable-f_0">4.2.3 An optimality criterion for differentiable <span class="math inline">\(f_0\)</span></h3>
-<p>Suppose that the objective <span class="math inline">\(f_0\)</span> in a convex optimization problem is differentiable, so that for all <span class="math inline">\(x,y \in \text{dom} (f_0)\)</span>, <span class="math display">\[
-f_0(y)\ge f_0(x)+\nabla f_0(x)^T(y-x).
-\]</span> Let <span class="math inline">\(X\)</span> denote the feasible set <span class="math display">\[
-X=\left\{x\;\;
-\begin{array}{|rcll}
-f_i(x)&amp;\le&amp;0,&amp;i=1,\dotsm,m\\
-\;h_i(x)&amp;=&amp;0,&amp;i=1,\dotsm,p\end{array}\right\}.
-\]</span> Then <span class="math inline">\(x\)</span> is optimal if and only if <span class="math inline">\(x\in X\)</span> and <span class="math display">\[
-\nabla f_0(x)^T(y-x)\ge 0,
-\]</span> for all <span class="math inline">\(y \in X\)</span>.</p>
-<p>For unconstrained problems, <span class="math inline">\(x\)</span> is optimal if and only if <span class="math display">\[
-\nabla f_0(x)=0.
-\]</span> <strong>Problems with equality constraints only</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}.
-\]</span> For the convex optimal, for the optimal point <span class="math inline">\(x\)</span>, we have <span class="math display">\[
-\nabla f_0(x)^T(y-x)\ge 0,
-\]</span> for all <span class="math inline">\(y\)</span> satisfying <span class="math inline">\(Ay=b\)</span> and <span class="math inline">\(Ax=b\)</span>. Then we have <span class="math inline">\(y=x+v\)</span> and <span class="math inline">\(v\in \mathcal N(A)\quad(Av=0)\)</span>.</p>
-<p>Then the problem becomes <span class="math display">\[
-\nabla f_0(x)^Tv\ge0\quad \forall v\in \mathcal N(A).
-\]</span> If a linear function is nonnegative on a subspace, then it must be zero on the subspace. That means <span class="math display">\[
-\nabla f_0(x)^Tv=0\quad \forall v\in \mathcal N(A)\\
-\nabla f_0(x)\perp \mathcal N(A)\\
-\mathcal R(A^T)\perp\mathcal N(A)\\
-\nabla f_0(x) \in \mathcal R(A^T).
-\]</span> Therefore, there exists <span class="math inline">\(v\in \mathbb R^P\)</span> such that <span class="math display">\[
-\nabla f_0(x)+A^Tv=0,
-\]</span> Together with the constraints <span class="math inline">\(Ax=b\)</span>.</p>
-<p>There exists a <span class="math inline">\(v\in \mathbb R^p\)</span> such that <span class="math display">\[
-\begin{array}{rcl}
-\nabla f_0(x)+A^Tv&amp;=&amp;0\\
-Ax&amp;=&amp;b,
-\end{array}
-\]</span> This is actually the classical Lagrange multiplier optimality condition.</p>
-<p><strong>Minimization over the nonnegative orthant</strong></p>
-<p>We consider the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-x\succeq 0
-\end{array}
-\end{array}.
-\]</span> We have optimality condition <span class="math display">\[
-x\succeq0 \quad \nabla f_0(x)^T(y-x)\ge 0\quad \forall y\succeq 0
-\]</span> We see the linear function of <span class="math inline">\(y\)</span>, <span class="math inline">\(\nabla f_0(x)^Ty-\nabla f_0(x)^T x\)</span> is greater than or equal to zero for all <span class="math inline">\(y\)</span> only when <span class="math display">\[
-\nabla f_0(x)\succeq 0\\
--\nabla f_0(x)^Tx\ge 0.
-\]</span> But <span class="math inline">\(x\succeq 0\)</span> and <span class="math inline">\(\nabla f_0(x)\succeq 0\)</span>, and therefore <span class="math inline">\(\nabla f_0(x)^Tx=0\)</span></p>
-<p>The optimality condition can be expressed as <span class="math display">\[
-x\succeq 0\quad \nabla f_0(x)\succeq 0\quad x_i(\nabla f_0(x))_i=0 \space(\text{complementary condition})
-\]</span></p>
-<h3 id="equivalent-convex-problems">4.2.4 Equivalent Convex problems</h3>
-<ol type="1">
-<li><p>Eliminating equality constraints</p></li>
-<li><p>Introducing equality constraints</p></li>
-<li><p>Slack variables</p></li>
-<li><p>Epigraph problem form</p></li>
-<li><p>Minimizing over some variables</p></li>
-</ol>
-<h3 id="quasiconvex-optimization">4.2.5 Quasiconvex Optimization</h3>
-<p>Recall that a quasiconvex optimization problem has the standard form <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0 &amp; i=1,\dotsm,m\\
-Ax=b
-\end{array}
-\end{array},
-\]</span> where <span class="math inline">\(f_0\)</span> is quasiconvex and <span class="math inline">\(f_i\)</span> are convex.</p>
-<p><strong>Locally optimal solutions and optimality conditions</strong></p>
-<p>The most important difference between the convex and quasiconvex optimization is that quasiconvex optimization problems can have locally optimal solutions.</p>
-<p>It follows from the first order condition for quasiconvex optimization problem that <span class="math inline">\(x\)</span> is optimal if <span class="math display">\[
-x\in X,\quad \nabla f_0(x)^T(y-x)&gt;0\text{ for all }y\in X /\{x\}
-\]</span> There are two differences between this criterion and the analogous one for convex optimization.</p>
-<ol type="1">
-<li>This condition is only sufficient for optimality.</li>
-<li>This condition requires the gradient of <span class="math inline">\(f_0\)</span> to be nonzero.</li>
-</ol>
-<p><strong>Quasiconvex optimization via convex feasibility problems</strong></p>
-<p>One general approach to quasiconvex optimization relies on the representation of the sublevel sets of a quasiconvex function via a family of convex inequalities. <span class="math display">\[
-f_0(x)\le t \iff \phi_t(x)\le 0
-\]</span> Let <span class="math inline">\(p^\star\)</span> denote the optimal value of the quasiconvex function. If the feasibility problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-x
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-\phi_t(x)\le 0\\f_i(x)\le 0\\Ax=b
-\end{array}
-\end{array},
-\]</span> is feasible. Then <span class="math inline">\(p^\star \le t\)</span>.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1269,7 +1084,7 @@ x
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
   <div class="site-description" itemprop="description"></div>
 </div>
   <nav class="site-state motion-element">
@@ -1277,7 +1092,7 @@ x
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1344,7 +1159,7 @@ x
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>

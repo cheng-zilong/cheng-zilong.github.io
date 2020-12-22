@@ -59,26 +59,26 @@
   <meta name="keywords" content="Optimization, Machine Learning">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cheng-Zilong">
-<meta property="og:url" content="http://yoursite.com/archives/2019/09/index.html">
+<meta property="og:url" content="http://yoursite.com/page/36/index.html">
 <meta property="og:site_name" content="Cheng-Zilong">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cheng-Zilong">
-  <link rel="canonical" href="http://yoursite.com/archives/2019/09/">
+  <link rel="canonical" href="http://yoursite.com/page/36/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
+    isHome: true,
     isPost: false,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | Cheng-Zilong</title>
+  <title>Cheng-Zilong</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -210,231 +210,199 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/EE5101 Linear Systems/1. Introduction to Linear Control System/">
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        
-        
-         
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/02/EE5101 Linear Systems/1. Introduction to Linear Control System/" class="post-title-link" itemprop="url">Chapter 1. Linear System</a>
           
-        <span class="collection-header">Nice! 71 posts in total. Keep on posting.</span>
-      </div>
-      
+        </h1>
 
-      
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
-  
-  
+              
+                
+              
 
+              <time title="Created: 2018-11-02 13:33:56 / Modified: 14:27:39" itemprop="dateCreated datePublished" datetime="2018-11-02T13:33:56+08:00">2018-11-02</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/11/02/EE5101 Linear Systems/1. Introduction to Linear Control System/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 1. Linear System" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
   
+  <span class="post-meta-item">
     
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/11/02/EE5101 Linear Systems/1. Introduction to Linear Control System/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/02/EE5101 Linear Systems/1. Introduction to Linear Control System/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="input-output-description">Input-Output Description</h2>
+<p>There is a pulse of width <span class="math inline">\(\Delta\)</span> and height is <span class="math inline">\(\frac{1}\Delta\)</span> at time <span class="math inline">\(t_1\)</span>. Thus, <span class="math display">\[
+u(t)=\sum_iu(t_i)\delta_\Delta(t-t_i)\Delta
+\]</span></p>
+<table>
+<colgroup>
+<col style="width: 53%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\delta_\Delta(t-t_i)\)</span></td>
+<td><span class="math inline">\(g_\Delta(t,t_i)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\delta_\Delta(t-t_i)u(t_i)\Delta\)</span></td>
+<td><span class="math inline">\(g_\Delta(t,t_i)u(t_i)\Delta\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sum_i \delta_\Delta(t-t_i)u(t_i)\Delta\)</span></td>
+<td><span class="math inline">\(\sum_i g_\Delta(t,t_i)u(t_i)\Delta\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, zero-state output is <span class="math display">\[
+y(t)=\sum_i g_\Delta(t,t_i)u(t_i)\Delta
+\]</span> If <span class="math inline">\(\Delta \rightarrow 0\)</span><br>
+<span class="math display">\[
+y(t)=\int_{-\infty}^{\infty} g(t,\tau)u(\tau)d\tau
+\]</span> and if conditional <span class="math display">\[
+y(t)=\int_{t_0}^{t} g(t,\tau)u(\tau)d\tau
+\]</span> if a system is time-invariant <span class="math display">\[
+g(t,\tau)=g(t+T,\tau+T)
+\]</span> if we choose <span class="math inline">\(T = -\tau\)</span> <span class="math display">\[
+y(t)=\int_{t_0}^{t} g(t-\tau)u(\tau)d\tau
+\]</span></p>
+<h2 id="linearization">Linearization</h2>
+<p><span class="math display">\[
+\dot x=Ax+Bu \\
+A = \begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} &amp; \dotsm &amp; \frac{\partial f_1}{\partial x_n} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial f_n}{\partial x_1} &amp; \dotsm &amp; \frac{\partial f_n}{\partial x_n}
+\end{bmatrix}|x=0,u=0\\
+B=\begin{bmatrix}
+\frac{\partial f_1}{\partial u_1} &amp; \dotsm &amp; \frac{\partial f_1}{\partial u_n} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial f_n}{\partial u_1} &amp; \dotsm &amp; \frac{\partial f_n}{\partial u_n}
+\end{bmatrix}|x=0,u=0\\
+\]</span></p>
+<h2 id="laplace-transform">Laplace Transform</h2>
+<p><span class="math display">\[
+F(s)=\int_0^\infty f(t)e^{-st}dt
+\]</span></p>
+<h2 id="zero-pole-cancellation">Zero-Pole Cancellation</h2>
+<p><span class="math display">\[
+^\underrightarrow{V(s)}\space \frac{s-1}{s+1} \space^\underrightarrow{U(s)}\frac{1}{s-1}\space^\underrightarrow{Y(s)}
+\]</span></p>
+<p>Overall transfer function is <span class="math display">\[
+\frac{Y(s)}{U(s)}=\frac{1}{s+1}
+\]</span> If we let <span class="math inline">\(x_2(t)=y(t)\)</span> , we have <span class="math display">\[
+\begin{array}{lll}
+\dot x_2(t) &amp; = &amp; x_2(t)+u(t)\\
+U(s) &amp; = &amp; V(s)-\frac{2}{s+1}V(s)\\
+X_1(s) &amp; = &amp; -\frac{2}{s+1}V(s)\\
+U(s) &amp; = &amp; V(s)+X_1(s)\\
+\dot x_1(t)+x_1(t) &amp; = &amp; -2v(t)\\
+x_1(t) &amp; = &amp; x_1(0)e^{-t}-2\int_0^te^{-\tau}v(t-\tau)d\tau\\
+y(t) &amp; = &amp; x_2(0)e^{t}+\int_0^te^{\tau}u(t-\tau)d\tau
+\end{array}
+\]</span> If reverse two system, choose <span class="math inline">\(x_1(s)\)</span> as U(s) and <span class="math inline">\(x_2(s)\)</span> as <span class="math inline">\(-\frac{2}{s+1}x_1(s)\)</span></p>
+
+        
+      
     </div>
-  
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
         
-          <a class="post-title-link" href="/2019/09/21/Introduction to Hilbert Spaces with Applications/Hilbert Space/" itemprop="url">
-            <span itemprop="name">Chapter 5. Summary</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-21T13:48:00+08:00"
-              content="2019-09-21">
-          09-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/18/Introduction to Hilbert Spaces with Applications/4.6 Positive Operators/" itemprop="url">
-            <span itemprop="name">Chapter 4-3. Positive Operators</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-18T13:48:00+08:00"
-              content="2019-09-18">
-          09-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/14/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" itemprop="url">
-            <span itemprop="name">Chapter 4-2. Adjoint and Self-Adjoint Operators</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-14T13:48:00+08:00"
-              content="2019-09-14">
-          09-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" itemprop="url">
-            <span itemprop="name">Chapter 11. Interior-point methods</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-13T13:49:01+08:00"
-              content="2019-09-13">
-          09-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" itemprop="url">
-            <span itemprop="name">Chapter 4-1. Linear Operator on Hilbert Spaces</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-10T13:48:00+08:00"
-              content="2019-09-10">
-          09-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" itemprop="url">
-            <span itemprop="name">Chapter 10. Equality constrained Minimization</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-03T13:49:01+08:00"
-              content="2019-09-03">
-          09-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-
-    </div>
+      </footer>
   </div>
   
   
   
+  </article>
+
+    
+  </div>
 
   
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/35/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span>
+  </nav>
 
 
           </div>
