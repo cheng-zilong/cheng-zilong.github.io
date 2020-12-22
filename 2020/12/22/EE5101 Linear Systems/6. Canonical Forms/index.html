@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="1. Input-Output Stability ==Theorem 1== A SISO system is BIBO stable if and only if \[ \int_0^\infty|g(t)|dt \le k\le\infty \] for some constant k. ==Theorem 2== A transfer function G(s) is BIBO">
+  <meta name="description" content="Controllable Canonical Form Proof of existence, When \(rank(M_c)=n\), then \(M_c^{-1}\) exists. Let \(q^T\) be the nth row of \(M_c^{-1}\) Then from \(M_c^{-1}M_c=I\) , we have \[ q^TA^iB=0 \quad(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Orandragon&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/2020/12/22/Linear System/5. Stability/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="1. Input-Output Stability ==Theorem 1== A SISO system is BIBO stable if and only if \[ \int_0^\infty|g(t)|dt \le k\le\infty \] for some constant k. ==Theorem 2== A transfer function G(s) is BIBO">
+<meta property="og:description" content="Controllable Canonical Form Proof of existence, When \(rank(M_c)=n\), then \(M_c^{-1}\) exists. Let \(q^T\) be the nth row of \(M_c^{-1}\) Then from \(M_c^{-1}M_c=I\) , we have \[ q^TA^iB=0 \quad(">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-22T14:45:47.000Z">
+<meta property="og:updated_time" content="2018-11-01T07:33:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Orandragon&#39;s Blog">
-<meta name="twitter:description" content="1. Input-Output Stability ==Theorem 1== A SISO system is BIBO stable if and only if \[ \int_0^\infty|g(t)|dt \le k\le\infty \] for some constant k. ==Theorem 2== A transfer function G(s) is BIBO">
-  <link rel="canonical" href="http://yoursite.com/2020/12/22/Linear System/5. Stability/">
+<meta name="twitter:description" content="Controllable Canonical Form Proof of existence, When \(rank(M_c)=n\), then \(M_c^{-1}\) exists. Let \(q^T\) be the nth row of \(M_c^{-1}\) Then from \(M_c^{-1}M_c=I\) , we have \[ q^TA^iB=0 \quad(">
+  <link rel="canonical" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/">
 
 
 <script id="page-configurations">
@@ -220,7 +220,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Linear System/5. Stability/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -248,7 +248,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:26:09" itemprop="dateCreated datePublished" datetime="2020-12-22T13:26:09+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
             </span>
           
             
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-22 22:45:47" itemprop="dateModified" datetime="2018-11-22T22:45:47+08:00">2018-11-22</time>
+                <time title="Modified: 2018-11-01 15:33:30" itemprop="dateModified" datetime="2018-11-01T15:33:30+08:00">2018-11-01</time>
               </span>
             
           
@@ -269,7 +269,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linear-System/" itemprop="url" rel="index"><span itemprop="name">Linear System</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
 
                 
                 
@@ -278,7 +278,7 @@
           
 
           
-            <span id="/2020/12/22/Linear System/5. Stability/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -296,7 +296,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Linear System/5. Stability/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Linear System/5. Stability/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -310,132 +310,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="input-output-stability">1. Input-Output Stability</h2>
-<p>==Theorem 1==</p>
-<p>A SISO system is BIBO stable if and only if <span class="math display">\[
-\int_0^\infty|g(t)|dt \le k\le\infty
-\]</span> for some constant k.</p>
-<p>==Theorem 2==</p>
-<p>A transfer function G(s) is BIBO stable if and only if all poles of G(s) are in the open left-half s-plane.</p>
-<p>Equivalently, all poles of G(s) have negative real parts.</p>
-<h2 id="internal-stability-bibo-stability">2. Internal Stability BIBO Stability</h2>
-<p>Deal with zero-input stability</p>
-<h2 id="lyapunov-theorem">3. Lyapunov Theorem</h2>
-<p>==Theorem 3==</p>
-<blockquote>
-<ol type="1">
-<li>V(x) is continuous in domain D</li>
-<li>V(0)=0</li>
-<li>V(0)&gt;0 except at x=0</li>
-<li><span class="math inline">\(\frac{dV}{dt}\le0\)</span> stable</li>
-<li><span class="math inline">\(\frac{dV}{dt} &lt; 0\)</span> asymptotically stable</li>
-</ol>
-</blockquote>
-<p>==Theorem 4==</p>
-<p>Given <span class="math inline">\(\dot x=Ax\)</span> .The system is said to be stable in the sense of Lyapunov (i.s.L.) if and only if all eigenvalues of A have zero or negative real parts and those with zero real parts has no Jordan block of order 2 or higher.</p>
-<p>The system is asymptotically stable if all the eigenvalues of A have negative real parts.</p>
-<p>==Theorem 5==</p>
-<p>Asymptotically stable i.s.L. implies BIBO stability</p>
-<p>==Theorem 6==</p>
-<p>The linear system <span class="math display">\[
-\dot x(t)=Ax
-\]</span> is asymptotically stable if and only if for any Q which is positive definite and symmetric, there exists a P which is symmetric and positive definite satisfying the following equation <span class="math display">\[
-A^TP+PA=-Q
-\]</span> known as the Lyapunov equation.</p>
-<p>==Example== <span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}x \\
-\]</span> We choose <span class="math inline">\(Q=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span> . Then we have <span class="math display">\[
-A^TP+PA=-Q \\
-\begin{bmatrix}
-0 &amp; -1 \\ 1 &amp; -1
+        <h2 id="controllable-canonical-form">Controllable Canonical Form</h2>
+<p>Proof of existence,</p>
+<p>When <span class="math inline">\(rank(M_c)=n\)</span>, then <span class="math inline">\(M_c^{-1}\)</span> exists. Let <span class="math inline">\(q^T\)</span> be the n<sup>th</sup> row of <span class="math inline">\(M_c^{-1}\)</span></p>
+<p>Then from <span class="math inline">\(M_c^{-1}M_c=I\)</span> , we have <span class="math display">\[
+q^TA^iB=0 \quad(i=0,1,2,\dotsm,n-2) \\
+q^TA^{n-1}B=1
+\]</span> Let the transfer function <span class="math display">\[
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix}\\
+\bar B = TB=\begin{bmatrix} 0 \\0\\ \vdots \\1 \end{bmatrix} \\
+\bar AT=TA \\
+\bar A\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} = \begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} A =\begin{bmatrix}
+q^TA \\q^TA^2 \\ \vdots \\q^TA^{n}
 \end{bmatrix}
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}+
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}=-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\]</span> We get <span class="math display">\[
-P=\begin{bmatrix}
-1.5 &amp; 0.5 \\ 0.5 &amp; 1
-\end{bmatrix}
-\]</span> Therefore, the system is asymptotically stable.</p>
-<h2 id="l-stability">4. L stability</h2>
-<p>Define <span class="math inline">\(\mathcal L_1\)</span> <span class="math display">\[
-||u(t)||_1=\int_0^\infty|u_i(t)|dt \\
-\]</span> For MIMO <span class="math display">\[
-||u(t)||_1=\sum_{i=1}^m||u_i(t)||_1
-\]</span> Define <span class="math inline">\(\mathcal L_2\)</span> <span class="math display">\[
-||u(t)||_2=\sqrt{\int_0^\infty u(t)^Tu(t)dt}
-\]</span> Define<span class="math inline">\(\mathcal L_\infty\)</span><br>
-<span class="math display">\[
-||u(t)||_\infty=max||u(t)||
-\]</span> The system can be seen as a mapping in the form of <span class="math inline">\(y=Su\)</span></p>
-<p>Then the system norm is <span class="math display">\[
-||S||_p=sup\frac{||y||_p}{||u||_p}=sup\frac{||Su||_p}{||u||_p} 
-\]</span> ==Definition==</p>
-<p>A system with input-output model S is <span class="math inline">\(\mathcal L_p\)</span> stable if</p>
-<p>and only if its p induced norm is finite. Particularly, a system</p>
-<p>is BIBO stable if and only if it is <span class="math inline">\(\mathcal L_\infty\)</span> stable.</p>
-<p>For the MIMO (m-input-q-output) system <span class="math display">\[
-||S||_\infty=\max_{1\le i\le q}\sum_{1\le j\le m}\int_0^\infty|H_{ij}(t)|dt
-\]</span> For the SISO system <span class="math display">\[
-||S||_\infty=\int_0^\infty|h(t)|dt
-\]</span></p>
-<h3 id="mathcalh_infty">==<span class="math inline">\(\mathcal{H}_\infty\)</span>==</h3>
-<p><span class="math display">\[
-||S||_2&lt;max_{w\in R}||H(w)||_2
-\]</span></p>
-<p><span class="math inline">\(max_{w\in R}||H(w)||_2\)</span> is known as <span class="math inline">\(\mathcal H_\infty\)</span> norm of system S</p>
-<p>We define <span class="math display">\[
-M_\gamma=\begin{bmatrix}
-A  &amp; \frac{1}{\gamma^2}BB^T\\
--C^TC &amp; -A^T
-\end{bmatrix}
-\]</span> then <span class="math inline">\(\mathcal H_\infty &lt; \gamma\)</span> if and only if <span class="math inline">\(M_\gamma\)</span> has no purely imaginary eigenvalues.</p>
-<h3 id="mathcalh_2">==<span class="math inline">\(\mathcal{H}_2\)</span>==</h3>
-<p><span class="math inline">\(\frac{1}{2\pi}Tr\int_{-\infty}^\infty H^T(w)H(w)dw​\)</span> is known as <span class="math inline">\(\mathcal H_2​\)</span> norm of system S <span class="math display">\[
-\mathcal H_2^2=Tr(CWC^T)=Tr(B^TMB) \\
-\text{W is Controllability Grammain}\\
-\text{M is Observability Grammain}\\
-AW+WA^T+BB^T=0 \\
-A^TM+MA+C^TC=0
-\]</span></p>
-<p>==Relationship==</p>
-<p>If one system is asymptotically stable, it must be BIBO stable.</p>
-<p>If one system is not asymptotically stable, it can be BIBO stable.</p>
+\]</span> Denote <span class="math inline">\(\bar A_i\)</span> is the i<sup>th</sup> line of <span class="math inline">\(\bar A_i\)</span></p>
+<p>We can observe the above equation and find the solution <span class="math display">\[
+\bar A_1=\begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_2=\begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_i=\begin{bmatrix} 0 &amp; 0 &amp; \overbrace{1}^{i} &amp; \dotsm &amp; 0 \end{bmatrix}
+\]</span> Then we need to solve the last line</p>
+<p>According to Caley-Hamilton Equation <span class="math display">\[
+A^n=-\sum_{i=0}^{n-1}a_iA^i
+\]</span> Therefore, <span class="math display">\[
+\bar A_n=\begin{bmatrix} -a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-1} \end{bmatrix}\\
+\]</span> Q.E.D.</p>
 <p>Example <span class="math display">\[
 \dot x=Ax+Bu \\
-y=Cx\\
-A=\begin{bmatrix}
-0 &amp; 2\\
-1 &amp; -1\\
-\end{bmatrix}
-B=\begin{bmatrix}
--1  \\
-1
-\end{bmatrix}
-C=\begin{bmatrix}
-0 &amp; 1
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+M_c= \begin{bmatrix}B &amp; AB \end{bmatrix} = \begin{bmatrix}1 &amp; -8\\ 2 &amp; -14 \end{bmatrix} \\
+M_c^{-1}=\begin{bmatrix}-7 &amp; 4 \\ -1 &amp; 0.5\end{bmatrix} \\
+q^T=[-1 \quad 0.5]\\
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix}=\begin{bmatrix}-1 &amp; 0.5 \\ 0 &amp; 0.5\end{bmatrix}\\
+\bar B = TB = \begin{bmatrix}0 \\ 1 \end{bmatrix} \\
+\bar A= TAT^{-1} = \begin{bmatrix}0 &amp; 1 \\ 2 &amp; -7\end{bmatrix}
+\]</span> We get the Controllable Canonical Form.</p>
+<h2 id="observable-canonical-form">Observable Canonical Form</h2>
+<p><span class="math inline">\(w\)</span> is the last column of observability matrix inverse <span class="math inline">\(M_o^{-1}\)</span> <span class="math display">\[
+M_o=\begin{bmatrix}
+C\\
+CA\\
+\vdots\\
+CA^{n-1}
 \end{bmatrix}\\
-|\lambda I-A|=\begin{vmatrix}
-\lambda &amp; -2\\
--1 &amp; \lambda+1
-\end{vmatrix}=\lambda(\lambda+1)-2=0\\
-\lambda_1=1 \\
-\lambda_2=-2\\
-\]</span> The system is not asymptotically stable.</p>
-<p>However, the transfer function are <span class="math display">\[
-C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
-\]</span> Which is BIBO stable.</p>
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w] \\
+\bar A = Q^{-1}AQ \\
+\bar B = Q^{-1}B \\
+\bar C=CQ
+\]</span> Proof is similar to the previous</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+C= \begin{bmatrix}1 &amp; 1 \end{bmatrix} \\
+M_o= \begin{bmatrix}C \\CA \end{bmatrix} =  \begin{bmatrix}1&amp;1 \\ -6 &amp; -8 \end{bmatrix} \\
+M_o^{-1}= \begin{bmatrix}4 &amp; 0.5 \\ -3&amp; -0.5 \end{bmatrix} \\
+w=\begin{bmatrix}0.5 \\ -0.5 \end{bmatrix} \\
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w]=\begin{bmatrix}0.5 &amp; 0.5 \\-0.5 &amp; 0.5\end{bmatrix} \\
+\bar A= Q^{-1}AQ=\begin{bmatrix}0 &amp; 2 \\1 &amp; -7\end{bmatrix}\\
+\bar B= Q^{-1}B=\begin{bmatrix}-1 \\3\end{bmatrix}\\
+\bar C=CQ=[0 \quad 1]
+\]</span></p>
+<h2 id="transfer-function">Transfer Function</h2>
+<p><span class="math display">\[
+\frac{Y(s)}{U(s)}=\frac{b_{n-1}s^{n-1}+b_{n-2}s^{n-2}+\dotsm+b_{1}s^{1}+b_0}{a_n+a_{n-1}s^{n-1}+a_{n-2}s^{n-2}+\dotsm+a_{1}s^{1}+a_0}
+\]</span></p>
+<p>Controllable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 1  &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+0 &amp; 0  &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0  &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
+-a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-2} &amp; -a_{n-1}
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+0\\
+0\\
+\vdots\\
+0\\
+1
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+b_0 &amp; b_1 &amp; \dotsm &amp; b_{n-2} &amp; b_{n-1}
+\end{bmatrix}
+\]</span> Observable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_0\\
+1 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_1\\
+0 &amp; 1  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_2\\
+\vdots  &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0 &amp;-a_{n-1}\\
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+b_0\\
+b_1\\
+\vdots\\
+b_{n-2}\\
+b_{n-1}
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
 
     </div>
 
@@ -452,7 +438,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/22/Linear System/3. State-Space Solution and Propoerties/" rel="next" title="">
+                <a href="/2020/12/22/EE5101 Linear Systems/5. Stability/" rel="next" title="">
                   <i class="fa fa-chevron-left"></i> 
                 </a>
               
@@ -462,7 +448,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/12/22/Linear System/6. Canonical Forms/" rel="prev" title="">
+                <a href="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/" rel="prev" title="">
                    <i class="fa fa-chevron-right"></i>
                 </a>
               
@@ -516,7 +502,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#input-output-stability"><span class="nav-text">1. Input-Output Stability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#internal-stability-bibo-stability"><span class="nav-text">2. Internal Stability BIBO Stability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lyapunov-theorem"><span class="nav-text">3. Lyapunov Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#l-stability"><span class="nav-text">4. L stability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mathcalh_infty"><span class="nav-text">==\(\mathcal{H}_\infty\)==</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mathcalh_2"><span class="nav-text">==\(\mathcal{H}_2\)==</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#controllable-canonical-form"><span class="nav-text">Controllable Canonical Form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#observable-canonical-form"><span class="nav-text">Observable Canonical Form</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transfer-function"><span class="nav-text">Transfer Function</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
