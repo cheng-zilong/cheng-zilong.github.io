@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="Logistic Regression Model 1. Introduction Generative Classifier: build joint model \(p(x,y)=p(y)p(x|y)\), estimate parameters of joint model from training data, then compute \(p(y|x)\) Discriminati">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-12-22T06:45:48.930Z">
+<meta property="og:updated_time" content="2020-12-22T06:51:36.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 4. Logistic Regression Model">
 <meta name="twitter:description" content="Logistic Regression Model 1. Introduction Generative Classifier: build joint model \(p(x,y)=p(y)p(x|y)\), estimate parameters of joint model from training data, then compute \(p(y|x)\) Discriminati">
@@ -248,7 +248,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:45:48" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:51:36" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
             </span>
           
             
@@ -336,18 +336,18 @@ NLL_{reg}=NLL(w)+\frac{1}{2}\lambda w^Tw\\
 g_{reg}(w)=g(w)+\lambda w=X^T(\mu-y)+\lambda w\\
 H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda I
 \]</span> But we do not want to regularize bias term <span class="math display">\[
-NLL_{reg}=NLL(w)+\frac{1}{2}\lambda \bold w^T\bold w\\
+NLL_{reg}=NLL(w)+\frac{1}{2}\lambda \mathbf w^T\mathbf w\\
 g_{reg}(w)=g(w)+\lambda w=X^T(\mu-y)+\lambda 
 \left(\begin{array}{c}
 0\\
-\bold w_{D\times 1}
+\mathbf w_{D\times 1}
 \end{array}\right)\\
 H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda 
 \left(\begin{array}{c}
 0  &amp; \dotsm\\
 \vdots  &amp; I_{D\times D}
 \end{array}\right)\\
-\]</span> where w is (D+1) x 1 vector but <span class="math inline">\(\bold w\)</span> is D x 1 vector</p>
+\]</span> where w is (D+1) x 1 vector but <span class="math inline">\(\mathbf w\)</span> is D x 1 vector</p>
 
     </div>
 
