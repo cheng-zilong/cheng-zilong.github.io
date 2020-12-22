@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:45:09" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:49:50" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
             </span>
           
             
@@ -346,17 +346,27 @@ N_0
 \end{array}
 \right)\theta^{N_1}(1-\theta)^{N_0}
 \]</span></p>
-Posterior $$
-<span class="math display">\[\begin{array}{lll}
+<p>Posterior <span class="math display">\[
+\begin{array}{lll}
 p(\theta|D)&amp;=&amp;\frac{p(D|\theta)p(\theta)}{p(D)}\\
 &amp;=&amp; \frac{\left(
 \begin{array}{c}
 N\\
 N_0
-\end{array}\]</span>
-<p>)<sup>{N_1}(1-)</sup>{N_0} <sup>{a-1}(1-)</sup>{b-1}}{p(D)}\</p>
-<p>&amp;=&amp; \</p>
-<p>&amp;=&amp; \ &amp;=&amp; Beta(|N_1+a, N_0+b) \end{array} $$ Here we can see that the posterior is the same form as the prior, so we say that the beta is a conjugate prior of the binomial distribution.</p>
+\end{array}
+\right)\theta^{N_1}(1-\theta)^{N_0} \quad \frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}}{p(D)}\\
+&amp;=&amp; \frac{\frac{B(N_1+a,N_0+b)}{B(a,b)}\left(
+\begin{array}{c}
+N\\
+N_0
+\end{array}
+\right)
+\frac{1}{B(N_1+a,N_0+b)}
+\theta^{N_1+\alpha-1}(1-\theta)^{N_0+b-1} \quad }{p(D)}\\
+&amp;=&amp; \frac{k(N_0,N_1,a,b)Beta(\theta|N_1+a, N_0+b)}{p(D)}\\
+&amp;=&amp; Beta(\theta|N_1+a, N_0+b)
+\end{array}
+\]</span> Here we can see that the posterior is the same form as the prior, so we say that the beta is a conjugate prior of the binomial distribution.</p>
 <p>Since ML is a special case of MAP, first we consider MAP here, and we know that the mode of Beta distribution is <span class="math inline">\(mode=\frac{c-1}{c+d-2}\)</span>, we have <span class="math display">\[
 \begin{array}{rcl}
 \theta_{MAP}&amp;=&amp;\underset{\theta}{\operatorname{argmax}}p(\theta|D)\\
