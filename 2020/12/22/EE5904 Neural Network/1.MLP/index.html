@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="1. What is Learning in NN Learning is a process by which the free parameters of a neural network are adapted through a process of stimulation by the environment in which the network is embedded. Pro">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-12-22T06:35:35.435Z">
+<meta property="og:updated_time" content="2020-12-22T06:40:28.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1. Multi-Layer Perceptron">
 <meta name="twitter:description" content="1. What is Learning in NN Learning is a process by which the free parameters of a neural network are adapted through a process of stimulation by the environment in which the network is embedded. Pro">
@@ -248,7 +248,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:45:47 / Modified: 14:35:35" itemprop="dateCreated datePublished" datetime="2020-12-22T13:45:47+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:45:47 / Modified: 14:40:28" itemprop="dateCreated datePublished" datetime="2020-12-22T13:45:47+08:00">2020-12-22</time>
             </span>
           
             
@@ -385,7 +385,7 @@ w_0^Tw(n+1)\ge n\alpha\\
 <p><span class="math display">\[
 E(w)=\frac{1}{2}e(w)^2\\
 e(w)=d-x^Tw\\
-g(w)=\frac{\part E}{\part w}=\frac{\part E}{\part e}\frac{\part e}{\part w}=-e(w)x^T\\
+g(w)=\frac{\partial E}{\partial w}=\frac{\partial E}{\partial e}\frac{\partial e}{\partial w}=-e(w)x^T\\
 \]</span></p>
 <p>Then we have <span class="math display">\[
 w(n+1)=w(n)+\eta e(n)x(n)
@@ -421,10 +421,10 @@ x^{(3)}_{out,j}=\varphi(v^{(3)}_{j})\\
 v^{(3)}_{j} = \sum_i w_{ji}^{(3)}x^{(2)}_i
 \]</span> Then we have $$
 <span class="math display">\[\begin{array}{rcl}
-\Delta w^{(3)}_{ji}(n)&amp;=&amp;-\eta\frac{\part E(n)}{\part w_{ji}^{(3)}(n)}\\
-&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\part x^{(3)}_{out,j}}{\part w_{ji}^{(3)}(n)}\\
-&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\part x^{(3)}_{out,j}}{\part v_j^{(3)}}
-\frac{\part v_j^{(3)}}{\part w_{ji}^{(3)}(n)}\\
+\Delta w^{(3)}_{ji}(n)&amp;=&amp;-\eta\frac{\partial E(n)}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial v_j^{(3)}}
+\frac{\partial v_j^{(3)}}{\partial w_{ji}^{(3)}(n)}\\
 
 &amp;=&amp; \eta \delta_j^{(3)}(n)x_{out,i}^{(2)}(n)
 \end{array}\]</span>
@@ -436,25 +436,54 @@ v^{(3)}_{j} = \sum_i w_{ji}^{(3)}x^{(2)}_i
 e(n)=d(n)-y(n)=d(n)-x^{(3)}_{out}(n)
 \]</span> Then the cost function is <span class="math display">\[
 E(n)=\frac{1}{2}\sum_{k=1}^{n_3}(d_k(n)-x_{out,k}^{(3)}(n))^2
-\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer $$ x^{(3)}<em>{out,k}=(v^{(3)}</em>{k})\ v^{(3)}_{k} = <em>j w</em>{kj}<sup>{(3)}x</sup>{(2)}_j\</p>
-<p>x^{(2)}<em>{out,j}=(v^{(2)}</em>{j})\ v^{(2)}_{j} = <em>i w</em>{ji}<sup>{(2)}x</sup>{(1)}<em>i <span class="math display">\[
-Then we have
-\]</span> w<sup>{(2)}<em>{ji}(n)=-\ =</em>{k=1}</sup>{n_3}(d_k(n)-x^{(3)}</em>{out,k}) \</p>
-<p>=<em>{k=1}<sup>{n_3}(d_k(n)-x</sup>{(3)}</em>{out,k})  \</p>
-<p>=<em>{k=1}<sup>{n_3}(d_k(n)-x</sup>{(3)}</em>{out,k}) <sup>{(3)}(v_k</sup>{(3)}) w_{kj}^{(3)} \</p>
-<p>=<em>{k=1}<sup>{n_3}(d_k(n)-x</sup>{(3)}</em>{out,k}) <sup>{(3)}(v_k</sup>{(3)}(n)) w_{kj}^{(3)}  \</p>
-<p>=<em>{k=1}<sup>{n_3}(d_k(n)-x</sup>{(3)}</em>{out,k}) <sup>{(3)}(v_k</sup>{(3)}(n)) w_{kj}^{(3)} <sup>{(2)}(v_j</sup>{(2)}(n)) x_{out,i}^{(1)}\</p>
-<p>=<em>{k=1}<sup>{n_3}<em>k^{(3)} w</em>{kj}</sup>{(3)} <sup>{(2)}(v_j</sup>{(2)}(n)) x</em>{out,i}^{(1)}\</p>
-<p>= <em>j<sup>{(2)}(n)x_{out,i}</sup>{(1)}(n) <span class="math display">\[
-where
-\]</span> <em>j^{(2)}(n)= (</em>{k=1}<sup>{n_3}<em>k^{(3)} w</em>{kj}</sup>{(3)}) <sup>{(2)}(v_j</sup>{(2)}(n))\ <span class="math display">\[
-Then we can summary
-\]</span> w</em>{ji}<sup>{(s)}(n+1)=w_{ji}</sup>{(s)}(n)+_j<sup>{(s)}(n)x_{out,i}</sup>{(s-1)}(n) <span class="math display">\[
-where
-\]</span> _j<sup>{(s)}(n)=e_j(n)</sup>{(s)}(v_j^{(s)}(n))\</p>
-<p><em>j^{(s)}(n)= (</em>{k=1}<sup>{n_{s+1}}<em>k^{(s+1)}(n) w</em>{kj}</sup>{(s+1)}(n)) <sup>{(s)}(v_j</sup>{(s)}(n)) \ <span class="math display">\[
-To increase learning speed, modify the delta rule
-\]</span> w_{ji}<sup>{(s)}(k)=w_{ji}</sup>{(s)}(k-1) + <em>j<sup>{(s)}(k)x_{out,i}</sup>{(s-1)}(k)\ w</em>{ji}<sup>{(s)}(n+1)=w_{ji}</sup>{(s)}(n)+w_{ji}^{(s)}(k) $$</p>
+\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer <span class="math display">\[
+x^{(3)}_{out,k}=\varphi(v^{(3)}_{k})\\
+v^{(3)}_{k} = \sum_j w_{kj}^{(3)}x^{(2)}_j\\
+x^{(2)}_{out,j}=\varphi(v^{(2)}_{j})\\
+v^{(2)}_{j} = \sum_i w_{ji}^{(2)}x^{(1)}_i
+\]</span> Then we have <span class="math display">\[
+\Delta w^{(2)}_{ji}(n)=-\eta\frac{\partial E(n)}{\partial w_{ji}^{(2)}(n)}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial v^{(3)}_k}
+\frac{\partial v^{(3)}_k}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)})
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial v_{j}^{(2)}}
+\frac{\partial v_{j}^{(2)}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+=\eta\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+= \eta \delta_j^{(2)}(n)x_{out,i}^{(1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(2)}(n)=
+\left(\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}\right)
+\dot \varphi^{(2)}(v_j^{(2)}(n))\\
+\]</span> Then we can summary <span class="math display">\[
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\eta \delta_j^{(s)}(n)x_{out,i}^{(s-1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(s)}(n)=e_j(n)\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right)\quad\text{Output Layer}\\
+\delta_j^{(s)}(n)=
+\left(\sum_{k=1}^{n_{s+1}}\delta_k^{(s+1)}(n)
+w_{kj}^{(s+1)}(n)\right)
+\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right) \quad \text{Hidden Layer}\\
+\]</span> To increase learning speed, modify the delta rule <span class="math display">\[
+\Delta w_{ji}^{(s)}(k)=\alpha \Delta w_{ji}^{(s)}(k-1) + \eta \delta_j^{(s)}(k)x_{out,i}^{(s-1)}(k)\\
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\Delta w_{ji}^{(s)}(k)
+\]</span></p>
 <h2 id="mlp-design-and-training-issues">5. MLP Design and Training Issues</h2>
 <p>Many design and training issues to consider</p>
 <h3 id="sequential-mode-or-batch-mode">1. Sequential mode or batch mode</h3>
@@ -467,11 +496,11 @@ To increase learning speed, modify the delta rule
 <p>Second Order Method <span class="math display">\[
 E(w(n+1))=E(w(n)+\Delta w(n))=E(w(n))+g^T(n)\Delta w(n)+\frac{1}{2}\Delta w^T(n)H(n)\Delta w(n)
 \]</span> If we hope to get choose <span class="math inline">\(\Delta w(n)\)</span> to let <span class="math inline">\(E(w(n+1))\)</span> be minimized <span class="math display">\[
-\frac{\part E(w(n+1))}{\part \Delta w(n)}=g^T(n)+\Delta w^T(n)H(n)=0\\
+\frac{\partial E(w(n+1))}{\partial \Delta w(n)}=g^T(n)+\Delta w^T(n)H(n)=0\\
 \Delta w(n) = -H^{-1}(n)g(n)
 \]</span> This is so called Newton's method.</p>
 <h3 id="normalize-the-input-variables">2. Normalize the input variables</h3>
-<p>In general, any shift of the average input away from zero will bias the updates in a particular direction and this slow down learning.</p>
+<p>In general, any shift of the average input away from zero will bias the updates in a partialicular direction and this slow down learning.</p>
 <p>Normalize <span class="math display">\[
 \bar x_i = \frac{\sum_{n=1}^Nx_i(n)}{N}\quad \sigma=\sqrt \frac{\sum_{n=1}^N (x_i(n)-\bar x_i)}{N}\quad x_i&#39;(n) = \frac{x_i(n)-\bar x_i}{\sigma}
 \]</span> Let the range are close to [-1, 1]</p>
