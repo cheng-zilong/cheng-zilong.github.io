@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Linear Operator on Hilbert Spaces 4.1 Introduction The conception of an operator (or transformation) on a normed vector space is a natural generalization of the idea of a function of a real variable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="Linear Operator on Hilbert Spaces 4.1 Introduction The conception of an operator (or transformation) on a normed vector space is a natural generalization of the idea of a function of a real variable">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-07-12T12:27:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+<meta name="twitter:description" content="Linear Operator on Hilbert Spaces 4.1 Introduction The conception of an operator (or transformation) on a normed vector space is a natural generalization of the idea of a function of a real variable">
+  <link rel="canonical" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title> | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-07-12 20:27:34" itemprop="dateModified" datetime="2019-07-12T20:27:34+08:00">2019-07-12</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="linear-operator-on-hilbert-spaces">Linear Operator on Hilbert Spaces</h1>
+<h2 id="introduction">4.1 Introduction</h2>
+<p>The conception of an operator (or transformation) on a normed vector space is a natural generalization of the idea of a function of a real variable. Linear operators on a normed vector space are widely used to represent physical quantities, and hence their importance is further enhanced in applied mathematics and mathematical physics.</p>
+<p>The most important operators include <strong>differential, integral, and matrix operators</strong>.</p>
+<h2 id="examples-of-operators">4.2 Examples of Operators</h2>
+<p>In section 4.1, we discussed some basic properties of linear mappings from a vector space <span class="math inline">\(E_1\)</span> into a vector space <span class="math inline">\(E_2\)</span>. In this chapter, we are interested in the cases when <span class="math inline">\(E_1=E_2=E\)</span> or <span class="math inline">\(E_1\subset E_2=E\)</span>, where <span class="math inline">\(E\)</span> is normed space or inner product space. Here we will not consider nonlinear operator so operator just means the linear operator.</p>
+<p>Recall that an operator A is called bounded if there is a number <span class="math inline">\(K\)</span> such that <span class="math inline">\(||Ax||\le K||x\|\)</span> for every <span class="math inline">\(x\)</span> in the domain of A. The norm of A is defined as the least of all numbers K, or equivalently, by <span class="math display">\[
+||A||=\sup_{||x||=1}||Ax||
+\]</span> In section 1.6, we proved that an operator A is bounded if and only if it is continuous. It is often much more difficult to find the norm of an operator than just prove it is bounded.</p>
+<p>==Example 4.2.1== (Identity Operator and Null operator)</p>
+<p>The simplest example of an operator is the identity operator <span class="math inline">\(\mathscr I\)</span>, which leaves every element unchanged: <span class="math inline">\(\mathscr Ix=x\quad \forall x\in E\)</span>. The null operator, which assigns the zero vector to every element of E, will be denoted by 0. The two operators are both bounded and we have <span class="math inline">\(||\mathscr I||=1\)</span> and <span class="math inline">\(||0||=0\)</span>. A scalar multiple <span class="math inline">\(\alpha\mathscr I\)</span> of the identity operator is the operator which multiplies every element by the scalar <span class="math inline">\(\alpha\)</span>: <span class="math inline">\((\alpha\mathscr I)x=\alpha x\)</span>.</p>
+<p>==Example 4.2.2==</p>
+<p>Let A be an operator on <span class="math inline">\(C^N\)</span> and let <span class="math inline">\(\{e_1,\dotsm,e_n\}\)</span> be the standard orthonormal base in <span class="math inline">\(C^N\)</span>, i.e. <span class="math display">\[
+e_1=(1,0,\dotsm,0)\\
+e_2=(0,1,\dotsm,0)\\
+\dotsm\\
+e_n=(0,0,\dotsm,1)
+\]</span> Define <span class="math inline">\(i,j=\{1,2,\dotsm,N\}\)</span>, <span class="math display">\[
+a_{ij}=&lt;Ae_j,e_i&gt;
+\]</span> Then for <span class="math inline">\(x=\sum_{j=1}^N \lambda_je_j\in C^N\)</span>, we have <span class="math inline">\(Ax=\sum_{j=1}^N\lambda_jAe_j\)</span>. <span class="math display">\[
+&lt;Ax,e_i&gt;=\sum_{j=1}^N\lambda_j&lt;Ae_j,e_i&gt;=\sum_{j=1}^N\lambda_j\alpha_{ij}\\
+\]</span> Hence, every operator on the space <span class="math inline">\(C^N\)</span> is defined by a <span class="math inline">\(N\times N\)</span> matrix. Conversely, for every <span class="math inline">\(N\times N\)</span> matrix <span class="math inline">\((\alpha_{ij})\)</span>, it defines an operator on <span class="math inline">\(C^N\)</span>. <span class="math display">\[
+||A||\le \sqrt{\sum_{i=1}^N\sum_{j=1}^N |\alpha_{ij}|^2}
+\]</span> ==Example 4.2.3== (Differential Operator)</p>
+<p>One of the most important operator is the differential operator <span class="math display">\[
+(Df)(x)=\frac{df}{dx}(x)=f&#39;(x)
+\]</span> defined on a space of differentiable functions.</p>
+<p>==Example 4.2.4== (Integral Operator)</p>
+<p>Another important kind of operator is an integral operator defined by <span class="math display">\[
+(Tx)(s)=\int _a^b K(s,t)x(t)dt
+\]</span> where a and b are finite or infinite, <span class="math inline">\(a&lt;b\)</span> and K is a function defined on <span class="math inline">\((a,b)\times (a,b)\)</span>. The function K is called the kernel of the operator. The domain of an integral operator depends on K. If <span class="math display">\[
+\int _a^b\int _a^b|K(s,t)|^2dtds&lt;\infty
+\]</span> Then T is bounded operator on <span class="math inline">\(L^2([a,b])\)</span> and <span class="math display">\[
+||T||\le \sqrt{\int _a^b\int _a^b|K(s,t)|dtds}
+\]</span> ==Example 4.2.5== (Multiplication Operator)</p>
+<p>Let <span class="math inline">\(z\in \mathscr C([a,b])\)</span>. An operator A on <span class="math inline">\(L^2([a,b])\)</span> defined by <span class="math inline">\((Ax)(t)=z(t)x(t)\)</span> is clearly linear. The function z is called the multiplier.</p>
+<p>We have <span class="math display">\[
+||Ax||\le \max_{|a,b|}|z(t)|||x||
+\]</span> and thus A is bounded.</p>
+<p>Two operator on a vector space E is said to be ==equal==, A=B if <span class="math inline">\(Ax=Bx\)</span> for every <span class="math inline">\(x\in E\)</span>.</p>
+<p>The set of all operator constitutes a ==vector space== with the addition and multiplication defined by <span class="math display">\[
+(A+B)x=Ax+Bx\quad and\quad (\alpha A)x=\alpha(Ax)
+\]</span> The product of operator A and B is defined by <span class="math display">\[
+(AB)x=A(Bx)
+\]</span> Thus, AB denotes the composition of A and B.</p>
+<p>The defined operators have the following obvious properties. <span class="math display">\[
+A+B=B+A\\
+(A+B)+C=A+(B+C)\\
+A+0=A\\
+\alpha(A+B)=\alpha A+\alpha B\\
+(\alpha+\beta) A=\alpha A+\beta A\\
+A0=0\\
+A(BC)=(AB)C\\
+(A+B)C=AC+BC\\
+A\mathscr J=\mathscr JA
+\]</span> In general, <span class="math inline">\(AB\)</span> need not equal BA. Operators A and B for which <span class="math inline">\(AB=BA\)</span> are called commuting operators.</p>
+<p>==Example 4.2.6== (Noncommuting Operators)</p>
+<p>Consider the space of differential functions on R and the operators <span class="math display">\[
+Af(x)=xf(x)\quad D=\frac{d}{dx}\\
+AD\neq DA
+\]</span> The ==square== of an operator A is defined as <span class="math inline">\(A^2x=A(Ax)\)</span>. By induction, we can define <span class="math display">\[
+A^nx=A(A^{n-1}x)
+\]</span> for any positive integer n. As usual <span class="math inline">\(A^1=A\)</span> and <span class="math inline">\(A^0=\mathscr I\)</span>.</p>
+<p>==Theorem 4.2.1==</p>
+<p>The product AB of bounded operators A and B is bounded and <span class="math inline">\(||AB||\le ||A||||B||\)</span></p>
+<p>==Theorem 4.2.2==</p>
+<p>A bounded operator on a separable infinite dimensional Hilbert Space can be represented by an infinite matrix.</p>
+<h2 id="bilinear-functionals-and-quadratic-forms">4.3 Bilinear Functionals and Quadratic Forms</h2>
+<p>The concept of Bilinear functional and quadratic form do not require the structure of an inner product space. They can be defined in any vector space. This discussion is presented in this chapter because of important applications to the theory of operators in Hilbert Space.</p>
+<p>==Definition 4.3.1== (Bilinear Functional)</p>
+<p>By a bilinear functional <span class="math inline">\(\phi\)</span> on a complex vector space E, we mean a mapping <span class="math inline">\(E\times E \rightarrow C\)</span> satisfying the following two conditions,</p>
+<ol type="a">
+<li><p><span class="math inline">\(\phi(\alpha x_1+\beta x_2,y)=\alpha \phi(x_1,y)+\beta \phi(x_2,y)\)</span></p></li>
+<li><p><span class="math inline">\(\phi(x,\alpha y_1+\beta y_2)=\bar \alpha \phi(x,y_1)+\bar \beta \phi(x,y_2)\)</span></p></li>
+</ol>
+<p>for any scalar <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> and any <span class="math inline">\(x,x_1,x_2,y,y_1,y_2\in E\)</span>.</p>
+<p>Bilinear functionals are often called ==sesquilinear==. Note that bilinear functional is linear with respect to the first variable and antilinear with respect to the second variable, all bilinear functionals on E constitute a vector space.</p>
+<p>==Example 4.2.1== Inner product is a bilinear functional</p>
+<p>==Example 4.2.2== Let A and B be operators on an inner product space E. Then <span class="math inline">\(\phi_1(x,y)=&lt;Ax,y&gt;\)</span>, <span class="math inline">\(\phi_2(x,y)=&lt;x,By&gt;\)</span>, and <span class="math inline">\(\phi_3(x,y)=&lt;Ax,By&gt;\)</span> are bilinear functionals.</p>
+<p>==Example 4.2.3== Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> be linear functionals on a vector space E. Then <span class="math inline">\(\phi(x,y)=f(x)\overline{g(y)}\)</span> is a bilinear functional on E.</p>
+<p>==Definition 4.3.2== Let <span class="math inline">\(\phi\)</span> be a bilinear functional on E.</p>
+<ol type="a">
+<li><p><span class="math inline">\(\phi\)</span> is called symmetric if <span class="math inline">\(\phi(x,y)=\overline{\phi(y,x)}\)</span> for all <span class="math inline">\(x,y\in E\)</span>.</p></li>
+<li><p><span class="math inline">\(\phi\)</span> is called positive if <span class="math inline">\(\phi(x,x)\ge 0\)</span> for every <span class="math inline">\(x\in E\)</span>.</p></li>
+<li><p><span class="math inline">\(\phi\)</span> is called strictly positive if it is positive and <span class="math inline">\(\phi(x,x)&gt;0\)</span> for every <span class="math inline">\(x\neq 0\)</span>.</p></li>
+<li><p>If E is a normed space, then <span class="math inline">\(\phi\)</span> is called bounded if <span class="math inline">\(|\phi(x,y)|\le K||x|||y||\)</span> for some <span class="math inline">\(K&gt;0\)</span> and all <span class="math inline">\(x,y\in E\)</span>. The norm of a bounded bilinear functional is defined by <span class="math display">\[
+||\phi||=\sup_{||x||=1,||y||=1}|\phi(x,y)|
+\]</span> ==Definition 4.3.3== (Quadratic form)</p></li>
+</ol>
+<p>Let <span class="math inline">\(\phi\)</span> be a bilinear functional on a vector space E. The function <span class="math inline">\(\Phi:E\rightarrow C\)</span> defined by <span class="math inline">\(\Phi(x)=\phi(x,x)\)</span> is called the quadratic form associated with <span class="math inline">\(\phi\)</span>. A quadratic form <span class="math inline">\(\Phi\)</span> on a normed space E is called bounded if there exists a constant <span class="math inline">\(k&gt;0\)</span> such that <span class="math inline">\(|\Phi(x)|\le k||x||^2\)</span> for all <span class="math inline">\(x\in E\)</span>. The norm of a bounded quadratic form is defined by <span class="math display">\[
+||\Phi||=\sup_{||x||=1} |\Phi(x)|
+\]</span> ==Theorem 4.3.1== (Polarization Identity)</p>
+<p>Let <span class="math inline">\(\phi\)</span> be a bilinear functional on E and let <span class="math inline">\(\Phi\)</span> be quadratic form associated with <span class="math inline">\(\phi\)</span>. Then <span class="math display">\[
+4\phi(x,y)=\Phi(x+y)-\Phi(x-y)+i\Phi(x+iy)-i\Phi(x-iy)
+\]</span> for all <span class="math inline">\(x,y\in E\)</span>.</p>
+<p>==Corollary 4.3.1== Let <span class="math inline">\(\phi_1\)</span> and <span class="math inline">\(\phi_2\)</span> be bilinear functional on E. If <span class="math inline">\(\phi_1(x,x)=\phi_2(x,x)\)</span> for all <span class="math inline">\(x\in E\)</span>, then <span class="math inline">\(\phi_1=\phi_2\)</span>. i.e. <span class="math inline">\(\phi_1(x,y)=\phi_2(x,y)\)</span> for all <span class="math inline">\(x,y \in E\)</span>.</p>
+<p>==Theorem 4.3.2== A bilinear functional <span class="math inline">\(\phi\)</span> on E is symmetric if and only if the associated quadratic form <span class="math inline">\(\Phi\)</span> is real.</p>
+<p>==Theorem 4.3.3== A bilinear functional <span class="math inline">\(\phi\)</span> on a normed space E is bounded if and only if the associated quadratic form <span class="math inline">\(\Phi\)</span> is bounded. Moreover, we have <span class="math display">\[
+||\Phi||\le ||\phi||\le 2||\Phi||
+\]</span> ==Theorem 4.3.4== If a bilinear functional <span class="math inline">\(\phi\)</span> on a normed space <span class="math inline">\(E\)</span> is symmetric and bounded, then for the associated form <span class="math inline">\(\Phi\)</span> we have <span class="math inline">\(||\phi||=||\Phi||\)</span>.</p>
+<p>==Theorem 4.3.5== Let <span class="math inline">\(A\)</span> be a bounded operator on a Hilbert space <span class="math inline">\(H\)</span>. Then the bilinear functional defined by <span class="math inline">\(\phi(x,y)=&lt;x,Ay&gt;\)</span> is bounded and <span class="math inline">\(||A||=||\phi||\)</span>.</p>
+<p>==Theorem 4.3.6== Let <span class="math inline">\(\phi\)</span> be a bounded bilinear functional on a Hilbert space H. There exists a unique bounded operator A on H such that <span class="math display">\[
+\phi(x,y)=&lt;x,Ay&gt;\quad \forall x,y\in H
+\]</span> ==Definition 4.3.6== (Coercive Functional)</p>
+<p>A bilinear functional <span class="math inline">\(\phi\)</span> on a normed space <span class="math inline">\(E\)</span> is called coercive (or elliptic) if there exists a positive constant K such that <span class="math display">\[
+\phi(x,x)\ge K||x||^2\quad \forall x\in E 
+\]</span> ==Theorem 4.3.7== (Lax-Milgram Theorem)</p>
+<p>Let <span class="math inline">\(\phi\)</span> be a bounded, coercive, bilinear functional on a Hilbert Space H. For every bounded linear functional <span class="math inline">\(f\)</span> on <span class="math inline">\(H\)</span>, there exists a unique <span class="math inline">\(x_f\in H\)</span> such that <span class="math display">\[
+f(x)=\phi(x,x_f)\quad \forall x\in H
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" rel="next" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.4 Adjoint and Self-Adjoint Operators/" rel="prev" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linear-operator-on-hilbert-spaces"><span class="nav-text">Linear Operator on Hilbert Spaces</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">4.1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#examples-of-operators"><span class="nav-text">4.2 Examples of Operators</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bilinear-functionals-and-quadratic-forms"><span class="nav-text">4.3 Bilinear Functionals and Quadratic Forms</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/19/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+  <link rel="canonical" href="http://yoursite.com/page/19/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:46:14" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:14+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-04-27 15:00:13" itemprop="dateModified" datetime="2019-04-27T15:00:13+08:00">2019-04-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/9.Clustering and Application/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="clustering-and-applications">Clustering and Applications</h1>
+<h2 id="what-is-cluster-analysis">1. What is Cluster Analysis</h2>
+<p>Finding groups of objects such that the objects in a group will be similar to one another and different from the objects in other groups.</p>
+<p>A clustering is a set of clusters.</p>
+<p>Partitional Clustering: A division of data objects into non-overlapping subsets, such that each data object is in exactly one subset.</p>
+<p>Hierarchical clustering: A set of nested clusters organized as a hierarchical tree.</p>
+<p>Exclusive and non-exclusive: In non-exclusive clustering, points may belong to multiple clusters.</p>
+<p>Fuzzy and non-fuzzy: In fuzzy clustering, a point belongs to every cluster with some weight between 0 and 1.</p>
+<p>Partial and Complete: In some cases, we only want to cluster some of the data.</p>
+<h2 id="k-means">2. K-means</h2>
+<ol type="1">
+<li>partitional clustering approach</li>
+<li>Each cluster is associated with a centroid</li>
+<li>Each point is assigned to a cluster with the closest centroid</li>
+<li>Number of clusters, K, must be specified</li>
+</ol>
+<p>Algorithm</p>
+<p>Select K points as the initial centroids</p>
+<p>repeat</p>
+<p>From K clusters by assigning all points to the closest centroid.</p>
+<p>Recompute the centroid of each cluster.</p>
+<p>until the centroid don't change</p>
+<h2 id="evaluating-k-means-clusters">3. Evaluating K-means Clusters</h2>
+<p>Most common measure is Sum of Squared Error (SSE) <span class="math display">\[
+SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
+\]</span> the initial chosen points are very important.</p>
+<p>Solutions to Initial centroids problem</p>
+<ol type="1">
+<li>Multiple runs</li>
+<li>Use hierarchical clustering to determine initial centroids</li>
+<li>Select more than K initial centroids and then select among these initial centroids (Select most widely separated)</li>
+<li>Postprocessing
+<ol type="1">
+<li>Eliminate small clusters that may represent outliers</li>
+<li>Split loose clusters (Clusters with relatively high SSE)</li>
+<li>Merge close clusters (Clusters with relatively low SSE)</li>
+</ol></li>
+</ol>
+<p>Limitations of K-means</p>
+<p>K-means has problems when clusters are of differing sizes, densities.</p>
+<p>when the data contains outliers (not belonging to any cluster).</p>
+<p>The similarity function is suitable or not.</p>
+<h2 id="hierarchical-clustering">4. Hierarchical Clustering</h2>
+<p>Do not have assume any particular number of clusters</p>
+<p>Any desired number of clusters can be obtained by cutting the dendrogram at the proper level</p>
+<p>Two main types of hierarchical clustering</p>
+<h3 id="agglomerative-clustering-algorithm">1. Agglomerative clustering algorithm</h3>
+<p>Agglomerative: Start with the points as individual clusters and at each step, merge the closest part of clusters until only one cluster (or k clusters) left. (More popular)</p>
+<p>Algorithm:</p>
+<p>Compute the proximity/distance matrix</p>
+<p>Let each point be a cluster</p>
+<p>repeat</p>
+<p>​ Merge the two closet clusters</p>
+<p>​ update the proximity/distance matrix</p>
+<p>until only a single cluster remains</p>
+<h3 id="divisive-clustering-algorithm">2. Divisive clustering algorithm</h3>
+<p>Divisive: Start with one, all-inclusive cluster and at each step, split a cluster until each cluster contains a point (or there are k clusters)</p>
+<p>Traditional hierarchical algorithms use a similarity or distance matrix to merge or split one cluster at a time</p>
+<h2 id="inter-cluster-similarity">5. Inter-cluster Similarity</h2>
+<p>MIN: most similar (closest) points in the different clusters</p>
+<p>MAX: two least similar (most distant) points in the different clusters</p>
+<p>Group Average: Proximity of two clusters is the average of pairwise proximity between points in the two clusters.</p>
+<p>Distance Between Centroids</p>
+<h2 id="problems-and-limitations">6. Problems and Limitations</h2>
+<p>No objective function is directly minimized</p>
+<p>Different schemes have problems with one or more of the following:</p>
+<p>Sensitivity to noise and outliers Difficulty handling different sized clusters Breaking large clusters</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:46:14" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:14+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-04-16 17:55:52" itemprop="dateModified" datetime="2019-04-16T17:55:52+08:00">2019-04-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="supervised-feature-extraction">Supervised Feature Extraction</h1>
+<h2 id="linear-discriminant-analysis">1. Linear Discriminant Analysis</h2>
+<p>Linear discriminant analysis (LDA) finds most discriminative projection by maximizing between-class distance and minimizing within-class distance.</p>
+<p>Class-specific mean vector <span class="math display">\[
+\mu_i = \frac{1}{n_i}\sum_{x\in C_i} x
+\]</span> Class-specific covariance matrix <span class="math display">\[
+S_i=\frac{1}{n_i}\sum_{x\in C_i} (x-\mu_i)(x-\mu_i)^T
+\]</span></p>
+<p>Total mean vector <span class="math display">\[
+\mu = \frac{1}{N}\sum_x x
+\]</span> Within-class scatter <span class="math display">\[
+S_W=\sum_{i=1}^C \frac{n_i}{N}S_i=\sum_{i=1}^C P_iS_i
+\]</span> where <span class="math inline">\(P_i\)</span> weight of a specific class.</p>
+<p>Between-class scatter <span class="math display">\[
+S_B=\sum_{i=1}^CP_i (\mu_i-\mu)(\mu_i-\mu)^T
+\]</span> That means the sum of the distance of all class specific mean vector to the total mean vector.</p>
+<p>Total covariance <span class="math display">\[
+S_T=\frac{1}{N}\sum_x (x-\mu)(x-\mu)^T=S_W+S_B
+\]</span> Proof skipped.</p>
+<h3 id="two-classes">Two classes</h3>
+<p><span class="math display">\[
+y=w^Tx
+\]</span></p>
+<p>Then we can get the scalar y, of all possible <span class="math inline">\(w\)</span>, we hope to choose the best that maximizes the separability. <span class="math display">\[
+\mu_i=\frac{1}{n_i}\sum_{x\in C_i}x\quad \tilde \mu_i=w^T\mu_i
+\]</span> The distance between the two classes <span class="math display">\[
+J(w)=|\tilde \mu_1-\tilde \mu_2|=|w^T(\mu_1-\mu_2)|
+\]</span> However, the distance can be infinitely large if no constraint to the chosen <span class="math inline">\(w^T\)</span>, therefore, we normalize the distance <span class="math display">\[
+J(w)=\frac{|\tilde \mu_1-\tilde \mu_2|^2}{\tilde S_1^2+\tilde S_2^2}
+\]</span> where <span class="math inline">\(\tilde S_i^2\)</span> is the Class-specific covariance matrix of <span class="math inline">\(\tilde y_i\)</span>, <span class="math inline">\(\tilde S_1^2+\tilde S_2^2\)</span> is the Within-class scatter of <span class="math inline">\(\tilde y_i\)</span></p>
+<p>Then we find <span class="math inline">\(\tilde S_1^2+\tilde S_2^2=w^TS_W w\)</span> and <span class="math inline">\(|\tilde \mu_1-\tilde \mu_2|^2=w^TS_Bw\)</span></p>
+<p>Then <span class="math display">\[
+J(w)=\frac{w^TS_B w}{w^TS_Ww}
+\]</span> We take the derivative and let the derivative be zero (<span class="math inline">\((w^TS_Ww)^2\)</span> is omitted), <span class="math display">\[
+(w^TS_W w) S_Bw-(w^TS_B w) S_Ww=0\\
+S_Bw-J(w)S_Ww=0\\
+S_W^{-1}S_Bw=J(w)w
+\]</span> That means <span class="math inline">\(w^*\)</span> is the eigenvector of <span class="math inline">\(S_w^{-1}S_B​\)</span></p>
+<p>For Multi-class <span class="math display">\[
+J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
+(S_B-\lambda_i S_W)w_i^*=0
+\]</span> Then <span class="math inline">\(w_i^*\)</span> are the largest eigenvectors corresponding to the largest eigenvalues.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="7.5 Applications to semidefinite programming In this section, we consider the cone \(\mathcal C=\mathbb S^n_+\). Note that \(\mathcal C^*=\mathbb S_+^n\). Consider the linear SDP problem, \[ \text{(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7. Nonlinear conic programming (3)">
+<meta property="og:url" content="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming-3919S62/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="7.5 Applications to semidefinite programming In this section, we consider the cone \(\mathcal C=\mathbb S^n_+\). Note that \(\mathcal C^*=\mathbb S_+^n\). Consider the linear SDP problem, \[ \text{(">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-31T14:11:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="7. Nonlinear conic programming (3)">
+<meta name="twitter:description" content="7.5 Applications to semidefinite programming In this section, we consider the cone \(\mathcal C=\mathbb S^n_+\). Note that \(\mathcal C^*=\mathbb S_+^n\). Consider the linear SDP problem, \[ \text{(">
+  <link rel="canonical" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming-3919S62/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>7. Nonlinear conic programming (3) | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming-3919S62/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">7. Nonlinear conic programming (3)
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-31 22:11:09" itemprop="dateModified" datetime="2019-10-31T22:11:09+08:00">2019-10-31</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming-3919S62/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (3)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming-3919S62/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming-3919S62/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="applications-to-semidefinite-programming">7.5 Applications to semidefinite programming</h2>
+<p>In this section, we consider the cone <span class="math inline">\(\mathcal C=\mathbb S^n_+\)</span>. Note that <span class="math inline">\(\mathcal C^*=\mathbb S_+^n\)</span>. Consider the linear SDP problem, <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; \langle C,X\rangle\\
+\text{subject to}&amp; \mathcal A (X)=b\\
+&amp;X\in \mathbb S_+^n,
+\end{array}
+\]</span> where <span class="math inline">\(C\in\mathbb S^n\)</span>, <span class="math inline">\(b\in\mathbb R^m\)</span> are given data and <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a given linear map. The dual problem is given by <span class="math display">\[
+\text{(SDD)}\quad \begin{array}{rCl}
+\min &amp; \langle b,y\rangle\\
+\text{subject to}&amp; \mathcal A^* y+Z=C\\
+&amp;Z\in \mathbb S_+^n.
+\end{array}
+\]</span> The KKT optimality conditions are given as <span class="math display">\[
+\begin{array}{rcl}
+\mathcal A^*+Z&amp;=&amp;C\\
+\mathcal AX&amp;=&amp;b\\
+\mathbb S_n^+\ni X&amp;\perp&amp; Z\in \mathbb S_n^+. 
+\end{array}
+\]</span> The last condition is equivalent to <span class="math display">\[
+\langle X,Z\rangle =0,\;X,Z\in\mathbb S_+^n.
+\]</span> The last condition is also equivalent to <span class="math display">\[
+-X\in N_{\mathbb S^+_n}(Z)\iff Z-\Pi_{\mathbb S_n^+}(Z-X)=0=X-\Pi_{\mathbb S_n^+}(X-Z).
+\]</span> For any <span class="math inline">\(A\in\mathbb S^n\)</span>, let <span class="math inline">\(A_+ = \Pi_{\mathbb S_n^+}(A)\)</span>. Assume that A has the following spectral decomposition, <span class="math display">\[
+A=P\Lambda P^T,
+\]</span> where <span class="math inline">\(\Lambda = \text{Diag}(\lambda)\)</span> is the diagonal matrix of the eigenvalues <span class="math inline">\(\lambda_1\ge \lambda_2\ge \dotsm\ge \lambda_n\)</span> and <span class="math inline">\(P\)</span> is a corresponding orthogonal matrix of eigenvectors. Then <span class="math display">\[
+A_+=P\Lambda_+ P^T,
+\]</span> where <span class="math inline">\(\Lambda_+ = \text{Diag} (\lambda_+)\)</span>. Define three index sets of positive zero, and negative, <span class="math display">\[
+\alpha =\{i\;|\; \lambda_i&gt;0\}\\
+\beta =\{i\;|\; \lambda_i=0\}\\
+\gamma =\{i\;|\; \lambda_i&lt;0\}.
+\]</span> We can write <span class="math display">\[
+\Lambda = \begin{bmatrix}
+\Lambda_\alpha &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; \Lambda_\gamma
+\end{bmatrix}\\
+P=[P_\alpha, P_\beta,P_\gamma],
+\]</span> where <span class="math inline">\(P_\alpha \in \mathbb R^{n\times |\alpha|}\)</span>, <span class="math inline">\(P_\beta \in \mathbb R^{n\times |\beta|}\)</span>, <span class="math inline">\(P_\gamma \in\mathbb R^{n\times |\gamma|}\)</span>. Define for <span class="math inline">\(i\notin \beta\)</span> or <span class="math inline">\(j\notin \beta\)</span>,</p>
+<p><strong>Case 1</strong> (<span class="math inline">\(\beta = \emptyset\)</span>). Then <span class="math inline">\(\Pi_{\mathbb S_+^n}\)</span> is Frechet differentiable at <span class="math inline">\(A\)</span> and the directional derivative is given by <span class="math display">\[
+\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{cc}{\widetilde{H}_{\alpha \alpha}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0}\end{array}\right] P^{T}
+\]</span> where <span class="math inline">\(\widetilde H = P^THP\)</span>.</p>
+<p><strong>Cases 2</strong> (<span class="math inline">\(\beta \neq \emptyset\)</span>) it has been proven that for any <span class="math inline">\(H\in\mathbb S^n\)</span>, it follows <span class="math display">\[
+\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{ccc}{\widetilde{H}_{\alpha \alpha}} &amp; {\widetilde{H}_{\alpha \beta}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\widetilde{H}_{\alpha \beta}^{T}} &amp; {\Pi_{\mathbb{S}_+^{|\beta|}}\left(\widetilde{H}_{\beta \beta}\right)} &amp; {0} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0} &amp; {0}\end{array}\right] P^{T}.
+\]</span></p>
+<p>skip something......</p>
+<p>The Robinson's CQ for (SDP) is given by <span class="math display">\[
+\begin{bmatrix}
+\mathcal A\\ \mathcal I
+\end{bmatrix} \mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\ \mathcal T_\mathcal C(\bar X)
+\end{bmatrix}=
+\begin{bmatrix}
+\mathbb R^m \\
+\mathbb S^n
+\end{bmatrix},
+\]</span> where <span class="math inline">\(\mathcal I:\mathbb S^n\rightarrow \mathbb S^n\)</span> is the identity map. A sufficient condition for the multipliers <span class="math inline">\((\bar y,\bar Z)\in\mathcal M(\bar x)\)</span> to be unique is that <span class="math display">\[
+\begin{bmatrix}
+\mathbb R^m\\\mathbb S^n
+\end{bmatrix}=
+\begin{bmatrix}
+\mathcal A\\\mathcal I
+\end{bmatrix}\mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\\mathcal T_\mathcal C(\bar X)\cap (\bar Z)^\perp
+\end{bmatrix}\subset \\
+\begin{bmatrix}
+\mathcal A\\\mathcal I
+\end{bmatrix}\mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\\mathcal T_\mathcal C(\bar X)
+\end{bmatrix}\cap
+\begin{bmatrix}
+-\bar y\\-\bar Z
+\end{bmatrix}^\perp.
+\]</span> <strong>Definition</strong> (Robinson's constraint nondegeneracy)</p>
+<p>We said that a feasible <span class="math inline">\(\bar x\)</span> to problem (COP) is constraint nondegenerate if <span class="math display">\[
+G&#39;(\bar x)\mathcal X+\text{lin}(\mathcal T_\mathcal K(G(\bar x)))=\mathcal Y
+\]</span> where <span class="math inline">\(\text{lin}(\mathcal T_\mathcal K(G(\bar x)))\)</span> denotes the largest linear subspace contained in <span class="math inline">\(\mathcal T_{\mathcal K}(G(\bar x))\)</span>.</p>
+<p>For the problem (SDP), the Robinson's constraint nondegeneracy condition is said to hold at a feasible point <span class="math inline">\(\bar X\in\mathbb S_+^n\)</span> if <span class="math display">\[
+\begin{bmatrix}
+\mathbb R^m\\\mathbb S^n
+\end{bmatrix}=
+\begin{bmatrix}
+\mathcal A\\
+\mathcal I
+\end{bmatrix}\mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar X))
+\end{bmatrix}.
+\]</span> <strong>Exercise</strong></p>
+Show that the above condition is equivalent to <span class="math display">\[
+\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m.
+\]</span> It means that for all <span class="math inline">\(y\in\mathbb R^m\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(d\in\mathbb S^n\)</span> such that $$
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal Ad\\
+z&amp;\in&amp; d+\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
+\end{array}\iff\]</span>
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal Ad\\
+d&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
+\end{array}\]</span>
+<p>\</p>
+<span class="math display">\[\begin{array}{|rcl|}\hline 
+y\in \mathcal A(z-\text{lin}(\mathcal T_\mathcal C(\bar X)))
+\\\hline \end{array}
+\iff 
+\begin{array}{|rcl|}\hline 
+y\in\mathcal Az-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
+\\\hline \end{array}\]</span>
+\
+<span class="math display">\[\begin{array}{|rcl|}\hline 
+\mathcal Az-y\in \mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
+\\\hline \end{array}
+\iff
+\begin{array}{|rcl|}\hline 
+\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m
+\\\hline \end{array}\]</span>
+. <span class="math display">\[
+For the dual problem (SDD), the Robinson&#39;s constraint nondegeneracy condition is said to hold at a feasible point $(\bar y,\bar Z)\in\mathbb R^m\times \mathbb S_+^n$ if
+\]</span>
+<span class="math display">\[\begin{bmatrix}
+\mathbb S^n\\\mathbb S^n
+\end{bmatrix}\]</span>
+=
+<span class="math display">\[\begin{bmatrix}
+\mathcal A^* &amp; \mathcal I\\
+0&amp;\mathcal I
+\end{bmatrix}
+\begin{bmatrix}
+\mathbb R^m\\ \mathbb S^n
+\end{bmatrix}\]</span>
+<ul>
+<li><span class="math display">\[\begin{bmatrix}
+\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar Z))
+\end{bmatrix}\]</span>
+. $$ <strong>Exercise</strong></li>
+</ul>
+Show that the above condition is equivalent to (???what is <span class="math inline">\(\bar S\)</span>) <span class="math display">\[
+\mathcal A^*\mathbb R^m+\text{lin}(\mathcal T_\mathcal C(\bar S))=\mathbb S^n.
+\]</span> It means that for all <span class="math inline">\(y\in\mathbb S^n\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(v\in\mathbb R^m\)</span> and <span class="math inline">\(w\in\mathbb S^n\)</span> such that $$
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal A^* v+w\\
+z&amp;\in&amp; w+\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
+\end{array}\iff\]</span>
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal A^* v+w\\
+w&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
+\end{array}\]</span>
+\
+<span class="math display">\[\begin{array}{|rcl|}\hline 
+y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
+\\\hline\end{array}
+\iff
+\begin{array}{|rcl|}\hline 
+\mathbb S^n&amp;=&amp; \mathcal A^* \mathbb R^m-\text{lin}(\mathcal T_\mathcal C(\bar Z))
+\\\hline\end{array}\]</span>
+<p>. $$</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.2 Nonlinear conic programming/" rel="next" title="7. Nonlinear conic programming (2)">
+                  <i class="fa fa-chevron-left"></i> 7. Nonlinear conic programming (2)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/" rel="prev" title="8. Nonlinear conic programming (3)">
+                  8. Nonlinear conic programming (3) <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#applications-to-semidefinite-programming"><span class="nav-text">7.5 Applications to semidefinite programming</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

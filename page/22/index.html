@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/22/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+  <link rel="canonical" href="http://yoursite.com/page/22/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-04-26 19:07:05" itemprop="dateModified" datetime="2019-04-26T19:07:05+08:00">2019-04-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="introduction">1. Introduction</h2>
+<p>Let y be the target class label, x be the feature vector of length D</p>
+<p>Then we have a generative classifier <span class="math display">\[
+p(x,y|\theta)=p(y|\theta)p(x|y,\theta)
+\]</span> To define the classifier, we need to define the distribution <span class="math inline">\(p(y|\theta)\)</span> and <span class="math inline">\(p(x|y,\theta)\)</span></p>
+<p>we split <span class="math inline">\(\theta\)</span> into two parts <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\eta\)</span> .</p>
+<p><span class="math inline">\(\lambda\)</span> are the parameters of prior. For classification, y is by definition discrete then <span class="math inline">\(p(y|\lambda)\)</span> has to be a categorical distribution.</p>
+<p><span class="math inline">\(\eta\)</span> are the parameters of the likelihood. Modeling aspect comes from specifying the feature likelihood. Intuitively, feature likelihood is saying that the data point comes from the specific class with label c, what is pdf of the features x? Naive Bayes Classifier assumes features are conditionally independent given class <span class="math display">\[
+p(x|y=c,\eta)=\prod_{j=1}^Dp(x_j|y=c,\eta)=\prod_{j=1}^Dp(x_j|\eta_{jc})
+\]</span> That means p of the feature vector x given the class label c is equal to the product from feature 1 to D.</p>
+<p>For example <span class="math inline">\(p(x_1|\eta_{1,c1})\)</span> is Gaussian Distribution, then <span class="math inline">\(\eta_{1,c1}=(\mu_{1,c1},\sigma^2_{1,c1})\)</span> . <span class="math inline">\(p(x_2|\eta_{2,c1})\)</span> is Bernoulli Distribution. Each features can be different distribution.</p>
+<p>Naïve because features are probably not conditionally independent.</p>
+<h2 id="strategies-to-estimate-parameters-and-classifying">2. Strategies to Estimate Parameters and Classifying</h2>
+<p>Three strategies</p>
+<p>ML: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{ML}=\arg\max_\theta p(D|\theta)\)</span>. Then predict.</p>
+<p>MAP: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{MAP}=\arg\max_\theta p(\theta|D)\)</span>. Then predict.</p>
+<p>Posterior Predictive/ Beyesian Model Averaging (detailed in the following parts): <span class="math display">\[
+p(\tilde y|\tilde x, D)
+\]</span> Then <span class="math display">\[
+p(x,y|\theta)=p(y|\lambda)p(x|y,\eta)
+\]</span> We hope to use MAP to estimate the model parameters. We can prove the two parameters can be optimized separately. <span class="math display">\[
+\begin{array}{rcl}
+p(\theta|D)&amp;=&amp;p(\lambda,\eta|D)\\
+&amp;=&amp; \frac{p(D|\lambda,\eta)p(\lambda,\eta)}{p(D)}\\
+&amp;=&amp; \frac{p(y_{1:N}|\lambda,\eta)p(x_{1:N}|y_{1:N},\lambda,\eta) p(\lambda)p(\eta)}{p(y_{1:N})p(x_{1:N}|y_{1:N})}\\
+&amp;=&amp;\left(\frac{p(y_{1:N}|\lambda)p(\lambda)}{p(y_{1:N})}\right)
+\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
+&amp;=&amp;p(\lambda|y_{1:N})\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
+\end{array}
+\]</span> ## 3. For the First Part</p>
+<p>if beta prior <span class="math display">\[
+\lambda^{MAP}=\frac{N_{head}+a-1}{N+a+b-2}
+\]</span> if Dirichlet prior <span class="math display">\[
+\lambda^{MAP}=\frac{N_c+\alpha_c-1}{N+\sum_{c=1}^C\alpha_c-C}
+\]</span> ## 4. For the Second Part</p>
+<p>Naïve Bayes means every features are independent <span class="math display">\[
+\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}=\prod_{j=1}^D\prod_{c=1}^C\frac{p(\eta_{jc})p(x_{i\in c,j}|\eta_{jc})}{p(x_{i\in c,j})}\\
+=\prod_{j=1}^D\prod_{c=1}^Cp(\eta_{jc}|x_{i\in c,j})
+\]</span> For every dimension j and every class c, use MAP to estimate parameter <span class="math inline">\(\eta_{jc}\)</span></p>
+<h2 id="predicting-target-class">5. Predicting Target Class</h2>
+<p>Once we have estimate <span class="math inline">\(\lambda^{MAP}\)</span> and <span class="math inline">\(\eta ^{MAP}\)</span> , we can use the parameter to compute for each class c: <span class="math display">\[
+p(\tilde y=c|\tilde x,\lambda^{MAP},\eta^{MAP})=p(\tilde y=c|\lambda^{MAP})p(\tilde x|\eta_{jc}^{MAP})\\
+=\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})
+\]</span></p>
+<p>In practice, for numerical stability, we compute <span class="math display">\[
+\log\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})=\\
+\log \lambda_c^{MAP}+\sum_{j=1}^D \log p(\tilde x_j|\eta_{jc}^{MAP})
+\]</span> Example</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature 1</th>
+<th style="text-align: center;">Feature 2</th>
+<th style="text-align: center;">Class Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">?</td>
+</tr>
+</tbody>
+</table>
+<p>For the first part <span class="math display">\[
+\lambda^{ML}_1=\frac{1}{3}\quad\lambda^{ML}_2=\frac{2}{3}\\
+\]</span> For the second part <span class="math display">\[
+\eta^{ML}_{11}=0\quad \eta^{ML}_{21}=0\\
+\eta^{ML}_{12}=1\quad \eta^{ML}_{22}=0.5\\
+\]</span> Then $$ p(y=1|x,<sup>{MAP},</sup>{MAP}) =_1<sup>{MAP}+<em>{j=1}^2p(x_j|</em>{j1}</sup>{MAP})\ =_1<sup>{MAP}+p(x_1|<em>{11}^{MAP})+p(x_1|</em>{21}</sup>{MAP})=-\</p>
+<p>p(y=2|x,<sup>{MAP},</sup>{MAP}) =_2<sup>{MAP}+<em>{j=1}^2p(x_j|</em>{j2}</sup>{MAP})\ =_2<sup>{MAP}+p(x_1|<em>{12}^{MAP})+p(x_1|</em>{22}</sup>{MAP})\ =/3++=-1.1 $$ So <span class="math inline">\(\tilde y=2\)</span></p>
+<h2 id="posterior-predictive-estimation">6. Posterior Predictive Estimation</h2>
+<p><span class="math display">\[
+\begin{array}{rcl}
+p(\tilde y|\tilde x,D)
+&amp;=&amp;\frac{p(\tilde x,\tilde y|D)}{p(\tilde x|D)}\\
+&amp;\propto&amp; p(\tilde x,\tilde y|D)\quad \text{nothing about }\tilde y\\
+&amp;=&amp; p(\tilde x|\tilde y,D)p(\tilde y|D)\\
+&amp;=&amp; p(\tilde x|\tilde y,x_{1:N},y_{1:N})p(\tilde y|x_{1:N},y_{1:N})\\
+&amp;=&amp; p(\tilde y|y_{1:N})p(\tilde x|\tilde y,x_{1:N},y_{1:N})
+\end{array}
+\]</span></p>
+<p>The first part is just posterior predictive distribution for beta-binomial or Dirichlet-multinomial model.</p>
+<p>For the second part, we can compute independently for each dimension j and class c. <span class="math display">\[
+p(\tilde x|\tilde y,x_{1:N},y_{1:N})=\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
+\]</span> Then for every dimension <span class="math inline">\(j\)</span> and every class <span class="math inline">\(c\)</span>, we compute posterior predictive distribution of test feature <span class="math inline">\(p(\tilde x_j|x_{i\in c,j},\tilde y=c)\)</span></p>
+<p>To summarize, to predict target class label, we have <span class="math display">\[
+p(\tilde y=c|\tilde x,D)\propto p(\tilde y|y_{1:N})\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
+\]</span> For numerical stability, we compute <span class="math display">\[
+\log p(\tilde y=c|\tilde x,D)\propto \log p(\tilde y|y_{1:N})+\sum_{j=1}^D\log p(\tilde x_j|x_{i\in c,j},\tilde y=c)
+\]</span> Example</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature 1</th>
+<th style="text-align: center;">Feature 2</th>
+<th style="text-align: center;">Class Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">?</td>
+</tr>
+</tbody>
+</table>
+<p>Predict <span class="math inline">\(\tilde y\)</span> using ML for class prior and We will use posterior predictive with the prior Beta(2,2) for feature likelihood. $$ p(y=1|^{ML}_1)=p(y=2|^{ML}_2)=\</p>
+<p>p(x_1|x_{ic1,1},y=c1) = p(x_2|x_{ic1,2},y=c1) =\</p>
+<p>p(x_1|x_{ic2,1},y=c2) = p(x_2|x_{ic2,2},y=c2) = <span class="math display">\[
+Then we have the probability
+\]</span> p(y=c1|x,D)\ p(y=c2|x,D)\ $$</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/2. Probabilistic Estimation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/EE5907 Pattern Recognition/2. Probabilistic Estimation/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-04-26 11:54:36" itemprop="dateModified" datetime="2019-04-26T11:54:36+08:00">2019-04-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/EE5907 Pattern Recognition/2. Probabilistic Estimation/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/2. Probabilistic Estimation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/2. Probabilistic Estimation/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="map-estimation">1. MAP Estimation</h2>
+<p>The key goal in machine learning is to do estimation. That means we give the estimated result when we are given observation. If we have no model of the estimation in the prior, we can give the estimated result only based on the result. So we choose maximum likelihood estimation. But if we have the prior knowledge, we can give the estimated result based on both the data and the prior knowledge, that is the maximum a posterior estimation.</p>
+<p>Maximum a posterior estimation <span class="math display">\[
+\begin{array}{rcl}
+y_{MAP}&amp;=&amp;\underset{y}{\operatorname{argmax}}p(y|x)\\
+&amp;=&amp;\underset{y}{\operatorname{argmax}}\frac{p(y)p(x|y)}{p(x)}\\
+&amp;=&amp;\underset{y}{\operatorname{argmax}}p(y)p(x|y)\\
+\end{array}
+\]</span> In this case, we hope to find a maximum value of the probability when the data is given and we have the prior knowledge of the estimated data <span class="math inline">\(p(y)\)</span>.</p>
+<h2 id="ml-estimation">2. ML Estimation</h2>
+<p>Maximum likelihood estimation</p>
+<p>When <span class="math display">\[
+p(y)=1
+\]</span> we have <span class="math display">\[
+y_{MAP}=\underset{y}{\operatorname{argmax}}p(x|y)=y_{ML}
+\]</span> In this case, we hope to get the max likelihood of the observation x given y. In general, ML estimation is computationally easier than MAP estimation, because we do not need to deal with the extra prior term. We often use ML estimation if the prior is unknown or if we do not feel comfortable assuming priors.</p>
+<p>If sample goes to infinity, then <span class="math display">\[
+\lim_{N\rightarrow\infty}y_{MAP}=y_{ML}
+\]</span></p>
+<h2 id="modeling-pyx">3. Modeling p(y|x)</h2>
+<p><span class="math display">\[
+p(y|x)=\frac{p(x|y)p(y)}{p(x)}
+\]</span></p>
+<p>Generative supervised learning: Modeling likelihood p(x|y) and prior p(y) directly, "Generative" because we can generate new data from p(x,y)=p(x|y)p(y)</p>
+<p>Discriminative supervised learning: model p(y|x) directly</p>
+<h2 id="probabilistic-estimation-of-model-parameters">4. Probabilistic Estimation of Model Parameters</h2>
+<p>In general, parameter <span class="math inline">\(\theta\)</span> needs to be learnt from the training set for both generative models <span class="math inline">\(p(x,y|\theta)\)</span> and discriminative models <span class="math inline">\(p(y|x,\theta)\)</span>. Here we can use different strategies to learn the parameters from the data set.</p>
+<p>Strategy 1: ML</p>
+<p>First estimate <span class="math inline">\(\theta_{ML}=\underset{\theta}{\operatorname{argmax}}p(D|\theta)\\\)</span></p>
+<p>Then plug in <span class="math inline">\(\theta_{ML}\)</span> into <span class="math inline">\(p(x,y|\theta_{ML})\)</span> and find ==MAP== estimate of y</p>
+<p>Strategy 2: MAP</p>
+<p>First estimate <span class="math inline">\(\theta_{MAP}=\underset{\theta}{\operatorname{argmax}}p(\theta|D)\\\)</span></p>
+<p>Then plug in <span class="math inline">\(\theta_{MAP}\)</span> into <span class="math inline">\(p(x,y|\theta_{MAP})\)</span> and find ==MAP== estimate of y</p>
+<p>Strategy 3: Posterior Predictive</p>
+<p>Discuss in the future</p>
+<h2 id="beta-binomial-generative-model">5. Beta-Binomial Generative Model</h2>
+<p>Beta Distribution (Discussed in the last passage) <span class="math display">\[
+p(\theta|a,b)=\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}
+\]</span> Consider N coin tosses: data <span class="math inline">\(D=(N_0,N_1)\)</span>, where <span class="math inline">\(N_0=\#tails\)</span> and <span class="math inline">\(N_1=\#heads\)</span> , <span class="math inline">\(N=N_0+N_1\)</span> . <span class="math inline">\(\theta\)</span> is the probability of head</p>
+<p>Assume beta distribution prior on <span class="math inline">\(\theta\)</span>: <span class="math inline">\(p(\theta|a,b)=Beta(\theta|a,b)\)</span></p>
+<p>Coin tosses problem <span class="math display">\[
+P(D|\theta)=\left(
+\begin{array}{c}
+N\\
+N_0
+\end{array}
+\right)\theta^{N_1}(1-\theta)^{N_0}
+\]</span></p>
+Posterior $$
+<span class="math display">\[\begin{array}{lll}
+p(\theta|D)&amp;=&amp;\frac{p(D|\theta)p(\theta)}{p(D)}\\
+&amp;=&amp; \frac{\left(
+\begin{array}{c}
+N\\
+N_0
+\end{array}\]</span>
+<p>)<sup>{N_1}(1-)</sup>{N_0} <sup>{a-1}(1-)</sup>{b-1}}{p(D)}\</p>
+<p>&amp;=&amp; \</p>
+<p>&amp;=&amp; \ &amp;=&amp; Beta(|N_1+a, N_0+b) \end{array} $$ Here we can see that the posterior is the same form as the prior, so we say that the beta is a conjugate prior of the binomial distribution.</p>
+<p>Since ML is a special case of MAP, first we consider MAP here, and we know that the mode of Beta distribution is <span class="math inline">\(mode=\frac{c-1}{c+d-2}\)</span>, we have <span class="math display">\[
+\begin{array}{rcl}
+\theta_{MAP}&amp;=&amp;\underset{\theta}{\operatorname{argmax}}p(\theta|D)\\
+&amp;=&amp;\frac{N_1+a-1}{N+a+b-2}
+\end{array}
+\]</span> when a=b=1 <span class="math display">\[
+\theta_{ML}=\frac{N_1}{N}
+\]</span> Predicting Future Coin Tosses</p>
+<p>Strategy 1 ML <span class="math inline">\(p(\tilde x=1)=\theta_{ML}\)</span></p>
+<p>Strategy 2 MAP <span class="math inline">\(p(\tilde x=1)=\theta_{MAP}\)</span></p>
+<p>Strategy 3 Posterior Predictive Distribution</p>
+<p>Actually our problem is <span class="math display">\[
+p(\tilde x=1|D)
+=\int_0^1 p(\tilde x=1,\theta|D)d\theta
+=\int_0^1 p(\tilde x=1|\theta,D)p(\theta|D)d\theta 
+= \int_0^1 \theta p(\theta|D)d\theta\\
+= \int_0^1 \theta Beta(\theta|N_1+a, N_0+b)d\theta
+\]</span> This is the mean of posterior distribution <span class="math display">\[
+p(\tilde x=1|D)=\frac{N_0+b}{N+a+b}
+\]</span></p>
+<h2 id="dirichlet-multinomial-generative-model">6. Dirichlet-Multinomial Generative Model</h2>
+<p>Multinomial Distribution <span class="math display">\[
+\begin{array}{ccc}
+P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=\frac{n!}{x_1!x_2!\dotsm x_k!}p_1^{x_1}p_2^{x_2}\dotsm p_k^{x_k}\quad when \sum_{i=1}^kx_i=n\\
+otherwise\quad P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=0
+\end{array}
+\]</span> Dirichlet Distribution <span class="math display">\[
+P(x|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
+\]</span> Consider N rolls of K-sided dice <span class="math display">\[
+p(D|\theta)=\frac{N!}{N_1!N_2!\dotsm N_k!}\theta_1^{N_1}\theta_2^{N_2}\dotsm \theta_K^{N_K}\quad
+\propto\prod_{i=1}^K\theta_i^{N_i}\\
+p(\theta|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
+\]</span> Then <span class="math display">\[
+p(\theta|D)\propto p(D|\theta)p(\theta)=Dir(\theta|N_1+\alpha_1,\dotsm,N_K+\alpha_K)
+\]</span> Then MAP estimation of parameters <span class="math display">\[
+\hat \theta_k^{MAP}=\frac{N_k+\alpha_k-1}{N+\sum_k\alpha_k-K}
+\]</span> ML <span class="math display">\[
+\hat \theta_k^{ML}=\frac{N_k}{N}
+\]</span></p>
+<p>Predicting Future Dice Rolls</p>
+<p>Strategy 1 ML <span class="math inline">\(p(\tilde x=i)=\theta_{ML}^i\)</span></p>
+<p>Strategy 2 MAP <span class="math inline">\(p(\tilde x=i)=\theta_{MAP}^i\)</span></p>
+<p>Strategy 3 Posterior Predictive Distribution <span class="math inline">\(p(\tilde x=i|D)=\frac{N_i+\alpha_i}{N+\sum_k\alpha_k}\)</span></p>
+<h2 id="univariate-gaussian">7. Univariate Gaussian</h2>
+<p>Binomial and Multinomial are discrete random variables, here we look at continuous variables</p>
+<p>Gaussian Distribution <span class="math display">\[
+P(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\]</span> Given training data D, we hope to estimate parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span></p>
+<p>ML: <span class="math display">\[
+(\hat \mu,\hat\sigma^2)=\underset{\hat \mu,\hat\sigma^2}{\operatorname{argmax}}p(D|\hat \mu,\hat\sigma^2)
+\]</span> We have <span class="math display">\[
+\hat \mu=\frac{1}{N}\sum_{n=1}^Nx_n\\
+\hat \sigma^2=\frac{1}{N}\sum_{n=1}^N(x_n-\hat\mu)^2
+\]</span> MAP:</p>
+<p>Using Normal Inverse Gamma Distribution as prior <span class="math display">\[
+p(\mu,\sigma^2)=NormInvGam(\mu,\sigma^2|\alpha,\beta,\gamma,\delta)
+\]</span></p>
+<p><span class="math display">\[
+\hat \mu=\frac{\sum_{n=1}^Nx_n+\gamma\delta}{N+\gamma}\\
+\hat \sigma^2=\frac{\sum_{n=1}^N(x_n-\hat \mu)^2+2\beta+\gamma(\delta-\hat \mu)^2}{N+3+2\alpha}
+\]</span></p>
+<p>Predicting Future Gaussian Samples</p>
+<p>Strategy 1 ML <span class="math inline">\(p(x^*)=\mathcal N(\mu_{ML},\sigma^2_{ML})\)</span></p>
+<p>Strategy 2 MAP <span class="math inline">\(p(x^*)=\mathcal N(\mu_{MAP},\sigma^2_{MAP})\)</span></p>
+<p>Strategy 3 Posterior Predictive Distribution (skipped)</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

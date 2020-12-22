@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Convex Optimization/2. Convex Set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/Convex Optimization/2. Convex Set/" class="post-title-link" itemprop="url">2. Convex Sets</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:49:01" itemprop="dateCreated datePublished" datetime="2020-12-22T13:49:01+08:00">2020-12-22</time>
             </span>
           
             
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-22 22:44:47" itemprop="dateModified" datetime="2018-11-22T22:44:47+08:00">2018-11-22</time>
+                <time title="Modified: 2019-08-25 23:48:53" itemprop="dateModified" datetime="2019-08-25T23:48:53+08:00">2019-08-25</time>
               </span>
             
           
@@ -265,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -274,7 +274,7 @@
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/Convex Optimization/2. Convex Set/" class="post-meta-item leancloud_visitors" data-flag-title="2. Convex Sets" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -292,7 +292,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/2. Review of Linear Algebra/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/Convex Optimization/2. Convex Set/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Convex Optimization/2. Convex Set/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,109 +306,327 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="norms-of-vector">Norms of Vector</h2>
-<p>The most commonly used norm <span class="math display">\[
-\begin{array}{lcl}
-    ||x|| _{1} &amp; = &amp;\displaystyle \sum_{i=1}^{n}|x_i| \\
-    ||x|| _{2} &amp; = &amp; \sqrt{x^Tx} = (\displaystyle\sum_{i=1}^nx^2_i)^{0.5} \\
-    ||x||_{\infty} &amp; = &amp; max\space|x_i|
-\end{array}
-\]</span> ## Norms of Matrices</p>
-<p><span class="math display">\[
-||Ax|| =\sup _{x\neq0} \frac{||Ax||}{||x||}=\sup _{x=1}||Ax||
-\]</span> ## Diagonal and Jordan Form Derivation</p>
-<p><span class="math display">\[
-Q\bar A=AQ \\
-\begin{bmatrix}
-q_1 &amp; q_2 &amp; \dotsm &amp; q_n
-\end{bmatrix} \bar A=A
-\begin{bmatrix}
-q_1 &amp; q_2 &amp; \dotsm&amp;q_n
-\end{bmatrix}=
-\begin{bmatrix}
-\lambda_1 q_1 &amp; \lambda_2 q_2 &amp; \dotsm &amp; \lambda_n q_n
-\end{bmatrix}
+          <h1 id="convex-sets">2. Convex Sets</h1>
+<h2 id="affine-and-convex-sets">2.1 Affine and Convex Sets</h2>
+<h3 id="lines-and-line-segments">2.1.1 Lines and line segments</h3>
+<p>Suppose <span class="math inline">\(x_1 \neq x_2\)</span> are two points in <span class="math inline">\(\mathbb R^n\)</span>. Points of the form <span class="math display">\[
+y=\theta x_1+(1-\theta)x_2,
+\]</span> where <span class="math inline">\(\theta\in \mathbb R\)</span>, form a line passing <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</p>
+<p>If <span class="math inline">\(0\le\theta\le 1\)</span>, the line is restricted between the two points, which is therefore a line segment.</p>
+<h3 id="affine-sets">2.1.2 Affine sets</h3>
+<p>A set <span class="math inline">\(C \subseteq \mathbb R^n\)</span> is <strong>affine</strong> if the line through any two distinct points in C lies in C, i.e. for any <span class="math inline">\(x_1, x_2\in C\)</span> and <span class="math inline">\(\theta\in R\)</span>, we have <span class="math inline">\(\theta x_1+(1-\theta)x_2 \in C\)</span>. We refer to a point of the form <span class="math inline">\(y=\theta_1 x_1 +\theta_2 x_2 +\dotsm+\theta_k x_k\)</span>, where <span class="math inline">\(\theta_1 + \theta_2+\dotsm+\theta_k=1\)</span> as an <strong>affine combination</strong> of the points <span class="math inline">\(x_1,x_2,\dotsm,x_k\)</span>. An <strong>affine set</strong> contains every <strong>affine combination</strong> of its points.</p>
+<p>If <span class="math inline">\(C\)</span> is an affine set and we have <span class="math inline">\(x_0 \in C\)</span>, then the set <span class="math display">\[
+V=C-x_0=\{x-x_0|x\in C\},
+\]</span> is a subspace (a set that is closed under sums and multiplication).</p>
+<p><strong>proof</strong></p>
+<p>If <span class="math inline">\(C\)</span> is an affine set and define <span class="math inline">\(V=C-x_0\)</span>, assume <span class="math inline">\(v_1, v_2 \in V\)</span>, <span class="math inline">\(\alpha, \beta \in \mathbb R\)</span>, and <span class="math inline">\(\alpha+\beta = 1\)</span>, <span class="math inline">\(x_0\in C\)</span>.</p>
+<p>Then we have <span class="math inline">\(v_1 + x_0 \in C\)</span> and <span class="math inline">\(v_2 + x_0 \in C\)</span>.</p>
+<p>To complete the proof, we need to prove $v_1+v_2 V $, that means we need to prove <span class="math inline">\(\alpha v_1+\beta v_2 + x_0 \in C\)</span>. <span class="math display">\[
+\alpha (v_1+x_0)+\beta(v_2+x_0)=\alpha v_1+\beta v_2+(\alpha+\beta)x_0\in C.
+\]</span> That means <span class="math inline">\(V\)</span> is a subset. <strong>Q.E.D.</strong></p>
+<p>Thus an affine set can be expressed as (a subspace plus an offset) <span class="math display">\[
+C=V+x_0=\{v+x_0|v\in V\}.
+\]</span> The set of all affine combinations of points in some set <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is called the affine hull of C, and denoted as <span class="math inline">\(\text{aff } C\)</span>. <span class="math display">\[
+\text{aff }C=\{\theta_1x_1+\dotsm+\theta_kx_k\;|\; x_1,\dotsm,x_k\in \mathbb R^n,\theta_1+\dotsm+\theta_k=1\}
 \]</span></p>
-<p>We can easily solve that <span class="math display">\[
-\bar A=
-\begin{bmatrix}
-\lambda_1 &amp; 0  &amp;\dotsm&amp;0 \\
-0 &amp;\lambda_2  &amp;\dotsm&amp;0 \\
-\vdots &amp; \vdots  &amp;\ddots&amp;0 \\
-0&amp;0&amp;\dotsm&amp;\lambda_n
-\end{bmatrix}
+<h3 id="affine-dimension-and-relative-interior">2.1.3 Affine dimension and relative interior</h3>
+<p>We define the <strong>affine dimension</strong> of a set <span class="math inline">\(C\)</span> as the dimension of its <strong>affine hull</strong>.</p>
+<p>We define the <strong>relative interior</strong> of the set <span class="math inline">\(C\)</span>, denoted as <span class="math inline">\(\text{relint }C\)</span>, as its interior relative to <span class="math inline">\(\text{aff }C\)</span>.</p>
+<p><strong>Difference between the interior and relative interior</strong>. Consider <span class="math inline">\(\mathbb R^3\)</span> with the standard Euclidean metric, and look at the set of points <span class="math inline">\((x,y,0)\)</span> such that <span class="math inline">\(x^2+y^2\le1\)</span> . A point is in the interior of a set if you can draw a small open ball around it which is itself contained in the set. But for any point in our set, any open ball around any point in it will contain points outside the <span class="math inline">\(x−y\)</span> plane, and so it has empty interior. That's technically correct, but it's undesirable behavior. The relative interior of a set is obtained by looking at the affine hull of the set, which in this case is <span class="math inline">\(\mathbb R^2\)</span>, and using the appropriate metric there. So while our set has empty interior, its relative interior is the interior of the unit disc, which is what it "really should be". (From Quora)</p>
+<p>We can then define the <strong>relative boundary</strong> of a set <span class="math inline">\(C\)</span> as <span class="math inline">\(\text{cl }C\backslash \text{relint }C\)</span>, where <span class="math inline">\(\text{cl } C\)</span> is the closure of <span class="math inline">\(C\)</span>.</p>
+<h3 id="convex-sets-1">2.1.4 Convex sets</h3>
+<p>A set <span class="math inline">\(C\)</span> is <strong>convex</strong> if the line segment between any two points in <span class="math inline">\(C\)</span> lies in <span class="math inline">\(C\)</span>.</p>
+<p>If for any <span class="math inline">\(x_1,x_2 \in C\)</span> and any <span class="math inline">\(\theta\)</span> with <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
+\theta x_1+(1-\theta)x_2\in C.
+\]</span> We call a point of the form <span class="math inline">\(\theta_1 x_1+\dotsm+\theta_kx_k\)</span>, where <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span> and <span class="math inline">\(\theta_i\ge 0\;\forall i\)</span>, a <strong>convex combination</strong> of the points <span class="math inline">\(x_1,\dotsm,x_k\)</span>. As with affine sets, it can be shown that a set is convex if and only if it contains every convex combination of its points.</p>
+<p>The <strong>convex hull</strong> of a set <span class="math inline">\(C\)</span>, denoted as <span class="math inline">\(\text{conv }C\)</span> or <span class="math inline">\(\text{co }C\)</span>, is the set of all convex combinations of points in <span class="math inline">\(C\)</span>. <span class="math display">\[
+\text{conv }C=\{\theta_1x_1+\dotsm+\theta_kx_k\;|\; x_1,\dotsm,x_k\in \mathbb R^n,\theta_1+\dotsm+\theta_k=1,\theta_i\ge 0\;\forall i\}
+\]</span> <strong>Attention: every affine set is convex.</strong></p>
+<p>The idea of convex combination can be generalized to include infinite sums, integrals and, in the most general form, probability distributions.</p>
+<p>Suppose <span class="math inline">\(p:\mathbb R^n \rightarrow \mathbb R\)</span> satisfies <span class="math inline">\(p(x)&gt;0\)</span> for all <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\int_Cp(x)dx =1\)</span>, where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> is convex, then <span class="math display">\[
+\int_Cp(x)x dx\in C.
 \]</span></p>
-<p>Suppose <span class="math inline">\(\lambda\)</span> is the only repeated e-value of A. Assume <span class="math inline">\(A-\lambda I\)</span> has rank 3 and nullity 1. We need three more. <span class="math inline">\((A-\lambda I)v_1=(A-\lambda I)^2v_2=(A-\lambda I)^3v_3=(A-\lambda I)^4v_4=0\)</span></p>
-<p>Then it follows that <span class="math display">\[
-Av_1=\lambda v_1\\
-Av_2=v_1+\lambda v_2\\
-Av_3=v_2+\lambda v_3\\
-Av_4=v_3+\lambda v_4\\
-[v_1\quad v_2\quad v_3\quad v_4]\bar A=[Av_1\quad Av_2\quad Av_3\quad Av_4]=[\lambda v_1\quad \lambda v_2+v_1\quad \lambda v_3+v_2\quad \lambda v_4+v_3]
+<h3 id="cones">2.1.5 Cones</h3>
+<p>A set <span class="math inline">\(C\)</span> is called <strong>cone</strong>, if for every <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(\theta\ge0\)</span> ,we have <span class="math inline">\(\theta x\in C\)</span>.</p>
+<p>A set <span class="math inline">\(C\)</span> is called <strong>convex cone</strong> if it is convex and a cone, which means that for any <span class="math inline">\(x_1,x_2 \in C\)</span> and <span class="math inline">\(\theta_1,\theta_2\ge 0\)</span> (We do <strong>not</strong> need <span class="math inline">\(\theta_1+\theta_2=1\)</span> here), we have <span class="math display">\[
+\theta_1x_1+\theta_2 x_2 \in C.
+\]</span> We call a point of the form <span class="math inline">\(\theta_1 x_1+\dotsm+\theta_kx_k\)</span>, where <span class="math inline">\(\theta_i\ge 0\;\forall i\)</span>, a <strong>conic combination</strong> of the points <span class="math inline">\(x_1,\dotsm,x_k\)</span>.</p>
+<p>The <strong>conic hull</strong> of a set <span class="math inline">\(C\)</span> is the set of all <strong>conic combinations</strong> of points in C, i.e. <span class="math display">\[
+\{\theta_1x_1+\dotsm+\theta_kx_k|x_i\in C,\theta_i\ge0,i=1,\dotsm,k\}.
 \]</span></p>
+<hr>
+<p>We can do a summary here.</p>
+<p>We define three kinds of sets and combinations in this section: affine set (combination), convex set (combination), and cone (conic combination).</p>
+<ol type="1">
+<li>Affine combination: we need <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>, but we do not care about <span class="math inline">\(\theta_i\ge 0\)</span>.</li>
+<li>Conic combination: we need <span class="math inline">\(\theta_i\ge 0\)</span>, but we do not care about <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
+<li>Convex combination: we need <span class="math inline">\(\theta_i\ge 0\)</span> and <span class="math inline">\(\theta_1+\dotsm+\theta_k=1\)</span>.</li>
+</ol>
+<h2 id="some-important-examples">2.2 Some Important Examples</h2>
+<ol type="1">
+<li>The single point set, empty set, and the whole space set are both convex and affine.</li>
+<li>Any line is affine, and also hence convex.</li>
+<li>A line segment is convex but not affine.</li>
+<li>A ray is convex but not affine. It is a cone.</li>
+<li>Any subspace is affine, and therefore convex.</li>
+</ol>
+<h3 id="hyperplanes-and-halfspaces">2.2.1 Hyperplanes and halfspaces</h3>
+<p>A <strong>hyperplane</strong> is the set of the form <span class="math display">\[
+\{x|a^Tx=b\},
+\]</span> where <span class="math inline">\(a\in \mathbb R^n,a\neq0,b\in \mathbb R\)</span>.</p>
+<p>Geometrically, <span class="math inline">\(a\)</span> is the <strong>normal vector</strong>, <span class="math inline">\(b\)</span> determines the offset of the hyperplane from the origin. That can be understood by showing the form <span class="math display">\[
+\{x|a^T(x-x_0)=0\}.
+\]</span> A hyperplane divides <span class="math inline">\(\mathbb R^n\)</span> into two <strong>halfspaces</strong>. A (closed) halfspace is a set of the form, <span class="math display">\[
+\{x|a^Tx\le b\}.
+\]</span> Halfspaces are convex but not affine.</p>
+<p>The set <span class="math inline">\(\{x|a^Tx&lt; b\}\)</span> which is the interior of the (closed) halfspace is called an <strong>open halfspace</strong>.</p>
+<h3 id="euclidean-balls-and-ellipsoids">2.2.2 Euclidean balls and ellipsoids</h3>
+<p>A <strong>Euclidean ball</strong> in <span class="math inline">\(\mathbb R^n\)</span> has the form <span class="math display">\[
+B(x_c,r)=\{x\;|\;||x-x_c||_2\le r\}=\{x\;|\;\space(x-x_c)^T(x-x_c)\le r^2\}
+\]</span> A Euclidean ball is obviously a convex set, and it can be proved by, if <span class="math inline">\(||x_1-x_c||_2\le r\)</span> and <span class="math inline">\(||x_2-x_c||_2\le r\)</span> and <span class="math inline">\(0\le\theta\le 1\)</span>, then we check the point <span class="math inline">\(\theta x_1+(1-\theta)x_2\)</span></p>
 <p><span class="math display">\[
+||\theta x_1+(1-\theta)x_2-x_c||_2=||\theta(x_1-x_c)+(1-\theta)(x_2-x_c)||_2\\
+\le\theta||x_1-x_c||_2+(1-\theta)||x_2-x_c||_2\\
+\le r
+\]</span> That means the point is also in the set.</p>
+<hr>
+<p>A another common representation for the Euclidean ball is <span class="math display">\[
+B(x_c,r)=\{x_c+ru|\space||u||_2\le1\}.
+\]</span> A related family of convex sets is the <strong>ellipsoids</strong>, which have the form <span class="math display">\[
+\epsilon=\{x|\space(x-x_c)^TP^{-1}(x-x_c)\le r^2\},
+\]</span> where <span class="math inline">\(P\)</span> is symmetric and positive definite, i.e. <span class="math inline">\(P=P^T\succ 0\)</span>.</p>
+<p>Another common representation of an ellipsoid is <span class="math display">\[
+\varepsilon=\{x_c+Au\;|\;||u||_2\le1\},
+\]</span> where <span class="math inline">\(A\)</span> is square and nonsingular. It can be seen that <span class="math inline">\(A=P^{\frac{1}{2}}\)</span>. If <span class="math inline">\(A\)</span> is <strong>singular</strong>, then it is a degenerate ellipsoid which is also convex.</p>
+<h3 id="norm-balls-and-norm-cones">2.2.3 Norm balls and norm cones</h3>
+<p>Suppose <span class="math inline">\(||\cdot||\)</span> is any norm on <span class="math inline">\(\mathbb R^n\)</span>. From the general properties it can be seen the <strong>norm ball</strong> given by <span class="math display">\[
+\{x\;|\;||x-x_c||\le r\},
+\]</span> is convex.</p>
+<p>The norm cone is given by <span class="math display">\[
+\{(x,t)\;|\;||x||\le t\} \subseteq \mathbb R^{n+1},
+\]</span> is a convex cone.</p>
+<h3 id="polyhedra">2.2.4 Polyhedra</h3>
+<p>A <strong>polyhedron</strong> is defined as the solution set of a finite number of linear equalities and inequalities, i.e. <span class="math display">\[
+\mathcal P=\{x\;|\;a_j^Tx\le b_j,j=1,\dotsm,m,c_j^Tx=d_j,j=1,\dotsm,p\}.
+\]</span> Therefore, a polyhedron is thus the intersection of a finite number of halfspaces and hyperplanes. Affine sets, rays, line segments, and halfspaces are all polyhedra. It is easily shown that polyhedra are convex sets (just use the definition). A <strong>bounded polyhedron</strong> is called <strong>polytope</strong>. It is convenient to use the compact notation <span class="math display">\[
+\mathcal P=\{x|Ax\preceq b,Cx=d\},
+\]</span> where <span class="math display">\[
 A=
 \begin{bmatrix}
-\lambda &amp; 1 &amp; 0 &amp; 0\\
-0 &amp; \lambda &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; \lambda &amp; 1\\
-0 &amp; 0 &amp; 0 &amp; \lambda
+a_1^T\\a_2^T\\\vdots\\a_m^T
 \end{bmatrix}
-\]</span></p>
-<h2 id="caley-hamilton-theorem">Caley-Hamilton Theorem</h2>
-<p>if <span class="math display">\[
-det(\lambda I-A)=\lambda^n + a_1\lambda^{n-1}+\dotsb+a_n=0
-\]</span> then <span class="math display">\[
-A^n+a_1A^{n-1}+\dotsb+a_{n-1}A+a_nI=0
-\]</span> Theorem 2.1 <span class="math display">\[
-f(\lambda)=e^\lambda
-\]</span></p>
-<p><span class="math display">\[
-A=
+\quad
+C=
 \begin{bmatrix}
-    -1 &amp; 1 \\
-    0 &amp; -2
-\end{bmatrix}
+c_1^T\\c_2^T\\\vdots\\c_p^T
+\end{bmatrix}.\\
+\]</span> <strong>Simplexes</strong> are important family of polyhedra. Suppose <span class="math inline">\(k+1\)</span> points <span class="math inline">\(v_0,v_1,\dotsm,v_k\in \mathbb R^n\)</span> are <strong>affinely independent</strong> that means <span class="math inline">\(v_1-v_0,v_2-v_0,\dotsm,v_k-v_0\)</span> are linearly independent. Then the simplex is determined by <span class="math display">\[
+C=\text{conv }\{v_0,\dotsm,v_k\}=\{\theta_0v_0+\dotsm+\theta_k v_k\;|\;\theta\succeq0,1^T\theta=1\}.
+\]</span> <strong>Notation</strong></p>
+<p>Roughly speaking, affine independence is like linear independence but without the restriction that the subset of lower dimension the points lie in contains the origin. So three points in space are affinely independent if the smallest flat thing containing them is a plane. They're affinely dependent if they lie on a line (or are the same point).</p>
+<p>To describe the simplex as polyhedron, we define <span class="math display">\[
+y=(\theta_1,\dotsm,\theta_k)\\
+B=[v_1-v_0,\dotsm,v_k-v_0].
+\]</span> Then <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(x=v_0+By\)</span>, <span class="math inline">\(y\succeq0\)</span>, and <span class="math inline">\(1^T y\le 1\)</span>.</p>
+<p>Then we define <span class="math display">\[
+A_1B=I\quad A_2B=0.
+\]</span> Because B is linear independent, we have a nonsingular matrix, <span class="math display">\[
+A=\begin{bmatrix}
+A_1\\A_2
+\end{bmatrix}\in \mathbb R^{n\times n}.
+\]</span> Then we have <span class="math display">\[
+x=v_0+By\\ \iff\\
+Ax=Av_0+ \begin{bmatrix}
+I\\0
+\end{bmatrix} y \\\iff
+\\
+\begin{cases}
+A_1 x=A_1 v_0+y\\
+A_2 x=A_2 v_0
+\end{cases}
+\]</span> Then, <span class="math inline">\(x\in C\)</span> if and only if <span class="math inline">\(A_2 x=A_2 v_0\)</span>, and the vector <span class="math inline">\(y=A_1x-A_1v_0\)</span> satisfies <span class="math inline">\(y\succeq 0\)</span> and <span class="math inline">\(1^Ty\le 1\)</span> , that is same to <span class="math display">\[
+A_2x=A_2v_0\quad A_1x\succeq A_1v_0\quad 1^TA_1x\le1+1^TA_1v_0
 \]</span></p>
-<p>First, we define <span class="math inline">\(h(\lambda)=\beta_0+\beta_1\lambda\)</span></p>
-<p>and we have <span class="math inline">\(h(\lambda)=\beta_0+\beta_1\lambda=e^\lambda\)</span></p>
-<p>Therefore, <span class="math inline">\(h(-1)=\beta_0-\beta_1=e^{-1} \\ h(-2)=\beta_0-2\beta_1=e^{-2}\)</span></p>
-<p>We have <span class="math inline">\(\beta_1=e^{-1}-e^{-2} \\ \beta_0=2e^{-1}-e^{-2}\)</span> <span class="math display">\[
-h(\lambda)=2e^{-1}-e^{-2}+(e^{-1}-e^{-2})\lambda
+<h3 id="positive-semi-definite-cone">2.2.5 Positive semi-definite cone</h3>
+<p>The set <span class="math inline">\(\mathbb S_+^n\)</span> is a convex cone, if <span class="math inline">\(\theta_1, \theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>. Then <span class="math inline">\(\theta_1 A+\theta_2B \in \mathbb S_+^n\)</span>. That can be easily checked by for any <span class="math inline">\(x\in \mathbb R^n\)</span> , if <span class="math inline">\(\theta_1,\theta_2\ge0\)</span> and <span class="math inline">\(A,B\in \mathbb S_+^n\)</span>, <span class="math display">\[
+x^T(\theta_1A+\theta_2B)x=\theta_1x^TAx+\theta_2x^TBx\ge0.
+\]</span> That means <span class="math inline">\((\theta_1A+\theta_2B) \in \mathbb S_+^n\)</span>.</p>
+<h2 id="operations-that-preserve-convexity">2.3 Operations That Preserve Convexity</h2>
+<p>In this section, we describe some operations that preserve convexity of sets, or allow us to construct convex set from others.</p>
+<h3 id="intersection">2.3.1 Intersection</h3>
+<p>Convexity is preserved under intersection. If <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, then <span class="math inline">\(S_1 \cap S_2\)</span> is convex. Every closed convex set is an intersection of halfspaces.</p>
+<h3 id="affine-function">2.3.2 Affine Function</h3>
+<p>Recall that a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R^m\)</span> is <strong>affine</strong> if it is a sum of linear function and a constant. That means it has the form <span class="math display">\[
+f(x)=Ax+b.
+\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in \mathbb R^m\)</span>.</p>
+<p>Suppose <span class="math inline">\(S\subseteq \mathbb R^n\)</span> is convex and <span class="math inline">\(f\)</span> is an affine function. Then the image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is convex. Similarly, the inverse image of <span class="math inline">\(S\)</span> under <span class="math inline">\(f\)</span> is also convex. This affine function can be considered as a translation of a convex set.</p>
+<p>The <strong>projection</strong> of a convex set onto some of its coordinates is convex. if <span class="math inline">\(S\subseteq \mathbb R^m\times \mathbb R^n\)</span> is convex, that means the following is convex. <span class="math display">\[
+T=\{x_1\in \mathbb R^m\;|\;(x_1,x_2)\in S\text{ for some }x_2\in \mathbb R^n\}
+\]</span> The <strong>sum</strong> of two convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex, the following set is also convex, <span class="math display">\[
+S_1+S_2=\{x+y\;|\; x\in S_1,y\in S_2\}.
+\]</span> The <strong>partial sum</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
+S=\{(x,y_1+y_2)|\space (x,y_1)\in S_1,(x,y_2)\in S_2\}.
+\]</span> The <strong>Cartesian product</strong> of convex sets is convex. That means if <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> are convex set, the following set is also convex, <span class="math display">\[
+S_1\times S_2=\{(x_1,x_2)\;|\;x_1\in S_1,x_2\in S_2\}.
+\]</span> <strong>Example</strong> Polyhedron</p>
+<p>The polyhedron can be expressed as the inverse image of the Cartesian product of the nonnegative orthant and the origin under the affine function <span class="math inline">\(f(x)=(b-Ax,d-Cx)\)</span>: <span class="math display">\[
+\{x\;|\;Ax\preceq b,Cx=d\}=\{x\;|\;f(x)\in \mathbb R^m_+\times\{0\}\}.
+\]</span> The inverse image of S under the function <span class="math inline">\(f\)</span> means <span class="math display">\[
+f^{-1}(S)=\{x\;|\;f(x)\in S\}.
+\]</span> <strong>Example</strong> Solution set of linear matrix inequality (LMI), The condition <span class="math display">\[
+A(x)=x_1A_1+\dotsm+x_nA_n\preceq B
+\]</span> where <span class="math inline">\(B,A_i \in \mathbb S^m\)</span>, is called the linear matrix inequality (LMI) in <span class="math inline">\(x\)</span>.</p>
+<p>The solution set of a LMI <span class="math inline">\(\{x\;|\;A(x)\preceq B\}\)</span> is convex. Since it is the inverse image of the positive definite cone (2.2.5) under the affine function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^m\)</span> given by <span class="math display">\[
+f(x)=B-A(x).
+\]</span> That means the solution set is <span class="math display">\[
+\{x\;|\;f(x)=B-A(x)\in S_+^m\}.
+\]</span> <strong>Example</strong> Hyperbolic cone</p>
+<p>The set <span class="math display">\[
+\mathcal N=\{x\;|\;x^T Px\le(c^Tx)^2,c^Tx\ge0\}
+\]</span> where <span class="math inline">\(P\in \mathbb S_+^n\)</span> and <span class="math inline">\(c\in \mathbb R^n\)</span> is convex, since it is the inverse image of the second-order cone <span class="math display">\[
+\mathcal M=\{(z,t)\;|\;z^Tz\le t^2,t\ge 0 \},
+\]</span> under the affine function <span class="math inline">\(f(x)=(P^{1/2} x,c^Tx)\)</span>.</p>
+<p>That means the set <span class="math inline">\(\mathcal N\)</span> should be <span class="math display">\[
+\{x\;|\;f(x)\in\mathcal M\}=\{x\;|\;(P^{1/2} x,c^Tx)\in\mathcal M\}=\{x\;|\;x^TP^{1/2}P^{1/2}x\le(c^Tx)^2,c^Tx\ge 0\}=\mathcal N.
+\]</span> <strong>Example</strong> Ellipsoid</p>
+<p>The ellipsoid <span class="math display">\[
+\varepsilon = \{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\},
+\]</span> where <span class="math inline">\(P\in \mathbb S_{++}^n\)</span>, is the image of the unit Euclidean ball <span class="math inline">\(\{u|\space ||u||_2\le 1\}\)</span> under the affine mapping <span class="math display">\[
+f(u)=P^{1/2}u+x_c.
+\]</span> We can check <span class="math display">\[
+f(x)\in\{P^{1/2}u+x_c|\space||u||_2\le 1\}=\{x|\space||P^{-1/2}(x-x_c)||\le1\}\\=\{x|(x-x_c)^TP^{-1}(x-x_c)\le 1\}=\varepsilon.
 \]</span></p>
-<p><span class="math display">\[
-f(A)=h(A)=\\2e^{-1}-e^{-2}+(e^{-1}-e^{-2})
+<h3 id="linear-fractional-and-perspective-functions">2.3.3 Linear-fractional and perspective functions</h3>
+<p>In this section, we explores a class of functions, called linear-fractional, that is more general than affine function but still preserve convexity.</p>
+<p><strong>Perspective Function</strong></p>
+<p>We define the perspective function <span class="math inline">\(P:\mathbb R^{n+1}\rightarrow \mathbb R^{n}\)</span>, with domain <span class="math inline">\(\text{dom }P=\mathbb R^n\times \mathbb R_{++}\)</span> as <span class="math inline">\(P(z,t)=z/t\)</span>.</p>
+<p>If <span class="math inline">\(C\subseteq \text{dom } P\)</span> is convex, then its image <span class="math display">\[
+P(C)=\{P(x)\;|\;x\in C\},
+\]</span> is convex.</p>
+<p>We consider <span class="math inline">\((\tilde x,x_{n+1}), (\tilde y,y_{n+1})\in \mathbb R^{n+1}\)</span> with <span class="math inline">\(x_{n+1}&gt;0\)</span> and <span class="math inline">\(y_{n+1} &gt; 0\)</span>, then for $0 $, we have <span class="math display">\[
+P(\theta x+(1-\theta)y)=\frac{\theta \tilde x+(1-\theta)\tilde y}{\theta x_{n+1}+(1-\theta) y_{n+1}}=\mu P(x)+(1-\mu)P(y)
+\]</span> where <span class="math inline">\(0\le\mu=\frac{\theta x_{n+1}}{\theta x_{n+1}+(1-\theta)y_{n+1}}\le1, P(x)=\frac{\tilde x}{x_{n+1}},P(y)=\frac{\tilde y}{y_{n+1}}\)</span>. This also shows that <span class="math inline">\(P([x,y])=[P(x),P(y)]\)</span>.</p>
+<p>The inverse image of a convex set under the perspective function is also convex.</p>
+<p>Proof is skipped.</p>
+<p><strong>Linear-fractional Function</strong></p>
+<p>A linear fractional function is formed by composing the perspective function with an affine function.</p>
+<p>Suppose <span class="math inline">\(g:\mathbb R^n\rightarrow \mathbb R^{m+1}\)</span> is affine, where <span class="math display">\[
+g(x)=
 \begin{bmatrix}
-    -1&amp;1\\
-    0&amp;-2
-\end{bmatrix}=\\
+A\\c^T
+\end{bmatrix}x+
 \begin{bmatrix}
-    e^{-1}&amp;e^{-1}-e^{-2}\\
-    0&amp;e^{-2}
-\end{bmatrix}\\
-\]</span></p>
-<h2 id="positive-definite-of-square-matrix">Positive Definite of Square Matrix</h2>
+b\\d
+\end{bmatrix}.
+\]</span> The function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> given by <span class="math inline">\(f(x)=p\circ g\)</span>, <span class="math display">\[
+f(x)=\frac{Ax+b}{c^Tx+d},
+\]</span> where <span class="math inline">\(c^Tx+d&gt;0\)</span>, is called a linear fractional function, which preserve convexity. If <span class="math inline">\(C\)</span> is convex and lies in the <span class="math inline">\(\text{dom }f\)</span>, then its image <span class="math inline">\(f(C)\)</span> is also convex.</p>
+<p><strong>Example</strong> Conditional probabilities</p>
+<p>Suppose <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are random variables that take on values in <span class="math inline">\((1,\dotsm,m)\)</span> and <span class="math inline">\((1,\dotsm,n)\)</span> respectively. Let <span class="math inline">\(p_{ij}\)</span> denote probability of <span class="math inline">\(u=i, v=j\)</span>. Then the conditional probability is <span class="math display">\[
+\text{prob}(u=i|v=j)=\frac{p_{ij}}{\sum_{k=1}^np_{kj}}
+\]</span> Denote <span class="math inline">\(x=[p_{1j},p_{2j},\dotsm,p_{mj}]^T,A=I_{m\times m},b=0,c=1^T_m,d=0\)</span>. Thus <span class="math inline">\(f\)</span> is obtained by a linear fractional mapping from <span class="math inline">\(p\)</span>. Therefore, if the joint probabilities for <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> is convex, the conditional probability is also convex.</p>
+<h2 id="generalized-inequalities">2.4 Generalized Inequalities</h2>
+<h3 id="proper-cones-and-generalized-inequalities">2.4.1 Proper cones and generalized inequalities</h3>
+<p>A cone <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is called a <strong>proper cone</strong> if it satisfies the following</p>
 <ol type="1">
-<li>A real symmetric matrix A is said to be positive definite if for all <span class="math inline">\(x\in\mathbb{R},x\neq0,x^tAx&gt;0\)</span></li>
-<li>A real symmetric matrix A is said to be positive semi-definite if for all <span class="math inline">\(x\in \mathbb{R},x\neq0,x^tAx\ge0\)</span></li>
-<li>A symmetric matrix A is positive definite if all its leading minors are positive</li>
+<li>K is convex</li>
+<li>K is closed</li>
+<li>K is solid, which means it has nonempty interior</li>
+<li>K is pointed. It means there are no 2 points inside it which creates a line (not line segment) and the whole line is contained by the cone. (<span class="math inline">\(x\in K,-x\in K\implies x=0\)</span>) or (<span class="math inline">\(Q \cap -Q = \{0\}\)</span>).</li>
 </ol>
-<p><span class="math display">\[
-a_{11}&gt;0\\
-\begin{vmatrix}
-a_{11}&amp;a_{12}\\
-a_{21}&amp;a_{22}
-\end{vmatrix}&gt;0\\
-\begin{vmatrix}
-a_{11}&amp;a_{12}&amp;a_{13}\\
-a_{21}&amp;a_{22}&amp;a_{23}\\
-a_{31}&amp;a_{32}&amp;a_{33}
-\end{vmatrix}&gt;0\\
+<p>A proper cone can be used to define a generalized inequality, which is a partial ordering on <span class="math inline">\(\mathbb R^n\)</span> that has many of the properties of standard ordering on <span class="math inline">\(\mathbb R\)</span>. <span class="math display">\[
+x\preceq_K y \iff y-x\in K\\
+x\prec_K y \iff y-x\in \text{int } K
 \]</span></p>
+<p>The similar thing for <span class="math inline">\(\succ_K,\succeq_K\)</span>.</p>
+<p><strong>Example</strong> Nonnegative orthant and componentwise inequality</p>
+<p>When <span class="math inline">\(K=\mathbb R^m_+\)</span>. The associated generalized inequality <span class="math inline">\(x\preceq y\)</span> means that <span class="math inline">\(x_i\le y_i\)</span> for all elements.</p>
+<p><strong>Example</strong> Positive semidefinite cone and matrix inequality</p>
+<p>When <span class="math inline">\(K=\mathbb S^n_+\)</span>. The associated generalized inequality <span class="math inline">\(X\preceq Y\)</span> means <span class="math inline">\(Y-X\)</span> is positive semidefinite.</p>
+<p><strong>Properties of generalized inequalities</strong></p>
 <ol type="1">
-<li>A symmetric matrix A is positive definite if and only if its eigenvalues are positive</li>
-<li>if <span class="math inline">\(D\in\mathbb{R}^{n\times m}\)</span> then <span class="math inline">\(DD^T=A\)</span> is positive definite if and only if D has full rank n.</li>
+<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(u\preceq_K v\)</span>, then <span class="math inline">\(x+u\preceq_K y+v\)</span></li>
+<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(y\preceq_K z\)</span>, then $x_K $ z</li>
+<li>if <span class="math inline">\(\alpha\ge 0\)</span> and <span class="math inline">\(x\preceq_K y\)</span>, then <span class="math inline">\(\alpha x\preceq_K \alpha y\)</span></li>
+<li><span class="math inline">\(x\preceq_K x\)</span></li>
+<li>if <span class="math inline">\(x\preceq_K y\)</span> and <span class="math inline">\(y\preceq_K x\)</span>, then <span class="math inline">\(x=y\)</span></li>
+<li>if <span class="math inline">\(x_i\preceq_K y_i\)</span>, <span class="math inline">\(\lim_{i\rightarrow \infty} x_i =x\)</span> and <span class="math inline">\(\lim_{i\rightarrow \infty} y_i =y\)</span> , then <span class="math inline">\(x\preceq_K y\)</span></li>
+<li>if <span class="math inline">\(x\prec_K y\)</span> then <span class="math inline">\(x\preceq_K y\)</span></li>
 </ol>
+<h3 id="minimum-and-minimal-elements">2.4.2 Minimum and minimal elements</h3>
+<p>We say that <span class="math inline">\(x\in S\)</span> is the <strong>minimum element</strong> of <span class="math inline">\(S\)</span> (with respect to the general inequality) if for every <span class="math inline">\(y\in S\)</span> we have <span class="math inline">\(x\preceq_K y\)</span>. A point <span class="math inline">\(x\in S\)</span> is the minimum element if and only if <span class="math display">\[
+S\subseteq x+K.
+\]</span> Something is <strong>minimum</strong> if it is the <strong>unique</strong> minimal element. (From Quora)</p>
+<p>We say that <span class="math inline">\(x\in S\)</span> is the minimal element of <span class="math inline">\(S\)</span> if <span class="math inline">\(y \in S, y\preceq_K x\)</span> only if <span class="math inline">\(y=x\)</span>. A point <span class="math inline">\(x\in S\)</span> is the minimal element if and only if <span class="math display">\[
+(x-K)\cap S=\{x\}.
+\]</span> Something is <strong>minimal</strong> if <strong>nothing is smaller</strong>. (From Quora)</p>
+<h2 id="separating-and-supporting-hyperplanes">2.5 Separating and Supporting hyperplanes</h2>
+<h3 id="separating-hyperplane-theorem">2.5.1 Separating hyperplane theorem</h3>
+<p>In this section, we describe an idea that will be important later. The use of hyperplanes or affine functions to separate convex set that do not intersect. The basic result is the <strong>separating hyperplane theorem</strong>: suppose <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> are two convex sets that do not intersect, then there exist $a $ and <span class="math inline">\(b\)</span> such that <span class="math inline">\(a^Tx\le b\)</span> for all <span class="math inline">\(x\in C\)</span> and <span class="math inline">\(a^Tx\ge b\)</span> for all <span class="math inline">\(x\in D\)</span>.</p>
+<p>Proof is skipped.</p>
+<p><strong>Strict separation</strong> is the stronger condition on the separation, which means <span class="math inline">\(a^Tx&lt;b\;\forall x\in C\)</span> and <span class="math inline">\(a^Tx&gt;b\;\forall x\in D\)</span>.</p>
+<p><strong>Converse separating hyperplane theorems</strong></p>
+<p>Existence of a separating hyperplane implies that C and D do not intersect is <strong>NOT</strong> true. Consider the set <span class="math inline">\(C=D=\{0\}\)</span></p>
+<p>But we have the following theorem. Any two convex sets <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span>, at least one of which is <strong>open</strong>, are disjoint if and only if there exists a separating hyperplane.</p>
+<h3 id="supporting-hyperplanes">2.5.2 Supporting hyperplanes</h3>
+<p>Suppose <span class="math inline">\(C\subseteq \mathbb R^n\)</span>, <span class="math inline">\(x_0\)</span> is a point in this <strong>boundary</strong> <span class="math inline">\(\text{bd } C\)</span>, i.e. <span class="math inline">\(x_0\in\text{bd }C=\text{cl }C\backslash\text{int }C\)</span>. If <span class="math inline">\(a\neq0\)</span> satisfies <span class="math inline">\(a^Tx\le a^T x_0\)</span> for all <span class="math inline">\(x\in C\)</span> , then the hyperplane <span class="math inline">\(\{x\;|\;a^Tx=a^T x_0\}\)</span> is called a supporting hyperplane to <span class="math inline">\(C\)</span> at the point <span class="math inline">\(x_0\)</span>.</p>
+<p><strong>Supporting hyperplanes theorem</strong></p>
+<p>For any nonempty convex set <span class="math inline">\(C\)</span>, and any <span class="math inline">\(x_0\in \text{bd } C\)</span>, there exists a supporting hyperplane to <span class="math inline">\(C\)</span> at <span class="math inline">\(x_0\)</span>.</p>
+<p>There is also a partial converse of the supporting hyperplane theorem: If a set is <strong>closed</strong>, has <strong>nonempty interior</strong>, and has a supporting hyperplane at every point in its boundary, then it is convex.</p>
+<h2 id="dual-cones-and-generalized-inequalities">2.6 Dual Cones and Generalized Inequalities</h2>
+<h3 id="dual-cones">2.6.1 Dual cones</h3>
+<p>Let <span class="math inline">\(K\)</span> be a cone. The set <span class="math display">\[
+K^*=\{y\;|\;x^Ty\ge0\text{ for all }x\in K\}
+\]</span> is called a dual cone of <span class="math inline">\(K\)</span>. As the name suggests, <span class="math inline">\(K^*\)</span> is a cone, and is always convex even when the original cone <span class="math inline">\(K\)</span> is not. Geometrically, <span class="math inline">\(y\in K^*\)</span> if and only if <span class="math inline">\(-y\)</span> is the normal of a hyperplane that supports <span class="math inline">\(K\)</span> at the origin.</p>
+<p><strong>Example</strong> Nonnegative orthant. The cone <span class="math inline">\(\mathbb R_+^n\)</span> is its own dual (<strong>self-dual</strong>) <span class="math display">\[
+y^Tx\ge 0\space\forall x\succeq 0 \iff y\succeq 0.
+\]</span> <strong>Example</strong> Positive semidefinite cone. We use the <strong>standard inner product</strong> <span class="math display">\[
+\langle X,Y\rangle=\text{tr}(X^TY)=\text{tr}(XY)=\sum_{i,j=1}^n X_{ij}Y_{ij}.
+\]</span> The positive semidefinite cone is <strong>self-dual</strong> that means for <span class="math inline">\(X,Y \in \mathbb S^n\)</span> <span class="math display">\[
+\text{tr}(XY)\ge0 \space\forall X\succeq 0 \iff Y\succeq 0
+\]</span> To prove sufficiency</p>
+<p>We need to prove if <span class="math inline">\(Y\notin \mathbb S_+^n\)</span>, $ X(XY)$.</p>
+<p>Suppose <span class="math inline">\(Y\notin \mathbb S_+^n\)</span>. Then there exists <span class="math inline">\(q\in \mathbb R^n\)</span> with <span class="math display">\[
+q^TYq=\text{tr}(qq^TY)&lt; 0 \quad\text{trace property: }\text{tr}(AB)=\text{tr}(BA).
+\]</span> Then let <span class="math inline">\(X=qq^T\)</span> <span class="math display">\[
+q^TXYq=tr(q^Tqq^TYq)=q^Tqtr(q^TYq)&lt;0.
+\]</span> Sufficiency proved.</p>
+<p>To prove necessity, we need to prove, if <span class="math inline">\(Y\succeq 0\)</span>, <span class="math inline">\(\forall X\succeq 0 \;\text{tr}(XY)\ge0\)</span>.</p>
+<p>Suppose <span class="math inline">\(X, Y\in \mathbb S_+^n\)</span>. Then we can express <span class="math inline">\(X\)</span> in terms of it eigenvalue decomposition <span class="math display">\[
+X=\sum_{i=1}^n\lambda_i q_i q^T_i.
+\]</span> Then <span class="math display">\[
+\text{tr}(YX)=\text{tr}\left(Y\sum_{i=1}^n\lambda_i q_i q^T_i\right)\\
+=\sum_{i=1}^n\lambda_i\text{tr}\left(Y q_i q^T_i\right)\quad (\text{tr}(A+B)=\text{tr}(A)+\text{tr}(B))\\
+=\sum_{i=1}^n\lambda_iq_i^TYq_i\ge 0.
+\]</span> Necessity proved.</p>
+<p><strong>Example</strong> Dual of a norm cone. Let <span class="math inline">\(||\cdot||\)</span> be a norm on <span class="math inline">\(\mathbb R^n\)</span>. The dual of the associated cone <span class="math display">\[
+K=\{(x,t)\in \mathbb R^{n+1}\;|\; ||x||\le t\}
+\]</span> is the cone defined by the dual norm <span class="math display">\[
+K^*=\{(u,v)\in \mathbb R^{n+1}|\space ||u||_*\le v\},
+\]</span> where the dual norm is given by <span class="math inline">\(||u||_* = \sup\{u^Tx\;|\; ||x|| \le 1\}\)</span>. The dual norm of the second norm is the second norm itself.</p>
+<p>Proof skipped.</p>
+<p>Dual cones satisfy several properties such as</p>
+<ol type="1">
+<li><span class="math inline">\(K^*\)</span> is closed and convex.</li>
+<li><span class="math inline">\(K_1 \subseteq K_2\)</span> implies <span class="math inline">\(K_2^*\subseteq K_1^*\)</span>.</li>
+<li>If <span class="math inline">\(K\)</span> has nonempty interior, then <span class="math inline">\(K^*\)</span> is pointed.</li>
+<li>If the closure of <span class="math inline">\(K\)</span> is pointed, then <span class="math inline">\(K^*\)</span> has nonempty interior.</li>
+<li>If <span class="math inline">\(K\)</span> is convex and closed, <span class="math inline">\(K^{**}=K\)</span>.</li>
+</ol>
+<h3 id="dual-generalized-inequalities">2.6.2 Dual generalized inequalities</h3>
+<p>Now suppose that the convex cone <span class="math inline">\(K\)</span> is proper. Then it induces a generalized inequality <span class="math inline">\(\preceq_K\)</span>. Then its dual cone <span class="math inline">\(K^*\)</span> is also proper, and therefore induces a generalized inequality.</p>
+<ol type="1">
+<li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x\le \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span></li>
+<li><span class="math inline">\(x\preceq_K y\)</span> if and only if <span class="math inline">\(\lambda^T x&lt; \lambda ^T y\)</span> for all <span class="math inline">\(\lambda \succeq_{K^*}0\)</span>, <span class="math inline">\(\lambda \neq 0\)</span></li>
+</ol>
+<h3 id="minimum-and-minimal-elements-via-dual-inequalities">2.6.3 Minimum and minimal elements via dual inequalities</h3>
+<p>We can use dual generalized inequalities to charaterize minimum and minimal elements of a (possitively nonconvex) set <span class="math inline">\(S\subseteq \mathbb R^n\)</span> with respect to the generalized inequality induced by a proper cone <span class="math inline">\(K\)</span>.</p>
+<p><strong>Dual characterization of minimum element</strong> (Unique)</p>
+<p><span class="math inline">\(x\)</span> is the minimum element of <span class="math inline">\(S\)</span>, with respect to the generalized inequality <span class="math inline">\(\preceq_K\)</span>, if and only if for all <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, <span class="math inline">\(x\)</span> is the unique minimizer of <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>. Geometrically, this means that for any <span class="math inline">\(\lambda\succ_{K^*}0\)</span>, the hyperplane <span class="math display">\[
+\{z\;|\;\lambda^T(z-x)=0\}
+\]</span> is strict supporting hyperplane to <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>. (By <strong>strict supporting plane</strong>, we mean the hyperplane only intersects <span class="math inline">\(S\)</span> at <span class="math inline">\(x\)</span>)</p>
+<p><strong>Dual characterization of minimal elements</strong> (Maybe many)</p>
+<p>We now turn to a similar characterization of minimal elements. Here there is a gap between the necessary and sufficient conditions. If <span class="math inline">\(\lambda\succeq_{K^*}0\)</span> and <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(\lambda^Tz\)</span> over <span class="math inline">\(z\in S\)</span>, then <span class="math inline">\(x\)</span> is minimal. The converse is ingeneral false.</p>
 
         
       
@@ -433,7 +651,7 @@ a_{31}&amp;a_{32}&amp;a_{33}
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/13. Examples/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Convex Optimization/11. Interior-Point Methods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -447,7 +665,7 @@ a_{31}&amp;a_{32}&amp;a_{33}
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5101 Linear Systems/13. Examples/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" class="post-title-link" itemprop="url">11. Interior-point methods</a>
           
         </h1>
 
@@ -462,7 +680,7 @@ a_{31}&amp;a_{32}&amp;a_{33}
                 
               
 
-              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:49:01" itemprop="dateCreated datePublished" datetime="2020-12-22T13:49:01+08:00">2020-12-22</time>
             </span>
           
             
@@ -473,7 +691,7 @@ a_{31}&amp;a_{32}&amp;a_{33}
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-25 22:19:29" itemprop="dateModified" datetime="2018-11-25T22:19:29+08:00">2018-11-25</time>
+                <time title="Modified: 2019-08-25 23:23:28" itemprop="dateModified" datetime="2019-08-25T23:23:28+08:00">2019-08-25</time>
               </span>
             
           
@@ -483,7 +701,7 @@ a_{31}&amp;a_{32}&amp;a_{33}
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -492,7 +710,7 @@ a_{31}&amp;a_{32}&amp;a_{33}
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/13. Examples/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="11. Interior-point methods" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -510,7 +728,7 @@ a_{31}&amp;a_{32}&amp;a_{33}
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/13. Examples/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/13. Examples/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/12/22/Convex Optimization/11. Interior-Point Methods/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -524,621 +742,117 @@ a_{31}&amp;a_{32}&amp;a_{33}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="pole-placement">Pole Placement</h2>
-<h2 id="siso">SISO</h2>
-<p><span class="math display">\[
-\dot x=
-\begin{bmatrix}
-3 &amp; 1\\
-4 &amp; 0
-\end{bmatrix}x+
-\begin{bmatrix}
-0\\
-1\\
-\end{bmatrix}u\\
-\Phi_d(s)=(s+3)(s+4)=s^2+7s+12\\
-M_c=
-\begin{bmatrix}
-0 &amp; 1\\
-1 &amp; 0\\
-\end{bmatrix}\\
-K=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}M_c^{-1}\Phi_d(A)=
-\begin{bmatrix}
-46 &amp; 10
-\end{bmatrix}
+          <h1 id="interior-point-methods">11. Interior-point methods</h1>
+<h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
+<p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
+\coo[f_0(x)]{f_i(x)\le 0\\Ax=b}
+\]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;0
+\end{array}
 \]</span></p>
-<h2 id="unity-rank">Unity Rank</h2>
-<p><span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1\\
-0 &amp; 0
-\end{bmatrix}x+
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1
-\end{bmatrix}u\\
-q=
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}\\
-Bq=
-\begin{bmatrix}
-0\\
-1\\
-\end{bmatrix}\\
-M_c=
-\begin{bmatrix}
-Bq &amp; ABq
-\end{bmatrix}=
-\begin{bmatrix}
-0 &amp; 1\\
-1 &amp; 0\\
-\end{bmatrix}\\
-\Phi_d(s)=s^2+2s+2\\
-\Phi_d(A)=\begin{bmatrix}
-2 &amp; 2\\
-0 &amp; 2\\
-\end{bmatrix}\\
-\tilde K=
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}M_c^{-1}\Phi_d(A)=[2\quad2]\\
-K=q\tilde K=
-\begin{bmatrix}
-0 &amp; 0\\
-2 &amp; 2\\
-\end{bmatrix}
+<p>Interior-point method solve the problem by applying newton’s method to a sequence of equality constrained problem. We will concentrate on a particular interior-point method, called the barrier method, for which we give a proof of convergence and a complexity analysis. We also describe the primal-dual interior point method, but do note give analysis.</p>
+<p>We can view interior-point methods as another level in the hierarchy of convex optimization algorithms.</p>
+<ol type="1">
+<li>Linear equality constrained quadratic problems are the simplest.</li>
+<li>Newton’s method is the next level.</li>
+<li>Interior-point method form the next level.</li>
+</ol>
+<h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
+<p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
+\coo[f_0(x)+\sum_{i=1}^mI_-(f_i(x))]{Ax=b}
+\]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
+<h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
+<p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
+\hat I_-(u)=-\frac{1}{t}\log (-u)
+\]</span> Then the problem becomes <span class="math display">\[
+\coo[f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))]{Ax=b}
+\]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
+<p>The function <span class="math display">\[
+\phi(x)=-\sum_{i=1}^m \log(-f_i(x))
+\]</span> is called the logarithmic barrier or log barrier for the problem.</p>
+<p>Of course, the problem is only an approximation of the original problem, so one may wondering how well. Intuitive suggests, the approximation improves as the parameter <span class="math inline">\(t\)</span> grows. One the other hand, when the parameter <span class="math inline">\(t\)</span> is large, the function <span class="math inline">\(f_0+(1/t)\phi\)</span> is difficult to minimize by Newton’ method, since the Hessian varies rapidly near the boundary feasible set. We will see that this problem can be circumvented by solving a sequence of problems, increasing the parameter <span class="math inline">\(t\)</span> (and therefore, accuracy of the approximation) at each step, and starting each Newton minimization at the solution of the problem for the previous value of <span class="math inline">\(t\)</span>.</p>
+<p>For future reference, we note that the gradient and Hessian of the logarithmic barrier function <span class="math inline">\(\phi\)</span> are given by <span class="math display">\[
+\nabla \phi(x)=\sum_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
+\nabla^2 \phi(x)=\sum_{i=1}^{m} \frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\sum_{i=1}^m  \frac{1}{-f_i(x)}\nabla^2 f_i(x)
 \]</span></p>
-<h2 id="full-rank">Full Rank</h2>
-<p><span class="math display">\[
-\dot x=
+<h3 id="central-path">11.2.2 Central path</h3>
+<p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
+\coo[tf_0(x)+\phi(x)]{Ax=b}
+\]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
+<p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
+Ax^\star(t)=b\\
+f_i(x^\star (t))&lt;0
+\]</span> and there exists a <span class="math inline">\(\hat v\)</span> such that <span class="math display">\[
+0=t\nabla f_0(x^\star(t))+\nabla \phi(x^\star(t))+A^T\hat v\\
+=t\nabla f_0(x^\star(t))+\sum_{i=1}^m \frac{1}{-f_i(x^\star(t))}\nabla f_i(x^\star(t))+A^T\hat v
+\]</span> <strong>Dual points from central path</strong></p>
+<p>From the above, we can derive an important property of the central path: every central point yields a dual feasible point, and hence a lower bound on the optimal <span class="math inline">\(p^\star\)</span>. We define <span class="math inline">\(\lambda_i^\star (t)=-\frac{1}{tf_i(x^\star(t))}\)</span>, <span class="math inline">\(v^\star(t)=\hat v/t\)</span></p>
+<p>Then we have <span class="math display">\[
+\nabla f_0(x^\star(t))+\sum_{i=1}^m\lambda_i^\star (t)\nabla f_i(x^\star(t))+A^Tv^\star (t)=0
+\]</span> We see the optimal point <span class="math inline">\(x^\star(t)\)</span> minimizes the Lagrangian, <span class="math display">\[
+L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+v^T(Ax-b)
+\]</span> <strong>Interpretation via KKT conditions</strong> <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;1/t
+\end{array}
+\]</span> <strong>Force field interpretation</strong></p>
+<h2 id="the-barrier-method">11.3 The barrier method</h2>
+<p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
+\coo[(m/\epsilon)f_0(x)+\phi(x)]{Ax=b}
+\]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
+<h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
+<p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
+<p>In other words, we compute <span class="math inline">\(x^\star(t)\)</span> for a sequence of increasing values of <span class="math inline">\(t\)</span>, until <span class="math inline">\(t\ge m/\epsilon\)</span>, which guarantee that we have an $-suboptimal $ solution of the original problem. When the method is proposed firstly, it is called sequential unconstrained minimization technique. Today, the method is usually called the <strong>barrier method</strong> or <strong>path-following</strong> method.</p>
+<h3 id="examples">11.3.2 Examples</h3>
+<h3 id="convergence-analysis">11.3.3 Convergence Analysis</h3>
+<h3 id="newton-step-for-modified-kkt-conditions">11.3.4 Newton step for modified KKT conditions</h3>
+<p>In the barrier method, the newton step <span class="math inline">\(\Delta x_{nt}\)</span>, and associated dual variables are given by the linear equations, <span class="math display">\[
 \begin{bmatrix}
--1 &amp; 1 &amp; 0\\
-0 &amp; 1 &amp; 1\\
-0 &amp; 0 &amp; 2
-\end{bmatrix}x+
-\begin{bmatrix}
-1 &amp; 1\\
-0 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}u\\
-y=
-\begin{bmatrix}
-1 &amp; 3 &amp; -1\\
-0 &amp; 1 &amp; 0
-\end{bmatrix}x\\
-M_c=
-\begin{bmatrix}
-B &amp; AB &amp; A^2B
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 &amp; 2\\
-0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 3\\
-\underline0 &amp; \underline1 &amp; 0 &amp; \underline2 &amp; 0 &amp; 4\\
-\end{bmatrix}\\
-C=
-\begin{bmatrix}
-b_1 &amp; b_2 &amp; Ab_2
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 1 &amp; -1\\
-0 &amp; 0 &amp; 1\\
-0 &amp; 1 &amp; 2
-\end{bmatrix}
-C^{-1}=\begin{bmatrix}
-1 &amp; 3 &amp; -1\\
-0 &amp; -2 &amp; 1\\
-0 &amp; 1 &amp; 0
-\end{bmatrix}\\
-T=
-\begin{bmatrix}
-q_1\\
-q_3\\
-q_3A
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 3 &amp; -1\\
-0 &amp; 1 &amp; 0\\
-0 &amp; 1 &amp; 1
-\end{bmatrix}
-T^{-1}=\begin{bmatrix}
-1 &amp; -4 &amp; 1\\
-0 &amp; 1 &amp; 0\\
-0 &amp; -1 &amp; 1\\
-\end{bmatrix}\\
-\bar A=TAT^{-1}=
-\begin{bmatrix}
--1 &amp; 7 &amp; 0\\
-0 &amp; 0 &amp; 1\\
-0 &amp; -2 &amp; 3
-\end{bmatrix}\bar B=TB=
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}\\
-\bar K=
-\begin{bmatrix}
-\bar k_{11} &amp; \bar k_{12} &amp; \bar k_{13}\\
-\bar k_{21} &amp; \bar k_{22} &amp; \bar k_{23}\\
-\end{bmatrix}\\
-\bar A-\bar B\bar K=
-\begin{bmatrix}
--1-\bar k_{11} &amp; 7-\bar k_{12} &amp; -\bar k_{13}\\
-0 &amp; 0 &amp; 1\\
--\bar k_{21} &amp; -2-\bar k_{22} &amp; 3-\bar k_{23}\\
-\end{bmatrix}
-A_d=
-\begin{bmatrix}
--1 &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; 1\\
-0 &amp; -6 &amp; -5\\
-\end{bmatrix}\\
-\bar k_{11}=\bar k_{13}=\bar k_{21}=0\quad\bar k_{21}=7 \quad \bar k_{22}=4\quad\bar k_{23}=8\\
-K=\bar KT
-\]</span></p>
-<h2 id="lqr-direct-solve">LQR Direct Solve</h2>
-<p><span class="math display">\[
-\dot x=-3x+u\\
-J=\int_0^\infty(x^2+u^2)dt\\
-A^TP+PA+Q=PBR^{-1}B^TP\\
--3p-3p+1=p^2\\
-p=-3+\sqrt {10}\\
-u=-R^{-1}B^TPx=(3-\sqrt{10})x
-\]</span></p>
-<h2 id="lqr-by-eigenvalues">LQR By Eigenvalues</h2>
-<p><span class="math display">\[
-\Gamma=
-\begin{bmatrix}
-A &amp; -BR^{-1}B^T\\
--Q &amp; -A^T
-\end{bmatrix}=
-\begin{bmatrix}
--3 &amp; -1\\
--1 &amp; 3
-\end{bmatrix}\\
-\lambda_1=\sqrt{10}\quad\lambda_2=-\sqrt{10}\\
-\begin{bmatrix}
-v\\
-\mu
-\end{bmatrix}=
-\begin{bmatrix}
-1\\
-\sqrt{10}-3
-\end{bmatrix}\\
-P=[\mu_1][v_1]=\sqrt{10}-3
-\]</span></p>
-<h2 id="decoupling-by-state-feedback">Decoupling by State Feedback</h2>
-<p><span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1 &amp; 0\\
-1 &amp; 1 &amp; 1\\
-1 &amp; 0 &amp; 0\\
-\end{bmatrix}x+
-\begin{bmatrix}
-0 &amp; 1\\
-1 &amp; 0\\
-0 &amp; -1\\
-\end{bmatrix}u\\
-y=\begin{bmatrix}
-1 &amp; 0 &amp; 1\\
-0 &amp; 1 &amp; 0
-\end{bmatrix}x\\
-i=1\quad c_1^TA^{0}B=
-\begin{bmatrix}
-0 &amp; 0
-\end{bmatrix}\quad
-c_1^TAB=
-\begin{bmatrix}
-1 &amp; 1
-\end{bmatrix}\quad\sigma_1=2\\
-i=2\quad c_2^TA^0B=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}\quad\sigma_2=1\\
-B^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1-1}B\\
-c_2^TA^{\sigma_2-1}B
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 1\\
-1 &amp; 0
-\end{bmatrix}\\
-C^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1}\\
-c_2^TA^{\sigma_2}
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 2 &amp; 1\\
-1 &amp; 1 &amp; 1\\
-\end{bmatrix}\\
-F={B^*}^{-1}=
-\begin{bmatrix}
-0 &amp; 1\\
-1 &amp; -1\\
-\end{bmatrix}K={B^*}^{-1}C^*=
-\begin{bmatrix}
-1 &amp; 1 &amp; 1\\
-0 &amp; 1 &amp; 0\\
-\end{bmatrix}\\
-H(s)=diag(s^{-\sigma_1},s^{-\sigma_2})=diag(s^{-2},s^{-1})
-\]</span></p>
-<h2 id="decoupling-by-state-feedback-with-pole-placement">Decoupling by State Feedback with Pole Placement</h2>
-<p><span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1\\
--1 &amp; -2
-\end{bmatrix}x+\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1
-\end{bmatrix}u\\
-y=
-\begin{bmatrix}
-1 &amp; 0.5\\
-1 &amp; 1\\
-\end{bmatrix}\\
-i=1\quad c_1^TA^0B=
-\begin{bmatrix}
-1 &amp; 0.5
-\end{bmatrix}\quad \sigma_1=1\\
-i=2\quad c_2^TA^0B=
-\begin{bmatrix}
-1 &amp; 1
-\end{bmatrix}\quad \sigma_2=1\\
-H_d(s)=diag[(s+1)^{-1},(s+2)^{-1}]\\
-C^*=
-\begin{bmatrix}
-c_1^T\phi_{f1}(A)\\
-c_2^T\phi_{f2}(A)
-\end{bmatrix}=
-\begin{bmatrix}
-0.5 &amp; 0.5\\
-1 &amp; 1
-\end{bmatrix}\\
-B^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1-1}B\\
-c_2^TA^{\sigma_2-1}B
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0.5\\
-1 &amp; 1
-\end{bmatrix}\\
-F={B^*}^{-1}=
-\begin{bmatrix}
-2 &amp; -1\\
--2 &amp; 2\\
-\end{bmatrix}K={B^*}^{-1}C^*=
-\begin{bmatrix}
-0 &amp; 0 \\
-1 &amp; 1 \\
-\end{bmatrix}\\
-\]</span></p>
-<h2 id="decoupling-by-output-feedback">Decoupling by Output Feedback</h2>
-<p><span class="math display">\[
-G(s)=
-\begin{bmatrix}
-\frac{1}{s+2} &amp; \frac{-1}{s(s+2)}\\
-\frac{5}{s+3} &amp; \frac{1}{s+3}
-\end{bmatrix}=
-\begin{bmatrix}
-\frac{1}{s(s+2)} &amp; 0\\
-0 &amp; \frac{1}{s+3}
+t\nabla^2f_0(x)+\nabla^2 \phi(x)&amp;A^T\\A&amp;0
 \end{bmatrix}
 \begin{bmatrix}
-s &amp; -1\\
-5 &amp; 1
-\end{bmatrix}\\
-K_d=adj(N_r)=
+\Delta x_{nt}\\v_{nt}
+\end{bmatrix}=-
 \begin{bmatrix}
-1 &amp; 1\\
--5 &amp; s
-\end{bmatrix}\\
-K_s=
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; \frac{1}{s}
-\end{bmatrix}\\
-K=K_dK_s
-\]</span></p>
-<p>It is easy to see <span class="math inline">\(K_s\)</span> make the close loop transfer function stable and make the controller proper. <span class="math display">\[
-H(s)=\frac{GK}{I+GK}=diag[\frac{s+5}{s^2+3s+5},\frac{s+5}{s^2+4s+5}]
-\]</span></p>
-<h2 id="servo-control-with-transfer-function">Servo Control with Transfer Function</h2>
-<p><span class="math display">\[
-G(s)=\frac{s+3}{s-1}=\frac{N}{D}\\
-r(t)=\sin t\quad\text{Disturbance is step}\\
-Q=s(s^2+1)\\
-\tilde G(s)=\frac{s+3}{s(s^2+1)(s-1)}=\frac{s+3}{s^4-s^3+s^2-s}\\
-\tilde K(s)=\frac{B}{A}=\frac{B_0+B_1s+B_2s^2+B_3s^3}{A_0+A_1s+A_2s^2+A_3s^3}\\
-P_c=(s+3)^6(s+1)\\
-DQA+NB=P_c\\
-(s^4-s^3+s^2-s)(A_0+A_1s+A_2s^2+A_3s^3)+\\
-(s+3)(B_0+B_1s+B_2s^2+B_3s^3)=(s+3)^6(s+1)\\
-\tilde K(s)=\frac{465s^3+571s^2+769s+243}{s^3+20s^2+172s+363}\\
-K(s)=\frac{1}{Q}\tilde K=\frac{1}{s(s^2+1)}\frac{465s^3+571s^2+769s+243}{s^3+20s^2+172s+363}
-\]</span></p>
-<h2 id="servo-proof">Servo Proof</h2>
-<p><span class="math display">\[
-E_r(s)=R(s)-Y_r(s)\\
-=R(s)-\frac{GK}{1+GK}R(s)\\
-=\frac{R}{1+\frac{N}{DQ}\frac{B}{A}}\\
-=\frac{DA}{DQA+NB}Q\frac{N_r}{D_r}\\
-\text{Since all unstable roots of }D_r\text{ are cancelled by }Q(s)
-\]</span></p>
-<p><span class="math display">\[
-E_w(s)=R(s)-Y_w(s)\\
-=0-\frac{1}{1+GK}w(s)\\
-=-\frac{AD}{DQA+NB}Q\frac{N_w}{D_w}
-\]</span></p>
-<h2 id="multivariable-integral-control">Multivariable Integral Control</h2>
-$$ x=
-<span class="math display">\[\begin{bmatrix}
-0 &amp; 1\\
-0 &amp; 0\\
-\end{bmatrix}\]</span>
-x+
-<span class="math display">\[\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}\]</span>
-u+
-<span class="math display">\[\begin{bmatrix}
-1\\
-0
-\end{bmatrix}\]</span>
-w\ y=
-<span class="math display">\[\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}\]</span>
-x\
-<span class="math display">\[\begin{bmatrix}
-\dot x\\
-\dot v\\
-\end{bmatrix}\]</span>
-=A
-<span class="math display">\[\begin{bmatrix}
-x\\
-v\\
-\end{bmatrix}\]</span>
-<ul>
-<li>B u+B_w w+B_r r\ A=
-<span class="math display">\[\begin{bmatrix}
-A &amp; 0\\
--C &amp; 0
-\end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix}
-0 &amp; 1  &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; 0 &amp; 0\\
--1 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; -1 &amp; 0 &amp; 0\\
-\end{bmatrix}\]</span>
-\ B=
-<span class="math display">\[\begin{bmatrix}
-B\\
-0\\
-\end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-0 &amp; 0\\
-0 &amp; 0\\
-\end{bmatrix}\]</span>
-\ B_w=
-<span class="math display">\[\begin{bmatrix}
-B_w\\
-0\\
-\end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix}
-1\\
-0\\
-0\\
-0\\
-\end{bmatrix}\]</span>
-\</li>
-</ul>
-B_r=
-<span class="math display">\[\begin{bmatrix}
-0\\
-I
-\end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix}
-0 &amp; 0\\
-0 &amp; 0\\
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}\]</span>
-\ C=
-<span class="math display">\[\begin{bmatrix}
-C &amp; 0
-\end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; 0 &amp; 0\\
-\end{bmatrix}\]</span>
-<p>$$</p>
-<h2 id="state-estimation-full-order">State Estimation Full Order</h2>
-<p>Poles are 3-5 times faster than control poles. <span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1\\
-0 &amp; 0
-\end{bmatrix}x+
-\begin{bmatrix}
-0\\
-1
-\end{bmatrix}u\\
-y=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}x\\
-\Phi_o(s)=(s+5)^2=s^2+10s+25\\
-\Phi_o(A)=A^2+10A+25I=
-\begin{bmatrix}
-25 &amp; 10\\
-0 &amp; 25\\
-\end{bmatrix}\\
-M_o=
-\begin{bmatrix}
-C\\
-CA
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1
-\end{bmatrix}\\
-L=\Phi_o(A)M_o^{-1}
-\begin{bmatrix}
-0\\
-1\\
-\end{bmatrix}=\begin{bmatrix}
-10\\
-25
-\end{bmatrix}\\
-\dot {\hat x}=A\hat x+Bu+L(y-\hat y)
-\]</span></p>
-<h2 id="reduced-order-observer">Reduced Order Observer</h2>
-<p><span class="math display">\[
-\dot x=Ax+Bu\\
-y=Cx\\
-A=
-\begin{bmatrix}
-0 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 1\\
-1 &amp; 0 &amp; 0
+t\nabla f_0(x)+\nabla \phi(x)\\0
 \end{bmatrix}
-B=
+\]</span> In this section, we will show how these newton steps for the centering problem can be interpreted as Newton steps for directly solving the modified KKT equations, <span class="math display">\[
+\nabla f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+A^Tv=0\\
+-\lambda_if_i(x)=1/t\\
+Ax=b
+\]</span> in a particular way.</p>
+<h2 id="feasibility-and-phase-i-methods">11.4 Feasibility and phase I methods</h2>
+<h2 id="complexity-analysis-via-self-concordance">11.5 Complexity analysis via self-concordance</h2>
+<h2 id="problems-with-generalized-inequalities">11.6 Problems with generalized inequalities</h2>
+<h2 id="primal-dual-interior-point-methods">11.7 Primal-dual Interior-point methods</h2>
+<p>In this section, we describe a basic primal-dual interior-point method. Primal-dual interior-point methods are very similar to the barrier method, with some differences.</p>
+<ol type="1">
+<li><strong>There is only one loop or iteration</strong>, i.e. there is no distinction between inner and outer iterations as in the barrier method. At each iteration, both the primal and dual variables are updated.</li>
+<li>The search direction in a primal-dual interior-point method are obtained from Newton’s method, applied to the <strong>modified KKT equations.</strong></li>
+<li>In a primal-dual interior-point method, the primal-dual iterates are not necessarily feasible.</li>
+</ol>
+<p>Primal-dual interior-point methods are often more efficient than the barrier method, especially when high accuracy is required, since they can exhibit better than linear convergence.</p>
+<h3 id="primal-dual-search-direction">11.7.1 Primal-dual search direction</h3>
+<p>As in the barrier method, we start with the modified KKT conditions, expressed as <span class="math inline">\(r_t(x,\lambda,v)=0\)</span>, where we define <span class="math display">\[
+r_t(x,\lambda,v)=
 \begin{bmatrix}
-0\\
-1\\
-0
+\nabla f_0(x)+Df(x)^T\lambda+A^Tv\\
+-diag(\lambda)f(x)-(1/t)1\\
+Ax-b
 \end{bmatrix}
-C=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-1 &amp; 1 &amp; 0\\
-\end{bmatrix}\\
-\begin{bmatrix}
-C\\T
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-1 &amp; 1 &amp; 0\\
-t_1 &amp; t_2 &amp; t_3
-\end{bmatrix}\\
-t_3\neq0\\
-DT-TA+GC=0\\
-d[t_1\quad t_2\quad t_3]-[t_1\quad t_2\quad t_3]
-\begin{bmatrix}
-0 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 1\\
-1 &amp; 0 &amp; 0
-\end{bmatrix}+[g_1\quad g_2]
-\begin{bmatrix}
-1 &amp; 0 &amp; 0\\
-1 &amp; 1 &amp; 0\\
-\end{bmatrix}=0\\
-\begin{cases}
-dt_1-t_3+g_1+g_2=0\\
-dt_2-t_1+g_2=0\\
-dt_3-t_2=0\\
-t_3\neq0\\
-\end{cases}\\
-d=-2\quad g_1=10\quad g_2=1\\
-t_1=5\quad t_2=-2\quad t_3=1\\
-e=TB=-2\\
-\hat x=
-\begin{bmatrix}
-C\\T
-\end{bmatrix}^{-1}
-\begin{bmatrix}
-y\\ \xi
-\end{bmatrix}\\
-\hat \xi=-2\xi-2u+[10\quad 1]y
-\]</span></p>
-<h2 id="lyapunov-instability-theorem">Lyapunov Instability Theorem</h2>
-<p>The system is not asymptotically stable. If P is negative definite, the system is unstable. We know that Q is identity matrix therefore it is positive definite, that mean <span class="math inline">\(\dot V(x(t))&lt;0\)</span>. If P is negative definite, there is <span class="math inline">\(w\)</span> such that <span class="math inline">\(V(w)&lt;V(0)\)</span> then the trajectory of <span class="math inline">\(\dot x\)</span> does not converge to zero. To show it, we note that <span class="math inline">\(V(x(t))&lt;V(x(0))=V(w)&lt;V(0)=0\)</span> for all <span class="math inline">\(t\ge0\)</span>. That means the system will diverge and be unstable. If P is positive semi-definite, the system is marginally stable but not asymptotically stable. To show that, we know that Q is identity matrix therefore it is positive definite, that mean <span class="math inline">\(\dot V(x(t))&lt;0\)</span>. If P is positive semi-definite, there is <span class="math inline">\(w\)</span> such that <span class="math inline">\(V(w)=V(0)\)</span> then the trajectory of <span class="math inline">\(\dot x\)</span> may converge to w instead of origin. Therefore, the system is marginally stable.</p>
-<h2 id="impulse-response-gtsin-omega-t">Impulse Response <span class="math inline">\(g(t)=\sin \omega t\)</span></h2>
-<p>The system is not BIBO stable and not asymptotically stable in the sense of Lyapunov.</p>
-<p>To show the system is not BIBO stable. we check <span class="math inline">\(\int_0^\infty|g(t)|dt=\infty\)</span> .If we choose the bounded input according to <span class="math display">\[
-u(t-\tau)=
-\begin{cases}
-1,&amp;if\space g(\tau)&gt;0\\
-0,&amp;if\space g(\tau)=0\\
--1,&amp;if\space g(\tau)&lt;0\\
-\end{cases}
-\]</span> Then <span class="math inline">\(|y(t)|=|\int_0^tg(\tau)u(t-\tau)d\tau|=\int_0^t|g(\tau)|d\tau\)</span> and <span class="math inline">\(\int_0^\infty|g(t)|dt=\infty\)</span> .This means output is unbounded under a bounded input. Therefore, the system is not BIBO stable.</p>
-<p>To show the system is not asymptotically stable in the sense of Lyapunov.</p>
-<p>If the system is asymptotically stable in the sense of Lyapunov, that implies all eigenvalues of A have negative real parts. On the other hand, BIBO stability is defined for the transfer Matrix of <span class="math display">\[
-y(s)=G(s)u(s)=[C(sI-A)^{-1}B+D]u(s)
-\]</span> and poles of G(s) are eigenvalues of A. Hence, all poles of <span class="math inline">\(G(s)\)</span> have negative real parts and this established that the system is BIBO stable. Since asymptotically stable in the sense of Lyapunov implies BIBO stable. Therefore, from the contrapositive, not BIBO stable implies not asymptotically stable in the sense of Lyapunov.</p>
-<h2 id="reachability-homework">Reachability Homework</h2>
-<p><span class="math display">\[
-\dot x=
-\begin{bmatrix}
--1 &amp; 1\\
-0 &amp; -2
-\end{bmatrix} x+
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}u\\
-M_c=\begin{bmatrix}
-B &amp; AB
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; -1\\
-0 &amp; 0\\
-\end{bmatrix}\\
-\text{The system is uncontrollable}\\
-\text{The set of reachable state R}\\
-\text{R=Range space of }W(0,l)\\
-W(0,2)=\int_0^2e^{A\tau}BB^Te^{A^{T}\tau}d\tau\\
-=
-\begin{bmatrix}
--\frac{1}{2}e^{-4}+\frac{1}{2} &amp; 0\\
-0 &amp; 0
-\end{bmatrix}\\
-[2\quad0]^T \text{ is in the range space of W(0,2)}\\
-\text{Therefore, it is possible to reach }[2\quad0]^T\\
-u(t)=B^Te^{A^{T}(l-t)}\alpha\\
-x_d=W(0,l)\alpha\\
-\text{We can prove}\\
-x(l)=\int_0^le^{A(l-t)}Bu(t)dt\\
-=\int_0^le^{A(l-t)}BB^Te^{A^T(l-t)}\alpha dt\\
-=W(0,l)\alpha=x_d
-\]</span></p>
-<h2 id="transformation">Transformation</h2>
-<p><span class="math display">\[
-A_1=TA_2T^{-1}\\
-B_1=TB_2\\
-M_{c1}=
-\begin{bmatrix}
-B_1  &amp; A_1B_1
-\end{bmatrix}\\
-=\\
-\begin{bmatrix}
-TB_2 &amp; TA_2B_2
-\end{bmatrix}\\
-=TM_{c2}\\
-T=M_{c1}M_{c2}^{-1}
-\]</span></p>
-<h2 id="time-delay">Time Delay</h2>
+\]</span> If <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> satisfy <span class="math inline">\(r_t(x,\lambda,v)=0\)</span> (and <span class="math inline">\(f_i(x)&lt;0\)</span>), then <span class="math inline">\(x=x^\star (t)\)</span>, <span class="math inline">\(\lambda = \lambda^\star (t)\)</span>, <span class="math inline">\(v=v^\star (t)\)</span>. In particular, <span class="math inline">\(x\)</span> is primal feasible, and <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> are dual feasible, with duality gap <span class="math inline">\(m/t\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(r_{dual}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>dual residual</strong>.</li>
+<li><span class="math inline">\(r_{pri}=Ax-b\)</span> is called the <strong>primal residual</strong>.</li>
+<li><span class="math inline">\(r_{cent}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>centrality residual</strong>.</li>
+</ol>
 
         
       
@@ -1162,7 +876,7 @@ T=M_{c1}M_{c2}^{-1}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1207,7 +921,7 @@ T=M_{c1}M_{c2}^{-1}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1224,7 +938,19 @@ T=M_{c1}M_{c2}^{-1}
         
           
         
-        <span class="site-state-item-count">1</span>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

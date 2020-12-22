@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/16/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+  <link rel="canonical" href="http://yoursite.com/page/16/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-06-27 22:48:03" itemprop="dateModified" datetime="2019-06-27T22:48:03+08:00">2019-06-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="norm-in-l1r">2.6 Norm in <span class="math inline">\(L^1(R)\)</span></h2>
+<p>One of the important features of the Lebesgue integral is that the techniques of normed spaces can be used. We will see that, with some precautions, <span class="math inline">\(L^1(R)\)</span> can be treated as a <strong>Banach space</strong>.</p>
+<p>==Definition 2.6.1== (<span class="math inline">\(L^1-\)</span>norm)</p>
+<p>The functional <span class="math inline">\(||\cdot||:L^1(R)\rightarrow R\)</span> defined by <span class="math inline">\(||f||=\int |f|\)</span> will be called the norm in <span class="math inline">\(L^1(R)\)</span> or the <span class="math inline">\(L^1-\)</span>norm</p>
+<p>The functional <span class="math inline">\(||\cdot||\)</span> is well defined in view of Theorem 2.4.1. By Theorem 2.3.2 and Theorem 2.3.3, we have <span class="math display">\[
+||\lambda f||=|\lambda|||f||\\
+||f+g||\le ||f||+||g||
+\]</span> However, we cannot say that the defined functional <span class="math inline">\(||\cdot||\)</span> is a norm. There are non-zero functions <span class="math inline">\(f\)</span> for which <span class="math inline">\(\int |f|=0\)</span>. Consider, for example, the function <span class="math inline">\(f(x)=0\)</span> for every <span class="math inline">\(x\)</span> except 0 and <span class="math inline">\(f(0)=1\)</span>. This is a none zero function but <span class="math inline">\(\int |f|=0\)</span>. This difficulty can be resolved by the following way.</p>
+<p>==Definition 2.6.2== (Null Function)</p>
+<p>A function is called a null function if <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int |f|=0\)</span></p>
+<p>Two functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> will be called equivalent if <span class="math inline">\(f-g\)</span> is a null function. It is easy to check the defined relation is an equivalence relation. Now we define the space <span class="math inline">\(\mathscr L^1(R)\)</span> as the space of equivalence classes of Lebesgue integrable functions. The equivalence classes of <span class="math inline">\(f\in L^1(R)\)</span> is denoted by <span class="math inline">\([f]\)</span> <span class="math display">\[
+[f]=\{g\in L^1(R):\int |f-g|=0\}
+\]</span> With the usual definition <span class="math display">\[
+[f]+[g]=[f+g],\lambda[f]=[\lambda f],||[f]||=\int |f|
+\]</span> <span class="math inline">\((\mathscr L^1(R),||\cdot||)\)</span> becomes a normed space.</p>
+<p>The following theorem describes an important property of null functions.</p>
+<p>==Theorem 2.6.1==</p>
+<p>If <span class="math inline">\(f\)</span> is a null function and <span class="math inline">\(|g|\le |f|\)</span>, then <span class="math inline">\(g\)</span> is a null function too.</p>
+<p>==Definition 2.6.3== Convergence in Norm</p>
+<p>We say that a sequence of functions <span class="math inline">\(f_1,f_2,\dotsm \in L^1(R)\)</span> converges to a function <span class="math inline">\(f\in L^1(R)\)</span> in norm, denoted by <span class="math inline">\(f_n\rightarrow f\)</span> i.n., if <span class="math inline">\(||f_n-f||\rightarrow 0\)</span>.</p>
+<p>The following theorem is simple but important.</p>
+<p>==Theorem 2.6.2==</p>
+<p>If <span class="math inline">\(f_n\rightarrow f \space i.n.\)</span>, then <span class="math inline">\(\int f_n\rightarrow \int f\)</span>.</p>
+<p>==Theorem 2.6.3==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then the series <span class="math inline">\(f_1+f_2 +\dotsm\)</span> converges to <span class="math inline">\(f\)</span> in norm.</p>
+<h2 id="convergence-almost-everywhere">2.7 Convergence Almost Everywhere</h2>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then the series <span class="math inline">\(f_1(x)+f_2(x)+\dotsm\)</span> need not converge at every <span class="math inline">\(x\in R\)</span>. On the other hand, the set of those points where we do not have convergence is a small set.</p>
+<p>==Definition: Null set==</p>
+<p>A set <span class="math inline">\(x\in R\)</span> will be called a null set or a set of measure zero if its characteristic function is a null function.</p>
+<p>==Theorem 2.7.1==</p>
+<p>Every subset of a null set is a null set.</p>
+<p>==Definition 2.7.2== (Equality Almost Everywhere)</p>
+<p>If for two functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> defined on R, the set of all <span class="math inline">\(x\in R\)</span> for which <span class="math inline">\(f(x)\neq g(x)\)</span> is a null set, then we say that <span class="math inline">\(f\)</span> equals <span class="math inline">\(g\)</span> almost everywhere and write <span class="math inline">\(f=g\)</span> a.e.</p>
+<p>==Theorem 2.7.2==</p>
+<p><span class="math inline">\(\int |f-g|=0\)</span> if and only if <span class="math inline">\(f=g\)</span> a.e. In particular, <span class="math inline">\(\int |f|=0\)</span> if and only if <span class="math inline">\(f=0\)</span> a.e.</p>
+<p>That means the equivalence of functions defined in section 2.6 and equality almost everywhere are the same thing.</p>
+<p>==Theorem 2.7.3==</p>
+<p>Suppose <span class="math inline">\(f_n\rightarrow f\)</span> i.n. Then <span class="math inline">\(f_n\rightarrow g\)</span> i.n. if and only if <span class="math inline">\(f=g\)</span> a.e.</p>
+<p>==Definition 2.7.3== Convergence Almost Everywhere</p>
+<p>We say a sequence of functions <span class="math inline">\(f_1,f_2,\dotsm\)</span> defined on R converges to a function <span class="math inline">\(f\)</span> almost everywhere, denoted by $f_nf $ a.e., if <span class="math inline">\(f_n(x)\rightarrow f(x)\)</span> for every <span class="math inline">\(x\)</span> except a null set.</p>
+<p>==Theorem 2.7.4==</p>
+<p>Suppose <span class="math inline">\(f_n\rightarrow f\)</span> a.e. Then <span class="math inline">\(f_n\rightarrow g\)</span> a.e. if and only if <span class="math inline">\(f=g\)</span> a.e.</p>
+<p>The following two examples show that convergence in norm and convergence almost everywhere are essentially different.</p>
+<p>==Example 2.7.1==</p>
+<p>For <span class="math inline">\(n=1,2,\dotsm\)</span>, define <span class="math display">\[
+f_n(x)=\begin{cases}1/\sqrt n &amp; \text{for $x\in[-n,n]$}\\0&amp;\text{otherwise}\end{cases}
+\]</span> ==Theorem 2.7.5==</p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span> and <span class="math inline">\(\int |f_1|+\int |f_2|+\dotsm&lt;\infty\)</span> . Then the series <span class="math inline">\(f_1+f_2+\dotsm\)</span> converges almost everywhere.</p>
+<p>==Corollary 2.7.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> a.e.</p>
+<p>==Theorem 2.7.6==</p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span> and <span class="math inline">\(\int |f_1|+\int |f_2|+\dotsm&lt;\infty\)</span>. Then <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> almost everywhere if and only if <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> in norm.</p>
+<h2 id="fundamental-theorems">2.8 Fundamental Theorems</h2>
+<p>Now we are ready to prove the main theorems of this chapter.</p>
+<p>==Theorem 2.8.1==</p>
+<p>The space <span class="math inline">\(L^1(R)\)</span> is complete.</p>
+<p>In view of the above theorem, the space <span class="math inline">\(L^1(R)\)</span> can be defined as the completion of the space of step functions with respect to the convergence in norm.</p>
+<p>We know that convergence in norm and convergence almost everywhere are essentially different. The next theorem connects both convergences in an elegant way.</p>
+<p>==Theorem 2.8.2==</p>
+<p>If <span class="math inline">\(f_n\rightarrow f\)</span> i.n., then there exists a subsequence <span class="math inline">\((f_{p_n})\)</span> of <span class="math inline">\((f_n)\)</span> such that <span class="math inline">\(f_{p_n} \rightarrow f_n\)</span> a.e.</p>
+<p>Convergence in norm has the following important property, <span class="math display">\[
+f_n\rightarrow f\text{ i.n. implies } \int f_n\rightarrow \int f
+\]</span> In other words, the limit with respect to the convergence in norm can be interchanged with integration: <span class="math display">\[
+\int \lim _{n\rightarrow \infty} f_n = \lim_{n\rightarrow \infty} \int f_n
+\]</span> Convergence almost everywhere does not share this property.</p>
+<p>Theorem 2.8.3 and Theorem 2.8.4 give conditions which are easy to check and at the same time imply the convergence in norm.</p>
+<p>==Theorem 2.8.3== Monotone Convergence Theorem</p>
+<p>If <span class="math inline">\((f_n)\)</span> is a monotone sequence of integrable functions and <span class="math inline">\(|\int f_n| \le M\)</span> for some constant M and all <span class="math inline">\(n\in N\)</span>, then there exists an integrable function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f_n\rightarrow f\)</span> i.n. and <span class="math inline">\(f_n\rightarrow f\)</span> a.e. Moreover, we have <span class="math inline">\(|\int f|\le M\)</span></p>
+<p>==Theorem 2.8.4== The Lebesgue Dominated Convergence Theorem</p>
+<p>If a sequence of integrable functions <span class="math inline">\((f_n)\)</span> converges almost everywhere to a function <span class="math inline">\(f\)</span> and there exists an integrable function <span class="math inline">\(h\)</span> such that <span class="math inline">\(|f_n|\le h\)</span> for every <span class="math inline">\(n\in N\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(f_n\rightarrow f\)</span> i.n.</p>
+<p>==Theorem 2.8.5== Fatou's Lemma</p>
+<p>Let <span class="math inline">\((f_n)\)</span> be nonnegative integrable functions such that <span class="math inline">\(|\int f_n| \le M\)</span> for some constant M and every <span class="math inline">\(n\in N\)</span>. if the sequence <span class="math inline">\((f_n)\)</span> converges almost everywhere to a function <span class="math inline">\(f\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int f \le M\)</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/2.12 The Lebesgue Integral/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.12 The Lebesgue Integral/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-07-01 15:08:11" itemprop="dateModified" datetime="2019-07-01T15:08:11+08:00">2019-07-01</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.12 The Lebesgue Integral/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.12 The Lebesgue Integral/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.12 The Lebesgue Integral/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="complex-valued-lebesgue-integrable-functions">2.12 Complex-valued Lebesgue Integrable Functions</h2>
+<p>In this section, we extend the definition of Lebesgue integrable functions to include also functions with complex values. First we define a complex valued step function: <span class="math inline">\(f\)</span> is a ==complex-valued step function== if there exist complex number <span class="math inline">\(\lambda_1, \dotsm, \lambda_n\)</span> and intervals <span class="math inline">\([a_1,b_1),\dotsm,[a_n,b_n)\)</span> such that <span class="math display">\[
+f(x)=\lambda_1 \mathcal X_{[a_1,b_1)}+\dotsm+\lambda_n \mathcal X_{[a_n,b_n)}
+\]</span> where <span class="math inline">\(\mathcal X_{[a_k,b_k)}\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k)\)</span>, <span class="math inline">\(k=1,2,\dotsm\)</span>. The integral <span class="math inline">\(\int f\)</span> of the step function is defined by <span class="math display">\[
+\int f=\lambda_1(b_1-a_1)+\dotsm+\lambda_n(b_n-a_n)
+\]</span> ==Definition 2.12.1== Lebesgue Integral for complex-valued functions</p>
+<p>A complex-valued function <span class="math inline">\(f\)</span> is integrable if there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that the following two conditions are satisfied,</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x \in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>The integral of <span class="math inline">\(f\)</span> is defined by <span class="math display">\[
+\int f=\sum_{n=1}^\infty \int f_n
+\]</span> If a function <span class="math inline">\(f\)</span> and a sequence of step functions <span class="math inline">\((f_n)\)</span> satisfy (a) and (b), then we write as before <span class="math display">\[
+f\simeq \sum_{n=1}^\infty f_n\quad or \quad f\simeq f_1+f_2+\dotsm
+\]</span> ==Theorem 2.12.1==</p>
+<p>A complex-valued function <span class="math inline">\(f\)</span> is integrable if and only if its real part <span class="math inline">\(\real f\)</span> and its imaginary part <span class="math inline">\(\Im f\)</span> are integrable. Moreover, if <span class="math inline">\(f\)</span> is integrable, then <span class="math display">\[
+\int f=\int \Re f+i\int \Im f
+\]</span> ==Theorem 2.12.2==</p>
+<p>If a complex-valued function <span class="math inline">\(f\)</span> is integrable, then the real-valued function <span class="math inline">\(|f|\)</span> is integrable and <span class="math inline">\(|\int f |\le \int |f|\)</span></p>
+<p>==Definition 2.12.2== Locally integrable complex-valued functions</p>
+<p>A complex-valued function defined on R is called locally integrable if its real part and imaginary part are locally integrable.</p>
+<p>==Theorem 2.12.3==</p>
+<p>The absolute value <span class="math inline">\(|f|\)</span> of a locally integrable complex-valued function <span class="math inline">\(f\)</span> is locally integrable.</p>
+<h2 id="the-space-l2r">2.13 The space <span class="math inline">\(L^2(R)\)</span></h2>
+<p>==Definition 2.13.1== Square Integrable Function</p>
+<p>The space of all complex-valued locally integrable functions <span class="math inline">\(f\)</span> such that <span class="math inline">\(|f|^2 \in L^1(R)\)</span> will be denoted by <span class="math inline">\(L^2(R)\)</span>. Elements of <span class="math inline">\(L^2(R)\)</span> will be called square integrable functions.</p>
+<p>==Theorem 2.13.1== <span class="math inline">\(L^2(R)\)</span> is a vector space</p>
+<p>==Corollary 2.13.1== The product of two square integrable functions is an integrable function. i.e. if <span class="math inline">\(f,g \in L^2(R)\)</span>, then <span class="math inline">\(fg \in L^1(R)\)</span></p>
+<p>It will be proved in chapter 3 that <span class="math inline">\(L^2(R)\)</span> is a complete normed space with norm defined by <span class="math display">\[
+||f||=\sqrt{\int |f|^2}
+\]</span></p>
+<h2 id="the-space-l1rn-and-l2rn">2.14 The space <span class="math inline">\(L^1(R^N)\)</span> and <span class="math inline">\(L^2(R^N)\)</span></h2>
+<p>By a semi-open interval in <span class="math inline">\(R^N\)</span>, we mean a set <span class="math inline">\(I\)</span> which can be represented as <span class="math display">\[
+I=[a_1,b_1)\times\dotsm\times[a_N,b_N)
+\]</span> define <span class="math inline">\(m(I)=(b_1-a_1)\dotsm(b_N-a_N)\)</span></p>
+<p>By a step function we mean a finite linear combination of characteristic functions of semi-open intervals <span class="math display">\[
+f=\lambda_1\mathcal X_{I_1}+\dotsm+\lambda_1\mathcal X_{I_N}
+\]</span> For a step function, define <span class="math display">\[
+\int f = \lambda_1m(I_1)+\dotsm+\lambda_Nm(I_N)
+\]</span> ==Definition 2.14.1== Lebesgue Integrable functions on <span class="math inline">\(R^N\)</span></p>
+<p>A real- or complex-valued function <span class="math inline">\(f\)</span> defined on <span class="math inline">\(R^N\)</span> is called Lebesgue integrable if there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that the following two conditions are satisfied,</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x \in R^N\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>The integral of <span class="math inline">\(f\)</span> is then denoted by <span class="math display">\[
+\int f=\sum_{n=1}^\infty \int f_n
+\]</span> The space of all Lebesgue integrable functions on <span class="math inline">\(R^N\)</span> is denoted by <span class="math inline">\(L^1(R^N)\)</span></p>
+<p>==Definition 2.14.2== (Locally integrable functions on <span class="math inline">\(R^N\)</span>)</p>
+<p>A function <span class="math inline">\(f\)</span> defined on <span class="math inline">\(R^N\)</span> is called locally integrable if for every bounded interval <span class="math inline">\(I\)</span> the product <span class="math inline">\(f\mathcal X_I\)</span> is an integrable function.</p>
+<p>The Lebesgue measure on <span class="math inline">\(R^N\)</span> can be defined as in section 2.11: A set <span class="math inline">\(S\subseteq R^N\)</span> is called measurable if the characteristic function of <span class="math inline">\(S\)</span> is a locally integrable function. If the characteristic function <span class="math inline">\(\mathcal X_S\)</span> is integrable, then by the measure of <span class="math inline">\(S\)</span>, denoted by <span class="math inline">\(\mu(S)\)</span>, we mean the value of the integral <span class="math inline">\(\mu(S)=\int \mathcal X_S\)</span>. If <span class="math inline">\(\mathcal X_S\)</span> is locally integrable but not integrable, then we define <span class="math inline">\(\mu(S)=\infty\)</span>.</p>
+<p>==Definition 2.14.3== (Square integrable functions on <span class="math inline">\(R^N\)</span>)</p>
+<p>A complex-valued, locally integrable function <span class="math inline">\(f\)</span> defined on <span class="math inline">\(R^N\)</span> such that <span class="math inline">\(|f|^2\)</span> is integrable is called square integrable. The space of square integrable functions on <span class="math inline">\(R^N\)</span> is denoted by <span class="math inline">\(L^2(R^N)\)</span>.</p>
+<h2 id="convolution">2.15 Convolution</h2>
+<p>If the integral <span class="math inline">\(\int f(x-y) g(y)dy\)</span> exists for all <span class="math inline">\(x\in R\)</span>, or at least almost everywhere, then it defines a function which is called the convolution of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, denoted by <span class="math inline">\(f*g\)</span>.</p>
+<p>==Theorem 2.15.1==</p>
+<p>If <span class="math inline">\(f,g \in L^1(R)\)</span>, then the function <span class="math inline">\(f(x-y)g(y)\)</span> is integrable for almost all <span class="math inline">\(x\in R\)</span>. Moreover, the convolution <span class="math display">\[
+(f*g)(x)=\int f(x-y)g(y)dy
+\]</span> is an integrable function and we have <span class="math display">\[
+\int |f*g|\le \int |f|\int |g|
+\]</span> ==Theorem 2.15.2==</p>
+<p>If <span class="math inline">\(f,g \in L^1(R)\)</span>, then <span class="math inline">\(f*g=g*f\)</span></p>
+<p>==Theorem 2.15.3==</p>
+<p>If <span class="math inline">\(f\)</span> is an integrable function g is bounded, locally integrable function, then the convolution <span class="math inline">\(f*g\)</span> is a continuous function.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
