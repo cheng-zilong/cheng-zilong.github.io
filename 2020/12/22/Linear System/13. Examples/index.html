@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Pole Placement SISO \[ \dot x= \begin{bmatrix} 3 &amp;amp; 1\\ 4 &amp;amp; 0 \end{bmatrix}x+ \begin{bmatrix} 0\\ 1\\ \end{bmatrix}u\\ \Phi_d(s)=(s+3)(s+4)=s^2+7s+12\\ M_c= \begin{bmatrix} 0 &amp;am">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2020/12/22/Linear System/13. Examples/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="Pole Placement SISO \[ \dot x= \begin{bmatrix} 3 &amp;amp; 1\\ 4 &amp;amp; 0 \end{bmatrix}x+ \begin{bmatrix} 0\\ 1\\ \end{bmatrix}u\\ \Phi_d(s)=(s+3)(s+4)=s^2+7s+12\\ M_c= \begin{bmatrix} 0 &amp;am">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-25T14:19:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Orandragon&#39;s Blog">
+<meta name="twitter:description" content="Pole Placement SISO \[ \dot x= \begin{bmatrix} 3 &amp;amp; 1\\ 4 &amp;amp; 0 \end{bmatrix}x+ \begin{bmatrix} 0\\ 1\\ \end{bmatrix}u\\ \Phi_d(s)=(s+3)(s+4)=s^2+7s+12\\ M_c= \begin{bmatrix} 0 &amp;am">
+  <link rel="canonical" href="http://yoursite.com/2020/12/22/Linear System/13. Examples/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title> | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Linear System/13. Examples/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:26:09" itemprop="dateCreated datePublished" datetime="2020-12-22T13:26:09+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-11-25 22:19:29" itemprop="dateModified" datetime="2018-11-25T22:19:29+08:00">2018-11-25</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linear-System/" itemprop="url" rel="index"><span itemprop="name">Linear System</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Linear System/13. Examples/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Linear System/13. Examples/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Linear System/13. Examples/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="pole-placement">Pole Placement</h2>
+<h2 id="siso">SISO</h2>
+<p><span class="math display">\[
+\dot x=
+\begin{bmatrix}
+3 &amp; 1\\
+4 &amp; 0
+\end{bmatrix}x+
+\begin{bmatrix}
+0\\
+1\\
+\end{bmatrix}u\\
+\Phi_d(s)=(s+3)(s+4)=s^2+7s+12\\
+M_c=
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0\\
+\end{bmatrix}\\
+K=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}M_c^{-1}\Phi_d(A)=
+\begin{bmatrix}
+46 &amp; 10
+\end{bmatrix}
+\]</span></p>
+<h2 id="unity-rank">Unity Rank</h2>
+<p><span class="math display">\[
+\dot x=
+\begin{bmatrix}
+0 &amp; 1\\
+0 &amp; 0
+\end{bmatrix}x+
+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1
+\end{bmatrix}u\\
+q=
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}\\
+Bq=
+\begin{bmatrix}
+0\\
+1\\
+\end{bmatrix}\\
+M_c=
+\begin{bmatrix}
+Bq &amp; ABq
+\end{bmatrix}=
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0\\
+\end{bmatrix}\\
+\Phi_d(s)=s^2+2s+2\\
+\Phi_d(A)=\begin{bmatrix}
+2 &amp; 2\\
+0 &amp; 2\\
+\end{bmatrix}\\
+\tilde K=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}M_c^{-1}\Phi_d(A)=[2\quad2]\\
+K=q\tilde K=
+\begin{bmatrix}
+0 &amp; 0\\
+2 &amp; 2\\
+\end{bmatrix}
+\]</span></p>
+<h2 id="full-rank">Full Rank</h2>
+<p><span class="math display">\[
+\dot x=
+\begin{bmatrix}
+-1 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 2
+\end{bmatrix}x+
+\begin{bmatrix}
+1 &amp; 1\\
+0 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}u\\
+y=
+\begin{bmatrix}
+1 &amp; 3 &amp; -1\\
+0 &amp; 1 &amp; 0
+\end{bmatrix}x\\
+M_c=
+\begin{bmatrix}
+B &amp; AB &amp; A^2B
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 &amp; 2\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 3\\
+\underline0 &amp; \underline1 &amp; 0 &amp; \underline2 &amp; 0 &amp; 4\\
+\end{bmatrix}\\
+C=
+\begin{bmatrix}
+b_1 &amp; b_2 &amp; Ab_2
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1 &amp; -1\\
+0 &amp; 0 &amp; 1\\
+0 &amp; 1 &amp; 2
+\end{bmatrix}
+C^{-1}=\begin{bmatrix}
+1 &amp; 3 &amp; -1\\
+0 &amp; -2 &amp; 1\\
+0 &amp; 1 &amp; 0
+\end{bmatrix}\\
+T=
+\begin{bmatrix}
+q_1\\
+q_3\\
+q_3A
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 3 &amp; -1\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 1
+\end{bmatrix}
+T^{-1}=\begin{bmatrix}
+1 &amp; -4 &amp; 1\\
+0 &amp; 1 &amp; 0\\
+0 &amp; -1 &amp; 1\\
+\end{bmatrix}\\
+\bar A=TAT^{-1}=
+\begin{bmatrix}
+-1 &amp; 7 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+0 &amp; -2 &amp; 3
+\end{bmatrix}\bar B=TB=
+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}\\
+\bar K=
+\begin{bmatrix}
+\bar k_{11} &amp; \bar k_{12} &amp; \bar k_{13}\\
+\bar k_{21} &amp; \bar k_{22} &amp; \bar k_{23}\\
+\end{bmatrix}\\
+\bar A-\bar B\bar K=
+\begin{bmatrix}
+-1-\bar k_{11} &amp; 7-\bar k_{12} &amp; -\bar k_{13}\\
+0 &amp; 0 &amp; 1\\
+-\bar k_{21} &amp; -2-\bar k_{22} &amp; 3-\bar k_{23}\\
+\end{bmatrix}
+A_d=
+\begin{bmatrix}
+-1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+0 &amp; -6 &amp; -5\\
+\end{bmatrix}\\
+\bar k_{11}=\bar k_{13}=\bar k_{21}=0\quad\bar k_{21}=7 \quad \bar k_{22}=4\quad\bar k_{23}=8\\
+K=\bar KT
+\]</span></p>
+<h2 id="lqr-direct-solve">LQR Direct Solve</h2>
+<p><span class="math display">\[
+\dot x=-3x+u\\
+J=\int_0^\infty(x^2+u^2)dt\\
+A^TP+PA+Q=PBR^{-1}B^TP\\
+-3p-3p+1=p^2\\
+p=-3+\sqrt {10}\\
+u=-R^{-1}B^TPx=(3-\sqrt{10})x
+\]</span></p>
+<h2 id="lqr-by-eigenvalues">LQR By Eigenvalues</h2>
+<p><span class="math display">\[
+\Gamma=
+\begin{bmatrix}
+A &amp; -BR^{-1}B^T\\
+-Q &amp; -A^T
+\end{bmatrix}=
+\begin{bmatrix}
+-3 &amp; -1\\
+-1 &amp; 3
+\end{bmatrix}\\
+\lambda_1=\sqrt{10}\quad\lambda_2=-\sqrt{10}\\
+\begin{bmatrix}
+v\\
+\mu
+\end{bmatrix}=
+\begin{bmatrix}
+1\\
+\sqrt{10}-3
+\end{bmatrix}\\
+P=[\mu_1][v_1]=\sqrt{10}-3
+\]</span></p>
+<h2 id="decoupling-by-state-feedback">Decoupling by State Feedback</h2>
+<p><span class="math display">\[
+\dot x=
+\begin{bmatrix}
+0 &amp; 1 &amp; 0\\
+1 &amp; 1 &amp; 1\\
+1 &amp; 0 &amp; 0\\
+\end{bmatrix}x+
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0\\
+0 &amp; -1\\
+\end{bmatrix}u\\
+y=\begin{bmatrix}
+1 &amp; 0 &amp; 1\\
+0 &amp; 1 &amp; 0
+\end{bmatrix}x\\
+i=1\quad c_1^TA^{0}B=
+\begin{bmatrix}
+0 &amp; 0
+\end{bmatrix}\quad
+c_1^TAB=
+\begin{bmatrix}
+1 &amp; 1
+\end{bmatrix}\quad\sigma_1=2\\
+i=2\quad c_2^TA^0B=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\quad\sigma_2=1\\
+B^*=
+\begin{bmatrix}
+c_1^TA^{\sigma_1-1}B\\
+c_2^TA^{\sigma_2-1}B
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}\\
+C^*=
+\begin{bmatrix}
+c_1^TA^{\sigma_1}\\
+c_2^TA^{\sigma_2}
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 2 &amp; 1\\
+1 &amp; 1 &amp; 1\\
+\end{bmatrix}\\
+F={B^*}^{-1}=
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; -1\\
+\end{bmatrix}K={B^*}^{-1}C^*=
+\begin{bmatrix}
+1 &amp; 1 &amp; 1\\
+0 &amp; 1 &amp; 0\\
+\end{bmatrix}\\
+H(s)=diag(s^{-\sigma_1},s^{-\sigma_2})=diag(s^{-2},s^{-1})
+\]</span></p>
+<h2 id="decoupling-by-state-feedback-with-pole-placement">Decoupling by State Feedback with Pole Placement</h2>
+<p><span class="math display">\[
+\dot x=
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -2
+\end{bmatrix}x+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1
+\end{bmatrix}u\\
+y=
+\begin{bmatrix}
+1 &amp; 0.5\\
+1 &amp; 1\\
+\end{bmatrix}\\
+i=1\quad c_1^TA^0B=
+\begin{bmatrix}
+1 &amp; 0.5
+\end{bmatrix}\quad \sigma_1=1\\
+i=2\quad c_2^TA^0B=
+\begin{bmatrix}
+1 &amp; 1
+\end{bmatrix}\quad \sigma_2=1\\
+H_d(s)=diag[(s+1)^{-1},(s+2)^{-1}]\\
+C^*=
+\begin{bmatrix}
+c_1^T\phi_{f1}(A)\\
+c_2^T\phi_{f2}(A)
+\end{bmatrix}=
+\begin{bmatrix}
+0.5 &amp; 0.5\\
+1 &amp; 1
+\end{bmatrix}\\
+B^*=
+\begin{bmatrix}
+c_1^TA^{\sigma_1-1}B\\
+c_2^TA^{\sigma_2-1}B
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0.5\\
+1 &amp; 1
+\end{bmatrix}\\
+F={B^*}^{-1}=
+\begin{bmatrix}
+2 &amp; -1\\
+-2 &amp; 2\\
+\end{bmatrix}K={B^*}^{-1}C^*=
+\begin{bmatrix}
+0 &amp; 0 \\
+1 &amp; 1 \\
+\end{bmatrix}\\
+\]</span></p>
+<h2 id="decoupling-by-output-feedback">Decoupling by Output Feedback</h2>
+<p><span class="math display">\[
+G(s)=
+\begin{bmatrix}
+\frac{1}{s+2} &amp; \frac{-1}{s(s+2)}\\
+\frac{5}{s+3} &amp; \frac{1}{s+3}
+\end{bmatrix}=
+\begin{bmatrix}
+\frac{1}{s(s+2)} &amp; 0\\
+0 &amp; \frac{1}{s+3}
+\end{bmatrix}
+\begin{bmatrix}
+s &amp; -1\\
+5 &amp; 1
+\end{bmatrix}\\
+K_d=adj(N_r)=
+\begin{bmatrix}
+1 &amp; 1\\
+-5 &amp; s
+\end{bmatrix}\\
+K_s=
+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; \frac{1}{s}
+\end{bmatrix}\\
+K=K_dK_s
+\]</span></p>
+<p>It is easy to see <span class="math inline">\(K_s\)</span> make the close loop transfer function stable and make the controller proper. <span class="math display">\[
+H(s)=\frac{GK}{I+GK}=diag[\frac{s+5}{s^2+3s+5},\frac{s+5}{s^2+4s+5}]
+\]</span></p>
+<h2 id="servo-control-with-transfer-function">Servo Control with Transfer Function</h2>
+<p><span class="math display">\[
+G(s)=\frac{s+3}{s-1}=\frac{N}{D}\\
+r(t)=\sin t\quad\text{Disturbance is step}\\
+Q=s(s^2+1)\\
+\tilde G(s)=\frac{s+3}{s(s^2+1)(s-1)}=\frac{s+3}{s^4-s^3+s^2-s}\\
+\tilde K(s)=\frac{B}{A}=\frac{B_0+B_1s+B_2s^2+B_3s^3}{A_0+A_1s+A_2s^2+A_3s^3}\\
+P_c=(s+3)^6(s+1)\\
+DQA+NB=P_c\\
+(s^4-s^3+s^2-s)(A_0+A_1s+A_2s^2+A_3s^3)+\\
+(s+3)(B_0+B_1s+B_2s^2+B_3s^3)=(s+3)^6(s+1)\\
+\tilde K(s)=\frac{465s^3+571s^2+769s+243}{s^3+20s^2+172s+363}\\
+K(s)=\frac{1}{Q}\tilde K=\frac{1}{s(s^2+1)}\frac{465s^3+571s^2+769s+243}{s^3+20s^2+172s+363}
+\]</span></p>
+<h2 id="servo-proof">Servo Proof</h2>
+<p><span class="math display">\[
+E_r(s)=R(s)-Y_r(s)\\
+=R(s)-\frac{GK}{1+GK}R(s)\\
+=\frac{R}{1+\frac{N}{DQ}\frac{B}{A}}\\
+=\frac{DA}{DQA+NB}Q\frac{N_r}{D_r}\\
+\text{Since all unstable roots of }D_r\text{ are cancelled by }Q(s)
+\]</span></p>
+<p><span class="math display">\[
+E_w(s)=R(s)-Y_w(s)\\
+=0-\frac{1}{1+GK}w(s)\\
+=-\frac{AD}{DQA+NB}Q\frac{N_w}{D_w}
+\]</span></p>
+<h2 id="multivariable-integral-control">Multivariable Integral Control</h2>
+$$ x=
+<span class="math display">\[\begin{bmatrix}
+0 &amp; 1\\
+0 &amp; 0\\
+\end{bmatrix}\]</span>
+x+
+<span class="math display">\[\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}\]</span>
+u+
+<span class="math display">\[\begin{bmatrix}
+1\\
+0
+\end{bmatrix}\]</span>
+w\ y=
+<span class="math display">\[\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}\]</span>
+x\
+<span class="math display">\[\begin{bmatrix}
+\dot x\\
+\dot v\\
+\end{bmatrix}\]</span>
+=A
+<span class="math display">\[\begin{bmatrix}
+x\\
+v\\
+\end{bmatrix}\]</span>
+<ul>
+<li>B u+B_w w+B_r r\ A=
+<span class="math display">\[\begin{bmatrix}
+A &amp; 0\\
+-C &amp; 0
+\end{bmatrix}\]</span>
+=
+<span class="math display">\[\begin{bmatrix}
+0 &amp; 1  &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+-1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; -1 &amp; 0 &amp; 0\\
+\end{bmatrix}\]</span>
+\ B=
+<span class="math display">\[\begin{bmatrix}
+B\\
+0\\
+\end{bmatrix}\]</span>
+=
+<span class="math display">\[\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+0 &amp; 0\\
+0 &amp; 0\\
+\end{bmatrix}\]</span>
+\ B_w=
+<span class="math display">\[\begin{bmatrix}
+B_w\\
+0\\
+\end{bmatrix}\]</span>
+=
+<span class="math display">\[\begin{bmatrix}
+1\\
+0\\
+0\\
+0\\
+\end{bmatrix}\]</span>
+\</li>
+</ul>
+B_r=
+<span class="math display">\[\begin{bmatrix}
+0\\
+I
+\end{bmatrix}\]</span>
+=
+<span class="math display">\[\begin{bmatrix}
+0 &amp; 0\\
+0 &amp; 0\\
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}\]</span>
+\ C=
+<span class="math display">\[\begin{bmatrix}
+C &amp; 0
+\end{bmatrix}\]</span>
+=
+<span class="math display">\[\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+\end{bmatrix}\]</span>
+<p>$$</p>
+<h2 id="state-estimation-full-order">State Estimation Full Order</h2>
+<p>Poles are 3-5 times faster than control poles. <span class="math display">\[
+\dot x=
+\begin{bmatrix}
+0 &amp; 1\\
+0 &amp; 0
+\end{bmatrix}x+
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}u\\
+y=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}x\\
+\Phi_o(s)=(s+5)^2=s^2+10s+25\\
+\Phi_o(A)=A^2+10A+25I=
+\begin{bmatrix}
+25 &amp; 10\\
+0 &amp; 25\\
+\end{bmatrix}\\
+M_o=
+\begin{bmatrix}
+C\\
+CA
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1
+\end{bmatrix}\\
+L=\Phi_o(A)M_o^{-1}
+\begin{bmatrix}
+0\\
+1\\
+\end{bmatrix}=\begin{bmatrix}
+10\\
+25
+\end{bmatrix}\\
+\dot {\hat x}=A\hat x+Bu+L(y-\hat y)
+\]</span></p>
+<h2 id="reduced-order-observer">Reduced Order Observer</h2>
+<p><span class="math display">\[
+\dot x=Ax+Bu\\
+y=Cx\\
+A=
+\begin{bmatrix}
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 0
+\end{bmatrix}
+B=
+\begin{bmatrix}
+0\\
+1\\
+0
+\end{bmatrix}
+C=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+\end{bmatrix}\\
+\begin{bmatrix}
+C\\T
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+t_1 &amp; t_2 &amp; t_3
+\end{bmatrix}\\
+t_3\neq0\\
+DT-TA+GC=0\\
+d[t_1\quad t_2\quad t_3]-[t_1\quad t_2\quad t_3]
+\begin{bmatrix}
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; 0
+\end{bmatrix}+[g_1\quad g_2]
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+1 &amp; 1 &amp; 0\\
+\end{bmatrix}=0\\
+\begin{cases}
+dt_1-t_3+g_1+g_2=0\\
+dt_2-t_1+g_2=0\\
+dt_3-t_2=0\\
+t_3\neq0\\
+\end{cases}\\
+d=-2\quad g_1=10\quad g_2=1\\
+t_1=5\quad t_2=-2\quad t_3=1\\
+e=TB=-2\\
+\hat x=
+\begin{bmatrix}
+C\\T
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+y\\ \xi
+\end{bmatrix}\\
+\hat \xi=-2\xi-2u+[10\quad 1]y
+\]</span></p>
+<h2 id="lyapunov-instability-theorem">Lyapunov Instability Theorem</h2>
+<p>The system is not asymptotically stable. If P is negative definite, the system is unstable. We know that Q is identity matrix therefore it is positive definite, that mean <span class="math inline">\(\dot V(x(t))&lt;0\)</span>. If P is negative definite, there is <span class="math inline">\(w\)</span> such that <span class="math inline">\(V(w)&lt;V(0)\)</span> then the trajectory of <span class="math inline">\(\dot x\)</span> does not converge to zero. To show it, we note that <span class="math inline">\(V(x(t))&lt;V(x(0))=V(w)&lt;V(0)=0\)</span> for all <span class="math inline">\(t\ge0\)</span>. That means the system will diverge and be unstable. If P is positive semi-definite, the system is marginally stable but not asymptotically stable. To show that, we know that Q is identity matrix therefore it is positive definite, that mean <span class="math inline">\(\dot V(x(t))&lt;0\)</span>. If P is positive semi-definite, there is <span class="math inline">\(w\)</span> such that <span class="math inline">\(V(w)=V(0)\)</span> then the trajectory of <span class="math inline">\(\dot x\)</span> may converge to w instead of origin. Therefore, the system is marginally stable.</p>
+<h2 id="impulse-response-gtsin-omega-t">Impulse Response <span class="math inline">\(g(t)=\sin \omega t\)</span></h2>
+<p>The system is not BIBO stable and not asymptotically stable in the sense of Lyapunov.</p>
+<p>To show the system is not BIBO stable. we check <span class="math inline">\(\int_0^\infty|g(t)|dt=\infty\)</span> .If we choose the bounded input according to <span class="math display">\[
+u(t-\tau)=
+\begin{cases}
+1,&amp;if\space g(\tau)&gt;0\\
+0,&amp;if\space g(\tau)=0\\
+-1,&amp;if\space g(\tau)&lt;0\\
+\end{cases}
+\]</span> Then <span class="math inline">\(|y(t)|=|\int_0^tg(\tau)u(t-\tau)d\tau|=\int_0^t|g(\tau)|d\tau\)</span> and <span class="math inline">\(\int_0^\infty|g(t)|dt=\infty\)</span> .This means output is unbounded under a bounded input. Therefore, the system is not BIBO stable.</p>
+<p>To show the system is not asymptotically stable in the sense of Lyapunov.</p>
+<p>If the system is asymptotically stable in the sense of Lyapunov, that implies all eigenvalues of A have negative real parts. On the other hand, BIBO stability is defined for the transfer Matrix of <span class="math display">\[
+y(s)=G(s)u(s)=[C(sI-A)^{-1}B+D]u(s)
+\]</span> and poles of G(s) are eigenvalues of A. Hence, all poles of <span class="math inline">\(G(s)\)</span> have negative real parts and this established that the system is BIBO stable. Since asymptotically stable in the sense of Lyapunov implies BIBO stable. Therefore, from the contrapositive, not BIBO stable implies not asymptotically stable in the sense of Lyapunov.</p>
+<h2 id="reachability-homework">Reachability Homework</h2>
+<p><span class="math display">\[
+\dot x=
+\begin{bmatrix}
+-1 &amp; 1\\
+0 &amp; -2
+\end{bmatrix} x+
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}u\\
+M_c=\begin{bmatrix}
+B &amp; AB
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; -1\\
+0 &amp; 0\\
+\end{bmatrix}\\
+\text{The system is uncontrollable}\\
+\text{The set of reachable state R}\\
+\text{R=Range space of }W(0,l)\\
+W(0,2)=\int_0^2e^{A\tau}BB^Te^{A^{T}\tau}d\tau\\
+=
+\begin{bmatrix}
+-\frac{1}{2}e^{-4}+\frac{1}{2} &amp; 0\\
+0 &amp; 0
+\end{bmatrix}\\
+[2\quad0]^T \text{ is in the range space of W(0,2)}\\
+\text{Therefore, it is possible to reach }[2\quad0]^T\\
+u(t)=B^Te^{A^{T}(l-t)}\alpha\\
+x_d=W(0,l)\alpha\\
+\text{We can prove}\\
+x(l)=\int_0^le^{A(l-t)}Bu(t)dt\\
+=\int_0^le^{A(l-t)}BB^Te^{A^T(l-t)}\alpha dt\\
+=W(0,l)\alpha=x_d
+\]</span></p>
+<h2 id="transformation">Transformation</h2>
+<p><span class="math display">\[
+A_1=TA_2T^{-1}\\
+B_1=TB_2\\
+M_{c1}=
+\begin{bmatrix}
+B_1  &amp; A_1B_1
+\end{bmatrix}\\
+=\\
+\begin{bmatrix}
+TB_2 &amp; TA_2B_2
+\end{bmatrix}\\
+=TM_{c2}\\
+T=M_{c1}M_{c2}^{-1}
+\]</span></p>
+<h2 id="time-delay">Time Delay</h2>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/12/22/Linear System/12. Errors/" rel="next" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/12/22/Linear System/2. Review of Linear Algebra/" rel="prev" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pole-placement"><span class="nav-text">Pole Placement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#siso"><span class="nav-text">SISO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unity-rank"><span class="nav-text">Unity Rank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#full-rank"><span class="nav-text">Full Rank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lqr-direct-solve"><span class="nav-text">LQR Direct Solve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lqr-by-eigenvalues"><span class="nav-text">LQR By Eigenvalues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#decoupling-by-state-feedback"><span class="nav-text">Decoupling by State Feedback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#decoupling-by-state-feedback-with-pole-placement"><span class="nav-text">Decoupling by State Feedback with Pole Placement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#decoupling-by-output-feedback"><span class="nav-text">Decoupling by Output Feedback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#servo-control-with-transfer-function"><span class="nav-text">Servo Control with Transfer Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#servo-proof"><span class="nav-text">Servo Proof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multivariable-integral-control"><span class="nav-text">Multivariable Integral Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state-estimation-full-order"><span class="nav-text">State Estimation Full Order</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduced-order-observer"><span class="nav-text">Reduced Order Observer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lyapunov-instability-theorem"><span class="nav-text">Lyapunov Instability Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#impulse-response-gtsin-omega-t"><span class="nav-text">Impulse Response \(g(t)=\sin \omega t\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reachability-homework"><span class="nav-text">Reachability Homework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transformation"><span class="nav-text">Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time-delay"><span class="nav-text">Time Delay</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
