@@ -215,589 +215,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/" class="post-title-link" itemprop="url">5. Basic Nonlinear Programming</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-31 20:41:53" itemprop="dateModified" datetime="2019-10-31T20:41:53+08:00">2019-10-31</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/" class="post-meta-item leancloud_visitors" data-flag-title="5. Basic Nonlinear Programming" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="basic-nonlinear-programming">5. Basic Nonlinear Programming</h1>
-<p>This chapter is concerned with the following multi-dimensional general constrained minimization problem, <span class="math display">\[
-\begin{array}{rCll}
-\min &amp; f(x)\\
-\text{subject to}&amp; g_i(x)=0,&amp; i=1,2,\dots,m\\
-&amp;h_j(x)\le0,&amp; j=1,2,\dots,p\\
-&amp;x\in\mathbb R^n,
-\end{array}
-\]</span> where <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> are continuous functions, for <span class="math inline">\(i=1,2\dots,m\)</span> and <span class="math inline">\(j=1,2,\dots,p\)</span>. The feasible set of the problem is the following subset of <span class="math inline">\(\mathbb R^n\)</span>, <span class="math display">\[
-S=\left\{
-x\in\mathbb R^n\;\; 
-\begin{array}{|rl}
-\;g_i(x)=0,&amp;i=1,2,\dots,m
-\\
-h_j(x)\le0,&amp;j=1,2,\dots,p
-\end{array}
-\right\}.
-\]</span> <span class="math inline">\(S\)</span> is a closed set. The KKT necessary conditions are very useful in locating possible candidates for a global minimizer.</p>
-<h2 id="regular-point">5.1 Regular point</h2>
-<p><strong>Definition</strong> (Active constraint)</p>
-<p>Let <span class="math inline">\(x^*\in S\)</span>. An inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is said to be active at <span class="math inline">\(x^*\)</span> if <span class="math inline">\(h_j(x^*)=0\)</span>. Otherwise, it is said to be inactive at <span class="math inline">\(x^*\)</span>. Graphically, if the constraint is active, then the point lies on the boundary defined by the condition <span class="math inline">\(h_j(x)=0\)</span>.</p>
-<p><strong>Definition</strong> (Regular point)</p>
-<p>Let <span class="math inline">\(x^* \in S\)</span> be a feasible point. Let <span class="math display">\[
-J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\},
-\]</span> be the index set of active constraints at <span class="math inline">\(x^*\)</span>. Suppose the set of gradient vectors <span class="math display">\[
-\{\nabla g_i(x^*)\;|\; i=1,2,\dotsm,m\}\cup\{\nabla h_j(x^*)\;|\;j\in J(x^*)\}
-\]</span> are linearly independent. Then we say <span class="math inline">\(x^*\)</span> is a regular point, or the regularity condition holds at <span class="math inline">\(x^*\)</span>.</p>
-<p>The above condition is called <strong>constraint qualification</strong> at <span class="math inline">\(x^*\in S\)</span>. There are other types of constraint qualifications. In this chapter, we shall only consider the above linearly independence constraint qualification (LICQ).</p>
-<p>In particular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\emptyset\)</span>. We shall call a point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\emptyset\)</span> a regular point.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li><p>For an equality constraint nonlinear programming problem without inequality constraints, <span class="math inline">\(x^*\)</span> is a regular point if and only if the set of gradient vectors <span class="math display">\[
-\{\nabla g_i(x^*)\;i=1,2,\dotsm,m\}
-\]</span> is linearly independent.</p></li>
-<li><p>Suppose an NLP contains only inequality constraints and no equality constraint. Then <span class="math inline">\(x^*\)</span> is a regular point if and only if the set of gradient vectors <span class="math display">\[
-\{\nabla h_j(x^*)\;j\in J(x^*)\}
-\]</span> is linearly independent. In partucular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\emptyset\)</span>. We shall call the point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\emptyset\)</span> a regular point.</p></li>
-</ol>
-<p><strong>Example</strong></p>
-<p>Consider the constraints, <span class="math display">\[
-\begin{array}{rcl}
-g_1(x)&amp;=&amp; x_1-x_2+5x_3-26=0\\
-h_1(x)&amp;=&amp; x_1+2x_2^3-4\le 0\\
-h_2(x)&amp;=&amp; (x_1-3)^3-4x_2^2+x_3\le 0\\
-h_3(x)&amp;=&amp; x_1^2+x_2^2-x_3-4\le 0.
-\end{array}
-\]</span> Show that the feasible point <span class="math inline">\(x^*=[2;1;5]\)</span> is a regular point.</p>
-<p>Solution</p>
-<p>Equality constraint <span class="math inline">\(g_1(x^*)=0\)</span>.</p>
-<p>Active inequality constriants <span class="math inline">\(h_1(x^*)=0\)</span> and <span class="math inline">\(h_2(x^*)=0\)</span>.</p>
-<p>The gradient vectors at <span class="math inline">\(x^*\)</span> are <span class="math display">\[
-\begin{array}{rcl}
-[\nabla g_1(x^*)\; \nabla h_1(x^*)\;\nabla h_2(x^*)]=
-\begin{bmatrix}
-1&amp;1&amp;3\\
--1&amp;6&amp;-8\\
-5&amp;0&amp;1
-\end{bmatrix}
-\end{array}.
-\]</span> Tha matrix has rank 3, thus is linearly independent. Therefore, <span class="math inline">\(x^*\)</span> is a regular point.</p>
-<h2 id="karush-kuhn-tucker-necessary-conditions">5.2 Karush-Kuhn-Tucker necessary conditions</h2>
-<p>We state the <strong>KKT necessary conditions</strong> for a local minimizer <span class="math inline">\(x^*\)</span> at which the regularity condition holds.</p>
-<p><strong>Theorem</strong> (KKT first order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> for all <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, has continuous first partial derivatives on the feasible set <span class="math inline">\(S\)</span>. Suppose <span class="math inline">\(x^*\in S\)</span> is a <strong>regular point</strong>.</p>
-<p>If <span class="math inline">\(x^*\)</span> is a local minimizer, then there exists (unique) scalars <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> such that the following conditions hold, <span class="math display">\[
-\begin{array}{rCll}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)&amp;=&amp;0\\
-\mu_j^*&amp;\ge&amp;0,  &amp;\forall j=1,\dotsm,p\\
-\mu_j^*&amp;=&amp;0,&amp;\forall j\notin J(x^*),
-\end{array}
-\]</span> where <span class="math inline">\(J(x^*)\)</span> is the index set of active inequality constraints at <span class="math inline">\(x^*\)</span>.</p>
-<p><strong>Theorem</strong> (KKT second order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,\)</span> and <span class="math inline">\(h_j\)</span>, for all <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, have continuous second partial derivatives on <span class="math inline">\(S\)</span>. Let <span class="math display">\[
-H_L(x^*)=H_f(x^*)+\sum_{i=1}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p \mu_j^*H_{h_j}(x^*).
-\]</span> If <span class="math inline">\(x^*\)</span> is a local minimizer, then <span class="math display">\[
-y^TH_L(x^*)y\ge 0,
-\]</span> for all <span class="math inline">\(y\in T(x^*)\)</span>, where <span class="math display">\[
-T(x^*)=
-\left\{
-y\in\mathbb R^n \;
-\begin{array}{|rl}
-\nabla g_i(x^*)^Ty=0, &amp;i=1,2,\dotsm,m\\
-\; \nabla h_j(x^*)^T y=0, &amp; j\in J(x^*).
-\end{array}
-\right\}.
-\]</span> <strong>Remark</strong> (On the KKT necessary conditions)</p>
-<ol type="1">
-<li><p>We say that <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point whenever <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT first order conditions. KKT points are some times also called KKT solutions.</p></li>
-<li><p>The scalar <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> are called <strong>Lagrange multipliers</strong>.</p></li>
-<li><p>The conditions <span class="math inline">\(\mu_j^*=0,\;\forall j\notin J(x^*)\)</span> means that the Lagrange multiplier corresponding to the inactive constraint must be zero. Since <span class="math inline">\(h_j(x^*)&lt;0\;\forall j\notin J(x^*)\)</span> and <span class="math inline">\(h_j(x^*)=0\;\forall j\in J(x^*)\)</span>, the condition <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> is equivalent to <span class="math display">\[
-\mu_j^*h_j(x^*)=0,\quad \forall j=1,\dotsm,p.
-\]</span> This is called the <strong>complementary slackness condition</strong>. The name is derived from the fact that for each <span class="math inline">\(j\)</span>, whenever the constraint <span class="math inline">\(h_j(x^*)\le 0\)</span> is slack, i.e., <span class="math inline">\(h_j(x^*)&lt;0\)</span>, the constraint <span class="math inline">\(\mu_j^*\ge 0\)</span> must not be slack, and vice versa.</p></li>
-<li><p>The set <span class="math inline">\(T(x^*)\)</span> consists of vectors in the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. To see this, note that the normal space <span class="math inline">\(N(x^*)\)</span> to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace spanned by the set of normal vectors <span class="math display">\[
-\nabla g_1(x^*),\nabla g_1(x^*),\dotsm\nabla g_m(x^*),\quad \nabla h_j(x^*)\;\forall j\in J(x^*).
-\]</span> Now the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace of vectors that are orthogonal to all the normal vectors at <span class="math inline">\(x^*\)</span>. <span class="math display">\[
-\text{Tangent} (x^*)=\{y\in\mathbb R^n\;|\; u^Ty=0,\forall u\in N(x^*)\}
-\]</span></p></li>
-<li><p>In deciding whether <span class="math inline">\(x^*\)</span> is a local optimizer, the definiteness of <span class="math inline">\(H_L(x)\)</span> is tested <strong>only</strong> for vectors in <span class="math inline">\(T(x^*)\)</span>.</p></li>
-</ol>
-<p>The next result provides an easier check for the KKT second order conditions.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(S\)</span> be the feasible set. Suppose <span class="math inline">\(x^*\in S\)</span> and <span class="math inline">\(J(x^*)\)</span> is the index set of active constraints at <span class="math inline">\(x^*\)</span>.</p>
-<p>Consider the matrix <span class="math display">\[
-\mathcal D(x^*)=\left(\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*),[\nabla h_j(x^*)\;|\;j\in J(x^*)]\right).
-\]</span> Then <span class="math display">\[
-y^TH_L(x^*)y\ge 0,\quad \forall y\in T(x^*)\iff Z(x^*)^TH_L(x^*)Z(x^*)\in \mathbb S_+^n,
-\]</span> where <span class="math inline">\(Z(x^*)\in \mathbb R^{n\times q}\)</span> is a matrix whose columns form a basis of the null space of <span class="math inline">\(\mathcal D(x^*)^T\)</span>.</p>
-<p>Proof.</p>
-<p>Note that <span class="math inline">\(T(x^*)\)</span> is the null space of the matrix <span class="math inline">\(\mathcal D(x^*)^T\)</span>. So we have <span class="math inline">\(T(x^*)=\{Z(x^*)u\;|\; u\in\mathbb R^q\}\)</span>. Thus <span class="math display">\[
-\begin{array}{rlc}
-y^TH_L(x^*)y\ge 0,&amp;\forall y\in T(x^*)&amp;\iff\\
-u^TZ(x^*)^TH_L(x^*)Z(x^*)u\ge 0, &amp; \forall u\in\mathbb R^q&amp;\iff\\
-Z(x^*)^TH_L(x^*)Z(x^*)\in\mathbb S_+^N.
-\end{array}
-\]</span></p>
-<h2 id="examples-to-illustrate-the-kkt-necessary-conditions.">5.3 Examples to illustrate the KKT necessary conditions.</h2>
-<p><strong>Corollary</strong></p>
-<p>Suppose the following two conditions hold,</p>
-<ol type="1">
-<li>A global minimizer <span class="math inline">\(x^*\)</span> is known to exist.</li>
-<li><span class="math inline">\(x^*\)</span> is a regular point.</li>
-</ol>
-<p>Then <span class="math inline">\(x^*\)</span> is a KKT point, i.e. there exists <span class="math inline">\(\lambda^*\in \mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that the following conditions hold <span class="math display">\[
-\begin{array}{rCl}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)=0\\
-g_i(x^*)=0,\;i=1,2,\dotsm,m\\
-\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p.
-\end{array}
-\]</span> <strong>Example</strong> (Projection onto a simplex)</p>
-<p>Given <span class="math inline">\(g\in\mathbb R^n\)</span> and <span class="math inline">\(b&gt;0\)</span>. Consider the problem, <span class="math display">\[
-\min\left\{f(x)=\frac{1}{2}||x-g||^2\;|\; e^Tx=b,x\ge 0 \right\},
-\]</span> where <span class="math inline">\(e\)</span> is the vector of all ones. Its optimal solution <span class="math inline">\(x^*\)</span> can be computed analytically.</p>
-<p>Solution</p>
-<p>Assume <span class="math inline">\(g_1\ge g_2\ge \dotsm\ge g_n\)</span>.</p>
-<ol type="1">
-<li><p>Claim that the optimal solution <span class="math inline">\(x^*\)</span> must also satisfy the condition <span class="math inline">\(x_1^*\ge x_2^*\ge\dotsm\ge x_n^*\)</span>. To prove this claim, we suppose on the contrary that there exists indices <span class="math inline">\(i&lt;j\)</span> such that with <span class="math inline">\(x_i^*&lt;x_j^*\)</span>. Consider a new point <span class="math inline">\(\bar x\)</span> defined by (Just switch two elements) <span class="math display">\[
-\bar x=\begin{cases}
-x_k^*&amp;\text{if }k\neq i,j\\
-x_j^*&amp;\text{if }k=i\\
-x_i^*&amp;\text{if }k=j
-\end{cases}.
-\]</span> Then it follows <span class="math display">\[
-\begin{array}{rcl}
-f(\bar x)-f(x^*)&amp;=&amp;\frac{1}{2}\left((x_i^*-g_j)^2+(x_j^*-g_i^2)\right)-\frac{1}{2}\left((x_i^*-g_i)^2+(x_j^*-g_j^2)\right)\\
-&amp;=&amp;(g_i-g_j)(x_i^*-x_j^*)\\
-&amp;\le&amp; 0.
-\end{array}
-\]</span> Hence <span class="math inline">\(f(\bar x)\le f(x^*)\)</span>. Since <span class="math inline">\(x^*\)</span> is a global minimizer, this contradicts the fact that <span class="math inline">\(x^*\)</span> is unique. Therefore, <span class="math inline">\(x_1^*\ge x_2^*\ge\dotsm\ge x_n^*\)</span> holds.</p></li>
-<li><p>Then the KKT conditions are given by, <span class="math display">\[
-\begin{array}{rcl}
-x^*-g-\mu-\lambda e&amp;=&amp;0,\quad \mu\ge 0,\;\lambda\in \mathbb R,\; x^*\ge 0\\
-e^Tx^*&amp;=&amp;b\\
-\mu x^*&amp;=&amp;0.
-\end{array}
-\]</span> The first equation implies that <span class="math inline">\(x^*=g+\mu+\lambda e\)</span>.</p>
-<p>Now if <span class="math inline">\(g_i+\lambda &gt;0\)</span>, let <span class="math inline">\(x_i^*=g_i+\lambda\)</span> and <span class="math inline">\(\mu_i=0\)</span>. If <span class="math inline">\(g_i+\lambda \le 0\)</span>, let <span class="math inline">\(x_i^*=0\)</span> and <span class="math inline">\(\mu_i=-(g_i+\lambda)\)</span>.</p>
-<p>Now suppose <span class="math inline">\(x_i^*&gt;0\)</span> for <span class="math inline">\(i=1,\dotsm,r\)</span> and <span class="math inline">\(x^*_i=0\)</span> for <span class="math inline">\(i=r+1,\dotsm,n\)</span>. Then we have <span class="math display">\[
-b=e^Tx=\sum_{i=1}^rx^*_i=\sum_{i=1}^r g_i+\lambda r\implies \lambda =\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right).
-\]</span> Now we need to find the largest <span class="math inline">\(r\)</span> denoted as <span class="math inline">\(\bar r\)</span> such that <span class="math display">\[
-\bar r = \max \{r\;|\;x_r\ge 0\},
-\]</span> where <span class="math inline">\(x_r=g_r+\lambda=g_r+\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right)\)</span>.</p></li>
-</ol>
-<p>Finally, it follows <span class="math display">\[
-   x_i^*=\begin{cases} g_i+\lambda &amp; \text{if } i\le \bar r\\0&amp; \text{if }i&gt;\bar r.\end{cases}
-\]</span></p>
-<ol start="3" type="1">
-<li>If the components of <span class="math inline">\(g\)</span> is not sorted in a descending order, we can find a permutation matrix <span class="math inline">\(P\)</span> such that <span class="math inline">\(\hat g=Pg\)</span> has its components arranged in a descending order. Then the optimal solution <span class="math inline">\(x^*\)</span> is given by <span class="math inline">\(x^*=P^T\hat x^*\)</span>.</li>
-</ol>
-<h2 id="interpretation-of-the-lagrange-multipliers">5.4 Interpretation of the Lagrange multipliers</h2>
-<p>The Lagrange multipliers <span class="math inline">\(\lambda_i^*(i=1,\dotsm,m)\)</span>, <span class="math inline">\(\mu_j^*(j=1,\dotsm,p)\)</span> associated with the local optimizer <span class="math inline">\(x^*\)</span> in the KKT theorem measures the sensitivity of <span class="math inline">\(f(x^*)\)</span> to a small perturbation of the corresponding constraints <span class="math inline">\(g_i(x)=0\)</span> or <span class="math inline">\(h_j(x)\le 0\)</span>. In this section, we shall justify this interpretation for an equality constrained NLP. Consider the following equality constrained NLP, <span class="math display">\[
-\begin{array}{rll}
-\min&amp;f(x)\\
-\text{subject to} &amp;g_i(x)=0&amp;\forall i=1,2,\dotsm,m.
-\end{array}
-\]</span> Suppose the constraints are relaxed as follows, <span class="math display">\[
-\hat g_i(x;c)=g_i(x)+c_i,\quad i=1,2,\dotsm,m.
-\]</span> Let <span class="math inline">\(C\subseteq \mathbb R^n\)</span> be an open neighborhood of <span class="math inline">\(0\)</span>. For each <span class="math inline">\(c\in C\)</span>, suppose there is a local minimizer <span class="math inline">\(x^*(c)\)</span> of <span class="math inline">\(f\)</span> on the constraint set <span class="math display">\[
-\{x\in\mathbb R^n\;|\; \hat g_i(x;c)=0,\;\forall i=1,\dotsm,m\}.
-\]</span> Note that <span class="math inline">\(x^*(0)=x^*\)</span> and <span class="math inline">\(\lambda^*(0)=\lambda^*\)</span>. Assume the regularity condition holds at each <span class="math inline">\(x^*(c)\)</span>. Now by the KKT theorem, there exists <span class="math inline">\(\lambda^*(c)\in\mathbb R^m\)</span> such that <span class="math display">\[
-\nabla f(x^*(c))+\sum_{i=1}^m\lambda_i^*(c)\nabla \hat g_i(x^*(c))=0.
-\]</span> Note that <span class="math display">\[
-\frac{\partial \hat g_i}{x_l}(x)=\frac{\partial g_i}{x_l}(x),
-\]</span> thus for each <span class="math inline">\(1\le l\le n\)</span>, we have <span class="math display">\[
-\frac{\partial f}{\partial x_l}(x^*(c))+\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))=0.
-\]</span> <strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(F(c)=f(x^*(c))\)</span>. Suppose that <span class="math inline">\(F(c)\)</span> changes smoothly with respect to changes in <span class="math inline">\(c\)</span>. Then <span class="math display">\[
-\frac{\partial F(c)}{\partial c_k}=\lambda^*_k(c),\quad \forall k=1,\dotsm,m.
-\]</span> Proof. <span class="math display">\[
-\begin{array}{rcl}
-\frac{\partial F(c)}{\partial c_k}&amp;=&amp;\sum_{l=1}^n \frac{\partial f}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\\
-&amp;=&amp;\sum_{l=1}^n\left[-\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))\right]\frac{\partial x_l(c)}{\partial c_k}\\
-&amp;=&amp;-\sum_{i=1}^m \lambda_i^*(c)\left[\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\right].
-\end{array}
-\]</span> Since <span class="math inline">\(g_i(x^*(c))=-c_i\)</span> for all <span class="math inline">\(i=1,\dotsm,m\)</span>, we have <span class="math display">\[
-\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}=-\frac{\partial c_i}{\partial c_k}=\begin{cases}0&amp;\text{if }k\neq i\\-1&amp;\text{if }k=i\end{cases}.
-\]</span> Therefore, we have <span class="math display">\[
-\frac{\partial F(c)}{c_k}=\lambda_k^*(c).
-\]</span> <strong>Remark</strong></p>
-<ol type="1">
-<li>Proposition says that the small change in the <span class="math inline">\(k\)</span>th constraint from <span class="math inline">\(g_k(x)=0\)</span> to <span class="math inline">\(g_k(x)+c_k=0\)</span> will change the optimal objective value <span class="math inline">\(f(x^*)\)</span> at the rate of <span class="math inline">\(\lambda_k^*\)</span>. That is the new optimal objective value is given approximately by <span class="math inline">\(f(x^*)+\lambda_k^*c_k\)</span>.</li>
-<li>It is also applied to the inequality constraints.</li>
-<li>At an optimal solution, a decision-maker can decide whether it is worth to relax the <span class="math inline">\(k\)</span>th constraint based on the multiplier values <span class="math inline">\(\lambda^*_k\)</span> and <span class="math inline">\(\mu^*_k\)</span>.</li>
-</ol>
-<p><strong>Example</strong></p>
-<p>From the example, the global minimizer <span class="math inline">\(x^*=[0;1]\)</span> with multiplier <span class="math inline">\(\mu_3=\frac{1}{2}\)</span>. Thus relaxing the constraint to <span class="math inline">\(g_i(x)+\epsilon\le 0\)</span> would change the objective value by <span class="math inline">\(\frac{1}{2}\epsilon\)</span>.</p>
-<h2 id="kkt-sufficient-conditions">5.5 KKT sufficient conditions</h2>
-<p>When a KKT point satisfies a stronger second order condition, we obtain a strict local minimizer. Note that the sufficient conditions for a strict local minimizer <strong>do not</strong> require any regularity conditions.</p>
-<p><strong>Theorem</strong> (KKT sufficient conditions)</p>
-<p>Let <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span> be functions with continuous second partial derivatives.</p>
-<p>Let <span class="math inline">\(S\)</span> be the feasible set of NLP. Suppose <span class="math inline">\(x^*\in S\)</span> is a KKT point, i.e., there exist <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that <span class="math display">\[
-\begin{array}{rCl}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)&amp;=&amp;0\\
-g_i(x^*)&amp;=&amp;0,\;\forall i=1,2,\dotsm,m\\
-\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)&amp;=&amp;0,\;\forall j=1,2,\dotsm,p.
-\end{array}
-\]</span> Let <span class="math display">\[
-H_L(x^*)=H_f(x^*)+\sum_{i1=}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p\mu_{j}^*H_{h_{j}}(x^*).
-\]</span> Suppose <span class="math display">\[
-y^TH_L(x^*)y&gt;0,\;\forall y\in T(x^*)-\{0\},
-\]</span> where <span class="math inline">\(T(x^*)\)</span> is the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. Then <span class="math inline">\(x^*\)</span> is a <strong>strict local minimizer</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>Suppose <span class="math display">\[
-y^TH_L(x^*)y&lt;0,\;\forall y\in T(x^*)-\{0\},
-\]</span> where <span class="math inline">\(T(x^*)\)</span> is the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. Then <span class="math inline">\(x^*\)</span> is a <strong>strict local maximizer</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p><strong>Example</strong></p>
-<p>Consider the following nonlinear programming problem, <span class="math display">\[
-\begin{array}{rl}
-\min &amp; f(x)=-(x_1+x_2)\\
-\text{subject to} &amp; h(x)=1-x_1x_2\le 0,\;x\in\mathbb R^2.
-\end{array}
-\]</span> Verify that <span class="math inline">\(x^*=[-1;-1]\)</span> is a strict local minimizer.</p>
-<p>By using the KKT condition, we have <span class="math display">\[
-\begin{array}{rcl}
-\nabla f(x^*)+\mu^*\circ \nabla h(x^*)&amp;=&amp;0\\
-1-x_1^*x_2^*\le 0,\quad \mu^* &amp;\ge &amp;0.
-\end{array}
-\]</span> That is <span class="math inline">\(\mu^*=1\)</span>. <span class="math inline">\(([-1;-1],1)\)</span> is a KKT point.</p>
-<p>From the second order KKT condition, it follows <span class="math display">\[
-\begin{array}{rcl}
-H_L(x^*)&amp;=&amp;H_f(x^*)+\sum_{i=1}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p \mu_j^*H_{h_j}(x^*)\\
-&amp;=&amp; 0+0+\begin{bmatrix}0&amp;-1\\-1&amp;0\end{bmatrix}\\
-&amp;=&amp;\begin{bmatrix}0&amp;-1\\-1&amp;0\end{bmatrix}.
-\end{array}
-\]</span> For <span class="math inline">\(Z(x^*)\)</span>, it follows <span class="math inline">\(\mathcal D(x^*)=[1;1]\)</span>. Then <span class="math display">\[
-\text{Null}(\mathcal D(x^*)^T)=\text{Null}([1,1])
-=\left\{\begin{bmatrix}x_1\\x_2\end{bmatrix}\;\Bigg|\;x_1+x_2=0\right\}
-=\left\{\begin{bmatrix}x_1\\-x_1\end{bmatrix}\right\}.
-\]</span> Then we can choose <span class="math inline">\(Z(x*)=[1;-1]\)</span>, and it follows <span class="math display">\[
-Z(x^*)^TH_L(x^*)Z(x^*)=[1,-1]\begin{bmatrix}0&amp;-1\\-1&amp;0\end{bmatrix}\begin{bmatrix}1\\-1\end{bmatrix}=2\ge 0.
-\]</span> Hence, <span class="math inline">\(x^*\)</span> is a strict local minimizer.</p>
-<h2 id="kkt-conditions-for-constrained-convex-programming-problems">5.6 KKT conditions for constrained convex programming problems</h2>
-<p>Convexity is a very strong condition. In fact, for a convex problem, a feasible point <span class="math inline">\(x^*\)</span> is a KKT point implies it is a global minimizer.</p>
-Consider the following convex programming problem, $$
-<span class="math display">\[\begin{array}{rCl}
-\min&amp;f(x)\\
-\text{subject to} &amp; g_i(x)=a_i^Tx-b_i=0,&amp;i=1,\dotsm,m\\
-&amp;h_j(x)\le 0,&amp;j=1,\dotsm,p
-
-\end{array}\]</span>
-<span class="math display">\[
-where $f,h_j:\mathbb R^n\rightarrow \mathbb R$ are convex functions. It can be expressed as
-\]</span>
-<span class="math display">\[\begin{array}{rCl}
-\min&amp;f(x)\\
-\text{subject to} &amp; Ax-b=0\\
-&amp;h_j(x)\le 0,&amp;j=1,\dotsm,p
-
-\end{array}\]</span>
-<p>$$ <strong>Theorem</strong> (KKT point is an optimal solution under convexity)</p>
-<p>Suppose <span class="math inline">\(f,h_j:\mathbb R^n\rightarrow \mathbb R,\;j=1,\dotsm,p\)</span> are <strong>differentiable convex functions</strong>, and <span class="math inline">\(g_i(x)=a_i^Tx-b_i,\;i=1,\dotsm,m\)</span>. Let <span class="math inline">\(S\)</span> be the feasible region of NLP. If <span class="math inline">\(x^*\in S\)</span> is a KKT point, then <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>Proof.</p>
-<p>If <span class="math inline">\(x^*\)</span> is a KKT point, then we need to prove <span class="math inline">\(f(x)\ge f(x^*)\)</span>.</p>
-<p>Since we have <span class="math display">\[
-\begin{array}{rcll}
-f(y)&amp;\ge&amp; f(x)+\nabla f(x)^T(y-x)\;\forall x,y\in\mathbb R^n&amp;\implies \\
-f(x)&amp;\ge&amp; f(x^*)+\nabla f(x^*)(x-x^*).
-\end{array}
-\]</span> Therefore, to prove <span class="math inline">\(f(x)\ge f(x^*)\)</span>, we only need to prove <span class="math display">\[
-\nabla f(x^*)(x-x^*)\ge 0.
-\]</span> <span class="math inline">\(x^*\in S\)</span> is a KKT point implies <span class="math inline">\(\exists \lambda \in \mathbb R^m\)</span> and <span class="math inline">\(\mu_j^*\ge 0,\;\forall j\in J(x^*)\)</span> such that <span class="math display">\[
-\begin{array}{rcl}
-\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*a_i+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)&amp;=&amp;0
-\quad\implies\\
-\nabla f(x^*)(x-x^*)+\sum_{i=1}^m \lambda_i^*a_i(x-x^*)+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*)&amp;=&amp;0
-\quad\implies\\
-\nabla f(x^*)(x-x^*)&amp;=&amp;-\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*).
-\end{array}
-\]</span> Since <span class="math inline">\(h_j\)</span> is convex, we have <span class="math display">\[
-0\ge h_j(x)\ge h_j(x^*)+\nabla h_j(x^*)(x-x^*)=\nabla h_j(x^*)(x-x^*).
-\]</span> Then we have <span class="math display">\[
-\nabla f(x^*)(x-x^*)\ge 0.
-\]</span> <strong>Remark</strong></p>
-<p>The converse of the Theorem is not true without additional assumption, i.e. a global minimizer of a convex program may not be a KKT point. With regularity condition, a global minimizer is a KKT point. For convex programming problem with at least one inequality constraints, the <strong>Slater's condition</strong> ensures that a global minimizer is a KKT point.</p>
-<p><strong>Theorem</strong> (Converse of the theorem under Slater’s condition)</p>
-<p>Suppose <span class="math inline">\(f,h_j:\mathbb R^n\rightarrow \mathbb R,\;j=1,\dotsm,p\)</span> are <strong>differentiable convex functions</strong>, and <span class="math inline">\(g_i(x)=a_i^Tx-b_i,\;i=1,\dotsm,m\)</span>. Suppose <span class="math inline">\(p\ge 1\)</span> and that the <strong>Slater's condition</strong> holds, i.e., there exists <span class="math inline">\(\hat x\in\mathbb R^n\)</span> such that <span class="math inline">\(g_i(\hat x)=0,\;\forall i=1,\dotsm,m\)</span> and <span class="math inline">\(h_j(\hat x)&lt;0,\;\forall j=1,\dotsm,p\)</span>. Let <span class="math inline">\(S\)</span> be the feasible region. Suppose <span class="math inline">\(x^*\in S\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>. Then <span class="math inline">\(x^*\)</span> is a KKT point.</p>
-<h3 id="linear-equality-constrained-convex-program">5.6.1 Linear equality constrained convex program</h3>
-<p>Consider the following linear equality constrained NLP, <span class="math display">\[
-\text{(ENLP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; Ax=b, &amp; x\in\mathbb R^n,
-\end{array}
-\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(f;\mathbb R^n\rightarrow \mathbb R\)</span> is a differentiable function on the feasible region <span class="math inline">\(S\)</span>. Note that a feasible solution <span class="math inline">\(x^*\)</span> is a KKT point if there exists <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> such that <span class="math display">\[
-\nabla f(x^*)+\sum_{i=1}^m \lambda_i^* a_i=0 \iff \nabla f(x^*)+A^T\lambda^*=0.
-\]</span> <strong>Theorem</strong> (Linear equality constrained convex program)</p>
-<p>Consider the following linear equality constrained convex NLP, <span class="math display">\[
-\text{(ECP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; Ax=b, &amp; x\in\mathbb R^n,
-\end{array}
-\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is a differentiable convex function. Suppose the feasible region <span class="math inline">\(S\)</span> is non-empty. Then a point <span class="math inline">\(x^*\in S\)</span> is a KKT point if and only if <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p><strong>Remark</strong></p>
-<p>No singularity or Slater’s condition is needed.</p>
-<h3 id="linear-and-convex-quadratic-programming-problems">5.6.2 Linear and convex quadratic programming problems</h3>
-<p><strong>Linear Programming</strong> <span class="math display">\[
-\text{(LP)}\quad \begin{array}{rCl}
-\min &amp; f(x)=c^Tx\\
-\text{subject to}&amp; b-Ax=0\\
-&amp; x\in\mathbb R^n_+,
-\end{array}
-\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(b\in \mathbb R^m\)</span>.</p>
-<p>Note the linear constraints can be rewritten as, <span class="math display">\[
-\begin{array}{rcl}
-g_i(x)=b_i-a_i^Tx&amp;=&amp;0,&amp;i=1,\dotsm,m\\
-h_j(x)=-e_i^Tx&amp;\le&amp; 0,&amp; j=1,\dotsm,n,
-\end{array}
-\]</span> with <span class="math inline">\(\nabla g_i(x)=-a_i\)</span> and <span class="math inline">\(\nabla h_j(x)=-e_j\)</span>.</p>
-<p>KKT conditions become <span class="math display">\[
-\begin{array}{rcl}
-c-\displaystyle\sum_{i=1}^m\lambda_ia_i-\sum_{j=1}^n\mu_je_j=0,\\
-b_i-a_i^Tx=0,&amp;i=1,2,\dotsm,m\\
-\mu_j\ge 0,\;-x_i\le 0,\;\mu_jx_j=0,&amp; j=1,2,\dotsm ,n.\\\hline 
-\end{array}\\
-\iff\\
-\begin{array}{rcl}
-\hline 
-c-A^T\lambda-\mu=0,\\
-b-A^Tx=0,\\
-\mu\ge 0,\;x\ge 0,\;\mu\circ x=0,
-\end{array}
-\]</span> where <span class="math display">\[
-\mu\circ x=\begin{bmatrix}\mu_1x_1\\\mu_2x_2\\\vdots\\\mu_nx_n \end{bmatrix}.
-\]</span> <strong>Convex quadratic programming problem</strong> <span class="math display">\[
-\text{(QP)}\quad \begin{array}{rCl}
-\min &amp; f(x)=\frac{1}{2}x^TQx+c^Tx\\
-\text{subject to}&amp; Ax-b\le 0\\
-&amp; x\in\mathbb R^n_+,
-\end{array}
-\]</span> where <span class="math inline">\(Q\)</span> is positive semidefinite, <span class="math inline">\(b\in\mathbb R^m\)</span> and <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span>.</p>
-<p>KKT conditions become, <span class="math display">\[
-\begin{array}{rcl}
-Qx+c+\displaystyle\sum_{i=1}^m\mu_ia_i+\sum_{j=1}^n \hat \mu_j(-e_j)=0,\\
-\mu_i\ge 0,\;a_i^Tx-b_i\le 0,\;\mu_i(a_i^Tx-b_i)=0,&amp; i=1,2,\dotsm ,n.\\
-\hat \mu_j\ge 0,\;x_i\ge 0,\;\hat \mu_jx_j=0,&amp; j=1,2,\dotsm ,n.\\
-\hline
-\end{array}\\
-\iff\\
-\begin{array}{rcl}
-\hline 
-Qx+c+A^T\mu-\hat \mu=0,\\
-\mu\ge 0,\;Ax-b\le 0,\;\mu\circ (Ax-b)=0,\\
-\hat \mu\ge 0,\;x\ge 0,\;\hat \mu\circ x=0.
-\end{array}
-\]</span> <strong>Sparse regression problem</strong></p>
-<p>Recall the sparse regression problem <span class="math display">\[
-\frac{1}{2}||Ax-b||^2+\rho||x||_1,
-\]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter. To derive the KKT conditions for this problem, we first reformulate it to the following form, <span class="math display">\[
-\quad \begin{array}{rCl}
-\min &amp; f(x,u^{(1)}),u^{(2)})=\frac{1}{2}||Ax-b||^2+\rho\langle e,u^{(1)}+u^{(2)}\rangle\\
-\text{subject to}&amp; g(x,u^{(1)},u^{(2)})=x-u^{(1)}+u^{(2)}=0\\
-&amp; h_1(x,u^{(1)},u^{(2)})=-u^{(1)}\le 0\\
-&amp; h_2(x,u^{(1)},u^{(2)})=-u^{(2)}\le 0.
-\end{array}
-\]</span> We can see that <span class="math inline">\(u^{(1)}=\max (x,0),u^{(2)}=\max (-x,0)\)</span>, and therefore <span class="math inline">\(x=u^{(1)}-u^{(2)}\)</span>.</p>
-<p>Then KKT conditions are given as follows, <span class="math display">\[
-\left(
-\begin{array}{c}
-A^T(Ax-b)\\\rho e\\\rho e
-\end{array}
-\right)+
-\left(
-\begin{array}{c}
-I\\-I\\I
-\end{array}
-\right)\lambda+
-\left(
-\begin{array}{c}
-0\\-I\\0
-\end{array}
-\right)\mu^{(1)}+
-\left(
-\begin{array}{c}
-0\\0\\-I
-\end{array}
-\right)\mu^{(2)}=
-\left(
-\begin{array}{c}
-0\\0\\0
-\end{array}
-\right)\\
-x-u^{(1)}+u^{(2)}=0\\
-\mu^{(1)}\circ u^{(1)}=0,\;\mu^{(2)}\circ u^{(2)}=0\\
-u^{(1)},u^{(2)},\mu^{(1)},\mu^{(2)}\ge0.
-\]</span> From the first equation, it follows <span class="math display">\[
-\rho e- \lambda-\mu^{(1)}=0\\
-\rho e+ \lambda-\mu^{(2)}=0,
-\]</span> which can be expressed as <span class="math display">\[
-\mu^{(1)}=\rho e-\lambda \\
-\mu^{(2)}=\rho e+\lambda .
-\]</span> Then it follows <span class="math display">\[
-A^T(Ax-b)+ \lambda=0\\
-(\rho e-\lambda)\circ \max (x,0)=0\\(\rho e+\lambda)\circ \max (-x,0)=0\\
--\rho e\le\lambda \le\rho e.
-\]</span> Then we have <span class="math display">\[
-\lambda_i=
-\begin{cases}
-\{\rho_i\},&amp;\text{if }x_i&gt;0\\
-\ [-\rho_i,\rho_i] &amp; \text{if }x_i=0\\
-\{-\rho_i\},&amp;\text{if }x_i&lt;0
-\end{cases}\quad i=1,\dotsm,n.
-\]</span> ## 5.7 Proof of the KKT first order necessary conditions</p>
-<p><strong>Theorem</strong> (KKT necessary conditions for equality constrained NLP)</p>
-<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> and <span class="math inline">\(g_i:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,\dotsm,m\)</span> be functions with continuous first partial derivatives. Suppose <span class="math inline">\(x^*\)</span> is a local minimizer of <span class="math inline">\(f\)</span> on the feasible set <span class="math display">\[
-S=\{x\in\mathbb R^n\;|\; g_i(x)=0,i=1,\dotsm,m\}.
-\]</span> Suppose that <span class="math inline">\(x^*\)</span> is singular. Then there exists a unique vector <span class="math inline">\(\lambda^*\in\mathbb R^n\)</span> such that <span class="math display">\[
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^* \nabla g_i(x^*)=0.
-\]</span> Proof.</p>
-<p>We approximate the original constrained problem by a sequence of unconstrained optimization that involves a penalty for violation of the constraints.</p>
-<p>Let <span class="math inline">\(x^*\)</span> be a local minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>For each positive integer <span class="math inline">\(k\)</span>, let <span class="math display">\[
-F^k(x)=f(x)+\frac{k}{2}||g(x)||^2+\frac{\alpha}{2}||x-x^*||^2,
-\]</span> where <span class="math inline">\(g(x)=[g_1(x),g_2(x),\dotsm,g_m(x)]\)</span>, and <span class="math inline">\(\alpha\)</span> is a positive scalar.</p>
-<p>Since <span class="math inline">\(x^*\)</span> is a local minimizer, <span class="math inline">\(\exists \epsilon &gt;0\)</span>, such that <span class="math inline">\(f(x^*)\le f(x)\)</span> for all feasible <span class="math inline">\(x\)</span> in the closed ball <span class="math inline">\(B\)</span>.</p>
-<p>Consider the penalized problem, <span class="math display">\[
-\begin{array}{rl}
-\min &amp; F^k(x)\\
-\text{subject to } &amp; x\in B.
-\end{array}
-\]</span> Since <span class="math inline">\(B\)</span> is compact and <span class="math inline">\(F^k(x)\)</span> is continuous on <span class="math inline">\(B\)</span>, there is a global minimizer <span class="math inline">\(x^{(k)}\in B\)</span> for <span class="math inline">\(F^k\)</span>. We have <span class="math display">\[
-F^k(x^{(k)})\le F^k(x^*)=f(x^*).
-\]</span> <span class="math inline">\(f\)</span> is continuous on the compact set <span class="math inline">\(B\)</span> implies <span class="math inline">\(\left\{f(x^{(k)})\right\}_{k=1}^\infty\)</span> is bounded.</p>
-<p>Since we have <span class="math display">\[
-f(x^{(k)})\le F^k(x^{(k)})\le f(x^*),
-\]</span> <span class="math inline">\(F^k(x^{(k)})\)</span> is also bounded. Therefore, <span class="math inline">\(\lim_{k\rightarrow \infty}||g(x^{(k)})||=0\)</span>, otherwise <span class="math inline">\(F^k(x^{(k)})\)</span> is not bounded.</p>
-<p><strong>Claim</strong> The sequence <span class="math inline">\(\{x^{(k)}\}\)</span> converges to <span class="math inline">\(x^*\)</span>.</p>
-<p>We denote <span class="math inline">\(\bar x=\lim_{k\rightarrow \infty} x^{(k)}\)</span>. We have known that <span class="math inline">\(g(\bar x)=0\)</span>. Then we have <span class="math display">\[
-F^k(\bar x)=f(\bar x)+\frac{\alpha}{2}||\bar x-x^*||^2\le f(x^*).
-\]</span> Since <span class="math inline">\(x^*\)</span> is the local minimizer, we also have <span class="math display">\[
-f(x^*)\le f(\bar x).
-\]</span> Therefore, <span class="math inline">\(\bar x=x^*\)</span>.</p>
-<p>Since <span class="math inline">\(x^{(k)}\)</span> is the global optimal point for <span class="math inline">\(F^k(x)\)</span>, it is a stationary point of <span class="math inline">\(F^k(x)\)</span>, i.e., <span class="math display">\[
-\nabla F^k(x^{(k)})=0.
-\]</span> This is equivalent to <span class="math display">\[
-\nabla f(x^{(k)})+kG_kg(x^{(k)})+\alpha (x^{(k)}-x^*)=0,
-\]</span> where <span class="math display">\[
-G_k=\left[\nabla g_1(x^{(k)}),\nabla g_2(x^{(k)}),\dotsm,\nabla g_m(x^{(k)})\right].
-\]</span> Since <span class="math inline">\(x^*\)</span> is a regular point, this implies that the matrix <span class="math display">\[
-G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
-\]</span> has rank <span class="math inline">\(m\)</span>. We have <span class="math display">\[
-(G_k^TG_k)^{-1}G_k^T\nabla f(x^{(k)})+kg(x^{(k)})+\alpha (G_k^TG_k)^{-1}G_k^T(x^{(k)}-x^*)=0.
-\]</span> Define <span class="math inline">\(\lambda_k=kg(x^{(k)})\)</span>. Then when <span class="math inline">\(k\rightarrow \infty\)</span>, we have <span class="math display">\[
-\lambda^*=\lim_{k\rightarrow \infty} kg(x^{(k)})=(G_*^TG_*)^{-1}G_*^T\nabla f(x^*).
-\]</span> Therefore, we obtain the first order condition <span class="math display">\[
-\nabla f(x^*)+G_*\lambda^*=0.
-\]</span> Q.E.D.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li>The term <span class="math inline">\(\frac{k}{2}||g(x)||^2\)</span> imposes a penalty for violating the constraint <span class="math inline">\(g(x)=0\)</span>.</li>
-<li>The term <span class="math inline">\(\frac{\alpha}{2}||x-x^*||^2\)</span> is introduced to ensure that <span class="math inline">\(x^*\)</span> is a strict local minimizer of the function <span class="math inline">\(f(x)+\frac{\alpha}{2}||x-x^*||^2\)</span> subject to <span class="math inline">\(g(x)=0\)</span>.</li>
-</ol>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/4.6 Proximal Algorithms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1099,11 +516,370 @@ u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/4.1 Gradient methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/4.1 Gradient methods/" class="post-title-link" itemprop="url">4. Gradient Methods (1)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-31 22:26:22" itemprop="dateModified" datetime="2019-10-31T22:26:22+08:00">2019-10-31</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/MA6268 Nonlinear Optimization/4.1 Gradient methods/" class="post-meta-item leancloud_visitors" data-flag-title="4. Gradient Methods (1)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/4.1 Gradient methods/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/4.1 Gradient methods/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="gradient-methods">4. Gradient methods</h1>
+<h2 id="gradient-methods-for-unconstrained-optimization-problem">4.1 Gradient methods for unconstrained optimization problem</h2>
+<p>Consider the multidimensional unconstrained minimization problem <span class="math display">\[
+\begin{array}{rCl}
+\text{minimize} &amp; f(x)\\
+\text{subject to}&amp; x\in S.
+\end{array}
+\]</span> In the situation where <span class="math inline">\(\nabla f(x)=0\)</span> cannot be solved analytically, we look for an approximate solution via iterative methods.</p>
+<p><strong>General framework of an optimization algorithm</strong></p>
+<hr>
+<p><strong>For</strong> <span class="math inline">\(k=0,1,...,\)</span> <strong>if</strong> <span class="math inline">\(x^{(k)}\)</span> is optimal stop <strong>else</strong> determine an improved estimate of the solution <span class="math inline">\(x^{(k+1)}=x^{(k)}+\alpha_{k}\times p^{(k)}\)</span> <strong>end</strong> <strong>end</strong></p>
+<hr>
+<p>Here <span class="math inline">\(p^{(k)}\)</span> is a <strong>search direction</strong> that we hope points towards the solution, or that improves our solution in some sense. The scalar <span class="math inline">\(\alpha_k\)</span> is a step length that determines the point <span class="math inline">\(x^{(k+1)}\)</span>. Once the search direction has been solved, the step length can be solved as some auxiliary one-dimensional problems.</p>
+<p><strong>Descent property</strong> At a given point <span class="math inline">\(x^*\)</span>, let <span class="math inline">\(\hat d=-\frac{\nabla f(x^*)}{||\nabla f(x^*)||}\)</span>. The value of <span class="math inline">\(f\)</span> decreases most rapidly along the unit direction <span class="math inline">\(\hat d\)</span> and the rate of change of <span class="math inline">\(f\)</span> at <span class="math inline">\(x^*\)</span> along the direction <span class="math inline">\(\hat d\)</span> is <span class="math inline">\(-||\nabla f(x^*)||\)</span>, i.e., as <span class="math inline">\(x\)</span> moves along <span class="math inline">\(\hat d\)</span> from <span class="math inline">\(x^*\)</span> by a small distance <span class="math inline">\(\delta\)</span>, the value <span class="math inline">\(f(x)\)</span> is changed by the amount <span class="math inline">\(-||\nabla f(x^*)||\delta\)</span>.</p>
+<p>In general, a direction <span class="math inline">\(d\)</span> such that <span class="math inline">\(\langle \nabla f(x^*),d\rangle &lt;0\)</span> is called a descent direction.</p>
+<p>The direction <span class="math inline">\(-\nabla f(x^*)\)</span> is known as the steepest descent direction since it gives the fastest rate of decrease in <span class="math inline">\(f(x)\)</span> among all directions.</p>
+<p><strong>Steepest descent method with exact line search</strong></p>
+<hr>
+<p><strong>[step 0]</strong> Select an initial point <span class="math inline">\(x^{(0)}\)</span>, and <span class="math inline">\(\epsilon&gt;0\)</span> <strong>[step k]</strong> <strong>For</strong> <span class="math inline">\(k=0,1,...,\)</span></p>
+<ol type="1">
+<li><p>evaluate <span class="math inline">\(d^{(k)} = -\nabla f(x^{(k)})\)</span></p></li>
+<li><p><strong>if</strong> <span class="math inline">\(||d^{(k)}||&lt;\epsilon\)</span>, stop and <span class="math inline">\(x^{(k)}\)</span> is an approximate solution</p>
+<p><strong>else</strong></p>
+<ol type="1">
+<li><p>find the value <span class="math inline">\(t_k\)</span> that minimizes the one-dimensional function <span class="math display">\[
+g(t)=f(x^{(k)}+td^{(k)})
+\]</span></p></li>
+<li><p>set <span class="math inline">\(x^{(k+1)}=x^{(k)}+t_kd^{(k)}\)</span>.</p></li>
+</ol></li>
+</ol>
+<p><strong>end</strong></p>
+<hr>
+<p><strong>Remark</strong></p>
+<p>The most difficult part of the steepest descent method usually is to find the <span class="math inline">\(t_k\)</span> that minimizes <span class="math inline">\(f\)</span> along the gradient direction.</p>
+<p><strong>Theorem 4.1</strong> The steepest descent method with exact linesearch moves in <strong>perpendicular</strong> steps.</p>
+<p><strong>Remarks</strong></p>
+<ol type="1">
+<li><p>Monotonic decreasing property</p>
+<p>If <span class="math inline">\(x^{(k)}\)</span> is a steepest descent sequence for a function <span class="math inline">\(f(x)\)</span>, and if <span class="math inline">\(\nabla f(x^{(k)})\neq 0\)</span> for some <span class="math inline">\(k\)</span>, then <span class="math inline">\(f(x^{(k+1)})&lt;f(x^{(k)})\)</span>.</p></li>
+<li><p>Convergence of a steepest descent method</p>
+<p>Suppose <span class="math inline">\(f(x)\)</span> is a coercive function with continuous first derivatives on <span class="math inline">\(\mathbb R^n\)</span>. Let <span class="math inline">\(x^{(0)}\in \mathbb R^n\)</span>. Suppose <span class="math inline">\(\{x^{(k)}\}\)</span> is the steepest descent sequence for <span class="math inline">\(f(x)\)</span> with initial point <span class="math inline">\(x^{(0)}\)</span>. Then some subsequence of <span class="math inline">\(\{x^{(k)}\}\)</span> converges. The limit of any convergent subsequence of <span class="math inline">\(\{x^{(k)}\}\)</span> is a critical point of <span class="math inline">\(f(x)\)</span>.</p></li>
+</ol>
+<h3 id="convergence-rate-of-the-steepest-descent-method-for-an-unconstrained-convex-quadratic-minimization-problem">4.1.1 Convergence rate of the steepest descent method for an unconstrained convex quadratic minimization problem</h3>
+<p>Here we consider <span class="math display">\[
+\min_{x\in\mathbb R^n}\; q(x)=\frac{1}{2}x^TQx,
+\]</span> where <span class="math inline">\(Q\)</span> is symmetric positive definite.</p>
+<p><strong>Proposition</strong></p>
+<p>For a symmetric positive definite <span class="math inline">\(Q\)</span>, suppose that <span class="math inline">\(\{x^{(k)}\}\)</span> is a sequence obtained from the steepest descent method with exact line search applied to the function <span class="math inline">\(q(x)\)</span>. Then</p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(d^{k}=\nabla q(x^k)=Qx^k\)</span>, <span class="math display">\[
+\frac{q(x^{k+1})}{q(x^{k})}=1-\frac{\langle d^k,d^k\rangle^2}{\langle d^k,Qd^k\rangle\langle d^k,Q^{-1}d^k\rangle}
+\]</span></p></li>
+<li><p><span class="math display">\[
+\frac{q(x^{k+1})}{q(x^{k})}\le \left[\frac{\kappa (Q)-1}{\kappa (Q)+1}\right]^2=\rho(Q)
+\]</span></p>
+<p>where <span class="math inline">\(\kappa (Q) = \lambda_n/\lambda_1\)</span>, and <span class="math inline">\(\lambda_n\)</span> and <span class="math inline">\(\lambda_1\)</span> are the largest and smallest eigenvalues of <span class="math inline">\(Q\)</span>, respectively. The number <span class="math inline">\(\kappa(Q)\)</span> is called the condition number of <span class="math inline">\(Q\)</span>. When <span class="math inline">\(\kappa(Q)\ge 1\)</span> is small, say less than <span class="math inline">\(10^3\)</span>, <span class="math inline">\(Q\)</span> is said to be well-conditioned.</p></li>
+</ol>
+<p>Proof is intuitive and skipped.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li><p>From proposition, we see that the convergence rate <span class="math inline">\(\rho (Q)\)</span> of the steepest descent method depends on <span class="math inline">\(\kappa(Q)\)</span>. When <span class="math inline">\(\kappa(Q)\)</span> is large, the convergence rate <span class="math display">\[
+\rho(Q)\approx 1-\frac{4}{\kappa(Q)}.
+\]</span></p></li>
+<li><p>The number of iterations needed to reduce the relative error <span class="math inline">\(q(x_k)/q(x_0)\)</span> to smaller than <span class="math inline">\(\epsilon\)</span> is given by <span class="math display">\[
+k=\left[\frac{\log \epsilon }{\log \rho(Q)}\right]+1
+\]</span> where <span class="math inline">\([a]\)</span> denotes the largest integer less than or equal to <span class="math inline">\(a\)</span>.</p></li>
+</ol>
+<h3 id="convergence-rate-for-the-steepest-descent-method-for-strongly-convex-function">4.1.2 Convergence rate for the steepest descent method for strongly convex function</h3>
+<p>Let <span class="math inline">\(S\subset \mathbb R^n\)</span> be a convex set and <span class="math inline">\(f:S\rightarrow \mathbb R\)</span> a convex function. We assume that <span class="math inline">\(f\)</span> is strongly convex with parameter <span class="math inline">\(m\)</span> and has <span class="math inline">\(M\)</span>-Lipschitz continuous gradient on <span class="math inline">\(S\)</span>. Then its Hessian satisfies the following property, <span class="math display">\[
+mI\preceq H_f(x)\preceq MI\;\forall x\in S.
+\]</span> <strong>Lemma</strong></p>
+<p>Let <span class="math inline">\(x^*\)</span> be a minimizer. Then <span class="math display">\[
+f(x)-\frac{1}{2m}||\nabla f(x)||^2\le f(x^*)\le f(x)-\frac{1}{2M}||\nabla f(x)||^2 \; \forall x\in S.
+\]</span> <strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> be strongly convex with parameter <span class="math inline">\(m\)</span> and its gradient is <span class="math inline">\(M\)</span>-Lipschitz. Let <span class="math inline">\(x^*\)</span> be the unique of <span class="math inline">\(f\)</span> over <span class="math inline">\(\mathbb R^n\)</span>. Define <span class="math inline">\(E_k = f(x^k)-f(x^*)\)</span>, where <span class="math inline">\(\{x^k\}\)</span> is generated by the steepest descent method with exact linesearch. Then, <span class="math display">\[
+E_{k+1}\le E_k-\frac{1}{2M}||\nabla f(x^k)||^2\\
+E_{k+1}\le E_k\left(1-\frac{m}{M}\right).
+\]</span> Proof.</p>
+<p>By using the property of <span class="math inline">\(M\)</span>-Lipschitz, we have <span class="math display">\[
+f(y)\le f(x)+\langle \nabla f(x),y-x \rangle+\frac{M}{2}||y-x||^2\;\forall x,y\in\mathbb R^n.
+\]</span></p>
+<p>If we choose <span class="math inline">\(y=x^k-td^k\)</span>, <span class="math inline">\(d^k=\nabla f(x^k)\)</span> and <span class="math inline">\(x=x^k\)</span>, we have <span class="math display">\[
+f(x^k-td^k)\le f(x^k)-t\langle \nabla f(x^k),d^k \rangle+\frac{Mt^2}{2}||d^k||^2.
+\]</span> We define the function <span class="math display">\[
+f(t)=f(x^k)-t\langle \nabla f(x^k),d^k \rangle+\frac{Mt^2}{2}||d^k||^2.
+\]</span> Then we have <span class="math display">\[
+f_{\min}=f(\frac{1}{M})=f(x^k)-\frac{1}{2M}||d^k||^2.
+\]</span> Therefore, we have <span class="math display">\[
+f(x^{k+1})\le f(x^k)-\frac{1}{2M}||d^k||^2.
+\]</span> The first inequality can be proved.</p>
+<p>For the second inequality, since we have <span class="math display">\[
+E_k\le \frac{1}{2m}||\nabla f(x)||^2.
+\]</span> Then we have <span class="math inline">\(-||d^k||^2\le -2mE_k\)</span>. The second inequality can be proved.</p>
+<p><strong>Remark</strong></p>
+<p>From the theorem, we see that <span class="math display">\[
+E(x^{k+1})/E(x^1)\le (1-m/M)^k\le \epsilon,
+\]</span> which implies that we need the number of iterations <span class="math inline">\(k\)</span> to satisfy <span class="math display">\[
+k\ge \frac{\log \epsilon ^{-1}}{\log\rho^{-1}}\approx \frac{m}{M}\log \epsilon^{-1} \;(\text{ if }m/M\ll 1),
+\]</span> where <span class="math inline">\(\rho = 1-m/M\)</span>.</p>
+<h2 id="line-search-strategies">4.2 Line search strategies</h2>
+<ol type="1">
+<li><p>Minimization rule = exact line search. <span class="math display">\[
+\alpha_k=\arg\min\{f(x^k+\alpha d^k)\;|\;\alpha \ge 0\}.
+\]</span> If the line search interval is limited to <span class="math inline">\(\alpha \in [0,\bar \alpha]\)</span>, it is called limited minimization rule.</p></li>
+<li><p>Armijo rule (<strong>backtracking</strong> method).</p>
+<p>Let <span class="math inline">\(\sigma\in(0,0.5)\)</span> and <span class="math inline">\(\beta\in (0,1)\)</span>. Start with <span class="math inline">\(\bar\alpha\)</span> and continue with $=,,$ until the following inequality is satisfied, <span class="math display">\[
+f(x^k+\alpha d^k)\le f(x^k)+\alpha\sigma\langle \nabla f(x^k),d^k\rangle.
+\]</span> Let <span class="math inline">\(r\)</span> be the first integer satisfying the inequality. Set <span class="math inline">\(\alpha_k=\beta^r\bar \alpha\)</span>.</p></li>
+<li><p>Non-monotone line search. <span class="math display">\[
+f(x^k+\alpha d^k)\le \max \{f(x^{k-l}),\dotsm,f(x^k)\}+\alpha \sigma \langle \nabla f(x^k),d^k\rangle.
+\]</span></p></li>
+</ol>
+<h2 id="accelerated-proximal-gradient-method-for-convex-programming">4.3 Accelerated proximal gradient method for convex programming</h2>
+<p>Consider a smooth convex function <span class="math inline">\(f\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. We are interested in solving <span class="math display">\[
+\min \{F(x)=f(x)+g(x)\;|\;x\in \mathbb R^n\},
+\]</span> where <span class="math inline">\(g:\mathbb R^n\rightarrow (-\infty,\infty]\)</span> is a proper closed convex function.</p>
+<p><strong>Example</strong></p>
+<p>In sparse regression problem, <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2\)</span> and <span class="math inline">\(g(x)=\rho ||x||_1\)</span>.</p>
+<p>For a given <span class="math inline">\(\bar x\)</span> and <span class="math inline">\(H\succeq 0\)</span>, consider the convex quadratic function, <span class="math display">\[
+q(x;\bar x)= f(\bar x)+\langle \nabla f(\bar x),x-\bar x\rangle +\frac{1}{2}\langle x-\bar x,H(x-\bar x)\rangle.
+\]</span> At the current point <span class="math inline">\(\bar x\)</span>, proximal gradient and APG methods solve a sub-problem of the form, <span class="math display">\[
+\hat x =\arg \min \{g(x)+q(x;\bar x)\;|\;x\in \mathbb R^n\}.
+\]</span> <strong>Accelerated proximal gradient (APG) method</strong></p>
+<p>Given a positive sequence <span class="math inline">\(\{t_k\}\)</span> such that <span class="math inline">\(t_{k+1}^2-t_{k+1}\le t_k^2\)</span> starting with <span class="math inline">\(t_0=1\)</span>, <span class="math inline">\(t_1=1\)</span>. Given <span class="math inline">\(x^0\)</span>. For <span class="math inline">\(k=0,1,\dots\)</span>, do the following iterations.</p>
+<p><strong>[Step 1]</strong> Set <span class="math inline">\(\beta_k=(t_k-1)/t_{k+1}\)</span> and <span class="math inline">\(\bar x^k=x^k+\beta_k(x^k-x^{k-1})\)</span>.</p>
+<p><strong>[Step 2]</strong> Compute <span class="math display">\[
+x^{k+1}=\arg \min \{g(x)+q(x;\bar x^k)\;|\;x\in \mathbb R^n\}.
+\]</span> When <span class="math inline">\(t_k=1\)</span> for all <span class="math inline">\(k\)</span>, then <span class="math inline">\(\bar x^k=x^k\)</span> for all <span class="math inline">\(k\)</span>, and the method is the standard <strong>proximal gradient method</strong>.</p>
+<p><strong>Lemma</strong></p>
+<p>Assume that <span class="math inline">\(f(\hat x)\le q(\hat x;\bar x)\)</span>. (This assumption can be satisfied by choosing <span class="math inline">\(H\)</span>) Then we have the following <strong>decent property</strong>, <span class="math display">\[
+F(x)+\frac{1}{2}||x-\bar x||_H^2\ge F(\hat x)+\frac{1}{2}||x-\hat x||_H^2\;\forall x\in \mathbb R^n.
+\]</span> Proof.</p>
+<p>We have <span class="math display">\[
+\begin{array}{rCl}
+F(x)-F(\hat x)&amp;=&amp;F(x)-f(\hat x)-g(\hat x)\\
+&amp;\ge&amp; F(x)-q(\hat x;\bar x)-g(\hat x)\\
+&amp;=&amp; g(x)-g(\hat x)+f(x)-f(\bar x)-\langle \nabla f(\bar x),\hat x-\bar x\rangle-\frac{1}{2}||\hat x-\bar x||_H^2.
+\end{array}
+\]</span> By convexity of <span class="math inline">\(g\)</span> and <span class="math inline">\(f\)</span>, we have <span class="math display">\[
+g(x)-g(\hat x)\ge \langle \lambda,x-\hat x\rangle\quad \lambda \in \partial g(\hat x)\\
+f(x)-f(\bar x)\ge \langle \nabla f(\bar x),x-\bar x\rang.
+\]</span> Then we have <span class="math display">\[
+F(x)-F(\hat x)\ge \langle \lambda+\nabla f(\bar x),x-\hat x\rangle -\frac{1}{2}||\hat x-\bar x||_H^2.
+\]</span> From the optimality condition, we have <span class="math display">\[
+0\in \partial g(\hat x)+\nabla f(\bar x)+H(\hat x-\bar x)\\
+\implies\\
+\lambda +\nabla f(\bar x)= H(\bar x-\hat x).
+\]</span> Then we have <span class="math display">\[
+F(x)-F(\hat x)\ge \langle H(\bar x-\hat x),x-\hat x\rangle -\frac{1}{2}||\hat x-\bar x||_H^2\\
+=\frac{1}{2}||x-\hat x||_H^2-\frac{1}{2}||x-\bar x||_H^2.
+\]</span> Q.E.D.</p>
+<p><strong>Theorem</strong></p>
+<p>Let <span class="math inline">\(x^*\)</span> be a minimizer of <span class="math inline">\(F(\cdot)\)</span>. Define <span class="math inline">\(E(\cdot)=F(\cdot)-F(x^*)\ge 0\)</span>. Assume that <span class="math inline">\(f(x^{k+1})\le q(x^{k+1};\bar x^k)\)</span> for all <span class="math inline">\(k\)</span>. Then <span class="math display">\[
+E(x^{k+1})\le \frac{1}{2t_{k+1}^2}||x^*-x^0||_H^2.
+\]</span> In practice, the sequence <span class="math inline">\(\{t_k\}\)</span> is typically defined recursively as follows, <span class="math display">\[
+t_{k+1}=\frac{1+\sqrt{1+4t_k^2}}{2}\implies t_k\ge \frac{k}{2}\quad \forall k\ge 1
+\]</span> Hence, <span class="math display">\[
+0\le F(x^k)-F(x^*)\le \frac{1}{2t_k^2}||x^*-x^0||_H^2\le \frac{2}{k^2}||x^*-x^0||_H^2.
+\]</span> That is, the iteration complexity of APG is <span class="math inline">\(O(1/k^2)\)</span>.</p>
+<p><strong>Theorem</strong></p>
+<p>Assume that <span class="math inline">\(f(x^{k+1})\le q(x^{k+1};\bar x^k)\)</span> for all <span class="math inline">\(k\)</span>. If <span class="math inline">\(t_k=1\)</span> for all <span class="math inline">\(k\)</span>. Then <span class="math display">\[
+kE(x^k)+\frac{1}{2}||x^k-x^*||_H^2\le E(x^1)+\frac{1}{2}||x^1-x^*||_H^2\le \frac{1}{2}||x^0-x^*||_H^2.
+\]</span> Hence <span class="math display">\[
+0\le F(x^k)-F(x^*)\le \frac{1}{2k}||x^0-x^*||_H^2.
+\]</span> That is, the iteration complexity of the proximal gradient method is <span class="math inline">\(O(1/k)\)</span>.</p>
+<p><strong>Example</strong></p>
+<p>Consider the sparse regression problem, <span class="math display">\[
+\min \left\{\frac{1}{2}||Ax-b||^2+\rho||x||_1\;|\; x\in\mathbb R^n\right\},
+\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span>, <span class="math inline">\(b\in \mathbb R^m\)</span> and <span class="math inline">\(\rho\)</span> are given data. Let <span class="math inline">\(f(x)=\frac{1}{2}||Ax-b||^2\)</span> and <span class="math inline">\(g(x)=\rho||x||_1\)</span>. Then <span class="math inline">\(\nabla f(x)=A^T(Ax-b)\)</span> is Lipschitz continuous with modulus <span class="math inline">\(L=\lambda_\max(AA^T)\)</span>. Pick <span class="math inline">\(H=LI_n\)</span>, the APG subproblem is given by <span class="math display">\[
+\begin{array}{rCl}
+x^{k+1}&amp;=&amp;\arg\min_{x}\left\{g(x)+\langle \nabla f(\bar x^k),x-\bar x^k\rangle +\frac{L}{2}||x-\bar x^k||^2\;|\; x\in\mathbb R^n\right\}\\
+&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}(x-\bar x^k+\frac{2}{L}\nabla f(\bar x^k))^2-\frac{2}{L}||\nabla f(\bar x^k)||^2\right\}\\
+&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}[x-(\bar x^k-\frac{2}{L}\nabla f(\bar x^k))]^2\right\}
+\end{array}
+\]</span> Then if we define <span class="math inline">\(y^k=\bar x^k-\frac{2}{L}\nabla f(\bar x^k)\)</span>, we have <span class="math display">\[
+\begin{array}{rCl}
+x^{k+1}&amp;=&amp;\arg\min_x\left\{ \rho||x||_1+\frac{L}{2}||x-y^k||^2\right\}\\
+&amp;=&amp; P_{\lambda f}\left(\bar x^k-\lambda\nabla f(\bar x^k)\right).
+\end{array}
+\]</span> where <span class="math inline">\(\lambda = 2/L\)</span> and <span class="math inline">\(f=\rho||x||_1\)</span>. It is easy to see that <span class="math display">\[
+P_{\lambda f}(x)=\text{sign}(x)\circ \max \{|x|-\lambda,0\}.
+\]</span> <strong>Example</strong></p>
+<p>Given <span class="math inline">\(G\in \mathbb S^n\)</span>, consider the projection problem onto the closed convex cone <span class="math inline">\(DNN_n^*=\mathbb S_+^N+\mathcal N^n\)</span>. This problem can be formulated as, <span class="math display">\[
+\begin{array}{rcl}
+&amp;&amp;\min\left\{\frac{1}{2}||S+Z-G||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
+&amp;=&amp;\min\left\{\frac{1}{2}||Z-(G-S)||^2\;|\;S\in\mathbb S^n_+,\;Z\in\mathcal N^n\right\}\\
+&amp;=&amp;\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\;|\;S\in\mathbb S^n_+\right\}\\
+&amp;=&amp;\min\left\{\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2+\delta_{\mathbb S_+^n}(S)\right\}.
+\end{array}
+\]</span> This can be shown by <span class="math display">\[
+\begin{array}{rcl}
+&amp;&amp;\min \left\{\frac{1}{2}||Z-A||^2\;|\; Z\in\mathcal N^n\right\}\\
+&amp;=&amp;\min \left\{\delta_{\mathcal N^n}(Z)+\frac{1}{2}||Z-A||^2\right\}\\
+&amp;=&amp;P_f(A)\\
+&amp;=&amp; \Pi_{\mathcal N^n}(A).
+\end{array}
+\]</span> Or by checking the following property <span class="math display">\[
+\begin{array}{rcl}
+A&amp;=&amp;P_f(A)+P_{f^*}(A)\\
+&amp;=&amp;\Pi_{\mathcal N^n}(A)+\Pi_{-\mathcal N^n}(A)\\
+&amp;=&amp;\Pi_{\mathcal N^n}(A)-\Pi_{\mathcal N^n}(-A).
+\end{array}
+\]</span> We can also obtain the same result.</p>
+<p>We define <span class="math inline">\(f(S)=\frac{1}{2}||\Pi_{\mathcal N^n}(S-G)||^2\)</span>. From the optimality condition, we have <span class="math display">\[
+\begin{array}{rcl}
+0&amp;\in&amp;\nabla f(\bar S)+\partial \delta_{\mathbb S_+^n}\quad \text{$f(\bar S)$ is differentiable}.\\
+-\nabla f(\bar S)&amp;\in&amp; \partial \delta_{\mathbb S_+^n}(S)\\
+\bar S-\nabla f(\bar S)&amp;\in&amp; (I+\partial \delta_{\mathbb S_+^n})(\bar S)
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\bar S=(I+\partial \delta_{\mathbb S_+^n})^{-1}(\bar S-\nabla f(\bar S))=\Pi_{\mathbb S_+^n}(\bar S-\nabla f(\bar S)).
+\]</span> We have <span class="math display">\[
+\nabla f(S)=\Pi_{\mathcal N^n}(S-G),
+\]</span> and <span class="math display">\[
+\begin{array}{rcl}
+||\nabla f(S)-\nabla f(S&#39;)||&amp;=&amp;||\Pi_{\mathcal N^n}(S-G)-\Pi_{\mathcal N^n}(S&#39;-G)||\\
+&amp;\le &amp; ||(S-G)-(S&#39;-G)||\\
+&amp;=&amp; ||S-S&#39;||.
+\end{array}
+\]</span> Therefore <span class="math inline">\(\nabla f(\cdot)\)</span> is Lipschitz continuous with modulus <span class="math inline">\(L=1\)</span>. Pick <span class="math inline">\(H=LI_n\)</span>, the APG subproblem is given by <span class="math display">\[
+S^{k+1}=\Pi\left(\bar S-\nabla f(\bar S)\right).
+\]</span></p>
+<h2 id="gradient-projection-method">4.4 Gradient projection method</h2>
+<p>Let <span class="math inline">\(f:Q\rightarrow \mathbb R\)</span> be a continuously differentiable function (not necessarily convex) defined on a closed convex subset <span class="math inline">\(Q\)</span> of <span class="math inline">\(\mathbb R^n\)</span> with <span class="math inline">\(L\)</span>-Lipschitz continuous gradient. Consider <span class="math display">\[
+\min\{f(x)\;|\; x\in Q\}.
+\]</span> We say that <span class="math inline">\(\bar x\in Q\)</span> is a stationary point if <span class="math display">\[
+\langle \nabla f(\bar x),y-\bar x\rangle \ge 0\quad\forall y\in Q.
+\]</span> The gradient projection method generate a sequence of iterates as follows, <span class="math display">\[
+x^{k+1}=P_Q(x^k-\alpha \nabla f(x^k)).
+\]</span> For each <span class="math inline">\(x\in Q\)</span>, let <span class="math display">\[
+x(\alpha )=x-\alpha\nabla f(x),\quad x_Q(\alpha )=P_Q(x(\alpha)).
+\]</span></p>
+<h2 id="stochastic-gradient-descent-method">4.5 Stochastic gradient descent method</h2>
+<p>Suppose <span class="math inline">\(\tilde Z\)</span> is an n-dimensional random variable with mean <span class="math inline">\(\mu \in \mathbb R^n\)</span>. Consider the following problem, <span class="math display">\[
+\min_{x\in\mathbb R^n}h(x)=\frac{1}{2}\mathbb E[||x-\tilde Z||^2],
+\]</span> where <span class="math inline">\(\mathbb E(\cdot)\)</span> denotes the expectation with respect to the distribution of <span class="math inline">\(Z\)</span>, i.e., <span class="math display">\[
+E[||x-\tilde Z||^2]=\int ||x-\tilde Z(w)||^2dP(w).
+\]</span> If <span class="math inline">\(Z\)</span> is a discrete random variable, then <span class="math display">\[
+E[||x-\tilde Z||^2]=\sum_{i=1}^Np_i||x-a_i||^2.
+\]</span> In practice, to solve this problem, one may draw <span class="math inline">\(m\)</span> independent identically distributed samples of <span class="math inline">\(\tilde Z\)</span>, say <span class="math inline">\(S=\{z_1,\dots,z_m\}\)</span>, and then solve <span class="math display">\[
+\min_{x\in\mathbb R^n}F_S(x)=\frac{1}{m}\sum_{i=1}^m \frac{1}{2}||x-z_i||^2.
+\]</span> The corresponding optimality condition is <span class="math display">\[
+0=\nabla F_S(x)=\frac{1}{m}\sum_{i=1}^m(x-z_i)\implies x=\frac{1}{m}\sum_{i=1}^mz_i.
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1148,7 +924,7 @@ u^{k+1}=u^k+Ax^{k+1}-z^{k+1},
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

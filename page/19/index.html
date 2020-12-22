@@ -215,139 +215,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/EE5904 Neural Network/6. Bellman Equation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/" class="post-title-link" itemprop="url">Chapter 6. Bellman Equation</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-05-21 13:45:47 / Modified: 14:37:12" itemprop="dateCreated datePublished" datetime="2019-05-21T13:45:47+08:00">2019-05-21</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 6. Bellman Equation" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="bellman-equation">Bellman Equation</h1>
-<p>We start by discussing the most simple control case. <span class="math display">\[
-x_{t+1}=x_t+f(t,x_t,u_t)
-\]</span> Define the cost function <span class="math display">\[
-C(x_0,u_{o:T-1})=\phi(x_T)+\sum_{t=0}^{T-1}R(t,x_t,u_t)
-\]</span> <span class="math inline">\(R(t,x_t,u_t)\)</span> is the cost that is associated with taking action <span class="math inline">\(u\)</span> at time <span class="math inline">\(t\)</span> in state <span class="math inline">\(x\)</span>, and <span class="math inline">\(\phi(x_T)\)</span> is the cost associated with ending up in state <span class="math inline">\(x_T\)</span> at time <span class="math inline">\(T\)</span>.</p>
-<p>The optimal problem is to find the sequence <span class="math inline">\(u_{0:T-1}\)</span> that minimizes <span class="math inline">\(C(x_0,u_{o:T-1})\)</span>.</p>
-<p>Introduce the optimal cost to go: <span class="math display">\[
-J(t,x_t)=\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\right)
-\]</span> which solves the optimal control problem form an intermediate time <span class="math inline">\(t\)</span> until the fixed end time <span class="math inline">\(T\)</span>, starting at an arbitrary location <span class="math inline">\(x_t\)</span>. The minimum of <span class="math inline">\(C\)</span> is given by <span class="math inline">\(J(0,x_0)\)</span>.</p>
-<p>One can recursively compute <span class="math inline">\(J(t,x)\)</span> from <span class="math inline">\(J(t+1,x)\)</span> for all <span class="math inline">\(x\)</span> in the following way: <span class="math display">\[
-\begin{array}{rcl}
-J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\right)\\
-&amp;=&amp; \min_{u_{t}}\left(R(t,x_t,u_t)+\min_{u_{t+1:T-1}}\left[\phi(x_T)+\sum_{s=t+1}^{T-1}R(s,x_s,u_s)\right]\right)\\
-&amp;=&amp; \min_{u_{t}}\left(R(t,x_t,u_t)+J(t+1,x_{t+1})\right)
-\end{array}
-\]</span> Note that the minimization over the whole path <span class="math inline">\(u_{0,T-1}\)</span> has reduced to a sequence of minimizations over <span class="math inline">\(u_t\)</span> . This simplification is due to the Markovian nature of the problem: the future depends on the past only through the present.</p>
-<p>The algorithm to compute the optimal control <span class="math inline">\(u_{0,T-1}^*\)</span>, the optimal trajectory <span class="math inline">\(x_{1:T}^*\)</span> and the optimal cost is given by</p>
-<ol type="1">
-<li><p><span class="math inline">\(J(T,x)=\phi(x)\)</span></p></li>
-<li><p>Backwards: For <span class="math inline">\(t=T-1,\dotsm,0\)</span> and for all <span class="math inline">\(x\)</span></p>
-<p><span class="math inline">\(u_t^*(x)=\arg \min_u \{R(t,x,u)+J(t+1,x_{t+1})\}\)</span></p>
-<p><span class="math inline">\(J(t,x)=R(t,x,u_t^*)+J(t+1,x_{t+1})\)</span></p></li>
-<li><p>Forwards: For <span class="math inline">\(t=0,\dotsm,T-1\)</span></p>
-<p><span class="math inline">\(x_{t+1}^*=x_t^*+f(t,x_t^*,u_t^*(x_t^*))\)</span></p></li>
-</ol>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/17/EE5904 Neural Network/5.RL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -577,11 +444,363 @@ a_{k+1}\notin\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }\eps
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/EE5904 Neural Network/4.SVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/05/13/EE5904 Neural Network/4.SVM/" class="post-title-link" itemprop="url">Chapter 4. Support Vector Machine</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-13 13:45:47 / Modified: 14:36:35" itemprop="dateCreated datePublished" datetime="2019-05-13T13:45:47+08:00">2019-05-13</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/05/13/EE5904 Neural Network/4.SVM/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 4. Support Vector Machine" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/05/13/EE5904 Neural Network/4.SVM/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/13/EE5904 Neural Network/4.SVM/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="support-vector-machine-svm">Support Vector Machine (SVM)</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>There are many planes to separate data. SVM is one of the best planes.</p>
+<h2 id="data">2. Data</h2>
+<p>Data set <span class="math inline">\(\sum\)</span> containing <span class="math inline">\(N+\bar N\)</span> examples is partitioned into a training set <span class="math display">\[
+S=\{(x_1,d_1),\dotsm,(x_N,d_N)\}
+\]</span> and a test set <span class="math display">\[
+\bar S=\{(\bar x_1,\bar d_1),\dotsm,(\bar x_\bar N,\bar d_\bar N)\}
+\]</span></p>
+<h2 id="classification">3. Classification</h2>
+<p>A hyperplane denoted by <span class="math inline">\((w,b)\)</span> can be expressed by <span class="math display">\[
+g(x)=w^Tx+b=0
+\]</span> Hyperplane classifies a given <span class="math inline">\(x_i\)</span> with <span class="math display">\[
+sgn[g(x_i)]=
+\begin{cases}
++1\quad if\quad g(x_i)&gt;0\\
+-1\quad if\quad g(x_i)&lt;0
+\end{cases}
+\]</span> Hyperplane classifies an example <span class="math inline">\((x_i,d_i)\)</span> correctly if <span class="math display">\[
+sgn[d_i g(x_i)]=1
+\]</span> Two classes of data are linearly separable if and only if there exists a hyperplane that separates the two classes.</p>
+<h2 id="margins">4. Margins</h2>
+<p>The functional margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
+\gamma_i^f=d_i(w^Tx_i+b)
+\]</span> The Geometric margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
+\gamma_i^g=d_i(\frac{1}{||w||}w^Tx_i+\frac{1}{||w||}b)
+\]</span> that is the Euclidean distance from the point to the hyperplane.</p>
+<p>It is easy to see that <span class="math inline">\(\frac{1}{||w||}b\)</span> is the distance from origin to the hyperplane. <span class="math inline">\(\frac{1}{||w||}w^T x_i\)</span> is the projection distance (vector projection distance) from the point <span class="math inline">\(x_i\)</span> to the subspace <span class="math inline">\(w\)</span> , therefore <span class="math inline">\(\gamma_i^g\)</span> is the Euclidean distance from the point to the hyperplane.</p>
+<p>The hyperplane does not change when scaled by a real constant. <span class="math display">\[
+w^Tx+b=0\\
+cw^Tx+cb=0
+\]</span> <span class="math inline">\(\gamma_i^g\)</span> does not change but <span class="math inline">\(\gamma_i^f\)</span> changes (This property is important).</p>
+<p>We have the following equation <span class="math display">\[
+\gamma_i^g=\frac{\gamma_i^f}{||w||}
+\]</span> The functional margin of the training set is defined as <span class="math display">\[
+\gamma^f=\min_{1\le i\le N}\{\gamma_i^f\}
+\]</span> The geometric margin of a training set is defined as <span class="math display">\[
+\gamma^g=\min_{1\le i \le N}\{\gamma_i^g\}
+\]</span> The training set S can have different geometric margins depending on how hyperplane is defined.</p>
+<p>The optimal hyperplane for a given S is one that gives maximum <span class="math inline">\(\gamma^g\)</span> over all possible hyperplanes. <span class="math display">\[
+\gamma =\max\{\gamma^g_{(w_1,b_1)},\gamma^g_{(w_2,b_2)},\dotsm\}
+\]</span></p>
+<h2 id="primal">5. Primal</h2>
+<p>How to find the margin of S?</p>
+<p>For a given w, We have <span class="math display">\[
+\gamma_i^g=\frac{\gamma_i^f}{||w||}
+\]</span> The sample k that yields <span class="math display">\[
+\gamma^f=\gamma^f_k
+\]</span> also yields <span class="math display">\[
+\gamma^g =\gamma_k^g
+\]</span> So we have <span class="math display">\[
+\gamma^g=\frac{\gamma^f}{||w||}
+\]</span> therefore, we can maximize <span class="math inline">\(\gamma^g\)</span> by fixing <span class="math inline">\(\gamma^f\)</span> and then minimizing <span class="math inline">\(||w||\)</span> <span class="math display">\[
+\gamma^f = d_k(w^Tx_k+b)=1
+\]</span> That means we choose different to satisfy <span class="math inline">\(\gamma^f=1\)</span> . Without this constraint, we have infinite solutions <span class="math inline">\(w\)</span> since <span class="math inline">\(w&#39;=cw\)</span> and <span class="math inline">\(b&#39;=cb\)</span> where <span class="math inline">\(c\)</span> can any number.</p>
+<p>With <span class="math inline">\(\gamma^f\)</span> fixed at 1, for any examples in <span class="math inline">\(x_i\)</span> , we have <span class="math display">\[
+d_i(w^Tx_i+b)\ge1
+\]</span></p>
+<p>Therefore we get the constraint optimization problem, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
+\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
+\end{array}
+\]</span> Solving this problem yields the optimal hyperplane <span class="math inline">\((w_0,b_0)\)</span></p>
+<p>Then the discriminant function is <span class="math display">\[
+g(x)=w_0^Tx+b_0
+\]</span></p>
+<h2 id="lagrange-multipliers-and-kkt-conditions">6. Lagrange Multipliers and KKT Conditions</h2>
+<p>For the constraint optimization problem <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)\\
+\text{Subject to:} &amp; h(w)=0\\
+\end{array}
+\]</span> We can use Lagrange Theorem to solve. The necessary for the existence of an optimal solution <span class="math inline">\(w_0\)</span> corresponding to a minimum of <span class="math inline">\(f(w)\)</span> subject to <span class="math inline">\(h_i(w)=0\)</span> are <span class="math display">\[
+\frac{\partial L(w_0,\beta_0)}{\partial w}=0\\
+\frac{\partial L(w_0,\beta_0)}{\partial \beta_i}=0\\
+\]</span></p>
+<p>where we define the Lagrangian Function <span class="math display">\[
+L(w,\beta)=f(w)+\sum_{i=1}^m \beta_i h_i(w)
+\]</span> Lagrange Theorem can be generalized to deal with problems having both equality and inequality constraints.</p>
+<p>For the primal problem, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)\\
+\text{Subject to:} &amp; q_i(w)\le 0\\
+&amp; h_i(w)=0
+\end{array}
+\]</span> We have the generalized Lagrangian function <span class="math display">\[
+L(w,\alpha,\beta)=f(w)+\sum_{i=1}^k \alpha_iq_i(w)+\sum_{i=1}^m\beta_ih_i(w)
+\]</span> where <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_i\)</span> are the Lagrange Multipliers.</p>
+<p>In order to solve the primal problem, we have Kuhn-Tucker Theorem</p>
+<p>The sufficient and necessary condition for a point <span class="math inline">\(w_o\)</span> to be an optimal solution is the existence of <span class="math inline">\(\alpha_o\)</span> and <span class="math inline">\(\beta_o\)</span> such that <span class="math display">\[
+\begin{array}{rcl}
+\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial w}&amp;=&amp;0\\
+\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial \beta_i}&amp;=&amp;0\\
+\alpha_{o,i}q_i(w_o)&amp;=&amp;0\\
+q_i(w_o)&amp;\le&amp;0\\
+\alpha_{o,i}&amp;\ge&amp;0
+\end{array}
+\]</span></p>
+<h2 id="lagrange-dual-problem">7. Lagrange Dual Problem</h2>
+<p>In mathematical optimization theory, duality or the duality principle is the principle that optimization problems may be viewed from either of two perspectives, the primal problem or the dual problem. The solution to the dual problem provides a lower bound to the solution of the primal (minimization) problem. However in general the optimal values of the primal and dual problems need not be equal. Their difference is called the ==duality gap==. For convex optimization problems, the duality gap is zero under a constraint qualification condition (Regularity conditions). (From Wikipedia Duality (Optimization))</p>
+<p>The Lagrangian dual problem is obtained by forming the Lagrangian of a minimization problem by using nonnegative Lagrange multipliers to add the constraints to the objective function, and then solving for the primal variable values that minimize the original objective function. This solution gives the primal variables as functions of the Lagrange multipliers, which are called dual variables, so that the new problem is to maximize the objective function with respect to the dual variables under the derived constraints on the dual variables (including at least the nonnegativity constraints).</p>
+For a convex minimization problem with inequality constraints (primal problem), <span class="math display">\[
+\begin{array}{ll}{\underset{x}{\operatorname{minimize}}} &amp; {f(x)} \\ {\text { subject to }} &amp; {g_{i}(x) \leq 0, \quad i=1, \ldots, m}\end{array}
+\]</span> The Lagrangian Dual Problem is <span class="math display">\[
+\begin{array}{cl}{\underset{u}{\operatorname{maximize}}} &amp; {\inf _{x}\left(f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x)\right)} \\ {\text { subject to }} &amp; {u_{i} \geq 0, \quad i=1, \ldots, m}\end{array}
+\]</span> The infimum occurs where the gradient is equal to zero. Then problem is denoted as <span class="math display">\[
+\begin{array}{cl}
+\underset{x, u}{\operatorname{maximize}} &amp; f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x) \\ 
+\text { subject to } &amp; \nabla f(x)+\sum_{j=1}^{m} u_{j} \nabla g_{j}(x)=0 \\ 
+&amp; {u_{i} \geq 0, \quad i=1, \ldots, m}
+\end{array}
+\]</span> Therefore, for the primal problem of SVM, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
+\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
+\end{array}
+\]</span> we have the dual problem <span class="math display">\[
+\begin{array}{rl}
+\text{Maximize:} &amp; L(w,\alpha,\beta)\\
+\text{Subject to:} &amp; \frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}=0\\
+&amp;\alpha\ge0 
+\end{array}
+\]</span> Then we hope to reduce the variables in the dual problem <span class="math display">\[
+\begin{array}{rcl}
+q_i &amp;=&amp; -d_i(w^Tx_i+b)+1\le0\\
+L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_i(d_i(w^Tx_i+b)-1)\\
+&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}&amp;=&amp; \frac{1}{2}\frac{\partial w^Tw}{\partial w}-\sum_{i=1}^N\alpha_id_i(\frac{\partial w^Tx_i}{\partial w})\\
+&amp;=&amp;w-\sum_{i=1}^N\alpha_id_ix_i=0\\
+w&amp;=&amp;\sum_{i=1}^N\alpha_id_ix_i\\
+\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial b}&amp;=&amp;\sum_{i=1}^Na_id_i=0
+\end{array}
+\]</span> Then we have the simplified dual problem $$
+<span class="math display">\[\begin{array}{rcl}
+L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
+
+&amp;=&amp;\frac{1}{2}\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]\left[\sum_{i=1}^N\alpha_id_ix_i\right]\\
+&amp;&amp;-\sum_{i=1}^N\alpha_id_i\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]x_i\\
+&amp;&amp;-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
+
+&amp;=&amp; \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+&amp;&amp;-\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+&amp;&amp;-0+\sum_{i=1}^N\alpha_i
+\end{array}\]</span>
+<span class="math display">\[
+Then we have the dual problem
+\]</span>
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+
+\text{Subject to:} &amp; \alpha_i\ge0 \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<p><span class="math display">\[
+From the KKT condition, we have
+\]</span> _{o,i}(d_i(w_o^Tx_i+b_o)-1)=0 $$ For the support vectors, we have <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> Then <span class="math inline">\(\alpha_{o,i}\neq 0\)</span></p>
+<p>Furthermore, fore a support vector <span class="math inline">\(x_i\)</span>, <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> then <span class="math inline">\(b_o=\frac{1}{d_i}-w_o^Tx_i\)</span> .</p>
+<p>As <span class="math inline">\(\alpha_{o,i}\)</span> is obtained, we can calculate <span class="math inline">\(w_o\)</span> and <span class="math inline">\(b_o\)</span> as follows <span class="math display">\[
+w_o=\sum_{i=1}^N \alpha_{o,i}d_ix_i\\
+b_o=\frac{1}{d^{(s)}}-w_o^Tx^{(s)}\\
+\]</span> <span class="math inline">\(\alpha_{o,i}\)</span> can be solved by many methods such as quadratic programming.</p>
+<h2 id="soft-margin">8. Soft Margin</h2>
+<p>We add nonnegative slack variables <span class="math inline">\(\xi_i\)</span></p>
+<p><span class="math inline">\(\xi_i =0\)</span> when data point is not in region of separation</p>
+<p><span class="math inline">\(0\le \xi_i\le 1\)</span> when data point is in the region of separation and on correct side of hyperplane</p>
+<p><span class="math inline">\(\xi_i &gt; 0\)</span> when data point is in the region of separation but on wrong side of hyperplane</p>
+<p>We hope to minimize the cost function <span class="math display">\[
+f(w,\xi)=\frac{1}{2}w^Tw+C\sum_{i=1}^N \xi_i
+\]</span> A large C generally leads to smaller margin but also fewer misclassification</p>
+<p>A small C generally leads to larger margin but also more misclassification</p>
+Then for an example we have <span class="math display">\[
+d_i(w^Tx_i+b)\ge 1-\xi_i 
+\]</span> Finally we have the dual problem $$
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<p>$$ Then we try to find the support vector</p>
+<ol type="1">
+<li>For the support vector with <span class="math inline">\(\alpha_i&lt;C\)</span> . Support is located on the boarder of margin of separation.</li>
+<li>For the support vector with <span class="math inline">\(\alpha_i=C\)</span>. Support is located inside the margin of separation.</li>
+</ol>
+<p>Then for each sample <span class="math inline">\(x_i\)</span> with <span class="math inline">\(0\le \alpha_i \le C\)</span> <span class="math display">\[
+w_o=\sum_{i=1}^N\alpha_{o,i}d_ix_i\\
+b_{o,i}=\frac{1}{d_i}-w_o^Tx_i\\
+b_o=\frac{\sum_{i=1}^mb_{o,i}}{m}
+\]</span></p>
+<h2 id="kernel">9. Kernel</h2>
+<p>Cover's Theorem</p>
+<p>Probability that classes are linearly separable increases when data points in input space are nonlinearly mapped to a higher dimensional feature space.</p>
+<p>Then if we map <span class="math inline">\(x_i\)</span> to <span class="math inline">\(\varphi(x_i)\)</span></p>
+The discriminant function becomes <span class="math display">\[
+g(x)=w_o^T\varphi(x)+b_o
+\]</span> The dual problem becomes $$
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_j\varphi(x_i)^T\varphi(x_j)\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<span class="math display">\[
+Given the optimal value $\alpha_{o,i}$ 
+\]</span> w_o=<em>{i=1}^N</em>{o,i}d_i(x_i)\ b_o=-w_o<sup>T(x</sup>{(s)})\ <span class="math display">\[
+Solution requires $\varphi$ but finding explicit form of $\varphi$ is not easy, then we define
+\]</span> K(x,y)=^T(x)(y) <span class="math display">\[
+The dual problem becomes
+\]</span>
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jK(x_i,x_j)\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<span class="math display">\[
+Given the optimal value $\alpha_{o,i}$, we have
+\]</span> b_o=-<em>{i=1}<sup>N<em>{o,i}d_iK(x_i,x^{(s)}) <span class="math display">\[
+The discriminant function is 
+\]</span> g(x)=</em>{i=1}</sup>N</em>{o,i}d_iK(x_i,x)+b_o <span class="math display">\[
+==Attention== the expression for $K$ must satisfy Mercer&#39;s Condition
+\]</span> K=
+<span class="math display">\[\begin{bmatrix}
+k(x_1,x_1) &amp; \dotsm &amp; K(x_1,x_N)\\
+\vdots &amp; \ddots &amp; \vdots\\
+K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
+\end{bmatrix}\]</span>
+<p>$$ is positive semi-definite.</p>
+<h2 id="summary">10. Summary</h2>
+<p>Given a training set <span class="math inline">\(S=\{(x_i,d_i)\}\)</span></p>
+<ol type="1">
+<li>Find a suitable kernel and check Mercer's condition</li>
+<li>Choose a value for C</li>
+<li>Solve for <span class="math inline">\(\alpha_{o,i}\)</span></li>
+<li>Determine <span class="math inline">\(b_o\)</span></li>
+<li>Use discriminant function</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -626,7 +845,7 @@ a_{k+1}\notin\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }\eps
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

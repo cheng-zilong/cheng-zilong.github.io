@@ -215,264 +215,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/Convex Optimization/10. Equality constrained Minimization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-title-link" itemprop="url">Chapter 10. Equality constrained Minimization</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-09-03 13:49:01 / Modified: 13:59:42" itemprop="dateCreated datePublished" datetime="2019-09-03T13:49:01+08:00">2019-09-03</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 10. Equality constrained Minimization" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="equality-constrained-minimization">10. Equality constrained minimization</h1>
-<h2 id="equality-constrained-minimization-problems">10.1 Equality constrained minimization problems</h2>
-<p>In this chapter we describe methods for solving a convex optimization problem with equality constraints, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> We denote <span class="math display">\[
-p^\star=\inf\{f(x)|Ax=b\}=f(x^\star)
-\]</span> Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
-Ax^\star =b\quad \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Solving the equality constrained optimization problem is therefore equivalent to finding a solution of the KKT conditions shown in the above, which is a n+p equations in the n+p variables <span class="math inline">\(v^\star\)</span> and <span class="math inline">\(x^\star\)</span>. The first one is called <strong>primal feasibility equations</strong>, which are linear. The second one is called <strong>dual feasibility equations</strong>, and are in general non-linear.</p>
-<p>The bulk if this chapter is to denoted to extensions of Newton's method that directly handle equality constraints. In many cases, this method is preferable than the methods that reduce an equality constrained problem to unconstrained one. One reason is that the problem structure is destroyed by elimination. Another reason is conceptual, methods that directly handle the constraints can be thought of solving the problem directly.</p>
-<h3 id="equality-constrained-convex-quadratic-minimization">10.1.1 Equality constrained convex quadratic minimization</h3>
-<p><span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-(1/2)x^TPx+q^Tx+r
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span></p>
-<p>The optimal conditions are <span class="math display">\[
-Ax^\star =b \quad Px^\star +q+A^Tv^\star=0
-\]</span> which we can write as <span class="math display">\[
-\begin{bmatrix}
-P &amp; A^T\\
-A  &amp; 0
-\end{bmatrix}
-\begin{bmatrix}
-x^\star \\ v^\star
-\end{bmatrix}=
-\begin{bmatrix}
--q\\b
-\end{bmatrix}
-\]</span> This set of <span class="math inline">\(n+p\)</span> linear equations is called <strong>KKT system</strong>. The coefficient matrix is called <strong>KKT matrix</strong>.</p>
-<p>If KKT matrix is nonsingular, there is an unique optimal solution. If singular, there is infinite solutions. If not solvable, the problem is infeasible.</p>
-<h3 id="eliminating-equality-constraints">10.1.2 Eliminating equality constraints</h3>
-<p>We have <span class="math display">\[
-\{x|Ax=b\}=\{Fz+\hat x|z\in R^{n-p}\}
-\]</span> where <span class="math inline">\(\hat x\)</span> is a particular solution of <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(F\)</span> is the null space of A.</p>
-<h3 id="solving-equality-constrained-problem-via-the-dual">10.1.3 Solving equality constrained problem via the dual</h3>
-<p>Another approach is to solving the dual, and then recover the optimal primal variable <span class="math inline">\(x^\star\)</span>.</p>
-<p>The dual function of 10.1 is <span class="math display">\[
-g(v)=-b^Tv+\inf_x(f(x)+v^TAx) \\
-=-b^Tv-f^\star (-A^Tv)
-\]</span></p>
-<p>where <span class="math inline">\(f^*\)</span> is the conjugate of <span class="math inline">\(f\)</span>.</p>
-<h2 id="newtons-method-with-equality-constraints">10.2 Newton's method with equality constraints</h2>
-<p>In this section we describe an extension of Newton's method to include equality constraints. The method is almost the same as Newton's method without constraints, except two differences: the initial point must be feasible, and the definition of Newton step is modified to take the equality constraints into account.</p>
-<h3 id="the-newton-step">10.2.1 The newton step</h3>
-<p>For the equality constrained problem, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> we replace the objective with the second-order Taylor approximation near <span class="math inline">\(x\)</span>, to form the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\hat f(x+v)=f(x)+\nabla f(x)^Tv+(1/2)v^T\nabla^2f(x)v
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-A(x+v)=b
-\end{array}
-\end{array}
-\]</span> with variable <span class="math inline">\(v\)</span>. This is a convex quadratic minimization problem with equality constraints, and can be solved analytically. We define the newton step <span class="math inline">\(\Delta x_{nt}\)</span> at <span class="math inline">\(x\)</span> as the solution of the convex quadratic problem in the above. Then we have <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x) &amp; A^T\\A &amp; 0
-\end{bmatrix}
-\begin{bmatrix}
-\Delta x_{nt}\\w
-\end{bmatrix}=
-\begin{bmatrix}
--\nabla f(x)\\0
-\end{bmatrix}
-\]</span> where <span class="math inline">\(w\)</span> is the optimal dual variable for the quadratic problem.</p>
-<p><strong>Solution of linearized optimality conditions</strong></p>
-<p>Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
-Ax^\star =b\\ \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Newton method can be interpreted by solving the above equations.</p>
-<p>We substitute <span class="math inline">\(x+\Delta x_{nt}\)</span> for <span class="math inline">\(x^\star\)</span> and <span class="math inline">\(w\)</span> for <span class="math inline">\(v^\star\)</span>, and replace the gradient term in the second equation by its linearized approximation around <span class="math inline">\(x\)</span>, to obtain the equation, <span class="math display">\[
-A(x+\Delta x_{nt})=b\\
-\nabla f(x+\Delta x)+A^Tw\approx \nabla f(x)+\nabla^2 f(x)\Delta x_{nt}+A^Tw=0
-\]</span></p>
-<h2 id="infeasible-start-newton-method">10.3 Infeasible start Newton method</h2>
-<p>As in Newton's method, we start with optimality conditions for the equality constrained optimization problem: <span class="math display">\[
-Ax^\star=b\quad \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Let <span class="math inline">\(x\)</span> denote the current point, which we do not assume to be feasible. We will do second-order Taylor expansion around the point <span class="math inline">\(x\)</span>, and our goal is to find a step <span class="math inline">\(\Delta x\)</span> so that <span class="math inline">\(x+\Delta x\)</span> satisfies (at least approximately) the optimality conditions, i.e. <span class="math inline">\(x+\Delta x\approx x^\star\)</span>. <span class="math display">\[
-\nabla f(x+\Delta x)\approx \nabla f(x)+\nabla^2f(x)\Delta x
-\]</span> For the gradient, we have <span class="math display">\[
-A(x+\Delta x)=b\\
-\nabla f(x)+\nabla^2f(x)\Delta x+A^Tw=0
-\]</span> This is a linear equations for <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x) &amp; A^T\\A &amp; 0
-\end{bmatrix}
- \begin{bmatrix}
- \Delta x\\ w
- \end{bmatrix}=
- -\begin{bmatrix}
- \nabla f(x)\\Ax-b
- \end{bmatrix}
-\]</span></p>
-<p><strong>Primal-dual interpretation</strong></p>
-<p>We can give an interpretation of the equation in terms of the primal-dual method for the equality constrained problem. By the primal-dual method, we mean one in which we update both the primal variable <span class="math inline">\(x\)</span> and the dual variable <span class="math inline">\(v\)</span>, in order to satisfy the optimality conditions.</p>
-<p>We express the optimality conditions as <span class="math inline">\(r(x^\star,v^\star)=0\)</span>, where <span class="math inline">\(r:R^n\times R^p \rightarrow R^n\times R^p\)</span> is defined as <span class="math display">\[
-r(x,v)=(r_{dual}(x,v),r_{pri}(x,v))\\
-r_{dual}(x,v)=\nabla f(x)+A^Tv\\
-r_{pri}(x,v)=Ax-b
-\]</span> The first order Taylor approximate of <span class="math inline">\(r\)</span> is <span class="math display">\[
-r(y+z)\approx r(y)+Dr(y)z
-\]</span> We define <span class="math inline">\(\Delta y_{pd}=(\Delta x_{pd},\Delta v_{pd})\)</span> such that the Taylor approximation vanishes, i.e. <span class="math display">\[
-r(y+\Delta y_{pd})=r(y)+Dr(y)\Delta y_{pd}=0
-\]</span> Then we have <span class="math display">\[
-Dr(y)\Delta y_{pd}=-r(y)
-\]</span> Evaluating the derivative of <span class="math inline">\(r\)</span>, we have <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x)&amp;A^T\\A&amp;0
-\end{bmatrix}
-\begin{bmatrix}
-\Delta x_{pd}\\\Delta v_{pd}
-\end{bmatrix}
-=-
-\begin{bmatrix}
-r_{dual}\\ r_{pri}
-\end{bmatrix}
-=-
-\begin{bmatrix}
-\nabla f(x)+A^Tv\\ Ax-b
-\end{bmatrix}
-\]</span> Let <span class="math inline">\(w=v+\Delta v_{pd}\)</span>, we have Newton step.</p>
-<p><strong>Using infeasible start Newton method to simplify initialization</strong></p>
-<p>The main advantage of the infeasible start Newton method is in the initialization required.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -604,11 +346,213 @@ f(x)=\int _a^bx(t)dt
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-title-link" itemprop="url">Chapter 3-2. Orthogonal and Orthonormal System</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-26 13:48:00 / Modified: 14:59:54" itemprop="dateCreated datePublished" datetime="2019-08-26T13:48:00+08:00">2019-08-26</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3-2. Orthogonal and Orthonormal System" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="orthogonal-and-orthonormal-system">3.6 Orthogonal and Orthonormal System</h2>
+<p>By a basis of a vector space E, we mean a linearly independent family <span class="math inline">\(\mathscr B\)</span> of vectors from E such that any vector <span class="math inline">\(x\in E\)</span> can be written as <span class="math inline">\(x=\sum_{n=1}^m \lambda_nx_n\)</span> where <span class="math inline">\(x_n\in \mathscr B\)</span> and <span class="math inline">\(\lambda_n\)</span>’s are scalars. In the inner product space, orthonormal bases are of much greater importance. Instead of finite combinations <span class="math inline">\(\sum_{n=1}^m \lambda_nx_n\)</span>, infinite sums are allowed and the ==condition of linear independence== is replaced by orthogonality.</p>
+<p>==Definition 3.6.1== (Orthogonal and Orthonormal systems)</p>
+<p>Let E be an inner product space. A family S of non-zero vectors in E is called an orthogonal system if <span class="math inline">\(x\perp y\)</span> for any two distinct elements of S. If, in addition, <span class="math inline">\(||x||=1\)</span> for all <span class="math inline">\(x\in S\)</span>, then S is called an orthonormal system.</p>
+<p>Every orthogonal set of non-zero vectors can be normalized. If S is an orthogonal system, then the family <span class="math display">\[
+S_1=\{\frac{x}{||x||}:x\in S\} 
+\]</span> is an orthonormal system.</p>
+<p>==Theorem 3.6.1==</p>
+<p>Orthogonal systems are linearly independent.</p>
+<p>==Definition 3.6.2== (Orthonormal sequence)</p>
+<p>A sequence of vectors which constitute an orthonormal system is called an orthonormal sequence.</p>
+<p>The condition of orthogonality of a sequence <span class="math inline">\((x_n)\)</span> can be expressed in terms of the Kronecker delta symbol <span class="math display">\[
+&lt;x_m,x_n&gt;=\delta_{mn}=\begin{cases}0&amp;m\neq n\\1&amp;m=n\end{cases}
+\]</span> ==Example 3.6.1==</p>
+<h2 id="properties-of-orthonormal-systems">3.7 Properties of Orthonormal systems</h2>
+<p>In section 3.3, we proved that Pythagorean formula holds for any pair of orthogonal vectors in an inner product space. It turns out that it can be generalized to any finite number of orthogonal vectors.</p>
+<p>==Theorem 3.7.1== (Pythagorean formula)</p>
+<p>If <span class="math inline">\(x_1,\dotsm,x_n\)</span> are orthogonal vectors in an inner product space, then <span class="math display">\[
+||\sum_{k=1}^nx_k||^2=\sum_{k=1}^n||x_k||^2
+\]</span> ==Theorem 3.7.2== Bessel’s equality and inequality</p>
+<p>Let <span class="math inline">\(x_1,\dotsm,x_n\)</span> be an orthonormal set of vectors in an inner product space E. Then, for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
+\left|\left|x-\sum_{k=1}^n &lt;x,x_k&gt;x_k\right|\right|^2=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2
+\]</span> and <span class="math display">\[
+\sum_{k=1}^n|&lt;x,x_k&gt;|^2\le ||x||^2
+\]</span> Proof.</p>
+<p>In view of the Pythagorean Formula, we have <span class="math display">\[
+\left|\left|\sum_{k=1}^n\alpha_kx_k\right|\right|^2=\sum_{k=1}^n|\alpha_k|^2
+\]</span> Then <span class="math display">\[
+\left|\left|x-\sum_{k=1}^n\alpha_kx_k\right|\right|^2\\
+=\left\langle x-\sum_{k=1}^n\alpha_kx_k,x-\sum_{k=1}^n\alpha_kx_k \right\rangle\\
+=||x||^2
+-\sum_{k=1}^n\bar \alpha_k\left\langle x,x_k\right\rangle
+-\sum_{k=1}^n\alpha_k\overline{\left\langle x,x_k \right\rangle}
++\sum_{k=1}^n|\alpha_k|^2||x_k||^2\\
+=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2+\sum_{k=1}^n |&lt;x,x_k&gt;-\alpha_k|^2
+\]</span> Then let <span class="math inline">\(\alpha_k=&lt;x,x_k&gt;\)</span>, Q.E.D.</p>
+<ol type="1">
+<li><p>This choice of <span class="math inline">\(\alpha_k\)</span>’s minimizes <span class="math inline">\(||x-\sum_{k=1}^n\alpha_kx_k||\)</span> and thus it provides the best approximation of <span class="math inline">\(x\)</span> by a linear combination of vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span>.</p></li>
+<li><p>If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence of vectors in an inner product space E, then we have <span class="math display">\[
+\sum_{n=1}^\infty |&lt;x,x_k&gt;|^2\le ||x||^2
+\]</span> This shows that the series <span class="math inline">\(\sum_{k=1}^\infty |&lt;x,x_k&gt;|^2\)</span> converges for every <span class="math inline">\(x\in E\)</span>.</p>
+<p>In another words, the sequence <span class="math inline">\((&lt;x,x_n&gt;)\)</span> is an elements of <span class="math inline">\(l^2\)</span>. We can say that an orthonormal sequence in E induces a mapping from E into <span class="math inline">\(l^2\)</span>. <span class="math display">\[
+x\sim \sum_{n=1}^\infty &lt;x,x_n&gt;x_n
+\]</span> is called generalized Fourier series of <span class="math inline">\(x\)</span>. In general we do not know whether the series if convergent. However, the next theorem show that the completeness of the space ensures the convergence.</p></li>
+</ol>
+<p>==Theorem 3.7.3==</p>
+<p>Let <span class="math inline">\((x_n)\)</span> be an orthonormal sequence in a Hilbert space H and let <span class="math inline">\((\alpha_n)\)</span> be a sequence of complex numbers. Then the series <span class="math inline">\(\sum_{n=1}^\infty\alpha_n x_n\)</span> converges if and only if $_{n=1}^|_n|^2&lt;$, and in that case <span class="math display">\[
+||\sum_{n=1}^\infty \alpha_nx_n||^2=\sum_{n=1}^\infty |\alpha_n|^2
+\]</span> The proceeding theorem imply that in a Hilbert space H the series <span class="math inline">\(\sum_{n=1}^\infty &lt;x,x_n&gt;x_n\)</span> converges for every <span class="math inline">\(x\in H\)</span>. However, it can happen that it converges to an element different from <span class="math inline">\(x\)</span>.</p>
+<p>==Example 3.7.1==</p>
+<p>Let <span class="math inline">\(H=L^2([-\pi,\pi])\)</span> and let <span class="math inline">\(x_n=\frac{1}{\sqrt \pi}\sin nt\)</span> for <span class="math inline">\(n=1,2,\dotsm\)</span>. The sequence <span class="math inline">\((x_n)\)</span> is an orthonormal set in H. On the other hand, for <span class="math inline">\(x(t)=\cos t\)</span>, we have <span class="math display">\[
+\sum_{n=1}^\infty &lt;x,x_n&gt;x_n(t)=\sum_{n=1}^\infty [\frac{1}{\sqrt \pi}\int _{-\pi}^\pi \cos t\sin nt dt]\frac{\sin nt}{\sqrt \pi}=0\neq \cos t
+\]</span> If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence in an inner product space E, then for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
+\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2&lt;\infty
+\]</span> and consequently, <span class="math display">\[
+\lim_{n\rightarrow \infty }&lt;x,x_n&gt;=0
+\]</span> Therefore, orthonormal sequence are weakly convergent to zero. But <span class="math inline">\(||x_n||=1\)</span>, they are not strongly convergent.</p>
+<p>==Definition 3.7.1== (Complete orthonormal sequence)</p>
+<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in an inner product space E is said to be complete if for every <span class="math inline">\(x\in E\)</span> we have <span class="math display">\[
+x=\sum_{n=1}^\infty &lt;x,x_n&gt;x_n
+\]</span> ==Definition 3.7.2== (Orthonormal basis)</p>
+<p>An orthonormal system B in an inner product space E is called an orthonormal basis if every <span class="math inline">\(x\in E\)</span> has a unique representation <span class="math display">\[
+x=\sum_{n=1}^\infty \alpha_nx_n
+\]</span> where <span class="math inline">\(\alpha_n \in C\)</span> and <span class="math inline">\(x_n\)</span>’s are distinct elements of B.</p>
+<p>==Theorem 3.7.4==</p>
+<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math inline">\(&lt;x,x_n&gt;=0\)</span> for all <span class="math inline">\(n\in N\)</span> implies <span class="math inline">\(x=0\)</span></p>
+<p>==Theorem 3.7.5== (Parseval’s Formula)</p>
+<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math display">\[
+||x||^2=\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2
+\]</span> for every <span class="math inline">\(x\in H\)</span>.</p>
+<h2 id="orthogonal-complements-and-projection-theorem">3.9 Orthogonal Complements and projection theorem</h2>
+<p>By a subspace of a Hilbert space, we mean a vector subspace of H. A subspace of a Hilbert space is an inner product space. If we additionally assume that S is a closed subspace of H, then S is a Hilbert space itself, because a closed subspace of complete normed space is complete.</p>
+<p>==Definition 3.9.1== Orthogonal Complement</p>
+<p>Let S be a non-empty subset of a Hilbert space H. An element <span class="math inline">\(x\in H\)</span> is said to be orthogonal to S, denoted by <span class="math inline">\(x\perp S\)</span>, if <span class="math inline">\(&lt;x,y&gt;=0\)</span> for every <span class="math inline">\(y\in S\)</span>. The set of all elements of H orthogonal to S, denoted by <span class="math inline">\(S^\perp\)</span> is called the orthogonal complement of S. In symbols, <span class="math display">\[
+S^\perp =\{x\in H,x\perp S\}
+\]</span> The orthogonal complement of <span class="math inline">\(S^\perp\)</span> is denoted by <span class="math inline">\(S^{\perp\perp}\)</span></p>
+<p>Two subsets of A and B is said to be orthogonal if <span class="math inline">\(x\perp y\)</span> for every <span class="math inline">\(x\in A\)</span> and <span class="math inline">\(y\in B\)</span>. This is denoted by <span class="math inline">\(A\perp B\)</span>. Note that if <span class="math inline">\(A\perp B\)</span>, then <span class="math inline">\(A\bigcap B=\empty\)</span></p>
+<p>==Theorem 3.9.1==</p>
+<p>For any subset S of a Hilbert space H, the set <span class="math inline">\(S^\perp\)</span> is a closed subspace of H.</p>
+<p>==Definition 3.9.2== (Convex sets)</p>
+<p>A set <span class="math inline">\(U\)</span> in a vector space is called convex if for any <span class="math inline">\(x,y \in U\)</span> and <span class="math inline">\(\alpha\in(0,1)\)</span>, we have <span class="math inline">\(\alpha x+(1-\alpha)y \in U\)</span></p>
+<p>The following theorem, concerning the minimization of the norm, is of fundamental importance in approximation theory.</p>
+<p>==Theorem 3.9.2== (The closet point property)</p>
+<p>Let S be a closed convex subset of a Hilbert space H. For every point <span class="math inline">\(x\in H\)</span> there exists a unique point <span class="math inline">\(y\in S\)</span> such that <span class="math display">\[
+||x-y||=\inf_{z\in S}||x-z||
+\]</span> ==Theorem 3.9.3==</p>
+<p>Let S be a closed convex subset of a real Hilbert space H, <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(x\in H\)</span>. Then the following conditions are equivalent.</p>
+<ol type="a">
+<li><p><span class="math inline">\(||x-y||=\inf_{z\in S}||x-z||\)</span></p></li>
+<li><p><span class="math inline">\(&lt;x-y,z-y&gt;\le 0\)</span> for all <span class="math inline">\(z\in S\)</span></p></li>
+</ol>
+<p>==Theorem 3.9.4== (Orthogonal projection)</p>
+<p>If S is a closed subspace of a Hilbert space H, then every element <span class="math inline">\(x\in H\)</span> has a unique decomposition in the form <span class="math inline">\(x=y+z\)</span> where <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(z\in S^\perp\)</span></p>
+<p>==Theorem 3.9.5==</p>
+<p>If S is a closed subspace of a Hilbert space H, then <span class="math inline">\(S^{\perp\perp}=S\)</span>.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -653,7 +597,7 @@ f(x)=\int _a^bx(t)dt
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
