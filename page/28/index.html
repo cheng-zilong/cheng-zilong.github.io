@@ -218,204 +218,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" class="post-title-link" itemprop="url">Chapter 9. Decoupling Control</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-28 13:33:56 / Modified: 14:23:09" itemprop="dateCreated datePublished" datetime="2018-11-28T13:33:56+08:00">2018-11-28</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 9. Decoupling Control" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="introduction">1. Introduction</h2>
-<p>Consider an MIMO system: <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx
-\]</span> or <span class="math display">\[
-Y(s)=C(sI-A)^{-1}BU(s)=G(s)U(s)
-\]</span> G(s) is <span class="math inline">\(m\times m\)</span> matrix</p>
-<p>==Decoupling==</p>
-<p>is to decouple a coupled plant such that feedback system is decoupled.</p>
-<h2 id="decoupling-by-state-feedback">2. Decoupling by State Feedback</h2>
-<p>Consider the system, to be decoupled by state feedback <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx\\
-u=-Kx+Fr
-\]</span> We have the feedback transfer function <span class="math display">\[
-H(s)=C(sI-A+BK)^{-1}BF
-\]</span> And we have the open loop transfer function <span class="math display">\[
-G(s)=C(sI-A)^{-1}B
-\]</span> it can be proved <span class="math display">\[
-H(s)=G(s)[I+K(sI-A)^{-1}B]^{-1}F
-\]</span> ==Calulation of <span class="math inline">\(\sigma_1\)</span>==</p>
-<p>Let i=1</p>
-<p>​ j=1 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^0B=c_1^TB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=1;goto \quad i=2 \\
-=0\rightarrow j=2
-\end{cases}
-\]</span> ​ j=2 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^1B=c_1^TAB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=2;goto \quad i=2 \\
-=0\rightarrow j=3
-\end{cases}
-\]</span> Then <span class="math display">\[
-B^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1-1}B\\
-c_2^TA^{\sigma_2-1}B\\
-\vdots \\
-c_m^TA^{\sigma_m-1}B
-\end{bmatrix} \\
-C^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1} \\
-c_2^TA^{\sigma_2} \\
-\vdots \\
-c_m^TA^{\sigma_m} \\
-\end{bmatrix}\\
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}C^*
-\]</span> Then <span class="math display">\[
-H(s)=diag(s^{-\sigma_1},s^{-\sigma_2},\dotsm,s^{-\sigma_m})
-\]</span> ==Decoupling with pole placement== <span class="math display">\[
-H(s)=
-\begin{bmatrix}
-\frac{1}{\Phi_{f_1}} &amp; 0 &amp; \dotsm &amp; 0 \\
-0 &amp; \frac{1}{\Phi_{f_2}} &amp; \dotsm &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \dotsm &amp; \frac{1}{\Phi_{f_m}}
-\end{bmatrix}
-\]</span> We just need <span class="math display">\[
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}
-\begin{bmatrix}
-c_1^T\Phi _{f_1}(A) \\
-c_2^T\Phi _{f_2}(A) \\
-\vdots \\
-c_m^T\Phi _{f_m}(A) \\
-\end{bmatrix}\\
-\Phi _{f_i}(A)=A^{\sigma_i}+\gamma_{i1}A^{\sigma_i-1}+\dotsm+\gamma_{i\sigma_i}A^{\sigma_i-\sigma_i}
-\]</span></p>
-<h2 id="decoupling-by-output-feedback">3. Decoupling by Output Feedback</h2>
-<p>in this section, we use a unity feedback controller. <span class="math display">\[
-H(s)=[I+G(s)K(s)]^{-1}G(s)K(s) \\
-H^{-1}=(GK)^{-1}[I+GK]=(GK)^{-1}+I
-\]</span> that means H is decoupled iff GK is decoupled. <span class="math display">\[
-K(s)=K_d(s)K_s(s)
-\]</span> <span class="math inline">\(K_d\)</span> is used for decoupler</p>
-<p><span class="math inline">\(K_s\)</span> is used for stabilizer</p>
-<p>==Design for Decoupler== <span class="math display">\[
-G(s)=\frac{N(s)}{d(s)}\\
-K_d(s)=adj(N(s))=det(N(s))*N^{-1}(s) \\
-G(s)K_d(s)=\frac{det(N(s))}{d(s)}I
-\]</span> ==Design for Stabilizer==</p>
-<p>For every single loop, make it stable</p>
-<p>==Refinement== <span class="math display">\[
-G(s)=diag\{\frac{1}{d_1}\quad \frac{1}{d_2} \quad \dotsm\quad \frac{1}{d_m}\}N_r(s)
-\]</span> every <span class="math inline">\(d_i\)</span> is a LCD if i-th row of G(s) <span class="math display">\[
-K_d=adj(N_r(s))
-\]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -743,11 +545,191 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-title-link" itemprop="url">Chapter 8. Quadratic Optimal Control</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-25 13:33:56 / Modified: 14:22:46" itemprop="dateCreated datePublished" datetime="2018-11-25T13:33:56+08:00">2018-11-25</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 8. Quadratic Optimal Control" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="problem-formulation-and-preliminaries">1. Problem Formulation and Preliminaries</h2>
+<p>The system is described as <span class="math display">\[
+\dot x = Ax +Bu \\
+y=Cx
+\]</span> The objective is to bring the state from non-zero initial value to zero. This is the regulation problem. The problem is cast into the following quadratic cost function. <span class="math display">\[
+J=\frac{1}{2}\int_0^\infty(x^TQx+u^TRu)dt
+\]</span> Using state feedback <span class="math inline">\(u=-Kx\)</span> to minimize the above equation.</p>
+<p>Q (semi-positive) and R (positive) can be made symmetric.</p>
+<p>Q and R appear most in diagonal form. <span class="math display">\[
+Q=\begin{bmatrix}
+q_1&amp;&amp;&amp;&amp;0 \\
+&amp;q_2&amp;&amp;&amp;0 \\
+&amp;&amp;\ddots&amp;&amp;0 \\
+&amp;&amp;&amp;q_{n-1}&amp;0 \\
+&amp;&amp;&amp;&amp;q_{n} \\
+\end{bmatrix}\\
+R=\begin{bmatrix}
+r_1&amp;&amp;&amp;&amp;0 \\
+&amp;r_2&amp;&amp;&amp;0 \\
+&amp;&amp;\ddots&amp;&amp;0 \\
+&amp;&amp;&amp;r_{n-1}&amp;0 \\
+&amp;&amp;&amp;&amp;r_{n} \\
+\end{bmatrix}
+\]</span> For later use, we define <span class="math display">\[
+Q=H^TH
+\]</span></p>
+<p>Three Assumptions</p>
+<ol type="1">
+<li>The system (A, B) is controllable</li>
+<li>The system (A, H) is observable</li>
+<li>R is positive definite, Q is semi-positive definite</li>
+</ol>
+<p>We have a symmetric positive definite matrix P satisfying the following Algebraic Riccati Equation (ARE) <span class="math display">\[
+A^TP+PA+Q=PBR^{-1}B^TP
+\]</span> Then <span class="math display">\[
+u=-R^{-1}B^TPx=-Kx \\
+K=R^{-1}B^{T}P
+\]</span> Selection of Q and R</p>
+<ol type="1">
+<li>Q and R are selected to be diagonal</li>
+<li>The larger Q, the larger K</li>
+</ol>
+<p>How to solve ARE</p>
+<p>Step1.</p>
+<p>Form <span class="math display">\[
+\Gamma=\begin{bmatrix}
+A &amp; -BR^{-1}B^T \\
+-Q &amp; -A^T
+\end{bmatrix}
+\]</span> Then</p>
+<p>get the stable eigenvectors of <span class="math inline">\(\Gamma\)</span> <span class="math display">\[
+\begin{bmatrix}
+v_i \\ \mu_i
+\end{bmatrix}
+\]</span> Then <span class="math display">\[
+P=[\mu_1 \quad\mu_2\quad\dotsm\quad \mu_n][v_1 \quad v_2\quad\dotsm\quad v_n]^{-1}\\
+u=-R^{-1}B^TPx=-Kx \\
+K=R^{-1}B^{T}P
+\]</span> Example <span class="math display">\[
+A=\begin{bmatrix}
+0&amp;1\\0&amp;0
+\end{bmatrix}
+B=\begin{bmatrix}
+0\\1
+\end{bmatrix}
+Q=\begin{bmatrix}
+1&amp;0\\0&amp;0
+\end{bmatrix}
+R=\begin{bmatrix}
+\beta
+\end{bmatrix}
+\]</span></p>
+<p>Example</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -792,7 +774,7 @@ J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

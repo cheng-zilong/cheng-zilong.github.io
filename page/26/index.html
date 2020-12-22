@@ -218,247 +218,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/EE5907 Pattern Recognition/2. Probabilistic Estimation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/03/06/EE5907 Pattern Recognition/2. Probabilistic Estimation/" class="post-title-link" itemprop="url">Chapter 2. Probabilistic Estimation</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-03-06 13:46:13 / Modified: 14:49:50" itemprop="dateCreated datePublished" datetime="2019-03-06T13:46:13+08:00">2019-03-06</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2019/03/06/EE5907 Pattern Recognition/2. Probabilistic Estimation/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 2. Probabilistic Estimation" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/03/06/EE5907 Pattern Recognition/2. Probabilistic Estimation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/03/06/EE5907 Pattern Recognition/2. Probabilistic Estimation/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="map-estimation">1. MAP Estimation</h2>
-<p>The key goal in machine learning is to do estimation. That means we give the estimated result when we are given observation. If we have no model of the estimation in the prior, we can give the estimated result only based on the result. So we choose maximum likelihood estimation. But if we have the prior knowledge, we can give the estimated result based on both the data and the prior knowledge, that is the maximum a posterior estimation.</p>
-<p>Maximum a posterior estimation <span class="math display">\[
-\begin{array}{rcl}
-y_{MAP}&amp;=&amp;\underset{y}{\operatorname{argmax}}p(y|x)\\
-&amp;=&amp;\underset{y}{\operatorname{argmax}}\frac{p(y)p(x|y)}{p(x)}\\
-&amp;=&amp;\underset{y}{\operatorname{argmax}}p(y)p(x|y)\\
-\end{array}
-\]</span> In this case, we hope to find a maximum value of the probability when the data is given and we have the prior knowledge of the estimated data <span class="math inline">\(p(y)\)</span>.</p>
-<h2 id="ml-estimation">2. ML Estimation</h2>
-<p>Maximum likelihood estimation</p>
-<p>When <span class="math display">\[
-p(y)=1
-\]</span> we have <span class="math display">\[
-y_{MAP}=\underset{y}{\operatorname{argmax}}p(x|y)=y_{ML}
-\]</span> In this case, we hope to get the max likelihood of the observation x given y. In general, ML estimation is computationally easier than MAP estimation, because we do not need to deal with the extra prior term. We often use ML estimation if the prior is unknown or if we do not feel comfortable assuming priors.</p>
-<p>If sample goes to infinity, then <span class="math display">\[
-\lim_{N\rightarrow\infty}y_{MAP}=y_{ML}
-\]</span></p>
-<h2 id="modeling-pyx">3. Modeling p(y|x)</h2>
-<p><span class="math display">\[
-p(y|x)=\frac{p(x|y)p(y)}{p(x)}
-\]</span></p>
-<p>Generative supervised learning: Modeling likelihood p(x|y) and prior p(y) directly, "Generative" because we can generate new data from p(x,y)=p(x|y)p(y)</p>
-<p>Discriminative supervised learning: model p(y|x) directly</p>
-<h2 id="probabilistic-estimation-of-model-parameters">4. Probabilistic Estimation of Model Parameters</h2>
-<p>In general, parameter <span class="math inline">\(\theta\)</span> needs to be learnt from the training set for both generative models <span class="math inline">\(p(x,y|\theta)\)</span> and discriminative models <span class="math inline">\(p(y|x,\theta)\)</span>. Here we can use different strategies to learn the parameters from the data set.</p>
-<p>Strategy 1: ML</p>
-<p>First estimate <span class="math inline">\(\theta_{ML}=\underset{\theta}{\operatorname{argmax}}p(D|\theta)\\\)</span></p>
-<p>Then plug in <span class="math inline">\(\theta_{ML}\)</span> into <span class="math inline">\(p(x,y|\theta_{ML})\)</span> and find ==MAP== estimate of y</p>
-<p>Strategy 2: MAP</p>
-<p>First estimate <span class="math inline">\(\theta_{MAP}=\underset{\theta}{\operatorname{argmax}}p(\theta|D)\\\)</span></p>
-<p>Then plug in <span class="math inline">\(\theta_{MAP}\)</span> into <span class="math inline">\(p(x,y|\theta_{MAP})\)</span> and find ==MAP== estimate of y</p>
-<p>Strategy 3: Posterior Predictive</p>
-<p>Discuss in the future</p>
-<h2 id="beta-binomial-generative-model">5. Beta-Binomial Generative Model</h2>
-<p>Beta Distribution (Discussed in the last passage) <span class="math display">\[
-p(\theta|a,b)=\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}
-\]</span> Consider N coin tosses: data <span class="math inline">\(D=(N_0,N_1)\)</span>, where <span class="math inline">\(N_0=\#tails\)</span> and <span class="math inline">\(N_1=\#heads\)</span> , <span class="math inline">\(N=N_0+N_1\)</span> . <span class="math inline">\(\theta\)</span> is the probability of head</p>
-<p>Assume beta distribution prior on <span class="math inline">\(\theta\)</span>: <span class="math inline">\(p(\theta|a,b)=Beta(\theta|a,b)\)</span></p>
-<p>Coin tosses problem <span class="math display">\[
-P(D|\theta)=\left(
-\begin{array}{c}
-N\\
-N_0
-\end{array}
-\right)\theta^{N_1}(1-\theta)^{N_0}
-\]</span></p>
-<p>Posterior <span class="math display">\[
-\begin{array}{lll}
-p(\theta|D)&amp;=&amp;\frac{p(D|\theta)p(\theta)}{p(D)}\\
-&amp;=&amp; \frac{\left(
-\begin{array}{c}
-N\\
-N_0
-\end{array}
-\right)\theta^{N_1}(1-\theta)^{N_0} \quad \frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}}{p(D)}\\
-&amp;=&amp; \frac{\frac{B(N_1+a,N_0+b)}{B(a,b)}\left(
-\begin{array}{c}
-N\\
-N_0
-\end{array}
-\right)
-\frac{1}{B(N_1+a,N_0+b)}
-\theta^{N_1+\alpha-1}(1-\theta)^{N_0+b-1} \quad }{p(D)}\\
-&amp;=&amp; \frac{k(N_0,N_1,a,b)Beta(\theta|N_1+a, N_0+b)}{p(D)}\\
-&amp;=&amp; Beta(\theta|N_1+a, N_0+b)
-\end{array}
-\]</span> Here we can see that the posterior is the same form as the prior, so we say that the beta is a conjugate prior of the binomial distribution.</p>
-<p>Since ML is a special case of MAP, first we consider MAP here, and we know that the mode of Beta distribution is <span class="math inline">\(mode=\frac{c-1}{c+d-2}\)</span>, we have <span class="math display">\[
-\begin{array}{rcl}
-\theta_{MAP}&amp;=&amp;\underset{\theta}{\operatorname{argmax}}p(\theta|D)\\
-&amp;=&amp;\frac{N_1+a-1}{N+a+b-2}
-\end{array}
-\]</span> when a=b=1 <span class="math display">\[
-\theta_{ML}=\frac{N_1}{N}
-\]</span> Predicting Future Coin Tosses</p>
-<p>Strategy 1 ML <span class="math inline">\(p(\tilde x=1)=\theta_{ML}\)</span></p>
-<p>Strategy 2 MAP <span class="math inline">\(p(\tilde x=1)=\theta_{MAP}\)</span></p>
-<p>Strategy 3 Posterior Predictive Distribution</p>
-<p>Actually our problem is <span class="math display">\[
-p(\tilde x=1|D)
-=\int_0^1 p(\tilde x=1,\theta|D)d\theta
-=\int_0^1 p(\tilde x=1|\theta,D)p(\theta|D)d\theta 
-= \int_0^1 \theta p(\theta|D)d\theta\\
-= \int_0^1 \theta Beta(\theta|N_1+a, N_0+b)d\theta
-\]</span> This is the mean of posterior distribution <span class="math display">\[
-p(\tilde x=1|D)=\frac{N_0+b}{N+a+b}
-\]</span></p>
-<h2 id="dirichlet-multinomial-generative-model">6. Dirichlet-Multinomial Generative Model</h2>
-<p>Multinomial Distribution <span class="math display">\[
-\begin{array}{ccc}
-P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=\frac{n!}{x_1!x_2!\dotsm x_k!}p_1^{x_1}p_2^{x_2}\dotsm p_k^{x_k}\quad when \sum_{i=1}^kx_i=n\\
-otherwise\quad P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=0
-\end{array}
-\]</span> Dirichlet Distribution <span class="math display">\[
-P(x|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
-\]</span> Consider N rolls of K-sided dice <span class="math display">\[
-p(D|\theta)=\frac{N!}{N_1!N_2!\dotsm N_k!}\theta_1^{N_1}\theta_2^{N_2}\dotsm \theta_K^{N_K}\quad
-\propto\prod_{i=1}^K\theta_i^{N_i}\\
-p(\theta|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
-\]</span> Then <span class="math display">\[
-p(\theta|D)\propto p(D|\theta)p(\theta)=Dir(\theta|N_1+\alpha_1,\dotsm,N_K+\alpha_K)
-\]</span> Then MAP estimation of parameters <span class="math display">\[
-\hat \theta_k^{MAP}=\frac{N_k+\alpha_k-1}{N+\sum_k\alpha_k-K}
-\]</span> ML <span class="math display">\[
-\hat \theta_k^{ML}=\frac{N_k}{N}
-\]</span></p>
-<p>Predicting Future Dice Rolls</p>
-<p>Strategy 1 ML <span class="math inline">\(p(\tilde x=i)=\theta_{ML}^i\)</span></p>
-<p>Strategy 2 MAP <span class="math inline">\(p(\tilde x=i)=\theta_{MAP}^i\)</span></p>
-<p>Strategy 3 Posterior Predictive Distribution <span class="math inline">\(p(\tilde x=i|D)=\frac{N_i+\alpha_i}{N+\sum_k\alpha_k}\)</span></p>
-<h2 id="univariate-gaussian">7. Univariate Gaussian</h2>
-<p>Binomial and Multinomial are discrete random variables, here we look at continuous variables</p>
-<p>Gaussian Distribution <span class="math display">\[
-P(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
-\]</span> Given training data D, we hope to estimate parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span></p>
-<p>ML: <span class="math display">\[
-(\hat \mu,\hat\sigma^2)=\underset{\hat \mu,\hat\sigma^2}{\operatorname{argmax}}p(D|\hat \mu,\hat\sigma^2)
-\]</span> We have <span class="math display">\[
-\hat \mu=\frac{1}{N}\sum_{n=1}^Nx_n\\
-\hat \sigma^2=\frac{1}{N}\sum_{n=1}^N(x_n-\hat\mu)^2
-\]</span> MAP:</p>
-<p>Using Normal Inverse Gamma Distribution as prior <span class="math display">\[
-p(\mu,\sigma^2)=NormInvGam(\mu,\sigma^2|\alpha,\beta,\gamma,\delta)
-\]</span></p>
-<p><span class="math display">\[
-\hat \mu=\frac{\sum_{n=1}^Nx_n+\gamma\delta}{N+\gamma}\\
-\hat \sigma^2=\frac{\sum_{n=1}^N(x_n-\hat \mu)^2+2\beta+\gamma(\delta-\hat \mu)^2}{N+3+2\alpha}
-\]</span></p>
-<p>Predicting Future Gaussian Samples</p>
-<p>Strategy 1 ML <span class="math inline">\(p(x^*)=\mathcal N(\mu_{ML},\sigma^2_{ML})\)</span></p>
-<p>Strategy 2 MAP <span class="math inline">\(p(x^*)=\mathcal N(\mu_{MAP},\sigma^2_{MAP})\)</span></p>
-<p>Strategy 3 Posterior Predictive Distribution (skipped)</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/EE5907 Pattern Recognition/1. Probability/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -662,11 +421,254 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/EE5101 Linear Systems/11. State Estimation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/12/03/EE5101 Linear Systems/11. State Estimation/" class="post-title-link" itemprop="url">Chapter 11. State Estimation</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-03 13:33:56 / Modified: 14:23:37" itemprop="dateCreated datePublished" datetime="2018-12-03T13:33:56+08:00">2018-12-03</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/12/03/EE5101 Linear Systems/11. State Estimation/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 11. State Estimation" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/12/03/EE5101 Linear Systems/11. State Estimation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/12/03/EE5101 Linear Systems/11. State Estimation/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="state-estimation">State Estimation</h2>
+<h3 id="why-state-estimation">1. Why State Estimation</h3>
+<p><span class="math display">\[
+u=-Kx+Fr
+\]</span></p>
+<p>some x cannot be measured.</p>
+<p>we define an estimator <span class="math display">\[
+\dot{\hat x}=A \hat x+Bu+L(y-\hat y) \\
+\dot e=\dot x-\dot{\hat x}=A(x-\hat x)+L(Cx-C \hat x)=(A-LC)e
+\]</span> First, check the observability</p>
+<p>Second, design L, place observer poles 3-5 times faster than control poles.</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx \\
+A=\begin{bmatrix}
+0 &amp; 1\\ 0 &amp; 0
+\end{bmatrix}
+B=\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+C=\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\\
+M_o=\begin{bmatrix}
+C \\CA
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}\\
+A-LC=
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}-
+\begin{bmatrix}
+l_1 \\ l_2
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}=
+\begin{bmatrix}
+-l_1  &amp; 1 \\-l_2 &amp; 0
+\end{bmatrix}\\
+|\lambda I-(A-LC)|=\lambda^2+l_1\lambda+l_2
+\]</span> We choose two poles <span class="math inline">\(\lambda_1=\lambda_2=-5\)</span></p>
+<p>Then <span class="math inline">\(l_1=10 \quad l_2=25\)</span></p>
+<p>Ackerman's Formula: <span class="math inline">\(L=\Phi_o(A)M_o^{-1}[0 \quad \dotsm\quad 1]^T\)</span></p>
+<h3 id="reduced-order-observers">2. Reduced-Order Observers</h3>
+<p>For now we use output to get some states. We can design the observer <span class="math display">\[
+\hat x=
+\begin{bmatrix}
+C \\ T
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+y \\ \xi
+\end{bmatrix}
+\]</span> We define the observer <span class="math display">\[
+\dot \xi=D\xi+Eu+Gy
+\]</span> Then we have <span class="math display">\[
+\dot \xi-T\dot x=D[\xi-Tx]+(DT-TA-GC)x+(E-TB)u
+\]</span> To make <span class="math inline">\(\dot \xi \rightarrow T\dot x\)</span></p>
+<p>we need <span class="math display">\[
+DT-TA+GC=0 \\
+E-TB=0\\
+\text{D have negative real parts for all eigenvalues}
+\]</span> Design procedures for T D G E</p>
+<blockquote>
+<ol type="1">
+<li>Find the constraints on T such that <span class="math inline">\(\begin{bmatrix} C \\ T\end{bmatrix}\)</span> is nonsingular</li>
+<li>choose D such that its eigenvalues have negative real parts</li>
+<li>Solve DT-TA-GC=0 for T and G</li>
+<li>Calculate E=TB</li>
+</ol>
+</blockquote>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx \\
+A=\begin{bmatrix}
+0 &amp; 1\\ 0 &amp; 0
+\end{bmatrix}
+B=\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+C=\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\\
+\]</span> Design a reduced order observer <span class="math display">\[
+\begin{bmatrix}
+C \\T
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0 \\t_1 &amp; t_2
+\end{bmatrix}
+\]</span> The above is singular if <span class="math inline">\(t_2 \neq0\)</span></p>
+<p>The observer should be 2-1=1 order</p>
+<p>We choose <span class="math inline">\(D=[d]=[-3]\)</span></p>
+<p>Then <span class="math display">\[
+DT-TA+GC=0 \\
+-3\begin{bmatrix}
+t_1 &amp; t_2
+\end{bmatrix}-
+\begin{bmatrix}
+t_1&amp;t_2
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}+
+g\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}=0\\
+\begin{cases}
+t_1+3t_2=0 \\
+g=3t_1\\
+t_2 \neq0
+\end{cases}
+\]</span> try <span class="math display">\[
+g=1 \\
+t_1=\frac{1}{3}\\
+t_2=-\frac{1}{9}\\
+e=-\frac{1}{9}
+\]</span> Then the observer is <span class="math display">\[
+\dot \xi=D\xi+Eu+Gy \\
+=-3\xi-\frac{1}{9}u+y \\
+\hat x = 
+\begin{bmatrix}
+C \\ T
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+y \\ \xi
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 0 \\ 3 &amp; -9
+\end{bmatrix}
+\begin{bmatrix}
+y \\ \xi
+\end{bmatrix}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -711,7 +713,7 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

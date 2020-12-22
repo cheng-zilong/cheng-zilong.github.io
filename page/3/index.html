@@ -218,284 +218,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/" class="post-title-link" itemprop="url">8. Nonlinear conic programming (3)</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-03 13:51:15" itemprop="dateModified" datetime="2019-11-03T13:51:15+08:00">2019-11-03</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="8. Nonlinear conic programming (3)" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="applications-to-semidefinite-programming">7.5 Applications to semidefinite programming</h2>
-<p>In this section, we consider the cone <span class="math inline">\(\mathcal C=\mathbb S^n_+\)</span>. Note that <span class="math inline">\(\mathcal C^*=\mathbb S_+^n\)</span>. Consider the linear SDP problem, <span class="math display">\[
-\text{(SDP)}\quad \begin{array}{rCl}
-\min &amp; \langle C,X\rangle\\
-\text{subject to}&amp; \mathcal A (X)=b\\
-&amp;X\in \mathbb S_+^n,
-\end{array}
-\]</span> where <span class="math inline">\(C\in\mathbb S^n\)</span>, <span class="math inline">\(b\in\mathbb R^m\)</span> are given data and <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a given linear map. The dual problem is given by <span class="math display">\[
-\text{(SDD)}\quad \begin{array}{rCl}
-\min &amp; \langle b,y\rangle\\
-\text{subject to}&amp; \mathcal A^* y+Z=C\\
-&amp;Z\in \mathbb S_+^n.
-\end{array}
-\]</span> The KKT optimality conditions are given as <span class="math display">\[
-\begin{array}{rcl}
-\mathcal A^*+Z&amp;=&amp;C\\
-\mathcal AX&amp;=&amp;b\\
-\mathbb S_n^+\ni X&amp;\perp&amp; Z\in \mathbb S_n^+. 
-\end{array}
-\]</span> The last condition is equivalent to <span class="math display">\[
-\langle X,Z\rangle =0,\;X,Z\in\mathbb S_+^n.
-\]</span> The last condition is also equivalent to <span class="math display">\[
--X\in N_{\mathbb S^+_n}(Z)\iff Z-\Pi_{\mathbb S_n^+}(Z-X)=0=X-\Pi_{\mathbb S_n^+}(X-Z).
-\]</span> For any <span class="math inline">\(A\in\mathbb S^n\)</span>, let <span class="math inline">\(A_+ = \Pi_{\mathbb S_n^+}(A)\)</span>. Assume that A has the following spectral decomposition, <span class="math display">\[
-A=P\Lambda P^T,
-\]</span> where <span class="math inline">\(\Lambda = \text{Diag}(\lambda)\)</span> is the diagonal matrix of the eigenvalues <span class="math inline">\(\lambda_1\ge \lambda_2\ge \dotsm\ge \lambda_n\)</span> and <span class="math inline">\(P\)</span> is a corresponding orthogonal matrix of eigenvectors. Then <span class="math display">\[
-A_+=P\Lambda_+ P^T,
-\]</span> where <span class="math inline">\(\Lambda_+ = \text{Diag} (\lambda_+)\)</span>. Define three index sets of positive zero, and negative, <span class="math display">\[
-\alpha =\{i\;|\; \lambda_i&gt;0\}\\
-\beta =\{i\;|\; \lambda_i=0\}\\
-\gamma =\{i\;|\; \lambda_i&lt;0\}.
-\]</span> We can write <span class="math display">\[
-\Lambda = \begin{bmatrix}
-\Lambda_\alpha &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; \Lambda_\gamma
-\end{bmatrix}\\
-P=[P_\alpha, P_\beta,P_\gamma],
-\]</span> where <span class="math inline">\(P_\alpha \in \mathbb R^{n\times |\alpha|}\)</span>, <span class="math inline">\(P_\beta \in \mathbb R^{n\times |\beta|}\)</span>, <span class="math inline">\(P_\gamma \in\mathbb R^{n\times |\gamma|}\)</span>. Define for <span class="math inline">\(i\notin \beta\)</span> or <span class="math inline">\(j\notin \beta\)</span>,</p>
-<p><strong>Case 1</strong> (<span class="math inline">\(\beta = \emptyset\)</span>). Then <span class="math inline">\(\Pi_{\mathbb S_+^n}\)</span> is Fréchet differentiable at <span class="math inline">\(A\)</span> and the directional derivative is given by <span class="math display">\[
-\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{cc}{\widetilde{H}_{\alpha \alpha}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0}\end{array}\right] P^{T}
-\]</span> where <span class="math inline">\(\widetilde H = P^THP\)</span>.</p>
-<p><strong>Cases 2</strong> (<span class="math inline">\(\beta \neq \emptyset\)</span>) it has been proven that for any <span class="math inline">\(H\in\mathbb S^n\)</span>, it follows <span class="math display">\[
-\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{ccc}{\widetilde{H}_{\alpha \alpha}} &amp; {\widetilde{H}_{\alpha \beta}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\widetilde{H}_{\alpha \beta}^{T}} &amp; {\Pi_{\mathbb{S}_+^{|\beta|}}\left(\widetilde{H}_{\beta \beta}\right)} &amp; {0} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0} &amp; {0}\end{array}\right] P^{T}.
-\]</span></p>
-<p>skip something......</p>
-<p>The Robinson's CQ for (SDP) is given by <span class="math display">\[
-\begin{bmatrix}
-\mathcal A\\ \mathcal I
-\end{bmatrix} \mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\ \mathcal T_\mathcal C(\bar X)
-\end{bmatrix}=
-\begin{bmatrix}
-\mathbb R^m \\
-\mathbb S^n
-\end{bmatrix},
-\]</span> where <span class="math inline">\(\mathcal I:\mathbb S^n\rightarrow \mathbb S^n\)</span> is the identity map. A sufficient condition for the multipliers <span class="math inline">\((\bar y,\bar Z)\in\mathcal M(\bar x)\)</span> to be unique is that <span class="math display">\[
-\begin{bmatrix}
-\mathbb R^m\\\mathbb S^n
-\end{bmatrix}=
-\begin{bmatrix}
-\mathcal A\\\mathcal I
-\end{bmatrix}\mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\\mathcal T_\mathcal C(\bar X)\cap (\bar Z)^\perp
-\end{bmatrix}\subset \\
-\begin{bmatrix}
-\mathcal A\\\mathcal I
-\end{bmatrix}\mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\\mathcal T_\mathcal C(\bar X)
-\end{bmatrix}\cap
-\begin{bmatrix}
--\bar y\\-\bar Z
-\end{bmatrix}^\perp.
-\]</span> <strong>Definition</strong> (Robinson's constraint nondegeneracy)</p>
-<p>We said that a feasible <span class="math inline">\(\bar x\)</span> to problem (COP) is constraint nondegenerate if <span class="math display">\[
-G&#39;(\bar x)\mathcal X+\text{lin}(\mathcal T_\mathcal K(G(\bar x)))=\mathcal Y
-\]</span> where <span class="math inline">\(\text{lin}(\mathcal T_\mathcal K(G(\bar x)))\)</span> denotes the largest linear subspace contained in <span class="math inline">\(\mathcal T_{\mathcal K}(G(\bar x))\)</span>.</p>
-<p>For the problem (SDP), the Robinson's constraint nondegeneracy condition is said to hold at a feasible point <span class="math inline">\(\bar X\in\mathbb S_+^n\)</span> if <span class="math display">\[
-\begin{bmatrix}
-\mathbb R^m\\\mathbb S^n
-\end{bmatrix}=
-\begin{bmatrix}
-\mathcal A\\
-\mathcal I
-\end{bmatrix}\mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar X))
-\end{bmatrix}.
-\]</span> <strong>Exercise</strong></p>
-Show that the above condition is equivalent to <span class="math display">\[
-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m.
-\]</span> It means that for all <span class="math inline">\(y\in\mathbb R^m\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(d\in\mathbb S^n\)</span> such that $$
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal Ad\\
-z&amp;\in&amp; d+\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
-\end{array}\iff\]</span>
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal Ad\\
-d&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
-\end{array}\]</span>
-<p>\</p>
-<span class="math display">\[\begin{array}{|rcl|}\hline 
-y\in \mathcal A(z-\text{lin}(\mathcal T_\mathcal C(\bar X)))
-\\\hline \end{array}
-\iff 
-\begin{array}{|rcl|}\hline 
-y\in\mathcal Az-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
-\\\hline \end{array}\]</span>
-\
-<span class="math display">\[\begin{array}{|rcl|}\hline 
-\mathcal Az-y\in \mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
-\\\hline \end{array}
-\iff
-\begin{array}{|rcl|}\hline 
-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m
-\\\hline \end{array}\]</span>
-. <span class="math display">\[
-For the dual problem (SDD), the Robinson&#39;s constraint nondegeneracy condition is said to hold at a feasible point $(\bar y,\bar Z)\in\mathbb R^m\times \mathbb S_+^n$ if
-\]</span>
-<span class="math display">\[\begin{bmatrix}
-\mathbb S^n\\\mathbb S^n
-\end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix}
-\mathcal A^* &amp; \mathcal I\\
-0&amp;\mathcal I
-\end{bmatrix}
-\begin{bmatrix}
-\mathbb R^m\\ \mathbb S^n
-\end{bmatrix}\]</span>
-<ul>
-<li><span class="math display">\[\begin{bmatrix}
-\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar Z))
-\end{bmatrix}\]</span>
-. $$ <strong>Exercise</strong></li>
-</ul>
-Show that the above condition is equivalent to (???what is <span class="math inline">\(\bar S\)</span>) <span class="math display">\[
-\mathcal A^*\mathbb R^m+\text{lin}(\mathcal T_\mathcal C(\bar S))=\mathbb S^n.
-\]</span> It means that for all <span class="math inline">\(y\in\mathbb S^n\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(v\in\mathbb R^m\)</span> and <span class="math inline">\(w\in\mathbb S^n\)</span> such that $$
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal A^* v+w\\
-z&amp;\in&amp; w+\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
-\end{array}\iff\]</span>
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal A^* v+w\\
-w&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
-\end{array}\]</span>
-\
-<span class="math display">\[\begin{array}{|rcl|}\hline 
-y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
-\\\hline\end{array}
-\iff
-\begin{array}{|rcl|}\hline 
-\mathbb S^n&amp;=&amp; \mathcal A^* \mathbb R^m-\text{lin}(\mathcal T_\mathcal C(\bar Z))
-\\\hline\end{array}\]</span>
-<p>. $$</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.2 Nonlinear conic programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -831,11 +553,408 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-title-link" itemprop="url">7. Nonlinear conic programming (1)</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-13 10:18:24" itemprop="dateModified" datetime="2019-11-13T10:18:24+08:00">2019-11-13</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" class="post-meta-item leancloud_visitors" data-flag-title="7. Nonlinear conic programming (1)" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/MA6268 Nonlinear Optimization/7.1 Nonlinear conic programming/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="nonlinear-conic-programming">7. Nonlinear Conic Programming</h1>
+<p>We consider the following optimization problem, <span class="math display">\[
+\text{(OP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g(x)=0\\
+&amp;h(x)\in \mathcal C,
+\end{array}
+\]</span> where <span class="math inline">\(f:\mathcal X\rightarrow \mathbb R,g:\mathcal X\rightarrow \mathcal U\)</span>, and <span class="math inline">\(h:\mathcal X\rightarrow \mathcal V\)</span> are continuously differentiable, <span class="math inline">\(\mathcal X,\mathcal U\)</span> and <span class="math inline">\(\mathcal V\)</span> are finite dimensional Euclidean spaces each equipped with a scalar product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induced norm <span class="math inline">\(||\cdot||\)</span>, and <span class="math inline">\(\mathcal C\subseteq \mathcal V\)</span> is a closed convex set in <span class="math inline">\(\mathcal V\)</span>.</p>
+<p>Let <span class="math inline">\(\mathcal Y=\mathcal U\times \mathcal V\)</span>, <span class="math inline">\(\mathcal K=\{0^\mathcal U\}\times \mathcal C\subset \mathcal Y\)</span>. Define <span class="math inline">\(G:\mathcal X\rightarrow \mathcal Y\)</span> by <span class="math display">\[
+G(X)=(g(X),h(X)),\quad X\in\mathcal X.
+\]</span> The problem can be written as the following compact form, <span class="math display">\[
+\text{(COP)}\quad \begin{array}{rCl}
+\min &amp; f(X)\\
+\text{subject to}&amp; G(X)\in\mathcal K.
+\end{array}
+\]</span> Define the Lagrangian function <span class="math inline">\(L:\mathcal X\times \mathcal Y\rightarrow \mathbb R\)</span> for (COP) by <span class="math display">\[
+L(X,\mu)=f(X)-\langle \mu, G(X)\rangle,\quad X\in\mathcal X,\mu\in\mathcal Y.
+\]</span> There is no constraint on <span class="math inline">\(\mu\)</span> for the general Lagrangian function. Therefore, here is <span class="math inline">\(y\in\mathcal Y\)</span>. We will give further explanation in the later.</p>
+<p>The <strong>Lagrangian dual function</strong> is defined by <span class="math display">\[
+\theta(\mu)=\inf\left\{L(X,\mu )\;|\; X\in\mathcal X\right\},
+\]</span> which is an unconstrained function.</p>
+<p>The dual problem is <span class="math display">\[
+\max \{\theta(\mu)\;|\; \mu \in\mathcal K^*\},
+\]</span> where <span class="math inline">\(\mathcal K^* =\mathcal U\times \mathcal C^*\)</span> is the dual cone of <span class="math inline">\(\mathcal K\)</span>. Note that <span class="math inline">\((\{0^\mathcal U\})^*=\mathcal U\)</span> and <span class="math inline">\(\mathbb S_+^n\)</span> is <strong>self-dual</strong>.</p>
+<p>We can see in the conic programming, we only consider <span class="math inline">\(\mu\in \mathcal K^*\)</span> in the dual problem. However, if needed, we can also put this constraint to the Lagrangian dual function and Lagrangian function like what we usually do in the basic nonlinear programming.</p>
+<p>We also define the Lagrangian function in the conic programming as <span class="math inline">\(L(x,\mu)=f(x)\textbf{ minus } \langle \mu,G(x)\rangle\)</span> <strong>instead of plus</strong>. This is for convenience because the cone is usually defined as “positive”, which means <span class="math inline">\(h(x)\succeq 0\)</span> in the conic programming <strong>instead of</strong> <span class="math inline">\(h(x)\le 0\)</span> in the basic nonlinear programming is the common case.</p>
+<p><strong>Example</strong></p>
+<p>If we have <span class="math inline">\(\mathcal X=\mathbb R^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb R^q\)</span> and <span class="math inline">\(\mathcal C=\mathbb R^q_+\)</span>. In this case, the problem reduces to the following, <span class="math display">\[
+\text{(NLP)}\quad \begin{array}{rCl}
+\min &amp; f(x)\\
+\text{subject to}&amp; g(x)=0\\
+&amp;h(x)\ge 0.
+\end{array}
+\]</span> If we denote <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb R^n_+\)</span>, there exists <span class="math inline">\(\mu\in\mathbb R^m\times \mathbb R^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
+L(x,\mu)=f(x)-\langle \mu,G(x)\rangle.
+\]</span> The Lagrange dual function is defined as <span class="math display">\[
+\theta(\mu)=\min_x L(x,\mu)=\min_x\left(f(x)-\langle\mu,G(x)\rangle\right),\quad \mu\in\mathbb R^m\times \mathbb R^n.
+\]</span> Since <span class="math inline">\(\left(\mathbb R^n_+\right)^*=\mathbb R^n_+\)</span>, the Lagrange dual problem is defined as <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \theta (\mu)\\
+\text{subject to}&amp; \mu\in\mathcal K^*=\mathbb R^n\times \mathbb R^n_+.
+\end{array}
+\]</span> <strong>Example</strong> (semidefinite linear programming)</p>
+<p>If <span class="math inline">\(\mathcal X=\mathbb S^n\)</span>, <span class="math inline">\(\mathcal U=\mathbb R^m\)</span>, <span class="math inline">\(\mathcal V=\mathbb S^n\)</span>, and <span class="math inline">\(f(X)=\langle C,X\rangle,\)</span> <span class="math inline">\(g(X)=\mathcal A(X)-b\)</span>, <span class="math inline">\(h(X)=X\)</span> and <span class="math inline">\(\mathcal C=\mathbb S_+^n\)</span>, then the problem (OP) reduces to the following linear semidefinite programming problem, <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; \langle C,X\rangle\\
+\text{subject to}&amp; \mathcal A(X)-b=0\\
+&amp;X\succeq 0(X\in\mathbb S^n_+),
+\end{array}
+\]</span> where <span class="math inline">\(C\in \mathbb S^n\)</span>, <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a linear mapping defined by <span class="math display">\[
+\mathcal A(X)=
+\begin{bmatrix}
+\langle A_1,X\rangle \\ \vdots \\
+\langle A_m,X\rangle
+\end{bmatrix},\quad 
+X\in\mathbb S^n,
+\]</span> where <span class="math inline">\(A_k\in \mathbb S^n,k=1,\dotsm,m\)</span>, are the constraints matrices. Let <span class="math inline">\(\mathcal A^*:\mathbb R^m\rightarrow \mathbb S^n\)</span> be the adjoint of <span class="math inline">\(\mathcal A\)</span> defined by <span class="math display">\[
+\mathcal A^*y=\sum_{k=1}^m y_kA_k,\quad y\in \mathbb R^m.
+\]</span> This can be shown by the definition of the adjoint of operator. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A^* y,X\rangle &amp;=&amp;\langle y,\mathcal A X\rangle\\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\langle A_i,X\rangle \\
+&amp;=&amp;\displaystyle\sum_{i=1}^m y_i\sum_{j=1}^ne_j^TA_iXe_j, \\
+\mathbf 1^T\mathcal A^*yX \mathbf 1 &amp;=&amp; \displaystyle\sum_{i=1}^m y_i \mathbf 1^TA_iX\mathbf 1\\
+&amp;=&amp; \mathbf 1^T\displaystyle\sum_{i=1}^m y_i A_iX\mathbf 1,
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*y=\sum_{i=1}^m y_iA_i\)</span>.</p>
+<p>We have the Lagrange function, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\langle C,X\rangle +\langle y,b-\mathcal A(X) \rangle+\langle Z,-X\rangle\\
+&amp;=&amp;\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\quad X\in\mathbb S^n,y\in\mathbb R^n,Z\in\mathbb S^n.
+\end{array}
+\]</span> Then <span class="math display">\[
+\begin{array}{rcl}
+\theta(y,Z)&amp;=&amp;\displaystyle \inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp;\displaystyle\inf_{X\in\mathbb S^n} \left\{\langle y,b\rangle+\langle C-\mathcal A^*y-Z,X\rangle\right\}\\
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Therefore, the dual problem is given by, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle\\
+\text{subject to}&amp; C-\mathcal A^*y-Z=0\\
+&amp;Z\succeq 0.
+\end{array}
+\]</span> Also, we can consider the compact form. If we define <span class="math inline">\(G(X)=(\mathcal A(X)-b, X)\)</span>, <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S^n_+\)</span>, then we have <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; f(X)=\langle C,X\rangle\\
+\text{subject to}&amp; G(X)\in\mathcal K.
+\end{array}
+\]</span> Then there exists <span class="math inline">\(\mu=(y,Z)\in\mathbb R^n\times \mathbb S^n\)</span>, such that the Lagrange function is defined as <span class="math display">\[
+\begin{array}{rcl}
+L(X,\mu)=L(X,y,Z)&amp;=&amp;f(X)-\langle \mu, G(X)\rangle\\
+&amp;=&amp;\langle C,X\rangle-\langle y,\mathcal A(X)-b\rangle-\langle  Z,X\rangle\\
+&amp;=&amp;\langle C,X\rangle-\langle \mathcal A^*(y), X\rangle+\langle y,b\rangle-\langle  Z,X\rangle\\
+&amp;=&amp;\langle C-\mathcal A^*(y)-Z,X\rangle+\langle y,b\rangle.
+\end{array}
+\]</span> The we have the Lagrange dual function, <span class="math display">\[
+\begin{array}{rcl}
+\theta(y,Z)
+&amp;=&amp; 
+\begin{cases}
+\langle y,b\rangle&amp;\text{if }C-\mathcal A^*y-Z=0\\
+-\infty &amp; \text{otherwise.}
+\end{cases}
+\end{array}
+\]</span> Then the Lagrange dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \theta(y,Z)\\
+\text{subject to}&amp; (y,Z)\in\mathcal K^*=\mathbb R^n\times \mathbb S^n_+,
+\end{array}
+\]</span> that is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle\\
+\text{subject to}&amp; Z\in\mathbb S^n_+\\
+&amp;C-\mathcal A^*y-Z=0.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>Let <span class="math inline">\(G\in\mathbb R^{p\times n}\)</span> and <span class="math inline">\(H\in\mathbb R^{q\times n}\)</span> for the linear map <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^{p\times q}\)</span> defined by <span class="math inline">\(\mathcal A(X)=GXH^T\)</span>. Show that the adjoint map <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q} \rightarrow \mathbb S^n\)</span> is given by <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>.</p>
+<p>Proof. <span class="math display">\[
+\begin{array}{rcl}
+\langle \mathcal A(X),Y\rangle&amp;=&amp; \langle GXH^T,Y\rangle\\
+&amp;=&amp; \text{tr}(HXG^TY)\\
+&amp;=&amp; \text{tr}(XG^TYH)\\
+&amp;=&amp; \frac{1}{2}\text{tr}\left(X(G^TYH+H^TY^TG)\right)\\
+&amp;=&amp;\langle X,\frac{1}{2}(G^TYH+H^TY^TG)\rangle.
+\end{array}
+\]</span> Therefore, we have <span class="math inline">\(\mathcal A^*(Y)=\frac{1}{2}\left(G^TYH+H^TY^TG\right)\)</span>. (<strong>ATTENTION</strong>: <span class="math inline">\(\mathcal A^*:\mathbb R^{p\times q}\rightarrow \mathbb S^n\)</span>)</p>
+<p><strong>Example</strong> (semidefinite programming least squares problem)</p>
+<p>If <span class="math inline">\(f(x)=\frac{1}{2}||X-B||^2\)</span> where <span class="math inline">\(B\in \mathbb S^n\)</span> is a given matrix. <span class="math display">\[
+\text{(SDPLS)}\quad \begin{array}{rCl}
+\min &amp; \frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; \mathcal A(X)=b\\
+&amp;X\succeq 0.
+\end{array}
+\]</span> In particular, when <span class="math inline">\(\mathcal A(X)=\text{diag} (X)\)</span> and <span class="math inline">\(b=e\)</span>, we get the nearest correlation matrix problem.</p>
+<p>The problem can be denoted as <span class="math display">\[
+\text{(SDPLS)}\quad \begin{array}{rCl}
+\min &amp; \frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; G(X)\in \mathcal K,
+\end{array}
+\]</span> where <span class="math inline">\(G(X)=(\mathcal A(X)-b,X)\)</span> and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathbb S_+^n\)</span>.</p>
+<p>For <span class="math inline">\(X\in \mathbb S^n\)</span>, <span class="math inline">\(\mu = (y,Z)\in\mathcal Y=\mathbb R^m\times \mathbb S^n\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+L(X,y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle y,b-\mathcal A(X)\rangle -\langle Z,X\rangle\\
+&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2+\frac{1}{2}||X||^2-\langle \mathcal A^*(y)+Z+B,X\rangle,
+\end{array}
+\]</span> Thus <span class="math inline">\(\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\)</span> can be found by setting, <span class="math display">\[
+\nabla _XL(X,y,Z)=X-(B+Z+\mathcal A^*(y))=0\implies X=B+Z+\mathcal A^*(y).
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+\theta (y,Z)&amp;=&amp;\min\{L(X,y,Z)\;|\; X\in\mathbb S^n\}\\
+&amp;=&amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2.
+\end{array}
+\]</span> The dual problem is given by <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle y,b\rangle +\frac{1}{2}||B||^2-\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
+\text{subject to}&amp; (y,Z)\in\mathcal K^*.
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; -\langle y,b\rangle+\frac{1}{2}||B+Z+\mathcal A^*(y)||^2\\
+\text{subject to}&amp; y\in\mathbb R^n\\
+&amp; Z\in \mathbb S_+^n.
+\end{array}
+\]</span> We claim <strong>(This claim is very useful)</strong> <span class="math display">\[
+G=\Pi_{\mathbb S_+^n} (G)-\Pi_{\mathbb S_+^n} (-G).
+\]</span></p>
+<p>This property can be easily checked by the property of proximal operator. Since we have <span class="math inline">\(\delta_K^*(x)=\delta_{K^*}(-x)\)</span>, let us check the proximal. <span class="math display">\[
+\begin{array}{rcl}
+P_{\delta_K^*}(y)&amp;=&amp;\arg\min_x\{\delta_K^*(x)+\frac{1}{2}||x-y||^2\}\\
+&amp;=&amp;\arg\min_x\{\delta_{K^*}(-x)+\frac{1}{2}||x-y||^2\}\\
+&amp;=&amp;-\arg\min_x\{\delta_{K^*}(x)+\frac{1}{2}||x-(-y)||^2\}\\
+&amp;=&amp; -\Pi_{\delta_{K^*}}(-y).
+\end{array}
+\]</span> Therefore <span class="math display">\[
+\begin{array}{rcl}
+G&amp;=&amp;P_{\delta_{\mathbb S^n_+}}(G)+P_{(\delta_{\mathbb S^n_+})^*}(G)\\
+&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{(\mathbb S^n_+)^*}(-G)\\
+&amp;=&amp; \Pi_{\mathbb S^n_+}(G)-\Pi_{\mathbb S^n_+}(-G).
+\end{array}
+\]</span></p>
+<p>Then by using this claim, we have <span class="math display">\[
+\begin{array}{l}
+\min\left\{||B+Z+\mathcal A^*(y)||\;|\; Z\in\ \mathbb S_+^n\right\}
+\\\quad =||B+\mathcal A^*(y)+\Pi_{\mathcal S_+^n}(-(B+\mathcal A^*(y)))||
+\\\quad=||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||.
+\end{array}
+\]</span> Therefore, <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; \phi(y)=-\langle y,b\rangle+\frac{1}{2}||\Pi_{\mathbb S_+^n}(B+\mathcal A^*(y))||^2\\
+\text{subject to}&amp; y\in\mathbb R^n.
+\end{array}
+\]</span> In this case, the dual problem is unconstrained problem. Therefore, we can solve it by finding the root of the gradient, <span class="math display">\[
+0=\nabla \phi(y)=-b+\mathcal A \Pi_{\mathbb S_+^n}(B+\mathcal A^* (y)).
+\]</span> <strong>Example</strong> (Sparse regression problem) <span class="math display">\[
+\min\{\frac{1}{2}||Ax-b||^2+\lambda ||x||_1\;|\; x\in\mathbb R^n\},
+\]</span> where <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb R^m\)</span> are given data. Let <span class="math inline">\(u=b-Ax\)</span>, then we have <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(u)+g(x)\\
+\text{subject to}&amp; u+Ax=b,
+\end{array}
+\]</span> where <span class="math inline">\(f(u)=\frac{1}{2}||u||^2\)</span> and <span class="math inline">\(g(x)=\lambda ||x||_1\)</span>.</p>
+<p>The Lagrangian function is given as <span class="math display">\[
+\begin{array}{rcl}
+L(u,x,\xi)&amp;=&amp;f(u)+g(x)+\langle \xi,b-u-Ax\rangle\\
+&amp;=&amp; f(u)-\langle \xi,u\rangle +g(x)-\langle A^T\xi,x\rangle +\langle \xi,b\rangle.
+\end{array}
+\]</span> The Lagrangian dual function is given as <span class="math display">\[
+\theta(\xi)=\langle \xi,b\rangle+\min_u(f(u)-\langle \xi,u\rangle)+\min_x(g(x)-\langle A^T\xi,x\rangle)\\
+=\langle \xi,b\rangle-\max_u(\langle \xi,u\rangle-f(u))-\max_x(\langle A^T\xi,x\rangle-g(x)).
+\]</span> Both of the last two terms are conjugate functions. Therefore we have <span class="math display">\[
+\theta(\xi)=\langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(A^T\xi).
+\]</span> Therefore, the dual problem is <span class="math display">\[
+-\min -\langle\xi,b\rangle +\frac{1}{2}||\xi||^2+\delta_{B_\lambda}(A^T\xi).
+\]</span> <strong>Definition</strong> (Lagrange Multipliers) <span class="math display">\[
+L(x,\mu)=f(x)-\langle \mu, G(x)\rangle,\quad x\in\mathcal X,\mu\in\mathcal Y,
+\]</span> where <span class="math inline">\(L\)</span> be the Lagrangian function for (COP). Assume that <span class="math inline">\(f\)</span> and <span class="math inline">\(G\)</span> are continuously differentiable. We say that <span class="math inline">\(\bar \mu \in\mathcal Y\)</span> is a Lagrange multiplier of (COP) at a feasible point <span class="math inline">\(\bar x\)</span>, if it satisfies the KKT condition, <span class="math display">\[
+0=\nabla _xL(\bar x,\bar \mu)=\nabla f(\bar x)-\nabla G(\bar x)\bar \mu,\quad 0\in \bar \mu+N_\mathcal K(G(\bar x)),
+\]</span> where <span class="math inline">\(N_\mathcal K (G(\bar x))\)</span> is the normal cone of <span class="math inline">\(\mathcal K\)</span> at <span class="math inline">\(G(\bar x)\in \mathcal Y\)</span>. We denote the set of all Lagrange multipliers at <span class="math inline">\(\bar x\)</span> as <span class="math inline">\(\mathcal M(\bar x)\)</span>. We call the pair <span class="math inline">\((\bar x,\bar \mu)\)</span> a KKT point.</p>
+<p><strong>Remark</strong></p>
+<ol type="1">
+<li><p>If <span class="math inline">\(\mathcal C\)</span> is a closed convex cone, then <span class="math inline">\(\mathcal K = 0^{\mathcal U}\times \mathcal C\)</span> is a closed convex cone. <span class="math display">\[
+\begin{array}{rcl}
+-\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle -\bar \mu,d-G(\bar x)\rangle \le 0,&amp;&amp;\forall d\in\mathcal K
+\end{array}
+\]</span> We choose <span class="math inline">\(d=0\)</span> and <span class="math inline">\(d=G(\bar x)\)</span>. Then we have <span class="math display">\[
+\begin{array}{rcl}
+-\bar \mu \in\mathcal N_\mathcal K(G(\bar x))&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\langle \bar \mu,d\rangle\ge 0,&amp;\forall d\in\mathcal K\\
+&amp;\iff&amp; G(\bar x)\in\mathcal K,&amp;\langle \bar \mu,G(\bar x)\rangle = 0,&amp;\bar \mu\in \mathcal K^*.
+\end{array}
+\]</span> In this case, the KKT conditions can be written as <span class="math display">\[
+(G(\bar x)\in\mathcal K)\perp (\bar \mu \in\mathcal K^*).
+\]</span></p></li>
+<li><p>The set of multipliers <span class="math inline">\(\mathcal M(\bar x)\)</span> may be <strong>empty</strong> or <strong>unbounded</strong>.</p></li>
+</ol>
+<p><strong>Example</strong></p>
+<p>For basic NLP, let <span class="math inline">\(\bar \mu=(\lambda,\rho)\)</span>, and <span class="math inline">\(G(x)=(g(x),h(x))\)</span>, <span class="math inline">\(\mathcal C=\mathbb R^p_+\)</span>, and <span class="math inline">\(\mathcal K=\{0^m\}\times \mathcal C\)</span>, we have KKT conditions, <span class="math display">\[
+\begin{array}{rcl}
+\nabla f(\bar x)-\nabla g(\bar x)\lambda -\nabla h(\bar x)\rho&amp;=&amp;0\\
+G(\bar x)=(g(\bar x),h(\bar x))&amp;\in&amp; \mathcal K\\
+\langle h(\bar x),\rho\rangle &amp;=&amp;0\\
+\rho \in \mathcal C^*&amp;=&amp;\mathbb R_+^p.
+\end{array}
+\]</span> <strong>Example</strong></p>
+<p>Given <span class="math inline">\(B\in\mathbb S^n\)</span>, consider the doubly nonnegative projection problem, <span class="math display">\[
+\min \left\{\frac{1}{2}||X-B||^2\;|\; X\in\mathbb S_+^n\cap \mathcal N^n\right\}.
+\]</span> The above problem can be rewritten as <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; f(X)=\frac{1}{2}||X-B||^2\\
+\text{subject to}&amp; G(X)=(X,X)\in\mathcal K=\mathbb S_+^n\times \mathcal N^n.
+\end{array}
+\]</span> The Lagrange function is for <span class="math inline">\(\mu=(Y,Z) \in \mathcal Y=\mathbb S^n\times \mathbb S^n\)</span>, <span class="math display">\[
+\begin{array}{rcl}
+L(X,\mu)=L(X,Y,Z)&amp;=&amp;\frac{1}{2}||X-B||^2-\langle \mu,G(X)\rangle\\
+&amp;=&amp;\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle.
+\end{array}
+\]</span> The Lagrange dual function is <span class="math display">\[
+\begin{array}{rcl}
+\theta(\mu)=\theta(Y,Z)&amp;=&amp;\min_{X\in\mathbb S^n} L(X,\mu)\\
+&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X-B||^2-\langle Y,X\rangle-\langle Z,X\rangle\right)\\
+&amp;=&amp;\min_{X\in\mathbb S^n}\left(\frac{1}{2}||X||^2-\langle B+Y+Z,X\rangle+\frac{1}{2}||B||^2\right)\\
+&amp;=&amp;\frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right).
+\end{array}
+\]</span></p>
+<p>Therefore the dual problem is <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \frac{1}{2}\left(-||B+Y+Z||^2+||B||^2\right)\\
+\text{subject to}&amp; (Y,Z)\in\mathcal K^*=\mathbb S^n_+\times  \mathcal N^n.
+\end{array}
+\]</span> Therefore, the KKT conditions are given as <span class="math display">\[
+0=\nabla _xL(\bar X,\bar Y,\bar Z)=\nabla f(\bar X)-\langle\nabla G(\bar X),(\bar Y,\bar Z)\rangle\\
+\mathcal K\ni G(\bar X)\perp (\bar Y,\bar Z) \in \mathcal K^*.
+\]</span> That is <span class="math display">\[
+\bar X- B-\bar Y-\bar Z=0\\
+\langle \bar X,\bar Y\rangle+\langle \bar X,\bar Z\rangle=0\\ 
+\bar X\in \mathbb S^n_+\cap \mathcal N^n\\
+(\bar Y,\bar Z)\in\mathbb S^n_+\times\mathcal N^n.
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -880,7 +999,7 @@ f&#39;(\bar x)w+\langle d,\nabla ^2f(\bar x)d\rangle \ge 0,\quad \forall w\in\ma
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

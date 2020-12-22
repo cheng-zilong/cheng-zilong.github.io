@@ -218,186 +218,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-title-link" itemprop="url">Chapter 8. Quadratic Optimal Control</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-25 13:33:56 / Modified: 14:22:46" itemprop="dateCreated datePublished" datetime="2018-11-25T13:33:56+08:00">2018-11-25</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 8. Quadratic Optimal Control" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="problem-formulation-and-preliminaries">1. Problem Formulation and Preliminaries</h2>
-<p>The system is described as <span class="math display">\[
-\dot x = Ax +Bu \\
-y=Cx
-\]</span> The objective is to bring the state from non-zero initial value to zero. This is the regulation problem. The problem is cast into the following quadratic cost function. <span class="math display">\[
-J=\frac{1}{2}\int_0^\infty(x^TQx+u^TRu)dt
-\]</span> Using state feedback <span class="math inline">\(u=-Kx\)</span> to minimize the above equation.</p>
-<p>Q (semi-positive) and R (positive) can be made symmetric.</p>
-<p>Q and R appear most in diagonal form. <span class="math display">\[
-Q=\begin{bmatrix}
-q_1&amp;&amp;&amp;&amp;0 \\
-&amp;q_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;q_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;q_{n} \\
-\end{bmatrix}\\
-R=\begin{bmatrix}
-r_1&amp;&amp;&amp;&amp;0 \\
-&amp;r_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;r_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;r_{n} \\
-\end{bmatrix}
-\]</span> For later use, we define <span class="math display">\[
-Q=H^TH
-\]</span></p>
-<p>Three Assumptions</p>
-<ol type="1">
-<li>The system (A, B) is controllable</li>
-<li>The system (A, H) is observable</li>
-<li>R is positive definite, Q is semi-positive definite</li>
-</ol>
-<p>We have a symmetric positive definite matrix P satisfying the following Algebraic Riccati Equation (ARE) <span class="math display">\[
-A^TP+PA+Q=PBR^{-1}B^TP
-\]</span> Then <span class="math display">\[
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Selection of Q and R</p>
-<ol type="1">
-<li>Q and R are selected to be diagonal</li>
-<li>The larger Q, the larger K</li>
-</ol>
-<p>How to solve ARE</p>
-<p>Step1.</p>
-<p>Form <span class="math display">\[
-\Gamma=\begin{bmatrix}
-A &amp; -BR^{-1}B^T \\
--Q &amp; -A^T
-\end{bmatrix}
-\]</span> Then</p>
-<p>get the stable eigenvectors of <span class="math inline">\(\Gamma\)</span> <span class="math display">\[
-\begin{bmatrix}
-v_i \\ \mu_i
-\end{bmatrix}
-\]</span> Then <span class="math display">\[
-P=[\mu_1 \quad\mu_2\quad\dotsm\quad \mu_n][v_1 \quad v_2\quad\dotsm\quad v_n]^{-1}\\
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Example <span class="math display">\[
-A=\begin{bmatrix}
-0&amp;1\\0&amp;0
-\end{bmatrix}
-B=\begin{bmatrix}
-0\\1
-\end{bmatrix}
-Q=\begin{bmatrix}
-1&amp;0\\0&amp;0
-\end{bmatrix}
-R=\begin{bmatrix}
-\beta
-\end{bmatrix}
-\]</span></p>
-<p>Example</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/22/EE5104 Computer Control/7. Model Predictive Control/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -675,11 +495,382 @@ K_{mpc}=K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/EE5104 Computer Control/6. Kalman Filter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/21/EE5104 Computer Control/6. Kalman Filter/" class="post-title-link" itemprop="url">6. Kalman Filter</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-21 13:44:42 / Modified: 00:05:18" itemprop="dateCreated datePublished" datetime="2018-11-21T13:44:42+08:00">2018-11-21</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/11/21/EE5104 Computer Control/6. Kalman Filter/" class="post-meta-item leancloud_visitors" data-flag-title="6. Kalman Filter" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/11/21/EE5104 Computer Control/6. Kalman Filter/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/21/EE5104 Computer Control/6. Kalman Filter/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="kalman-filter-proof">Kalman Filter Proof</h2>
+<p>Here gives a derivation of KF control theory, optimal control.</p>
+<p>First, we introduce the Thomas Algorithm</p>
+<p>Thomas Algorithm</p>
+<p>Consider the system of equation <span class="math display">\[
+\begin{bmatrix}
+b_1 &amp; c_1 &amp;0 &amp; 0 \\
+a_2 &amp; b_2 &amp;c_2 &amp; 0 \\
+0 &amp; a_3 &amp;b_3 &amp; c_3 \\
+0 &amp; 0 &amp;a_4 &amp; b_4 \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2\\ x_3\\ x_4
+\end{bmatrix}=
+\begin{bmatrix}
+z_1 \\ z_2\\ z_3\\ z_4
+\end{bmatrix}
+\]</span> For the row 1</p>
+<p>We have <span class="math display">\[
+\tag{1.1}
+b_1x_1+c_1x_2=z_1 \\
+x_1+\frac{c_1}{b_1}x_2=\frac{1}{b_1}z_1\\
+\]</span> If let <span class="math inline">\(\gamma_1=\frac{c_1}{b_1}\quad\rho_1=\frac{z_1}{b_1}\)</span> , we have <span class="math inline">\(x_1+\gamma_1x_2=\rho_1\)</span></p>
+<p>For the row 2 <span class="math display">\[
+\tag{1.2}
+a_2x_1+b_2x_2+c_2x_3=z_2 \\
+\]</span> With row 1, we have</p>
+<p><span class="math display">\[
+x_2+\frac{c_2}{b_2-a_2\gamma_1}x_3=\frac{z_2-a_2\rho_1}{b_2-a_2\gamma_1}
+\]</span> For here <span class="math display">\[
+\gamma_2=\frac{c_2}{b_2-a_2\gamma_1} \\
+\rho_2=\frac{z_2-a_2\rho_1}{b_2-a_2\gamma_1}
+\]</span> Similarly, for the 3rd row, we have <span class="math display">\[
+x_3+\frac{c_3}{b_3-a_3\gamma_2}x_4=\frac{z_3-a_3\rho_2}{b_3-a_3\gamma_2} \\
+\gamma_3=\frac{c_3}{b_3-a_3\gamma_2} \\
+\rho_3=\frac{z_3-a_3\rho_2}{b_3-a_3\gamma_2}
+\]</span> For the last row, we have <span class="math display">\[
+x_4=\frac{z_4-a_4\rho_3}{b_4-a_4\gamma_3} \\
+\]</span> Therefore, we can draw a conclusion <span class="math display">\[
+x_n=\frac{z_n-a_n\rho_{n-1}}{b_n-a_n\gamma_{n-1}} \\
+\gamma_{n-1}=\frac{c_{n-1}}{b_{n-1}-a_{n-1}\gamma_{n-2}} \\
+\rho_{n-1}=\frac{z_{n-1}-a_{n-1}\rho_{n-2}}{b_{n-1}-a_{n-1}\gamma_{n-2}}
+\]</span></p>
+<p>Example</p>
+<p>We try to solve the last row directly with Thomas Algorithm <span class="math display">\[
+\begin{bmatrix}
+2 &amp; 3 &amp; 0 &amp; 0\\
+1 &amp; 2 &amp; 3 &amp; 0\\
+0 &amp; 1 &amp; 2 &amp; 3\\
+0 &amp; 0 &amp; 1 &amp; 2\\
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+\end{bmatrix}=
+\begin{bmatrix}
+1\\
+2\\
+3\\
+4\\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\gamma_1=\frac{3}{2}\quad\rho_1=\frac{1}{2}\\
+\gamma_2=\frac{3}{2-1.5}=6\quad\rho_2=\frac{2-0.5}{2-1.5}=3\\
+\gamma_3=-\frac{3}{4} \quad \rho_3=\frac{z_1}{2}=0\\
+x_4=\frac{4-0.75}{2-0}=\frac{16}{11}
+\]</span></p>
+<p>Least Square Estimation</p>
+<p>If some linear equations cannot be solved because of the number of equations are greater than the number of variables, we need Least Square Estimation to estimate the closet solution. <span class="math display">\[
+\Phi = \begin{bmatrix}
+\Phi_{11} &amp; \Phi_{12} \\
+\Phi_{21} &amp; \Phi_{22} \\
+\Phi_{31} &amp; \Phi_{32} \\
+\end{bmatrix} \\
+\theta = \begin{bmatrix}
+\theta_{1} \\
+\theta_{2} \\
+\end{bmatrix}\\
+Y = \begin{bmatrix}
+y_{1} \\
+y_{2} \\
+y_{3} \\
+\end{bmatrix}\\
+\]</span> If we want to solve <span class="math inline">\(\Phi\theta=Y\)</span>, it is impossible.</p>
+<p>We can define <span class="math display">\[
+\tag{1.3}
+V=(Y-\Phi\theta)^T(Y-\Phi\theta)
+\]</span> If V is the least, that means the <span class="math inline">\(\theta\)</span> we choose makes the result of the left hand closet to Y.</p>
+<p>How to get <span class="math inline">\(V_{min}\)</span>.</p>
+<p>We can use derivatives. <span class="math display">\[
+\frac{dV}{d\theta}=0
+\]</span> We have <span class="math display">\[
+-\Phi^TY+\Phi^T\Phi\hat \theta=0
+\]</span> If <span class="math inline">\(\Phi^T\Phi\)</span> is invertible, <span class="math display">\[
+\hat \theta=(\Phi^T\Phi)^{-1}\Phi^TY
+\]</span></p>
+<p>Example <span class="math display">\[
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 1\\
+2 &amp; 1\\
+\end{bmatrix}
+\begin{bmatrix}
+m\\
+c
+\end{bmatrix}=
+\begin{bmatrix}
+0.6\\
+1.3\\
+2.6
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+\hat \theta=
+\begin{bmatrix}
+1\\
+0.5
+\end{bmatrix}
+\]</span> Now we will give introduction to Kalman Filter,</p>
+<p>Consider the first order process model <span class="math display">\[
+x(k+1)=Ax(k)+w(k) \\
+y(k)=Cx(k)+v(k)
+\]</span> Now, we can only measure the output <span class="math inline">\(y(k)\)</span> and we know this model.</p>
+<p><span class="math inline">\(w(k)\)</span> and <span class="math inline">\(v(k)\)</span> are the estimate noise and measurement noise separately with gauss noise. and we know the covariances of the two noises.</p>
+<p>For example, for k=0,1,2,3, we know the output <span class="math inline">\(y(0) \quad y(1)\quad y(2)\quad y(3)\)</span>, and we hope to get the states <span class="math display">\[x(0) \quad x(1)\quad x(2)\quad x(3)\]</span> of the above equations. <span class="math display">\[
+x(1)=Ax(0) \\
+y(0)=Cx(0) \\
+x(2)=Ax(1) \\
+y(1)=Cx(1) \\
+x(3)=Ax(2) \\
+y(2)=Cx(2) \\
+y(3)=Cx(3) \\
+\]</span> We define the function like (1.3) but for now we know the covariances of the two noises and we can use the as the parameters of weight. We need to use these 7 equations to solve 4 variables. This is a Least Square Problem. Therefore we get the equation <span class="math display">\[
+J=\frac{1}{2R_1}[(\hat x(1)-A\hat x(0))^2+(\hat x(2)-A\hat x(1))^2+(\hat x(3)-A\hat x(2))^2]+\\
+\frac{1}{2R_2}[(y(0)-C\hat x(0))^2+(y(1)-C\hat x(1))^2+(y(2)-C\hat x(2))^2+(y(3)-C\hat x(3))^2]\\
+\]</span> We derivative J <span class="math display">\[
+\frac{dJ}{d \hat x(0)}=\frac{-A(\hat x(1)-A\hat x(0))}{R_1}+\frac{-C(\hat y(0)-C\hat x(0))}{R_2}=0 \\
+\frac{dJ}{d \hat x(1)}=\frac{\hat x(1)-A\hat x(0)}{R_1}+\frac{-A(\hat x(2)-A\hat x(1))}{R_1}+\frac{-C(\hat y(1)-C\hat x(1))}{R_2}=0 \\
+\frac{dJ}{d \hat x(2)}=\frac{\hat x(2)-A\hat x(1)}{R_1}+\frac{-A(\hat x(3)-A\hat x(2))}{R_1}+\frac{-C(\hat y(2)-C\hat x(2))}{R_2}=0 \\
+\frac{dJ}{d \hat x(3)}=\frac{\hat x(3)-A\hat x(2)}{R_1}+\frac{-C(\hat y(3)-C\hat x(3))}{R_2}=0 \\
+\]</span> Now we get the matrix equation, <span class="math display">\[
+\begin{bmatrix}
+\frac{A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1} &amp; 0 &amp; 0 \\
+\frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1} &amp; 0  \\
+0 &amp; \frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1}   \\
+0 &amp; 0 &amp;  \frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} \\
+\end{bmatrix}
+\begin{bmatrix}
+\hat x(0)\\
+\hat x(1)\\
+\hat x(2)\\
+\hat x(3)\\
+\end{bmatrix}=\frac{C}{R_2}
+\begin{bmatrix}
+y(0)\\
+y(1)\\
+y(2)\\
+y(3)
+\end{bmatrix}
+\]</span></p>
+<p>For general, we get the matrix equation, <span class="math display">\[
+\begin{bmatrix}
+\beta-\frac{1}{R_1} &amp; \alpha &amp; 0 &amp; 0   &amp; 0 &amp; \dotsm &amp; 0\\
+\alpha &amp; \beta &amp; \alpha &amp; 0 &amp; 0 &amp; \dotsm  &amp; 0\\
+0 &amp; \alpha &amp; \beta &amp; \alpha &amp; 0 &amp; \dotsm  &amp; 0\\
+\vdots&amp; \ddots &amp; \ddots &amp; \ddots  &amp; \ddots &amp; \ddots &amp; \vdots
+\\
+0 &amp; \dotsm &amp; 0 &amp;  \alpha &amp; \beta &amp; \alpha  &amp; 0\\
+0 &amp; \dotsm &amp; 0 &amp;  0 &amp; \alpha &amp; \beta &amp; \alpha  \\
+0 &amp; \dotsm &amp; 0 &amp; 0&amp;  0 &amp; \alpha &amp; \beta-\frac{A^2}{R_1}  \\
+\end{bmatrix}
+\begin{bmatrix}
+\hat x(0)\\
+\hat x(1)\\
+\hat x(2)\\
+\vdots\\
+\hat x(n-1)\\
+\hat x(k)
+\end{bmatrix}=
+\begin{bmatrix}
+z(0)\\
+z(1)\\
+z(2)\\
+\vdots\\
+z(n-1)\\
+z(k)
+\end{bmatrix}
+\]</span> Where, <span class="math display">\[
+\alpha=-\frac{A}{R_1}\\
+\beta=\frac{1}{R_1}+\frac{C^2}{R_2}+\frac{A^2}{R_1}\\
+z(k)=\frac{C}{R_2}y(k)
+\]</span> Using Thomas Algorithm, we have <span class="math display">\[
+x_n=\frac{z_n-a_n\rho_{n-1}}{b_n-a_n\gamma_{n-1}} \\
+\gamma_{n-1}=\frac{c_{n-1}}{b_{n-1}-a_{n-1}\gamma_{n-2}} \\
+\rho_{n-1}=\frac{z_{n-1}-a_{n-1}\rho_{n-2}}{b_{n-1}-a_{n-1}\gamma_{n-2}}
+\]</span> Then <span class="math display">\[
+x(k)=\frac{z(k)-\alpha\rho(k-1)}{\beta-\frac{A^2}{R_1}-\alpha\gamma(k-1)}
+\]</span> If we define <span class="math display">\[
+P(k)=(\beta-\frac{A^2}{R_1}-\alpha\gamma(k-1))^{-1}
+\]</span> We have <span class="math display">\[
+x(k)=P(k)[z(k)-\alpha\rho(k-1)]
+\]</span> Where <span class="math display">\[
+\gamma(k-1)=\frac{\alpha}{\beta-\alpha \gamma(k-2)}\\
+\rho(k-1)=\frac{z(k-1)-\alpha\rho(k-2)}{\beta-\alpha\gamma(k-2)}
+\]</span> Now we consider k-1 samples. We hope to use recursive algorithm to calculate. <span class="math display">\[
+\gamma(k-2)=\frac{\alpha}{\beta-\alpha \gamma(k-3)}\\
+\rho(k-2)=\frac{z(k-2)-\alpha\rho(k-3)}{\beta-\alpha\gamma(k-3)}\\
+P(k-1)=(\beta-\frac{A^2}{R_1}-\alpha\gamma(k-2))^{-1}\\
+x(k-1)=P(k-1)[z(k-1)-\alpha\rho(k-2)]
+\]</span> Now we cancel out <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\beta\)</span></p>
+<p>Therefore, we can get the Kalman Filter with iterative method.</p>
+<p>Skip the steps of mathematical derivation.</p>
+<p>Finally we get the Kalman Filter in the following form <span class="math display">\[
+\begin{array}{rcl}
+K_f(k)&amp;=&amp;P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1} \\
+K(k)&amp;=&amp;(AP(k|k-1)C^T)(CP(k|k-1)C^T+R_2)^{-1} \\
+\hat x(k|k)&amp;=&amp;\hat x(k|k-1)+K_f(k)(y(k)-C\hat x(k|k-1))\\
+\hat x(k+1|k)&amp;=&amp;A\hat x(k|k-1)+Bu(k)+K(k)(y(k)-C\hat x(k|k-1))\\
+P(k|k)&amp;=&amp;P(k|k-1)-P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1}CP(k|k-1) \\
+p(k+1|k)&amp;=&amp;AP(k|k-1)A^T-K(k)(CP(k|k-1)C^T+R_2)K^T(k)+R_1
+\end{array}
+\]</span></p>
+<p>Simpler version <span class="math display">\[
+\begin{array}{rcl}
+K_f(k)&amp;=&amp;P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1} \\
+K(k)&amp;=&amp;Ak_f(k) \\
+\hat x(k|k)&amp;=&amp;\hat x(k|k-1)+K_f(k)(y(k)-C\hat x(k|k-1))\\
+\hat x(k+1|k)&amp;=&amp;A\hat x(k|k)+Bu(k)\\
+P(k|k)&amp;=&amp;P(k|k-1)-P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1}CP(k|k-1) \\
+P(k+1|k)&amp;=&amp;AP(k|k)A^T+R_1
+\end{array}
+\]</span></p>
+<p>Example</p>
+<p>We have one system <span class="math display">\[
+x(k+1)=x(k)+w(k)\\
+y(k)=x(k)+v(k)
+\]</span> We have measurement <span class="math display">\[
+y(0)=0\\
+y(1)=1\\
+y(2)=2\\
+\]</span> Kalman Filter initialized with <span class="math display">\[
+\hat x(0|-1)=0\\
+P(0|-1)=\infty\\
+R_1=R_2=1
+\]</span> Now we have <span class="math display">\[
+\begin{array}{lll}
+k=0\\
+K_f(0)=1 &amp; K(0)=1\\
+\hat x(0|0)=0 &amp; \hat x(1|0)=0\\
+P(0|0)=1 &amp; P(1|0)=2\\
+\hline
+k=1\\
+K_f(1)=\frac{2}{3} &amp; K(1)=\frac{2}{3}\\
+\hat x(1|1)=\frac{2}{3} &amp; \hat x(2|1)=\frac{2}{3}\\
+P(1|1)=\frac{2}{3} &amp; P(2|1)=\frac{5}{3}\\
+\hline
+k=2\\
+K_f(2)=\frac{5}{8} &amp; K(2)=\frac{5}{8}\\
+\hat x(2|2)=\frac{3}{2} &amp; \hat x(3|2)=\frac{3}{2}\\
+P(2|2)=\frac{5}{8} &amp; P(3|2)=\frac{13}{8}\\
+\end{array}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -724,7 +915,7 @@ K_{mpc}=K_r=\overbrace{[1 \quad0 \quad 0 \quad \dotsm \quad 0]}^{N_p}(\Phi^T\Phi
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
