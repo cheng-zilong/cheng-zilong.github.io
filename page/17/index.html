@@ -397,7 +397,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:48:09" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:54:09" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
             </span>
           
             
@@ -535,8 +535,15 @@ p(\tilde y=c|\tilde x,\lambda^{MAP},\eta^{MAP})=p(\tilde y=c|\lambda^{MAP})p(\ti
 \]</span> For the second part <span class="math display">\[
 \eta^{ML}_{11}=0\quad \eta^{ML}_{21}=0\\
 \eta^{ML}_{12}=1\quad \eta^{ML}_{22}=0.5\\
-\]</span> Then $$ p(y=1|x,<sup>{MAP},</sup>{MAP}) =_1<sup>{MAP}+<em>{j=1}^2p(x_j|</em>{j1}</sup>{MAP})\ =_1<sup>{MAP}+p(x_1|<em>{11}^{MAP})+p(x_1|</em>{21}</sup>{MAP})=-\</p>
-<p>p(y=2|x,<sup>{MAP},</sup>{MAP}) =_2<sup>{MAP}+<em>{j=1}^2p(x_j|</em>{j2}</sup>{MAP})\ =_2<sup>{MAP}+p(x_1|<em>{12}^{MAP})+p(x_1|</em>{22}</sup>{MAP})\ =/3++=-1.1 $$ So <span class="math inline">\(\tilde y=2\)</span></p>
+\]</span> Then <span class="math display">\[
+\log p(\tilde y=1|\tilde x,\lambda^{MAP},\eta^{MAP})
+=\log\lambda_1^{MAP}+\sum_{j=1}^2\log p(\tilde x_j|\eta_{j1}^{MAP})\\
+=\log\lambda_1^{MAP}+\log p(\tilde x_1|\eta_{11}^{MAP})+\log p(\tilde x_1|\eta_{21}^{MAP})=-\infty\\
+\log p(\tilde y=2|\tilde x,\lambda^{MAP},\eta^{MAP})
+=\log\lambda_2^{MAP}+\sum_{j=1}^2\log p(\tilde x_j|\eta_{j2}^{MAP})\\
+=\log\lambda_2^{MAP}+\log p(\tilde x_1|\eta_{12}^{MAP})+\log p(\tilde x_1|\eta_{22}^{MAP})\\
+=\log 2/3+\log 1+\log 0.5=-1.1
+\]</span> So <span class="math inline">\(\tilde y=2\)</span></p>
 <h2 id="posterior-predictive-estimation">6. Posterior Predictive Estimation</h2>
 <p><span class="math display">\[
 \begin{array}{rcl}
@@ -588,11 +595,14 @@ p(\tilde y=c|\tilde x,D)\propto p(\tilde y|y_{1:N})\prod_{j=1}^Dp(\tilde x_j|x_{
 </tr>
 </tbody>
 </table>
-<p>Predict <span class="math inline">\(\tilde y\)</span> using ML for class prior and We will use posterior predictive with the prior Beta(2,2) for feature likelihood. $$ p(y=1|^{ML}_1)=p(y=2|^{ML}_2)=\</p>
-<p>p(x_1|x_{ic1,1},y=c1) = p(x_2|x_{ic1,2},y=c1) =\</p>
-<p>p(x_1|x_{ic2,1},y=c2) = p(x_2|x_{ic2,2},y=c2) = <span class="math display">\[
-Then we have the probability
-\]</span> p(y=c1|x,D)\ p(y=c2|x,D)\ $$</p>
+<p>Predict <span class="math inline">\(\tilde y\)</span> using ML for class prior and We will use posterior predictive with the prior Beta(2,2) for feature likelihood. <span class="math display">\[
+p(\tilde y=1|\lambda^{ML}_1)=\frac{1}{3}\quad p(\tilde y=2|\lambda^{ML}_2)=\frac{2}{3}\\
+p(\tilde x_1|x_{i\in c1,1},\tilde y=c1) =\frac{2}{5} \quad p(\tilde x_2|x_{i\in c1,2},\tilde y=c1) =\frac{2}{5}\\
+p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in c2,2},\tilde y=c2) =\frac{1}{2}
+\]</span> Then we have the probability <span class="math display">\[
+\log p(\tilde y=c1|\tilde x,D)\propto =-2.53\\
+\log p(\tilde y=c2|\tilde x,D)\propto =-1.50\\
+\]</span></p>
 
         
       
