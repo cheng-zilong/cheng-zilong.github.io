@@ -58,14 +58,14 @@
 
   <meta name="description" content="1. Input-Output Stability ==Theorem 1== A SISO system is BIBO stable if and only if \[ \int_0^\infty|g(t)|dt \le k\le\infty \] for some constant k. ==Theorem 2== A transfer function G(s) is BIBO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Orandragon&#39;s Blog">
+<meta property="og:title" content="Chapter 5. Stability">
 <meta property="og:url" content="http://yoursite.com/2020/12/22/EE5101 Linear Systems/5. Stability/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="1. Input-Output Stability ==Theorem 1== A SISO system is BIBO stable if and only if \[ \int_0^\infty|g(t)|dt \le k\le\infty \] for some constant k. ==Theorem 2== A transfer function G(s) is BIBO">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-22T14:45:47.000Z">
+<meta property="og:updated_time" content="2020-12-22T06:21:42.385Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Orandragon&#39;s Blog">
+<meta name="twitter:title" content="Chapter 5. Stability">
 <meta name="twitter:description" content="1. Input-Output Stability ==Theorem 1== A SISO system is BIBO stable if and only if \[ \int_0^\infty|g(t)|dt \le k\le\infty \] for some constant k. ==Theorem 2== A transfer function G(s) is BIBO">
   <link rel="canonical" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/5. Stability/">
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title> | Orandragon's Blog</title>
+  <title>Chapter 5. Stability | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">Chapter 5. Stability
 
           
         </h1>
@@ -248,19 +248,11 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:33:56" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:33:56 / Modified: 14:21:42" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-11-22 22:45:47" itemprop="dateModified" datetime="2018-11-22T22:45:47+08:00">2018-11-22</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -278,7 +270,7 @@
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/5. Stability/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+            <span id="/2020/12/22/EE5101 Linear Systems/5. Stability/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 5. Stability" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -390,8 +382,7 @@ P=\begin{bmatrix}
 \]</span> For the SISO system <span class="math display">\[
 ||S||_\infty=\int_0^\infty|h(t)|dt
 \]</span></p>
-<h3 id="mathcalh_infty">==<span class="math inline">\(\mathcal{H}_\infty\)</span>==</h3>
-<p><span class="math display">\[
+<p>==<span class="math inline">\(\mathcal{H}_\infty\)</span>== <span class="math display">\[
 ||S||_2&lt;max_{w\in R}||H(w)||_2
 \]</span></p>
 <p><span class="math inline">\(max_{w\in R}||H(w)||_2\)</span> is known as <span class="math inline">\(\mathcal H_\infty\)</span> norm of system S</p>
@@ -401,8 +392,8 @@ A  &amp; \frac{1}{\gamma^2}BB^T\\
 -C^TC &amp; -A^T
 \end{bmatrix}
 \]</span> then <span class="math inline">\(\mathcal H_\infty &lt; \gamma\)</span> if and only if <span class="math inline">\(M_\gamma\)</span> has no purely imaginary eigenvalues.</p>
-<h3 id="mathcalh_2">==<span class="math inline">\(\mathcal{H}_2\)</span>==</h3>
-<p><span class="math inline">\(\frac{1}{2\pi}Tr\int_{-\infty}^\infty H^T(w)H(w)dw​\)</span> is known as <span class="math inline">\(\mathcal H_2​\)</span> norm of system S <span class="math display">\[
+<p>==<span class="math inline">\(\mathcal{H}_2\)</span>==</p>
+<p><span class="math inline">\(\frac{1}{2\pi}Tr\int_{-\infty}^\infty H^T(w)H(w)dw\)</span> is known as <span class="math inline">\(\mathcal H_2\)</span> norm of system S <span class="math display">\[
 \mathcal H_2^2=Tr(CWC^T)=Tr(B^TMB) \\
 \text{W is Controllability Grammain}\\
 \text{M is Observability Grammain}\\
@@ -452,8 +443,8 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/22/EE5101 Linear Systems/3. State-Space Solution and Propoerties/" rel="next" title="">
-                  <i class="fa fa-chevron-left"></i> 
+                <a href="/2020/12/22/EE5101 Linear Systems/4. Controllability and Observability/" rel="next" title="Chapter 4. Controllability and Observability">
+                  <i class="fa fa-chevron-left"></i> Chapter 4. Controllability and Observability
                 </a>
               
             </div>
@@ -462,8 +453,8 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/" rel="prev" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/2020/12/22/EE5101 Linear Systems/6. Canonical Forms/" rel="prev" title="Chapter 6. Canonical Forms">
+                  Chapter 6. Canonical Forms <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -516,7 +507,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#input-output-stability"><span class="nav-text">1. Input-Output Stability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#internal-stability-bibo-stability"><span class="nav-text">2. Internal Stability BIBO Stability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lyapunov-theorem"><span class="nav-text">3. Lyapunov Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#l-stability"><span class="nav-text">4. L stability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mathcalh_infty"><span class="nav-text">==\(\mathcal{H}_\infty\)==</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mathcalh_2"><span class="nav-text">==\(\mathcal{H}_2\)==</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#input-output-stability"><span class="nav-text">1. Input-Output Stability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#internal-stability-bibo-stability"><span class="nav-text">2. Internal Stability BIBO Stability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lyapunov-theorem"><span class="nav-text">3. Lyapunov Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#l-stability"><span class="nav-text">4. L stability</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
