@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="1. Bayes Model Selection Bayesian Model Selection tradeoffs complexity with training error In practice, cross-validation works better than Bayesian model selection, but this is an important conceptu">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-12-22T06:46:33.776Z">
+<meta property="og:updated_time" content="2020-12-22T06:52:27.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 6. Bayesian Statistics">
 <meta name="twitter:description" content="1. Bayes Model Selection Bayesian Model Selection tradeoffs complexity with training error In practice, cross-validation works better than Bayesian model selection, but this is an important conceptu">
@@ -248,7 +248,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:46:33" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:52:27" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
             </span>
           
             
@@ -390,26 +390,31 @@ p(\theta|D)=\sum_kp(z=k|D)p(\theta|z=k,D)\\
 \]</span> where <span class="math display">\[
 p(z=k|D)=\frac{p(z=k)p(D|z=k)}{\sum_{k&#39;}p(z=k&#39;)p(D|z=k&#39;)}
 \]</span> Example</p>
-Suppose <span class="math inline">\(p(\theta)=0.5Beta(20,20)+0.5Beta(30,10)\)</span> Suppose we observe 20 heads and 10 tails, then the posterior $$ p(D|z=1)=(
-<span class="math display">\[\begin{array}{lll}
+<p>Suppose <span class="math inline">\(p(\theta)=0.5Beta(20,20)+0.5Beta(30,10)\)</span> Suppose we observe 20 heads and 10 tails, then the posterior <span class="math display">\[
+p(D|z=1)=\left(
+\begin{array}{lll}
 N\\N_1
-\end{array}\]</span>
-) =\ (
-<span class="math display">\[\begin{array}{lll}
+\end{array}\right)
+\frac{B(a+N_1,b+N_0)}{B(a,b)}=\\
+\left(
+\begin{array}{lll}
 30\\20
-\end{array}\]</span>
-<p>) =0.0437\</p>
-p(D|z=2)=(
-<span class="math display">\[\begin{array}{lll}
+\end{array}\right)
+\frac{B(40,30)}{B(20,20)}=0.0437\\
+p(D|z=2)=\left(
+\begin{array}{lll}
 N\\N_1
-\end{array}\]</span>
-) =\ (
-<span class="math display">\[\begin{array}{lll}
+\end{array}\right)
+\frac{B(a+N_1,b+N_0)}{B(a,b)}=\\
+\left(
+\begin{array}{lll}
 30\\20
-\end{array}\]</span>
-<p>) =0.0826 <span class="math display">\[
-Then we have
-\]</span> p(z=1|D)==0.346\ p(z=2|D)==0.634\ $$</p>
+\end{array}\right)
+\frac{B(50,20)}{B(30,10)}=0.0826
+\]</span> Then we have <span class="math display">\[
+p(z=1|D)=\frac{0.0437}{0.0826+0.0437}=0.346\\
+p(z=2|D)=\frac{0.0826}{0.0826+0.0437}=0.634\\
+\]</span></p>
 
     </div>
 
