@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="1. State Feedback For a system \[ \dot x=Ax+Bu \\ y=Cx \] We have a control law \[ u=-Kx+Fr \] Then the system can be changed to \[ \dot x=(A-BK)x+BFr \\ y=Cx \] ==Lemma1== The controllabili">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 7. Pole Placement">
+<meta property="og:url" content="http://yoursite.com/2018/11/21/EE5101 Linear Systems/7. Pole Placement/index.html">
+<meta property="og:site_name" content="Orandragon&#39;s Blog">
+<meta property="og:description" content="1. State Feedback For a system \[ \dot x=Ax+Bu \\ y=Cx \] We have a control law \[ u=-Kx+Fr \] Then the system can be changed to \[ \dot x=(A-BK)x+BFr \\ y=Cx \] ==Lemma1== The controllabili">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-21T06:22:29.787Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7. Pole Placement">
+<meta name="twitter:description" content="1. State Feedback For a system \[ \dot x=Ax+Bu \\ y=Cx \] We have a control law \[ u=-Kx+Fr \] Then the system can be changed to \[ \dot x=(A-BK)x+BFr \\ y=Cx \] ==Lemma1== The controllabili">
+  <link rel="canonical" href="http://yoursite.com/2018/11/21/EE5101 Linear Systems/7. Pole Placement/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Chapter 7. Pole Placement | Orandragon's Blog</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orandragon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/EE5101 Linear Systems/7. Pole Placement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Chapter 7. Pole Placement
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-21 13:33:56 / Modified: 14:22:29" itemprop="dateCreated datePublished" datetime="2018-11-21T13:33:56+08:00">2018-11-21</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 7. Pole Placement" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="state-feedback">1. State Feedback</h2>
+<p>For a system <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx
+\]</span> We have a control law <span class="math display">\[
+u=-Kx+Fr
+\]</span> Then the system can be changed to <span class="math display">\[
+\dot x=(A-BK)x+BFr \\
+y=Cx
+\]</span> ==Lemma1==</p>
+<p>The controllability of the system is unaltered by state feedback</p>
+<p>==Lemma2==</p>
+<p>The closed-loop poles are affected only by feedback gain matrix K but independent of F.</p>
+<h2 id="why-pole-placement">2. Why Pole Placement</h2>
+<p><span class="math display">\[
+G(s)=\frac{\omega_n^2}{s^2+2\xi\omega_ns+\omega_n^2}
+\]</span></p>
+<p>Rise time: <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
+<p>Peak overshoot: <span class="math inline">\(M_p=e^{\frac{-\pi \xi}{\sqrt{1-\xi^2}}}\)</span></p>
+<p>2% settling time: <span class="math inline">\(t_s=\frac{4}{\xi \omega_n}\)</span></p>
+<p>poles: <span class="math inline">\(\lambda=-\xi\omega_n\pm\omega_n\sqrt{\xi^2-1}\)</span></p>
+<h2 id="single-input-case">3.Single-input Case</h2>
+<p>Ackerman's Formula <span class="math display">\[
+k^T=\begin{matrix} [0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1] \end{matrix}M_c^{-1}\Phi(A)
+\]</span></p>
+<p>Choose two poles according to second order system and choose other poles 2~5 times left to these two dominant poles.</p>
+<h2 id="multi-input-case">4. Multi-input Case</h2>
+<p>For u <span class="math display">\[
+u=\begin{bmatrix}
+u_1 \\u_2\\\vdots\\u_m
+\end{bmatrix}
+\]</span> First we try direct comparison method</p>
+<p>Example <span class="math display">\[
+\dot x=\
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}x+
+\begin{bmatrix}
+1 &amp; 0\\0&amp;1
+\end{bmatrix}u
+\]</span> The desired polynomial is <span class="math display">\[
+s^2+2s+2
+\]</span> Then the controllability matrix is <span class="math display">\[
+M_c=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span> The system is controllable.</p>
+<p>We choose <span class="math display">\[
+u=-Kx+Fr \\
+\dot x= Ax+Bu=Ax+B(-Kx+Fr)=(A-BK)x+BFr \\
+= 
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}-
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+k_{11} &amp; k_{12} \\
+k_{21} &amp; k_{22}
+\end{bmatrix}=
+\begin{bmatrix}
+-k_{11} &amp;1-k_{12} \\
+-k_{21} &amp; -k_{22}
+\end{bmatrix}
+\]</span> The determinant is <span class="math display">\[
+\lambda^2+(k_{11}+k_{12})\lambda+k_{11}k_{12}-k_{12}k_{21}-k_{21}
+\]</span> Obviously, there are infinite solutions.</p>
+<h3 id="unity-rank-k">4.1 Unity Rank K</h3>
+<p>We choose <span class="math display">\[
+u=\begin{bmatrix}
+q_1\\q_2\\\vdots\\q_n
+\end{bmatrix}v
+\]</span> We can have different weights for different input. Then the system becomes single input system <span class="math display">\[
+\dot x=Ax+Bqv
+\]</span> Algorithm</p>
+<blockquote>
+<ol type="1">
+<li><p>Choose the weight vector q</p></li>
+<li><p>use the single input design <span class="math inline">\(k^T\)</span></p></li>
+<li><p><span class="math inline">\(K=qk^T\)</span></p></li>
+</ol>
+</blockquote>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A=\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix} \\
+B=\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}
+\]</span> The desired polynomial is <span class="math display">\[
+s^2+2s+2
+\]</span> Choose weight vector <span class="math display">\[
+q=
+\begin{bmatrix}
+0 \\1
+\end{bmatrix} \\
+Bq=
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}\\
+M_c=
+\begin{bmatrix}
+0 &amp; 1\\ 1 &amp; 0
+\end{bmatrix} \\
+M_c^{-1} = 
+\begin{bmatrix}
+0 &amp; 1\\ 1 &amp; 0
+\end{bmatrix} \\
+\Phi(A)=A^2+2A+2I=
+\begin{bmatrix}
+2&amp;2\\0&amp;2
+\end{bmatrix}\\
+k^T=[0 \quad 1]M_c^{-1}\Phi(A)=[2 \quad 2] \\
+K=qk^T=
+\begin{bmatrix}
+0&amp;0\\2&amp;2
+\end{bmatrix}
+\]</span> For this method, we need to choose q to make the single input system [A Bq] is controllable.</p>
+<h3 id="full-rank-method">4.2 Full Rank Method</h3>
+For the single input system $$ M_c^{-1}=
+<span class="math display">\[\begin{bmatrix}
+q_1^T \\ q_2^T \\ \vdots \\ q_n^T
+\end{bmatrix}\]</span>
+<p>\</p>
+T=
+<span class="math display">\[\begin{bmatrix}
+q_n^T \\q_n^TA \\ \vdots \\q_n^TA^{n-1}
+\end{bmatrix}\]</span>
+\ B=TB=
+<span class="math display">\[\begin{bmatrix}
+0 \\0 \\ \vdots \\0\\1
+\end{bmatrix}\]</span>
+<p>$$</p>
+<p>For the multi-input system, shown in example</p>
+<p>for the system <span class="math display">\[
+\dot x=Ax+Bu \\
+A=
+\begin{bmatrix}
+-1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1\\0 &amp; 0 &amp; 2
+\end{bmatrix}
+B=
+\begin{bmatrix}
+1 &amp; 1\\0 &amp; 0\\ 0 &amp; 1
+\end{bmatrix}
+\]</span> First we need the controllability matrix <span class="math inline">\(M_c\)</span> <span class="math display">\[
+M_c=
+\begin{bmatrix}
+B &amp; AB &amp; A^2B
+\end{bmatrix} = 
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 &amp;2\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 3\\
+0 &amp; 1 &amp; 0 &amp; 2 &amp; 0 &amp; 4\\
+\end{bmatrix}
+\]</span></p>
+<p>Then we choose independent vectors from left to right and group them in C <span class="math display">\[
+C=
+\begin{bmatrix}
+b_1 &amp; Ab_1 &amp; A^2b_1 &amp; \dotsm &amp; A^{d_1-1}b_1 &amp; | &amp; 
+b_2 &amp; Ab_2 &amp; A^2b_2 &amp; \dotsm &amp; A^{d_2-1}b_1 &amp; | &amp; \dotsm
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 \\
+0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 2
+\end{bmatrix}
+\]</span> 1 vector for the first input and 2 vectors for the second input</p>
+<p>We denote <span class="math inline">\(d_1=1\quad d_2=2\)</span></p>
+<p>Then we get <span class="math display">\[
+C^{-1}=
+\begin{bmatrix}
+1 &amp; 3 &amp; -1 \\
+0 &amp; -2 &amp; 1 \\
+0 &amp; 1 &amp; 0 \\
+\end{bmatrix}
+\]</span> And we choose <span class="math display">\[
+T=
+\begin{bmatrix}
+q_1 \\ q_3 \\ q_3A
+\end{bmatrix}=
+\begin{bmatrix}
+1&amp;3&amp;-1\\
+0&amp;1&amp;0\\
+0&amp;1&amp;1
+\end{bmatrix}\\
+T^{-1}=
+\begin{bmatrix}
+1 &amp; -4 &amp; 1 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 1 \\
+\end{bmatrix}\\
+\bar A=TAT^{-1}=
+\begin{bmatrix}
+-1&amp;|&amp;7&amp;0\\\hdashline
+0&amp;|&amp;0&amp;1\\
+0&amp;\Big|&amp;-2&amp;3
+\end{bmatrix} \\
+\bar B=TB=
+\begin{bmatrix}
+1 &amp; 0\\\hdashline0&amp; 0\\0&amp; 1
+\end{bmatrix}
+\]</span> Design the feedback gain matrix <span class="math display">\[
+\bar K=
+\begin{bmatrix}
+\bar k_{11}&amp;\bar k_{12}&amp;\bar k_{13}\\
+\bar k_{21}&amp;\bar k_{22}&amp;\bar k_{23}
+\end{bmatrix} \\
+\bar A-\bar B \bar K=
+\begin{bmatrix}
+-1-\bar k_{11} &amp; 7-\bar k_{12} &amp; -\bar k_{13}\\
+0&amp;0&amp;1\\
+-\bar k_{21} &amp; -2-\bar k_{22} &amp; 3-\bar k_{23}
+\end{bmatrix}
+\]</span></p>
+<p>We have the desired the eigenvalues -1 -2 -3</p>
+<p>Then we can choose the polynomial <span class="math display">\[
+(s+1)(s+2)(s+3)=(s+1)(s^2+5s+6)
+\]</span> And choose the desired matrix <span class="math display">\[
+A_d=
+\begin{bmatrix}
+-1 &amp;|&amp; 0 &amp; 0 \\\hdashline
+0&amp;|&amp;0&amp;1\\
+0&amp;|&amp;-6&amp;-5
+\end{bmatrix}
+\]</span> Then we can get the solution <span class="math display">\[
+\bar k_{11}=\bar k_{13}=\bar k_{21}=0 \\
+\bar k_{12}=7\\
+\bar k_{22}=4\\
+\bar k_{23}=8
+\]</span> Finally, <span class="math display">\[
+K=\bar KT=
+\begin{bmatrix}
+0 &amp; 7 &amp; 0 \\
+0 &amp; 12 &amp; 8 
+\end{bmatrix}
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" rel="next" title="Chapter 6. Canonical Forms">
+                  <i class="fa fa-chevron-left"></i> Chapter 6. Canonical Forms
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" rel="prev" title="Chapter 8. Quadratic Optimal Control">
+                  Chapter 8. Quadratic Optimal Control <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#state-feedback"><span class="nav-text">1. State Feedback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why-pole-placement"><span class="nav-text">2. Why Pole Placement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#single-input-case"><span class="nav-text">3.Single-input Case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-input-case"><span class="nav-text">4. Multi-input Case</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#unity-rank-k"><span class="nav-text">4.1 Unity Rank K</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#full-rank-method"><span class="nav-text">4.2 Full Rank Method</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Orange+Dragon</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orange+Dragon</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'k1NFV6E2jjtcuFpWbPUwvs04-MdYXbMMI',
+    appKey: 'oCso3hdINWUXi0EtP7BsCUoY',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

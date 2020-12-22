@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/Convex Optimization/10. Equality constrained Minimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-title-link" itemprop="url">Chapter 8. Quadratic Optimal Control</a>
+            <a href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-title-link" itemprop="url">Chapter 10. Equality constrained Minimization</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:33:56 / Modified: 14:22:46" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
+              <time title="Created: 2019-09-03 13:49:01 / Modified: 13:59:42" itemprop="dateCreated datePublished" datetime="2019-09-03T13:49:01+08:00">2019-09-03</time>
             </span>
           
             
@@ -257,7 +257,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -266,7 +266,7 @@
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 8. Quadratic Optimal Control" title="Views">
+            <span id="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 10. Equality constrained Minimization" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +284,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/8. Quadratic Optimal Control/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,79 +298,157 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="problem-formulation-and-preliminaries">1. Problem Formulation and Preliminaries</h2>
-<p>The system is described as <span class="math display">\[
-\dot x = Ax +Bu \\
-y=Cx
-\]</span> The objective is to bring the state from non-zero initial value to zero. This is the regulation problem. The problem is cast into the following quadratic cost function. <span class="math display">\[
-J=\frac{1}{2}\int_0^\infty(x^TQx+u^TRu)dt
-\]</span> Using state feedback <span class="math inline">\(u=-Kx\)</span> to minimize the above equation.</p>
-<p>Q (semi-positive) and R (positive) can be made symmetric.</p>
-<p>Q and R appear most in diagonal form. <span class="math display">\[
-Q=\begin{bmatrix}
-q_1&amp;&amp;&amp;&amp;0 \\
-&amp;q_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;q_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;q_{n} \\
-\end{bmatrix}\\
-R=\begin{bmatrix}
-r_1&amp;&amp;&amp;&amp;0 \\
-&amp;r_2&amp;&amp;&amp;0 \\
-&amp;&amp;\ddots&amp;&amp;0 \\
-&amp;&amp;&amp;r_{n-1}&amp;0 \\
-&amp;&amp;&amp;&amp;r_{n} \\
-\end{bmatrix}
-\]</span> For later use, we define <span class="math display">\[
-Q=H^TH
+          <h1 id="equality-constrained-minimization">10. Equality constrained minimization</h1>
+<h2 id="equality-constrained-minimization-problems">10.1 Equality constrained minimization problems</h2>
+<p>In this chapter we describe methods for solving a convex optimization problem with equality constraints, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> We denote <span class="math display">\[
+p^\star=\inf\{f(x)|Ax=b\}=f(x^\star)
+\]</span> Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Solving the equality constrained optimization problem is therefore equivalent to finding a solution of the KKT conditions shown in the above, which is a n+p equations in the n+p variables <span class="math inline">\(v^\star\)</span> and <span class="math inline">\(x^\star\)</span>. The first one is called <strong>primal feasibility equations</strong>, which are linear. The second one is called <strong>dual feasibility equations</strong>, and are in general non-linear.</p>
+<p>The bulk if this chapter is to denoted to extensions of Newton's method that directly handle equality constraints. In many cases, this method is preferable than the methods that reduce an equality constrained problem to unconstrained one. One reason is that the problem structure is destroyed by elimination. Another reason is conceptual, methods that directly handle the constraints can be thought of solving the problem directly.</p>
+<h3 id="equality-constrained-convex-quadratic-minimization">10.1.1 Equality constrained convex quadratic minimization</h3>
+<p><span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+(1/2)x^TPx+q^Tx+r
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
 \]</span></p>
-<p>Three Assumptions</p>
-<ol type="1">
-<li>The system (A, B) is controllable</li>
-<li>The system (A, H) is observable</li>
-<li>R is positive definite, Q is semi-positive definite</li>
-</ol>
-<p>We have a symmetric positive definite matrix P satisfying the following Algebraic Riccati Equation (ARE) <span class="math display">\[
-A^TP+PA+Q=PBR^{-1}B^TP
-\]</span> Then <span class="math display">\[
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Selection of Q and R</p>
-<ol type="1">
-<li>Q and R are selected to be diagonal</li>
-<li>The larger Q, the larger K</li>
-</ol>
-<p>How to solve ARE</p>
-<p>Step1.</p>
-<p>Form <span class="math display">\[
-\Gamma=\begin{bmatrix}
-A &amp; -BR^{-1}B^T \\
--Q &amp; -A^T
-\end{bmatrix}
-\]</span> Then</p>
-<p>get the stable eigenvectors of <span class="math inline">\(\Gamma\)</span> <span class="math display">\[
+<p>The optimal conditions are <span class="math display">\[
+Ax^\star =b \quad Px^\star +q+A^Tv^\star=0
+\]</span> which we can write as <span class="math display">\[
 \begin{bmatrix}
-v_i \\ \mu_i
+P &amp; A^T\\
+A  &amp; 0
 \end{bmatrix}
-\]</span> Then <span class="math display">\[
-P=[\mu_1 \quad\mu_2\quad\dotsm\quad \mu_n][v_1 \quad v_2\quad\dotsm\quad v_n]^{-1}\\
-u=-R^{-1}B^TPx=-Kx \\
-K=R^{-1}B^{T}P
-\]</span> Example <span class="math display">\[
-A=\begin{bmatrix}
-0&amp;1\\0&amp;0
+\begin{bmatrix}
+x^\star \\ v^\star
+\end{bmatrix}=
+\begin{bmatrix}
+-q\\b
 \end{bmatrix}
-B=\begin{bmatrix}
-0\\1
-\end{bmatrix}
-Q=\begin{bmatrix}
-1&amp;0\\0&amp;0
-\end{bmatrix}
-R=\begin{bmatrix}
-\beta
-\end{bmatrix}
+\]</span> This set of <span class="math inline">\(n+p\)</span> linear equations is called <strong>KKT system</strong>. The coefficient matrix is called <strong>KKT matrix</strong>.</p>
+<p>If KKT matrix is nonsingular, there is an unique optimal solution. If singular, there is infinite solutions. If not solvable, the problem is infeasible.</p>
+<h3 id="eliminating-equality-constraints">10.1.2 Eliminating equality constraints</h3>
+<p>We have <span class="math display">\[
+\{x|Ax=b\}=\{Fz+\hat x|z\in R^{n-p}\}
+\]</span> where <span class="math inline">\(\hat x\)</span> is a particular solution of <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(F\)</span> is the null space of A.</p>
+<h3 id="solving-equality-constrained-problem-via-the-dual">10.1.3 Solving equality constrained problem via the dual</h3>
+<p>Another approach is to solving the dual, and then recover the optimal primal variable <span class="math inline">\(x^\star\)</span>.</p>
+<p>The dual function of 10.1 is <span class="math display">\[
+g(v)=-b^Tv+\inf_x(f(x)+v^TAx) \\
+=-b^Tv-f^\star (-A^Tv)
 \]</span></p>
-<p>Example</p>
+<p>where <span class="math inline">\(f^*\)</span> is the conjugate of <span class="math inline">\(f\)</span>.</p>
+<h2 id="newtons-method-with-equality-constraints">10.2 Newton's method with equality constraints</h2>
+<p>In this section we describe an extension of Newton's method to include equality constraints. The method is almost the same as Newton's method without constraints, except two differences: the initial point must be feasible, and the definition of Newton step is modified to take the equality constraints into account.</p>
+<h3 id="the-newton-step">10.2.1 The newton step</h3>
+<p>For the equality constrained problem, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> we replace the objective with the second-order Taylor approximation near <span class="math inline">\(x\)</span>, to form the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\hat f(x+v)=f(x)+\nabla f(x)^Tv+(1/2)v^T\nabla^2f(x)v
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+A(x+v)=b
+\end{array}
+\end{array}
+\]</span> with variable <span class="math inline">\(v\)</span>. This is a convex quadratic minimization problem with equality constraints, and can be solved analytically. We define the newton step <span class="math inline">\(\Delta x_{nt}\)</span> at <span class="math inline">\(x\)</span> as the solution of the convex quadratic problem in the above. Then we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{nt}\\w
+\end{bmatrix}=
+\begin{bmatrix}
+-\nabla f(x)\\0
+\end{bmatrix}
+\]</span> where <span class="math inline">\(w\)</span> is the optimal dual variable for the quadratic problem.</p>
+<p><strong>Solution of linearized optimality conditions</strong></p>
+<p>Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\\ \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Newton method can be interpreted by solving the above equations.</p>
+<p>We substitute <span class="math inline">\(x+\Delta x_{nt}\)</span> for <span class="math inline">\(x^\star\)</span> and <span class="math inline">\(w\)</span> for <span class="math inline">\(v^\star\)</span>, and replace the gradient term in the second equation by its linearized approximation around <span class="math inline">\(x\)</span>, to obtain the equation, <span class="math display">\[
+A(x+\Delta x_{nt})=b\\
+\nabla f(x+\Delta x)+A^Tw\approx \nabla f(x)+\nabla^2 f(x)\Delta x_{nt}+A^Tw=0
+\]</span></p>
+<h2 id="infeasible-start-newton-method">10.3 Infeasible start Newton method</h2>
+<p>As in Newton's method, we start with optimality conditions for the equality constrained optimization problem: <span class="math display">\[
+Ax^\star=b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Let <span class="math inline">\(x\)</span> denote the current point, which we do not assume to be feasible. We will do second-order Taylor expansion around the point <span class="math inline">\(x\)</span>, and our goal is to find a step <span class="math inline">\(\Delta x\)</span> so that <span class="math inline">\(x+\Delta x\)</span> satisfies (at least approximately) the optimality conditions, i.e. <span class="math inline">\(x+\Delta x\approx x^\star\)</span>. <span class="math display">\[
+\nabla f(x+\Delta x)\approx \nabla f(x)+\nabla^2f(x)\Delta x
+\]</span> For the gradient, we have <span class="math display">\[
+A(x+\Delta x)=b\\
+\nabla f(x)+\nabla^2f(x)\Delta x+A^Tw=0
+\]</span> This is a linear equations for <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+ \begin{bmatrix}
+ \Delta x\\ w
+ \end{bmatrix}=
+ -\begin{bmatrix}
+ \nabla f(x)\\Ax-b
+ \end{bmatrix}
+\]</span></p>
+<p><strong>Primal-dual interpretation</strong></p>
+<p>We can give an interpretation of the equation in terms of the primal-dual method for the equality constrained problem. By the primal-dual method, we mean one in which we update both the primal variable <span class="math inline">\(x\)</span> and the dual variable <span class="math inline">\(v\)</span>, in order to satisfy the optimality conditions.</p>
+<p>We express the optimality conditions as <span class="math inline">\(r(x^\star,v^\star)=0\)</span>, where <span class="math inline">\(r:R^n\times R^p \rightarrow R^n\times R^p\)</span> is defined as <span class="math display">\[
+r(x,v)=(r_{dual}(x,v),r_{pri}(x,v))\\
+r_{dual}(x,v)=\nabla f(x)+A^Tv\\
+r_{pri}(x,v)=Ax-b
+\]</span> The first order Taylor approximate of <span class="math inline">\(r\)</span> is <span class="math display">\[
+r(y+z)\approx r(y)+Dr(y)z
+\]</span> We define <span class="math inline">\(\Delta y_{pd}=(\Delta x_{pd},\Delta v_{pd})\)</span> such that the Taylor approximation vanishes, i.e. <span class="math display">\[
+r(y+\Delta y_{pd})=r(y)+Dr(y)\Delta y_{pd}=0
+\]</span> Then we have <span class="math display">\[
+Dr(y)\Delta y_{pd}=-r(y)
+\]</span> Evaluating the derivative of <span class="math inline">\(r\)</span>, we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x)&amp;A^T\\A&amp;0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{pd}\\\Delta v_{pd}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+r_{dual}\\ r_{pri}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+\nabla f(x)+A^Tv\\ Ax-b
+\end{bmatrix}
+\]</span> Let <span class="math inline">\(w=v+\Delta v_{pd}\)</span>, we have Newton step.</p>
+<p><strong>Using infeasible start Newton method to simplify initialization</strong></p>
+<p>The main advantage of the infeasible start Newton method is in the initialization required.</p>
 
         
       
@@ -395,7 +473,7 @@ R=\begin{bmatrix}
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/7. Pole Placement/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/Convex Optimization/9. Unconstraint Minimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -409,7 +487,7 @@ R=\begin{bmatrix}
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/" class="post-title-link" itemprop="url">Chapter 7. Pole Placement</a>
+            <a href="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" class="post-title-link" itemprop="url">Chapter 9. Unconstraint Minimization</a>
           
         </h1>
 
@@ -424,7 +502,7 @@ R=\begin{bmatrix}
                 
               
 
-              <time title="Created: 2020-12-22 13:33:56 / Modified: 14:22:29" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
+              <time title="Created: 2019-08-11 13:49:01 / Modified: 13:58:04" itemprop="dateCreated datePublished" datetime="2019-08-11T13:49:01+08:00">2019-08-11</time>
             </span>
           
             
@@ -437,7 +515,7 @@ R=\begin{bmatrix}
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -446,7 +524,7 @@ R=\begin{bmatrix}
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 7. Pole Placement" title="Views">
+            <span id="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 9. Unconstraint Minimization" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -464,7 +542,7 @@ R=\begin{bmatrix}
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/7. Pole Placement/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -478,246 +556,112 @@ R=\begin{bmatrix}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="state-feedback">1. State Feedback</h2>
-<p>For a system <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx
-\]</span> We have a control law <span class="math display">\[
-u=-Kx+Fr
-\]</span> Then the system can be changed to <span class="math display">\[
-\dot x=(A-BK)x+BFr \\
-y=Cx
-\]</span> ==Lemma1==</p>
-<p>The controllability of the system is unaltered by state feedback</p>
-<p>==Lemma2==</p>
-<p>The closed-loop poles are affected only by feedback gain matrix K but independent of F.</p>
-<h2 id="why-pole-placement">2. Why Pole Placement</h2>
-<p><span class="math display">\[
-G(s)=\frac{\omega_n^2}{s^2+2\xi\omega_ns+\omega_n^2}
+          <h1 id="unconstrained-minimization">9. Unconstrained minimization</h1>
+<h2 id="unconstrained-minimization-problem">9.1 Unconstrained minimization problem</h2>
+<p>In this chapter, we discuss methods for solving the unconstrained optimization problem <span class="math display">\[
+\text{minimize } f(x)
+\]</span> where <span class="math inline">\(f\)</span> is convex and twice differentiable.</p>
+<p>We denote the optimal value <span class="math inline">\(\inf_x f(x)=f(x^\star)\)</span>, and we know that <span class="math inline">\(\nabla f(x^\star)=0\)</span></p>
+<p>Sometimes we can solve the problem analytically, but most of the time, we need to use iterative method.</p>
+<p><strong>Initial point and sublevel set</strong></p>
+<p>The method described in this chapter require a suitable starting point <span class="math inline">\(x^{(0)}\)</span>. The starting point must lie in <span class="math inline">\(dom f\)</span>, and in addition the sublevel set <span class="math display">\[
+S=\{x\in dom f| f(x)\le f(x^{(0)})\}
+\]</span> must be closed.</p>
+<h3 id="examples">9.1.1 Examples</h3>
+<p><strong>Quadratic minimization and least-squares</strong> <span class="math display">\[
+\text{minimize } (1/2)x^TPx+q^Tx+r
+\]</span> For the optimal value, we have <span class="math display">\[
+Px^\star+q=0
+\]</span> <strong>Unconstrained geometric programming</strong> <span class="math display">\[
+\text{minimize }f(x)=\log \left(\sum_{i=1}^m \exp (a_i^Tx+b_i)\right)
+\]</span> The optimality condition is <span class="math display">\[
+\nabla f(x^\star)=\frac{1}{\sum_{i=1}^m \exp(a_i^Tx^\star+b_i)}\sum_{i=1}^m \exp (a_i^Tx^\star+b_i)a_i=0
+\]</span> The above in general has no analytical solution, therefore we need to use iterative method.</p>
+<p><strong>Analytic center of linear inequalities</strong></p>
+<p>We consider the optimization problem <span class="math display">\[
+\text{minimize }f(x)=-\sum_{i=1}^m \log (b_i-a_ix^T)
+\]</span> The objective function <span class="math inline">\(f\)</span> in this problem is called logarithmic barrier for the inequalities. The solution if exists, is called analytic center of the inequalities.</p>
+<p><strong>Analytic center of a linear matrix inequality</strong> <span class="math display">\[
+\text{minimize } f(x)=\log\det F(x)^{-1}\\
+F(x)=F_0+x_1F_1+\dotsm+x_nF_n
 \]</span></p>
-<p>Rise time: <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
-<p>Peak overshoot: <span class="math inline">\(M_p=e^{\frac{-\pi \xi}{\sqrt{1-\xi^2}}}\)</span></p>
-<p>2% settling time: <span class="math inline">\(t_s=\frac{4}{\xi \omega_n}\)</span></p>
-<p>poles: <span class="math inline">\(\lambda=-\xi\omega_n\pm\omega_n\sqrt{\xi^2-1}\)</span></p>
-<h2 id="single-input-case">3.Single-input Case</h2>
-<p>Ackerman's Formula <span class="math display">\[
-k^T=\begin{matrix} [0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1] \end{matrix}M_c^{-1}\Phi(A)
+<h3 id="strong-convexity-and-implications">9.1.2 Strong convexity and implications</h3>
+<p>In much of this chapter, we assume the objective function is strongly convex <span class="math display">\[
+\nabla^2f(x)\succeq m I
+\]</span> As the same, we have for <span class="math inline">\(x,y \in S\)</span> <span class="math display">\[
+f(y)=f(x)+\nabla f(x)^T(y-x)+\frac{1}{2} (y-x)^T \nabla^2f(z)(y-x)
+\]</span> where <span class="math inline">\(z\)</span> is on the line segment <span class="math inline">\([x,y]\)</span>.</p>
+<p>By the strong convexity, we have <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{m}{2}||y-x||_2^2
+\]</span> We find that <span class="math inline">\(\tilde y= x-(1/m)\nabla f(x)\)</span> minimizes the right hand side, therefore, we have <span class="math display">\[
+f(y)\ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
+\]</span> And we have <span class="math display">\[
+p^\star \ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
+\]</span> That means <span class="math display">\[
+||\nabla f(x)||_2\le (2m\epsilon)^{1/2} \implies f(x)-p^\star \le \epsilon
+\]</span> The inequality shows that when the gradient is small, then the point is nearly optimal. We can also derive a bound on <span class="math inline">\(||x-x^*||_2\)</span>, the distance between <span class="math inline">\(x\)</span> and any optimal point <span class="math inline">\(x^\star\)</span>, in terms of <span class="math inline">\(||\nabla f(x)||_2\)</span>: <span class="math display">\[
+||x-x^\star||_2\le \frac{2}{m}||\nabla f(x)||_2
 \]</span></p>
-<p>Choose two poles according to second order system and choose other poles 2~5 times left to these two dominant poles.</p>
-<h2 id="multi-input-case">4. Multi-input Case</h2>
-<p>For u <span class="math display">\[
-u=\begin{bmatrix}
-u_1 \\u_2\\\vdots\\u_m
-\end{bmatrix}
-\]</span> First we try direct comparison method</p>
-<p>Example <span class="math display">\[
-\dot x=\
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}x+
-\begin{bmatrix}
-1 &amp; 0\\0&amp;1
-\end{bmatrix}u
-\]</span> The desired polynomial is <span class="math display">\[
-s^2+2s+2
-\]</span> Then the controllability matrix is <span class="math display">\[
-M_c=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 0 &amp; 0
-\end{bmatrix}
-\]</span> The system is controllable.</p>
-<p>We choose <span class="math display">\[
-u=-Kx+Fr \\
-\dot x= Ax+Bu=Ax+B(-Kx+Fr)=(A-BK)x+BFr \\
-= 
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}-
-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
-k_{11} &amp; k_{12} \\
-k_{21} &amp; k_{22}
-\end{bmatrix}=
-\begin{bmatrix}
--k_{11} &amp;1-k_{12} \\
--k_{21} &amp; -k_{22}
-\end{bmatrix}
-\]</span> The determinant is <span class="math display">\[
-\lambda^2+(k_{11}+k_{12})\lambda+k_{11}k_{12}-k_{12}k_{21}-k_{21}
-\]</span> Obviously, there are infinite solutions.</p>
-<h3 id="unity-rank-k">4.1 Unity Rank K</h3>
-<p>We choose <span class="math display">\[
-u=\begin{bmatrix}
-q_1\\q_2\\\vdots\\q_n
-\end{bmatrix}v
-\]</span> We can have different weights for different input. Then the system becomes single input system <span class="math display">\[
-\dot x=Ax+Bqv
-\]</span> Algorithm</p>
-<blockquote>
-<ol type="1">
-<li><p>Choose the weight vector q</p></li>
-<li><p>use the single input design <span class="math inline">\(k^T\)</span></p></li>
-<li><p><span class="math inline">\(K=qk^T\)</span></p></li>
-</ol>
-</blockquote>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-A=\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix} \\
-B=\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\]</span> The desired polynomial is <span class="math display">\[
-s^2+2s+2
-\]</span> Choose weight vector <span class="math display">\[
-q=
-\begin{bmatrix}
-0 \\1
-\end{bmatrix} \\
-Bq=
-\begin{bmatrix}
-0 \\ 1
-\end{bmatrix}\\
-M_c=
-\begin{bmatrix}
-0 &amp; 1\\ 1 &amp; 0
-\end{bmatrix} \\
-M_c^{-1} = 
-\begin{bmatrix}
-0 &amp; 1\\ 1 &amp; 0
-\end{bmatrix} \\
-\Phi(A)=A^2+2A+2I=
-\begin{bmatrix}
-2&amp;2\\0&amp;2
-\end{bmatrix}\\
-k^T=[0 \quad 1]M_c^{-1}\Phi(A)=[2 \quad 2] \\
-K=qk^T=
-\begin{bmatrix}
-0&amp;0\\2&amp;2
-\end{bmatrix}
-\]</span> For this method, we need to choose q to make the single input system [A Bq] is controllable.</p>
-<h3 id="full-rank-method">4.2 Full Rank Method</h3>
-For the single input system $$ M_c^{-1}=
-<span class="math display">\[\begin{bmatrix}
-q_1^T \\ q_2^T \\ \vdots \\ q_n^T
-\end{bmatrix}\]</span>
-<p>\</p>
-T=
-<span class="math display">\[\begin{bmatrix}
-q_n^T \\q_n^TA \\ \vdots \\q_n^TA^{n-1}
-\end{bmatrix}\]</span>
-\ B=TB=
-<span class="math display">\[\begin{bmatrix}
-0 \\0 \\ \vdots \\0\\1
-\end{bmatrix}\]</span>
-<p>$$</p>
-<p>For the multi-input system, shown in example</p>
-<p>for the system <span class="math display">\[
-\dot x=Ax+Bu \\
-A=
-\begin{bmatrix}
--1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1\\0 &amp; 0 &amp; 2
-\end{bmatrix}
-B=
-\begin{bmatrix}
-1 &amp; 1\\0 &amp; 0\\ 0 &amp; 1
-\end{bmatrix}
-\]</span> First we need the controllability matrix <span class="math inline">\(M_c\)</span> <span class="math display">\[
-M_c=
-\begin{bmatrix}
-B &amp; AB &amp; A^2B
-\end{bmatrix} = 
-\begin{bmatrix}
-1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 &amp;2\\
-0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 3\\
-0 &amp; 1 &amp; 0 &amp; 2 &amp; 0 &amp; 4\\
-\end{bmatrix}
+<p><strong>Upper bound on <span class="math inline">\(\nabla^2f(x)\)</span></strong> There exists a constant <span class="math inline">\(M\)</span> such that <span class="math display">\[
+\nabla^2 f(x)\preceq MI
 \]</span></p>
-<p>Then we choose independent vectors from left to right and group them in C <span class="math display">\[
-C=
-\begin{bmatrix}
-b_1 &amp; Ab_1 &amp; A^2b_1 &amp; \dotsm &amp; A^{d_1-1}b_1 &amp; | &amp; 
-b_2 &amp; Ab_2 &amp; A^2b_2 &amp; \dotsm &amp; A^{d_2-1}b_1 &amp; | &amp; \dotsm
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 1 &amp; -1 \\
-0 &amp; 0 &amp; 1 \\
-0 &amp; 1 &amp; 2
-\end{bmatrix}
-\]</span> 1 vector for the first input and 2 vectors for the second input</p>
-<p>We denote <span class="math inline">\(d_1=1\quad d_2=2\)</span></p>
-<p>Then we get <span class="math display">\[
-C^{-1}=
-\begin{bmatrix}
-1 &amp; 3 &amp; -1 \\
-0 &amp; -2 &amp; 1 \\
-0 &amp; 1 &amp; 0 \\
-\end{bmatrix}
-\]</span> And we choose <span class="math display">\[
-T=
-\begin{bmatrix}
-q_1 \\ q_3 \\ q_3A
-\end{bmatrix}=
-\begin{bmatrix}
-1&amp;3&amp;-1\\
-0&amp;1&amp;0\\
-0&amp;1&amp;1
-\end{bmatrix}\\
-T^{-1}=
-\begin{bmatrix}
-1 &amp; -4 &amp; 1 \\
-0 &amp; 1 &amp; 0 \\
-0 &amp; -1 &amp; 1 \\
-\end{bmatrix}\\
-\bar A=TAT^{-1}=
-\begin{bmatrix}
--1&amp;|&amp;7&amp;0\\\hdashline
-0&amp;|&amp;0&amp;1\\
-0&amp;\Big|&amp;-2&amp;3
-\end{bmatrix} \\
-\bar B=TB=
-\begin{bmatrix}
-1 &amp; 0\\\hdashline0&amp; 0\\0&amp; 1
-\end{bmatrix}
-\]</span> Design the feedback gain matrix <span class="math display">\[
-\bar K=
-\begin{bmatrix}
-\bar k_{11}&amp;\bar k_{12}&amp;\bar k_{13}\\
-\bar k_{21}&amp;\bar k_{22}&amp;\bar k_{23}
-\end{bmatrix} \\
-\bar A-\bar B \bar K=
-\begin{bmatrix}
--1-\bar k_{11} &amp; 7-\bar k_{12} &amp; -\bar k_{13}\\
-0&amp;0&amp;1\\
--\bar k_{21} &amp; -2-\bar k_{22} &amp; 3-\bar k_{23}
-\end{bmatrix}
+<p>Then we have <span class="math display">\[
+f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{M}{2}||y-x||_2^2
+\]</span> Then <span class="math display">\[
+p^\star \le f(x)-\frac{1}{2M}||\nabla f(x)||^2_2
+\]</span> <strong>Condition number of sublevel sets</strong></p>
+<p>From the strong convexity inequality, we have <span class="math display">\[
+mI\preceq \nabla^2f(x)\preceq MI
+\]</span> for all <span class="math inline">\(x\in S\)</span>. The ratio <span class="math inline">\(k=M/m\)</span> is thus an upper bound on the condition number of the matrix <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. the ratio of its largest eigenvalue to its smallest eigenvalue.</p>
+<p><strong>The Strong Convexity constants</strong></p>
+<p>It must be kept in mind that the constants <span class="math inline">\(m\)</span> and <span class="math inline">\(M\)</span> are known only in rare cases.</p>
+<h2 id="descent-method">9.2 Descent Method</h2>
+<p>The algorithm described in this chapter produce a minimizing sequence <span class="math inline">\(x^{(k)}\)</span> , where <span class="math display">\[
+x^{(k+1)}=x^{(k)}+t \Delta x^{(k)}
+\]</span> All methods we study are descent methods, which means <span class="math display">\[
+f(x^{(k+1)})&lt; f(x^{(k)})
 \]</span></p>
-<p>We have the desired the eigenvalues -1 -2 -3</p>
-<p>Then we can choose the polynomial <span class="math display">\[
-(s+1)(s+2)(s+3)=(s+1)(s^2+5s+6)
-\]</span> And choose the desired matrix <span class="math display">\[
-A_d=
-\begin{bmatrix}
--1 &amp;|&amp; 0 &amp; 0 \\\hdashline
-0&amp;|&amp;0&amp;1\\
-0&amp;|&amp;-6&amp;-5
-\end{bmatrix}
-\]</span> Then we can get the solution <span class="math display">\[
-\bar k_{11}=\bar k_{13}=\bar k_{21}=0 \\
-\bar k_{12}=7\\
-\bar k_{22}=4\\
-\bar k_{23}=8
-\]</span> Finally, <span class="math display">\[
-K=\bar KT=
-\begin{bmatrix}
-0 &amp; 7 &amp; 0 \\
-0 &amp; 12 &amp; 8 
-\end{bmatrix}
+<p>except when <span class="math inline">\(x^{(k)}\)</span> is optimal.</p>
+<p>From convexity, we know that <span class="math inline">\(\nabla f(x^{(k)})^T(y-x^{(k)})\ge 0\)</span> implies <span class="math inline">\(f(y)\ge f(x^{(k)})\)</span>, so the search direction must be made as an acute angle with the negative gradient. <span class="math display">\[
+\nabla f(x^{(k)})^T\Delta x^{(k)}&lt; 0
+\]</span> <strong>Exact line search</strong></p>
+<p>One line search method sometimes used in practice is exact line search, in which <span class="math inline">\(t\)</span> is chosen to minimize <span class="math inline">\(f\)</span> along the ray <span class="math inline">\(\{x+t\Delta x|t \ge 0\}\)</span>: <span class="math display">\[
+t=\arg\min_{s\ge 0} f(x+s\Delta x)
+\]</span> An exact line search is used when the cost of the minimization problem with one variable, require in the above equation, is low compared to the cost of computing the search direction itself.</p>
+<p><strong>Backtracking line search</strong></p>
+<p>Most line search used in practice are inexact: the step length is chose to appropriately minimize <span class="math inline">\(f\)</span> along the ray.</p>
+<p>Backtracking line search based on two variables <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, with <span class="math inline">\(0&lt;\alpha&lt;0.5\)</span>, <span class="math inline">\(0&lt;\beta&lt;1\)</span>.</p>
+<h2 id="gradient-descent-method">9.3 Gradient Descent Method</h2>
+<p>A natural choice for the search direction is the negative gradient <span class="math inline">\(\Delta x=-\nabla f(x)\)</span>.</p>
+<h2 id="steepest-descent-method">9.4 Steepest descent method</h2>
+<p>The first order Taylor approximation of the function <span class="math inline">\(f(x+v)\)</span> around <span class="math inline">\(x\)</span> is <span class="math display">\[
+f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x) v
 \]</span></p>
+<p>Now the question is how we choose <span class="math inline">\(v\)</span> to make the second term as negative as possible. Since the directional derivative <span class="math inline">\(\nabla f(x)^Tv\)</span> is linear in <span class="math inline">\(v\)</span>, it can be negative as we like by taking <span class="math inline">\(v\)</span> large. To make the question sensible, we have to limit the size of <span class="math inline">\(v\)</span>, or normalize by the length of <span class="math inline">\(v\)</span>. We define the normalized steepest descent direction as <span class="math display">\[
+\Delta x_{nsd}= \arg\min \{\nabla f(x)^Tv| \space ||v||=1\}
+\]</span></p>
+<p>It is also convenient to consider a steepest descent step <span class="math inline">\(\Delta x_{sd}\)</span> is unnormalized, by scaling the normalized steepest descent direction in a particular way: <span class="math display">\[
+\Delta x_{sd}=||\nabla f(x)||_* \Delta x_{nsd}
+\]</span></p>
+<h2 id="newtons-method">9.5 Newton's Method</h2>
+<p>For <span class="math inline">\(x\in dom f\)</span>, the vector <span class="math display">\[
+\Delta x_{nt}=-\nabla^2f(x)^{-1}\nabla f(x)
+\]</span> is called the newton step. Positive definiteness of <span class="math inline">\(\nabla^2f(x)\)</span> implies the Newton step is a decent direction.</p>
+<p><strong>Minimizer of the second-order approximation</strong> The second-order Taylor approximation <span class="math inline">\(\hat f\)</span> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> is <span class="math display">\[
+f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x)^Tv+\frac{1}{2}v^T \nabla^2 f(x) v
+\]</span> which is a convex quadratic function of <span class="math inline">\(v\)</span>, and is minimized when <span class="math inline">\(v=\Delta x_{nt}\)</span>.</p>
+<p><strong>Steepest descent direction in Hessian norm</strong> The Newton Step is also the steepest descent direction at <span class="math inline">\(x\)</span>, for the quadratic norm defined by the Hessian <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. <span class="math display">\[
+||u||_{\nabla^2f(x)} =(u^T\nabla^2f(x)u)^{1/2}
+\]</span></p>
+<p><strong>Solution of linearized optimality condition</strong> Since we know the optimality condition is <span class="math inline">\(\nabla f(x^\star) =0\)</span>, if we linearize <span class="math inline">\(\nabla f(x)\)</span> near <span class="math inline">\(x\)</span> we have <span class="math display">\[
+\nabla f(x+v) \approx \nabla f(x)+\nabla^2 f(x)v=0
+\]</span> Then we can use first-order numerical method to solve this equation.</p>
+<p><strong>Affine invariance of the Newton step</strong> An important feature of the Newton step is that it is independent of linear changes of the coordinates.</p>
+<p><strong>The Newton decrement</strong> The quantity <span class="math display">\[
+\lambda (x)=(\nabla f(x)^T\nabla^2f(x)\nabla f(x))^{1/2}
+\]</span> is called Newton decrement at <span class="math inline">\(x\)</span>. We will see that the Newton decrement plays an important role in the analysis of Newton's method, and is also useful as a stopping criterion. We can relate the Newton decrement to the quantity <span class="math inline">\(f(x)-\inf_y\hat f(y)\)</span>, where <span class="math inline">\(\hat f\)</span> is the second-order approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[
+f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
+\]</span> Thus <span class="math inline">\(\lambda^2/2\)</span> is the estimate of <span class="math inline">\(f(x)-p^\star\)</span>, based on the quadratic approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>.</p>
 
         
       

@@ -402,7 +402,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/13/Convex Optimization/11. Interior-Point Methods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -416,7 +416,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/" class="post-title-link" itemprop="url">Chapter 9. Decoupling Control</a>
+            <a href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" class="post-title-link" itemprop="url">Chapter 11. Interior-point methods</a>
           
         </h1>
 
@@ -431,7 +431,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
                 
               
 
-              <time title="Created: 2020-12-22 13:33:56 / Modified: 14:23:09" itemprop="dateCreated datePublished" datetime="2020-12-22T13:33:56+08:00">2020-12-22</time>
+              <time title="Created: 2019-09-13 13:49:01 / Modified: 14:00:59" itemprop="dateCreated datePublished" datetime="2019-09-13T13:49:01+08:00">2019-09-13</time>
             </span>
           
             
@@ -444,7 +444,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -453,7 +453,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
           
 
           
-            <span id="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 9. Decoupling Control" title="Views">
+            <span id="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 11. Interior-point methods" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -471,7 +471,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5101 Linear Systems/9. Decoupling Control/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -485,97 +485,162 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="introduction">1. Introduction</h2>
-<p>Consider an MIMO system: <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx
-\]</span> or <span class="math display">\[
-Y(s)=C(sI-A)^{-1}BU(s)=G(s)U(s)
-\]</span> G(s) is <span class="math inline">\(m\times m\)</span> matrix</p>
-<p>==Decoupling==</p>
-<p>is to decouple a coupled plant such that feedback system is decoupled.</p>
-<h2 id="decoupling-by-state-feedback">2. Decoupling by State Feedback</h2>
-<p>Consider the system, to be decoupled by state feedback <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx\\
-u=-Kx+Fr
-\]</span> We have the feedback transfer function <span class="math display">\[
-H(s)=C(sI-A+BK)^{-1}BF
-\]</span> And we have the open loop transfer function <span class="math display">\[
-G(s)=C(sI-A)^{-1}B
-\]</span> it can be proved <span class="math display">\[
-H(s)=G(s)[I+K(sI-A)^{-1}B]^{-1}F
-\]</span> ==Calulation of <span class="math inline">\(\sigma_1\)</span>==</p>
-<p>Let i=1</p>
-<p>​ j=1 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^0B=c_1^TB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=1;goto \quad i=2 \\
-=0\rightarrow j=2
-\end{cases}
-\]</span> ​ j=2 <span class="math display">\[
-c_1^TA^{j-1}B=c_1^TA^1B=c_1^TAB 
-\begin{cases} 
-\neq0 \rightarrow\sigma_1=2;goto \quad i=2 \\
-=0\rightarrow j=3
-\end{cases}
-\]</span> Then <span class="math display">\[
-B^*=
+          <h1 id="interior-point-methods">11. Interior-point methods</h1>
+<h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
+<p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0\\Ax=b
+\end{array}
+\end{array}
+\]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;0
+\end{array}
+\]</span></p>
+<p>Interior-point method solve the problem by applying newton’s method to a sequence of equality constrained problem. We will concentrate on a particular interior-point method, called the barrier method, for which we give a proof of convergence and a complexity analysis. We also describe the primal-dual interior point method, but do note give analysis.</p>
+<p>We can view interior-point methods as another level in the hierarchy of convex optimization algorithms.</p>
+<ol type="1">
+<li>Linear equality constrained quadratic problems are the simplest.</li>
+<li>Newton’s method is the next level.</li>
+<li>Interior-point method form the next level.</li>
+</ol>
+<h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
+<p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^mI_-(f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
+<h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
+<p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
+\hat I_-(u)=-\frac{1}{t}\log (-u)
+\]</span> Then the problem becomes <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
+<p>The function <span class="math display">\[
+\phi(x)=-\sum_{i=1}^m \log(-f_i(x))
+\]</span> is called the logarithmic barrier or log barrier for the problem.</p>
+<p>Of course, the problem is only an approximation of the original problem, so one may wondering how well. Intuitive suggests, the approximation improves as the parameter <span class="math inline">\(t\)</span> grows. One the other hand, when the parameter <span class="math inline">\(t\)</span> is large, the function <span class="math inline">\(f_0+(1/t)\phi\)</span> is difficult to minimize by Newton’ method, since the Hessian varies rapidly near the boundary feasible set. We will see that this problem can be circumvented by solving a sequence of problems, increasing the parameter <span class="math inline">\(t\)</span> (and therefore, accuracy of the approximation) at each step, and starting each Newton minimization at the solution of the problem for the previous value of <span class="math inline">\(t\)</span>.</p>
+<p>For future reference, we note that the gradient and Hessian of the logarithmic barrier function <span class="math inline">\(\phi\)</span> are given by <span class="math display">\[
+\nabla \phi(x)=\sum_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
+\nabla^2 \phi(x)=\sum_{i=1}^{m} \frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\sum_{i=1}^m  \frac{1}{-f_i(x)}\nabla^2 f_i(x)
+\]</span></p>
+<h3 id="central-path">11.2.2 Central path</h3>
+<p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+tf_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
+<p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
+Ax^\star(t)=b\\
+f_i(x^\star (t))&lt;0
+\]</span> and there exists a <span class="math inline">\(\hat v\)</span> such that <span class="math display">\[
+0=t\nabla f_0(x^\star(t))+\nabla \phi(x^\star(t))+A^T\hat v\\
+=t\nabla f_0(x^\star(t))+\sum_{i=1}^m \frac{1}{-f_i(x^\star(t))}\nabla f_i(x^\star(t))+A^T\hat v
+\]</span> <strong>Dual points from central path</strong></p>
+<p>From the above, we can derive an important property of the central path: every central point yields a dual feasible point, and hence a lower bound on the optimal <span class="math inline">\(p^\star\)</span>. We define <span class="math inline">\(\lambda_i^\star (t)=-\frac{1}{tf_i(x^\star(t))}\)</span>, <span class="math inline">\(v^\star(t)=\hat v/t\)</span></p>
+<p>Then we have <span class="math display">\[
+\nabla f_0(x^\star(t))+\sum_{i=1}^m\lambda_i^\star (t)\nabla f_i(x^\star(t))+A^Tv^\star (t)=0
+\]</span> We see the optimal point <span class="math inline">\(x^\star(t)\)</span> minimizes the Lagrangian, <span class="math display">\[
+L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+v^T(Ax-b)
+\]</span> <strong>Interpretation via KKT conditions</strong> <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;1/t
+\end{array}
+\]</span> <strong>Force field interpretation</strong></p>
+<h2 id="the-barrier-method">11.3 The barrier method</h2>
+<p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+(m/\epsilon)f_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
+<h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
+<p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
+<p>In other words, we compute <span class="math inline">\(x^\star(t)\)</span> for a sequence of increasing values of <span class="math inline">\(t\)</span>, until <span class="math inline">\(t\ge m/\epsilon\)</span>, which guarantee that we have an $-suboptimal $ solution of the original problem. When the method is proposed firstly, it is called sequential unconstrained minimization technique. Today, the method is usually called the <strong>barrier method</strong> or <strong>path-following</strong> method.</p>
+<h3 id="examples">11.3.2 Examples</h3>
+<h3 id="convergence-analysis">11.3.3 Convergence Analysis</h3>
+<h3 id="newton-step-for-modified-kkt-conditions">11.3.4 Newton step for modified KKT conditions</h3>
+<p>In the barrier method, the newton step <span class="math inline">\(\Delta x_{nt}\)</span>, and associated dual variables are given by the linear equations, <span class="math display">\[
 \begin{bmatrix}
-c_1^TA^{\sigma_1-1}B\\
-c_2^TA^{\sigma_2-1}B\\
-\vdots \\
-c_m^TA^{\sigma_m-1}B
-\end{bmatrix} \\
-C^*=
-\begin{bmatrix}
-c_1^TA^{\sigma_1} \\
-c_2^TA^{\sigma_2} \\
-\vdots \\
-c_m^TA^{\sigma_m} \\
-\end{bmatrix}\\
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}C^*
-\]</span> Then <span class="math display">\[
-H(s)=diag(s^{-\sigma_1},s^{-\sigma_2},\dotsm,s^{-\sigma_m})
-\]</span> ==Decoupling with pole placement== <span class="math display">\[
-H(s)=
-\begin{bmatrix}
-\frac{1}{\Phi_{f_1}} &amp; 0 &amp; \dotsm &amp; 0 \\
-0 &amp; \frac{1}{\Phi_{f_2}} &amp; \dotsm &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \dotsm &amp; \frac{1}{\Phi_{f_m}}
+t\nabla^2f_0(x)+\nabla^2 \phi(x)&amp;A^T\\A&amp;0
 \end{bmatrix}
-\]</span> We just need <span class="math display">\[
-F=B^{*^{-1}} \\
-K=B^{*^{-1}}
 \begin{bmatrix}
-c_1^T\Phi _{f_1}(A) \\
-c_2^T\Phi _{f_2}(A) \\
-\vdots \\
-c_m^T\Phi _{f_m}(A) \\
-\end{bmatrix}\\
-\Phi _{f_i}(A)=A^{\sigma_i}+\gamma_{i1}A^{\sigma_i-1}+\dotsm+\gamma_{i\sigma_i}A^{\sigma_i-\sigma_i}
-\]</span></p>
-<h2 id="decoupling-by-output-feedback">3. Decoupling by Output Feedback</h2>
-<p>in this section, we use a unity feedback controller. <span class="math display">\[
-H(s)=[I+G(s)K(s)]^{-1}G(s)K(s) \\
-H^{-1}=(GK)^{-1}[I+GK]=(GK)^{-1}+I
-\]</span> that means H is decoupled iff GK is decoupled. <span class="math display">\[
-K(s)=K_d(s)K_s(s)
-\]</span> <span class="math inline">\(K_d\)</span> is used for decoupler</p>
-<p><span class="math inline">\(K_s\)</span> is used for stabilizer</p>
-<p>==Design for Decoupler== <span class="math display">\[
-G(s)=\frac{N(s)}{d(s)}\\
-K_d(s)=adj(N(s))=det(N(s))*N^{-1}(s) \\
-G(s)K_d(s)=\frac{det(N(s))}{d(s)}I
-\]</span> ==Design for Stabilizer==</p>
-<p>For every single loop, make it stable</p>
-<p>==Refinement== <span class="math display">\[
-G(s)=diag\{\frac{1}{d_1}\quad \frac{1}{d_2} \quad \dotsm\quad \frac{1}{d_m}\}N_r(s)
-\]</span> every <span class="math inline">\(d_i\)</span> is a LCD if i-th row of G(s) <span class="math display">\[
-K_d=adj(N_r(s))
-\]</span></p>
+\Delta x_{nt}\\v_{nt}
+\end{bmatrix}=-
+\begin{bmatrix}
+t\nabla f_0(x)+\nabla \phi(x)\\0
+\end{bmatrix}
+\]</span> In this section, we will show how these newton steps for the centering problem can be interpreted as Newton steps for directly solving the modified KKT equations, <span class="math display">\[
+\nabla f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+A^Tv=0\\
+-\lambda_if_i(x)=1/t\\
+Ax=b
+\]</span> in a particular way.</p>
+<h2 id="feasibility-and-phase-i-methods">11.4 Feasibility and phase I methods</h2>
+<h2 id="complexity-analysis-via-self-concordance">11.5 Complexity analysis via self-concordance</h2>
+<h2 id="problems-with-generalized-inequalities">11.6 Problems with generalized inequalities</h2>
+<h2 id="primal-dual-interior-point-methods">11.7 Primal-dual Interior-point methods</h2>
+<p>In this section, we describe a basic primal-dual interior-point method. Primal-dual interior-point methods are very similar to the barrier method, with some differences.</p>
+<ol type="1">
+<li><strong>There is only one loop or iteration</strong>, i.e. there is no distinction between inner and outer iterations as in the barrier method. At each iteration, both the primal and dual variables are updated.</li>
+<li>The search direction in a primal-dual interior-point method are obtained from Newton’s method, applied to the <strong>modified KKT equations.</strong></li>
+<li>In a primal-dual interior-point method, the primal-dual iterates are not necessarily feasible.</li>
+</ol>
+<p>Primal-dual interior-point methods are often more efficient than the barrier method, especially when high accuracy is required, since they can exhibit better than linear convergence.</p>
+<h3 id="primal-dual-search-direction">11.7.1 Primal-dual search direction</h3>
+<p>As in the barrier method, we start with the modified KKT conditions, expressed as <span class="math inline">\(r_t(x,\lambda,v)=0\)</span>, where we define <span class="math display">\[
+r_t(x,\lambda,v)=
+\begin{bmatrix}
+\nabla f_0(x)+Df(x)^T\lambda+A^Tv\\
+-diag(\lambda)f(x)-(1/t)1\\
+Ax-b
+\end{bmatrix}
+\]</span> If <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> satisfy <span class="math inline">\(r_t(x,\lambda,v)=0\)</span> (and <span class="math inline">\(f_i(x)&lt;0\)</span>), then <span class="math inline">\(x=x^\star (t)\)</span>, <span class="math inline">\(\lambda = \lambda^\star (t)\)</span>, <span class="math inline">\(v=v^\star (t)\)</span>. In particular, <span class="math inline">\(x\)</span> is primal feasible, and <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> are dual feasible, with duality gap <span class="math inline">\(m/t\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(r_{dual}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>dual residual</strong>.</li>
+<li><span class="math inline">\(r_{pri}=Ax-b\)</span> is called the <strong>primal residual</strong>.</li>
+<li><span class="math inline">\(r_{cent}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>centrality residual</strong>.</li>
+</ol>
 
         
       
