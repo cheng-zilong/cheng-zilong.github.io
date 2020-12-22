@@ -215,215 +215,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" class="post-title-link" itemprop="url">Untitled</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-07-07 14:59:07" itemprop="dateModified" datetime="2019-07-07T14:59:07+08:00">2019-07-07</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="hilbert-spaces-and-orthonormal-systems">Hilbert Spaces and Orthonormal Systems</h1>
-<h2 id="introduction">3.1 Introduction</h2>
-<p>This chapter is concerned with inner product space and Hilbert Spaces. The basic ideas and properties will be discussed with special attention given to orthonormal systems.</p>
-<h2 id="inner-product-spaces-definition-and-examples">3.2 Inner Product Spaces-Definition and Examples</h2>
-<p>==Definition 3.2.1== Inner product space</p>
-<p>Let E be a complex vector space. A mapping <span class="math inline">\(\langle \cdot,\cdot\rangle:E\times E\rightarrow C\)</span> is called an inner product in E if for any <span class="math inline">\(x,y,z\in E\)</span> and <span class="math inline">\(\alpha,\beta \in C\)</span> the following conditions are satisfied,</p>
-<ol type="a">
-<li><p><span class="math inline">\(\langle x,y\rangle=\overline {\langle y,x\rangle}\)</span></p></li>
-<li><p><span class="math inline">\(&lt;\alpha x+\beta y,z&gt;=\alpha&lt;x,z&gt;+\beta&lt;y,z&gt;\)</span></p></li>
-<li><p><span class="math inline">\(&lt;x,x&gt;\ge 0\)</span> and <span class="math inline">\(&lt;x,x&gt;=0\implies x=0\)</span></p></li>
-</ol>
-<p>A vector space with an inner product is called a inner product space or pre-Hilbert space.</p>
-<p>According to the definition, we know that the inner product of two vectors is a complex number.</p>
-<p>An inner product is the generalization of the dot product.</p>
-<p>==Example 3.2.1==</p>
-<p>The simplest example is an inner product of complex number C. The inner product is defined as <span class="math display">\[
-\def \norm &lt;#1,#2&gt;{\langle#1,#2\rangle}
-\norm&lt;x,y&gt;=x\bar y
-\]</span> ==Example 3.2.2==</p>
-<p>The space <span class="math inline">\(C^N\)</span> of ordered N-tuples <span class="math inline">\(x=(x_1,x_2,\dotsm,x_N)\)</span> of complex numbers, with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^N x_k \bar y_k
-\]</span> ==Example 3.2.3==</p>
-<p>The space <span class="math inline">\(l^2\)</span> of all sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex numbers such that <span class="math inline">\(\sum_{k=1}^\infty |x_k|^2&lt;\infty\)</span> with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^\infty x_k\bar y_k
-\]</span> is an infinite dimensional inner product space.</p>
-<p>==Example 3.2.4==</p>
-<p>Consider the space of sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex number with only finite number of items is non-zero. This is an inner product space with the inner product defined as in Example 3.2.3.</p>
-<p>==Example 3.2.5==</p>
-<p>The space <span class="math inline">\(\mathscr C([a,b])\)</span> of all continuous complex-valued functions on the interval [a,b], with the inner product <span class="math display">\[
-\norm&lt;f,g&gt;=\int _a^b f(x)\overline{g(x)} dx
-\]</span> is an inner product space.</p>
-<p>==Example 3.2.6==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> with the inner product defined by <span class="math display">\[
-\int _{-\infty} ^\infty f(x)\overline{g(x)} dx
-\]</span> and more generally, the space <span class="math inline">\(L^2(R^N)\)</span> with the inner product defined by <span class="math display">\[
-\int _{R^N} f(x)\overline{g(x)} dx
-\]</span> are inner product space.</p>
-<p>==Example 3.2.7==</p>
-<p>Let E be the Cartesian product of inner product spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, i.e. <span class="math inline">\(E=E_1\times E_2\)</span>.</p>
-<p>The space E is an inner product space with the inner product defined by <span class="math display">\[
-\norm&lt;(x_1,y_1),(x_2,y_2)&gt; = \norm&lt;x_1,x_2&gt;+\norm&lt;y_1,y_2&gt;
-\]</span></p>
-<h2 id="norm-in-an-inner-product-space">3.3 Norm in an inner product space</h2>
-<p>An inner product space is a vector space with an inner product. It turns out that every inner product space is also a normed space with the norm defined by <span class="math display">\[
-||x||=\sqrt{\norm&lt;x,x&gt;}
-\]</span> ==Definition 3.3.1== (Norm in an Inner Product Space)</p>
-<p>By the norm in an inner product space E, we mean the functional defined by <span class="math inline">\(||x||=\sqrt{\norm&lt;x,x&gt;}\)</span></p>
-<p>We have proved that every inner product space is a normed space. But it is <strong>not true</strong> that any normed space is an inner product space. In the following theorem, we prove a property of a norm in an inner product space which is a necessary and sufficient condition for a normed space to be an inner product space.</p>
-<p>==Theorem 3.3.2== Parallelogram Law</p>
-<p>For any two elements <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of an inner product space we have <span class="math display">\[
-||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)
-\]</span> One of the most important consequences of having the inner product is the possibility of defining <strong>orthogonality</strong> of vectors. This makes the theory of Hilbert spaces very different from the general theory of Banach spaces.</p>
-<p>==Definition 3.3.2== Orthogonal vectors</p>
-<p>Two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in an inner product space are called orthogonal, denoted by <span class="math inline">\(x\perp y\)</span> if <span class="math inline">\(\norm&lt;x,y&gt;=0\)</span>.</p>
-<p>==Theorem 3.3.3== Pythagorean Formula</p>
-<p>For any pair of orthogonal vectors we have <span class="math display">\[
-||x+y||^2=||x||^2+||y||^2
-\]</span></p>
-<h2 id="hilbert-spaces-definition-and-examples">3.4 Hilbert Spaces-Definition and Examples</h2>
-<p>==Definition 3.4.1== Hilbert space</p>
-<p>A complete inner product space is called a Hilbert space.</p>
-<p>By the completeness of an inner product space E, we mean the completeness of E as a ==normed space==.</p>
-<p>Now we are going to discuss completeness of the inner product spaces and give some new examples.</p>
-<p>==Example 3.4.1==</p>
-<p>Since C is complete, it is a Hilbert space.</p>
-<p>==Example 3.4.2==</p>
-<p><span class="math inline">\(C^N\)</span> is Hilbert space.</p>
-<p>==Example 3.4.3==</p>
-<p><span class="math inline">\(l^2\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.4==</p>
-<p>The space described in Example 3.2.4 is ==not== Hilbert space.</p>
-<p>==Example 3.4.5==</p>
-<p><span class="math inline">\(\mathscr C([a,b])\)</span> is ==not== Hilbert space.</p>
-<p>==Example 3.4.6==</p>
-<p>The space <span class="math inline">\(L^2([a,b])\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.7==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> is a Hilbert space.</p>
-<h2 id="strong-and-weak-convergence">3.5 Strong and Weak Convergence</h2>
-<p>Since every inner product is a normed , it is equipped with a convergence, namely the convergence defined by the norm. This convergence is called strong convergence.</p>
-<p>==Definition 3.5.1== Strong convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called strongly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(||x_n-x||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>==Definition 3.5.2== Weak convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called weakly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>It will be convenient to reserve the notation <span class="math inline">\(x_n\rightarrow x\)</span> for the strong convergent and use <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> for weakly convergent.</p>
-<p>==Theorem 3.5.1==</p>
-<p>A strongly convergent sequence is weakly convergent.</p>
-<p>==Theorem 3.5.2==</p>
-<p>If <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> and <span class="math inline">\(||x_n||\rightarrow ||x||\)</span>, then <span class="math inline">\(x_n\rightarrow x\)</span></p>
-<p>==Theorem 3.5.3==</p>
-<p>Let <span class="math inline">\(S\)</span> be a subset of an inner product space <span class="math inline">\(E\)</span> such that span S is dense in E. If <span class="math inline">\((x_n)\)</span> is a bounded sequence in E and <span class="math display">\[
-\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\quad \forall y\in S
-\]</span> then <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span>.</p>
-<p>==Theorem 3.5.4==</p>
-<p>Weakly convergent sequences in a <strong>Hilbert Space</strong> are bounded. i.e. if <span class="math inline">\((x_n)\)</span> is a weakly convergent sequence, then there exists a number M such that <span class="math inline">\(||x_n||\le M\)</span> for all <span class="math inline">\(n\in N\)</span>.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -586,11 +377,198 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:48:00" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-06-27 22:48:03" itemprop="dateModified" datetime="2019-06-27T22:48:03+08:00">2019-06-27</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/2.6 The Lebesgue Integral/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="norm-in-l1r">2.6 Norm in <span class="math inline">\(L^1(R)\)</span></h2>
+<p>One of the important features of the Lebesgue integral is that the techniques of normed spaces can be used. We will see that, with some precautions, <span class="math inline">\(L^1(R)\)</span> can be treated as a <strong>Banach space</strong>.</p>
+<p>==Definition 2.6.1== (<span class="math inline">\(L^1-\)</span>norm)</p>
+<p>The functional <span class="math inline">\(||\cdot||:L^1(R)\rightarrow R\)</span> defined by <span class="math inline">\(||f||=\int |f|\)</span> will be called the norm in <span class="math inline">\(L^1(R)\)</span> or the <span class="math inline">\(L^1-\)</span>norm</p>
+<p>The functional <span class="math inline">\(||\cdot||\)</span> is well defined in view of Theorem 2.4.1. By Theorem 2.3.2 and Theorem 2.3.3, we have <span class="math display">\[
+||\lambda f||=|\lambda|||f||\\
+||f+g||\le ||f||+||g||
+\]</span> However, we cannot say that the defined functional <span class="math inline">\(||\cdot||\)</span> is a norm. There are non-zero functions <span class="math inline">\(f\)</span> for which <span class="math inline">\(\int |f|=0\)</span>. Consider, for example, the function <span class="math inline">\(f(x)=0\)</span> for every <span class="math inline">\(x\)</span> except 0 and <span class="math inline">\(f(0)=1\)</span>. This is a none zero function but <span class="math inline">\(\int |f|=0\)</span>. This difficulty can be resolved by the following way.</p>
+<p>==Definition 2.6.2== (Null Function)</p>
+<p>A function is called a null function if <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int |f|=0\)</span></p>
+<p>Two functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> will be called equivalent if <span class="math inline">\(f-g\)</span> is a null function. It is easy to check the defined relation is an equivalence relation. Now we define the space <span class="math inline">\(\mathscr L^1(R)\)</span> as the space of equivalence classes of Lebesgue integrable functions. The equivalence classes of <span class="math inline">\(f\in L^1(R)\)</span> is denoted by <span class="math inline">\([f]\)</span> <span class="math display">\[
+[f]=\{g\in L^1(R):\int |f-g|=0\}
+\]</span> With the usual definition <span class="math display">\[
+[f]+[g]=[f+g],\lambda[f]=[\lambda f],||[f]||=\int |f|
+\]</span> <span class="math inline">\((\mathscr L^1(R),||\cdot||)\)</span> becomes a normed space.</p>
+<p>The following theorem describes an important property of null functions.</p>
+<p>==Theorem 2.6.1==</p>
+<p>If <span class="math inline">\(f\)</span> is a null function and <span class="math inline">\(|g|\le |f|\)</span>, then <span class="math inline">\(g\)</span> is a null function too.</p>
+<p>==Definition 2.6.3== Convergence in Norm</p>
+<p>We say that a sequence of functions <span class="math inline">\(f_1,f_2,\dotsm \in L^1(R)\)</span> converges to a function <span class="math inline">\(f\in L^1(R)\)</span> in norm, denoted by <span class="math inline">\(f_n\rightarrow f\)</span> i.n., if <span class="math inline">\(||f_n-f||\rightarrow 0\)</span>.</p>
+<p>The following theorem is simple but important.</p>
+<p>==Theorem 2.6.2==</p>
+<p>If <span class="math inline">\(f_n\rightarrow f \space i.n.\)</span>, then <span class="math inline">\(\int f_n\rightarrow \int f\)</span>.</p>
+<p>==Theorem 2.6.3==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then the series <span class="math inline">\(f_1+f_2 +\dotsm\)</span> converges to <span class="math inline">\(f\)</span> in norm.</p>
+<h2 id="convergence-almost-everywhere">2.7 Convergence Almost Everywhere</h2>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then the series <span class="math inline">\(f_1(x)+f_2(x)+\dotsm\)</span> need not converge at every <span class="math inline">\(x\in R\)</span>. On the other hand, the set of those points where we do not have convergence is a small set.</p>
+<p>==Definition: Null set==</p>
+<p>A set <span class="math inline">\(x\in R\)</span> will be called a null set or a set of measure zero if its characteristic function is a null function.</p>
+<p>==Theorem 2.7.1==</p>
+<p>Every subset of a null set is a null set.</p>
+<p>==Definition 2.7.2== (Equality Almost Everywhere)</p>
+<p>If for two functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> defined on R, the set of all <span class="math inline">\(x\in R\)</span> for which <span class="math inline">\(f(x)\neq g(x)\)</span> is a null set, then we say that <span class="math inline">\(f\)</span> equals <span class="math inline">\(g\)</span> almost everywhere and write <span class="math inline">\(f=g\)</span> a.e.</p>
+<p>==Theorem 2.7.2==</p>
+<p><span class="math inline">\(\int |f-g|=0\)</span> if and only if <span class="math inline">\(f=g\)</span> a.e. In particular, <span class="math inline">\(\int |f|=0\)</span> if and only if <span class="math inline">\(f=0\)</span> a.e.</p>
+<p>That means the equivalence of functions defined in section 2.6 and equality almost everywhere are the same thing.</p>
+<p>==Theorem 2.7.3==</p>
+<p>Suppose <span class="math inline">\(f_n\rightarrow f\)</span> i.n. Then <span class="math inline">\(f_n\rightarrow g\)</span> i.n. if and only if <span class="math inline">\(f=g\)</span> a.e.</p>
+<p>==Definition 2.7.3== Convergence Almost Everywhere</p>
+<p>We say a sequence of functions <span class="math inline">\(f_1,f_2,\dotsm\)</span> defined on R converges to a function <span class="math inline">\(f\)</span> almost everywhere, denoted by $f_nf $ a.e., if <span class="math inline">\(f_n(x)\rightarrow f(x)\)</span> for every <span class="math inline">\(x\)</span> except a null set.</p>
+<p>==Theorem 2.7.4==</p>
+<p>Suppose <span class="math inline">\(f_n\rightarrow f\)</span> a.e. Then <span class="math inline">\(f_n\rightarrow g\)</span> a.e. if and only if <span class="math inline">\(f=g\)</span> a.e.</p>
+<p>The following two examples show that convergence in norm and convergence almost everywhere are essentially different.</p>
+<p>==Example 2.7.1==</p>
+<p>For <span class="math inline">\(n=1,2,\dotsm\)</span>, define <span class="math display">\[
+f_n(x)=\begin{cases}1/\sqrt n &amp; \text{for $x\in[-n,n]$}\\0&amp;\text{otherwise}\end{cases}
+\]</span> ==Theorem 2.7.5==</p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span> and <span class="math inline">\(\int |f_1|+\int |f_2|+\dotsm&lt;\infty\)</span> . Then the series <span class="math inline">\(f_1+f_2+\dotsm\)</span> converges almost everywhere.</p>
+<p>==Corollary 2.7.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> a.e.</p>
+<p>==Theorem 2.7.6==</p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span> and <span class="math inline">\(\int |f_1|+\int |f_2|+\dotsm&lt;\infty\)</span>. Then <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> almost everywhere if and only if <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> in norm.</p>
+<h2 id="fundamental-theorems">2.8 Fundamental Theorems</h2>
+<p>Now we are ready to prove the main theorems of this chapter.</p>
+<p>==Theorem 2.8.1==</p>
+<p>The space <span class="math inline">\(L^1(R)\)</span> is complete.</p>
+<p>In view of the above theorem, the space <span class="math inline">\(L^1(R)\)</span> can be defined as the completion of the space of step functions with respect to the convergence in norm.</p>
+<p>We know that convergence in norm and convergence almost everywhere are essentially different. The next theorem connects both convergences in an elegant way.</p>
+<p>==Theorem 2.8.2==</p>
+<p>If <span class="math inline">\(f_n\rightarrow f\)</span> i.n., then there exists a subsequence <span class="math inline">\((f_{p_n})\)</span> of <span class="math inline">\((f_n)\)</span> such that <span class="math inline">\(f_{p_n} \rightarrow f_n\)</span> a.e.</p>
+<p>Convergence in norm has the following important property, <span class="math display">\[
+f_n\rightarrow f\text{ i.n. implies } \int f_n\rightarrow \int f
+\]</span> In other words, the limit with respect to the convergence in norm can be interchanged with integration: <span class="math display">\[
+\int \lim _{n\rightarrow \infty} f_n = \lim_{n\rightarrow \infty} \int f_n
+\]</span> Convergence almost everywhere does not share this property.</p>
+<p>Theorem 2.8.3 and Theorem 2.8.4 give conditions which are easy to check and at the same time imply the convergence in norm.</p>
+<p>==Theorem 2.8.3== Monotone Convergence Theorem</p>
+<p>If <span class="math inline">\((f_n)\)</span> is a monotone sequence of integrable functions and <span class="math inline">\(|\int f_n| \le M\)</span> for some constant M and all <span class="math inline">\(n\in N\)</span>, then there exists an integrable function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f_n\rightarrow f\)</span> i.n. and <span class="math inline">\(f_n\rightarrow f\)</span> a.e. Moreover, we have <span class="math inline">\(|\int f|\le M\)</span></p>
+<p>==Theorem 2.8.4== The Lebesgue Dominated Convergence Theorem</p>
+<p>If a sequence of integrable functions <span class="math inline">\((f_n)\)</span> converges almost everywhere to a function <span class="math inline">\(f\)</span> and there exists an integrable function <span class="math inline">\(h\)</span> such that <span class="math inline">\(|f_n|\le h\)</span> for every <span class="math inline">\(n\in N\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(f_n\rightarrow f\)</span> i.n.</p>
+<p>==Theorem 2.8.5== Fatou's Lemma</p>
+<p>Let <span class="math inline">\((f_n)\)</span> be nonnegative integrable functions such that <span class="math inline">\(|\int f_n| \le M\)</span> for some constant M and every <span class="math inline">\(n\in N\)</span>. if the sequence <span class="math inline">\((f_n)\)</span> converges almost everywhere to a function <span class="math inline">\(f\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int f \le M\)</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -635,7 +613,7 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

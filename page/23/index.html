@@ -215,190 +215,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" class="post-title-link" itemprop="url">Untitled</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-04-27 17:14:06" itemprop="dateModified" datetime="2019-04-27T17:14:06+08:00">2019-04-27</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="gaussian-mixture-model-and-boosting">Gaussian Mixture Model and Boosting</h1>
-<p>A generative model learns the joint probability distribution <span class="math inline">\(p(x,y)\)</span> and a discriminative model learns the conditional probability distribution <span class="math inline">\(p(x|y)\)</span></p>
-<h2 id="gaussian-mixture-model-gmm">1. Gaussian Mixture Model (GMM)</h2>
-<p>GMM: the weighted sum of a number of Gaussians where the weights are determined by a distribution <span class="math inline">\(\pi\)</span>. <span class="math display">\[
-\begin{array}{lll}
-p(x)&amp;=&amp;\pi_1 N(x|\mu_1,\Sigma_1)+\pi_2 N(x|\mu_2,\Sigma_2)+\dotsm+\pi_K N(x|\mu_K,\Sigma_K)\\
-&amp;=&amp; \sum_{i=1}^K \pi_iN(x|\mu_i,\Sigma_i)
-\end{array}
-\]</span> The ==Expectation-maximization algorithm== (EM) is a method for finding maximum likelihood (or maximum a posteriori) estimate of parameters in statistical model, where the model depends on unobserved latent variables.</p>
-<p>EM is a iterative method which alternates between performing and Expectation (E) Step and Maximization (M) Step.</p>
-<p>E-Step: Computes the expectation of the log-likelihood evaluated using the current estimated distributions for the latent variables based on the parameters inferred from previous step.</p>
-<p>M-Step: Computes parameters maximizing the expected log-likelihood from the E-Step. These parameters are then used to determine the distribution of the latent variables in the next E-Step.</p>
-<p>It seems like a K-means algorithm.</p>
-<p>==Example==</p>
-<p>Let events be ''grades in a class'' <span class="math display">\[
-P(A)=0.5\\p(B)=\mu\\P(C)=2\mu\\P(D)=0.5-3\mu\\P(a,b,c,d|\mu)=K(0.5)^a \mu^b (2\mu)^c (0.5-3\mu)^d
-\]</span> We hope to get the max like <span class="math inline">\(\mu\)</span> <span class="math display">\[
-\log P=\log K+a\log0.5 + b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
-\frac{\partial \log P}{\partial \mu}=\frac{b}{\mu}+\frac{c}{\mu}-\frac{3d}{0.5-3\mu}=0\\
-\mu=\frac{b+c}{6(b+c+d)}
-\]</span> If the class got A=14,B=6,C=9,D=10, then we have <span class="math inline">\(\mu=\frac{1}{10}\)</span></p>
-<p>If we have a latent variable in the problem, A+B=h, C=c, D=d</p>
-<p>Then the probability is <span class="math display">\[
-P(h,c,d|\mu,b)=K(0.5)^{h-b}\mu^{b}(2\mu)^c (0.5-3\mu)^d\\
-\log P=\log K+(h-b)\log 0.5+b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
-\]</span> E-Step</p>
-<p>If we know <span class="math inline">\(\mu\)</span>, then we can get the expected b <span class="math display">\[
-E_\mu(b)=\frac{\mu}{0.5+\mu}h
-\]</span> M-Step</p>
-<p>If we know b, then we can get the optimal <span class="math inline">\(\mu\)</span> <span class="math display">\[
-\mu_b=\frac{E_\mu(b)+c}{6(E_\mu(b)+c+d)}
-\]</span> Then if we iterate between E-Step and M-Step, the values will be converged to a local minimum.</p>
-<p>Then we can use this algorithm to solve the GMM problems</p>
-<p>We define <span class="math display">\[
-\pi_i=p(w_i)\quad \sum_i \pi_i=1\\
-z_i=p(w_i|x)=\frac{p(w_i)p(x|w_i)}{\sum_{j=1}^Kp(w_j)p(x|w_j)}\\
-z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
-\]</span> Then the hidden variables <span class="math inline">\(z_k^n\)</span> indicating which component <span class="math inline">\(k\)</span> the datum <span class="math inline">\(n\)</span> is sampled from</p>
-<p>Identify the likelihood <span class="math display">\[
-P(x_1,\dotsm,x_N|\pi,\mu)=\prod_{n=1}^NP(x_n|\pi,\mu)\\
-=\prod_{n=1}^N \sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\\
-\log P =\sum_{n=1}^N\log \left[\sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\right]
-\]</span> Set the partials to zero, we have (Similarly for the other parameters) <span class="math display">\[
-\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
-\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
-\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
-\]</span> Therefore,</p>
-<p>E-Step: <span class="math display">\[
-z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
-\]</span> M-Step: <span class="math display">\[
-\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
-\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
-\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
-\]</span></p>
-<h2 id="boosting">2. Boosting</h2>
-<p>Easy to implement, not requires external optimization tools</p>
-<p>Boosting fits the additive model <span class="math display">\[
-F(x)=f_1(x)+f_2(x)+f_3(x)+\dotsm
-\]</span> by minimizing the exponential loss <span class="math display">\[
-J(F)=\sum_{t=1}^Ne^{-y_tF(x_t)}
-\]</span> Sequential Procedure. At each step m we add <span class="math display">\[
-F(x)\leftarrow F(x)+f_m(x)
-\]</span> to minimize the residual loss <span class="math display">\[
-(\phi_m)=\arg\min_{\phi}\sum_{t=1}^N J(y_t,F(x_t)+f(x_t;\phi))
-\]</span> At each iteration, we choose <span class="math inline">\(f_m(x)\)</span> that minimizes the cost <span class="math display">\[
-J(F+f_m)=\sum_{t=1}^Ne^{-y_t(F(x_t)+f_m(x_t))}
-\]</span> Instead of doing exact optimization, gentle Boosting minimizes the approximation of the error <span class="math display">\[
-J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
-\]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/1. Probability/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -610,11 +426,152 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5904 Neural Network/7. Bellman Equation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/EE5904 Neural Network/7. Bellman Equation/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:45:47" itemprop="dateCreated datePublished" datetime="2020-12-22T13:45:47+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-04-22 16:26:54" itemprop="dateModified" datetime="2019-04-22T16:26:54+08:00">2019-04-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/EE5904 Neural Network/7. Bellman Equation/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/EE5904 Neural Network/7. Bellman Equation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5904 Neural Network/7. Bellman Equation/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="bellman-equation">Bellman Equation</h1>
+<p>We start by discussing the most simple control case. <span class="math display">\[
+x_{t+1}=x_t+f(t,x_t,u_t)
+\]</span> Define the cost function <span class="math display">\[
+C(x_0,u_{o:T-1})=\phi(x_T)+\sum_{t=0}^{T-1}R(t,x_t,u_t)
+\]</span> <span class="math inline">\(R(t,x_t,u_t)\)</span> is the cost that is associated with taking action <span class="math inline">\(u\)</span> at time <span class="math inline">\(t\)</span> in state <span class="math inline">\(x\)</span>, and <span class="math inline">\(\phi(x_T)\)</span> is the cost associated with ending up in state <span class="math inline">\(x_T\)</span> at time <span class="math inline">\(T\)</span>.</p>
+<p>The optimal problem is to find the sequence <span class="math inline">\(u_{0:T-1}\)</span> that minimizes <span class="math inline">\(C(x_0,u_{o:T-1})\)</span>.</p>
+<p>Introduce the optimal cost to go: <span class="math display">\[
+J(t,x_t)=\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\right)
+\]</span> which solves the optimal control problem form an intermediate time <span class="math inline">\(t\)</span> until the fixed end time <span class="math inline">\(T\)</span>, starting at an arbitrary location <span class="math inline">\(x_t\)</span>. The minimum of <span class="math inline">\(C\)</span> is given by <span class="math inline">\(J(0,x_0)\)</span>.</p>
+<p>One can recursively compute <span class="math inline">\(J(t,x)\)</span> from <span class="math inline">\(J(t+1,x)\)</span> for all <span class="math inline">\(x\)</span> in the following way: <span class="math display">\[
+\begin{array}{rcl}
+J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\right)\\
+&amp;=&amp; \min_{u_{t}}\left(R(t,x_t,u_t)+\min_{u_{t+1:T-1}}\left[\phi(x_T)+\sum_{s=t+1}^{T-1}R(s,x_s,u_s)\right]\right)\\
+&amp;=&amp; \min_{u_{t}}\left(R(t,x_t,u_t)+J(t+1,x_{t+1})\right)
+\end{array}
+\]</span> Note that the minimization over the whole path <span class="math inline">\(u_{0,T-1}\)</span> has reduced to a sequence of minimizations over <span class="math inline">\(u_t\)</span> . This simplification is due to the Markovian nature of the problem: the future depends on the past only through the present.</p>
+<p>The algorithm to compute the optimal control <span class="math inline">\(u_{0,T-1}^*\)</span>, the optimal trajectory <span class="math inline">\(x_{1:T}^*\)</span> and the optimal cost is given by</p>
+<ol type="1">
+<li><p><span class="math inline">\(J(T,x)=\phi(x)\)</span></p></li>
+<li><p>Backwards: For <span class="math inline">\(t=T-1,\dotsm,0\)</span> and for all <span class="math inline">\(x\)</span></p>
+<p><span class="math inline">\(u_t^*(x)=\arg \min_u \{R(t,x,u)+J(t+1,x_{t+1})\}\)</span></p>
+<p><span class="math inline">\(J(t,x)=R(t,x,u_t^*)+J(t+1,x_{t+1})\)</span></p></li>
+<li><p>Forwards: For <span class="math inline">\(t=0,\dotsm,T-1\)</span></p>
+<p><span class="math inline">\(x_{t+1}^*=x_t^*+f(t,x_t^*,u_t^*(x_t^*))\)</span></p></li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -659,7 +616,7 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

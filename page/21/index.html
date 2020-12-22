@@ -215,186 +215,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/5. Non-Parametric Tech/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/EE5907 Pattern Recognition/5. Non-Parametric Tech/" class="post-title-link" itemprop="url">Untitled</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-04-26 20:01:56" itemprop="dateModified" datetime="2019-04-26T20:01:56+08:00">2019-04-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/EE5907 Pattern Recognition/5. Non-Parametric Tech/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/5. Non-Parametric Tech/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/5. Non-Parametric Tech/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="non-parametric-techniques">Non-Parametric Techniques</h1>
-<h2 id="non-parametric-tech">1. Non-Parametric Tech</h2>
-<p><span class="math display">\[
-p(x)=\frac{k(x)/N}{V}
-\]</span></p>
-<p>For particular x, count number of samples k falling in the window of volume V centered at x</p>
-<p>Two approaches: Parzen's Window fix <span class="math inline">\(V\)</span>, estimate <span class="math inline">\(k\)</span>; KNN: fix <span class="math inline">\(x\)</span>, determine <span class="math inline">\(V\)</span>.</p>
-<h2 id="parzens-window">2. Parzen's Window</h2>
-<p>Square cube function <span class="math display">\[
-\phi(u)=
-\begin{cases}
-1\quad|u_j|\le0.5,j=1,\dotsm,d\\
-0\quad otherwise
-\end{cases}
-\]</span> d is the dimensionality of data</p>
-<p>Then <span class="math display">\[
-\phi(\frac{x-x_i}{h})=
-\begin{cases}
-1\quad x_i\text{ inside the hypercube of width h centered at x}\\
-0\quad otherwise
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-k(x)=\sum_i\phi(\frac{x-x_i}{h})\\
-p(x)=\frac{1}{N}\sum_{i=1}^N\frac{1}{h^d}\phi(\frac{x-x_i}{h})
-\]</span> d is the dimension of data</p>
-<p>h is the size of the window</p>
-<p>N is the number of data</p>
-<p>Example</p>
-<p>We have 6 examples at 2,3,4,8,10,11</p>
-<p>We choose d=1, h=3, then <span class="math display">\[
-p(1)=\frac{1}{N}\sum_{i=1}^N\frac{1}{h^d}\phi(\frac{x-x_i}{h})\\
-=\frac{1}{6}\sum_{i=1}^6\frac{1}{3}\phi(\frac{1-x_i}{3})=\frac{1}{18}\\
-\]</span> Smooth window</p>
-<p>Gaussians window</p>
-<p>Convergence Conditions</p>
-<p>The idea is that we might want to change the volume V depending on how many samples we have. So V now depends on N. As <span class="math inline">\(N\rightarrow \infty\)</span> we want <span class="math inline">\(p_N(x)\rightarrow true \space p(x)\)</span>. 4 sufficient conditions</p>
-<ol type="1">
-<li><span class="math inline">\(\sup_u \phi(u)\le \infty\)</span></li>
-<li><span class="math inline">\(\lim_{||u||\rightarrow\infty} \phi(u)\prod_{i=1}^du_i=0\)</span> (This condition means we hope <span class="math inline">\(\phi\)</span> fall rapidly when <span class="math inline">\(u\)</span> goes to infinity)</li>
-<li><span class="math inline">\(\lim_{N\rightarrow\infty}V_N=0\)</span></li>
-<li><span class="math inline">\(\lim_{N\rightarrow\infty}NV_N=\infty\)</span></li>
-</ol>
-<p>Then we can choose <span class="math inline">\(h_N=h_1/\sqrt N\)</span></p>
-<p>Setting window size h: Cross-validation</p>
-<h2 id="knn-density-estimation">3. KNN Density Estimation</h2>
-<p><span class="math display">\[
-P_N(x)=\frac{k_N(x)/N}{V_N}
-\]</span></p>
-<p>Rather than fix windows size, grow volume around x until <span class="math inline">\(K_N(x)\)</span> samples</p>
-<p>Convergence condition <span class="math display">\[
-\lim_{N\rightarrow\infty}k_N=\infty\\
-\lim_{N\rightarrow\infty}k_N/N=0
-\]</span> Example</p>
-<p>We have 6 examples at 2,3,4,8,10,11</p>
-<p>We choose k=3 <span class="math display">\[
-P_N(0)=\frac{3/6}{8}=\frac{1}{16}\\
-P_N(3)=\frac{3/6}{2}=\frac{1}{4}
-\]</span></p>
-<h2 id="knn-classification">4. KNN Classification</h2>
-<p>Given feature x, we want to estimate y <span class="math display">\[
-p(x,y=c)=\frac{k_c/N}{V}
-\]</span> Then we have the posterior <span class="math display">\[
-p(y=c|x)=\frac{p(x,y=c)}{\sum_{c&#39;=1}^Cp(x,y=c&#39;)}=\frac{k_c}{K}
-\]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/4. Logistic Regression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -551,11 +371,268 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-12-22 13:46:13" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-04-26 19:07:05" itemprop="dateModified" datetime="2019-04-26T19:07:05+08:00">2019-04-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" class="post-meta-item leancloud_visitors" data-flag-title="" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="introduction">1. Introduction</h2>
+<p>Let y be the target class label, x be the feature vector of length D</p>
+<p>Then we have a generative classifier <span class="math display">\[
+p(x,y|\theta)=p(y|\theta)p(x|y,\theta)
+\]</span> To define the classifier, we need to define the distribution <span class="math inline">\(p(y|\theta)\)</span> and <span class="math inline">\(p(x|y,\theta)\)</span></p>
+<p>we split <span class="math inline">\(\theta\)</span> into two parts <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\eta\)</span> .</p>
+<p><span class="math inline">\(\lambda\)</span> are the parameters of prior. For classification, y is by definition discrete then <span class="math inline">\(p(y|\lambda)\)</span> has to be a categorical distribution.</p>
+<p><span class="math inline">\(\eta\)</span> are the parameters of the likelihood. Modeling aspect comes from specifying the feature likelihood. Intuitively, feature likelihood is saying that the data point comes from the specific class with label c, what is pdf of the features x? Naive Bayes Classifier assumes features are conditionally independent given class <span class="math display">\[
+p(x|y=c,\eta)=\prod_{j=1}^Dp(x_j|y=c,\eta)=\prod_{j=1}^Dp(x_j|\eta_{jc})
+\]</span> That means p of the feature vector x given the class label c is equal to the product from feature 1 to D.</p>
+<p>For example <span class="math inline">\(p(x_1|\eta_{1,c1})\)</span> is Gaussian Distribution, then <span class="math inline">\(\eta_{1,c1}=(\mu_{1,c1},\sigma^2_{1,c1})\)</span> . <span class="math inline">\(p(x_2|\eta_{2,c1})\)</span> is Bernoulli Distribution. Each features can be different distribution.</p>
+<p>Naïve because features are probably not conditionally independent.</p>
+<h2 id="strategies-to-estimate-parameters-and-classifying">2. Strategies to Estimate Parameters and Classifying</h2>
+<p>Three strategies</p>
+<p>ML: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{ML}=\arg\max_\theta p(D|\theta)\)</span>. Then predict.</p>
+<p>MAP: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{MAP}=\arg\max_\theta p(\theta|D)\)</span>. Then predict.</p>
+<p>Posterior Predictive/ Beyesian Model Averaging (detailed in the following parts): <span class="math display">\[
+p(\tilde y|\tilde x, D)
+\]</span> Then <span class="math display">\[
+p(x,y|\theta)=p(y|\lambda)p(x|y,\eta)
+\]</span> We hope to use MAP to estimate the model parameters. We can prove the two parameters can be optimized separately. <span class="math display">\[
+\begin{array}{rcl}
+p(\theta|D)&amp;=&amp;p(\lambda,\eta|D)\\
+&amp;=&amp; \frac{p(D|\lambda,\eta)p(\lambda,\eta)}{p(D)}\\
+&amp;=&amp; \frac{p(y_{1:N}|\lambda,\eta)p(x_{1:N}|y_{1:N},\lambda,\eta) p(\lambda)p(\eta)}{p(y_{1:N})p(x_{1:N}|y_{1:N})}\\
+&amp;=&amp;\left(\frac{p(y_{1:N}|\lambda)p(\lambda)}{p(y_{1:N})}\right)
+\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
+&amp;=&amp;p(\lambda|y_{1:N})\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
+\end{array}
+\]</span> ## 3. For the First Part</p>
+<p>if beta prior <span class="math display">\[
+\lambda^{MAP}=\frac{N_{head}+a-1}{N+a+b-2}
+\]</span> if Dirichlet prior <span class="math display">\[
+\lambda^{MAP}=\frac{N_c+\alpha_c-1}{N+\sum_{c=1}^C\alpha_c-C}
+\]</span> ## 4. For the Second Part</p>
+<p>Naïve Bayes means every features are independent <span class="math display">\[
+\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}=\prod_{j=1}^D\prod_{c=1}^C\frac{p(\eta_{jc})p(x_{i\in c,j}|\eta_{jc})}{p(x_{i\in c,j})}\\
+=\prod_{j=1}^D\prod_{c=1}^Cp(\eta_{jc}|x_{i\in c,j})
+\]</span> For every dimension j and every class c, use MAP to estimate parameter <span class="math inline">\(\eta_{jc}\)</span></p>
+<h2 id="predicting-target-class">5. Predicting Target Class</h2>
+<p>Once we have estimate <span class="math inline">\(\lambda^{MAP}\)</span> and <span class="math inline">\(\eta ^{MAP}\)</span> , we can use the parameter to compute for each class c: <span class="math display">\[
+p(\tilde y=c|\tilde x,\lambda^{MAP},\eta^{MAP})=p(\tilde y=c|\lambda^{MAP})p(\tilde x|\eta_{jc}^{MAP})\\
+=\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})
+\]</span></p>
+<p>In practice, for numerical stability, we compute <span class="math display">\[
+\log\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})=\\
+\log \lambda_c^{MAP}+\sum_{j=1}^D \log p(\tilde x_j|\eta_{jc}^{MAP})
+\]</span> Example</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature 1</th>
+<th style="text-align: center;">Feature 2</th>
+<th style="text-align: center;">Class Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">?</td>
+</tr>
+</tbody>
+</table>
+<p>For the first part <span class="math display">\[
+\lambda^{ML}_1=\frac{1}{3}\quad\lambda^{ML}_2=\frac{2}{3}\\
+\]</span> For the second part <span class="math display">\[
+\eta^{ML}_{11}=0\quad \eta^{ML}_{21}=0\\
+\eta^{ML}_{12}=1\quad \eta^{ML}_{22}=0.5\\
+\]</span> Then $$ p(y=1|x,<sup>{MAP},</sup>{MAP}) =_1<sup>{MAP}+<em>{j=1}^2p(x_j|</em>{j1}</sup>{MAP})\ =_1<sup>{MAP}+p(x_1|<em>{11}^{MAP})+p(x_1|</em>{21}</sup>{MAP})=-\</p>
+<p>p(y=2|x,<sup>{MAP},</sup>{MAP}) =_2<sup>{MAP}+<em>{j=1}^2p(x_j|</em>{j2}</sup>{MAP})\ =_2<sup>{MAP}+p(x_1|<em>{12}^{MAP})+p(x_1|</em>{22}</sup>{MAP})\ =/3++=-1.1 $$ So <span class="math inline">\(\tilde y=2\)</span></p>
+<h2 id="posterior-predictive-estimation">6. Posterior Predictive Estimation</h2>
+<p><span class="math display">\[
+\begin{array}{rcl}
+p(\tilde y|\tilde x,D)
+&amp;=&amp;\frac{p(\tilde x,\tilde y|D)}{p(\tilde x|D)}\\
+&amp;\propto&amp; p(\tilde x,\tilde y|D)\quad \text{nothing about }\tilde y\\
+&amp;=&amp; p(\tilde x|\tilde y,D)p(\tilde y|D)\\
+&amp;=&amp; p(\tilde x|\tilde y,x_{1:N},y_{1:N})p(\tilde y|x_{1:N},y_{1:N})\\
+&amp;=&amp; p(\tilde y|y_{1:N})p(\tilde x|\tilde y,x_{1:N},y_{1:N})
+\end{array}
+\]</span></p>
+<p>The first part is just posterior predictive distribution for beta-binomial or Dirichlet-multinomial model.</p>
+<p>For the second part, we can compute independently for each dimension j and class c. <span class="math display">\[
+p(\tilde x|\tilde y,x_{1:N},y_{1:N})=\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
+\]</span> Then for every dimension <span class="math inline">\(j\)</span> and every class <span class="math inline">\(c\)</span>, we compute posterior predictive distribution of test feature <span class="math inline">\(p(\tilde x_j|x_{i\in c,j},\tilde y=c)\)</span></p>
+<p>To summarize, to predict target class label, we have <span class="math display">\[
+p(\tilde y=c|\tilde x,D)\propto p(\tilde y|y_{1:N})\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
+\]</span> For numerical stability, we compute <span class="math display">\[
+\log p(\tilde y=c|\tilde x,D)\propto \log p(\tilde y|y_{1:N})+\sum_{j=1}^D\log p(\tilde x_j|x_{i\in c,j},\tilde y=c)
+\]</span> Example</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature 1</th>
+<th style="text-align: center;">Feature 2</th>
+<th style="text-align: center;">Class Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">?</td>
+</tr>
+</tbody>
+</table>
+<p>Predict <span class="math inline">\(\tilde y\)</span> using ML for class prior and We will use posterior predictive with the prior Beta(2,2) for feature likelihood. $$ p(y=1|^{ML}_1)=p(y=2|^{ML}_2)=\</p>
+<p>p(x_1|x_{ic1,1},y=c1) = p(x_2|x_{ic1,2},y=c1) =\</p>
+<p>p(x_1|x_{ic2,1},y=c2) = p(x_2|x_{ic2,2},y=c2) = <span class="math display">\[
+Then we have the probability
+\]</span> p(y=c1|x,D)\ p(y=c2|x,D)\ $$</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -600,7 +677,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
