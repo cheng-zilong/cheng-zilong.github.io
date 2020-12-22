@@ -56,18 +56,18 @@
   };
 </script>
 
-  <meta name="description" content="State Estimation 1. Why State Estimation \[ u=-Kx+Fr \] some x cannot be measured. we define an estimator \[ \dot{\hat x}=A \hat x+Bu+L(y-\hat y) \\ \dot e=\dot x-\dot{\hat x}=A(x-\hat x)+L(Cx">
+  <meta name="description" content="Reinforcement Learning 1. Introduction Agent learns to maximize reward when completing tasks Unsupervised: Agent does not know the desired output. Uncertain or unknown system behavior. Reward rec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chapter 11. State Estimation">
-<meta property="og:url" content="http://yoursite.com/2018/12/03/EE5101 Linear Systems/11. State Estimation/index.html">
+<meta property="og:title" content="Chapter 5. Reinfocement Learning">
+<meta property="og:url" content="http://yoursite.com/2019/05/17/EE5904 Neural Network/5.RL/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
-<meta property="og:description" content="State Estimation 1. Why State Estimation \[ u=-Kx+Fr \] some x cannot be measured. we define an estimator \[ \dot{\hat x}=A \hat x+Bu+L(y-\hat y) \\ \dot e=\dot x-\dot{\hat x}=A(x-\hat x)+L(Cx">
+<meta property="og:description" content="Reinforcement Learning 1. Introduction Agent learns to maximize reward when completing tasks Unsupervised: Agent does not know the desired output. Uncertain or unknown system behavior. Reward rec">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-12-03T06:23:37.356Z">
+<meta property="og:updated_time" content="2019-05-17T06:36:50.129Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 11. State Estimation">
-<meta name="twitter:description" content="State Estimation 1. Why State Estimation \[ u=-Kx+Fr \] some x cannot be measured. we define an estimator \[ \dot{\hat x}=A \hat x+Bu+L(y-\hat y) \\ \dot e=\dot x-\dot{\hat x}=A(x-\hat x)+L(Cx">
-  <link rel="canonical" href="http://yoursite.com/2018/12/03/EE5101 Linear Systems/11. State Estimation/">
+<meta name="twitter:title" content="Chapter 5. Reinfocement Learning">
+<meta name="twitter:description" content="Reinforcement Learning 1. Introduction Agent learns to maximize reward when completing tasks Unsupervised: Agent does not know the desired output. Uncertain or unknown system behavior. Reward rec">
+  <link rel="canonical" href="http://yoursite.com/2019/05/17/EE5904 Neural Network/5.RL/">
 
 
 <script id="page-configurations">
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>Chapter 11. State Estimation | Orandragon's Blog</title>
+  <title>Chapter 5. Reinfocement Learning | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -220,7 +220,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/EE5101 Linear Systems/11. State Estimation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/17/EE5904 Neural Network/5.RL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Chapter 11. State Estimation
+        <h1 class="post-title" itemprop="name headline">Chapter 5. Reinfocement Learning
 
           
         </h1>
@@ -248,7 +248,7 @@
                 
               
 
-              <time title="Created: 2018-12-03 13:33:56 / Modified: 14:23:37" itemprop="dateCreated datePublished" datetime="2018-12-03T13:33:56+08:00">2018-12-03</time>
+              <time title="Created: 2019-05-17 13:45:47 / Modified: 14:36:50" itemprop="dateCreated datePublished" datetime="2019-05-17T13:45:47+08:00">2019-05-17</time>
             </span>
           
             
@@ -261,7 +261,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
 
                 
                 
@@ -270,7 +270,7 @@
           
 
           
-            <span id="/2018/12/03/EE5101 Linear Systems/11. State Estimation/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 11. State Estimation" title="Views">
+            <span id="/2019/05/17/EE5904 Neural Network/5.RL/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 5. Reinfocement Learning" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -288,7 +288,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2018/12/03/EE5101 Linear Systems/11. State Estimation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/12/03/EE5101 Linear Systems/11. State Estimation/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/05/17/EE5904 Neural Network/5.RL/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/17/EE5904 Neural Network/5.RL/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -302,141 +302,132 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="state-estimation">State Estimation</h2>
-<h3 id="why-state-estimation">1. Why State Estimation</h3>
-<p><span class="math display">\[
-u=-Kx+Fr
-\]</span></p>
-<p>some x cannot be measured.</p>
-<p>we define an estimator <span class="math display">\[
-\dot{\hat x}=A \hat x+Bu+L(y-\hat y) \\
-\dot e=\dot x-\dot{\hat x}=A(x-\hat x)+L(Cx-C \hat x)=(A-LC)e
-\]</span> First, check the observability</p>
-<p>Second, design L, place observer poles 3-5 times faster than control poles.</p>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx \\
-A=\begin{bmatrix}
-0 &amp; 1\\ 0 &amp; 0
-\end{bmatrix}
-B=\begin{bmatrix}
-0 \\ 1
-\end{bmatrix}
-C=\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}\\
-M_o=\begin{bmatrix}
-C \\CA
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}\\
-A-LC=
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}-
-\begin{bmatrix}
-l_1 \\ l_2
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}=
-\begin{bmatrix}
--l_1  &amp; 1 \\-l_2 &amp; 0
-\end{bmatrix}\\
-|\lambda I-(A-LC)|=\lambda^2+l_1\lambda+l_2
-\]</span> We choose two poles <span class="math inline">\(\lambda_1=\lambda_2=-5\)</span></p>
-<p>Then <span class="math inline">\(l_1=10 \quad l_2=25\)</span></p>
-<p>Ackerman's Formula: <span class="math inline">\(L=\Phi_o(A)M_o^{-1}[0 \quad \dotsm\quad 1]^T\)</span></p>
-<h3 id="reduced-order-observers">2. Reduced-Order Observers</h3>
-<p>For now we use output to get some states. We can design the observer <span class="math display">\[
-\hat x=
-\begin{bmatrix}
-C \\ T
-\end{bmatrix}^{-1}
-\begin{bmatrix}
-y \\ \xi
-\end{bmatrix}
-\]</span> We define the observer <span class="math display">\[
-\dot \xi=D\xi+Eu+Gy
-\]</span> Then we have <span class="math display">\[
-\dot \xi-T\dot x=D[\xi-Tx]+(DT-TA-GC)x+(E-TB)u
-\]</span> To make <span class="math inline">\(\dot \xi \rightarrow T\dot x\)</span></p>
-<p>we need <span class="math display">\[
-DT-TA+GC=0 \\
-E-TB=0\\
-\text{D have negative real parts for all eigenvalues}
-\]</span> Design procedures for T D G E</p>
-<blockquote>
+        <h1 id="reinforcement-learning">Reinforcement Learning</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>Agent learns to maximize reward when completing tasks</p>
+<p>Unsupervised: Agent does not know the desired output.</p>
+<p>Uncertain or unknown system behavior.</p>
+<p>Reward received after each action is the only feedback.</p>
+<p>Objective: Maximize total reward when executing a task.</p>
+<h2 id="markov-decision-process">2. Markov Decision Process</h2>
+<p>A set of state: <span class="math inline">\(S=\{s_1,s_2,\dots\}\)</span></p>
+<p>A set of actions: <span class="math inline">\(A=\{a_1,a_2,\dotsm\}\)</span></p>
+<p>A transition function</p>
+<p>Deterministic: <span class="math display">\[
+\bar f(s,a)=s&#39;
+\]</span> That means after one specific action, the next state is deterministic.</p>
+<p>Non-deterministic: <span class="math display">\[
+f(s,a,s&#39;)=P(s_{t+1}=s&#39;|s_t=s,a_t=a)=P_{ss&#39;}^a
+\]</span> That means after one specific action, the next state is determined by probability. (For example, the robot's operation may be influenced by uncertainties such as slippery floor)</p>
+<p>After every, there are two changes.</p>
 <ol type="1">
-<li>Find the constraints on T such that <span class="math inline">\(\begin{bmatrix} C \\ T\end{bmatrix}\)</span> is nonsingular</li>
-<li>choose D such that its eigenvalues have negative real parts</li>
-<li>Solve DT-TA-GC=0 for T and G</li>
-<li>Calculate E=TB</li>
+<li><p>Agent takes action <span class="math inline">\(a\)</span> to move from <span class="math inline">\(s\)</span> to <span class="math inline">\(s&#39;\)</span></p></li>
+<li><p>Agent receives reward <span class="math inline">\(r\)</span> one time-step later</p></li>
 </ol>
-</blockquote>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx \\
-A=\begin{bmatrix}
-0 &amp; 1\\ 0 &amp; 0
-\end{bmatrix}
-B=\begin{bmatrix}
-0 \\ 1
-\end{bmatrix}
-C=\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}\\
-\]</span> Design a reduced order observer <span class="math display">\[
-\begin{bmatrix}
-C \\T
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0 \\t_1 &amp; t_2
-\end{bmatrix}
-\]</span> The above is singular if <span class="math inline">\(t_2 \neq0\)</span></p>
-<p>The observer should be 2-1=1 order</p>
-<p>We choose <span class="math inline">\(D=[d]=[-3]\)</span></p>
-<p>Then <span class="math display">\[
-DT-TA+GC=0 \\
--3\begin{bmatrix}
-t_1 &amp; t_2
-\end{bmatrix}-
-\begin{bmatrix}
-t_1&amp;t_2
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}+
-g\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}=0\\
+<p>Reward function <span class="math display">\[
+r_{t+1}=\rho(s_t,a_t,s_{t+1})
+\]</span> For non-deterministic transitions: <span class="math display">\[
+E[r_{t+1}|s_t=s]=\sum_{s&#39;}\left(P^a_{ss&#39;} r_{t+1}|s_{t+1}=s&#39;\right)=\sum_{s&#39;}\left(P^a_{ss&#39;} \rho(s,a,s&#39;)\right)
+\]</span> The total transition reward <span class="math display">\[
+R_{t}=r_{t+1}+\gamma r_{t+2}+\gamma^2 r_{t+2}+\dotsm=\sum _{k=0}^\infty \gamma^k r_{t+k+1}
+\]</span> Policy (<span class="math inline">\(\pi\)</span>):</p>
+<p>Decision-making mechanism for controlling a Markov process</p>
+<p>specifies which action to take at a state</p>
+<p>can be deterministic</p>
+<p>Specifies particular action to be taken at particular state</p>
+<p>non-deterministic</p>
+<p>Specifies probability of action being taken at particular state</p>
+<p>In this module, we consider deterministic policies only</p>
+<p>In this following, key questions are</p>
+<p>What is the best policy?</p>
+<p>How to find the best policy?</p>
+<h2 id="q-function">3. Q-function</h2>
+<p>Q-function measures the ''worth'' of taking a at s under <span class="math inline">\(\pi\)</span></p>
+<p>Worth is represented by <span class="math display">\[
+Q^\pi:S\times A\rightarrow R
+\]</span> defined as the expected return from taking action a at state s at time step t and thereafter following policy <span class="math inline">\(\pi\)</span> <span class="math display">\[
+Q^{\pi}(s,a)=E^\pi[R_t|s_t=s]
+\]</span> An optimal policy is one that maximizes values of Q-function over all possible (s,a) pairs</p>
+<p>Solving the RL problem is about finding an optimal policy</p>
+<p>To do this requires the Bellman Equation</p>
+<h2 id="bellman-equation">4. Bellman Equation</h2>
+<p>Bellman equation represents the relationship between <span class="math inline">\(Q^\pi (s,a)\)</span> and <span class="math inline">\(Q^\pi (s&#39;,a&#39;)\)</span></p>
+$$
+<span class="math display">\[\begin{array}{rcl}
+Q^\pi(s,a)&amp;=&amp;E^\pi[R_t|s_t=s]\\
+&amp;=&amp; E^\pi[\sum_{k=0}^\infty|s_t=s]\\
+&amp;=&amp; E^\pi\left[r_{t+1}+\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}|s_t=s\right]\\
+&amp;=&amp; E^\pi\left[r_{t+1}\right]+\underbrace{E^\pi\left[\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}|s_t=s\right]}_{s_t=s \text{ is omitted}}\\
+
+&amp;=&amp; E^\pi\left[r_{t+1}\right]+E^\pi\left[\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}\right]\\
+
+&amp;=&amp; \sum_{s&#39;} P_{ss&#39;}^a\left(\rho(s,a,s&#39;)+\gamma Q^\pi(s&#39;,a&#39;)\right)
+\end{array}\]</span>
+<p>$$</p>
+<p>The policy whose Q-function values are greater or equal to that of all other policies is called an optimal policy</p>
+<p>This Q function is called the optimal Q-function <span class="math display">\[
+Q^*(s,a)=\max_\pi Q^\pi(s,a)\\
+\pi^*(s)\in \arg \max_a Q^*(s,a)
+\]</span> Then <span class="math inline">\(Q^*(s,a)\)</span> satisfies Bellman Equation <span class="math display">\[
+Q^*(s,a)=\sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q^*(s&#39;,a&#39;)\right)
+\]</span> That is the sum of reward in current state for the chosen action <span class="math inline">\(a\)</span> and discounted value of Q-function for the best action available in the successor state <span class="math inline">\(s&#39;\)</span></p>
+<p>There are two methods to solve for <span class="math inline">\(Q^*\)</span> to get <span class="math inline">\(\pi^*\)</span></p>
+<ol type="1">
+<li>Value Iteration</li>
+<li>Policy Iteration</li>
+</ol>
+<h2 id="value-iteration">5. Value Iteration</h2>
+<p>Input: state-transition probability f, reward function <span class="math inline">\(\rho\)</span>, discount factor <span class="math inline">\(\gamma\)</span></p>
+<p>Initialize Q-function, e.g. <span class="math inline">\(Q_0\leftarrow 0\)</span></p>
+<p>​ Repeat for each l</p>
+<p>​ <span class="math inline">\(Q\leftarrow Q_l\)</span></p>
+<p>​ For every (s,a) do</p>
+<p>​ <span class="math inline">\(Q(s,a)\leftarrow \sum_{s&#39;}P^a_{ss&#39;}\rho(s,a,s&#39;)+\gamma\max_{a&#39;}Q(s&#39;,a&#39;))\)</span></p>
+<p>​ end for-loop</p>
+<p>​ <span class="math inline">\(Q_{l+1}\leftarrow Q\)</span></p>
+<p>​ Until <span class="math inline">\(Q_{l+1}=Q_l\)</span></p>
+<p>Output <span class="math inline">\(Q^*=Q_l\)</span></p>
+<p>Proof of convergence</p>
+<p>Consider <span class="math inline">\(Q_k\)</span> at iteration k <span class="math display">\[
+\delta_k=\max_{s,a}|Q^*-Q_k|
+\]</span> Then <span class="math display">\[
+|Q^*-Q_k|\le \delta_k\\
+Q^*-\delta_k\le Q_k\le Q^*+\delta_k\\
+\]</span> And we have <span class="math display">\[
+Q_{k+1}(s,a)=\sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q_k(s&#39;,a&#39;)\right)\\
+\le \sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q^*(s&#39;,a&#39;)+\gamma \delta_k\right)\\
+=Q^*(s,a)+\gamma\delta_k\\
+\]</span> Then <span class="math display">\[
+\delta_{k+1}=\max_{s,a}|Q^*-Q_{k+1}|\le\max_{s,a}|\gamma \delta_k|=\gamma\delta_k
+\]</span> Since <span class="math inline">\(0\le\gamma&lt;1\)</span> Q.E.D.</p>
+<p>However, dynamic programming needs the information of model, What if no such model is available?</p>
+<h2 id="q-learning">4. Q-learning</h2>
+<p>Iterative update rule <span class="math display">\[
+Q_{k+1}(s_k,a_k)=Q_{k}\left(s_{k}, a_{k}\right)+\alpha_{k}\left(\underbrace{r_{k+1}+\gamma \max _{a^{\prime}} Q_{k}\left(s_{k+1}, a^{\prime}\right)}_{\text { Estimate of } Q^{*}\left(s_{k}, a_{k}\right)}-Q_{k}\left(s_{k}, a_{k}\right)\right)
+\]</span> Q-learning update rule converges to <span class="math inline">\(Q^*\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span> if</p>
+<ol type="1">
+<li><span class="math inline">\(\sum_{k=0}^{\infty} \alpha_{k}^{2}&lt;\infty \quad \text { and } \quad \sum_{k=0}^{\infty} \alpha_{k} \rightarrow \infty\)</span></li>
+<li>All (s,a) pairs are (asymptotically) visited infinitely often</li>
+</ol>
+<p>We have two state for every action</p>
+<ol type="1">
+<li>Exploitation: Use greedy policy to select currently known best action</li>
+</ol>
+<p><span class="math display">\[
+a_{k+1}=\max_{a&#39;}Q_k(s_{k+1},a&#39;)
+\]</span></p>
+<ol start="2" type="1">
+<li>Exploration: Try action other than currently known best action</li>
+</ol>
+<p><span class="math display">\[
+a_{k+1}\neq\max_{a&#39;}Q_k(s_{k+1},a&#39;)
+\]</span></p>
+<p>We need to balancing exploration-exploitation trade-off, that is <span class="math inline">\(\epsilon-greedy\)</span> exploration <span class="math display">\[
+a_k=
 \begin{cases}
-t_1+3t_2=0 \\
-g=3t_1\\
-t_2 \neq0
+a\in\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }1-\epsilon_k\\
+a_{k+1}\notin\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }\epsilon_k
 \end{cases}
-\]</span> try <span class="math display">\[
-g=1 \\
-t_1=\frac{1}{3}\\
-t_2=-\frac{1}{9}\\
-e=-\frac{1}{9}
-\]</span> Then the observer is <span class="math display">\[
-\dot \xi=D\xi+Eu+Gy \\
-=-3\xi-\frac{1}{9}u+y \\
-\hat x = 
-\begin{bmatrix}
-C \\ T
-\end{bmatrix}^{-1}
-\begin{bmatrix}
-y \\ \xi
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0 \\ 3 &amp; -9
-\end{bmatrix}
-\begin{bmatrix}
-y \\ \xi
-\end{bmatrix}
 \]</span></p>
 
     </div>
@@ -454,8 +445,8 @@ y \\ \xi
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2018/12/01/EE5101 Linear Systems/10. Servo Control/" rel="next" title="Chapter 10. Servo Control">
-                  <i class="fa fa-chevron-left"></i> Chapter 10. Servo Control
+                <a href="/2019/05/13/EE5904 Neural Network/4.SVM/" rel="next" title="Chapter 4. Support Vector Machine">
+                  <i class="fa fa-chevron-left"></i> Chapter 4. Support Vector Machine
                 </a>
               
             </div>
@@ -464,8 +455,8 @@ y \\ \xi
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/04/11/EE5904 Neural Network/1.MLP/" rel="prev" title="Chapter 1. Multi-Layer Perceptron">
-                  Chapter 1. Multi-Layer Perceptron <i class="fa fa-chevron-right"></i>
+                <a href="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/" rel="prev" title="Chapter 6. Bellman Equation">
+                  Chapter 6. Bellman Equation <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -518,7 +509,7 @@ y \\ \xi
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#state-estimation"><span class="nav-text">State Estimation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#why-state-estimation"><span class="nav-text">1. Why State Estimation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduced-order-observers"><span class="nav-text">2. Reduced-Order Observers</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#reinforcement-learning"><span class="nav-text">Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markov-decision-process"><span class="nav-text">2. Markov Decision Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#q-function"><span class="nav-text">3. Q-function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bellman-equation"><span class="nav-text">4. Bellman Equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#value-iteration"><span class="nav-text">5. Value Iteration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#q-learning"><span class="nav-text">4. Q-learning</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
