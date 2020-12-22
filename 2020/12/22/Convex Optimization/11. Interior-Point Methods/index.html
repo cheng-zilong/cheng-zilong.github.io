@@ -58,14 +58,14 @@
 
   <meta name="description" content="11. Interior-point methods 11.1 Inequality constrained minimization problems In this section, we discuss interior-point methods for solving convex optimization problems that include inequality const">
 <meta property="og:type" content="article">
-<meta property="og:title" content="11. Interior-point methods">
+<meta property="og:title" content="Chapter 11. Interior-point methods">
 <meta property="og:url" content="http://yoursite.com/2020/12/22/Convex Optimization/11. Interior-Point Methods/index.html">
 <meta property="og:site_name" content="Orandragon&#39;s Blog">
 <meta property="og:description" content="11. Interior-point methods 11.1 Inequality constrained minimization problems In this section, we discuss interior-point methods for solving convex optimization problems that include inequality const">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-25T15:23:28.000Z">
+<meta property="og:updated_time" content="2020-12-22T06:00:59.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="11. Interior-point methods">
+<meta name="twitter:title" content="Chapter 11. Interior-point methods">
 <meta name="twitter:description" content="11. Interior-point methods 11.1 Inequality constrained minimization problems In this section, we discuss interior-point methods for solving convex optimization problems that include inequality const">
   <link rel="canonical" href="http://yoursite.com/2020/12/22/Convex Optimization/11. Interior-Point Methods/">
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>11. Interior-point methods | Orandragon's Blog</title>
+  <title>Chapter 11. Interior-point methods | Orandragon's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -232,7 +232,7 @@
       <meta itemprop="name" content="Orandragon's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">11. Interior-point methods
+        <h1 class="post-title" itemprop="name headline">Chapter 11. Interior-point methods
 
           
         </h1>
@@ -248,19 +248,11 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:49:01" itemprop="dateCreated datePublished" datetime="2020-12-22T13:49:01+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:49:01 / Modified: 14:00:59" itemprop="dateCreated datePublished" datetime="2020-12-22T13:49:01+08:00">2020-12-22</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-25 23:23:28" itemprop="dateModified" datetime="2019-08-25T23:23:28+08:00">2019-08-25</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -278,7 +270,7 @@
           
 
           
-            <span id="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="11. Interior-point methods" title="Views">
+            <span id="/2020/12/22/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 11. Interior-point methods" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -313,7 +305,16 @@
         <h1 id="interior-point-methods">11. Interior-point methods</h1>
 <h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
 <p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
-\coo[f_0(x)]{f_i(x)\le 0\\Ax=b}
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0\\Ax=b
+\end{array}
+\end{array}
 \]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
 \begin{array}{rcl}
 Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
@@ -331,13 +332,31 @@ Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
 </ol>
 <h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
 <p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
-\coo[f_0(x)+\sum_{i=1}^mI_-(f_i(x))]{Ax=b}
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^mI_-(f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
 \]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
 <h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
 <p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
 \hat I_-(u)=-\frac{1}{t}\log (-u)
 \]</span> Then the problem becomes <span class="math display">\[
-\coo[f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))]{Ax=b}
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
 \]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
 <p>The function <span class="math display">\[
 \phi(x)=-\sum_{i=1}^m \log(-f_i(x))
@@ -349,7 +368,16 @@ Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
 \]</span></p>
 <h3 id="central-path">11.2.2 Central path</h3>
 <p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
-\coo[tf_0(x)+\phi(x)]{Ax=b}
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+tf_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
 \]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
 <p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
 Ax^\star(t)=b\\
@@ -373,7 +401,16 @@ Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
 \]</span> <strong>Force field interpretation</strong></p>
 <h2 id="the-barrier-method">11.3 The barrier method</h2>
 <p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
-\coo[(m/\epsilon)f_0(x)+\phi(x)]{Ax=b}
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+(m/\epsilon)f_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
 \]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
 <h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
 <p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
@@ -437,8 +474,8 @@ Ax-b
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/12/22/Convex Optimization/10. Equality constrained Minimization/" rel="next" title="10. Equality constrained Minimization">
-                  <i class="fa fa-chevron-left"></i> 10. Equality constrained Minimization
+                <a href="/2020/12/22/Convex Optimization/10. Equality constrained Minimization/" rel="next" title="Chapter 10. Equality constrained Minimization">
+                  <i class="fa fa-chevron-left"></i> Chapter 10. Equality constrained Minimization
                 </a>
               
             </div>
