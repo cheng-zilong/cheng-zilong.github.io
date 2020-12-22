@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/Convex Optimization/10. Equality constrained Minimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" class="post-title-link" itemprop="url">Chapter 3-3. Linear Functionals and Riesz Representation Theorem</a>
+            <a href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-title-link" itemprop="url">Chapter 10. Equality constrained Minimization</a>
           
         </h1>
 
@@ -244,7 +244,265 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:00 / Modified: 15:00:06" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+              <time title="Created: 2019-09-03 13:49:01 / Modified: 13:59:42" itemprop="dateCreated datePublished" datetime="2019-09-03T13:49:01+08:00">2019-09-03</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 10. Equality constrained Minimization" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="equality-constrained-minimization">10. Equality constrained minimization</h1>
+<h2 id="equality-constrained-minimization-problems">10.1 Equality constrained minimization problems</h2>
+<p>In this chapter we describe methods for solving a convex optimization problem with equality constraints, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> We denote <span class="math display">\[
+p^\star=\inf\{f(x)|Ax=b\}=f(x^\star)
+\]</span> Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Solving the equality constrained optimization problem is therefore equivalent to finding a solution of the KKT conditions shown in the above, which is a n+p equations in the n+p variables <span class="math inline">\(v^\star\)</span> and <span class="math inline">\(x^\star\)</span>. The first one is called <strong>primal feasibility equations</strong>, which are linear. The second one is called <strong>dual feasibility equations</strong>, and are in general non-linear.</p>
+<p>The bulk if this chapter is to denoted to extensions of Newton's method that directly handle equality constraints. In many cases, this method is preferable than the methods that reduce an equality constrained problem to unconstrained one. One reason is that the problem structure is destroyed by elimination. Another reason is conceptual, methods that directly handle the constraints can be thought of solving the problem directly.</p>
+<h3 id="equality-constrained-convex-quadratic-minimization">10.1.1 Equality constrained convex quadratic minimization</h3>
+<p><span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+(1/2)x^TPx+q^Tx+r
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span></p>
+<p>The optimal conditions are <span class="math display">\[
+Ax^\star =b \quad Px^\star +q+A^Tv^\star=0
+\]</span> which we can write as <span class="math display">\[
+\begin{bmatrix}
+P &amp; A^T\\
+A  &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x^\star \\ v^\star
+\end{bmatrix}=
+\begin{bmatrix}
+-q\\b
+\end{bmatrix}
+\]</span> This set of <span class="math inline">\(n+p\)</span> linear equations is called <strong>KKT system</strong>. The coefficient matrix is called <strong>KKT matrix</strong>.</p>
+<p>If KKT matrix is nonsingular, there is an unique optimal solution. If singular, there is infinite solutions. If not solvable, the problem is infeasible.</p>
+<h3 id="eliminating-equality-constraints">10.1.2 Eliminating equality constraints</h3>
+<p>We have <span class="math display">\[
+\{x|Ax=b\}=\{Fz+\hat x|z\in R^{n-p}\}
+\]</span> where <span class="math inline">\(\hat x\)</span> is a particular solution of <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(F\)</span> is the null space of A.</p>
+<h3 id="solving-equality-constrained-problem-via-the-dual">10.1.3 Solving equality constrained problem via the dual</h3>
+<p>Another approach is to solving the dual, and then recover the optimal primal variable <span class="math inline">\(x^\star\)</span>.</p>
+<p>The dual function of 10.1 is <span class="math display">\[
+g(v)=-b^Tv+\inf_x(f(x)+v^TAx) \\
+=-b^Tv-f^\star (-A^Tv)
+\]</span></p>
+<p>where <span class="math inline">\(f^*\)</span> is the conjugate of <span class="math inline">\(f\)</span>.</p>
+<h2 id="newtons-method-with-equality-constraints">10.2 Newton's method with equality constraints</h2>
+<p>In this section we describe an extension of Newton's method to include equality constraints. The method is almost the same as Newton's method without constraints, except two differences: the initial point must be feasible, and the definition of Newton step is modified to take the equality constraints into account.</p>
+<h3 id="the-newton-step">10.2.1 The newton step</h3>
+<p>For the equality constrained problem, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> we replace the objective with the second-order Taylor approximation near <span class="math inline">\(x\)</span>, to form the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\hat f(x+v)=f(x)+\nabla f(x)^Tv+(1/2)v^T\nabla^2f(x)v
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+A(x+v)=b
+\end{array}
+\end{array}
+\]</span> with variable <span class="math inline">\(v\)</span>. This is a convex quadratic minimization problem with equality constraints, and can be solved analytically. We define the newton step <span class="math inline">\(\Delta x_{nt}\)</span> at <span class="math inline">\(x\)</span> as the solution of the convex quadratic problem in the above. Then we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{nt}\\w
+\end{bmatrix}=
+\begin{bmatrix}
+-\nabla f(x)\\0
+\end{bmatrix}
+\]</span> where <span class="math inline">\(w\)</span> is the optimal dual variable for the quadratic problem.</p>
+<p><strong>Solution of linearized optimality conditions</strong></p>
+<p>Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\\ \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Newton method can be interpreted by solving the above equations.</p>
+<p>We substitute <span class="math inline">\(x+\Delta x_{nt}\)</span> for <span class="math inline">\(x^\star\)</span> and <span class="math inline">\(w\)</span> for <span class="math inline">\(v^\star\)</span>, and replace the gradient term in the second equation by its linearized approximation around <span class="math inline">\(x\)</span>, to obtain the equation, <span class="math display">\[
+A(x+\Delta x_{nt})=b\\
+\nabla f(x+\Delta x)+A^Tw\approx \nabla f(x)+\nabla^2 f(x)\Delta x_{nt}+A^Tw=0
+\]</span></p>
+<h2 id="infeasible-start-newton-method">10.3 Infeasible start Newton method</h2>
+<p>As in Newton's method, we start with optimality conditions for the equality constrained optimization problem: <span class="math display">\[
+Ax^\star=b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Let <span class="math inline">\(x\)</span> denote the current point, which we do not assume to be feasible. We will do second-order Taylor expansion around the point <span class="math inline">\(x\)</span>, and our goal is to find a step <span class="math inline">\(\Delta x\)</span> so that <span class="math inline">\(x+\Delta x\)</span> satisfies (at least approximately) the optimality conditions, i.e. <span class="math inline">\(x+\Delta x\approx x^\star\)</span>. <span class="math display">\[
+\nabla f(x+\Delta x)\approx \nabla f(x)+\nabla^2f(x)\Delta x
+\]</span> For the gradient, we have <span class="math display">\[
+A(x+\Delta x)=b\\
+\nabla f(x)+\nabla^2f(x)\Delta x+A^Tw=0
+\]</span> This is a linear equations for <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+ \begin{bmatrix}
+ \Delta x\\ w
+ \end{bmatrix}=
+ -\begin{bmatrix}
+ \nabla f(x)\\Ax-b
+ \end{bmatrix}
+\]</span></p>
+<p><strong>Primal-dual interpretation</strong></p>
+<p>We can give an interpretation of the equation in terms of the primal-dual method for the equality constrained problem. By the primal-dual method, we mean one in which we update both the primal variable <span class="math inline">\(x\)</span> and the dual variable <span class="math inline">\(v\)</span>, in order to satisfy the optimality conditions.</p>
+<p>We express the optimality conditions as <span class="math inline">\(r(x^\star,v^\star)=0\)</span>, where <span class="math inline">\(r:R^n\times R^p \rightarrow R^n\times R^p\)</span> is defined as <span class="math display">\[
+r(x,v)=(r_{dual}(x,v),r_{pri}(x,v))\\
+r_{dual}(x,v)=\nabla f(x)+A^Tv\\
+r_{pri}(x,v)=Ax-b
+\]</span> The first order Taylor approximate of <span class="math inline">\(r\)</span> is <span class="math display">\[
+r(y+z)\approx r(y)+Dr(y)z
+\]</span> We define <span class="math inline">\(\Delta y_{pd}=(\Delta x_{pd},\Delta v_{pd})\)</span> such that the Taylor approximation vanishes, i.e. <span class="math display">\[
+r(y+\Delta y_{pd})=r(y)+Dr(y)\Delta y_{pd}=0
+\]</span> Then we have <span class="math display">\[
+Dr(y)\Delta y_{pd}=-r(y)
+\]</span> Evaluating the derivative of <span class="math inline">\(r\)</span>, we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x)&amp;A^T\\A&amp;0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{pd}\\\Delta v_{pd}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+r_{dual}\\ r_{pri}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+\nabla f(x)+A^Tv\\ Ax-b
+\end{bmatrix}
+\]</span> Let <span class="math inline">\(w=v+\Delta v_{pd}\)</span>, we have Newton step.</p>
+<p><strong>Using infeasible start Newton method to simplify initialization</strong></p>
+<p>The main advantage of the infeasible start Newton method is in the initialization required.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" class="post-title-link" itemprop="url">Chapter 3-3. Linear Functionals and Riesz Representation Theorem</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-27 13:48:00 / Modified: 15:00:06" itemprop="dateCreated datePublished" datetime="2019-08-27T13:48:00+08:00">2019-08-27</time>
             </span>
           
             
@@ -266,7 +524,7 @@
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3-3. Linear Functionals and Riesz Representation Theorem" title="Views">
+            <span id="/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3-3. Linear Functionals and Riesz Representation Theorem" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +542,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -327,207 +585,6 @@ f(x)=\int _a^bx(t)dt
 <li><p>if H is infinite dimensional, then it is isomorphic to <span class="math inline">\(l^2\)</span>.</p></li>
 <li><p>If H has a dimension N, then it is isomorphic to <span class="math inline">\(C^N\)</span>.</p></li>
 </ol>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" class="post-title-link" itemprop="url">Chapter 3-1. Hilbert Spaces and Orthonormal Systems</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:00 / Modified: 15:00:22" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3-1. Hilbert Spaces and Orthonormal Systems" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="hilbert-spaces-and-orthonormal-systems">Hilbert Spaces and Orthonormal Systems</h1>
-<h2 id="introduction">3.1 Introduction</h2>
-<p>This chapter is concerned with inner product space and Hilbert Spaces. The basic ideas and properties will be discussed with special attention given to orthonormal systems.</p>
-<h2 id="inner-product-spaces-definition-and-examples">3.2 Inner Product Spaces-Definition and Examples</h2>
-<p>==Definition 3.2.1== Inner product space</p>
-<p>Let E be a complex vector space. A mapping <span class="math inline">\(\langle \cdot,\cdot\rangle:E\times E\rightarrow C\)</span> is called an inner product in E if for any <span class="math inline">\(x,y,z\in E\)</span> and <span class="math inline">\(\alpha,\beta \in C\)</span> the following conditions are satisfied,</p>
-<ol type="a">
-<li><p><span class="math inline">\(\langle x,y\rangle=\overline {\langle y,x\rangle}\)</span></p></li>
-<li><p><span class="math inline">\(&lt;\alpha x+\beta y,z&gt;=\alpha&lt;x,z&gt;+\beta&lt;y,z&gt;\)</span></p></li>
-<li><p><span class="math inline">\(&lt;x,x&gt;\ge 0\)</span> and <span class="math inline">\(&lt;x,x&gt;=0\implies x=0\)</span></p></li>
-</ol>
-<p>A vector space with an inner product is called a inner product space or pre-Hilbert space.</p>
-<p>According to the definition, we know that the inner product of two vectors is a complex number.</p>
-<p>An inner product is the generalization of the dot product.</p>
-<p>==Example 3.2.1==</p>
-<p>The simplest example is an inner product of complex number C. The inner product is defined as <span class="math display">\[
-\def \norm &lt;#1,#2&gt;{\langle#1,#2\rangle}
-\norm&lt;x,y&gt;=x\bar y
-\]</span> ==Example 3.2.2==</p>
-<p>The space <span class="math inline">\(C^N\)</span> of ordered N-tuples <span class="math inline">\(x=(x_1,x_2,\dotsm,x_N)\)</span> of complex numbers, with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^N x_k \bar y_k
-\]</span> ==Example 3.2.3==</p>
-<p>The space <span class="math inline">\(l^2\)</span> of all sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex numbers such that <span class="math inline">\(\sum_{k=1}^\infty |x_k|^2&lt;\infty\)</span> with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^\infty x_k\bar y_k
-\]</span> is an infinite dimensional inner product space.</p>
-<p>==Example 3.2.4==</p>
-<p>Consider the space of sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex number with only finite number of items is non-zero. This is an inner product space with the inner product defined as in Example 3.2.3.</p>
-<p>==Example 3.2.5==</p>
-<p>The space <span class="math inline">\(\mathscr C([a,b])\)</span> of all continuous complex-valued functions on the interval [a,b], with the inner product <span class="math display">\[
-\norm&lt;f,g&gt;=\int _a^b f(x)\overline{g(x)} dx
-\]</span> is an inner product space.</p>
-<p>==Example 3.2.6==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> with the inner product defined by <span class="math display">\[
-\int _{-\infty} ^\infty f(x)\overline{g(x)} dx
-\]</span> and more generally, the space <span class="math inline">\(L^2(R^N)\)</span> with the inner product defined by <span class="math display">\[
-\int _{R^N} f(x)\overline{g(x)} dx
-\]</span> are inner product space.</p>
-<p>==Example 3.2.7==</p>
-<p>Let E be the Cartesian product of inner product spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, i.e. <span class="math inline">\(E=E_1\times E_2\)</span>.</p>
-<p>The space E is an inner product space with the inner product defined by <span class="math display">\[
-\norm&lt;(x_1,y_1),(x_2,y_2)&gt; = \norm&lt;x_1,x_2&gt;+\norm&lt;y_1,y_2&gt;
-\]</span></p>
-<h2 id="norm-in-an-inner-product-space">3.3 Norm in an inner product space</h2>
-<p>An inner product space is a vector space with an inner product. It turns out that every inner product space is also a normed space with the norm defined by <span class="math display">\[
-||x||=\sqrt{\norm&lt;x,x&gt;}
-\]</span> ==Definition 3.3.1== (Norm in an Inner Product Space)</p>
-<p>By the norm in an inner product space E, we mean the functional defined by <span class="math inline">\(||x||=\sqrt{\norm&lt;x,x&gt;}\)</span></p>
-<p>We have proved that every inner product space is a normed space. But it is <strong>not true</strong> that any normed space is an inner product space. In the following theorem, we prove a property of a norm in an inner product space which is a necessary and sufficient condition for a normed space to be an inner product space.</p>
-<p>==Theorem 3.3.2== Parallelogram Law</p>
-<p>For any two elements <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of an inner product space we have <span class="math display">\[
-||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)
-\]</span> One of the most important consequences of having the inner product is the possibility of defining <strong>orthogonality</strong> of vectors. This makes the theory of Hilbert spaces very different from the general theory of Banach spaces.</p>
-<p>==Definition 3.3.2== Orthogonal vectors</p>
-<p>Two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in an inner product space are called orthogonal, denoted by <span class="math inline">\(x\perp y\)</span> if <span class="math inline">\(\norm&lt;x,y&gt;=0\)</span>.</p>
-<p>==Theorem 3.3.3== Pythagorean Formula</p>
-<p>For any pair of orthogonal vectors we have <span class="math display">\[
-||x+y||^2=||x||^2+||y||^2
-\]</span></p>
-<h2 id="hilbert-spaces-definition-and-examples">3.4 Hilbert Spaces-Definition and Examples</h2>
-<p>==Definition 3.4.1== Hilbert space</p>
-<p>A complete inner product space is called a Hilbert space.</p>
-<p>By the completeness of an inner product space E, we mean the completeness of E as a ==normed space==.</p>
-<p>Now we are going to discuss completeness of the inner product spaces and give some new examples.</p>
-<p>==Example 3.4.1==</p>
-<p>Since C is complete, it is a Hilbert space.</p>
-<p>==Example 3.4.2==</p>
-<p><span class="math inline">\(C^N\)</span> is Hilbert space.</p>
-<p>==Example 3.4.3==</p>
-<p><span class="math inline">\(l^2\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.4==</p>
-<p>The space described in Example 3.2.4 is ==not== Hilbert space.</p>
-<p>==Example 3.4.5==</p>
-<p><span class="math inline">\(\mathscr C([a,b])\)</span> is ==not== Hilbert space.</p>
-<p>==Example 3.4.6==</p>
-<p>The space <span class="math inline">\(L^2([a,b])\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.7==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> is a Hilbert space.</p>
-<h2 id="strong-and-weak-convergence">3.5 Strong and Weak Convergence</h2>
-<p>Since every inner product is a normed , it is equipped with a convergence, namely the convergence defined by the norm. This convergence is called strong convergence.</p>
-<p>==Definition 3.5.1== Strong convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called strongly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(||x_n-x||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>==Definition 3.5.2== Weak convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called weakly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>It will be convenient to reserve the notation <span class="math inline">\(x_n\rightarrow x\)</span> for the strong convergent and use <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> for weakly convergent.</p>
-<p>==Theorem 3.5.1==</p>
-<p>A strongly convergent sequence is weakly convergent.</p>
-<p>==Theorem 3.5.2==</p>
-<p>If <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> and <span class="math inline">\(||x_n||\rightarrow ||x||\)</span>, then <span class="math inline">\(x_n\rightarrow x\)</span></p>
-<p>==Theorem 3.5.3==</p>
-<p>Let <span class="math inline">\(S\)</span> be a subset of an inner product space <span class="math inline">\(E\)</span> such that span S is dense in E. If <span class="math inline">\((x_n)\)</span> is a bounded sequence in E and <span class="math display">\[
-\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\quad \forall y\in S
-\]</span> then <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span>.</p>
-<p>==Theorem 3.5.4==</p>
-<p>Weakly convergent sequences in a <strong>Hilbert Space</strong> are bounded. i.e. if <span class="math inline">\((x_n)\)</span> is a weakly convergent sequence, then there exists a number M such that <span class="math inline">\(||x_n||\le M\)</span> for all <span class="math inline">\(n\in N\)</span>.</p>
 
         
       

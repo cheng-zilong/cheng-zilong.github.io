@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" class="post-title-link" itemprop="url">Chapter 1-1. Normed Vector Spaces</a>
+            <a href="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" class="post-title-link" itemprop="url">Chapter 2-1. The Lebesgue Integral</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:00 / Modified: 14:58:29" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+              <time title="Created: 2019-07-28 13:48:00 / Modified: 14:58:52" itemprop="dateCreated datePublished" datetime="2019-07-28T13:48:00+08:00">2019-07-28</time>
             </span>
           
             
@@ -266,7 +266,7 @@
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 1-1. Normed Vector Spaces" title="Views">
+            <span id="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 2-1. The Lebesgue Integral" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +284,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/1 Normed Vector Spaces/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,219 +298,213 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="normed-vector-spaces">Normed Vector Spaces</h1>
-<h2 id="introduction">1.1 Introduction</h2>
-<p>The basic algebraic concepts in the theory of Hilbert spaces are those of a <strong>vector space</strong> and an <strong>inner product</strong>. The inner product defines a norm, and therefore, every Hilbert space is a norm space. Since the norm plays a very important role in the theory. It is not possible to study Hilbert space without familiarity with basic concepts and properties of normed spaces.</p>
-<h2 id="vector-spaces">1.2 Vector spaces</h2>
-<p>We will consider <strong>real vector spaces</strong> and <strong>complex vector spaces</strong>. The field of real number will be denoted by <span class="math inline">\(\mathbb R\)</span> and the filed of complex number will be denoted as <span class="math inline">\(\mathbb C\)</span>. We will use <span class="math inline">\(\mathbb F\)</span> to denote either <span class="math inline">\(\mathbb R\)</span> or <span class="math inline">\(\mathbb C\)</span>.</p>
-<p>==Definition 1.2.1== Vector Space</p>
-<p>By a vector space, we mean a nonempty set <span class="math inline">\(E\)</span> with two operations</p>
-<p>a mapping <span class="math inline">\((x,y)\mapsto x+y\)</span> from <span class="math inline">\(E\times E\)</span> into <span class="math inline">\(E\)</span> is called <strong>addition</strong>.</p>
-<p>a mapping <span class="math inline">\((\lambda,x)\mapsto \lambda x\)</span> from <span class="math inline">\(F\times E\)</span> into <span class="math inline">\(E\)</span> is called <strong>multiplication</strong> by scalars.</p>
-<p>==Example 1.2.1== The scalar fields <span class="math inline">\(\mathbb R\)</span> and <span class="math inline">\(\mathbb C\)</span> are the simplest non-trivial vector space.</p>
-<p>==Example 1.2.2== Function Spaces</p>
-<p>Let <span class="math inline">\(X\)</span> be an arbitrary non-empty set and let <span class="math inline">\(E\)</span> be a vector space. Denote by <span class="math inline">\(F\)</span> the space of all functions from <span class="math inline">\(X\)</span> into <span class="math inline">\(E\)</span>. Then <span class="math inline">\(F\)</span> becomes a vector space if addition and multiplication by scalars are defined. The zero vector in <span class="math inline">\(F\)</span> is the function which assigns the zeros vector of <span class="math inline">\(E\)</span> to every element of <span class="math inline">\(X\)</span>. <span class="math display">\[
-(f+g)(x)=f(x)+g(x)\\
-(\lambda f)(x)=\lambda f(x)
-\]</span> A subset <span class="math inline">\(E_1\)</span> of a vector space <span class="math inline">\(E\)</span> is called a ==vector subspace== if for every <span class="math inline">\(\alpha,\beta \in \mathbb F\)</span> and <span class="math inline">\(x,y\in E_1\)</span>, the vector <span class="math inline">\(\alpha x+\beta y\in E_1\)</span>.</p>
-<p><span class="math inline">\(E_1\)</span> is a ==proper subspace== of <span class="math inline">\(E\)</span> if <span class="math inline">\(E_1\)</span> is a subspace of <span class="math inline">\(E\)</span> and <span class="math inline">\(E_1\neq E\)</span>.</p>
-<p>==Example 1.2.3==</p>
-Let <span class="math inline">\(\Omega\)</span> be an open subset of <span class="math inline">\(\mathbb R^N\)</span>. The following are subspaces of the space of all functions from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb C\)</span>. $$
-<span class="math display">\[\begin{array}{rcl}
-\mathscr C(\Omega)&amp;=&amp;\text{The space of all continuous complex-valued functions defined on }\Omega\\
-
-\mathscr C^k(\Omega)&amp;=&amp;\text{The space of all complex-valued functions defined on }\Omega \\
-&amp;&amp;\text{ with continuous partial derivatives of order k}\\
-
-\mathscr C^\infty(\Omega)&amp;=&amp;\text{The space of all complex-valued 
-}\\
-&amp;&amp;\text{functions defined on }\Omega \text{ with continuous partial derivatives of order infty}\\
-
-\mathscr P(\Omega)&amp;=&amp;\text{The space of all polynomials of $N$ variables}
-\end{array}\]</span>
-<p>$$ ==Example1.2.4== Sequence spaces</p>
-<p>If the set <span class="math inline">\(X\)</span> in function spaces is the set <span class="math inline">\(\mathbb N\)</span> of all positive integers. Then the corresponding function space is actually a space of sequences. <span class="math display">\[
-(x_1,x_2,\dotsm)+(y_1,y_2,\dotsm)=(x_1+y_1,x_2+y_2,\dotsm)\\
-\lambda(x_1,x_2,\dotsm)=(\lambda x_1,\lambda x_2,\dotsm)
-\]</span> ==Example 1.2.5== <span class="math inline">\(l^p\)</span>-Spaces</p>
-<p>Denote by <span class="math inline">\(l^p\)</span>, for <span class="math inline">\(p\ge 1\)</span>, the space of all infinite sequences <span class="math inline">\((z_n)\)</span> of complex numbers such that <span class="math inline">\(\sum_{n=1}^\infty |z_n|^p&lt;\infty\)</span></p>
-<p>We are going to show that <span class="math inline">\(l^p\)</span> is a vector space.</p>
-<p>if <span class="math inline">\((x_n),(y_n)\in l^p\)</span> and <span class="math inline">\(\lambda \in C\)</span>. <span class="math display">\[
-\sum_{n=1}^\infty|x_n+y_n|^p&lt;\infty
-\]</span> from Minkowski's inequality <span class="math inline">\((\sum_{n=1}^\infty |x_n+y_n|^p)^{1/p} \le (\sum_{n=1}^\infty |x_n|^p)^{1/p}+(\sum_{n=1}^\infty |y_n|^p)^{1/p}\)</span></p>
-<p>And <span class="math display">\[
-\sum_{n=1}^\infty |\lambda x_n|^p=|\lambda|^p \sum_{n=1}^\infty |x_n|^p&lt;\infty
-\]</span> Cartesian Product of Vector Spaces</p>
-<p>Let <span class="math inline">\(E_1,\dotsm,E_n\)</span> be vector spaces over the same scalar field <span class="math inline">\(F\)</span>. <span class="math display">\[
-E=\{(x_1,\dotsm,x_n):x_1\in E_1,x_2\in E_2,\dotsm,x_n\in E_n\}=E_1\times\dotsm\times E_n
-\]</span></p>
-<h2 id="linear-independence-basis-dimension">1.3 Linear Independence, Basis, Dimension</h2>
-<p>==Definition 1.3.1== Linear combination</p>
-<p>Let <span class="math inline">\(x_1,\dotsm,x_k\)</span> be elements of a vector space <span class="math inline">\(E\)</span>. A vector <span class="math inline">\(x\in E\)</span> is called a linear combination of vectors if there exists scalars <span class="math inline">\(\alpha_1,\dotsm,\alpha_k\)</span> such that <span class="math display">\[
-x=\alpha_1x_1+\dotsm+\alpha_kx_k
-\]</span> ==Definition 1.3.2== Linear independence</p>
-<p>A <strong>finite</strong> collection of vectors is called linearly independent if <span class="math inline">\(\alpha_1x_1+\dotsm+\alpha_kx_k=0\)</span> implies <span class="math inline">\(\alpha_1,\alpha_2,\dotsm, \alpha_k=0\)</span>.</p>
-<p>An <strong>infinite</strong> collection of vectors <span class="math inline">\(\mathscr A\)</span> is called linearly independent if every finite subcollection of <span class="math inline">\(\mathscr A\)</span> is linearly independent.</p>
-<p>==Definition1.3.3== Basis</p>
-<p>A set of vectors <span class="math inline">\(\mathscr B\subset E\)</span> is called a basis of <span class="math inline">\(E\)</span> if <span class="math inline">\(\mathscr B\)</span> is linearly independent and <span class="math inline">\(span \space \mathscr B=E\)</span></p>
-<p>If there exists a finite basis in <span class="math inline">\(E\)</span>, then <span class="math inline">\(E\)</span> is called finite dimensional vector space.</p>
-<p><span class="math inline">\(E\)</span> has a basis that consists exactly n vectors, then any other basis has exactly n vectors. In such a case n is called the dimension of <span class="math inline">\(E\)</span>. <span class="math inline">\(\text{dim }E=n\)</span>. Spaces <span class="math inline">\(\mathscr C(\Omega), \mathscr C^k(\mathbb R^N), \mathscr C^\infty (\mathbb R^N)\)</span> are infinite dimensional.</p>
-<h2 id="normed-spaces">1.4 Normed Spaces</h2>
-<p>In general, it does not make sense to ask what is the length or magnitude of a vector in a vector space. The concept of a norm is an abstract generalization of the length of a vector.</p>
-<p>==Definition 1.4.1== Norm</p>
-<p>A function <span class="math inline">\(x\mapsto ||x||\)</span> from a vector space <span class="math inline">\(E\)</span> into <span class="math inline">\(R\)</span> is called a norm if it satisfies the following conditions</p>
+          <h1 id="the-lebesgue-integral">The Lebesgue Integral</h1>
+<h2 id="introduction">2.1 Introduction</h2>
+<p>The main purpose of this book is a presentation of basic methods and applications of Hilbert spaces. One of the most important applications of the theory is the solution of differential equations. To this aim, we need, for example, a Hilbert space which contains all differentiable functions defined on some intervals [a,b] for which the inner product is defined by <span class="math display">\[
+\langle f,g \rangle = \int_a^bf(x)\overline{g(x)}dx
+\]</span> The smallest Hilbert space satisfying these conditions is the space of Lebesgue square integrable functions on [a,b]. Thus, the Lebesgue integral is essential for understanding some of the most important applications of Hilbert space theory.</p>
+<h2 id="step-functions">2.2 Step Functions</h2>
+<p>By a step function on the real line <span class="math inline">\(R\)</span> we mean a finite linear combination of characteristic functions of semi-open intervals <span class="math inline">\([a,b)\subseteq R\)</span>. Thus for every step function <span class="math inline">\(f\)</span>, there are intervals <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm,[a_n,b_n)\)</span> and numbers <span class="math inline">\(\lambda_1,\lambda_2,\dotsm,\lambda_n \in R\)</span> such that <span class="math display">\[
+f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)
+\]</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k)\)</span>. That means for <span class="math inline">\(x\in [a_k,b_k)\)</span>, <span class="math inline">\(f(x)=1\)</span>, and <span class="math inline">\(f(x)=0\)</span>, otherwise.</p>
+<p>If we assume that intervals are disjoint and the minimal number of intervals are used, then the representation can be unique. This representation is called basic representation of <span class="math inline">\(f\)</span> and we call <span class="math inline">\(f=0\)</span> the basic representation of the zero function.</p>
+<p>The collection of all step function on R is a vector space. The absolute value of a step function is again a step function.</p>
+<p>If <span class="math inline">\(f=\alpha_1f_1+\alpha_2f_2+\dotsm+\alpha_nf_n\)</span> is a basic representation of a step function, then <span class="math display">\[
+|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n
+\]</span> For any real value functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have <span class="math display">\[
+\min(f,g)=\frac{1}{2}(f+g-|f-g|)\quad \max(f,g)=\frac{1}{2}(f+g+|f-g|)
+\]</span> That means <span class="math inline">\(\min(f,g)\)</span> and <span class="math inline">\(\max(f,g)\)</span> are step functions.</p>
+<p>By the ==support== of a nonzero function <span class="math inline">\(f\)</span>, denoted by supp <span class="math inline">\(f\)</span>, we mean the set of all points <span class="math inline">\(x\in R\)</span> for which <span class="math inline">\(f(x)\neq 0\)</span>. The support of a nonzero step function is always a finite union of semi-open intervals. If <span class="math inline">\(f=0\)</span>, supp <span class="math inline">\(f=\empty\)</span></p>
+<p>==Definition 2.2.1== Integral of a step function</p>
+<p>The integral <span class="math inline">\(\int f\)</span> of a step function <span class="math inline">\(f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)\)</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k),k=1,\dotsm,n\)</span> is defined by <span class="math display">\[
+\int f=\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)
+\]</span> clearly, the value of <span class="math inline">\(\int f\)</span> is equal to the Riemann Integral of <span class="math inline">\(f\)</span>. From the properties of Riemann integral it follows that the defined integral does not depend on a particular representation.</p>
+<p>==Theorem 2.2.1==</p>
+<p>For any step functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have</p>
 <ol type="a">
-<li><p><span class="math inline">\(||x||=0\)</span> if and only if <span class="math inline">\(x=0\)</span></p></li>
-<li><p><span class="math inline">\(||\lambda x||=|\lambda|\space ||x||\)</span> for every <span class="math inline">\(x\in E\)</span> and <span class="math inline">\(\lambda \in F\)</span></p></li>
-<li><p><span class="math inline">\(||x+y||\le ||x||+||y||\)</span> for every <span class="math inline">\(x,y \in E\)</span></p></li>
+<li><p><span class="math inline">\(\int (f+g)=\int f+\int g\)</span></p></li>
+<li><p><span class="math inline">\(\int \lambda f=\lambda \int f\)</span>, <span class="math inline">\(\lambda \in R\)</span></p></li>
+<li><p><span class="math inline">\(f\le g\implies \int f\le \int g\)</span></p></li>
+<li><p><span class="math inline">\(|\int f|\le \int |f|\)</span></p></li>
 </ol>
-<p>For nonnegativity, <span class="math inline">\(0=||0||=||x-x||\le ||x||+||-x||=2||x||\)</span></p>
-<p>Example</p>
-<ol type="1">
-<li><p>The function defined by <span class="math inline">\(||x||=\sqrt{x_1^2+\dotsm+x_N^2}\)</span> is a norm in <span class="math inline">\(R^N\)</span>. This norm is often called the Euclidean norm</p>
-<p>The following are also norms <span class="math display">\[
-||x||=|x_1|+\dotsm+|x_N|\\
-||x||=\max\{|x_1|,\dotsm,|x_N|\}
-\]</span></p></li>
-<li><p>The formula <span class="math inline">\(||z||=\sqrt{|z_1|^2+\dotsm+|z_n|^2}\)</span> defines a norm in <span class="math inline">\(C^N\)</span></p></li>
-<li><p>Let <span class="math inline">\(\Omega\)</span> be a closed bounded subset of <span class="math inline">\(R^n\)</span>. The function $||f||=_{x}|f(x)| $ defines a norm in <span class="math inline">\(\mathscr C(\Omega)\)</span></p></li>
-<li><p>Let <span class="math inline">\(z=(z_n)\in l^p\)</span>. The function defined by <span class="math inline">\(||z||=(\sum_{n=1}^\infty|z_n|^p)^{1/p}\)</span> is a norm in <span class="math inline">\(l^p\)</span></p></li>
-</ol>
-<p>==Definition 1.4.2== Normed Space</p>
-<p>A vector space with a norm is called a normed space.</p>
-<p>We can say a normed space is a pair <span class="math inline">\((E,||\cdot||)\)</span>, where <span class="math inline">\(E\)</span> is a vector space and <span class="math inline">\(||\cdot||\)</span> is a norm defined on <span class="math inline">\(E\)</span>.</p>
-<p>It is possible to define different norms on the same vector space. Therefore, to define a normed space, we need to specify both the vector space and the norm.</p>
-<p>==Definition 1.4.3== Convergence in a normed space</p>
-<p>Let <span class="math inline">\((E,||\cdot||)\)</span> be a normed space. We say that a sequence <span class="math inline">\((x_n)\)</span> of elements of <span class="math inline">\(E\)</span> converges to some <span class="math inline">\(x\in E\)</span> if for every <span class="math inline">\(\varepsilon &gt;0\)</span>, there exists a number M such that for every <span class="math inline">\(n\ge M\)</span> we have <span class="math inline">\(||x_n-x||&lt;\varepsilon\)</span>. In such case, we write <span class="math inline">\(\lim_{n\rightarrow \infty} x_n=x\)</span> or <span class="math inline">\(x_n\rightarrow x\)</span>.</p>
-<p>If we have a normed space <span class="math inline">\(E\)</span>, then we automatically have a convergence defined in <span class="math inline">\(E\)</span>. However, not every convergence definition can be defined with norm (pointwise convergence).</p>
-<p>Here are some examples.</p>
-<p>==Example 1.4.2== Uniform Convergence</p>
-<p>Consider the space <span class="math inline">\(\mathscr C(\Omega)\)</span> of all continuous functions defined on a closed bounded set <span class="math inline">\(\Omega \subset R^n\)</span>. Let <span class="math inline">\(f,f_1,f_2,\dotsm\in \mathscr C(\Omega)\)</span></p>
-<p>We say that the sequence <span class="math inline">\((f_n)\)</span> converges uniformly to <span class="math inline">\(f\)</span> if for every <span class="math inline">\(\epsilon&gt;0\)</span> there exists a constant M such that for all <span class="math inline">\(x\in \Omega\)</span> and for all indices <span class="math inline">\(n\ge M\)</span> we have <span class="math inline">\(||f(x)-f_n(x)||&lt;\epsilon\)</span>. For the norm defined in the above example, we have <span class="math display">\[
-f_1,f_2,\dotsm\text{ converges uniformly to $f$ if and ony if }\max_{x\in\Omega}|f_n(x)-f(x)|\rightarrow 0
-\]</span> ==Definition 1.4.4== Equivalence of Norms</p>
-<p>Two norms defined on the same vector space is called equivalent if they define the same convergence. More precisely, norms <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> in <span class="math inline">\(E\)</span> are equivalent if for any sequence <span class="math inline">\((x_n)\)</span> in <span class="math inline">\(E\)</span> and <span class="math inline">\(x\in E\)</span>, <span class="math display">\[
-||x_n-x||_1\rightarrow 0\text{ if and only if }||x_n-x||_2\rightarrow0
-\]</span> ==Example 1.4.4==</p>
-<p>The norms <span class="math display">\[
-||(x,y)||_1=\sqrt{x^2+y^2}\\
-||(x,y)||_2=|x|+|y|\\
-||(x,y)||_3=\max\{|x|,|y|\}
-\]</span> are equivalent in <span class="math inline">\(R^2\)</span>.</p>
-<p>It can be proved any two norms in a finite dimensional vector space are <strong>equivalent</strong>.</p>
-<p>The following theorem gives another useful criterion for equivalence of norms and often used as a definition of equivalence of norms.</p>
-<p>==Theorem 1.4.1== Let <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> be norms in a vector space <span class="math inline">\(E\)</span>. Then <span class="math inline">\(||\cdot||_1\)</span> and <span class="math inline">\(||\cdot||_2\)</span> are equivalent if and only if there exists positive numbers <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> such that, <span class="math display">\[
-\alpha||x||_1\le ||x||_2\le \beta||x||_1 \quad \forall x\in E
-\]</span></p>
 <p>Proof.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span> <span class="math display">\[
-\alpha||x_n-x||_1\le ||x_n-x||_2\le \beta||x_n-x||_1
-\]</span> Then if $||x_n-x||_1 $ , then <span class="math inline">\(||x_n-x||_2\rightarrow 0\)</span>. If <span class="math inline">\(||x_n-x||_2\rightarrow 0\)</span>, then <span class="math inline">\(||x_n-x||_1\rightarrow 0\)</span></p>
-<p><span class="math inline">\(\Longrightarrow\)</span></p>
-<p>If now we have <span class="math inline">\(||x_n-x||_1\rightarrow 0\text{ if and only if }||x_n-x||_2\rightarrow0\)</span></p>
-<p>Suppose there is no $&gt;0 $ such that <span class="math inline">\(\forall x\in E,\alpha||x||_1\le ||x||_2\)</span></p>
-<p>That means <span class="math inline">\(\forall \alpha &gt; 0\)</span> such that <span class="math inline">\(\exists x\in E\)</span>, <span class="math inline">\(\alpha||x||_1 &gt;||x||_2\)</span></p>
-<p>For every <span class="math inline">\(n\in \mathbb N\)</span>, there exists <span class="math inline">\(x_n \in E\)</span> such that <span class="math display">\[
-\frac{1}{n}||x_n||_1&gt;||x_n||_2
-\]</span> We define <span class="math display">\[
-y_n=\frac{1}{\sqrt n}\frac{x_n}{||x_n||_2} \in E
+<ol type="a">
+<li><ol start="2" type="a">
+<li>can be proved directly from definition</li>
+</ol></li>
+<li>We only need to prove <span class="math inline">\(g-f\ge 0\implies \int (g-f)\ge 0\)</span> i.e. <span class="math inline">\(f\ge 0\implies \int f\ge 0\)</span></li>
+</ol>
+<p>If <span class="math inline">\(f\ge 0\)</span>, then all parameters are positive and <span class="math inline">\(\int f \ge 0\)</span></p>
+<ol start="4" type="a">
+<li><span class="math inline">\(|\int f|=|\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)|\)</span></li>
+</ol>
+<p><span class="math inline">\(\int |f|=|\lambda_1|(b_1-a_1)+|\lambda_2|(b_2-a_2)+\dotsm+|\lambda_n|(b_n-a_n)\)</span></p>
+<p>==Lemma 2.2.1==</p>
+<p>Let <span class="math inline">\(f\)</span> be a step function whose support is contained in the union of semi-open intervals <span class="math inline">\([a_1,b_1),\dotsm,[a_n,b_n)\)</span>. If <span class="math inline">\(|f|&lt;M\)</span> for some constant <span class="math inline">\(M&gt;0\)</span>, then <span class="math display">\[
+\int |f|\le M\sum_{k=1}^n(b_k-a_k)
+\]</span> Proof.</p>
+<p><span class="math inline">\(|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n\)</span>. Then we choose <span class="math inline">\(M &gt; \max\{|\alpha_1|,\dots,|\alpha_n|\}\)</span></p>
+<p>Then <span class="math display">\[
+\int |f|=|\alpha_1|(b_1-a_1)+|\alpha_2|(b_2-a_2)+\dotsm+|\alpha_n|(b_n-a_n)\\
+\le M(b_1-a_1)+M(b_2-a_2)+\dotsm+M(b_n-a_n)\\
+=M\sum_{k=1}^n(b_k-a_k)
+\]</span> ==Lemma 2.2.2==</p>
+<p>Let <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm\)</span> be disjoint subintervals of an interval <span class="math inline">\([a,b)\)</span> such that <span class="math display">\[
+\bigcup_{n=1}^\infty [a_n,b_n)=[a,b)
+\]</span> Then <span class="math display">\[
+\sum_{n=1}^\infty (b_n-a_n)=b-a
+\]</span> Proof.</p>
+<p>Let <span class="math inline">\(S \subset [a,b)\)</span> consist of all points <span class="math inline">\(c\)</span> such that the lemma holds for the interval <span class="math inline">\([a,c)\)</span> and for each of the subintervals <span class="math inline">\([a_n,b_n)\cap [a,c)\)</span> , S is not empty because <span class="math inline">\(a=a_{n_0}\)</span> for some <span class="math inline">\(n_0\in N\)</span> and then <span class="math inline">\(b_{n_0}\in S\)</span>. If <span class="math inline">\(c\in S\)</span>, then <span class="math inline">\(\sum_n(b_{c,n}-a_n)\)</span> where <span class="math inline">\(b_{c,n}=\min \{b_n,c\}\)</span>. It suffices to prove <span class="math inline">\(b\in S\)</span>.</p>
+<p>To this end, we first prove lub <span class="math inline">\(S \in S\)</span>. Indeed, if <span class="math inline">\(s=\)</span> lub S and <span class="math inline">\(\{s_n\}\)</span> is a non-decreasing sequence of elements of S convergent to s, then <span class="math display">\[
+s_n-a=\sum_m (b_{s_n,m}-a_m)\le \sum_m(b_{s,m}-a_m)\le s-a
+\]</span> Then <span class="math inline">\(s_n-a\rightarrow s-a\implies \sum_m(b_{s,m}-a_m)= s-a\)</span>, then <span class="math inline">\(s\in S\)</span>, then easily <span class="math inline">\(s=b\)</span></p>
+<p>Q.E.D.</p>
+<p>==Theorem 2.2.2==</p>
+<p>Let <span class="math inline">\((f_n)\)</span> be a non-increasing sequence of non-negative step functions such that <span class="math inline">\(\lim_{n\rightarrow \infty} f_n(x)=0\)</span> for every <span class="math inline">\(x\in R\)</span>. Then <span class="math inline">\(\lim_{n\rightarrow \infty} \int f_n=0\)</span>.</p>
+<p>Proof.</p>
+<p><span class="math inline">\((f_n)\)</span> is non-increasing sequence, and therefore $f_{n+1}f_nf_{n+1}f_n $</p>
+<p><span class="math inline">\(f_n \ge 0\implies \int f_n \ge 0\)</span></p>
+<p>Therefore <span class="math inline">\((\int f_n)\)</span> is non-increasing and bounded from below, it converges.</p>
+<p>Let <span class="math display">\[
+\lim_{n\rightarrow \infty} \int f_n=\varepsilon&gt;0
+\]</span> Let <span class="math inline">\([a,b)\)</span> be an interval containing all the support of <span class="math inline">\(f_1\)</span> (and therefore, <span class="math inline">\(f_n\)</span>). Put <span class="math inline">\(\alpha=\varepsilon /(2(b-a))\)</span> <span class="math display">\[
+A_n=\{x\in[a,b):f_n(x)&lt;\alpha\}\\
+\begin{array}{rcl}
+B_1=A_1 &amp; B_2=A_2\backslash A_1 &amp; B_2=A_3\backslash A_2\dotsm
+\end{array}
+\]</span> Note that <span class="math inline">\(B_n\)</span> are disjoint and <span class="math inline">\(\bigcup_{n=1}^\infty B_n=[a,b)\)</span></p>
+<p>Because <span class="math inline">\(f_n\)</span> are step functions, <span class="math display">\[
+B_n=[a_{n,1},b_{n,1})\cup\dotsm \cup[a_{n,k_n},b_{n,k_n})
+\]</span> By lemma 2.2.2, <span class="math display">\[
+\sum_{n=1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})=b-a
+\]</span> Let <span class="math inline">\(n_0 \in N\)</span> such that <span class="math display">\[
+\sum_{n=n_0+1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})&lt;\delta
+\]</span> where <span class="math inline">\(\delta = \varepsilon/(2\max|f_1|)\)</span>.</p>
+<p>Define <span class="math display">\[
+F=[a_{1,1},b_{1,1})\cup \dotsm\cup [a_{1,k_1},b_{1,k_1})\cup\dotsm\cup[a_{n_0,1},b_{n_0,1})\cup\dotsm\cup[a_{n_0,k_{n_0}},b_{n_0,k_{n_0}})
+\]</span> Then, <span class="math display">\[
+g(x)=
+\begin{cases}
+f_{n_0}(x) &amp; x\in F\\
+0 &amp; otherwise
+\end{cases}\\
+h(x)=
+\begin{cases}
+0 &amp; x\in F\\
+f_{n_0}(x) &amp; otherwise
+\end{cases}
+\]</span> <span class="math inline">\(x\in F\implies x\in A_{n_0}\)</span>, and thus <span class="math inline">\(f_{n_0}(x)&lt;\alpha\)</span> <span class="math display">\[
+\int g&lt;\alpha(b-a)=\frac{\varepsilon }{2} 
+\]</span> and, <span class="math display">\[
+\int h&lt;\delta \max|f_{n_0}|\le \delta\max|f_{1}|=\frac{\varepsilon }{2} 
+\]</span> Therefore, <span class="math display">\[
+\int f=\int g+\int h &lt;\varepsilon
+\]</span> Q.E.D.</p>
+<p>==Lemma 2.2.3==</p>
+<p>Let <span class="math inline">\((g_n)\)</span> and <span class="math inline">\((h_n)\)</span> be non-decreasing sequences of step functions. If <span class="math inline">\(\lim_{n\rightarrow \infty} h_n(x)\le \lim_{n\rightarrow \infty} g_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span>, then <span class="math inline">\(\lim_{n\rightarrow \infty} \int h_n(x)\le \lim_{n\rightarrow \infty} \int g_n(x)\)</span></p>
+<p>Proof.</p>
+<p>Fix <span class="math inline">\(k\in N\)</span>. $h_k-(h_k,g_n)(n) $ is non-decreasing sequence converging to zero for every <span class="math inline">\(x\in R\)</span></p>
+<p>By theorem 2.2.2 <span class="math display">\[
+0=\lim_{n\rightarrow \infty}\int (h_k-\min(h_k,g_n))\\
+=\lim_{n\rightarrow \infty}\int h_k-\lim_{n\rightarrow \infty}\int\min(h_k,g_n)\\
+\]</span> Q.E.D.</p>
+<h2 id="lebesgue-integrable-functions">2.3 Lebesgue Integrable Functions</h2>
+<p>==Definition 2.3.1== (Lebesgue Integral)</p>
+<p>A real-valued function <span class="math inline">\(f\)</span> defined on <span class="math inline">\(R\)</span> is called Lebesgue integrable if there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that the following two conditions are satisfied:</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>The integral of <span class="math inline">\(f\)</span> is then defined by <span class="math display">\[
+\int f=\sum_{n=1}^\infty \int f_n
+\]</span> If a function <span class="math inline">\(f\)</span> and a sequence of step function <span class="math inline">\((f_n)\)</span> satisfy (a) and (b), then we will write <span class="math display">\[
+f \simeq \sum_{n=1}^\infty f_n\text{ or } f\simeq f_1+f_2+\dotsm
+\]</span> ==Theorem 2.3.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(f\ge 0\)</span>, then <span class="math inline">\(\int f_1+\int f_2 +\dotsm \ge 0\)</span></p>
+<p>Proof</p>
+<p><span class="math display">\[
+\forall \varepsilon&gt;0,\exists n_0\in N\quad \sum_{n=n_0+1}^\infty \int |f_n|&lt;\varepsilon
+\]</span> Then define <span class="math display">\[
+g_n = f_1+\dotsm+f_{n_0}+|f_{n_0+1}|+\dotsm+|f_{n_0+n}|\\
+h_n=\max (g_n,0)\\
+\]</span> and <span class="math inline">\(g_n\)</span> and <span class="math inline">\(h_n\)</span> are non-decreasing sequences</p>
+<p>Then <span class="math display">\[
+\lim _{n\rightarrow \infty }g_n=\lim_{n \rightarrow \infty} h_n \implies \\
+\lim _{n\rightarrow \infty }\int g_n=\lim_{n \rightarrow \infty}\int  h_n\ge0
+\]</span> and this <span class="math display">\[
+\int f_1+\dotsm+\int f_{n_0}+\int |f_{n_0+1}|+\dotsm\ge 0 \\
+\int f_1+\dotsm+2\sum_{n=n_0+1}^\infty\int |f_{n}|\ge 0 \\
+\int f_1+\dotsm+2\varepsilon\ge 0 \\
+\]</span> because <span class="math inline">\(\varepsilon\)</span> is arbitrary, Q.E.D.</p>
+<p>==Corollary 2.3.1==</p>
+<p>If <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span> and <span class="math inline">\(f\simeq \sum_{n=1}^\infty g_n\)</span>. then <span class="math inline">\(\sum_{n=1}^\infty \int f_n=\sum_{n=1}^\infty \int g_n\)</span></p>
+<p>By theorem 2.3.1. Q.E.D.</p>
+<p>The space of all ==Lebesgue integrable functions== defined on R will be denoted as <span class="math inline">\(L^1(R)\)</span>. In the sequel, Lebesgue integrable functions will be called simply ==integrable==.</p>
+<p>It will be proved that every Riemann integrable function is Lebesgue integrable and both integrals are equal.</p>
+<p>==Theorem 2.3.2==</p>
+<p><span class="math inline">\(L^1(R)\)</span> is a vector space and <span class="math inline">\(\int\)</span> is a linear functional on <span class="math inline">\(L^1(R)\)</span>.</p>
+<p>==Theorem 2.3.3==</p>
+<p>If <span class="math inline">\(f,g \in L^1(R)\)</span> and <span class="math inline">\(f&lt;g\)</span>, then <span class="math inline">\(\int f\le \int g\)</span></p>
+<p>Definition 2.3.1 is fairly simple although it may be a little disturbing.</p>
+<h2 id="the-absolute-value-of-an-integrable-function">2.4 The absolute value of an integrable function</h2>
+<p>In the previous section, we mentioned that all Riemann integrable functions are Lebesgue integrable.</p>
+<p>For improper integrals it is not so. For instance, the integral <span class="math display">\[
+\int_{-\infty}^\infty \frac{\sin x}{x}dx
+\]</span> converges, although the function is not Lebesgue integrable. It is clear from the following theorem,</p>
+<p>==Theorem 2.4.1==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(|f|\in L^1(R)\)</span> and <span class="math inline">\(|\int f| \le \int |f|\)</span></p>
+<p><span class="math inline">\(f\in L^1(R)\)</span> means</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>Let <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> and define <span class="math display">\[
+Z=\{x\in R:\sum_{n=1}^\infty |f_n(x)|&lt;\infty\}\\
+s_n=f_1+f_2+\dotsm+f_n
+\]</span> Then <span class="math display">\[
+f(x)=\lim_{n\rightarrow \infty} s_n(x)\\
+|f(x)|=|\lim_{n\rightarrow \infty} s_n(x)|=\lim_{n\rightarrow \infty} |s_n(x)|\\
+=|s_1|+(|s_2|-|s_1|)+(|s_3|-|s_2|)\dotsm
+\]</span> define <span class="math inline">\(g_1=|s_1|\)</span>, <span class="math inline">\(g_n=|s_n|-|s_{n-1}|\)</span> <span class="math display">\[
+|f(x)|=\sum_{n=1}^\infty g_n(x)
 \]</span> Then we have <span class="math display">\[
-||y_n||_1=\frac{1}{\sqrt n}\frac{||x_n||_1}{||x_n||_2}\\
-||y_n||_2=\frac{1}{\sqrt n}\\
-||y_n||_1\ge n||y_n||_2=\sqrt n\\
-\]</span> Then we find that <span class="math inline">\(||y_n||_2\rightarrow 0\)</span> but <span class="math inline">\(||y_n||_1\)</span> does not converge, that contradiction show that number with required property exists.</p>
-<p>In the metric space, the metric is defined by <span class="math inline">\(d(x,y)=||x-y||\)</span>. The metric in E defines a topology in <span class="math inline">\(E\)</span>, i.e. open set and closed set and these all notions can be defined in terms of open set and closed sets. It is not necessary to define the topology using metric. Here we define the basic topological notions in terms of the norm.</p>
-<p>==Definition 1.4.5== Open balls, closed balls, spheres</p>
-<p>Let <span class="math inline">\(x\)</span> be an element of a normed space <span class="math inline">\(E\)</span> and let <span class="math inline">\(r\)</span> be a positive number. We use the following notion:</p>
-<p><span class="math inline">\(B(x,r)=\{y\in E:||y-x||&lt;r\}\)</span> (open ball)</p>
-<p><span class="math inline">\(\bar B(x,r)=\{y\in E:||y-x||\le r\}\)</span> (closed ball)</p>
-<p><span class="math inline">\(S(x,r)=\{y\in E:||y-x||=r\}\)</span> (sphere)</p>
-<p>==Definition 1.4.6== Open and closed sets</p>
-<p>A subset S of a normed space E is called open if for every <span class="math inline">\(x\in S\)</span> there exists <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math inline">\(B(x,\varepsilon)\subseteq S\)</span>.</p>
-<p>A subset is closed if its complement is open. In topology space, a closed set can be defined as a set which contains all its limit points.</p>
-<p>==Theorem 1.4.2==</p>
+|g_n|\le |s_n-s_{n-1}|=|f_n|\\
+\int |g_n|\le \int |f_n|\\
+\sum_{n=1}^\infty \int |g_n|&lt;\infty
+\]</span> Q.E.D.</p>
+<p>==Corollary 2.4.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(\int |f|\le \sum_{n=1}^\infty\int |f_n|\)</span></p>
+<p>==Corollary 2.4.2==</p>
+<p>If <span class="math inline">\(f,g\in L^1(R)\)</span>, then <span class="math inline">\(\min(f,g),\max(f,g) \in L^1(R)\)</span>.</p>
+<p>==Theorem 2.4.2==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(\lim_{t\rightarrow 0}\int |f(x+t)-f(x)|dx=0\)</span></p>
+<h2 id="series-of-integrable-functions">2.5 Series of integrable functions</h2>
+<p>In the construction described in the preceding sections, we start with an integral of step functions and extend it to a larger class of functions by expanding them in series of step functions <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>. The functions in that class have a well-defined integral. This result is a form of completeness of the space of Lebesgue integrable functions. It is of fundamental importance for the theory of the Lebesgue integral.</p>
+<p>==Definition 2.5.1==</p>
+<p>Let <span class="math inline">\(f\)</span> be a real-valued function and let <span class="math inline">\((f_n)\)</span> be a sequence of <strong>integrable functions</strong> (Not step functions). If</p>
 <ol type="a">
-<li><p>The union of any number of open sets is open</p></li>
-<li><p>The intersection of finite number of open sets is open</p></li>
-<li><p>The union of a finite number of closed sets is closed</p></li>
-<li><p>The intersection of any number of closed sets is closed.</p></li>
-<li><p>The empty set and the whole space are both open and closed.</p></li>
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
 </ol>
-<p>==Theorem 1.4.3==</p>
-<p>A subset S of a normed space E is closed if and only if every sequence of elements of S convergent in E has its limit in S, i.e.,</p>
-<p>A subset S of a normed space E is closed if and only if <span class="math display">\[
-x_1,x_2,\dotsm \in S \text{ and } x_n\rightarrow x\quad \implies \quad x\in S
-\]</span> <span class="math inline">\(\Longrightarrow\)</span></p>
-<p>Assume a subset S of a normed space E is closed. <span class="math inline">\(\exists x_1,x_2,\dotsm \in S\)</span> and <span class="math inline">\(x\in E\backslash S\)</span>. <span class="math inline">\((x_n)\)</span> convergent to <span class="math inline">\(x\)</span> means that <span class="math inline">\(\forall \epsilon&gt;0\)</span>, there exists <span class="math inline">\(M\)</span> such that <span class="math inline">\(\forall m&gt;M\)</span>, <span class="math inline">\(||x_m-x||&lt;\epsilon\)</span> . We will show that is impossible.</p>
-<p>S is closed therefore, <span class="math inline">\(E\backslash S\)</span> is open and <span class="math inline">\(x\in E\backslash S\)</span>. That means for every point including <span class="math inline">\(x\)</span>, there exists $_2 &gt;0 $ such that <span class="math inline">\(B(x,\epsilon_2) \subset E\backslash S\)</span>.</p>
-<p>Since <span class="math inline">\((x_n)\)</span> convergent to <span class="math inline">\(x\)</span>, For every <span class="math inline">\(\epsilon_2 &gt;0\)</span>, there exist <span class="math inline">\(m&gt;M\)</span>, <span class="math inline">\(||x_m-x||&lt;\epsilon_2\)</span>, that means <span class="math inline">\(x_m\in B(x,\epsilon_2)\)</span> that contradicts <span class="math inline">\(B(x,\epsilon_2)\subset E\backslash S\)</span>.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>Assume every sequence of elements of S convergent in E has its limit in S, then a subset S of a normed space E is closed, that means whenever <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span>, $x_nx $ and <span class="math inline">\(x\in S\)</span>, the subset S of a normed space E is closed.</p>
-<p>If S is not closed, then <span class="math inline">\(E\backslash S\)</span> is not open.</p>
-<p>A subset Eof a normed space E is not ==open== if there exists <span class="math inline">\(x\in E\backslash S\)</span>, for all <span class="math inline">\(\epsilon &gt;0\)</span>, such that <span class="math inline">\(B(x,\epsilon)\)</span> contains elements of S. Consequently, we can find a sequence <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. But then <span class="math inline">\(x_n\rightarrow x\)</span>. That contradicts every sequence of elements of S convergent in E has its limit in S.</p>
-<p>==Definition 1.4.7== Closure</p>
-<p>Let S be a subset of a normed space E. By the closure of S, denoted by cl S, we mean the intersection of all closed sets containing S.</p>
-<p>The closure of a set is always a closed set. It is the smallest closed set which contains S.</p>
-<p>==Theorem 1.4.4==</p>
-<p>Let S be a subset of a normed space E. The closure of S is the set of limits of all convergent sequences of elements of S. <span class="math display">\[
-\text{cl S}=\{x\in E:\text{there exist }x_1,x_2,\dotsm\in S\text{ such that }x_n\rightarrow x\}
-\]</span> Lemma, if $x$ cl S, there exists <span class="math inline">\(\epsilon&gt;0\)</span> and <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>.</p>
-<p>Since cl S is intersection of any closed sets, therefore cl S is closed. Then <span class="math inline">\(E\backslash clS\)</span> is open set. For all <span class="math inline">\(x\in E\backslash clS\)</span>, there exists <span class="math inline">\(\epsilon &gt;0\)</span> such that $B(x,)ES $. Therefore, for all <span class="math inline">\(x\notin cl S\)</span>, there exists <span class="math inline">\(\epsilon &gt;0\)</span>, <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>.</p>
-<p><span class="math inline">\(\Longleftarrow\)</span></p>
-<p>For any convergent sequences <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> and <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
-\forall \epsilon &gt;0\quad \exist M\quad \forall m&gt;M\quad ||x_m-x||&lt;\epsilon
-\]</span> therefore, for limits of all convergent sequences of elements of S, there is no arbitrarily small <span class="math inline">\(\epsilon\)</span> such that <span class="math inline">\(B(x,\epsilon)\cap S=\empty\)</span>, that means <span class="math inline">\(x\in\)</span> cl S.</p>
-<p><span class="math inline">\(\implies\)</span></p>
-<p>If <span class="math inline">\(x\in\)</span> cl S, then <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x,\epsilon)\cap S\neq \empty\)</span></p>
-<p>we can find a sequence <span class="math inline">\(x_1,x_2,\dotsm\in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. But then <span class="math inline">\(x_n\rightarrow x\)</span> that means every sequence of elements of S convergent in E has its limit in cl S.</p>
-<p>The Weierstrass theorem says that every continuous function on an interval [a,b] can be approximated uniformly by polynomials. This can be expressed as follows: The closure of the set of all polynomials on [a,b] is the whole space <span class="math inline">\(\mathscr C([a,b])\)</span>.</p>
-<p>==Definition 1.4.8== Dense subsets</p>
-<p>A subset S of a normed space E is called dense in E if cl S=E.</p>
-<p>The set of all polynomials on [a,b] is dense in <span class="math inline">\(\mathscr C([a,b])\)</span></p>
-<p>==Theorem 1.4.5==</p>
-<p>Let S be a subset of a normed space E. The following conditions are equivalent.</p>
-<ol type="a">
-<li><p>S is dense in E</p></li>
-<li><p>For every <span class="math inline">\(x\in E\)</span> there exists <span class="math inline">\(x_1,x_2,\dotsm \in S\)</span> such that <span class="math inline">\(x_n\rightarrow x\)</span></p></li>
-<li><p>Every non-empty open subset of E contains elements of S.</p></li>
-</ol>
+<p>then we write <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> or <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span></p>
+<p>==Lemma 2.5.1==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then for every <span class="math inline">\(\epsilon&gt;0\)</span> there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(\sum_{n=1}^\infty\int |f_n|\le \int |f|+\epsilon\)</span></p>
 <p>Proof.</p>
-<ol type="a">
-<li><p>— (b) Theorem 1.4.4</p></li>
-<li><p>to (c)</p></li>
-</ol>
-<p>proof method 1.</p>
-<p>cl S=E.</p>
-<p>For all <span class="math inline">\(x\in E\)</span>, we have <span class="math inline">\(x\in\)</span> cl S. That means <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x,\epsilon)\cap S\neq \empty\)</span></p>
-<p>if there exists one non-empty open subsets O of E contains no element of S, we choose <span class="math inline">\(x&#39;\in O\)</span>, then <span class="math inline">\(\exist\epsilon&#39;&gt;0\)</span>, we have <span class="math display">\[
-B(x&#39;,\epsilon&#39;)\subseteq O
-\]</span> However, <span class="math inline">\(x&#39;\in E\)</span>, that contradicts <span class="math inline">\(\forall \epsilon&gt;0 \quad B(x&#39;,\epsilon)\cap S\neq \empty\)</span>.</p>
-<p>Proof method 2</p>
-<p>If there exists non-empty open subset O of E contains no element of S.</p>
-<p>Then <span class="math inline">\(O \not \subset clS\)</span></p>
-<p>However <span class="math inline">\(O\subset E\)</span></p>
-<p>That means <span class="math inline">\(clS\neq E\)</span></p>
-<ol start="3" type="a">
-<li>to (a)</li>
-</ol>
-<p>Proof method 1,</p>
-<p>Every non-empty open subset of E contains an element of S means S is dense in E.</p>
-<p>If S is not dense in E, we have $xE$cl S, since cl S is closed set, <span class="math inline">\(E\backslash\)</span>cl S is an open set. There exists <span class="math inline">\(\epsilon\)</span> such that <span class="math inline">\(B(x,\epsilon)\subseteq E\backslash\)</span>cl S. Q.E.D.</p>
-<p>==Definition 1.4.9== Compact sets</p>
-<p>A subset S of a normed subspace E is called compact if every sequence <span class="math inline">\((x_n)\)</span> in S contains a convergent subsequence whose limit belongs to S.</p>
-<p>For <span class="math inline">\(R^N\)</span> and <span class="math inline">\(C^N\)</span>, every bounded closed set is compact.</p>
-<p>==Theorem 1.4.6==</p>
-<p>Compact sets are closed and bounded.</p>
-<p>==Definition 1.4.10== Bounded</p>
-<p><span class="math inline">\(\exists x\in E\)</span> and <span class="math inline">\(\exists r&gt;0\)</span> such that <span class="math inline">\(\forall s\in S\)</span>, <span class="math inline">\(||s-x||&lt;r\)</span></p>
-<p>A subset S of a normed subspace E is not closed, that means Eis not an open set.</p>
-<p>That means <span class="math inline">\(\exists x\in E\backslash S\quad \forall \epsilon&gt;0 \quad B(x,\epsilon)\)</span> contains elements in S.</p>
-<p>Then we can choose sequence in S, <span class="math inline">\(x_1,x_2,\dotsm \in S\)</span> satisfying <span class="math inline">\(x_n \in B(x,\frac{1}{n})\)</span>. <span class="math inline">\(x_n\rightarrow x\)</span>. That means this sequence belongs to S but does not have a convergent subsequence whose limit belongs to S (because the limit belongs to E).</p>
-<p>Then we prove compact sets are bounded.</p>
-<p>If <span class="math inline">\(S\subseteq E\)</span> is compact but not bounded, that means every sequence <span class="math inline">\((x_n)\)</span> in S contains a convergent subsequence whose limit belongs to S but <span class="math inline">\(\forall x\in E\)</span> and <span class="math inline">\(\forall r&gt;0\)</span> such that <span class="math inline">\(\exists s\in S\)</span>, <span class="math inline">\(||x-s||\ge r\)</span></p>
-<p>From the definition of not bounded, we can construct a sequence (For all <span class="math inline">\(x\)</span>, we choose <span class="math inline">\(x=0\)</span>. For all <span class="math inline">\(r\)</span> we choose <span class="math inline">\(r=n\)</span>) <span class="math display">\[
-||x_n||&gt;n
-\]</span> Obviously these sequences do not have a convergent subsequence.</p>
+<p>Define, <span class="math inline">\(f\simeq g_1+g_2+\dotsm\)</span>, for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists <span class="math inline">\(n_0\in N\)</span> such that <span class="math display">\[
+\sum_{n=n_0+1}^\infty \int |g_n|&lt;\frac{\varepsilon}{2}
+\]</span> Define <span class="math display">\[
+f_1=g_1+\dotsm+g_n\\
+f_n=g_{n_0+n-1}\\
+f\simeq f_1+f_2+\dotsm\\
+f-f_1\simeq f_2+f_3+\dotsm\\
+\int |f_1|-\int |f|\le\int |f-f_1|\le \sum_{n=2}^\infty |f_n|\\
+\sum_{n=1}^\infty \int |f_n|=\int |f_1|+\sum_{n=2}^\infty |f_n|\\
+\le \int |f|+2\sum_{n=2}^\infty |f_n|\\
+=\int |f|+\varepsilon
+\]</span> ==Theorem 2.5.1==</p>
+<p>If <span class="math inline">\((f_n)\)</span> is a sequence of integrable functions and <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int f=\int f_1+\int f_2+\dotsm\)</span></p>
+<p>==Corollary 2.5.1==</p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span>, then there exists an integrable function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f=f_1+f_2+\dotsm\)</span>.</p>
 
         
       
@@ -535,7 +529,7 @@ B(x&#39;,\epsilon&#39;)\subseteq O
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/13/Convex Optimization/11. Interior-Point Methods/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -549,7 +543,7 @@ B(x&#39;,\epsilon&#39;)\subseteq O
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" class="post-title-link" itemprop="url">Chapter 11. Interior-point methods</a>
+            <a href="/2019/07/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/" class="post-title-link" itemprop="url">Chapter 1-3. Completion of Normed Spaces</a>
           
         </h1>
 
@@ -564,7 +558,7 @@ B(x&#39;,\epsilon&#39;)\subseteq O
                 
               
 
-              <time title="Created: 2019-09-13 13:49:01 / Modified: 14:00:59" itemprop="dateCreated datePublished" datetime="2019-09-13T13:49:01+08:00">2019-09-13</time>
+              <time title="Created: 2019-07-22 13:48:00 / Modified: 14:58:33" itemprop="dateCreated datePublished" datetime="2019-07-22T13:48:00+08:00">2019-07-22</time>
             </span>
           
             
@@ -577,7 +571,7 @@ B(x&#39;,\epsilon&#39;)\subseteq O
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
 
                 
                 
@@ -586,7 +580,7 @@ B(x&#39;,\epsilon&#39;)\subseteq O
           
 
           
-            <span id="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 11. Interior-point methods" title="Views">
+            <span id="/2019/07/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 1-3. Completion of Normed Spaces" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -604,7 +598,7 @@ B(x&#39;,\epsilon&#39;)\subseteq O
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/07/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -618,162 +612,23 @@ B(x&#39;,\epsilon&#39;)\subseteq O
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="interior-point-methods">11. Interior-point methods</h1>
-<h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
-<p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0\\Ax=b
-\end{array}
-\end{array}
-\]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
-\begin{array}{rcl}
-Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
-\lambda^\star &amp;\succeq&amp; 0\\
-\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
-\lambda_i^\star f_i(x^\star)&amp;=&amp;0
-\end{array}
-\]</span></p>
-<p>Interior-point method solve the problem by applying newton’s method to a sequence of equality constrained problem. We will concentrate on a particular interior-point method, called the barrier method, for which we give a proof of convergence and a complexity analysis. We also describe the primal-dual interior point method, but do note give analysis.</p>
-<p>We can view interior-point methods as another level in the hierarchy of convex optimization algorithms.</p>
-<ol type="1">
-<li>Linear equality constrained quadratic problems are the simplest.</li>
-<li>Newton’s method is the next level.</li>
-<li>Interior-point method form the next level.</li>
+          <h2 id="completion-of-normed-spaces">1.7 Completion of Normed Spaces</h2>
+<p>Some spaces arising naturally from applications are not complete. We would like to find a way to enlarge such a space to a complete space. It turns out that it is always possible.</p>
+<p>Let <span class="math inline">\((E,||\cdot||)\)</span> be a normed space. A normed space <span class="math inline">\((\tilde E,||\cdot||_1)\)</span> is called a completion of <span class="math inline">\((E,||\cdot||)\)</span> if</p>
+<ol type="a">
+<li><p>there exists a one-to-one linear mapping <span class="math inline">\(\Phi:E\rightarrow \tilde E\)</span></p></li>
+<li><p><span class="math inline">\(||x||=||\Phi(x)||_1\)</span> for every <span class="math inline">\(x\in E\)</span></p></li>
+<li><p><span class="math inline">\(\Phi(E)\)</span> is dense in <span class="math inline">\(\tilde E\)</span></p></li>
+<li><p><span class="math inline">\(\tilde E\)</span> is complete</p></li>
 </ol>
-<h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
-<p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)+\sum_{i=1}^mI_-(f_i(x))
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
-<h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
-<p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
-\hat I_-(u)=-\frac{1}{t}\log (-u)
-\]</span> Then the problem becomes <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
-<p>The function <span class="math display">\[
-\phi(x)=-\sum_{i=1}^m \log(-f_i(x))
-\]</span> is called the logarithmic barrier or log barrier for the problem.</p>
-<p>Of course, the problem is only an approximation of the original problem, so one may wondering how well. Intuitive suggests, the approximation improves as the parameter <span class="math inline">\(t\)</span> grows. One the other hand, when the parameter <span class="math inline">\(t\)</span> is large, the function <span class="math inline">\(f_0+(1/t)\phi\)</span> is difficult to minimize by Newton’ method, since the Hessian varies rapidly near the boundary feasible set. We will see that this problem can be circumvented by solving a sequence of problems, increasing the parameter <span class="math inline">\(t\)</span> (and therefore, accuracy of the approximation) at each step, and starting each Newton minimization at the solution of the problem for the previous value of <span class="math inline">\(t\)</span>.</p>
-<p>For future reference, we note that the gradient and Hessian of the logarithmic barrier function <span class="math inline">\(\phi\)</span> are given by <span class="math display">\[
-\nabla \phi(x)=\sum_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
-\nabla^2 \phi(x)=\sum_{i=1}^{m} \frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\sum_{i=1}^m  \frac{1}{-f_i(x)}\nabla^2 f_i(x)
-\]</span></p>
-<h3 id="central-path">11.2.2 Central path</h3>
-<p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-tf_0(x)+\phi(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
-<p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
-Ax^\star(t)=b\\
-f_i(x^\star (t))&lt;0
-\]</span> and there exists a <span class="math inline">\(\hat v\)</span> such that <span class="math display">\[
-0=t\nabla f_0(x^\star(t))+\nabla \phi(x^\star(t))+A^T\hat v\\
-=t\nabla f_0(x^\star(t))+\sum_{i=1}^m \frac{1}{-f_i(x^\star(t))}\nabla f_i(x^\star(t))+A^T\hat v
-\]</span> <strong>Dual points from central path</strong></p>
-<p>From the above, we can derive an important property of the central path: every central point yields a dual feasible point, and hence a lower bound on the optimal <span class="math inline">\(p^\star\)</span>. We define <span class="math inline">\(\lambda_i^\star (t)=-\frac{1}{tf_i(x^\star(t))}\)</span>, <span class="math inline">\(v^\star(t)=\hat v/t\)</span></p>
-<p>Then we have <span class="math display">\[
-\nabla f_0(x^\star(t))+\sum_{i=1}^m\lambda_i^\star (t)\nabla f_i(x^\star(t))+A^Tv^\star (t)=0
-\]</span> We see the optimal point <span class="math inline">\(x^\star(t)\)</span> minimizes the Lagrangian, <span class="math display">\[
-L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+v^T(Ax-b)
-\]</span> <strong>Interpretation via KKT conditions</strong> <span class="math display">\[
-\begin{array}{rcl}
-Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
-\lambda^\star &amp;\succeq&amp; 0\\
-\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
-\lambda_i^\star f_i(x^\star)&amp;=&amp;1/t
-\end{array}
-\]</span> <strong>Force field interpretation</strong></p>
-<h2 id="the-barrier-method">11.3 The barrier method</h2>
-<p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-(m/\epsilon)f_0(x)+\phi(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
-<h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
-<p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
-<p>In other words, we compute <span class="math inline">\(x^\star(t)\)</span> for a sequence of increasing values of <span class="math inline">\(t\)</span>, until <span class="math inline">\(t\ge m/\epsilon\)</span>, which guarantee that we have an $-suboptimal $ solution of the original problem. When the method is proposed firstly, it is called sequential unconstrained minimization technique. Today, the method is usually called the <strong>barrier method</strong> or <strong>path-following</strong> method.</p>
-<h3 id="examples">11.3.2 Examples</h3>
-<h3 id="convergence-analysis">11.3.3 Convergence Analysis</h3>
-<h3 id="newton-step-for-modified-kkt-conditions">11.3.4 Newton step for modified KKT conditions</h3>
-<p>In the barrier method, the newton step <span class="math inline">\(\Delta x_{nt}\)</span>, and associated dual variables are given by the linear equations, <span class="math display">\[
-\begin{bmatrix}
-t\nabla^2f_0(x)+\nabla^2 \phi(x)&amp;A^T\\A&amp;0
-\end{bmatrix}
-\begin{bmatrix}
-\Delta x_{nt}\\v_{nt}
-\end{bmatrix}=-
-\begin{bmatrix}
-t\nabla f_0(x)+\nabla \phi(x)\\0
-\end{bmatrix}
-\]</span> In this section, we will show how these newton steps for the centering problem can be interpreted as Newton steps for directly solving the modified KKT equations, <span class="math display">\[
-\nabla f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+A^Tv=0\\
--\lambda_if_i(x)=1/t\\
-Ax=b
-\]</span> in a particular way.</p>
-<h2 id="feasibility-and-phase-i-methods">11.4 Feasibility and phase I methods</h2>
-<h2 id="complexity-analysis-via-self-concordance">11.5 Complexity analysis via self-concordance</h2>
-<h2 id="problems-with-generalized-inequalities">11.6 Problems with generalized inequalities</h2>
-<h2 id="primal-dual-interior-point-methods">11.7 Primal-dual Interior-point methods</h2>
-<p>In this section, we describe a basic primal-dual interior-point method. Primal-dual interior-point methods are very similar to the barrier method, with some differences.</p>
-<ol type="1">
-<li><strong>There is only one loop or iteration</strong>, i.e. there is no distinction between inner and outer iterations as in the barrier method. At each iteration, both the primal and dual variables are updated.</li>
-<li>The search direction in a primal-dual interior-point method are obtained from Newton’s method, applied to the <strong>modified KKT equations.</strong></li>
-<li>In a primal-dual interior-point method, the primal-dual iterates are not necessarily feasible.</li>
-</ol>
-<p>Primal-dual interior-point methods are often more efficient than the barrier method, especially when high accuracy is required, since they can exhibit better than linear convergence.</p>
-<h3 id="primal-dual-search-direction">11.7.1 Primal-dual search direction</h3>
-<p>As in the barrier method, we start with the modified KKT conditions, expressed as <span class="math inline">\(r_t(x,\lambda,v)=0\)</span>, where we define <span class="math display">\[
-r_t(x,\lambda,v)=
-\begin{bmatrix}
-\nabla f_0(x)+Df(x)^T\lambda+A^Tv\\
--diag(\lambda)f(x)-(1/t)1\\
-Ax-b
-\end{bmatrix}
-\]</span> If <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> satisfy <span class="math inline">\(r_t(x,\lambda,v)=0\)</span> (and <span class="math inline">\(f_i(x)&lt;0\)</span>), then <span class="math inline">\(x=x^\star (t)\)</span>, <span class="math inline">\(\lambda = \lambda^\star (t)\)</span>, <span class="math inline">\(v=v^\star (t)\)</span>. In particular, <span class="math inline">\(x\)</span> is primal feasible, and <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> are dual feasible, with duality gap <span class="math inline">\(m/t\)</span>.</p>
-<ol type="1">
-<li><span class="math inline">\(r_{dual}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>dual residual</strong>.</li>
-<li><span class="math inline">\(r_{pri}=Ax-b\)</span> is called the <strong>primal residual</strong>.</li>
-<li><span class="math inline">\(r_{cent}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>centrality residual</strong>.</li>
-</ol>
+<h2 id="contraction-mappings-and-the-banach-fixed-point-theorem">1.8 Contraction Mappings and the Banach Fixed Point Theorem</h2>
+<p>The name "Fixed Point Theorem" is usually given to a result which says that, under certain conditions, given a mapping <span class="math inline">\(f\)</span> there is a point <span class="math inline">\(z\)</span> such that <span class="math inline">\(f(z)=z\)</span>. Such a point is called a fixed point of <span class="math inline">\(f\)</span>.</p>
+<p>==Definition 1.8.1== Contraction Mappings</p>
+<p>A mapping <span class="math inline">\(f\)</span> from a subset <span class="math inline">\(A\)</span> of a normed space <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_1\)</span> is called a contraction mapping (or simply a contraction) if there exists a positive number <span class="math inline">\(\alpha &lt;1\)</span> such that <span class="math display">\[
+||f(x)-f(y)||\le \alpha||x-y||\quad \forall x,y\in A
+\]</span> Note that the contraction mappings are continuous.</p>
+<p>==Theorem 1.8.1== Banach Fixed Point Theorem</p>
+<p>Let <span class="math inline">\(F\)</span> be a closed subset of a Banach space <span class="math inline">\(E\)</span> and let <span class="math inline">\(f\)</span> be a contraction mappings from <span class="math inline">\(F\)</span> into <span class="math inline">\(F\)</span>. Then there exists a unique <span class="math inline">\(z\in F\)</span> such that <span class="math inline">\(f(z)=z\)</span>.</p>
 
         
       

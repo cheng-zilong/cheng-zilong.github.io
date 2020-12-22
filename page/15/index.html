@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/Convex Optimization/10. Equality constrained Minimization/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/Convex Optimization/5. Duality/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-title-link" itemprop="url">Chapter 10. Equality constrained Minimization</a>
+            <a href="/2019/07/13/Convex Optimization/5. Duality/" class="post-title-link" itemprop="url">Chapter 5. Duality</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2019-09-03 13:49:01 / Modified: 13:59:42" itemprop="dateCreated datePublished" datetime="2019-09-03T13:49:01+08:00">2019-09-03</time>
+              <time title="Created: 2019-07-13 13:49:01 / Modified: 13:57:57" itemprop="dateCreated datePublished" datetime="2019-07-13T13:49:01+08:00">2019-07-13</time>
             </span>
           
             
@@ -266,7 +266,7 @@
           
 
           
-            <span id="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 10. Equality constrained Minimization" title="Views">
+            <span id="/2019/07/13/Convex Optimization/5. Duality/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 5. Duality" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +284,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/07/13/Convex Optimization/5. Duality/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/13/Convex Optimization/5. Duality/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,157 +298,412 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="equality-constrained-minimization">10. Equality constrained minimization</h1>
-<h2 id="equality-constrained-minimization-problems">10.1 Equality constrained minimization problems</h2>
-<p>In this chapter we describe methods for solving a convex optimization problem with equality constraints, <span class="math display">\[
+          <h1 id="duality">5. Duality</h1>
+<h2 id="the-lagrange-dual-function">5.1 The Lagrange dual function</h2>
+<h3 id="the-lagrangian">5.1.1 The Lagrangian</h3>
+<p>We consider the optimization problem (we do not assume convex) in the standard form <span class="math display">\[
 \begin{array}{|l|ll|}
 \text{minimize}\quad &amp; 
 \begin{array}{lll}
-f(x)
+f_0(x)
 \end{array}\\\hline
 \text{subject to}\quad &amp; 
 \begin{array}{lll}
-Ax=b
+f_i(x)\le 0\\h_i(x)=0
 \end{array}
-\end{array}
-\]</span> We denote <span class="math display">\[
-p^\star=\inf\{f(x)|Ax=b\}=f(x^\star)
-\]</span> Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
-Ax^\star =b\quad \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Solving the equality constrained optimization problem is therefore equivalent to finding a solution of the KKT conditions shown in the above, which is a n+p equations in the n+p variables <span class="math inline">\(v^\star\)</span> and <span class="math inline">\(x^\star\)</span>. The first one is called <strong>primal feasibility equations</strong>, which are linear. The second one is called <strong>dual feasibility equations</strong>, and are in general non-linear.</p>
-<p>The bulk if this chapter is to denoted to extensions of Newton's method that directly handle equality constraints. In many cases, this method is preferable than the methods that reduce an equality constrained problem to unconstrained one. One reason is that the problem structure is destroyed by elimination. Another reason is conceptual, methods that directly handle the constraints can be thought of solving the problem directly.</p>
-<h3 id="equality-constrained-convex-quadratic-minimization">10.1.1 Equality constrained convex quadratic minimization</h3>
-<p><span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-(1/2)x^TPx+q^Tx+r
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span></p>
-<p>The optimal conditions are <span class="math display">\[
-Ax^\star =b \quad Px^\star +q+A^Tv^\star=0
-\]</span> which we can write as <span class="math display">\[
-\begin{bmatrix}
-P &amp; A^T\\
-A  &amp; 0
-\end{bmatrix}
-\begin{bmatrix}
-x^\star \\ v^\star
-\end{bmatrix}=
-\begin{bmatrix}
--q\\b
-\end{bmatrix}
-\]</span> This set of <span class="math inline">\(n+p\)</span> linear equations is called <strong>KKT system</strong>. The coefficient matrix is called <strong>KKT matrix</strong>.</p>
-<p>If KKT matrix is nonsingular, there is an unique optimal solution. If singular, there is infinite solutions. If not solvable, the problem is infeasible.</p>
-<h3 id="eliminating-equality-constraints">10.1.2 Eliminating equality constraints</h3>
-<p>We have <span class="math display">\[
-\{x|Ax=b\}=\{Fz+\hat x|z\in R^{n-p}\}
-\]</span> where <span class="math inline">\(\hat x\)</span> is a particular solution of <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(F\)</span> is the null space of A.</p>
-<h3 id="solving-equality-constrained-problem-via-the-dual">10.1.3 Solving equality constrained problem via the dual</h3>
-<p>Another approach is to solving the dual, and then recover the optimal primal variable <span class="math inline">\(x^\star\)</span>.</p>
-<p>The dual function of 10.1 is <span class="math display">\[
-g(v)=-b^Tv+\inf_x(f(x)+v^TAx) \\
-=-b^Tv-f^\star (-A^Tv)
-\]</span></p>
-<p>where <span class="math inline">\(f^*\)</span> is the conjugate of <span class="math inline">\(f\)</span>.</p>
-<h2 id="newtons-method-with-equality-constraints">10.2 Newton's method with equality constraints</h2>
-<p>In this section we describe an extension of Newton's method to include equality constraints. The method is almost the same as Newton's method without constraints, except two differences: the initial point must be feasible, and the definition of Newton step is modified to take the equality constraints into account.</p>
-<h3 id="the-newton-step">10.2.1 The newton step</h3>
-<p>For the equality constrained problem, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> we replace the objective with the second-order Taylor approximation near <span class="math inline">\(x\)</span>, to form the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\hat f(x+v)=f(x)+\nabla f(x)^Tv+(1/2)v^T\nabla^2f(x)v
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-A(x+v)=b
-\end{array}
-\end{array}
-\]</span> with variable <span class="math inline">\(v\)</span>. This is a convex quadratic minimization problem with equality constraints, and can be solved analytically. We define the newton step <span class="math inline">\(\Delta x_{nt}\)</span> at <span class="math inline">\(x\)</span> as the solution of the convex quadratic problem in the above. Then we have <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x) &amp; A^T\\A &amp; 0
-\end{bmatrix}
-\begin{bmatrix}
-\Delta x_{nt}\\w
-\end{bmatrix}=
-\begin{bmatrix}
--\nabla f(x)\\0
-\end{bmatrix}
-\]</span> where <span class="math inline">\(w\)</span> is the optimal dual variable for the quadratic problem.</p>
-<p><strong>Solution of linearized optimality conditions</strong></p>
-<p>Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
-Ax^\star =b\\ \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Newton method can be interpreted by solving the above equations.</p>
-<p>We substitute <span class="math inline">\(x+\Delta x_{nt}\)</span> for <span class="math inline">\(x^\star\)</span> and <span class="math inline">\(w\)</span> for <span class="math inline">\(v^\star\)</span>, and replace the gradient term in the second equation by its linearized approximation around <span class="math inline">\(x\)</span>, to obtain the equation, <span class="math display">\[
-A(x+\Delta x_{nt})=b\\
-\nabla f(x+\Delta x)+A^Tw\approx \nabla f(x)+\nabla^2 f(x)\Delta x_{nt}+A^Tw=0
-\]</span></p>
-<h2 id="infeasible-start-newton-method">10.3 Infeasible start Newton method</h2>
-<p>As in Newton's method, we start with optimality conditions for the equality constrained optimization problem: <span class="math display">\[
-Ax^\star=b\quad \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Let <span class="math inline">\(x\)</span> denote the current point, which we do not assume to be feasible. We will do second-order Taylor expansion around the point <span class="math inline">\(x\)</span>, and our goal is to find a step <span class="math inline">\(\Delta x\)</span> so that <span class="math inline">\(x+\Delta x\)</span> satisfies (at least approximately) the optimality conditions, i.e. <span class="math inline">\(x+\Delta x\approx x^\star\)</span>. <span class="math display">\[
-\nabla f(x+\Delta x)\approx \nabla f(x)+\nabla^2f(x)\Delta x
-\]</span> For the gradient, we have <span class="math display">\[
-A(x+\Delta x)=b\\
-\nabla f(x)+\nabla^2f(x)\Delta x+A^Tw=0
-\]</span> This is a linear equations for <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x) &amp; A^T\\A &amp; 0
-\end{bmatrix}
- \begin{bmatrix}
- \Delta x\\ w
- \end{bmatrix}=
- -\begin{bmatrix}
- \nabla f(x)\\Ax-b
- \end{bmatrix}
-\]</span></p>
-<p><strong>Primal-dual interpretation</strong></p>
-<p>We can give an interpretation of the equation in terms of the primal-dual method for the equality constrained problem. By the primal-dual method, we mean one in which we update both the primal variable <span class="math inline">\(x\)</span> and the dual variable <span class="math inline">\(v\)</span>, in order to satisfy the optimality conditions.</p>
-<p>We express the optimality conditions as <span class="math inline">\(r(x^\star,v^\star)=0\)</span>, where <span class="math inline">\(r:R^n\times R^p \rightarrow R^n\times R^p\)</span> is defined as <span class="math display">\[
-r(x,v)=(r_{dual}(x,v),r_{pri}(x,v))\\
-r_{dual}(x,v)=\nabla f(x)+A^Tv\\
-r_{pri}(x,v)=Ax-b
-\]</span> The first order Taylor approximate of <span class="math inline">\(r\)</span> is <span class="math display">\[
-r(y+z)\approx r(y)+Dr(y)z
-\]</span> We define <span class="math inline">\(\Delta y_{pd}=(\Delta x_{pd},\Delta v_{pd})\)</span> such that the Taylor approximation vanishes, i.e. <span class="math display">\[
-r(y+\Delta y_{pd})=r(y)+Dr(y)\Delta y_{pd}=0
+\end{array}.
+\]</span> The basic idea in Lagrangian duality is to take the constraints in (5.1) into account by augmenting the objective function with a weighted sum of the constraint functions. <span class="math display">\[
+L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^p v_i h_i(x).
+\]</span> The vectors <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(v\)</span> are called <strong>dual variables</strong> or <strong>Lagrange Multiplier vectors</strong>.</p>
+<h3 id="the-lagrange-dual-function-1">5.1.2 The Lagrange dual function</h3>
+<p>We define the Lagrange dual function as the minimum value of the Lagrangian over x <span class="math display">\[
+g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right).
+\]</span> Since the dual function is the pointwise infimum of a family of affine functions of <span class="math inline">\((\lambda,v)\)</span>, it is concave even when the original problem is not convex.</p>
+<h3 id="lower-bounds-on-optimal-value">5.1.3 Lower bounds on optimal value</h3>
+<p>The dual function yields the lower bounds on the optimal value <span class="math inline">\(p^\star\)</span> of the problem. For any <span class="math inline">\(\lambda \succeq 0\)</span> and any <span class="math inline">\(v\)</span> we have <span class="math display">\[
+g(\lambda,v)\le p^\star
+\]</span> This important property is easily verified, suppose <span class="math inline">\(\tilde x\)</span> is a feasible point for the problem, i.e. <span class="math inline">\(f_i(\tilde x)\le 0\)</span> and <span class="math inline">\(h_i(\tilde x)=0\)</span>. Then we have <span class="math display">\[
+\sum_{i=1}^m \lambda_if_i(\tilde x)+\sum_{i=1}^p v_ih_i(\tilde x)\le 0.
 \]</span> Then we have <span class="math display">\[
-Dr(y)\Delta y_{pd}=-r(y)
-\]</span> Evaluating the derivative of <span class="math inline">\(r\)</span>, we have <span class="math display">\[
+g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right)\le L(\tilde x,\lambda,v)\le f_0(\tilde x).
+\]</span> The equality holds, but is vacuous when <span class="math inline">\(g(\lambda,v) = -\infty\)</span>. The dual function gives a nontrivial lower bound on <span class="math inline">\(p^\star\)</span> only when <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \text{dom} g\)</span>.</p>
+<p>We refer to a pair <span class="math inline">\((\lambda, v)\)</span> with <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \text{dom} g\)</span> as dual feasible to let <span class="math inline">\(g(\lambda,v)&gt; -\infty\)</span>.</p>
+<h3 id="linear-approximation-interpretation">5.1.4 Linear approximation interpretation</h3>
+<p>The Lagrangian and lower bound property can be given a simple interpretation.</p>
+<p>We first rewrite the origin problem as an unconstrained problem <span class="math display">\[
+\text{minimize }f_0(x)+\sum_{i=1}^mI_-(f_i(x))+\sum_{i=1}^pI_0(h_i(x))
+\]</span> where <span class="math display">\[
+I_-(u)=\begin{cases}0&amp;u\le 0\\\infty &amp;u&gt;0\end{cases}
+\]</span> and similar for <span class="math inline">\(I_0(u)\)</span>.The two indicator functions can be interpreted as expressing out displeasure associated with a constraint function. Then we can use <span class="math inline">\(\lambda_if_i(x)\)</span> and <span class="math inline">\(v_ih_i(x)\)</span> to replace the indicator functions to show the displeasure. Then the objective becomes the Lagrangian <span class="math display">\[
+\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)
+\]</span> and the dual function value <span class="math inline">\(g(\lambda,v)\)</span> is the optimal value of the problem.</p>
+<h3 id="examples">5.1.5 Examples</h3>
+<p><strong>Least-squares solution of linear equations</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}.
+\]</span> Then the Lagrangian <span class="math inline">\(L(x,v)=x^Tx +v^T(Ax-b)\)</span>.</p>
+<p>The dual function <span class="math inline">\(g(v)=\inf_x L(x,v)=\inf_x {(x^Tx +v^T(Ax-b))}\)</span>.</p>
+<p>We hope to derive the analytical expression <span class="math display">\[
+\nabla_xL(x,v)=2x+A^Tv=0\\
+x=-\frac{1}{2}A^Tv\\
+g(v)=\frac{1}{4}v^TAA^Tv+v^T(-\frac{1}{2}AA^Tv-b)=-\frac{1}{4}v^TAA^Tv-v^Tb,
+\]</span> which is a concave quadratic function.</p>
+<p><strong>Standard form LP</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b\\x\succeq 0
+\end{array}
+\end{array}.
+\]</span> The Lagrangian <span class="math inline">\(L(x,\lambda,v)= c^Tx -\lambda^T x+v^T(Ax-b)\)</span>.</p>
+<p>The dual function <span class="math inline">\(g(\lambda,v) = \inf_x L(x,\lambda,v)\)</span>, <span class="math display">\[
+\inf_x(c^Tx -\lambda^T x+v^T(Ax-b))=-v^Tb+\inf_x(c^T-\lambda^T+v^TA)x.
+\]</span> Therefore <span class="math display">\[
+g(\lambda,v)=
+\begin{cases}
+-v^Tb&amp;c^T-\lambda^T+v^TA=0\\
+-\infty&amp;\text{otherwise.}
+\end{cases}
+\]</span></p>
+<h3 id="the-lagrange-dual-function-and-conjugate-functions">5.1.6 The Lagrange dual function and conjugate functions</h3>
+<p>Recall that the conjugate <span class="math inline">\(f^*\)</span> of a function <span class="math inline">\(f\)</span> is given by <span class="math display">\[
+f^*(y)=\sup_{x\in domf}(y^Tx-f(x)).
+\]</span> The conjugate function and Lagrange dual function are closely related.</p>
+<p>Consider an optimization problem with linear inequality and equality constraints, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax\preceq b\\Cx=d
+\end{array}
+\end{array}.
+\]</span> We can write the dual function as <span class="math display">\[
+g(\lambda,v)=\inf _x(f_0(x)+\lambda^T(Ax-b)+v^T(Cx-d))\\
+=-b^T\lambda-d^Tv+\inf_x(f_0(x)+(A^T\lambda+C^Tv)^Tx)\\
+=-b^T\lambda-d^Tv-f_0^*(-A^T\lambda-C^Tv).
+\]</span></p>
+<h2 id="the-lagrange-dual-problem">5.2 The Lagrange dual problem</h2>
+<p>For each pair <span class="math inline">\((\lambda,v)\)</span> with <span class="math inline">\(\lambda\ge 0\)</span>, the Lagrange dual function gives us a lower bound on the optimal value <span class="math inline">\(p^\star\)</span> of the optimization problem. We hope to know the best lower bound , <span class="math display">\[
+\begin{array}{rl}
+\text{maxmize} &amp;g(\lambda,v)\\
+\text{subject to}&amp;\lambda\succeq 0.
+\end{array}
+\]</span> This problem is called <strong>Lagrange dual problem</strong>. The original problem is sometimes called the <strong>primal problem</strong>. We refer to <span class="math inline">\((\lambda^\star,v^\star)\)</span> as dual optimal or optimal Lagrange multipliers.</p>
+<h3 id="making-dual-constraint-explicit">5.2.1 Making dual constraint explicit</h3>
+<p>We have known that the Lagrange dual function for the standard form LP <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+c^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b\\x\succeq0
+\end{array}
+\end{array},
+\]</span> is given by <span class="math display">\[
+g(\lambda,v)=\begin{cases}-b^Tv&amp;A^Tv-\lambda+c=0\\-\infty &amp; \text{otherwise}.\end{cases}
+\]</span> We can form an equivalent problem by making these equality constraints explicit <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+b^Tv
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+A^Tv-\lambda+c=0\\ \lambda\succeq 0
+\end{array}
+\end{array}.
+\]</span> The problem can be further simplified as <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+b^Tv
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+A^Tv+c\succeq 0
+\end{array}
+\end{array}.
+\]</span></p>
+<h3 id="weak-duality">5.2.2 Weak duality</h3>
+<p>The optimal value of the Lagrange dual problem, which we denote as <span class="math inline">\(d^\star\)</span>. We have the simple but important inequality <span class="math display">\[
+d^\star \le p^\star
+\]</span> which holds even if the original problem is not convex. This property is called <strong>weak duality</strong>.</p>
+<p>The weak duality inequality holds when <span class="math inline">\(d^\star\)</span> and <span class="math inline">\(p^\star\)</span> are infinite. For example, if the primal problem is unbounded below, so that <span class="math inline">\(p^\star=-\infty\)</span>, we must have <span class="math inline">\(d^\star =-\infty\)</span>, i.e. the Lagrange dual problem is infeasible. Conversely, if the dual problem is unbounded above, the primal problem is infeasible.</p>
+<p>We refer to the difference <span class="math inline">\(p^\star -d^\star\)</span> as the optimal <strong>duality gap</strong>.</p>
+<h3 id="strong-duality-and-slaters-constraint-qualification">5.2.3 Strong duality and Slater's constraint qualification</h3>
+<p>If the equality <span class="math display">\[
+d^\star=p^\star 
+\]</span> holds, we say that strong duality holds.</p>
+<p>Strong duality does not hold in general. But if the primal problem is convex, we usually have strong duality. There are many results that establish conditions on the problem under which strong duality holds. These conditions are called constraint qualifications.</p>
+<p><strong>Slater's Condition</strong></p>
+<p>There exists an <span class="math inline">\(x\in \text{relint }\mathcal D\)</span> such that if the first <span class="math inline">\(k\)</span> constraint functions <span class="math inline">\(f_1,\dotsm,f_k\)</span> are affine, then <span class="math display">\[
+\begin{array}{rcl}
+f_i(x)&amp;\le&amp;0,&amp;i=1,\dotsm,k\\
+f_i(x)&amp;&lt;&amp;0,&amp;i=k+1,\dotsm,m\\
+Ax&amp;=&amp;b.
+\end{array}
+\]</span> Slater's theorem states that strong duality holds if Slater's condition holds.</p>
+<h3 id="examples-1">5.2.4 Examples</h3>
+<p>Least-squares solution of equations, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}.
+\]</span> The associated dual problem is <span class="math display">\[
+\text{maxmize }-(1/4)v^TAA^Tv-b^Tv.
+\]</span> We have <span class="math display">\[
+p^\star=d^\star.
+\]</span></p>
+<h3 id="mixed-strategies-for-matrix-games">5.2.5 Mixed strategies for matrix games</h3>
+<p>In this section, we use strong duality to derive a basic result for zero-sum matrix games. The players use randomized strategies, then the expected payoff from player 1 to player 2 is then <span class="math display">\[
+\sum_{k=1}^n\sum_{l=1}^m u_kv_lP_{kl}=u^TPv.
+\]</span> Player 1 wishes to choose u to minimize <span class="math inline">\(u^TPv\)</span> while the player 2 wishes to maximize.</p>
+<p>If player 1 knows the strategy of player 2, (player 2 will choose <span class="math inline">\(v\)</span> to maximize <span class="math inline">\(u^TPv\)</span>, which results in the following) <span class="math display">\[
+\sup\{u^TPv| v\succeq 0,1^Tv=1\}=\max_{i=1,\dotsm,m} (P^Tu)_i.
+\]</span> The best thing player 1 can do is to minimize the worst case, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\max_{i=1,\dotsm,m} (P^Tu)_i
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+u\succeq 0&amp;1^Tu=1
+\end{array}
+\end{array}.
+\]</span> Similarly, if player 2 knows the strategy of player 1, we have <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\min_{i=1,\dotsm,m} (Pv)_i
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+v\succeq 0&amp;1^Tv=1
+\end{array}
+\end{array}.
+\]</span></p>
+<p>It can be shown that the dual gap is zero.</p>
+<h2 id="geometric-interpretation">5.3 Geometric interpretation</h2>
+<h3 id="weak-and-strong-duality-via-set-of-values">5.3.1 Weak and strong duality via set of values</h3>
+<p>We can give a simple geometric interpretation of the dual function in terms of the set <span class="math display">\[
+\mathcal G=\{f_1(x),\dotsm,f_m(x),h_1(x),\dotsm,h_p(x),f_0(x)\in\mathbb R^m\times \mathbb R^p\times \mathbb R\;|\;x\in \mathcal D\},
+\]</span> which is the set of values taken on by the constraint and objective functions. The optimal value <span class="math inline">\(p^*\)</span> can be expressed in terms of <span class="math inline">\(\mathcal G\)</span> as <span class="math display">\[
+p^*=\inf\{t\;|\; (u,v,t)\in \mathcal G,\; u\preceq 0,\; v=0\}.
+\]</span> If we only consider one inequality constraint, we have the Lagrangian function, <span class="math display">\[
+L(\lambda,x)=t(x)+\lambda u(x),\quad u(x)\le 0,\lambda\ge0.
+\]</span> Then the primal problem is to minimize <span class="math inline">\(t(x)\)</span>. The dual problem is to maximize <span class="math inline">\(g(\lambda)=\inf\{\lambda u+t\}\)</span>=<span class="math inline">\(\inf ((\lambda,1)^T(u,t))\)</span>, which is a supporting plane with slope <span class="math inline">\(-\lambda\)</span>. <span class="math inline">\(u=0\)</span> gives <span class="math inline">\(g(\lambda)\)</span>.</p>
+<h3 id="proof-of-strong-duality-under-constraint-qualification">5.3.2 Proof of strong duality under constraint qualification</h3>
+<h3 id="multicriterion-interpretation">5.3.3 Multicriterion interpretation</h3>
+<h2 id="saddle-point-interpretation">5.4 Saddle-point interpretation</h2>
+<p>You can refer to the notes for <strong>Nonlinear Optimization</strong>.</p>
+<h2 id="optimality-conditions">5.5 Optimality conditions</h2>
+<h3 id="certificate-of-suboptimality-and-stopping-criteria">5.5.1 Certificate of suboptimality and stopping criteria</h3>
+<p>If we can find a dual feasible <span class="math inline">\((\lambda,v)\)</span>, we establish a lower bound on the optimal value of the primal problem: <span class="math inline">\(p^\star \ge g(\lambda,v)\)</span>. Dual feasible points allow us to bound how suboptimal a given feasible point is, without knowing the exact value of <span class="math inline">\(p^\star\)</span> <span class="math display">\[
+f_0(x)-p^\star\le f_0(x)-g(\lambda,v).
+\]</span> In particular, this establishes that <span class="math inline">\(x\)</span> is <span class="math inline">\(\epsilon-\)</span>suboptimal with <span class="math inline">\(\epsilon= f_0(x)-g(\lambda,v)\)</span>.</p>
+<p>This can be used as a stop criteria.</p>
+<h3 id="complementary-slackness">5.5.2 Complementary slackness</h3>
+<p>If the strong duality holds, Let <span class="math inline">\(x^\star\)</span> be a primal optimal and <span class="math inline">\((\lambda^\star, v^\star)\)</span> be a dual optimal point. This means that <span class="math display">\[
+\begin{array}{rcl}
+f_0(x^\star)&amp;=&amp;g(\lambda^\star,v^\star)\\
+&amp;=&amp;\displaystyle{\inf_x(f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x)}\\
+&amp;\le&amp; \displaystyle{f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star f_i(x^\star)+\sum_{i=1}^pv_i^\star h_i(x^\star)}\\
+&amp;\le&amp; f_0(x^\star).
+\end{array}
+\]</span> We conclude that two inequalities in this chain hold with equality.</p>
+<p>That means <span class="math display">\[
+\begin{array}{rcl}
+h_i(x^\star)&amp;=&amp;0\\
+\displaystyle\sum_{i=1}^m \lambda_i^\star f_i(x^\star)&amp;=&amp;0.
+\end{array}
+\]</span> The second equality means <span class="math display">\[
+\lambda_i^\star &gt;0\implies f_i(x^\star)=0\\
+f_i(x^\star)&lt;0 \implies \lambda_i^\star=0
+\]</span></p>
+<h3 id="kkt-optimality-conditions">5.5.3 KKT optimality conditions</h3>
+<p>We now assume that the functions are differentiable, but we make no assumptions yet about convexity.</p>
+<p><strong>KKT condition for problems</strong></p>
+<p>Since <span class="math inline">\(x^\star\)</span> minimizes <span class="math inline">\(L(x,\lambda^\star,v^\star)\)</span>, the gradient must vanish. Thus we have <span class="math display">\[
+\begin{array}{rcl}
+f_i(x^\star)&amp;\le&amp; 0\\
+h_i(x^\star) &amp;=&amp;0\\
+\lambda_i^\star&amp;\ge&amp; 0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;0\\
+\nabla f_0(x^\star)+\sum_{i=1}^m \lambda_i^\star \nabla f_i(x^\star)+\sum_{i=1}^p v_i^\star \nabla h_i(x^\star)&amp;=&amp;0
+\end{array}
+\]</span> which are called the Karush-Kuhn-Tucker (KKT) conditions.</p>
+<p>To summarize, for any optimization problem with differentiable objective and constraint functions for which strong duality obtains, any pair of primal and dual optimal points must satisfy the KKT conditions.</p>
+<p>When the primal problem is convex, the KKT conditions are also sufficient for the points to be primal and dual optimal.</p>
+<h3 id="mechanic-interpretation-of-kkt-conditions">5.5.4 Mechanic interpretation of KKT conditions</h3>
+<p>The potential energy in the springs as a function of the block positions, is given by <span class="math display">\[
+f_0(x_1,x_2)=\frac{1}{2}k_1x_1^2+\frac{1}{2}k_2(x_2-x_1)^2+\frac{1}{2}k_3(l-x_2)^2.
+\]</span> The equilibrium position <span class="math inline">\(x^\star\)</span> is the position that minimizes the potential energy subject to the inequalities <span class="math display">\[
+w/2-x_1\le 0\\
+w+x_1-x_2\le 0\\
+w/2-l+x_2\le 0.
+\]</span> The KKT conditions for the problem consist of the constraints, <span class="math inline">\(\lambda_i\ge 0\)</span>, the complementary slackness conditions <span class="math display">\[
+\lambda_1(w/2-x_1)= 0\\
+\lambda_2(w+x_1-x_2)= 0\\
+\lambda_3(w/2-l+x_2)= 0,
+\]</span> and the zero gradient condition <span class="math display">\[
 \begin{bmatrix}
-\nabla^2f(x)&amp;A^T\\A&amp;0
-\end{bmatrix}
+k_1x_1-k_2(x_2-x_1)\\k_2(x_2-x_1)-k_3(l-x_2)
+\end{bmatrix}+
+\lambda_1
 \begin{bmatrix}
-\Delta x_{pd}\\\Delta v_{pd}
-\end{bmatrix}
-=-
+-1\\0
+\end{bmatrix}+
+\lambda_2
 \begin{bmatrix}
-r_{dual}\\ r_{pri}
-\end{bmatrix}
-=-
+1\\-1
+\end{bmatrix}+
+\lambda_3
 \begin{bmatrix}
-\nabla f(x)+A^Tv\\ Ax-b
-\end{bmatrix}
-\]</span> Let <span class="math inline">\(w=v+\Delta v_{pd}\)</span>, we have Newton step.</p>
-<p><strong>Using infeasible start Newton method to simplify initialization</strong></p>
-<p>The main advantage of the infeasible start Newton method is in the initialization required.</p>
+0\\1
+\end{bmatrix}=0.
+\]</span> The gradient condition can be interpreted as the force balance equations for the two blocks.</p>
+<p><span class="math inline">\(\lambda_1\)</span> is the force from the left wall, <span class="math inline">\(\lambda_2\)</span> is the force between two blocks' contact, <span class="math inline">\(\lambda_3\)</span> is the force from the right wall. If no contact, the force will be zero, which is decided by the slackness conditions.</p>
+<h3 id="solving-the-primal-problem-via-the-dual">5.5.5 Solving the primal problem via the dual</h3>
+<p>Suppose we have strong duality and an optimal <span class="math inline">\((\lambda^\star, v^\star)\)</span> is known. Suppose the solution of <span class="math display">\[
+\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x),
+\]</span> is unique. Then if the solution is primal feasible, it must be primal optimal. If it is not primal feasible, then no primal optimal point can exist.</p>
+<h2 id="perturbation-and-sensitivity-analysis">5.6 Perturbation and sensitivity analysis</h2>
+<p>You can refer to the notes for <strong>Nonlinear Optimization</strong>.</p>
+<h2 id="examples-2">5.7 Examples</h2>
+<p>In this section, we show by examples that simple equivalent reformulations of a problem can lead to very different dual problems. We will consider the following reformulations.</p>
+<ol type="1">
+<li>Introducing new variables and associated equality constraints.</li>
+<li>Replacing the objective with an increasing function of the original objective.</li>
+<li>Making explicit constraints implicit.</li>
+</ol>
+<h3 id="introducing-new-variables">5.7.1 Introducing new variables</h3>
+<p>Consider an unconstrained problem of the form <span class="math display">\[
+\text{minimize}\quad f_0(Ax+b).
+\]</span> Its Lagrange dual function is the constant <span class="math inline">\(p^*\)</span>. So while we do have the strong duality, the Lagrangian dual is neither useful nor interesting.</p>
+<p>Now reformulate the problem as <span class="math display">\[
+\begin{array}{rl}
+\text{minimize}&amp; f_0(y)\\
+\text{subject to}&amp; Ax+b=y.
+\end{array}
+\]</span> Then the Lagrangian of the reformulated problem is <span class="math display">\[
+L(x,y,v)=f_0(y)+v^T(Ax+b-y).
+\]</span> To find the dual function, we minimize <span class="math inline">\(L\)</span> over <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. <span class="math display">\[
+\begin{array}{rcl}
+g(v)&amp;=&amp;b^Tv+\inf_{x,y} \{f_0(y)+v^T(Ax-y)\}\\
+&amp;=&amp;b^Tv+\inf_{y}\{f_0(y)-v^Ty\}\quad(v^TA=0)\\
+&amp;=&amp;b^Tv-f_0^*(v)\quad(v^TA=0)\\
+\end{array}
+\]</span> Therefore, the dual problem is <span class="math display">\[
+\begin{array}{rl}
+\text{minimize}&amp; b^Tv-f_0^*(v)\\
+\text{subject to}&amp; A^Tv=0.
+\end{array}
+\]</span> Thus, the dual problem of the reformulated problem is considerably more useful than the dual of the original problem.</p>
+<p>This idea of introducing new equality constraints can be applied to the constraint functions as well.</p>
+<h3 id="transforming-the-objective">5.7.2 Transforming the objective</h3>
+<p>We consider the minimum norm problem <span class="math display">\[
+\text{minimize}\quad ||Ax+b||.
+\]</span> We reformulate the problem as <span class="math display">\[
+\begin{array}{rl}
+\text{minimize}&amp; \frac{1}{2}||y||^2\\
+\text{subject to}&amp; Ax-b=y.
+\end{array}
+\]</span> Then the dual of the problem is <span class="math display">\[
+\begin{array}{rl}
+\text{minimize}&amp; -\frac{1}{2}||v||_*^2+b^Tv\\
+\text{subject to}&amp; A^Tv=0.
+\end{array}
+\]</span></p>
+<h3 id="implicit-constraints">5.7.3 Implicit constraints</h3>
+<h2 id="theorems-of-alternatives">5.8 Theorems of alternatives</h2>
+<h3 id="weak-alternatives-via-the-dual-function">5.8.1 Weak alternatives via the dual function</h3>
+<p>In this section, we apply Lagrange duality theory to the problem of determining feasibility of a system of inequalities and equalities. We can think of this problem as the standard problem with objective function <span class="math inline">\(f_0=0\)</span>, <span class="math display">\[
+\begin{array}{rl}
+\text{minimize}&amp; 0\\
+\text{subject to}&amp; f_i(x)\le 0, &amp;i=1,\dotsm,m\\
+&amp;h_i(x)=0,&amp;i=1,\dotsm,p.
+\end{array}
+\]</span> This problem has optimal value <span class="math display">\[
+p^*=\begin{cases}0&amp;\text{feasible}\\ \infty&amp;\text{infeasible}.\end{cases}
+\]</span> <strong>The dual function</strong> <span class="math display">\[
+g(\lambda,v)=\inf_{x\in\mathcal D}\left(\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^pv_ih_i(x)\right),
+\]</span> If the inequality system <span class="math display">\[
+\lambda \succeq 0,\quad g(\lambda,v)&gt;0,
+\]</span> is feasible. Then the primal problem is infeasible. If the primal problem is feasible, then the dual problem is infeasible. Two systems of inequalities (equalities) are called weak alternatives if at most one of the two is feasible.</p>
+<h3 id="strong-alternatives">5.8.2 Strong alternatives</h3>
+<h2 id="generalized-inequalities">5.9 Generalized inequalities</h2>
+<p>In this section, we examine how Lagrange duality extends to a problem with generalized inequality constraints, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(K_i\subseteq \mathbb R^{k_i}\)</span> are proper cones.</p>
+<h3 id="the-lagrange-dual">5.9.1 The Lagrange dual</h3>
+<p>With the generalized inequality <span class="math inline">\(f_i(x)\preceq_{k_i}0\)</span>, we associate a Lagrange multiplier vector <span class="math inline">\(\lambda_i\in\mathbb R^{k_i}\)</span> and define the associated Lagrangian as <span class="math display">\[
+L(x,\lambda,\mu)=f_0(x)+\lambda_1^Tf_1(x)+\dotsm+\lambda_m^T f_m(x)+v_1h_1(x)+\dotsm+v_ph_p(x),
+\]</span> where <span class="math inline">\(\lambda=(\lambda_1,\dotsm,\lambda_m)\)</span> and <span class="math inline">\(v=(v_1,\dotsm,v_p)\)</span>. The dual function is defined as <span class="math display">\[
+g(\lambda,v)=\inf_{x\in\mathcal D}L(x,\lambda,v).
+\]</span> As in a problem with scalar inequalities, the dual function gives the lower bounds on <span class="math inline">\(p^*\)</span>, the optimal value of the primal problem. For a problem with scalar inequalities, we require <span class="math inline">\(\lambda_i\ge 0\)</span>. Here the nonnegativity requirement on the dual variables is replaced by the condition, <span class="math display">\[
+\lambda_i\succeq_{K_i^*} 0,\quad \forall i=1,\dotsm,m,
+\]</span> where <span class="math inline">\(K_{i}^*\)</span> denotes the dual cone of <span class="math inline">\(K_i\)</span>. In other words, the Lagrange multipliers associated with the inequalities must be <strong>dual nonnegative</strong>.</p>
+<p><strong>Weak duality</strong> follows immediately from the definition of dual cone. If <span class="math inline">\(\lambda_i\succeq_{k_i^*}0\)</span> and <span class="math inline">\(f_i(\tilde x)\preceq_{k_i}0\)</span>, then <span class="math inline">\(\lambda_if_i(\tilde x)\le 0\)</span>.</p>
+<p>The Lagrange dual optimization problem is <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{maximize}\quad &amp; 
+\begin{array}{lll}
+g(\lambda,v)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\lambda_i\succeq_{k_i^*}0,&amp;i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span> We always have weak duality whether or not the primal problem is convex.</p>
+<p><strong>Slater’s condition and strong duality</strong></p>
+<p>Strong duality holds when the primal problem is convex and satisfies an appropriate constraint problem. For example, a generalized version of Slater’s condition for the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(f_0(x)\)</span> is convex and <span class="math inline">\(f_i\)</span> is <span class="math inline">\(K_i\)</span>-convex, is that there exists an <span class="math inline">\(x\in\text{relint}\mathcal D\)</span> with <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(f_i(x)\prec_{k_i}0,\forall i=1,\dotsm,m\)</span>. This condition implies strong duality.</p>
 
         
       
@@ -473,7 +728,7 @@ r_{dual}\\ r_{pri}
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/Convex Optimization/9. Unconstraint Minimization/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -487,7 +742,7 @@ r_{dual}\\ r_{pri}
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" class="post-title-link" itemprop="url">Chapter 9. Unconstraint Minimization</a>
+            <a href="/2019/07/12/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-title-link" itemprop="url">Chapter 1-2. Banach Spaces</a>
           
         </h1>
 
@@ -502,7 +757,7 @@ r_{dual}\\ r_{pri}
                 
               
 
-              <time title="Created: 2019-08-11 13:49:01 / Modified: 13:58:04" itemprop="dateCreated datePublished" datetime="2019-08-11T13:49:01+08:00">2019-08-11</time>
+              <time title="Created: 2019-07-12 13:48:00 / Modified: 14:58:30" itemprop="dateCreated datePublished" datetime="2019-07-12T13:48:00+08:00">2019-07-12</time>
             </span>
           
             
@@ -515,7 +770,7 @@ r_{dual}\\ r_{pri}
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
 
                 
                 
@@ -524,7 +779,7 @@ r_{dual}\\ r_{pri}
           
 
           
-            <span id="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 9. Unconstraint Minimization" title="Views">
+            <span id="/2019/07/12/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 1-2. Banach Spaces" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -542,7 +797,7 @@ r_{dual}\\ r_{pri}
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/08/11/Convex Optimization/9. Unconstraint Minimization/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/07/12/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/12/Introduction to Hilbert Spaces with Applications/1.5 Banach Spaces/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -556,112 +811,213 @@ r_{dual}\\ r_{pri}
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="unconstrained-minimization">9. Unconstrained minimization</h1>
-<h2 id="unconstrained-minimization-problem">9.1 Unconstrained minimization problem</h2>
-<p>In this chapter, we discuss methods for solving the unconstrained optimization problem <span class="math display">\[
-\text{minimize } f(x)
-\]</span> where <span class="math inline">\(f\)</span> is convex and twice differentiable.</p>
-<p>We denote the optimal value <span class="math inline">\(\inf_x f(x)=f(x^\star)\)</span>, and we know that <span class="math inline">\(\nabla f(x^\star)=0\)</span></p>
-<p>Sometimes we can solve the problem analytically, but most of the time, we need to use iterative method.</p>
-<p><strong>Initial point and sublevel set</strong></p>
-<p>The method described in this chapter require a suitable starting point <span class="math inline">\(x^{(0)}\)</span>. The starting point must lie in <span class="math inline">\(dom f\)</span>, and in addition the sublevel set <span class="math display">\[
-S=\{x\in dom f| f(x)\le f(x^{(0)})\}
-\]</span> must be closed.</p>
-<h3 id="examples">9.1.1 Examples</h3>
-<p><strong>Quadratic minimization and least-squares</strong> <span class="math display">\[
-\text{minimize } (1/2)x^TPx+q^Tx+r
-\]</span> For the optimal value, we have <span class="math display">\[
-Px^\star+q=0
-\]</span> <strong>Unconstrained geometric programming</strong> <span class="math display">\[
-\text{minimize }f(x)=\log \left(\sum_{i=1}^m \exp (a_i^Tx+b_i)\right)
-\]</span> The optimality condition is <span class="math display">\[
-\nabla f(x^\star)=\frac{1}{\sum_{i=1}^m \exp(a_i^Tx^\star+b_i)}\sum_{i=1}^m \exp (a_i^Tx^\star+b_i)a_i=0
-\]</span> The above in general has no analytical solution, therefore we need to use iterative method.</p>
-<p><strong>Analytic center of linear inequalities</strong></p>
-<p>We consider the optimization problem <span class="math display">\[
-\text{minimize }f(x)=-\sum_{i=1}^m \log (b_i-a_ix^T)
-\]</span> The objective function <span class="math inline">\(f\)</span> in this problem is called logarithmic barrier for the inequalities. The solution if exists, is called analytic center of the inequalities.</p>
-<p><strong>Analytic center of a linear matrix inequality</strong> <span class="math display">\[
-\text{minimize } f(x)=\log\det F(x)^{-1}\\
-F(x)=F_0+x_1F_1+\dotsm+x_nF_n
-\]</span></p>
-<h3 id="strong-convexity-and-implications">9.1.2 Strong convexity and implications</h3>
-<p>In much of this chapter, we assume the objective function is strongly convex <span class="math display">\[
-\nabla^2f(x)\succeq m I
-\]</span> As the same, we have for <span class="math inline">\(x,y \in S\)</span> <span class="math display">\[
-f(y)=f(x)+\nabla f(x)^T(y-x)+\frac{1}{2} (y-x)^T \nabla^2f(z)(y-x)
-\]</span> where <span class="math inline">\(z\)</span> is on the line segment <span class="math inline">\([x,y]\)</span>.</p>
-<p>By the strong convexity, we have <span class="math display">\[
-f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{m}{2}||y-x||_2^2
-\]</span> We find that <span class="math inline">\(\tilde y= x-(1/m)\nabla f(x)\)</span> minimizes the right hand side, therefore, we have <span class="math display">\[
-f(y)\ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
-\]</span> And we have <span class="math display">\[
-p^\star \ge f(x)-\frac{1}{2m}||\nabla f(x)||^2_2
-\]</span> That means <span class="math display">\[
-||\nabla f(x)||_2\le (2m\epsilon)^{1/2} \implies f(x)-p^\star \le \epsilon
-\]</span> The inequality shows that when the gradient is small, then the point is nearly optimal. We can also derive a bound on <span class="math inline">\(||x-x^*||_2\)</span>, the distance between <span class="math inline">\(x\)</span> and any optimal point <span class="math inline">\(x^\star\)</span>, in terms of <span class="math inline">\(||\nabla f(x)||_2\)</span>: <span class="math display">\[
-||x-x^\star||_2\le \frac{2}{m}||\nabla f(x)||_2
-\]</span></p>
-<p><strong>Upper bound on <span class="math inline">\(\nabla^2f(x)\)</span></strong> There exists a constant <span class="math inline">\(M\)</span> such that <span class="math display">\[
-\nabla^2 f(x)\preceq MI
-\]</span></p>
-<p>Then we have <span class="math display">\[
-f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{M}{2}||y-x||_2^2
-\]</span> Then <span class="math display">\[
-p^\star \le f(x)-\frac{1}{2M}||\nabla f(x)||^2_2
-\]</span> <strong>Condition number of sublevel sets</strong></p>
-<p>From the strong convexity inequality, we have <span class="math display">\[
-mI\preceq \nabla^2f(x)\preceq MI
-\]</span> for all <span class="math inline">\(x\in S\)</span>. The ratio <span class="math inline">\(k=M/m\)</span> is thus an upper bound on the condition number of the matrix <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. the ratio of its largest eigenvalue to its smallest eigenvalue.</p>
-<p><strong>The Strong Convexity constants</strong></p>
-<p>It must be kept in mind that the constants <span class="math inline">\(m\)</span> and <span class="math inline">\(M\)</span> are known only in rare cases.</p>
-<h2 id="descent-method">9.2 Descent Method</h2>
-<p>The algorithm described in this chapter produce a minimizing sequence <span class="math inline">\(x^{(k)}\)</span> , where <span class="math display">\[
-x^{(k+1)}=x^{(k)}+t \Delta x^{(k)}
-\]</span> All methods we study are descent methods, which means <span class="math display">\[
-f(x^{(k+1)})&lt; f(x^{(k)})
-\]</span></p>
-<p>except when <span class="math inline">\(x^{(k)}\)</span> is optimal.</p>
-<p>From convexity, we know that <span class="math inline">\(\nabla f(x^{(k)})^T(y-x^{(k)})\ge 0\)</span> implies <span class="math inline">\(f(y)\ge f(x^{(k)})\)</span>, so the search direction must be made as an acute angle with the negative gradient. <span class="math display">\[
-\nabla f(x^{(k)})^T\Delta x^{(k)}&lt; 0
-\]</span> <strong>Exact line search</strong></p>
-<p>One line search method sometimes used in practice is exact line search, in which <span class="math inline">\(t\)</span> is chosen to minimize <span class="math inline">\(f\)</span> along the ray <span class="math inline">\(\{x+t\Delta x|t \ge 0\}\)</span>: <span class="math display">\[
-t=\arg\min_{s\ge 0} f(x+s\Delta x)
-\]</span> An exact line search is used when the cost of the minimization problem with one variable, require in the above equation, is low compared to the cost of computing the search direction itself.</p>
-<p><strong>Backtracking line search</strong></p>
-<p>Most line search used in practice are inexact: the step length is chose to appropriately minimize <span class="math inline">\(f\)</span> along the ray.</p>
-<p>Backtracking line search based on two variables <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, with <span class="math inline">\(0&lt;\alpha&lt;0.5\)</span>, <span class="math inline">\(0&lt;\beta&lt;1\)</span>.</p>
-<h2 id="gradient-descent-method">9.3 Gradient Descent Method</h2>
-<p>A natural choice for the search direction is the negative gradient <span class="math inline">\(\Delta x=-\nabla f(x)\)</span>.</p>
-<h2 id="steepest-descent-method">9.4 Steepest descent method</h2>
-<p>The first order Taylor approximation of the function <span class="math inline">\(f(x+v)\)</span> around <span class="math inline">\(x\)</span> is <span class="math display">\[
-f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x) v
-\]</span></p>
-<p>Now the question is how we choose <span class="math inline">\(v\)</span> to make the second term as negative as possible. Since the directional derivative <span class="math inline">\(\nabla f(x)^Tv\)</span> is linear in <span class="math inline">\(v\)</span>, it can be negative as we like by taking <span class="math inline">\(v\)</span> large. To make the question sensible, we have to limit the size of <span class="math inline">\(v\)</span>, or normalize by the length of <span class="math inline">\(v\)</span>. We define the normalized steepest descent direction as <span class="math display">\[
-\Delta x_{nsd}= \arg\min \{\nabla f(x)^Tv| \space ||v||=1\}
-\]</span></p>
-<p>It is also convenient to consider a steepest descent step <span class="math inline">\(\Delta x_{sd}\)</span> is unnormalized, by scaling the normalized steepest descent direction in a particular way: <span class="math display">\[
-\Delta x_{sd}=||\nabla f(x)||_* \Delta x_{nsd}
-\]</span></p>
-<h2 id="newtons-method">9.5 Newton's Method</h2>
-<p>For <span class="math inline">\(x\in dom f\)</span>, the vector <span class="math display">\[
-\Delta x_{nt}=-\nabla^2f(x)^{-1}\nabla f(x)
-\]</span> is called the newton step. Positive definiteness of <span class="math inline">\(\nabla^2f(x)\)</span> implies the Newton step is a decent direction.</p>
-<p><strong>Minimizer of the second-order approximation</strong> The second-order Taylor approximation <span class="math inline">\(\hat f\)</span> of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> is <span class="math display">\[
-f(x+v)\approx \hat f(x+v)=f(x)+\nabla f(x)^Tv+\frac{1}{2}v^T \nabla^2 f(x) v
-\]</span> which is a convex quadratic function of <span class="math inline">\(v\)</span>, and is minimized when <span class="math inline">\(v=\Delta x_{nt}\)</span>.</p>
-<p><strong>Steepest descent direction in Hessian norm</strong> The Newton Step is also the steepest descent direction at <span class="math inline">\(x\)</span>, for the quadratic norm defined by the Hessian <span class="math inline">\(\nabla^2 f(x)\)</span>, i.e. <span class="math display">\[
-||u||_{\nabla^2f(x)} =(u^T\nabla^2f(x)u)^{1/2}
-\]</span></p>
-<p><strong>Solution of linearized optimality condition</strong> Since we know the optimality condition is <span class="math inline">\(\nabla f(x^\star) =0\)</span>, if we linearize <span class="math inline">\(\nabla f(x)\)</span> near <span class="math inline">\(x\)</span> we have <span class="math display">\[
-\nabla f(x+v) \approx \nabla f(x)+\nabla^2 f(x)v=0
-\]</span> Then we can use first-order numerical method to solve this equation.</p>
-<p><strong>Affine invariance of the Newton step</strong> An important feature of the Newton step is that it is independent of linear changes of the coordinates.</p>
-<p><strong>The Newton decrement</strong> The quantity <span class="math display">\[
-\lambda (x)=(\nabla f(x)^T\nabla^2f(x)\nabla f(x))^{1/2}
-\]</span> is called Newton decrement at <span class="math inline">\(x\)</span>. We will see that the Newton decrement plays an important role in the analysis of Newton's method, and is also useful as a stopping criterion. We can relate the Newton decrement to the quantity <span class="math inline">\(f(x)-\inf_y\hat f(y)\)</span>, where <span class="math inline">\(\hat f\)</span> is the second-order approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>: <span class="math display">\[
-f(x)-\inf_y \hat f(x)=f(x)-\hat f(x+\nabla x_{nt})=\frac{1}{2}\lambda(x)^2.
-\]</span> Thus <span class="math inline">\(\lambda^2/2\)</span> is the estimate of <span class="math inline">\(f(x)-p^\star\)</span>, based on the quadratic approximation of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>.</p>
+          <h2 id="banach-spaces">1.5 Banach Spaces</h2>
+<p>Every Cauchy sequence of <strong>numbers</strong> converges. Every absolutely convergent series of <strong>numbers</strong> converges. Similar properties of a normed space would be of great importance. Not all normed spaces have the above properties. Those which do are called Banach Spaces.</p>
+<p>==Definition 1.5.1== Cauchy Sequence</p>
+<p>A sequence of vectors <span class="math inline">\((x_n)\)</span> in a normed space is called a Cauchy sequence if for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>.</p>
+<p>==Theorem 1.5.1==</p>
+<p>The following conditions are equivalent:</p>
+<ol type="a">
+<li><p><span class="math inline">\((x_n)\)</span> is a Cauchy sequence.</p></li>
+<li><p><span class="math inline">\(||x_{p_n}-x_{q_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, for every pair of increasing sequences of positive integers <span class="math inline">\((p_n)\)</span> and <span class="math inline">\((q_n)\)</span></p></li>
+<li><p><span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> for every increasing sequence of positive integers <span class="math inline">\((p_n)\)</span></p></li>
+</ol>
+<p>Proof. clearly <span class="math inline">\((a)\rightarrow (b)\rightarrow (c)\)</span></p>
+<p>we only need to prove <span class="math inline">\((c)\rightarrow (a)\)</span></p>
+<p>If <span class="math inline">\((x_n)\)</span> is not a Cauchy sequence, then <span class="math inline">\(\exists \epsilon&gt;0,\forall M&gt;0,\exists m,n&gt;M\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span>.</p>
+<p>That means <span class="math inline">\(\exists \epsilon&gt;0\)</span>, there are infinitely many <span class="math inline">\(m,n\)</span> such that <span class="math inline">\(||x_m-x_n||\ge \epsilon\)</span></p>
+<p>Then there exists increasing sequence of positive integers <span class="math inline">\((p_n)\)</span> such that <span class="math inline">\(||x_{p_{n+1}}-x_{p_n}||\not \rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p>We can easily find such sequence. Q.E.D.</p>
+<p>Observe that every <strong>convergent sequence</strong> is a <strong>Cauchy sequence</strong>.</p>
+<p>If we have <span class="math inline">\(||x_n-x||\rightarrow 0\)</span>, then <span class="math inline">\(||x_{p_n}-x_{q_n}||\le||x_{p_n}-x||+||x_{q_{n}}-x||\rightarrow 0\)</span></p>
+<p>The converse is not true. A sequence of the rational number may converge to an irrational number.</p>
+<p>==Lemma 1.5.1==</p>
+<p>If <span class="math inline">\((x_n)\)</span> is a Cauchy sequence in a normed space, then the sequence of norms <span class="math inline">\((||x_n||)\)</span> converges.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists a number M such that <span class="math inline">\(||x_m-x_n||&lt;\varepsilon\)</span> for all <span class="math inline">\(m,n&gt;M\)</span>. <span class="math display">\[
+|\space||x_m||-||x_n||\space|\le||x_m-x_n||\rightarrow 0
+\]</span> ==Definition 1.5.2== Banach Space</p>
+<p>A normed space <span class="math inline">\(E\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(E\)</span> converges to an element of <span class="math inline">\(E\)</span>. A complete normed space is called a Banach Space.</p>
+<p>==Example 1.5.1== The space <span class="math inline">\(l^2\)</span> is complete.</p>
+<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(z_1,z_2,\dotsm \in E\)</span> satisfying that</p>
+<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
+||z_m-z_n||^2=\sum_{k=1}^\infty |z_{m,k}-z_{n,k}|^2&lt;\epsilon^2
+\]</span> that implies <span class="math inline">\(\forall k\in \mathbb N,\forall\epsilon&gt;0,\exists n_0&gt;0\)</span> <span class="math display">\[
+|z_{m,k}-z_{n,k}|&lt;\epsilon\quad \forall m,n&gt;n_0
+\]</span> that mean for every k, the sequence <span class="math inline">\((z_{n,k})\)</span> is Cauchy sequence and convergent. Then we denote <span class="math display">\[
+z_k=\lim_{n\rightarrow \infty} z_{n,k}\quad k=1,2,\dotsm\quad z=(z_k)
+\]</span> We need to prove that there exists an element <span class="math inline">\(z\in E\)</span> such that <span class="math inline">\(\forall \varepsilon&gt;0,\exists M&gt;0,\forall m&gt;M\)</span> such that <span class="math display">\[
+||z_m-z||=\sum_{k=1}^\infty |z_{m,k}-z_k|^2&lt;\varepsilon^2
+\]</span> By letting $n$, we can prove the second equation by the first equation.</p>
+<p>Then we need to prove that <span class="math inline">\(z\in E\)</span> <span class="math display">\[
+\sqrt{\sum_{k=1}^\infty|z_k|^2}=\sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}+z_{m,k}|^2}\\
+\le \sqrt{\sum_{k=1}^\infty|z_{k}-z_{m,k}|^2}+\sqrt{\sum_{k=1}^\infty |z_{m,k}|^2}
+&lt; \infty
+\]</span> That means <span class="math inline">\(z_m \rightarrow z\)</span></p>
+<p>Q.E.D.</p>
+<p>==Example 1.5.2== Another important example of a Banach space is the space <span class="math inline">\(\mathscr C([a,b])\)</span> of continuous functions on an interval <span class="math inline">\([a,b]\)</span>.</p>
+<p>To prove the completeness, we need to prove for any Cauchy sequence <span class="math inline">\(f_1,f_2,\dotsm \in E\)</span> satisfying that</p>
+<p><span class="math inline">\(\forall \epsilon &gt;0\)</span>, there exists a number <span class="math inline">\(n_0\)</span> such that for all <span class="math inline">\(m,n\ge n_0\)</span> <span class="math display">\[
+||f_m-f_n||&lt;\epsilon\\
+\max_{x\in[a,b]} |f_m(x)-f_n(x)|&lt;\epsilon
+\]</span> that implies <span class="math display">\[
+|f_m(x)-f_n(x)|&lt;\epsilon \quad \forall n,m\ge n_0,\forall x\in[a,b]
+\]</span> that means <span class="math inline">\((f_n(x))\)</span> is Cauchy sequence <span class="math inline">\(\forall x\in[a,b]\)</span>.</p>
+<p>We denote <span class="math display">\[
+f(x)=\lim_{n\rightarrow \infty } f_n(x),\forall x\in[a,b]
+\]</span> Let $n$ , we have <span class="math display">\[
+|f_m(x)-f(x)|&lt;\epsilon,\forall m\ge n_0 ,\forall x\in[a,b]\\
+\max_{x\in[a,b]}|f_m(x)-f(x)|&lt;\epsilon \\
+||f_m-f|&lt;\epsilon
+\]</span> Then we prove <span class="math inline">\(f\in E\)</span></p>
+<p>Let <span class="math inline">\(\forall x_0\in[a,b]\)</span>. Since <span class="math inline">\(f_{n_0}\)</span> is continuous on <span class="math inline">\([a,b]\)</span>, there exists <span class="math inline">\(\delta &gt;0\)</span> such that <span class="math inline">\(|f_{n_0}(x_0)-f_{n_0}(y)|&lt;\epsilon\)</span> for every <span class="math inline">\(y\in[a,b]\)</span> and <span class="math inline">\(|x_0-y|&lt;\delta\)</span> <span class="math display">\[
+|f(x_0)-f(y)|= |f(x_0)-f_{n_0}(x_0)+f_{n_0}(x_0)-f_{n_0}(y)+f_{n_0}(y)-f(y)|\\
+\le |f(x_0)-f_{n_0}(x_0)|+|f_{n_0}(x_0)-f_{n_0}(y)|+|f_{n_0}(y)-f(y)|\\
+&lt; 3\epsilon
+\]</span> whenever <span class="math inline">\(|x_0-y|&lt;\delta\)</span>, that means <span class="math inline">\(f\)</span> is continuous.</p>
+<p>Q.E.D.</p>
+<p>==Definition 1.5.3== Convergent and Absolutely convergent series</p>
+<p>A series <span class="math inline">\(\sum_{n=1}^\infty x_n\)</span> converges in a normed space <span class="math inline">\(E\)</span> if the sequence of partial sums converges in <span class="math inline">\(E\)</span>.</p>
+<p>i.e. there exists <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_1+x_2+\dotsm+x_n-x||\rightarrow 0\)</span> as $n$ .</p>
+<p>In that case, we write <span class="math inline">\(\sum_{n=1}^\infty x_n=x\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty ||x_n||&lt;\infty\)</span>, then the series is called absolute convergent.</p>
+<p>==Theorem 1.5.2==</p>
+<p>A normed space is complete if and only if every absolutely convergent series converges.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>We will prove this by proving absolutely convergent series is a Cauchy series.</p>
+<p>We define a absolutely convergent series. Suppose <span class="math inline">\(x_n\in E\)</span> and <span class="math inline">\(\sum_{n=1}^\infty||x_n||&lt;\infty\)</span> and denote <span class="math display">\[
+s_n=\sum_{k=1}^nx_k
+\]</span> Because the sequence of partial sums converges in E, for every $&gt;0 $, there exists <span class="math inline">\(k&gt;0\)</span> such that <span class="math display">\[
+\sum_{n=k+1}^\infty ||x_n||&lt;\epsilon
+\]</span> To show <span class="math inline">\((s_n)\)</span> is a Cauchy sequence, <span class="math inline">\(\forall \epsilon&gt;0,\exists M,\forall m,n&gt;M\)</span> such that <span class="math display">\[
+||s_m-s_n||=||x_{n+1}+x_{n+2}+\dotsm+x_m||\le \sum_{r=n+1}^\infty ||x_r||&lt;\epsilon
+\]</span> (without loss of generality, we assume <span class="math inline">\(m&gt;n\)</span>)</p>
+<p>Since E is complete, <span class="math inline">\(s_n\)</span> converges.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>We need to prove if every absolutely convergent series in a norm space converges, then the normed space is complete.</p>
+<p>Let <span class="math inline">\((x_n)\)</span> be an Cauchy sequence in E and therefore <span class="math inline">\(\forall \epsilon&gt;0,\exists p_k\in N,\forall m,n&gt;p_k\)</span> such that <span class="math display">\[
+||x_m-x_n||&lt;2^{-k}
+\]</span> without loss of generality, we can assume <span class="math inline">\((p_k)\)</span> is strictly increasing.</p>
+<p>Then the series <span class="math inline">\(\sum_{k=1}^\infty (x_{p_{k+1}}-x_{p_k})\)</span> is absolutely convergent and therefore, convergent and therefore, the sequence <span class="math display">\[
+x_{p_k}=x_{p_1}+(x_{p_2}-x_{p_1})+(x_{p_3}-x_{p_2})+\dotsm+(x_{p_k}-x_{p_{k-1}})
+\]</span> converges to an element <span class="math inline">\(x\in E\)</span></p>
+<p>Then <span class="math display">\[
+||x_n-x||\le ||x_n-x_{p_n}||+||x_{p_n}-x||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Theorem 1.5.3==</p>
+<p>A closed vector subspace of a Banach space is a Banach space itself.</p>
+<h2 id="linear-mappings">1.6 Linear Mappings</h2>
+<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be vector spaces, and let L be a mapping from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span></p>
+<p>If <span class="math inline">\(y=L(x)\)</span>, then y is called the ==image== of x. If A is subset of <span class="math inline">\(E_1\)</span>, then <span class="math inline">\(L(A)\)</span> denotes the image of the set <span class="math inline">\(A\)</span>.</p>
+<p>If B is a subset of <span class="math inline">\(E_2\)</span>, then <span class="math inline">\(L^{-1}(B)\)</span> denote the ==inverse image== of B. i.e. <span class="math inline">\(L^{-1}(B)\)</span> is the set of all vectors in <span class="math inline">\(E_1\)</span> whose images are elements of B.</p>
+<p>We consider the mapping which are defined on a proper subset of a vector space. Then the ==domain== of <span class="math inline">\(L\)</span> will be denoted as <span class="math inline">\(\mathscr D(L)\)</span>. The set <span class="math inline">\(L(\mathscr D(L))\)</span> is called the ==range== of the L and denoted by <span class="math inline">\(\mathscr R (L)\)</span></p>
+<p>By the ==null space== of L, denoted by <span class="math inline">\(\mathscr N(L)\)</span>, we mean the set of all vectors <span class="math inline">\(x\in \mathscr D(L)\)</span> such that <span class="math inline">\(L(x)=0\)</span></p>
+<p>By the ==graph== if L, denoted by <span class="math inline">\(\mathscr G(L)\)</span>, we mean the subset of <span class="math inline">\(E_1\times E_2\)</span> defined as follows: <span class="math display">\[
+\mathscr G(L)=\{(x,y):x\in\mathscr D(L),y=L(x)\}
+\]</span> ==Definition 1.6.1== Linear Mappings</p>
+<p>A mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called a linear mapping if <span class="math display">\[
+L(\alpha x+\beta y)=\alpha L(x)+\beta L(y)
+\]</span> for all <span class="math inline">\(x,y\in E_1\)</span> and all scalars <span class="math inline">\(\alpha,\beta\)</span>.</p>
+<p>In the remaining part of this section, we will assume that both spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces.</p>
+<p>==Definition 1.6.2== Continuous Mappings</p>
+<p>Let <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> be normed spaces. A mapping <span class="math inline">\(F\)</span> from <span class="math inline">\(E_1\)</span> to <span class="math inline">\(E_2\)</span> is called continuous at <span class="math inline">\(x_0\in E_1\)</span> if for any sequence <span class="math inline">\((x_n)\)</span> of elements of <span class="math inline">\(E_1\)</span> convergent to <span class="math inline">\(x_0\)</span>, the sequence <span class="math inline">\((F(x_n))\)</span> converges to <span class="math inline">\(F(x_0)\)</span>. i.e. F is continuous at <span class="math inline">\(x_0\)</span> if <span class="math inline">\(||x_n-x_0||\rightarrow 0\)</span> implies <span class="math inline">\(||F(x_n)-F(x_0)||\rightarrow 0\)</span>. If F is continuous at every <span class="math inline">\(x\in E_1\)</span>, then we simply say that <span class="math inline">\(F\)</span> is continuous.</p>
+<p>==Example 1.6.1==</p>
+<p>The norm in a normed space <span class="math inline">\(E\)</span> is continuous mapping from <span class="math inline">\(E\)</span> into <span class="math inline">\(R\)</span>. <span class="math display">\[
+||x_n-x||\rightarrow 0\implies |\space ||x_n||-||x||\space |\le||x_n-x||\rightarrow 0
+\]</span> ==Theorem 1.6.1==</p>
+<p>Let <span class="math inline">\(F:E_1\rightarrow E_2\)</span>. The following conditions are equivalent:</p>
+<ol type="a">
+<li><p><span class="math inline">\(F\)</span> is continuous</p></li>
+<li><p>The inverse image <span class="math inline">\(F^{-1}(U)\)</span> of any open set U of <span class="math inline">\(E_2\)</span> is open in <span class="math inline">\(E_1\)</span></p></li>
+<li><p>The inverse image <span class="math inline">\(F^{-1}(S)\)</span> of any closed set S of <span class="math inline">\(E_2\)</span> is closed in <span class="math inline">\(E_1\)</span></p></li>
+</ol>
+<p>Proof.</p>
+<p><span class="math inline">\((a)\rightarrow (b)\)</span></p>
+<p>If there exists an open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is not open in <span class="math inline">\(E_1\)</span></p>
+<p>there exists <span class="math inline">\(x\in F^{-1}(U)\)</span>, for all <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math inline">\(B(x,\varepsilon)\)</span> contains elements in <span class="math inline">\(E_1\backslash F^{-1}(U)\)</span></p>
+<p>Then we can choose the sequence <span class="math inline">\(x_1,x_2,\dotsm\in E_1\backslash F^{-1}(U)\)</span> satisfying <span class="math inline">\(x_n\in B(x,\frac{1}{n})\)</span> that means <span class="math inline">\(||x_n-x||\rightarrow 0\)</span></p>
+<p>However, $y=F(x)U $ that means there exists <span class="math inline">\(\epsilon&gt;0\)</span> such that <span class="math inline">\(B(y,\epsilon) \subseteq U\)</span> . <span class="math inline">\(x_n\notin F^{-1}(U)\)</span> means <span class="math inline">\(F(x_n)\notin U\)</span>.</p>
+<p><span class="math inline">\(F(x_n)\)</span> cannot converge to <span class="math inline">\(F(x)\)</span>. Proved.</p>
+<p><span class="math inline">\((b)\rightarrow (a)\)</span></p>
+<p>If for any open set U of <span class="math inline">\(E_2\)</span>, the inverse image <span class="math inline">\(F^{-1}(U)\)</span> is open in <span class="math inline">\(E_1\)</span>, then F is continuous.</p>
+<p>For all <span class="math inline">\(a\in F^{-1}(U)\)</span>, <span class="math inline">\(F(a)\in U\)</span>, <span class="math inline">\(U\)</span> is open and therefore for every <span class="math inline">\(a\)</span>, there exists <span class="math inline">\(\epsilon_1\)</span> such that <span class="math inline">\(B(F(a),\epsilon_1)\subseteq U\)</span> and <span class="math inline">\(a\in F^{-1}(B(F(a),\epsilon_1))\)</span>. There exists <span class="math inline">\(\epsilon_2\)</span> such that <span class="math inline">\(B(a,\epsilon_2) \subset F^{-1}(B(F(a),\epsilon_1))\)</span></p>
+<p>That mean <span class="math inline">\(||x-a||&lt;\epsilon_2\)</span> implies <span class="math inline">\(||F(x)-F(a)||&lt;\epsilon_1\)</span>. Q.E.D.</p>
+<p>==Theorem 1.6.2==</p>
+<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is continuous if and only if it is continuous at a point.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(\implies\)</span> obviously</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>Assume L is continuous at <span class="math inline">\(x_0 \in E\)</span>. We define sequence <span class="math inline">\(x_1,x_2,\dotsm \in E\)</span> and for any point <span class="math inline">\(x\in E\)</span> such that <span class="math inline">\(||x_n-x ||\rightarrow 0\)</span>.</p>
+<p>Since L is linear mapping, we have <span class="math display">\[
+||L(x_n-x+x_0-x_0)||=||L(x_n-x+x_0)-L(x_0)||
+\]</span> Since L is continuous at <span class="math inline">\(x_0\in E\)</span>, for every sequence converging to <span class="math inline">\(x_0\)</span>, the <span class="math inline">\(L\)</span> converges <span class="math inline">\(L(x_0)\)</span>. We have <span class="math display">\[
+||L(x_n-x+x_0)-L(x_0)||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Definition 1.6.3== Bounded linear mapping</p>
+<p>A linear mapping <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is called bounded if there exists a number K such that <span class="math display">\[
+||L(x)||\le K||x||
+\]</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
+<p>==Theorem 1.6.3==</p>
+<p>A linear mapping is continuous if and only if it is bounded.</p>
+<p>Proof.</p>
+<p><span class="math inline">\(\implies\)</span></p>
+<p>If the linear mapping is not bounded, that means for every number K, there exists some x such that <span class="math display">\[
+||L(x)||&gt;K||x||
+\]</span> then for every <span class="math inline">\(n-1\le|k_n|&lt; n\)</span>, there exists <span class="math inline">\(x_n \in E_1\)</span> such that <span class="math display">\[
+||L(x_n)||&gt;k_n||x_n||
+\]</span> We define the sequence <span class="math display">\[
+y_n=\frac{x_n}{k_n||x_n||}
+\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span> <span class="math display">\[
+||y_n||=\frac{1}{k_n}\rightarrow 0\\
+||L(y_n)||&gt;k_n||y_n||=1
+\]</span> Therefore, <span class="math inline">\(L\)</span> is not continuous.</p>
+<p><span class="math inline">\(\Longleftarrow\)</span></p>
+<p>If L is bounded, then there exists a number K, for all <span class="math inline">\(x\in E_1\)</span> such that <span class="math display">\[
+||L(x)||\le K||x||
+\]</span> Then we define a sequence <span class="math inline">\((x_n)\)</span> converging to zero. When <span class="math inline">\(n\rightarrow \infty\)</span>, <span class="math display">\[
+||L(x_n)||\le K||x_n||\rightarrow 0
+\]</span> By theorem 1.6.2, The linear mapping L is continuous at zero point, then it is continuous linear mapping.</p>
+<p>Q.E.D.</p>
+<p>The space of all linear mapping from a vector space <span class="math inline">\(E_1\)</span> into a vector space <span class="math inline">\(E_2\)</span> becomes a vector space if addition and multiplication by scalars are defined as follows <span class="math display">\[
+(L_1+L_2)(x)=L_1(x)+L_2(x)\\
+(\lambda L)(x)=\lambda(L(x))
+\]</span> If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed spaces, then the set of all bounded linear mappings from <span class="math inline">\(E_1\)</span> into <span class="math inline">\(E_2\)</span>, denoted by <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>, is a vector subspace of the space defined above.</p>
+<p>==Theorem 1.6.4==</p>
+<p>If <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are normed space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a normed space with norm defined by <span class="math display">\[
+||L||=\sup_{||x||=1}||L(x)||\quad \forall L\in \mathscr B(E_1,E_2)
+\]</span> Proof.</p>
+<p>Only show Triangle Inequality</p>
+<p><span class="math inline">\(\forall L_1,L_2\in \mathscr B(E_1,E_2)\)</span> <span class="math display">\[
+||L_1+L_2||=\sup_{||x||=1}||L_1(x)+L_2(x)||\le \sup_{||x||=1}||L_1(x)||+\sup_{||x||=1}||L_2(x)||=||L_1||+||L_2||
+\]</span> Q.E.D.</p>
+<p>It follows Theorem 1.6.4 that <span class="math inline">\(||L(x)||\le ||L||||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>. In fact, <span class="math inline">\(||L||\)</span> is the least number K such that <span class="math inline">\(||L(x)||\le K||x||\)</span> for all <span class="math inline">\(x\in E_1\)</span>.</p>
+<p>The norm defined above is the standard norm in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>. It is usually called the ==operator norm==. Convergence with respect to this norm is called the uniform convergence of operator.</p>
+<p>==Theorem 1.6.5==</p>
+<p>If <span class="math inline">\(E_1\)</span> is normed space and <span class="math inline">\(E_2\)</span> is a Banach space, then <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is a Banach space.</p>
+<p>Proof.</p>
+<p>We only need to show that <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is complete.</p>
+<p>A normed space <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> is called complete if every Cauchy sequence in <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> converges to an element of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span>.</p>
+<p>Let <span class="math inline">\((L_n)\)</span> be Cauchy sequence of <span class="math inline">\(\mathscr B(E_1,E_2)\)</span> and Let <span class="math inline">\(\forall x\in E_1\)</span></p>
+<p>We have <span class="math display">\[
+||L_m(x)-L_n(x)||\le ||L_m-L_n||||x||\rightarrow 0 \quad as\space n,m \rightarrow \infty
+\]</span> That means <span class="math inline">\((L_n(x))\)</span> is Cauchy sequence in <span class="math inline">\(E_2\)</span>. By completeness of <span class="math inline">\(E_2\)</span>, we have <span class="math inline">\(L(x)\in E_2\)</span> such that <span class="math display">\[
+L(x)=\lim_{n\rightarrow \infty} L_n(x)
+\]</span> Then we only need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> and <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span></p>
+<p>First we prove <span class="math inline">\(L\in \mathscr B(E_1,E_2)\)</span>, we only need to prove <span class="math inline">\(\exists K,||L(x)||\le K||x||\)</span> <span class="math display">\[
+||L(x)||=||\lim_{n\rightarrow \infty }L_n(x)||=\lim_{n\rightarrow \infty}||L_n(x)||
+\]</span> Since <span class="math inline">\(E_2\)</span> is complete and Cauchy sequence <span class="math inline">\((L_n)\)</span> is bounded, that means <span class="math inline">\(||L_n||\le M\)</span> <span class="math display">\[
+\lim_{n\rightarrow \infty}||L_n(x)||\le M||x||\\
+||L(x)||\le M||x||
+\]</span> Then we need to prove <span class="math inline">\(||L_n-L||\rightarrow 0\)</span> <span class="math display">\[
+||L_m-L_n||\rightarrow 0\\
+m\rightarrow \infty\\
+||L_n-L||\rightarrow 0
+\]</span> Q.E.D.</p>
+<p>==Theorem 1.6.6==</p>
+<p>Let L be a continuous linear mapping from a subspace of a normed space <span class="math inline">\(E_1\)</span> into a Banach space <span class="math inline">\(E_2\)</span>. Then L has a unique extension continuous linear mapping defined on the closure of the domain <span class="math inline">\(\mathscr D(L)\)</span>. In particular, if <span class="math inline">\(\mathscr D(L)\)</span> is dense in <span class="math inline">\(E_1\)</span>, then L has a unique extension to a continuous linear mapping defined on the whole space <span class="math inline">\(E_1\)</span>.</p>
+<p>==Theorem 1.6.7==</p>
+<p>If <span class="math inline">\(L:E_1\rightarrow E_2\)</span> is a continuous linear mapping, then the null space <span class="math inline">\(\mathscr N(L)\)</span> is a closed subspace of <span class="math inline">\(E\)</span>. Moreover, if the domain <span class="math inline">\(\mathscr D(L)\)</span> is closed, then the graph <span class="math inline">\(\mathscr G(L)\)</span> is a closed subspace of <span class="math inline">\(E_1\times E_2\)</span>.</p>
+<p>==Theorem 1.6.9==</p>
+<p>Let <span class="math inline">\(\mathscr T\)</span> be a family of bounded linear mapping from a Banach space <span class="math inline">\(X\)</span> into a normed space <span class="math inline">\(Y\)</span>. If for every <span class="math inline">\(x\in X\)</span> there exists a constant <span class="math inline">\(M_x\)</span> such that <span class="math inline">\(||T(x)||\le M_x\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>, then there exists a constant <span class="math inline">\(M&gt;0\)</span> such that <span class="math inline">\(||T||\le M\)</span> for all <span class="math inline">\(T\in \mathscr T\)</span>.</p>
 
         
       

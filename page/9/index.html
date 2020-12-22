@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/13/Convex Optimization/11. Interior-Point Methods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-title-link" itemprop="url">Chapter 4-1. Linear Operator on Hilbert Spaces</a>
+            <a href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" class="post-title-link" itemprop="url">Chapter 11. Interior-point methods</a>
           
         </h1>
 
@@ -244,7 +244,270 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:00 / Modified: 15:00:33" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
+              <time title="Created: 2019-09-13 13:49:01 / Modified: 14:00:59" itemprop="dateCreated datePublished" datetime="2019-09-13T13:49:01+08:00">2019-09-13</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 11. Interior-point methods" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="interior-point-methods">11. Interior-point methods</h1>
+<h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
+<p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0\\Ax=b
+\end{array}
+\end{array}
+\]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;0
+\end{array}
+\]</span></p>
+<p>Interior-point method solve the problem by applying newton’s method to a sequence of equality constrained problem. We will concentrate on a particular interior-point method, called the barrier method, for which we give a proof of convergence and a complexity analysis. We also describe the primal-dual interior point method, but do note give analysis.</p>
+<p>We can view interior-point methods as another level in the hierarchy of convex optimization algorithms.</p>
+<ol type="1">
+<li>Linear equality constrained quadratic problems are the simplest.</li>
+<li>Newton’s method is the next level.</li>
+<li>Interior-point method form the next level.</li>
+</ol>
+<h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
+<p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^mI_-(f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
+<h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
+<p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
+\hat I_-(u)=-\frac{1}{t}\log (-u)
+\]</span> Then the problem becomes <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
+<p>The function <span class="math display">\[
+\phi(x)=-\sum_{i=1}^m \log(-f_i(x))
+\]</span> is called the logarithmic barrier or log barrier for the problem.</p>
+<p>Of course, the problem is only an approximation of the original problem, so one may wondering how well. Intuitive suggests, the approximation improves as the parameter <span class="math inline">\(t\)</span> grows. One the other hand, when the parameter <span class="math inline">\(t\)</span> is large, the function <span class="math inline">\(f_0+(1/t)\phi\)</span> is difficult to minimize by Newton’ method, since the Hessian varies rapidly near the boundary feasible set. We will see that this problem can be circumvented by solving a sequence of problems, increasing the parameter <span class="math inline">\(t\)</span> (and therefore, accuracy of the approximation) at each step, and starting each Newton minimization at the solution of the problem for the previous value of <span class="math inline">\(t\)</span>.</p>
+<p>For future reference, we note that the gradient and Hessian of the logarithmic barrier function <span class="math inline">\(\phi\)</span> are given by <span class="math display">\[
+\nabla \phi(x)=\sum_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
+\nabla^2 \phi(x)=\sum_{i=1}^{m} \frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\sum_{i=1}^m  \frac{1}{-f_i(x)}\nabla^2 f_i(x)
+\]</span></p>
+<h3 id="central-path">11.2.2 Central path</h3>
+<p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+tf_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
+<p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
+Ax^\star(t)=b\\
+f_i(x^\star (t))&lt;0
+\]</span> and there exists a <span class="math inline">\(\hat v\)</span> such that <span class="math display">\[
+0=t\nabla f_0(x^\star(t))+\nabla \phi(x^\star(t))+A^T\hat v\\
+=t\nabla f_0(x^\star(t))+\sum_{i=1}^m \frac{1}{-f_i(x^\star(t))}\nabla f_i(x^\star(t))+A^T\hat v
+\]</span> <strong>Dual points from central path</strong></p>
+<p>From the above, we can derive an important property of the central path: every central point yields a dual feasible point, and hence a lower bound on the optimal <span class="math inline">\(p^\star\)</span>. We define <span class="math inline">\(\lambda_i^\star (t)=-\frac{1}{tf_i(x^\star(t))}\)</span>, <span class="math inline">\(v^\star(t)=\hat v/t\)</span></p>
+<p>Then we have <span class="math display">\[
+\nabla f_0(x^\star(t))+\sum_{i=1}^m\lambda_i^\star (t)\nabla f_i(x^\star(t))+A^Tv^\star (t)=0
+\]</span> We see the optimal point <span class="math inline">\(x^\star(t)\)</span> minimizes the Lagrangian, <span class="math display">\[
+L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+v^T(Ax-b)
+\]</span> <strong>Interpretation via KKT conditions</strong> <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;1/t
+\end{array}
+\]</span> <strong>Force field interpretation</strong></p>
+<h2 id="the-barrier-method">11.3 The barrier method</h2>
+<p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+(m/\epsilon)f_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
+<h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
+<p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
+<p>In other words, we compute <span class="math inline">\(x^\star(t)\)</span> for a sequence of increasing values of <span class="math inline">\(t\)</span>, until <span class="math inline">\(t\ge m/\epsilon\)</span>, which guarantee that we have an $-suboptimal $ solution of the original problem. When the method is proposed firstly, it is called sequential unconstrained minimization technique. Today, the method is usually called the <strong>barrier method</strong> or <strong>path-following</strong> method.</p>
+<h3 id="examples">11.3.2 Examples</h3>
+<h3 id="convergence-analysis">11.3.3 Convergence Analysis</h3>
+<h3 id="newton-step-for-modified-kkt-conditions">11.3.4 Newton step for modified KKT conditions</h3>
+<p>In the barrier method, the newton step <span class="math inline">\(\Delta x_{nt}\)</span>, and associated dual variables are given by the linear equations, <span class="math display">\[
+\begin{bmatrix}
+t\nabla^2f_0(x)+\nabla^2 \phi(x)&amp;A^T\\A&amp;0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{nt}\\v_{nt}
+\end{bmatrix}=-
+\begin{bmatrix}
+t\nabla f_0(x)+\nabla \phi(x)\\0
+\end{bmatrix}
+\]</span> In this section, we will show how these newton steps for the centering problem can be interpreted as Newton steps for directly solving the modified KKT equations, <span class="math display">\[
+\nabla f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+A^Tv=0\\
+-\lambda_if_i(x)=1/t\\
+Ax=b
+\]</span> in a particular way.</p>
+<h2 id="feasibility-and-phase-i-methods">11.4 Feasibility and phase I methods</h2>
+<h2 id="complexity-analysis-via-self-concordance">11.5 Complexity analysis via self-concordance</h2>
+<h2 id="problems-with-generalized-inequalities">11.6 Problems with generalized inequalities</h2>
+<h2 id="primal-dual-interior-point-methods">11.7 Primal-dual Interior-point methods</h2>
+<p>In this section, we describe a basic primal-dual interior-point method. Primal-dual interior-point methods are very similar to the barrier method, with some differences.</p>
+<ol type="1">
+<li><strong>There is only one loop or iteration</strong>, i.e. there is no distinction between inner and outer iterations as in the barrier method. At each iteration, both the primal and dual variables are updated.</li>
+<li>The search direction in a primal-dual interior-point method are obtained from Newton’s method, applied to the <strong>modified KKT equations.</strong></li>
+<li>In a primal-dual interior-point method, the primal-dual iterates are not necessarily feasible.</li>
+</ol>
+<p>Primal-dual interior-point methods are often more efficient than the barrier method, especially when high accuracy is required, since they can exhibit better than linear convergence.</p>
+<h3 id="primal-dual-search-direction">11.7.1 Primal-dual search direction</h3>
+<p>As in the barrier method, we start with the modified KKT conditions, expressed as <span class="math inline">\(r_t(x,\lambda,v)=0\)</span>, where we define <span class="math display">\[
+r_t(x,\lambda,v)=
+\begin{bmatrix}
+\nabla f_0(x)+Df(x)^T\lambda+A^Tv\\
+-diag(\lambda)f(x)-(1/t)1\\
+Ax-b
+\end{bmatrix}
+\]</span> If <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> satisfy <span class="math inline">\(r_t(x,\lambda,v)=0\)</span> (and <span class="math inline">\(f_i(x)&lt;0\)</span>), then <span class="math inline">\(x=x^\star (t)\)</span>, <span class="math inline">\(\lambda = \lambda^\star (t)\)</span>, <span class="math inline">\(v=v^\star (t)\)</span>. In particular, <span class="math inline">\(x\)</span> is primal feasible, and <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> are dual feasible, with duality gap <span class="math inline">\(m/t\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(r_{dual}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>dual residual</strong>.</li>
+<li><span class="math inline">\(r_{pri}=Ax-b\)</span> is called the <strong>primal residual</strong>.</li>
+<li><span class="math inline">\(r_{cent}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>centrality residual</strong>.</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orange+Dragon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orandragon's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-title-link" itemprop="url">Chapter 4-1. Linear Operator on Hilbert Spaces</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-10 13:48:00 / Modified: 15:00:33" itemprop="dateCreated datePublished" datetime="2019-09-10T13:48:00+08:00">2019-09-10</time>
             </span>
           
             
@@ -266,7 +529,7 @@
           
 
           
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 4-1. Linear Operator on Hilbert Spaces" title="Views">
+            <span id="/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 4-1. Linear Operator on Hilbert Spaces" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +547,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -408,208 +671,6 @@ A^nx=A(A^{n-1}x)
 <p>Let <span class="math inline">\(\phi\)</span> be a bounded, coercive, bilinear functional on a Hilbert Space H. For every bounded linear functional <span class="math inline">\(f\)</span> on <span class="math inline">\(H\)</span>, there exists a unique <span class="math inline">\(x_f\in H\)</span> such that <span class="math display">\[
 f(x)=\phi(x,x_f)\quad \forall x\in H
 \]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orange+Dragon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Orandragon's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-title-link" itemprop="url">Chapter 3-2. Orthogonal and Orthonormal System</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:00 / Modified: 14:59:54" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:00+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3-2. Orthogonal and Orthonormal System" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="orthogonal-and-orthonormal-system">3.6 Orthogonal and Orthonormal System</h2>
-<p>By a basis of a vector space E, we mean a linearly independent family <span class="math inline">\(\mathscr B\)</span> of vectors from E such that any vector <span class="math inline">\(x\in E\)</span> can be written as <span class="math inline">\(x=\sum_{n=1}^m \lambda_nx_n\)</span> where <span class="math inline">\(x_n\in \mathscr B\)</span> and <span class="math inline">\(\lambda_n\)</span>’s are scalars. In the inner product space, orthonormal bases are of much greater importance. Instead of finite combinations <span class="math inline">\(\sum_{n=1}^m \lambda_nx_n\)</span>, infinite sums are allowed and the ==condition of linear independence== is replaced by orthogonality.</p>
-<p>==Definition 3.6.1== (Orthogonal and Orthonormal systems)</p>
-<p>Let E be an inner product space. A family S of non-zero vectors in E is called an orthogonal system if <span class="math inline">\(x\perp y\)</span> for any two distinct elements of S. If, in addition, <span class="math inline">\(||x||=1\)</span> for all <span class="math inline">\(x\in S\)</span>, then S is called an orthonormal system.</p>
-<p>Every orthogonal set of non-zero vectors can be normalized. If S is an orthogonal system, then the family <span class="math display">\[
-S_1=\{\frac{x}{||x||}:x\in S\} 
-\]</span> is an orthonormal system.</p>
-<p>==Theorem 3.6.1==</p>
-<p>Orthogonal systems are linearly independent.</p>
-<p>==Definition 3.6.2== (Orthonormal sequence)</p>
-<p>A sequence of vectors which constitute an orthonormal system is called an orthonormal sequence.</p>
-<p>The condition of orthogonality of a sequence <span class="math inline">\((x_n)\)</span> can be expressed in terms of the Kronecker delta symbol <span class="math display">\[
-&lt;x_m,x_n&gt;=\delta_{mn}=\begin{cases}0&amp;m\neq n\\1&amp;m=n\end{cases}
-\]</span> ==Example 3.6.1==</p>
-<h2 id="properties-of-orthonormal-systems">3.7 Properties of Orthonormal systems</h2>
-<p>In section 3.3, we proved that Pythagorean formula holds for any pair of orthogonal vectors in an inner product space. It turns out that it can be generalized to any finite number of orthogonal vectors.</p>
-<p>==Theorem 3.7.1== (Pythagorean formula)</p>
-<p>If <span class="math inline">\(x_1,\dotsm,x_n\)</span> are orthogonal vectors in an inner product space, then <span class="math display">\[
-||\sum_{k=1}^nx_k||^2=\sum_{k=1}^n||x_k||^2
-\]</span> ==Theorem 3.7.2== Bessel’s equality and inequality</p>
-<p>Let <span class="math inline">\(x_1,\dotsm,x_n\)</span> be an orthonormal set of vectors in an inner product space E. Then, for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
-\left|\left|x-\sum_{k=1}^n &lt;x,x_k&gt;x_k\right|\right|^2=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2
-\]</span> and <span class="math display">\[
-\sum_{k=1}^n|&lt;x,x_k&gt;|^2\le ||x||^2
-\]</span> Proof.</p>
-<p>In view of the Pythagorean Formula, we have <span class="math display">\[
-\left|\left|\sum_{k=1}^n\alpha_kx_k\right|\right|^2=\sum_{k=1}^n|\alpha_k|^2
-\]</span> Then <span class="math display">\[
-\left|\left|x-\sum_{k=1}^n\alpha_kx_k\right|\right|^2\\
-=\left\langle x-\sum_{k=1}^n\alpha_kx_k,x-\sum_{k=1}^n\alpha_kx_k \right\rangle\\
-=||x||^2
--\sum_{k=1}^n\bar \alpha_k\left\langle x,x_k\right\rangle
--\sum_{k=1}^n\alpha_k\overline{\left\langle x,x_k \right\rangle}
-+\sum_{k=1}^n|\alpha_k|^2||x_k||^2\\
-=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2+\sum_{k=1}^n |&lt;x,x_k&gt;-\alpha_k|^2
-\]</span> Then let <span class="math inline">\(\alpha_k=&lt;x,x_k&gt;\)</span>, Q.E.D.</p>
-<ol type="1">
-<li><p>This choice of <span class="math inline">\(\alpha_k\)</span>’s minimizes <span class="math inline">\(||x-\sum_{k=1}^n\alpha_kx_k||\)</span> and thus it provides the best approximation of <span class="math inline">\(x\)</span> by a linear combination of vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span>.</p></li>
-<li><p>If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence of vectors in an inner product space E, then we have <span class="math display">\[
-\sum_{n=1}^\infty |&lt;x,x_k&gt;|^2\le ||x||^2
-\]</span> This shows that the series <span class="math inline">\(\sum_{k=1}^\infty |&lt;x,x_k&gt;|^2\)</span> converges for every <span class="math inline">\(x\in E\)</span>.</p>
-<p>In another words, the sequence <span class="math inline">\((&lt;x,x_n&gt;)\)</span> is an elements of <span class="math inline">\(l^2\)</span>. We can say that an orthonormal sequence in E induces a mapping from E into <span class="math inline">\(l^2\)</span>. <span class="math display">\[
-x\sim \sum_{n=1}^\infty &lt;x,x_n&gt;x_n
-\]</span> is called generalized Fourier series of <span class="math inline">\(x\)</span>. In general we do not know whether the series if convergent. However, the next theorem show that the completeness of the space ensures the convergence.</p></li>
-</ol>
-<p>==Theorem 3.7.3==</p>
-<p>Let <span class="math inline">\((x_n)\)</span> be an orthonormal sequence in a Hilbert space H and let <span class="math inline">\((\alpha_n)\)</span> be a sequence of complex numbers. Then the series <span class="math inline">\(\sum_{n=1}^\infty\alpha_n x_n\)</span> converges if and only if $_{n=1}^|_n|^2&lt;$, and in that case <span class="math display">\[
-||\sum_{n=1}^\infty \alpha_nx_n||^2=\sum_{n=1}^\infty |\alpha_n|^2
-\]</span> The proceeding theorem imply that in a Hilbert space H the series <span class="math inline">\(\sum_{n=1}^\infty &lt;x,x_n&gt;x_n\)</span> converges for every <span class="math inline">\(x\in H\)</span>. However, it can happen that it converges to an element different from <span class="math inline">\(x\)</span>.</p>
-<p>==Example 3.7.1==</p>
-<p>Let <span class="math inline">\(H=L^2([-\pi,\pi])\)</span> and let <span class="math inline">\(x_n=\frac{1}{\sqrt \pi}\sin nt\)</span> for <span class="math inline">\(n=1,2,\dotsm\)</span>. The sequence <span class="math inline">\((x_n)\)</span> is an orthonormal set in H. On the other hand, for <span class="math inline">\(x(t)=\cos t\)</span>, we have <span class="math display">\[
-\sum_{n=1}^\infty &lt;x,x_n&gt;x_n(t)=\sum_{n=1}^\infty [\frac{1}{\sqrt \pi}\int _{-\pi}^\pi \cos t\sin nt dt]\frac{\sin nt}{\sqrt \pi}=0\neq \cos t
-\]</span> If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence in an inner product space E, then for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
-\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2&lt;\infty
-\]</span> and consequently, <span class="math display">\[
-\lim_{n\rightarrow \infty }&lt;x,x_n&gt;=0
-\]</span> Therefore, orthonormal sequence are weakly convergent to zero. But <span class="math inline">\(||x_n||=1\)</span>, they are not strongly convergent.</p>
-<p>==Definition 3.7.1== (Complete orthonormal sequence)</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in an inner product space E is said to be complete if for every <span class="math inline">\(x\in E\)</span> we have <span class="math display">\[
-x=\sum_{n=1}^\infty &lt;x,x_n&gt;x_n
-\]</span> ==Definition 3.7.2== (Orthonormal basis)</p>
-<p>An orthonormal system B in an inner product space E is called an orthonormal basis if every <span class="math inline">\(x\in E\)</span> has a unique representation <span class="math display">\[
-x=\sum_{n=1}^\infty \alpha_nx_n
-\]</span> where <span class="math inline">\(\alpha_n \in C\)</span> and <span class="math inline">\(x_n\)</span>’s are distinct elements of B.</p>
-<p>==Theorem 3.7.4==</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math inline">\(&lt;x,x_n&gt;=0\)</span> for all <span class="math inline">\(n\in N\)</span> implies <span class="math inline">\(x=0\)</span></p>
-<p>==Theorem 3.7.5== (Parseval’s Formula)</p>
-<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math display">\[
-||x||^2=\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2
-\]</span> for every <span class="math inline">\(x\in H\)</span>.</p>
-<h2 id="orthogonal-complements-and-projection-theorem">3.9 Orthogonal Complements and projection theorem</h2>
-<p>By a subspace of a Hilbert space, we mean a vector subspace of H. A subspace of a Hilbert space is an inner product space. If we additionally assume that S is a closed subspace of H, then S is a Hilbert space itself, because a closed subspace of complete normed space is complete.</p>
-<p>==Definition 3.9.1== Orthogonal Complement</p>
-<p>Let S be a non-empty subset of a Hilbert space H. An element <span class="math inline">\(x\in H\)</span> is said to be orthogonal to S, denoted by <span class="math inline">\(x\perp S\)</span>, if <span class="math inline">\(&lt;x,y&gt;=0\)</span> for every <span class="math inline">\(y\in S\)</span>. The set of all elements of H orthogonal to S, denoted by <span class="math inline">\(S^\perp\)</span> is called the orthogonal complement of S. In symbols, <span class="math display">\[
-S^\perp =\{x\in H,x\perp S\}
-\]</span> The orthogonal complement of <span class="math inline">\(S^\perp\)</span> is denoted by <span class="math inline">\(S^{\perp\perp}\)</span></p>
-<p>Two subsets of A and B is said to be orthogonal if <span class="math inline">\(x\perp y\)</span> for every <span class="math inline">\(x\in A\)</span> and <span class="math inline">\(y\in B\)</span>. This is denoted by <span class="math inline">\(A\perp B\)</span>. Note that if <span class="math inline">\(A\perp B\)</span>, then <span class="math inline">\(A\bigcap B=\empty\)</span></p>
-<p>==Theorem 3.9.1==</p>
-<p>For any subset S of a Hilbert space H, the set <span class="math inline">\(S^\perp\)</span> is a closed subspace of H.</p>
-<p>==Definition 3.9.2== (Convex sets)</p>
-<p>A set <span class="math inline">\(U\)</span> in a vector space is called convex if for any <span class="math inline">\(x,y \in U\)</span> and <span class="math inline">\(\alpha\in(0,1)\)</span>, we have <span class="math inline">\(\alpha x+(1-\alpha)y \in U\)</span></p>
-<p>The following theorem, concerning the minimization of the norm, is of fundamental importance in approximation theory.</p>
-<p>==Theorem 3.9.2== (The closet point property)</p>
-<p>Let S be a closed convex subset of a Hilbert space H. For every point <span class="math inline">\(x\in H\)</span> there exists a unique point <span class="math inline">\(y\in S\)</span> such that <span class="math display">\[
-||x-y||=\inf_{z\in S}||x-z||
-\]</span> ==Theorem 3.9.3==</p>
-<p>Let S be a closed convex subset of a real Hilbert space H, <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(x\in H\)</span>. Then the following conditions are equivalent.</p>
-<ol type="a">
-<li><p><span class="math inline">\(||x-y||=\inf_{z\in S}||x-z||\)</span></p></li>
-<li><p><span class="math inline">\(&lt;x-y,z-y&gt;\le 0\)</span> for all <span class="math inline">\(z\in S\)</span></p></li>
-</ol>
-<p>==Theorem 3.9.4== (Orthogonal projection)</p>
-<p>If S is a closed subspace of a Hilbert space H, then every element <span class="math inline">\(x\in H\)</span> has a unique decomposition in the form <span class="math inline">\(x=y+z\)</span> where <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(z\in S^\perp\)</span></p>
-<p>==Theorem 3.9.5==</p>
-<p>If S is a closed subspace of a Hilbert space H, then <span class="math inline">\(S^{\perp\perp}=S\)</span>.</p>
 
         
       
