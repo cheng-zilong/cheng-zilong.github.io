@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/4. Logistic Regression/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5907 Pattern Recognition/4. Logistic Regression/" class="post-title-link" itemprop="url">Chapter 4. Logistic Regression Model</a>
+            <a href="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/" class="post-title-link" itemprop="url">Chapter 4. Convex Optimization Problem (1)</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:51:36" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2019-06-17 13:49:01 / Modified: 13:57:42" itemprop="dateCreated datePublished" datetime="2019-06-17T13:49:01+08:00">2019-06-17</time>
             </span>
           
             
@@ -257,7 +257,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -266,7 +266,7 @@
           
 
           
-            <span id="/2020/12/22/EE5907 Pattern Recognition/4. Logistic Regression/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 4. Logistic Regression Model" title="Views">
+            <span id="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 4. Convex Optimization Problem (1)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +284,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/4. Logistic Regression/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/4. Logistic Regression/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/06/17/Convex Optimization/4.1 Convex Optimization Problems/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,52 +298,407 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="logistic-regression-model">Logistic Regression Model</h1>
-<h2 id="introduction">1. Introduction</h2>
-<p>Generative Classifier: build joint model <span class="math inline">\(p(x,y)=p(y)p(x|y)\)</span>, estimate parameters of joint model from training data, then compute <span class="math inline">\(p(y|x)\)</span></p>
-<p>Discriminative Classifier: build model <span class="math inline">\(p(y|x)\)</span> , estimate parameters of model from data, then compute <span class="math inline">\(p(y|x)\)</span></p>
-<p>Logistic Regression is a Discriminative Classifier.</p>
-<h2 id="parameters-and-classifying-new-samples">2. Parameters and Classifying New Samples</h2>
-<p>We have already specify discriminative model <span class="math inline">\(p(y|x,w)\)</span> (Logistic Regression)</p>
-<p>First estimate <span class="math inline">\(\hat w\)</span></p>
-<p>Minimizing Negative Log Likelihood <span class="math display">\[
+          <h1 id="convex-optimization-problem">4. Convex Optimization Problem</h1>
+<h2 id="optimization-problems">4.1 Optimization Problems</h2>
+<h3 id="basic-terminology">4.1.1 Basic terminology</h3>
+<p>We use the notation <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
 \begin{array}{lll}
-\hat w 
-&amp;=&amp; \underset{w}{\operatorname{argmax}} p(y_{1:N}|x_{1:N},w)\\
-&amp;=&amp; \underset{w}{\operatorname{argmax}} \log p(y_{1:N}|x_{1:N},w)\\
-&amp;=&amp; \underset{w}{\operatorname{argmax}} \sum\log p(y_{i}|x_{i},w)\\
-&amp;=&amp; \underset{w}{\operatorname{argmin}} -\sum\log p(y_{i}|x_{i},w)\\
-&amp;=&amp; \underset{w}{\operatorname{argmin}} NLL(w)\\
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le0,\quad i=1,\dotsm,m \\h_i(x)=0,\quad i=1,\dotsm,p
 \end{array}
+\end{array}
+\]</span> to describe the problem of finding an <span class="math inline">\(x\)</span> that minimize <span class="math inline">\(f_0(x)\)</span> among all <span class="math inline">\(x\)</span> that satisfy the conditions <span class="math inline">\(f_i(x)\le 0,i=1,\dotsm,m\)</span> and <span class="math inline">\(h_i(x)=0,i=1,\dotsm,p\)</span>. We call <span class="math inline">\(x\in \mathbb R^n\)</span> the <strong>optimization variable</strong> and the function <span class="math inline">\(f_0: \mathbb R^n\rightarrow \mathbb R\)</span> the <strong>objective function</strong> or <strong>cost function</strong>. The inequalities <span class="math inline">\(f_i(x)\le 0\)</span> is called <strong>inequality constraints</strong> and the corresponding functions are called <strong>inequality constraints functions</strong>. The equations <span class="math inline">\(h_i(x)=0\)</span> are called <strong>equality constraints</strong> and the functions are called <strong>equality constraints functions</strong>. If there is no constraint, we say the problem is <strong>unconstraint</strong>.</p>
+<p>The set of points for which the objective and all constraint functions are defined, <span class="math display">\[
+\mathcal D=\bigcap_{i=0}^m \text{dom} (f_i)\cap\bigcap_{i=1}^p \text{dom}(h_i)
+\]</span> is called the <strong>domain</strong> of the optimization problem. A point <span class="math inline">\(x\in \mathcal D\)</span> is <strong>feasible</strong> if it satisfies the constraints <span class="math inline">\(f_i(x)\le 0\)</span> and <span class="math inline">\(h_i(x)=0\)</span> . The problem is said to be <strong>feasible</strong> if there exists at least one feasible point. The set of all feasible points is called a <strong>feasible set</strong> of the <strong>constraint set</strong>. The optimal value <span class="math inline">\(p^\star\)</span> of the problem is defined as <span class="math display">\[
+p^\star = \inf \left\{f_0(x)\;\Bigg|\;
+\begin{array}{rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\end{array}\right\}.
+\]</span> If the problem is infeasible, <span class="math inline">\(p^\star = \infty\)</span>. If there are feasible points <span class="math inline">\(x_k\)</span> with <span class="math inline">\(f_0(x_k)\rightarrow \infty\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span>, then <span class="math inline">\(p^\star = - \infty\)</span> , and we say the problem is <strong>unbounded below</strong>.</p>
+<p><strong>Optimal and locally optimal points</strong></p>
+<p>We say <span class="math inline">\(x^\star\)</span> is an <strong>optimal point</strong> if <span class="math inline">\(x^\star\)</span> is feasible and <span class="math inline">\(f_0(x^\star)=p^\star\)</span> . The set of all optimal points is the optimal set, denoted <span class="math display">\[
+X_{opt}=\left\{f_0(x)\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
+\;f_0(x^\star)&amp;=&amp;p^\star\end{array}\right\}.
+\]</span> If there exits an optimal point for the problem, we say the optimal value is <strong>attained</strong> or <strong>achieved</strong>, and the problem is <strong>solvable</strong>. If <span class="math inline">\(X_{opt}\)</span> is empty, we say the optimal point is <strong>not attained</strong> or <strong>not achieved</strong>. This always occurs when the problem is unbounded below. A feasible point <span class="math inline">\(x\)</span> with <span class="math inline">\(f_0(x) \le p^\star +\epsilon\)</span> is called <span class="math inline">\(\epsilon\)</span>-suboptimal and the set of all <span class="math inline">\(\epsilon\)</span>-suboptimal points is called the <span class="math inline">\(\epsilon\)</span>-suboptimal set for the problem.</p>
+<p>We say feasible point <span class="math inline">\(x\)</span> is locally optimal (local minimizer) if there is an <span class="math inline">\(R&gt;0\)</span> such that <span class="math display">\[
+f_0(x)=\inf \left\{f_0(x)\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp; 0,&amp;\forall i=1,\dotsm,m\\
+h_i(x)&amp;=&amp;0,&amp;\forall i=1,\dotsm,p\\
+\;||z-x||_2&amp;\le&amp; R\end{array}\right\}.
+\]</span> Roughly speaking, this means <span class="math inline">\(x\)</span> minimizes <span class="math inline">\(f_0\)</span> over nearby points in the feasible set. Throughout the book, optimal will mean globally optimal.</p>
+<p>If <span class="math inline">\(x\)</span> is feasible and <span class="math inline">\(f_i(x)=0\)</span>, we say that <span class="math inline">\(i\)</span>th inequality constraint <span class="math inline">\(f_i(x)\le 0\)</span> is <strong>active</strong>. otherwise it is <strong>inactive</strong>. We say that a constraint is redundant if deleting it does not change the feasible set.</p>
+<p><strong>Feasibility problem</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0,\quad i=1,\dotsm,m\\
+h_i(x)=0,\quad i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> The feasibility problem is to determine whether the constraints are consistent, and if so, find a point that satisfies them.</p>
+<h3 id="expressing-problems-in-standard-form">4.1.2 Expressing problems in standard form</h3>
+<p><span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le0,\quad i=1,\dotsm,m \\
+h_i(x)=0,\quad i=1,\dotsm,p
+\end{array}
+\end{array}.
 \]</span></p>
-<p>where <span class="math inline">\(NLL\)</span> stands for negative log likelihood, <span class="math display">\[
-NLL(w)=-\sum\log p(y_{i}|x_{i},w)=-\sum[y_i\log \mu_i+(1-y_i)\log(1-\mu_i)]
+<p><strong>Maximization problems</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+-f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le0,\quad i=1,\dotsm,m \\
+h_i(x)=0,\quad i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span></p>
+<h3 id="equivalent-problems">4.1.3 Equivalent problems</h3>
+<p>We call two problems <strong>equivalent</strong> if from a solution of one, a solution of the other is readily found. (informal definition)</p>
+<p>We now describe some general transformations that yield equivalent problems.</p>
+<p><strong>Change of variables</strong></p>
+<p>Suppose <span class="math inline">\(\phi:\mathbb R^n\rightarrow \mathbb R^n\)</span> is <strong>one-to-one</strong>, with image covering the problem domain <span class="math inline">\(\mathcal D\)</span> , that means <span class="math inline">\(\mathcal D\subseteq \phi(\text{dom} \phi)\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as <span class="math display">\[
+\tilde f_i(z)=f_i(\phi(z)),i=0,\dotsm,m\\
+\tilde h_i(z)=h_i(\phi(z)),i=1,\dotsm,p.
+\]</span> Now consider the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(z)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\tilde f_i(z)\le 0, i=1,\dotsm, m\\
+\tilde h_i(z)=0,i=1,\dots,p
+\end{array}
+\end{array}.
+\]</span> Then the problem is related to the original problem by <span class="math inline">\(x=\phi(z)\)</span> . If <span class="math inline">\(z\)</span> solves the problem, then <span class="math inline">\(x=\phi(z)\)</span> solves the original problem.</p>
+<p><strong>Transformation of objective and constraint functions</strong></p>
+<p>Suppose <span class="math inline">\(\varphi_0:\mathbb R\rightarrow \mathbb R\)</span> is <strong>monotone increasing</strong>, <span class="math inline">\(\varphi_1,\dots,\varphi_m: \mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(u)\le 0\)</span> if and only if <span class="math inline">\(u\le 0\)</span>, and <span class="math inline">\(\varphi_{m+1},\dotsm,\varphi_{m+p}:\mathbb R\rightarrow \mathbb R\)</span> satisfy <span class="math inline">\(\varphi_i(0)=0\)</span> if and only if <span class="math inline">\(u=0\)</span> . We define functions <span class="math inline">\(\tilde f_i\)</span> and <span class="math inline">\(\tilde h_i\)</span> as the compositions <span class="math display">\[
+\tilde f_i(x)=\varphi_i(f_i(x)),i=0,\dotsm,m\\\quad \tilde h_i(x)=\varphi_{m+i}(h_i(x)),i=1,\dotsm,p.
+\]</span> The associated problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\tilde f_i(x)\le 0\quad i=1,\dotsm,m\\
+\tilde h_i(x)=0\quad i=1,\dotsm,p
+\end{array}
+\end{array},
+\]</span> and the standard form problem are equivalent; indeed the feasible sets are identical, and the optimal points are identical.</p>
+<p><strong>Slack variables</strong></p>
+<p>One simple transformation is based on the observation that <span class="math inline">\(f_i(x)\le 0\)</span> if and only if there is an <span class="math inline">\(s_i\ge 0\)</span> that satisfies <span class="math inline">\(f_i(x)+s_i=0\)</span>. Using this transformation we obtain the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+s_i\ge0 &amp; i=1,\dotsm,m\\
+f_i(x)+s_i=0 &amp; i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> The new variable <span class="math inline">\(s_i\)</span> is called slack variable associated with the original inequality constraints. Indeed, if <span class="math inline">\((x,s)\)</span> is feasible for the above problem, then <span class="math inline">\(x\)</span> is feasible for the original problem. Conversely, if <span class="math inline">\(x\)</span> is feasible for the original problem, then <span class="math inline">\((x,s)\)</span> is feasible for the above problem. Thant means <span class="math inline">\(x\)</span> is optimal for the original problem if and only if <span class="math inline">\((x,s)\)</span> is optimal for the above problem.</p>
+<p><strong>Eliminating equality constraints</strong></p>
+<p>If we can explicitly parametrize all solutions of the equality constraints <span class="math display">\[
+h_i(x)=0,\quad i=1,\dotsm,p,
+\]</span> using some parameters <span class="math inline">\(z\in \mathbb R^k\)</span>. That means suppose the function <span class="math inline">\(\phi:\mathbb R^k\rightarrow \mathbb R^n\)</span> is such that <span class="math inline">\(x\)</span> satisfies the above if and only if there is some <span class="math inline">\(z\in \mathbb R^k\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> . The optimization problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(z)=f_0(\phi(z))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\tilde f_i(z)=f_i(\phi(z))\le0 &amp; i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span> is equivalent to the original problem. If <span class="math inline">\(z\)</span> is optimal for the transformed problem, then <span class="math inline">\(x=\phi(z)\)</span> is optimal for the original problem. Conversely, if <span class="math inline">\(x\)</span> is optimal for the original problem, then there is at least one <span class="math inline">\(z\)</span> such that <span class="math inline">\(x=\phi(z)\)</span> which is optimal for the transformed problem.</p>
+<p><strong>Eliminating linear equality constraints</strong></p>
+<p>When the constraints are all linear, i.e. <span class="math inline">\(Ax=b\)</span>. if <span class="math inline">\(b\notin \mathcal R(A)\)</span> then the problem is infeasible. Let <span class="math inline">\(F\in \mathbb R^{n\times k}\)</span> be any matrix with <span class="math inline">\(\mathcal R(F)=\mathcal N(A)\)</span>, so the general solution of the linear equations <span class="math inline">\(Ax=b\)</span> is given by <span class="math inline">\(Fz+x_0\)</span> .</p>
+<p>Then the original problem is equivalent to <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(Fz+x_0)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(Fz+x_0)\le 0 &amp; i=1,\dotsm,m
+\end{array}
+\end{array}.
+\]</span> <strong>Introducing equality constraints</strong></p>
+<p>Consider the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(A_0 x+b_0)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(A_ix+b_i)\le 0 &amp; i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> Then the problem is equivalent to <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(y_0)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(y_i)\le0 &amp; i=1,\dotsm,m\\
+y_i=A_ix+b_i &amp; i=0,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> <strong>Optimizing over some variables</strong></p>
+<p>We always have <span class="math display">\[
+\inf_{x,y}f(x,y)=\inf_x \tilde f(x)
 \]</span> where <span class="math display">\[
-\mu_i=\frac{1}{1+\exp(-w^Tx_i)}
-\]</span> Derivatives <span class="math display">\[
-g=\frac{dNLL(w)}{dw}=\sum(\mu_i-y_i)x_i=X^T(\mu-y)\\
-H=\sum\mu_i(1-\mu_i)x_ix_i^T=X^TSX\\
-\]</span> where S is <span class="math inline">\(N\times N\)</span> diagonal matrix where i-th diagonal is <span class="math inline">\(\mu_i(1-\mu_i)\)</span>, <span class="math inline">\(X^T=[x_1,\dotsm,x_N]\)</span>, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(y\)</span> are column vectors.</p>
-<p>Introduce bias term</p>
-<p>We simply introduce one new entry in the vector <span class="math display">\[
-X=[1\quad x_1\quad x_2 \quad \dotsm \quad x_N]
-\]</span> Regularization <span class="math display">\[
-NLL_{reg}=NLL(w)+\frac{1}{2}\lambda w^Tw\\
-g_{reg}(w)=g(w)+\lambda w=X^T(\mu-y)+\lambda w\\
-H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda I
-\]</span> But we do not want to regularize bias term <span class="math display">\[
-NLL_{reg}=NLL(w)+\frac{1}{2}\lambda \mathbf w^T\mathbf w\\
-g_{reg}(w)=g(w)+\lambda w=X^T(\mu-y)+\lambda 
-\left(\begin{array}{c}
-0\\
-\mathbf w_{D\times 1}
-\end{array}\right)\\
-H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda 
-\left(\begin{array}{c}
-0  &amp; \dotsm\\
-\vdots  &amp; I_{D\times D}
-\end{array}\right)\\
-\]</span> where w is (D+1) x 1 vector but <span class="math inline">\(\mathbf w\)</span> is D x 1 vector</p>
+\tilde f(x)=\inf_y f(x,y)
+\]</span> That means we can minimize a function by first minimizing over some of the variables and then minimizing over the remaining ones.</p>
+<p>For the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x_1,x_2)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x_1)\le0 &amp; i=1,\dotsm,m_1\\
+\tilde f_i(x_2)\le 0 &amp; i=1,\dotsm,m_2
+\end{array}
+\end{array}.
+\]</span> We first minimize over <span class="math inline">\(x_2\)</span> . Define the function <span class="math inline">\(\tilde f_0\)</span> of <span class="math inline">\(x_1\)</span> by <span class="math display">\[
+\tilde f_0(x_1)=\inf \{f_0(x_1,z)|\tilde f_i(z)\le 0,i=1,\dotsm,m_2\}.
+\]</span> Then we have the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\tilde f_0(x_1)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x_1)\le 0 &amp; i=1,\dotsm,m_1
+\end{array}
+\end{array}.
+\]</span> <strong>Epigraph problem form</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+t
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_0(x)-t\le 0\\
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+h_i(x)=0 &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> <strong>Implicit and explicit constraints</strong></p>
+<p>We can make the implicit constraint explicit which will be clear for solution.</p>
+<p>The implicit problem <span class="math display">\[
+\text {minimize}\quad f(x)
+\]</span> where the function <span class="math inline">\(f(x)\)</span> is given by <span class="math display">\[
+f(x)=
+\begin{cases}
+x^Tx\quad Ax=b\\
+\infty\quad otherwise
+\end{cases}
+\]</span> We can make the problem constraint explicit by <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x^Tx
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}.
+\]</span></p>
+<h2 id="convex-optimization">4.2 Convex Optimization</h2>
+<h3 id="convex-optimization-problems-in-standard-form">4.2.1 Convex optimization problems in standard form</h3>
+<p>A convex optimization problem is one of the form <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+a_i^Tx=b_i &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> where <span class="math inline">\(f_0,\dotsm,f_m\)</span> are convex functions. There are three additional requirements,</p>
+<ol type="1">
+<li>The objective function must be <strong>convex</strong>.</li>
+<li>The inequality constraint functions must be <strong>convex</strong>.</li>
+<li>The equality constraint functions <span class="math inline">\(h_i(x)=a_i^Tx-b_i\)</span> must be <strong>affine</strong>.</li>
+</ol>
+<p>We immediately note a important property: The feasible set of a convex optimization problem is convex since it is the intersection of the domain of the problem <span class="math display">\[
+\mathcal D=\bigcap_{i=0}^m \text{dom} (f_{i}),
+\]</span> which is a convex set with <span class="math inline">\(m\)</span> sublevel sets <span class="math inline">\(\{x\;|\;f_i(x)\le 0\}\)</span> and <span class="math inline">\(p\)</span> hyperplanes <span class="math inline">\(\{x\;|\;a_i^T x=b_i\}\)</span>.</p>
+<p>If <span class="math inline">\(f_0\)</span> is quasiconvex instead of convex, we say the above problem is <strong>quasiconvex optimization problem</strong>.</p>
+<p>If the objective function is strictly convex, then the optimal set contains at most one point.</p>
+<p><strong>Concave maximization problems</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+-f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+a_i^Tx=b_i &amp; i=1,\dotsm,p
+\end{array}
+\end{array}.
+\]</span> <strong>Abstract form convex optimization problem</strong></p>
+<p>This book consider the convex problems without the standard form (Abstract convex optimization problem) as not convex problems.</p>
+<h3 id="local-and-global-optima">4.2.2 Local and global optima</h3>
+<p>A fundamental property of convex optimization problem is that any locally optimal point is also (globally) optimal.</p>
+<h3 id="an-optimality-criterion-for-differentiable-f_0">4.2.3 An optimality criterion for differentiable <span class="math inline">\(f_0\)</span></h3>
+<p>Suppose that the objective <span class="math inline">\(f_0\)</span> in a convex optimization problem is differentiable, so that for all <span class="math inline">\(x,y \in \text{dom} (f_0)\)</span>, <span class="math display">\[
+f_0(y)\ge f_0(x)+\nabla f_0(x)^T(y-x).
+\]</span> Let <span class="math inline">\(X\)</span> denote the feasible set <span class="math display">\[
+X=\left\{x\;\;
+\begin{array}{|rcll}
+f_i(x)&amp;\le&amp;0,&amp;i=1,\dotsm,m\\
+\;h_i(x)&amp;=&amp;0,&amp;i=1,\dotsm,p\end{array}\right\}.
+\]</span> Then <span class="math inline">\(x\)</span> is optimal if and only if <span class="math inline">\(x\in X\)</span> and <span class="math display">\[
+\nabla f_0(x)^T(y-x)\ge 0,
+\]</span> for all <span class="math inline">\(y \in X\)</span>.</p>
+<p>For unconstrained problems, <span class="math inline">\(x\)</span> is optimal if and only if <span class="math display">\[
+\nabla f_0(x)=0.
+\]</span> <strong>Problems with equality constraints only</strong> <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}.
+\]</span> For the convex optimal, for the optimal point <span class="math inline">\(x\)</span>, we have <span class="math display">\[
+\nabla f_0(x)^T(y-x)\ge 0,
+\]</span> for all <span class="math inline">\(y\)</span> satisfying <span class="math inline">\(Ay=b\)</span> and <span class="math inline">\(Ax=b\)</span>. Then we have <span class="math inline">\(y=x+v\)</span> and <span class="math inline">\(v\in \mathcal N(A)\quad(Av=0)\)</span>.</p>
+<p>Then the problem becomes <span class="math display">\[
+\nabla f_0(x)^Tv\ge0\quad \forall v\in \mathcal N(A).
+\]</span> If a linear function is nonnegative on a subspace, then it must be zero on the subspace. That means <span class="math display">\[
+\nabla f_0(x)^Tv=0\quad \forall v\in \mathcal N(A)\\
+\nabla f_0(x)\perp \mathcal N(A)\\
+\mathcal R(A^T)\perp\mathcal N(A)\\
+\nabla f_0(x) \in \mathcal R(A^T).
+\]</span> Therefore, there exists <span class="math inline">\(v\in \mathbb R^P\)</span> such that <span class="math display">\[
+\nabla f_0(x)+A^Tv=0,
+\]</span> Together with the constraints <span class="math inline">\(Ax=b\)</span>.</p>
+<p>There exists a <span class="math inline">\(v\in \mathbb R^p\)</span> such that <span class="math display">\[
+\begin{array}{rcl}
+\nabla f_0(x)+A^Tv&amp;=&amp;0\\
+Ax&amp;=&amp;b,
+\end{array}
+\]</span> This is actually the classical Lagrange multiplier optimality condition.</p>
+<p><strong>Minimization over the nonnegative orthant</strong></p>
+<p>We consider the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+x\succeq 0
+\end{array}
+\end{array}.
+\]</span> We have optimality condition <span class="math display">\[
+x\succeq0 \quad \nabla f_0(x)^T(y-x)\ge 0\quad \forall y\succeq 0
+\]</span> We see the linear function of <span class="math inline">\(y\)</span>, <span class="math inline">\(\nabla f_0(x)^Ty-\nabla f_0(x)^T x\)</span> is greater than or equal to zero for all <span class="math inline">\(y\)</span> only when <span class="math display">\[
+\nabla f_0(x)\succeq 0\\
+-\nabla f_0(x)^Tx\ge 0.
+\]</span> But <span class="math inline">\(x\succeq 0\)</span> and <span class="math inline">\(\nabla f_0(x)\succeq 0\)</span>, and therefore <span class="math inline">\(\nabla f_0(x)^Tx=0\)</span></p>
+<p>The optimality condition can be expressed as <span class="math display">\[
+x\succeq 0\quad \nabla f_0(x)\succeq 0\quad x_i(\nabla f_0(x))_i=0 \space(\text{complementary condition})
+\]</span></p>
+<h3 id="equivalent-convex-problems">4.2.4 Equivalent Convex problems</h3>
+<ol type="1">
+<li><p>Eliminating equality constraints</p></li>
+<li><p>Introducing equality constraints</p></li>
+<li><p>Slack variables</p></li>
+<li><p>Epigraph problem form</p></li>
+<li><p>Minimizing over some variables</p></li>
+</ol>
+<h3 id="quasiconvex-optimization">4.2.5 Quasiconvex Optimization</h3>
+<p>Recall that a quasiconvex optimization problem has the standard form <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0 &amp; i=1,\dotsm,m\\
+Ax=b
+\end{array}
+\end{array},
+\]</span> where <span class="math inline">\(f_0\)</span> is quasiconvex and <span class="math inline">\(f_i\)</span> are convex.</p>
+<p><strong>Locally optimal solutions and optimality conditions</strong></p>
+<p>The most important difference between the convex and quasiconvex optimization is that quasiconvex optimization problems can have locally optimal solutions.</p>
+<p>It follows from the first order condition for quasiconvex optimization problem that <span class="math inline">\(x\)</span> is optimal if <span class="math display">\[
+x\in X,\quad \nabla f_0(x)^T(y-x)&gt;0\text{ for all }y\in X /\{x\}
+\]</span> There are two differences between this criterion and the analogous one for convex optimization.</p>
+<ol type="1">
+<li>This condition is only sufficient for optimality.</li>
+<li>This condition requires the gradient of <span class="math inline">\(f_0\)</span> to be nonzero.</li>
+</ol>
+<p><strong>Quasiconvex optimization via convex feasibility problems</strong></p>
+<p>One general approach to quasiconvex optimization relies on the representation of the sublevel sets of a quasiconvex function via a family of convex inequalities. <span class="math display">\[
+f_0(x)\le t \iff \phi_t(x)\le 0
+\]</span> Let <span class="math inline">\(p^\star\)</span> denote the optimal value of the quasiconvex function. If the feasibility problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+x
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+\phi_t(x)\le 0\\f_i(x)\le 0\\Ax=b
+\end{array}
+\end{array},
+\]</span> is feasible. Then <span class="math inline">\(p^\star \le t\)</span>.</p>
 
         
       
@@ -368,7 +723,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/Convex Optimization/3.2 Convex Functions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -382,7 +737,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" class="post-title-link" itemprop="url">Chapter 3. Navie Bayes Classifier</a>
+            <a href="/2019/06/05/Convex Optimization/3.2 Convex Functions/" class="post-title-link" itemprop="url">Chapter 3. Convex Functions (2)</a>
           
         </h1>
 
@@ -397,7 +752,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
                 
               
 
-              <time title="Created: 2020-12-22 13:46:13 / Modified: 14:54:09" itemprop="dateCreated datePublished" datetime="2020-12-22T13:46:13+08:00">2020-12-22</time>
+              <time title="Created: 2019-06-05 13:49:01 / Modified: 13:57:33" itemprop="dateCreated datePublished" datetime="2019-06-05T13:49:01+08:00">2019-06-05</time>
             </span>
           
             
@@ -410,7 +765,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -419,7 +774,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
           
 
           
-            <span id="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3. Navie Bayes Classifier" title="Views">
+            <span id="/2019/06/05/Convex Optimization/3.2 Convex Functions/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 3. Convex Functions (2)" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -437,7 +792,7 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/12/22/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/06/05/Convex Optimization/3.2 Convex Functions/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/06/05/Convex Optimization/3.2 Convex Functions/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -451,158 +806,241 @@ H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="introduction">1. Introduction</h2>
-<p>Let y be the target class label, x be the feature vector of length D</p>
-<p>Then we have a generative classifier <span class="math display">\[
-p(x,y|\theta)=p(y|\theta)p(x|y,\theta)
-\]</span> To define the classifier, we need to define the distribution <span class="math inline">\(p(y|\theta)\)</span> and <span class="math inline">\(p(x|y,\theta)\)</span></p>
-<p>we split <span class="math inline">\(\theta\)</span> into two parts <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\eta\)</span> .</p>
-<p><span class="math inline">\(\lambda\)</span> are the parameters of prior. For classification, y is by definition discrete then <span class="math inline">\(p(y|\lambda)\)</span> has to be a categorical distribution.</p>
-<p><span class="math inline">\(\eta\)</span> are the parameters of the likelihood. Modeling aspect comes from specifying the feature likelihood. Intuitively, feature likelihood is saying that the data point comes from the specific class with label c, what is pdf of the features x? Naive Bayes Classifier assumes features are conditionally independent given class <span class="math display">\[
-p(x|y=c,\eta)=\prod_{j=1}^Dp(x_j|y=c,\eta)=\prod_{j=1}^Dp(x_j|\eta_{jc})
-\]</span> That means p of the feature vector x given the class label c is equal to the product from feature 1 to D.</p>
-<p>For example <span class="math inline">\(p(x_1|\eta_{1,c1})\)</span> is Gaussian Distribution, then <span class="math inline">\(\eta_{1,c1}=(\mu_{1,c1},\sigma^2_{1,c1})\)</span> . <span class="math inline">\(p(x_2|\eta_{2,c1})\)</span> is Bernoulli Distribution. Each features can be different distribution.</p>
-<p>Naïve because features are probably not conditionally independent.</p>
-<h2 id="strategies-to-estimate-parameters-and-classifying">2. Strategies to Estimate Parameters and Classifying</h2>
-<p>Three strategies</p>
-<p>ML: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{ML}=\arg\max_\theta p(D|\theta)\)</span>. Then predict.</p>
-<p>MAP: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{MAP}=\arg\max_\theta p(\theta|D)\)</span>. Then predict.</p>
-<p>Posterior Predictive/ Beyesian Model Averaging (detailed in the following parts): <span class="math display">\[
-p(\tilde y|\tilde x, D)
-\]</span> Then <span class="math display">\[
-p(x,y|\theta)=p(y|\lambda)p(x|y,\eta)
-\]</span> We hope to use MAP to estimate the model parameters. We can prove the two parameters can be optimized separately. <span class="math display">\[
-\begin{array}{rcl}
-p(\theta|D)&amp;=&amp;p(\lambda,\eta|D)\\
-&amp;=&amp; \frac{p(D|\lambda,\eta)p(\lambda,\eta)}{p(D)}\\
-&amp;=&amp; \frac{p(y_{1:N}|\lambda,\eta)p(x_{1:N}|y_{1:N},\lambda,\eta) p(\lambda)p(\eta)}{p(y_{1:N})p(x_{1:N}|y_{1:N})}\\
-&amp;=&amp;\left(\frac{p(y_{1:N}|\lambda)p(\lambda)}{p(y_{1:N})}\right)
-\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
-&amp;=&amp;p(\lambda|y_{1:N})\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
+          <h2 id="operations-that-preserve-convexity">3.2 Operations that Preserve Convexity</h2>
+<p>We describe some operations that preserve convexity or concavity of functions, or allow us to construct new convex and concave functions.</p>
+<h3 id="nonnegative-weighted-sums">3.2.1 Nonnegative weighted sums</h3>
+<p>A nonnegative weighted sum of convex functions <span class="math display">\[
+f=w_1f_1+\dotsm+w_mf_m,
+\]</span> is convex.</p>
+<p>These properties can be extended to infinite sums and integrals. For example, if <span class="math inline">\(f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span> for each <span class="math inline">\(y\in \mathcal A\)</span> and <span class="math inline">\(w(y)&gt;0\)</span>.</p>
+<p>The the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
+g(x)=\int_\mathcal Aw(y)f(x,y)dy
+\]</span> is convex.</p>
+<h3 id="composition-with-an-affine-mapping">3.2.2 Composition with an affine mapping</h3>
+<p>Suppose <span class="math inline">\(f:\mathbb R^n \rightarrow \mathbb R,A\in \mathbb R^{n\times m}\)</span> and <span class="math inline">\(b\in \mathbb R^n\)</span>. Define <span class="math inline">\(g:\mathbb R^m\rightarrow \mathbb R\)</span> by <span class="math display">\[
+g(x)=f(Ax+b)
+\]</span> Then if <span class="math inline">\(f\)</span> is convex, so is <span class="math inline">\(g\)</span>.</p>
+<h3 id="pointwise-maximum-and-supremum">3.2.3 Pointwise maximum and supremum</h3>
+<p>If <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions then their pointwise maximum <span class="math inline">\(f\)</span>, defined by <span class="math display">\[
+f(x)=\max\{f_1(x),f_2(x)\}
+\]</span> with <span class="math inline">\(\text{dom} f=\text{dom} f_1\cap \text{dom} f_2\)</span> is also convex.</p>
+<p>proof</p>
+<p>if <span class="math inline">\(0\le \theta\le 1\)</span> and <span class="math inline">\(x,y \in \text{dom}f\)</span>, then <span class="math display">\[
+\begin{array}{rCl}
+f(\theta x+(1-\theta)y)
+&amp;=&amp;\max\{f_1(\theta x+(1-\theta)y),f_2(\theta_1x+(1-\theta)y)\}\\
+&amp;\le&amp;\max\{\theta f_1(x)+(1-\theta)f_1(y),\theta f_2(x)+(1-\theta)f_2(y)\}\\
+&amp;\le&amp;\theta\max\{f_1(x),f_2(x)\}+(1-\theta)\max\{f_1(y),f_2(y)\}\\
+&amp;=&amp;\theta f(x)+(1-\theta)f(y)
 \end{array}
-\]</span> ## 3. For the First Part</p>
-<p>if beta prior <span class="math display">\[
-\lambda^{MAP}=\frac{N_{head}+a-1}{N+a+b-2}
-\]</span> if Dirichlet prior <span class="math display">\[
-\lambda^{MAP}=\frac{N_c+\alpha_c-1}{N+\sum_{c=1}^C\alpha_c-C}
-\]</span> ## 4. For the Second Part</p>
-<p>Naïve Bayes means every features are independent <span class="math display">\[
-\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}=\prod_{j=1}^D\prod_{c=1}^C\frac{p(\eta_{jc})p(x_{i\in c,j}|\eta_{jc})}{p(x_{i\in c,j})}\\
-=\prod_{j=1}^D\prod_{c=1}^Cp(\eta_{jc}|x_{i\in c,j})
-\]</span> For every dimension j and every class c, use MAP to estimate parameter <span class="math inline">\(\eta_{jc}\)</span></p>
-<h2 id="predicting-target-class">5. Predicting Target Class</h2>
-<p>Once we have estimate <span class="math inline">\(\lambda^{MAP}\)</span> and <span class="math inline">\(\eta ^{MAP}\)</span> , we can use the parameter to compute for each class c: <span class="math display">\[
-p(\tilde y=c|\tilde x,\lambda^{MAP},\eta^{MAP})=p(\tilde y=c|\lambda^{MAP})p(\tilde x|\eta_{jc}^{MAP})\\
-=\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})
+\]</span> <strong>Example</strong></p>
+<p>piecewise-linear functions is convex because every piecewise-linear function is affine, <span class="math display">\[
+f(x)=\max \{a_1^Tx+b_1,\dotsm,a_L^Tx+b_L\}.
+\]</span> The pointwise maximum property extends to pointwise supremum over an infinite set of convex functions. If for each <span class="math inline">\(y\in\mathcal A,f(x,y)\)</span> is convex in <span class="math inline">\(x\)</span>, then the function <span class="math inline">\(g\)</span> defined as <span class="math display">\[
+g(x)=\sup_{y\in\mathcal A}f(x,y)
+\]</span> is convex. Here the domain of <span class="math inline">\(g\)</span> is <span class="math display">\[
+\text{dom} g=\{x\;|\;(x,y)\in\text{dom}f,\; \forall y\in\mathcal A,\;\sup_{y\in\mathcal A}f(x,y)&lt; \infty\}
+\]</span> <strong>Example</strong></p>
+<p>Support function of a set <span class="math display">\[
+S_C(x)=\sup\{x^Ty\;|\;y\in C\}
+\]</span> is convex where <span class="math inline">\(C\subseteq \mathbb R^n\)</span> with <span class="math inline">\(C\neq \O\)</span>.</p>
+<p><strong>Example</strong> (Farthest point of a set)</p>
+<p>Distance to the farthest point of a set <span class="math display">\[
+f(x)=\sup_{y\in C}||x-y||
+\]</span> is convex.</p>
+<p><strong>Example</strong> (Least-square cost as a function of weights) <span class="math display">\[
+g(w)=\inf_x \sum_{i=1}^n w_i(a_i^Tx-b_i)^2.
+\]</span> Since <span class="math inline">\(g\)</span> is the infimum of a family of linear functions of <span class="math inline">\(w\)</span>, it is a concave function of <span class="math inline">\(w\)</span>.</p>
+<p>We can derive the solution explicitly. <span class="math display">\[
+g(w)=\inf_x\left((Ax-b)^TW(Ax-b)\right),
+\]</span> where <span class="math inline">\(W=\text{diag}(w)\)</span>.</p>
+<p><strong>Example</strong> (Maximum eigenvalue of a symmetric matrix)</p>
+<p>The function <span class="math inline">\(f(X)=\lambda_{max}(X)\)</span>, with <span class="math inline">\(\text{dom} f=\mathbb S^m\)</span> is convex. <span class="math display">\[
+f(X)=\sup\{y^TXy\;|\;||y||_2=1\}.
+\]</span> <strong>Example</strong></p>
+<p>Norm of a matrix <span class="math inline">\(f(X)=||X||_2\)</span>, we have <span class="math display">\[
+f(X)=\sup\{u^TXv\;|\; ||u||_2=1,||v||_2=1\}.
 \]</span></p>
-<p>In practice, for numerical stability, we compute <span class="math display">\[
-\log\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})=\\
-\log \lambda_c^{MAP}+\sum_{j=1}^D \log p(\tilde x_j|\eta_{jc}^{MAP})
-\]</span> Example</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Feature 1</th>
-<th style="text-align: center;">Feature 2</th>
-<th style="text-align: center;">Class Label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">?</td>
-</tr>
-</tbody>
-</table>
-<p>For the first part <span class="math display">\[
-\lambda^{ML}_1=\frac{1}{3}\quad\lambda^{ML}_2=\frac{2}{3}\\
-\]</span> For the second part <span class="math display">\[
-\eta^{ML}_{11}=0\quad \eta^{ML}_{21}=0\\
-\eta^{ML}_{12}=1\quad \eta^{ML}_{22}=0.5\\
-\]</span> Then <span class="math display">\[
-\log p(\tilde y=1|\tilde x,\lambda^{MAP},\eta^{MAP})
-=\log\lambda_1^{MAP}+\sum_{j=1}^2\log p(\tilde x_j|\eta_{j1}^{MAP})\\
-=\log\lambda_1^{MAP}+\log p(\tilde x_1|\eta_{11}^{MAP})+\log p(\tilde x_1|\eta_{21}^{MAP})=-\infty\\
-\log p(\tilde y=2|\tilde x,\lambda^{MAP},\eta^{MAP})
-=\log\lambda_2^{MAP}+\sum_{j=1}^2\log p(\tilde x_j|\eta_{j2}^{MAP})\\
-=\log\lambda_2^{MAP}+\log p(\tilde x_1|\eta_{12}^{MAP})+\log p(\tilde x_1|\eta_{22}^{MAP})\\
-=\log 2/3+\log 1+\log 0.5=-1.1
-\]</span> So <span class="math inline">\(\tilde y=2\)</span></p>
-<h2 id="posterior-predictive-estimation">6. Posterior Predictive Estimation</h2>
+<h3 id="composition">2.2.4 Composition</h3>
 <p><span class="math display">\[
-\begin{array}{rcl}
-p(\tilde y|\tilde x,D)
-&amp;=&amp;\frac{p(\tilde x,\tilde y|D)}{p(\tilde x|D)}\\
-&amp;\propto&amp; p(\tilde x,\tilde y|D)\quad \text{nothing about }\tilde y\\
-&amp;=&amp; p(\tilde x|\tilde y,D)p(\tilde y|D)\\
-&amp;=&amp; p(\tilde x|\tilde y,x_{1:N},y_{1:N})p(\tilde y|x_{1:N},y_{1:N})\\
-&amp;=&amp; p(\tilde y|y_{1:N})p(\tilde x|\tilde y,x_{1:N},y_{1:N})
-\end{array}
+f(x)=h(g(x)),\quad \text{dom} f=\{x\in \text{dom} g\;|\;g(x)\in \text{dom} h\}
 \]</span></p>
-<p>The first part is just posterior predictive distribution for beta-binomial or Dirichlet-multinomial model.</p>
-<p>For the second part, we can compute independently for each dimension j and class c. <span class="math display">\[
-p(\tilde x|\tilde y,x_{1:N},y_{1:N})=\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
-\]</span> Then for every dimension <span class="math inline">\(j\)</span> and every class <span class="math inline">\(c\)</span>, we compute posterior predictive distribution of test feature <span class="math inline">\(p(\tilde x_j|x_{i\in c,j},\tilde y=c)\)</span></p>
-<p>To summarize, to predict target class label, we have <span class="math display">\[
-p(\tilde y=c|\tilde x,D)\propto p(\tilde y|y_{1:N})\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
-\]</span> For numerical stability, we compute <span class="math display">\[
-\log p(\tilde y=c|\tilde x,D)\propto \log p(\tilde y|y_{1:N})+\sum_{j=1}^D\log p(\tilde x_j|x_{i\in c,j},\tilde y=c)
-\]</span> Example</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Feature 1</th>
-<th style="text-align: center;">Feature 2</th>
-<th style="text-align: center;">Class Label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">?</td>
-</tr>
-</tbody>
-</table>
-<p>Predict <span class="math inline">\(\tilde y\)</span> using ML for class prior and We will use posterior predictive with the prior Beta(2,2) for feature likelihood. <span class="math display">\[
-p(\tilde y=1|\lambda^{ML}_1)=\frac{1}{3}\quad p(\tilde y=2|\lambda^{ML}_2)=\frac{2}{3}\\
-p(\tilde x_1|x_{i\in c1,1},\tilde y=c1) =\frac{2}{5} \quad p(\tilde x_2|x_{i\in c1,2},\tilde y=c1) =\frac{2}{5}\\
-p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in c2,2},\tilde y=c2) =\frac{1}{2}
-\]</span> Then we have the probability <span class="math display">\[
-\log p(\tilde y=c1|\tilde x,D)\propto =-2.53\\
-\log p(\tilde y=c2|\tilde x,D)\propto =-1.50\\
+<p>Scalar composition</p>
+<p>The second derivative of the composition function <span class="math inline">\(f=h\circ g\)</span> is given by <span class="math display">\[
+f&#39;&#39;(x)=h&#39;&#39;(g(x))g&#39;(x)^2+h&#39;(g(x))g&#39;&#39;(x),
+\]</span> that means if <span class="math inline">\(g\)</span> is convex and h is convex and none decreasing, <span class="math inline">\(f\)</span> is convex or <span class="math inline">\(h\)</span> is convex and none increasing, <span class="math inline">\(g\)</span> is concave.</p>
+<p>Vector composition <span class="math display">\[
+f(x)=h(g(x))=h(g_1(x),\dotsm,g_k(x))
+\]</span> Then <span class="math display">\[
+f&#39;&#39;(x)=g&#39;(x)^T\nabla^2h(g(x))g&#39;(x)+\nabla h(g(x))^Tg&#39;&#39;(x)
+\]</span> Then we can derive the following rules.</p>
+<p><span class="math inline">\(f\)</span> is convex if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none decreasing in each argument and <span class="math inline">\(g_i\)</span> are convex or if <span class="math inline">\(h\)</span> is convex, <span class="math inline">\(h\)</span> is none increasing in each argument and <span class="math inline">\(g_i\)</span> are concave.</p>
+<h3 id="minimization">3.2.5 Minimization</h3>
+<p>We haven seen that the maximum or supremum of an arbitrary family of convex functions is convex. Here we consider minimum function.</p>
+<p>If <span class="math inline">\(f\)</span> is convex in <span class="math inline">\((x, y)\)</span> and C is convex nonempty set, then the function <span class="math display">\[
+g(x)=\inf_{y\in C}f(x,y)
+\]</span> is convex in <span class="math inline">\(x\)</span> provided <span class="math inline">\(g(x)&gt;-\infty \space\forall x\)</span>.</p>
+<p>proof</p>
+<p>We have <span class="math inline">\(y_1,y_2\in C\)</span> <span class="math display">\[
+g(\theta x_1+(1-\theta)x_2)=\inf_{y\in C} f(\theta x_1+(1-\theta)x_2,y)\\
+\le f(\theta x_1+(1-\theta)x_2,\theta y_1+(1-\theta)y_2)\\
+\le\theta f(x_1,y_1)+(1-\theta)f(x_2,y_2)\\
+\le\theta g(x_1)+(1-\theta)g(x_2).
 \]</span></p>
+<p><strong>Example</strong> (Schur complement)</p>
+<p>Suppose the quadratic function <span class="math display">\[
+f(x,y)=x^TAx+2x^TBy+y^TCy,
+\]</span> is convex in (x,y), which means <span class="math display">\[
+\begin{bmatrix}
+A &amp; B\\B^T &amp; C
+\end{bmatrix}\succeq 0.
+\]</span> We can express <span class="math inline">\(g(x)=\inf _y f(x,y)\)</span> as <span class="math display">\[
+g(x)=x^T(A-BC^{-1}B^T)x.
+\]</span> By the minimization rule, <span class="math inline">\(g(x)\)</span> is also convex.</p>
+<h3 id="perspective-of-a-function">3.2.6 Perspective of a function</h3>
+<p>If <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> , then the perspective of <span class="math inline">\(f\)</span> is the function <span class="math inline">\(g: \mathbb R^{n+1}\rightarrow\mathbb R\)</span> defined by <span class="math display">\[
+g(x,t)=tf(\frac{x}{t})
+\]</span> Then the perspective operation preserves convexity: if <span class="math inline">\(f\)</span> is a convex function, then so is its perspective function <span class="math inline">\(g\)</span>.</p>
+<h2 id="the-conjugate-function">3.3 The conjugate function</h2>
+<h3 id="definition-and-examples">3.3.1 Definition and examples</h3>
+<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span>. The function <span class="math inline">\(f^*:\mathbb R^n\rightarrow\mathbb R\)</span> defined as <span class="math display">\[
+f^*(y)=\sup_{x\in \text{dom} f}(y^Tx-f(x))
+\]</span> is called the conjugate of the function <span class="math inline">\(f\)</span>. The <strong>domain</strong> of the <strong>conjugate function</strong> consists of <span class="math inline">\(y\in \mathbb R^n\)</span> for which the supremum is finite. We see immediately that <span class="math inline">\(f^*\)</span> is convex since it is the pointwise supremum of a family of convex (affine) functions of <span class="math inline">\(y\)</span>. That is true whether or not <span class="math inline">\(f\)</span> is convex.</p>
+<p>Let's start with some simple examples which allows us to derive an analytical expression for the conjugate of many common convex functions.</p>
+<p><strong>Example</strong></p>
+<p><strong>Affine function</strong>. <span class="math inline">\(f(x)=ax+b\)</span> As a function of x, <span class="math inline">\(yx-ax-b\)</span> is bounded if and only if <span class="math inline">\(y=a\)</span>, in which case it is a constant. Therefore, the domain of the convex function is a singleton <span class="math inline">\({a}\)</span> and <span class="math inline">\(f^*(a)=-b\)</span>.</p>
+<p><strong>Negative logarithm</strong>. <span class="math inline">\(f(x)=-\log x\)</span> with <span class="math inline">\(\text{dom} f\)</span> is <span class="math inline">\(\mathbb R_{++}\)</span>. Then the function <span class="math inline">\(xy+\log x\)</span> is unbounded above if <span class="math inline">\(y&gt;0\)</span> and reaches its maximum at <span class="math inline">\(x=-\frac{1}{y}\)</span> otherwise. Then <span class="math inline">\(\text{dom} f^*=-\mathbb R_{++}\)</span> and <span class="math inline">\(f^*(y)=-1-\log(-y)\)</span>.</p>
+<p><strong>Exponential</strong>. <span class="math inline">\(f(x)=e^x\)</span> . <span class="math inline">\(xy-e^x\)</span> is unbounded if <span class="math inline">\(y&lt;0\)</span> . For <span class="math inline">\(y&gt;0\)</span>, <span class="math inline">\(xy-e^x\)</span> reaches its maximum at <span class="math inline">\(x=\log y\)</span>, we have <span class="math inline">\(f^*(y)=y\log y-y\)</span> for <span class="math inline">\(\text{dom}f^*=\mathbb R_{++}\)</span>.</p>
+<p><strong>Negative Entropy</strong> <span class="math inline">\(f(x)=x\log x\)</span> . <span class="math inline">\(xy-x\log x\)</span> is bounded. <span class="math inline">\(f^*(y)=e^{y-1}\)</span>.</p>
+<h3 id="basic-properties">3.3.2 Basic properties</h3>
+<p><strong>Fenchel's inequality</strong> <span class="math display">\[
+f(x)+f^*(y)\ge x^Ty
+\]</span> <strong>Conjugate of the conjugate</strong></p>
+<p>If <span class="math inline">\(f\)</span> is convex and <span class="math inline">\(f\)</span> is closed. Then <span class="math inline">\(f^{**}=f\)</span>.</p>
+<p><strong>Differentiable functions</strong></p>
+<p>Suppose <span class="math inline">\(f\)</span> is convex and differentiable, with <span class="math inline">\(\text{dom} f= \mathbb R^n\)</span>. Any maximizer <span class="math inline">\(x^*\)</span> of <span class="math inline">\(y^Tx-f(x)\)</span> satisfies <span class="math inline">\(y=\nabla f(x^*)\)</span>. Therefore, the conjugate function can be denoted as <span class="math display">\[
+f^*(y)=(x^*)^T\nabla f(x^*)-f(x^*).
+\]</span> <strong>Scaling and composition with affine transformation</strong></p>
+<p>For <span class="math inline">\(a&gt;0\)</span> and <span class="math inline">\(b\in \mathbb R\)</span>, the conjugate of <span class="math inline">\(g(x)=af(x)+b\)</span> is <span class="math inline">\(g^*(y)=af^*(y/a)-b\)</span>.</p>
+<p><strong>Sums of independent functions</strong></p>
+<p>If <span class="math inline">\(f(u,v)=f_1(u)+f_2(v)\)</span> where <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are convex functions with conjugates <span class="math inline">\(f_1^*\)</span> and <span class="math inline">\(f_2^*\)</span>. <span class="math display">\[
+f^*(w,z)=f_1^*(w)+f_2^*(z)
+\]</span></p>
+<h2 id="quasiconvex-functions">3.4 Quasiconvex functions</h2>
+<h3 id="definition-and-examples-1">3.4.1 Definition and examples</h3>
+<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconvex</strong> if its domain and all its sublevel sets <span class="math display">\[
+S_\alpha=\{x\in \text{dom} f\;|\; f(x)\le \alpha\}
+\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
+<p>A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>quasiconcave</strong> if its domain and all its superlevel sets <span class="math display">\[
+S_\alpha=\{x\in \text{dom} f|\space f(x)\ge \alpha\}
+\]</span> for <span class="math inline">\(\alpha \in \mathbb R\)</span> are convex.</p>
+<p>A function that is both quasiconvex and quasiconcave is called quasilinear. If a function <span class="math inline">\(f\)</span> is quasilinear, then its domain and every level set <span class="math inline">\(\{x\;|\;f(x)=\alpha\}\)</span> is convex.</p>
+<p><strong>Example</strong></p>
+<p>Logarithm is quasiconvex and quasiconcave and therefore is quasilinear.</p>
+<p><strong>Example</strong></p>
+<p>Consider <span class="math inline">\(f:\mathbb R^2\rightarrow \mathbb R\)</span> with <span class="math inline">\(\text{dom} f =\mathbb R_+^2\)</span> and <span class="math inline">\(f(x_1, x_2)=x_1x_2\)</span> . This function is neither convex nor concave since its hessian matrix <span class="math display">\[
+\nabla^2f(x)=
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}.
+\]</span> However the function is quasiconcave since the superlevel sets <span class="math display">\[
+\{x\in \mathbb R_+^2\;|\;x_1x_2\ge \alpha\}
+\]</span> are convex sets for all <span class="math inline">\(\alpha\)</span>.</p>
+<h3 id="basic-properties-1">3.4.2 Basic Properties</h3>
+<p>A function <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for any <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , <span class="math display">\[
+f(\theta x+(1-\theta) y) \le \max \{f(x),f(y)\}.
+\]</span> That means the value of the function does not exceed the maximum of its values of the endpoints.</p>
+<p><span class="math inline">\(f\)</span> is quasiconvex if and only if its restriction to any line intersecting its domain is quasiconvex.</p>
+<p><strong>Quasiconvex Functions on <span class="math inline">\(\mathbb R\)</span></strong></p>
+<p>A continuous function <span class="math inline">\(f:\mathbb R\rightarrow\mathbb R\)</span> is quasiconvex if and only if at least one of the following condition holds:</p>
+<ol type="1">
+<li><span class="math inline">\(f\)</span> is nondecreasing</li>
+<li><span class="math inline">\(f\)</span> is nonincreasing</li>
+<li>there is a point <span class="math inline">\(c\in \text{dom} f\)</span> such that for <span class="math inline">\(t&lt;c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nonincreasing, and for <span class="math inline">\(t\ge c\)</span> (and <span class="math inline">\(t\in \text{dom} f\)</span>), <span class="math inline">\(f\)</span> is nondecreasing.</li>
+</ol>
+<p>The point <span class="math inline">\(c\)</span> can be chosen as any point which is a global minimizer of <span class="math inline">\(f\)</span>.</p>
+<h3 id="differentiable-quasiconvex-functions">3.4.3 Differentiable quasiconvex functions</h3>
+<p><strong>First order conditions</strong></p>
+<p>Suppose <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is differentiable. Then <span class="math inline">\(f\)</span> is quasiconvex if and only if <span class="math inline">\(\text{dom} f\)</span> is convex and for all <span class="math inline">\(x,y\in \text{dom} f\)</span> <span class="math display">\[
+f(y)\le f(x)\implies \nabla f(x)^T(y-x)\le 0
+\]</span> <strong>Second order conditions</strong></p>
+<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable. If <span class="math inline">\(f\)</span> is quasiconvex, then for all <span class="math inline">\(x \in \text{dom} f\)</span>, and for all <span class="math inline">\(y \in \mathbb R^n\)</span> we have <span class="math display">\[
+y^T\nabla f(x)=0\implies y^T\nabla^2f(x) y\ge 0.
+\]</span></p>
+<h3 id="operations-that-preserve-quasiconvexity">3.4.4 Operations that preserve quasiconvexity</h3>
+<p><strong>Nonnegative weighted maximum</strong> <span class="math display">\[
+f=\max\{w_1f_1,\dotsm,w_mf_m\}
+\]</span> The property can be expanded to general pointwise supremum. <span class="math display">\[
+f(x)=\sup_{y\in C}(w(y)g(x,y))
+\]</span> where <span class="math inline">\(w(y)\ge 0\)</span> and <span class="math inline">\(g(x,y)\)</span> is quasiconvex in x for each y.</p>
+<p><strong>Composition</strong></p>
+<p>If <span class="math inline">\(g:\mathbb R^n \rightarrow \mathbb R\)</span> is quasiconvex and <span class="math inline">\(h:\mathbb R\rightarrow \mathbb R\)</span> is non decreasing, then $f=g h $ is quasiconvex.</p>
+<p><strong>Minimization</strong></p>
+<p>If <span class="math inline">\(f(x,y)\)</span> is quasiconvex jointly in <span class="math inline">\(x,y\)</span> and <span class="math inline">\(C\)</span> is a convex set. Then the function <span class="math display">\[
+g(x)=\inf_{y\in C}f(x,y)
+\]</span> is quasiconvex.</p>
+<h3 id="representation-via-family-of-convex-functions">3.4.5 Representation via family of convex functions</h3>
+<p>In the sequel, it will be convenient to represent the sublevel sets of a quasiconvex function via inequalities of convex functions. We seek a family of convex functions <span class="math inline">\(\phi(t):\mathbb R^n\rightarrow \mathbb R\)</span> indexed by <span class="math inline">\(t\in \mathbb R\)</span>. <span class="math display">\[
+f(x)\le t \iff \phi_t(x)\le 0
+\]</span></p>
+<h2 id="log-concave-and-log-convex-functions">3.5 Log-concave and log-convex functions</h2>
+<h3 id="definition">3.5.1 Definition</h3>
+<p>A function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> is logarithmically concave or log-concave if <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in \text{dom} f\)</span> and <span class="math inline">\(\log f\)</span> is concave. It is said to be logarithmically convex or log-convex if <span class="math inline">\(\log f\)</span> is convex. Thus <span class="math inline">\(f\)</span> is log-convex if and only if <span class="math inline">\(1/f\)</span> is log-concave. It is convenient to allow <span class="math inline">\(f\)</span> to take on the value zero, in which case we take <span class="math inline">\(\log f(x)=-\infty\)</span>. In the case we say <span class="math inline">\(f\)</span> is log-concave if the extended-value function <span class="math inline">\(\log f\)</span> is concave.</p>
+<p>We can express log-concave function directly without logarithms: a function <span class="math inline">\(f: \mathbb R^n\rightarrow \mathbb R\)</span> with convex domain and <span class="math inline">\(f(x)&gt;0\)</span> for all <span class="math inline">\(x\in dom f\)</span> is log-concave if and only if for all <span class="math inline">\(x,y \in \text{dom} f\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span> , we have <span class="math display">\[
+f(\theta x+(1-\theta) y)\ge f(x)^\theta f(y)^{1-\theta}
+\]</span> From the composition rules we know that <span class="math inline">\(e^h\)</span> is convex if <span class="math inline">\(h\)</span> is convex since the function <span class="math inline">\(e^x\)</span> is convex and nondecreasing and function <span class="math inline">\(h\)</span> is convex. So a log-convex function is convex. Similarly , a nonnegative concave function is log-concave since <span class="math inline">\(\log x\)</span> is concave and nondecreasing. It is also clear that a log-convex function is quasiconvex and a log-concave function is quasiconcave since the logarithm is monotone increasing.</p>
+<h3 id="properties">3.5.2 Properties</h3>
+<p>Twice differentiable log-convex/concave functions.</p>
+<p>Suppose <span class="math inline">\(f\)</span> is twice differentiable, with <span class="math inline">\(\text{dom} f\)</span> is convex,so <span class="math display">\[
+\nabla^2 \log f(x)=\frac{1}{f(x)}\nabla^2 f(x)-\frac{1}{f(x)^2}\nabla f(x)\nabla f(x)^T.
+\]</span> We conclude that <span class="math inline">\(f\)</span> is log-convex if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
+f(x)\nabla^2 f(x)\succeq \nabla f(x)\nabla f(x)^T,
+\]</span> and log-concave if and only if for all <span class="math inline">\(x\in \text{dom} f\)</span> <span class="math display">\[
+f(x)\nabla^2 f(x)\preceq \nabla f(x)\nabla f(x)^T.
+\]</span> <strong>Multiplication, addition and integration</strong></p>
+<p>Log-convexity and log-concavity are closed under multiplication and positive scaling. For example, if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave, then so is the pointwise product. <span class="math inline">\(h(x)=f(x)g(x)\)</span></p>
+<p>Sum of log-concave functions is not in general log-concave. Log-convexity, however, preserved under sums.</p>
+<p>In some special case log-concavity is preserved by integration. If <span class="math inline">\(f: \mathbb R^n \times \mathbb R^m \rightarrow \mathbb R\)</span> is log-concave, then <span class="math display">\[
+g(x)=\int f(x,y)dy
+\]</span> is log-concave function of <span class="math inline">\(x\)</span> on <span class="math inline">\(\mathbb R^n\)</span>.</p>
+<p>Convolution: if <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are log-concave on <span class="math inline">\(\mathbb R^n\)</span>, then so is the convolution <span class="math display">\[
+(f*g)(x)=\int f(x-y)g(y)dy.
+\]</span></p>
+<h2 id="convexity-with-respect-to-generalized-inequalities">3.6 Convexity with respect to generalized inequalities</h2>
+<p>We now consider generalizations of notions of monotonicity and convexity, using generalized inequalities instead of the usual ordering on <span class="math inline">\(\mathbb R\)</span>.</p>
+<h3 id="monotonicity-with-respect-to-a-generalized-inequality">3.6.1 Monotonicity with respect to a generalized inequality</h3>
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is called <strong>K-nondecreasing</strong> if <span class="math display">\[
+x\preceq_K y\implies f(x)\le f(y),
+\]</span> and <strong>K-increasing</strong> if <span class="math display">\[
+x\preceq_K y, x\neq y \implies f(x)&lt;f(y).
+\]</span> <strong>K-nonincreasing</strong> and <strong>K-decreasing</strong> functions are defined in a similar way.</p>
+<p><strong>Example</strong> (Matrix monotone function)</p>
+<p>A function <span class="math inline">\(f:\mathbb S^n\rightarrow \mathbb R\)</span> is called matrix monotone if it is monotone with respect to the positive semidefinite cone.</p>
+<ol type="1">
+<li><span class="math inline">\(\text{tr}(WX)\)</span>, where <span class="math inline">\(w\in\mathbb S^n\)</span>, is matrix nondecreasing if <span class="math inline">\(W\succeq 0\)</span> and the matrix increasing if <span class="math inline">\(W\succ 0\)</span>.</li>
+<li><span class="math inline">\(\text{tr}(X^{-1})\)</span> is matrix decreasing on <span class="math inline">\(\mathbb S^n_{++}\)</span>.</li>
+<li><span class="math inline">\(\text{det}(X)\)</span> is matrix increasing on <span class="math inline">\(\mathbb S^n_{++}\)</span> and matrix nondecreasing on <span class="math inline">\(\mathbb S^n_+\)</span>.</li>
+</ol>
+<p><strong>Gradient conditions for monotonicity</strong></p>
+<p>A differentiable function <span class="math inline">\(f\)</span>, with convex domain, is <strong>K-nondecreasing</strong> if and only if <span class="math display">\[
+\nabla f(x)\succeq_{K^*}0.
+\]</span> The function is <strong>K-increasing</strong> if (converse is not true) <span class="math display">\[
+\nabla f(x)\succ_{K^*}0.
+\]</span></p>
+<h3 id="convexity-with-respect-to-a-generalized-inequality">3.6.2 Convexity with respect to a generalized inequality</h3>
+<p>Suppose <span class="math inline">\(K\subseteq \mathbb R^n\)</span> is a proper cone with associated generalized inequality <span class="math inline">\(\preceq_K\)</span>. A function <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R^m\)</span> is called K-convex if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, <span class="math display">\[
+f(\theta x+(1-\theta)y) \preceq_K \theta f(x)+(1-\theta)f(y)
+\]</span> Strict convex if <span class="math display">\[
+f(\theta x+(1-\theta)y) \prec_K \theta f(x)+(1-\theta)f(y).
+\]</span></p>
+<p><strong>Example</strong> (Convexity with respect to componentwise inequality)</p>
+<p>A function is convex with respect to componentwise inequality (the generalized inequality is induced by <span class="math inline">\(\mathbb R^n_+\)</span>) if and only if for all <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>, we have <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y).
+\]</span> <strong>Example</strong> (Matrix Convexity)</p>
+<p>suppose <span class="math inline">\(f\)</span> is a symmetric matrix valued function, i.e. <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb S^n\)</span>. The function <span class="math inline">\(f\)</span> is convex with respect to matrix inequality if <span class="math display">\[
+f(\theta x+(1-\theta)y)\preceq\theta f(x)+(1-\theta)f(y)
+\]</span> for any <span class="math inline">\(x,y\)</span> and <span class="math inline">\(0\le \theta\le 1\)</span>.</p>
 
         
       

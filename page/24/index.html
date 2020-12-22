@@ -215,7 +215,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/EE5904 Neural Network/6. Bellman Equation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/EE5904 Neural Network/1.MLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -229,7 +229,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/" class="post-title-link" itemprop="url">Chapter 6. Bellman Equation</a>
+            <a href="/2019/04/11/EE5904 Neural Network/1.MLP/" class="post-title-link" itemprop="url">Chapter 1. Multi-Layer Perceptron</a>
           
         </h1>
 
@@ -244,7 +244,7 @@
                 
               
 
-              <time title="Created: 2019-05-21 13:45:47 / Modified: 14:37:12" itemprop="dateCreated datePublished" datetime="2019-05-21T13:45:47+08:00">2019-05-21</time>
+              <time title="Created: 2019-04-11 13:45:47 / Modified: 14:40:28" itemprop="dateCreated datePublished" datetime="2019-04-11T13:45:47+08:00">2019-04-11</time>
             </span>
           
             
@@ -266,7 +266,7 @@
           
 
           
-            <span id="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 6. Bellman Equation" title="Views">
+            <span id="/2019/04/11/EE5904 Neural Network/1.MLP/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 1. Multi-Layer Perceptron" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -284,7 +284,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/21/EE5904 Neural Network/6. Bellman Equation/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/04/11/EE5904 Neural Network/1.MLP/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/04/11/EE5904 Neural Network/1.MLP/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -298,32 +298,234 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="bellman-equation">Bellman Equation</h1>
-<p>We start by discussing the most simple control case. <span class="math display">\[
-x_{t+1}=x_t+f(t,x_t,u_t)
-\]</span> Define the cost function <span class="math display">\[
-C(x_0,u_{o:T-1})=\phi(x_T)+\sum_{t=0}^{T-1}R(t,x_t,u_t)
-\]</span> <span class="math inline">\(R(t,x_t,u_t)\)</span> is the cost that is associated with taking action <span class="math inline">\(u\)</span> at time <span class="math inline">\(t\)</span> in state <span class="math inline">\(x\)</span>, and <span class="math inline">\(\phi(x_T)\)</span> is the cost associated with ending up in state <span class="math inline">\(x_T\)</span> at time <span class="math inline">\(T\)</span>.</p>
-<p>The optimal problem is to find the sequence <span class="math inline">\(u_{0:T-1}\)</span> that minimizes <span class="math inline">\(C(x_0,u_{o:T-1})\)</span>.</p>
-<p>Introduce the optimal cost to go: <span class="math display">\[
-J(t,x_t)=\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\right)
-\]</span> which solves the optimal control problem form an intermediate time <span class="math inline">\(t\)</span> until the fixed end time <span class="math inline">\(T\)</span>, starting at an arbitrary location <span class="math inline">\(x_t\)</span>. The minimum of <span class="math inline">\(C\)</span> is given by <span class="math inline">\(J(0,x_0)\)</span>.</p>
-<p>One can recursively compute <span class="math inline">\(J(t,x)\)</span> from <span class="math inline">\(J(t+1,x)\)</span> for all <span class="math inline">\(x\)</span> in the following way: <span class="math display">\[
-\begin{array}{rcl}
-J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\right)\\
-&amp;=&amp; \min_{u_{t}}\left(R(t,x_t,u_t)+\min_{u_{t+1:T-1}}\left[\phi(x_T)+\sum_{s=t+1}^{T-1}R(s,x_s,u_s)\right]\right)\\
-&amp;=&amp; \min_{u_{t}}\left(R(t,x_t,u_t)+J(t+1,x_{t+1})\right)
-\end{array}
-\]</span> Note that the minimization over the whole path <span class="math inline">\(u_{0,T-1}\)</span> has reduced to a sequence of minimizations over <span class="math inline">\(u_t\)</span> . This simplification is due to the Markovian nature of the problem: the future depends on the past only through the present.</p>
-<p>The algorithm to compute the optimal control <span class="math inline">\(u_{0,T-1}^*\)</span>, the optimal trajectory <span class="math inline">\(x_{1:T}^*\)</span> and the optimal cost is given by</p>
+          <h2 id="what-is-learning-in-nn">1. What is Learning in NN</h2>
+<p>Learning is a process by which the free parameters of a neural network are adapted through a process of stimulation by the environment in which the network is embedded.</p>
+<p>Process of learning</p>
 <ol type="1">
-<li><p><span class="math inline">\(J(T,x)=\phi(x)\)</span></p></li>
-<li><p>Backwards: For <span class="math inline">\(t=T-1,\dotsm,0\)</span> and for all <span class="math inline">\(x\)</span></p>
-<p><span class="math inline">\(u_t^*(x)=\arg \min_u \{R(t,x,u)+J(t+1,x_{t+1})\}\)</span></p>
-<p><span class="math inline">\(J(t,x)=R(t,x,u_t^*)+J(t+1,x_{t+1})\)</span></p></li>
-<li><p>Forwards: For <span class="math inline">\(t=0,\dotsm,T-1\)</span></p>
-<p><span class="math inline">\(x_{t+1}^*=x_t^*+f(t,x_t^*,u_t^*(x_t^*))\)</span></p></li>
+<li>The NN is stimulated by the environment</li>
+<li>NN undergoes changes in its free parameters</li>
+<li>NN responds in a new way to the environment</li>
 </ol>
+<p>Supervised Learning:</p>
+<ol type="1">
+<li>The NN is fed with input and produce an output</li>
+<li>The teacher will tell what the desired output should be</li>
+<li>The weights are adjusted by the error signals</li>
+</ol>
+<p>Unsupervised Learning:</p>
+<ol type="1">
+<li>NN is interacting with the environment by taking various actions</li>
+<li>The learning system will be rewarded or penalized by its actions</li>
+<li>The weights are adjusted by the reinforcement signal</li>
+</ol>
+<h2 id="perceptron">2. Perceptron</h2>
+<p><span class="math display">\[
+v = \sum_{i=1}^mw_ix_i+b\\
+\]</span></p>
+<p>For simplicity <span class="math display">\[
+x(n)=[1,x_1(n),x_2(n),\dotsm,x_m(n)]^T\\
+w(n)=[b(n),w_1(n),w_2(n),\dotsm,w_m(n)]^T\\
+v(n)=w^T(n)x(n)
+\]</span> where n denotes iteration step.</p>
+<p>How to tune the parameters</p>
+<p>First, consider the case, <span class="math display">\[
+v=w^Tx&lt;0\quad \varphi(v)=0
+\]</span> if the desired output is <span class="math inline">\(d=0\)</span>, then nothing needs to be done</p>
+<p>if the desired output is <span class="math inline">\(d=1\)</span>, then we hope <span class="math inline">\(v&#39;\)</span> to be greater</p>
+<p>then we have <span class="math display">\[
+v&#39;-v = (w&#39;^T-w^T)x=\Delta w x&gt;0
+\]</span> the most simple choice is <span class="math inline">\(\Delta w=x^T\)</span></p>
+<p>then we have <span class="math display">\[
+w&#39; = w+\eta x
+\]</span> For the other case <span class="math display">\[
+v=w^Tx&gt;0\quad \varphi(v)=1
+\]</span> if the desired output is <span class="math inline">\(d=0\)</span>, then we hope <span class="math inline">\(v&#39;\)</span> to be smaller <span class="math display">\[
+v&#39;-v = (w&#39;^T-w^T)x=\Delta w x&lt;0
+\]</span> the most simple choice is <span class="math inline">\(\Delta w=-x^T\)</span> <span class="math display">\[
+w&#39; = w-\eta x
+\]</span> then we have <span class="math display">\[
+w&#39;=w+\eta e x
+\]</span></p>
+<p>To summarize,</p>
+<p>Perceptron Learning Algorithm</p>
+<p>Start with a randomly chosen weight vector <span class="math inline">\(w(1)\)</span></p>
+<p>while there exist input vectors that are misclassified by <span class="math inline">\(w(n)\)</span></p>
+<p>Do Let <span class="math inline">\(x(n)\)</span> be a misclassified input vector</p>
+<p>​ update the weight vector to</p>
+<p>​ <span class="math inline">\(w(n+1)=w(n)+\eta e(n)x(n)\)</span></p>
+<p>​ <span class="math inline">\(e(n)=d(n)-y(n)\)</span></p>
+<p>​ where <span class="math inline">\(\eta&gt;0\)</span> and d=<span class="math inline">\(\begin{cases} 1\text{ if x belongs to class 1} \\ 0\text{ if x belongs to class 2}\end{cases}\)</span></p>
+<p>​ n=n+1</p>
+<p>end while</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">xc0 = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0.5</span>, <span class="number">0.6</span>, <span class="number">0.4</span>, <span class="number">0.6</span>, <span class="number">0.5</span>], [<span class="number">1.0</span>, <span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.2</span>, <span class="number">1.1</span>]])</span><br><span class="line">xc1 = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">2.5</span>, <span class="number">2.6</span>, <span class="number">2.4</span>, <span class="number">2.6</span>, <span class="number">2.5</span>], [<span class="number">3.0</span>, <span class="number">3.1</span>, <span class="number">3.2</span>, <span class="number">3.2</span>, <span class="number">3.0</span>]])</span><br><span class="line">w = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">fig1 = plt.plot(xc0[<span class="number">1</span>, :], xc0[<span class="number">2</span>, :], <span class="string">'bo'</span>, xc1[<span class="number">1</span>, :], xc1[<span class="number">2</span>, :], <span class="string">'ro'</span>)</span><br><span class="line">yplot = -w[<span class="number">1</span>]/w[<span class="number">2</span>]*np.array([<span class="number">0</span>, <span class="number">3</span>]) - w[<span class="number">0</span>]/w[<span class="number">2</span>]</span><br><span class="line">plt.plot(np.array([<span class="number">0</span>, <span class="number">3</span>]), yplot, <span class="string">'r'</span>)</span><br><span class="line">eta = <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    <span class="comment"># This is for c0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">        v = w.transpose().dot(xc0[:, j])</span><br><span class="line">        <span class="keyword">if</span> v &gt; <span class="number">0</span>:</span><br><span class="line">            y = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y = <span class="number">0</span></span><br><span class="line">        e = <span class="number">0</span> - y</span><br><span class="line">        w = w + eta*e*xc0[:, j]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># This is for c1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">        v = w.transpose().dot(xc1[:, j])</span><br><span class="line">        <span class="keyword">if</span> v &gt; <span class="number">0</span>:</span><br><span class="line">            y = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y = <span class="number">0</span></span><br><span class="line">        e = <span class="number">1</span> - y</span><br><span class="line">        w = w + eta*e*xc1[:, j]</span><br><span class="line">    yplot = -w[<span class="number">1</span>] / w[<span class="number">2</span>] * np.array([<span class="number">0</span>, <span class="number">3</span>]) - w[<span class="number">0</span>] / w[<span class="number">2</span>]</span><br><span class="line">    plt.plot(np.array([<span class="number">0</span>, <span class="number">3</span>]), yplot, color=(<span class="number">0.5</span>, <span class="number">0.5</span>, i/<span class="number">10</span>))</span><br><span class="line">    plt.pause(<span class="number">1</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>Proof of Convergence</p>
+<p>There exists <span class="math inline">\(w_0\)</span> such that</p>
+<p>For samples in class <span class="math inline">\(C_1\)</span> <span class="math inline">\(w_0^Tx(k)&gt;0\)</span></p>
+<p>For samples in class <span class="math inline">\(C_2\)</span> <span class="math inline">\(w_0^Tx(k)&lt;0\)</span> <span class="math display">\[
+w(n+1)=w(n)+e(n)x(n)=e(1)x(1)+e(2)x(2)+\dotsm+e(n)x(n)\\
+w_0^Tw(n+1)=e(1)w_0^Tx(1)+e(2)w_0^Tx(2)+\dotsm+e(n)w_0^Tx(n)\\
+e(k)w_0^Tx(k)=|w_0^Tx(k)|&gt;0\\
+\alpha=\min\{|w_0^Tx(i)|\}
+\]</span> Then we have <span class="math display">\[
+w_0^Tw(n+1)\ge n\alpha\\
+||w_0||\cdot||w(n+1)||\ge||w_0^Tw(n+1)||\ge n\alpha\\
+\]</span> we have <span class="math display">\[
+||w(n+1)||\ge\frac{n\alpha}{||w_0||}
+\]</span> Let <span class="math inline">\(\beta = \max \{||x(i)||^2\}\)</span></p>
+<p>And we have <span class="math display">\[
+||w(n+1)||^2\le n \beta
+\]</span> Overall, we have <span class="math display">\[
+\frac{n^2\alpha^2}{||w_o||^2}\le ||w(n+1)||^2\le n\beta
+\]</span> Therefore, n must be finite. Otherwise, the inequality will not be satisfied.</p>
+<h2 id="linear-regression-problem">3. Linear Regression Problem</h2>
+<p><span class="math display">\[
+E(w)=\frac{1}{2}e(w)^2\\
+e(w)=d-x^Tw\\
+g(w)=\frac{\partial E}{\partial w}=\frac{\partial E}{\partial e}\frac{\partial e}{\partial w}=-e(w)x^T\\
+\]</span></p>
+<p>Then we have <span class="math display">\[
+w(n+1)=w(n)+\eta e(n)x(n)
+\]</span></p>
+<p>Example</p>
+<p>Training samples {(1, 3.5), (1, 3.5), (1.5, 2.5), (3, 2), (3.5, 1), (4, 1)}</p>
+<p>Initial weight <span class="math inline">\(w(1)=[2, 0]^T\)</span></p>
+<p>Learning rate <span class="math inline">\(\eta\)</span> is 0.1.</p>
+<p>==Iteration 1==</p>
+<p>Forward Propagation <span class="math display">\[
+e(1)=d^{(1)}-w(1)^Tx^{(1)}=3.5-2=1.5
+\]</span> Backward Propagation <span class="math display">\[
+w(2)=w(1)+\eta x^{(1)}e(1)=[2.15\quad 0.15]^T
+\]</span> ==Iteration 2==</p>
+<p>Forward Propagation <span class="math display">\[
+e(2)=d^{(2)}-w(2)^Tx^{(2)}=0.125
+\]</span> Backward Propagation <span class="math display">\[
+w(3)=w(2)+\eta x^{(2)}e(2)=[2.1625\quad 0.1688]^T
+\]</span></p>
+<h2 id="multilayer-perceptrons">4. Multilayer Perceptrons</h2>
+<p>MLP generally adopts a smooth nonlinear activation function, such as the following logistic function</p>
+<p>Sigmoid Function <span class="math display">\[
+\varphi(v)=\frac{1}{1+e^{-av}}
+\]</span></p>
+<p>MLP is fed with an input vector <span class="math inline">\(x(n)\)</span>, and produces an output vector <span class="math inline">\(y(n)\)</span>, where <span class="math inline">\(n\)</span> is the iteration number.</p>
+<p>If we have a three layers NN, for the third layer</p>
+Let <span class="math inline">\(d(n)\)</span> denote the desired network output, and then the error is <span class="math display">\[
+e(n)=d(n)-y(n)=d(n)-x^{(3)}_{out}(n)
+\]</span> Then the cost function is <span class="math display">\[
+E(n)=\frac{1}{2}\sum_{j=1}^{n_3}(d_j(n)-x_{out,j}^{(3)}(n))^2
+\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer <span class="math display">\[
+x^{(3)}_{out,j}=\varphi(v^{(3)}_{j})\\
+v^{(3)}_{j} = \sum_i w_{ji}^{(3)}x^{(2)}_i
+\]</span> Then we have $$
+<span class="math display">\[\begin{array}{rcl}
+\Delta w^{(3)}_{ji}(n)&amp;=&amp;-\eta\frac{\partial E(n)}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial v_j^{(3)}}
+\frac{\partial v_j^{(3)}}{\partial w_{ji}^{(3)}(n)}\\
+
+&amp;=&amp; \eta \delta_j^{(3)}(n)x_{out,i}^{(2)}(n)
+\end{array}\]</span>
+<p>$$</p>
+<p>where <span class="math display">\[
+\delta_j^{(3)}(n)=e_j(n)\dot \varphi^{(3)}(v_j^{(3)}(n))
+\]</span> For the second layer,</p>
+<p>Let d(n) denote the desired network output, and the error is then <span class="math display">\[
+e(n)=d(n)-y(n)=d(n)-x^{(3)}_{out}(n)
+\]</span> Then the cost function is <span class="math display">\[
+E(n)=\frac{1}{2}\sum_{k=1}^{n_3}(d_k(n)-x_{out,k}^{(3)}(n))^2
+\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer <span class="math display">\[
+x^{(3)}_{out,k}=\varphi(v^{(3)}_{k})\\
+v^{(3)}_{k} = \sum_j w_{kj}^{(3)}x^{(2)}_j\\
+x^{(2)}_{out,j}=\varphi(v^{(2)}_{j})\\
+v^{(2)}_{j} = \sum_i w_{ji}^{(2)}x^{(1)}_i
+\]</span> Then we have <span class="math display">\[
+\Delta w^{(2)}_{ji}(n)=-\eta\frac{\partial E(n)}{\partial w_{ji}^{(2)}(n)}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial v^{(3)}_k}
+\frac{\partial v^{(3)}_k}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)})
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial v_{j}^{(2)}}
+\frac{\partial v_{j}^{(2)}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+=\eta\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+= \eta \delta_j^{(2)}(n)x_{out,i}^{(1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(2)}(n)=
+\left(\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}\right)
+\dot \varphi^{(2)}(v_j^{(2)}(n))\\
+\]</span> Then we can summary <span class="math display">\[
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\eta \delta_j^{(s)}(n)x_{out,i}^{(s-1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(s)}(n)=e_j(n)\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right)\quad\text{Output Layer}\\
+\delta_j^{(s)}(n)=
+\left(\sum_{k=1}^{n_{s+1}}\delta_k^{(s+1)}(n)
+w_{kj}^{(s+1)}(n)\right)
+\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right) \quad \text{Hidden Layer}\\
+\]</span> To increase learning speed, modify the delta rule <span class="math display">\[
+\Delta w_{ji}^{(s)}(k)=\alpha \Delta w_{ji}^{(s)}(k-1) + \eta \delta_j^{(s)}(k)x_{out,i}^{(s-1)}(k)\\
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\Delta w_{ji}^{(s)}(k)
+\]</span></p>
+<h2 id="mlp-design-and-training-issues">5. MLP Design and Training Issues</h2>
+<p>Many design and training issues to consider</p>
+<h3 id="sequential-mode-or-batch-mode">1. Sequential mode or batch mode</h3>
+<p>For sequential mode, weight updating is performed after each presentation of the training example. N times adjustments in one epoch.</p>
+<p>For batch mode, update weight after the presentation of all the training examples. One time adjustment in one epoch.</p>
+<p>Sequential learning is generally the preferred one since sequential learning often results in better solutions. Nonlinear networks often have multiple local minima. Batch learning can easily get trapped into the local minimum.</p>
+<p>But sequential mode always causes fluctuation because of the noise.</p>
+<p>One way to reduce fluctuation is to use mini-batches.</p>
+<p>That is to start with a small batch size and increase the size as the training proceeds.</p>
+<p>Second Order Method <span class="math display">\[
+E(w(n+1))=E(w(n)+\Delta w(n))=E(w(n))+g^T(n)\Delta w(n)+\frac{1}{2}\Delta w^T(n)H(n)\Delta w(n)
+\]</span> If we hope to get choose <span class="math inline">\(\Delta w(n)\)</span> to let <span class="math inline">\(E(w(n+1))\)</span> be minimized <span class="math display">\[
+\frac{\partial E(w(n+1))}{\partial \Delta w(n)}=g^T(n)+\Delta w^T(n)H(n)=0\\
+\Delta w(n) = -H^{-1}(n)g(n)
+\]</span> This is so called Newton's method.</p>
+<h3 id="normalize-the-input-variables">2. Normalize the input variables</h3>
+<p>In general, any shift of the average input away from zero will bias the updates in a partialicular direction and this slow down learning.</p>
+<p>Normalize <span class="math display">\[
+\bar x_i = \frac{\sum_{n=1}^Nx_i(n)}{N}\quad \sigma=\sqrt \frac{\sum_{n=1}^N (x_i(n)-\bar x_i)}{N}\quad x_i&#39;(n) = \frac{x_i(n)-\bar x_i}{\sigma}
+\]</span> Let the range are close to [-1, 1]</p>
+<h3 id="how-to-choose-activation-functions-in-hidden-layers">3. How to choose activation functions in hidden layers</h3>
+<p>For the hidden layers, <span class="math display">\[
+\tan sig(x)=\frac{2}{1+e^{-2x}}-1
+\]</span> is better than <span class="math display">\[
+\log sig(x)=\frac{1}{1+e^{-x}}
+\]</span> Every neuron output is closed to [-1, 1]</p>
+<p>However, for the output layer, if the problem is pattern recognition problem <span class="math display">\[
+\log sig(x)=\frac{1}{1+e^{-x}}
+\]</span> is better because the output is 0 or 1</p>
+<p>For regression problem, using linear neuron at the output layer would be more flexible.</p>
+<h3 id="how-to-choose-target-values-for-pattern-recognition">4. How to choose target values for pattern recognition</h3>
+<p>For the sigmoid function, the training process will try to derive the output as close as possible to the target value, that can cause the input to the output layer to be bigger and bigger in the training process. Therefore, it is better to choose [-0.6, 0.6] for tansig and [0.2, 0.8] for logsig.</p>
+<h3 id="how-many-hidden-layers-and-how-many-hidden-neurons-in-each-layer">5. How many hidden layers AND how many hidden neurons in each layer</h3>
+<p>Adding more layers can reduce the parameters but may make the MLP more prone to local minima traps because of its more complicated structure.</p>
+<h3 id="how-to-avoid-over-fitting">6. How to avoid over-fitting</h3>
+<p>One way is to limit the number of hidden units. It is important to seek the minimal structure of the MLP</p>
+<p>For valid generation, the size of the weights is more important than the size of the network</p>
+<p>Use regularization techniques</p>
+<h3 id="use-singular-value-decomposition-svd-to-decide-the-minimal-structure">7. Use Singular Value Decomposition (SVD) to decide the minimal structure</h3>
+<p>Calculate the outputs of the hidden neurons for each training sample input vector <span class="math inline">\(x(k)\)</span> <span class="math display">\[
+h_{ki} = f_i(\sum_{j=1}^M w_{ij}x_j(k)+b_i)\in H
+\]</span> Use SVD to get the effective rank of H. The threshold is always chosen as 0.95 or 0.99.</p>
+<p>Train the MLP on the N training samples (<span class="math inline">\(X_{N\times M}\)</span>) with sufficiently large number of <span class="math inline">\(n\)</span> hidden neurons until converge.</p>
+<p>Calculate the effective rank.</p>
+<p>Train the MLP with number of effective rank hidden neurons until converge.</p>
+<p>Repeat the procedure until convergence.</p>
 
         
       
@@ -348,7 +550,7 @@ J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/17/EE5904 Neural Network/5.RL/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/EE5907 Pattern Recognition/5. Non-Parametric Tech/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orange+Dragon">
@@ -362,7 +564,7 @@ J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/05/17/EE5904 Neural Network/5.RL/" class="post-title-link" itemprop="url">Chapter 5. Reinfocement Learning</a>
+            <a href="/2019/03/17/EE5907 Pattern Recognition/5. Non-Parametric Tech/" class="post-title-link" itemprop="url">Chapter 5. Non-Parametric Techniques</a>
           
         </h1>
 
@@ -377,7 +579,7 @@ J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\
                 
               
 
-              <time title="Created: 2019-05-17 13:45:47 / Modified: 14:36:50" itemprop="dateCreated datePublished" datetime="2019-05-17T13:45:47+08:00">2019-05-17</time>
+              <time title="Created: 2019-03-17 13:46:13 / Modified: 14:46:13" itemprop="dateCreated datePublished" datetime="2019-03-17T13:46:13+08:00">2019-03-17</time>
             </span>
           
             
@@ -390,7 +592,7 @@ J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
 
                 
                 
@@ -399,7 +601,7 @@ J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\
           
 
           
-            <span id="/2019/05/17/EE5904 Neural Network/5.RL/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 5. Reinfocement Learning" title="Views">
+            <span id="/2019/03/17/EE5907 Pattern Recognition/5. Non-Parametric Tech/" class="post-meta-item leancloud_visitors" data-flag-title="Chapter 5. Non-Parametric Techniques" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -417,7 +619,7 @@ J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/05/17/EE5904 Neural Network/5.RL/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/17/EE5904 Neural Network/5.RL/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/03/17/EE5907 Pattern Recognition/5. Non-Parametric Tech/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/03/17/EE5907 Pattern Recognition/5. Non-Parametric Tech/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -431,132 +633,70 @@ J(t,x_t)&amp;=&amp;\min_{u_{t:T-1}}\left(\phi(x_T)+\sum_{s=t}^{T-1}R(s,x_s,u_s)\
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="reinforcement-learning">Reinforcement Learning</h1>
-<h2 id="introduction">1. Introduction</h2>
-<p>Agent learns to maximize reward when completing tasks</p>
-<p>Unsupervised: Agent does not know the desired output.</p>
-<p>Uncertain or unknown system behavior.</p>
-<p>Reward received after each action is the only feedback.</p>
-<p>Objective: Maximize total reward when executing a task.</p>
-<h2 id="markov-decision-process">2. Markov Decision Process</h2>
-<p>A set of state: <span class="math inline">\(S=\{s_1,s_2,\dots\}\)</span></p>
-<p>A set of actions: <span class="math inline">\(A=\{a_1,a_2,\dotsm\}\)</span></p>
-<p>A transition function</p>
-<p>Deterministic: <span class="math display">\[
-\bar f(s,a)=s&#39;
-\]</span> That means after one specific action, the next state is deterministic.</p>
-<p>Non-deterministic: <span class="math display">\[
-f(s,a,s&#39;)=P(s_{t+1}=s&#39;|s_t=s,a_t=a)=P_{ss&#39;}^a
-\]</span> That means after one specific action, the next state is determined by probability. (For example, the robot's operation may be influenced by uncertainties such as slippery floor)</p>
-<p>After every, there are two changes.</p>
-<ol type="1">
-<li><p>Agent takes action <span class="math inline">\(a\)</span> to move from <span class="math inline">\(s\)</span> to <span class="math inline">\(s&#39;\)</span></p></li>
-<li><p>Agent receives reward <span class="math inline">\(r\)</span> one time-step later</p></li>
-</ol>
-<p>Reward function <span class="math display">\[
-r_{t+1}=\rho(s_t,a_t,s_{t+1})
-\]</span> For non-deterministic transitions: <span class="math display">\[
-E[r_{t+1}|s_t=s]=\sum_{s&#39;}\left(P^a_{ss&#39;} r_{t+1}|s_{t+1}=s&#39;\right)=\sum_{s&#39;}\left(P^a_{ss&#39;} \rho(s,a,s&#39;)\right)
-\]</span> The total transition reward <span class="math display">\[
-R_{t}=r_{t+1}+\gamma r_{t+2}+\gamma^2 r_{t+2}+\dotsm=\sum _{k=0}^\infty \gamma^k r_{t+k+1}
-\]</span> Policy (<span class="math inline">\(\pi\)</span>):</p>
-<p>Decision-making mechanism for controlling a Markov process</p>
-<p>specifies which action to take at a state</p>
-<p>can be deterministic</p>
-<p>Specifies particular action to be taken at particular state</p>
-<p>non-deterministic</p>
-<p>Specifies probability of action being taken at particular state</p>
-<p>In this module, we consider deterministic policies only</p>
-<p>In this following, key questions are</p>
-<p>What is the best policy?</p>
-<p>How to find the best policy?</p>
-<h2 id="q-function">3. Q-function</h2>
-<p>Q-function measures the ''worth'' of taking a at s under <span class="math inline">\(\pi\)</span></p>
-<p>Worth is represented by <span class="math display">\[
-Q^\pi:S\times A\rightarrow R
-\]</span> defined as the expected return from taking action a at state s at time step t and thereafter following policy <span class="math inline">\(\pi\)</span> <span class="math display">\[
-Q^{\pi}(s,a)=E^\pi[R_t|s_t=s]
-\]</span> An optimal policy is one that maximizes values of Q-function over all possible (s,a) pairs</p>
-<p>Solving the RL problem is about finding an optimal policy</p>
-<p>To do this requires the Bellman Equation</p>
-<h2 id="bellman-equation">4. Bellman Equation</h2>
-<p>Bellman equation represents the relationship between <span class="math inline">\(Q^\pi (s,a)\)</span> and <span class="math inline">\(Q^\pi (s&#39;,a&#39;)\)</span></p>
-$$
-<span class="math display">\[\begin{array}{rcl}
-Q^\pi(s,a)&amp;=&amp;E^\pi[R_t|s_t=s]\\
-&amp;=&amp; E^\pi[\sum_{k=0}^\infty|s_t=s]\\
-&amp;=&amp; E^\pi\left[r_{t+1}+\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}|s_t=s\right]\\
-&amp;=&amp; E^\pi\left[r_{t+1}\right]+\underbrace{E^\pi\left[\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}|s_t=s\right]}_{s_t=s \text{ is omitted}}\\
-
-&amp;=&amp; E^\pi\left[r_{t+1}\right]+E^\pi\left[\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}\right]\\
-
-&amp;=&amp; \sum_{s&#39;} P_{ss&#39;}^a\left(\rho(s,a,s&#39;)+\gamma Q^\pi(s&#39;,a&#39;)\right)
-\end{array}\]</span>
-<p>$$</p>
-<p>The policy whose Q-function values are greater or equal to that of all other policies is called an optimal policy</p>
-<p>This Q function is called the optimal Q-function <span class="math display">\[
-Q^*(s,a)=\max_\pi Q^\pi(s,a)\\
-\pi^*(s)\in \arg \max_a Q^*(s,a)
-\]</span> Then <span class="math inline">\(Q^*(s,a)\)</span> satisfies Bellman Equation <span class="math display">\[
-Q^*(s,a)=\sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q^*(s&#39;,a&#39;)\right)
-\]</span> That is the sum of reward in current state for the chosen action <span class="math inline">\(a\)</span> and discounted value of Q-function for the best action available in the successor state <span class="math inline">\(s&#39;\)</span></p>
-<p>There are two methods to solve for <span class="math inline">\(Q^*\)</span> to get <span class="math inline">\(\pi^*\)</span></p>
-<ol type="1">
-<li>Value Iteration</li>
-<li>Policy Iteration</li>
-</ol>
-<h2 id="value-iteration">5. Value Iteration</h2>
-<p>Input: state-transition probability f, reward function <span class="math inline">\(\rho\)</span>, discount factor <span class="math inline">\(\gamma\)</span></p>
-<p>Initialize Q-function, e.g. <span class="math inline">\(Q_0\leftarrow 0\)</span></p>
-<p>​ Repeat for each l</p>
-<p>​ <span class="math inline">\(Q\leftarrow Q_l\)</span></p>
-<p>​ For every (s,a) do</p>
-<p>​ <span class="math inline">\(Q(s,a)\leftarrow \sum_{s&#39;}P^a_{ss&#39;}\rho(s,a,s&#39;)+\gamma\max_{a&#39;}Q(s&#39;,a&#39;))\)</span></p>
-<p>​ end for-loop</p>
-<p>​ <span class="math inline">\(Q_{l+1}\leftarrow Q\)</span></p>
-<p>​ Until <span class="math inline">\(Q_{l+1}=Q_l\)</span></p>
-<p>Output <span class="math inline">\(Q^*=Q_l\)</span></p>
-<p>Proof of convergence</p>
-<p>Consider <span class="math inline">\(Q_k\)</span> at iteration k <span class="math display">\[
-\delta_k=\max_{s,a}|Q^*-Q_k|
-\]</span> Then <span class="math display">\[
-|Q^*-Q_k|\le \delta_k\\
-Q^*-\delta_k\le Q_k\le Q^*+\delta_k\\
-\]</span> And we have <span class="math display">\[
-Q_{k+1}(s,a)=\sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q_k(s&#39;,a&#39;)\right)\\
-\le \sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q^*(s&#39;,a&#39;)+\gamma \delta_k\right)\\
-=Q^*(s,a)+\gamma\delta_k\\
-\]</span> Then <span class="math display">\[
-\delta_{k+1}=\max_{s,a}|Q^*-Q_{k+1}|\le\max_{s,a}|\gamma \delta_k|=\gamma\delta_k
-\]</span> Since <span class="math inline">\(0\le\gamma&lt;1\)</span> Q.E.D.</p>
-<p>However, dynamic programming needs the information of model, What if no such model is available?</p>
-<h2 id="q-learning">4. Q-learning</h2>
-<p>Iterative update rule <span class="math display">\[
-Q_{k+1}(s_k,a_k)=Q_{k}\left(s_{k}, a_{k}\right)+\alpha_{k}\left(\underbrace{r_{k+1}+\gamma \max _{a^{\prime}} Q_{k}\left(s_{k+1}, a^{\prime}\right)}_{\text { Estimate of } Q^{*}\left(s_{k}, a_{k}\right)}-Q_{k}\left(s_{k}, a_{k}\right)\right)
-\]</span> Q-learning update rule converges to <span class="math inline">\(Q^*\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span> if</p>
-<ol type="1">
-<li><span class="math inline">\(\sum_{k=0}^{\infty} \alpha_{k}^{2}&lt;\infty \quad \text { and } \quad \sum_{k=0}^{\infty} \alpha_{k} \rightarrow \infty\)</span></li>
-<li>All (s,a) pairs are (asymptotically) visited infinitely often</li>
-</ol>
-<p>We have two state for every action</p>
-<ol type="1">
-<li>Exploitation: Use greedy policy to select currently known best action</li>
-</ol>
+          <h1 id="non-parametric-techniques">Non-Parametric Techniques</h1>
+<h2 id="non-parametric-tech">1. Non-Parametric Tech</h2>
 <p><span class="math display">\[
-a_{k+1}=\max_{a&#39;}Q_k(s_{k+1},a&#39;)
+p(x)=\frac{k(x)/N}{V}
 \]</span></p>
-<ol start="2" type="1">
-<li>Exploration: Try action other than currently known best action</li>
-</ol>
-<p><span class="math display">\[
-a_{k+1}\neq\max_{a&#39;}Q_k(s_{k+1},a&#39;)
-\]</span></p>
-<p>We need to balancing exploration-exploitation trade-off, that is <span class="math inline">\(\epsilon-greedy\)</span> exploration <span class="math display">\[
-a_k=
+<p>For particular x, count number of samples k falling in the window of volume V centered at x</p>
+<p>Two approaches: Parzen's Window fix <span class="math inline">\(V\)</span>, estimate <span class="math inline">\(k\)</span>; KNN: fix <span class="math inline">\(x\)</span>, determine <span class="math inline">\(V\)</span>.</p>
+<h2 id="parzens-window">2. Parzen's Window</h2>
+<p>Square cube function <span class="math display">\[
+\phi(u)=
 \begin{cases}
-a\in\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }1-\epsilon_k\\
-a_{k+1}\notin\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }\epsilon_k
+1\quad|u_j|\le0.5,j=1,\dotsm,d\\
+0\quad otherwise
 \end{cases}
+\]</span> d is the dimensionality of data</p>
+<p>Then <span class="math display">\[
+\phi(\frac{x-x_i}{h})=
+\begin{cases}
+1\quad x_i\text{ inside the hypercube of width h centered at x}\\
+0\quad otherwise
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+k(x)=\sum_i\phi(\frac{x-x_i}{h})\\
+p(x)=\frac{1}{N}\sum_{i=1}^N\frac{1}{h^d}\phi(\frac{x-x_i}{h})
+\]</span> d is the dimension of data</p>
+<p>h is the size of the window</p>
+<p>N is the number of data</p>
+<p>Example</p>
+<p>We have 6 examples at 2,3,4,8,10,11</p>
+<p>We choose d=1, h=3, then <span class="math display">\[
+p(1)=\frac{1}{N}\sum_{i=1}^N\frac{1}{h^d}\phi(\frac{x-x_i}{h})\\
+=\frac{1}{6}\sum_{i=1}^6\frac{1}{3}\phi(\frac{1-x_i}{3})=\frac{1}{18}\\
+\]</span> Smooth window</p>
+<p>Gaussians window</p>
+<p>Convergence Conditions</p>
+<p>The idea is that we might want to change the volume V depending on how many samples we have. So V now depends on N. As <span class="math inline">\(N\rightarrow \infty\)</span> we want <span class="math inline">\(p_N(x)\rightarrow true \space p(x)\)</span>. 4 sufficient conditions</p>
+<ol type="1">
+<li><span class="math inline">\(\sup_u \phi(u)\le \infty\)</span></li>
+<li><span class="math inline">\(\lim_{||u||\rightarrow\infty} \phi(u)\prod_{i=1}^du_i=0\)</span> (This condition means we hope <span class="math inline">\(\phi\)</span> fall rapidly when <span class="math inline">\(u\)</span> goes to infinity)</li>
+<li><span class="math inline">\(\lim_{N\rightarrow\infty}V_N=0\)</span></li>
+<li><span class="math inline">\(\lim_{N\rightarrow\infty}NV_N=\infty\)</span></li>
+</ol>
+<p>Then we can choose <span class="math inline">\(h_N=h_1/\sqrt N\)</span></p>
+<p>Setting window size h: Cross-validation</p>
+<h2 id="knn-density-estimation">3. KNN Density Estimation</h2>
+<p><span class="math display">\[
+P_N(x)=\frac{k_N(x)/N}{V_N}
+\]</span></p>
+<p>Rather than fix windows size, grow volume around x until <span class="math inline">\(K_N(x)\)</span> samples</p>
+<p>Convergence condition <span class="math display">\[
+\lim_{N\rightarrow\infty}k_N=\infty\\
+\lim_{N\rightarrow\infty}k_N/N=0
+\]</span> Example</p>
+<p>We have 6 examples at 2,3,4,8,10,11</p>
+<p>We choose k=3 <span class="math display">\[
+P_N(0)=\frac{3/6}{8}=\frac{1}{16}\\
+P_N(3)=\frac{3/6}{2}=\frac{1}{4}
+\]</span></p>
+<h2 id="knn-classification">4. KNN Classification</h2>
+<p>Given feature x, we want to estimate y <span class="math display">\[
+p(x,y=c)=\frac{k_c/N}{V}
+\]</span> Then we have the posterior <span class="math display">\[
+p(y=c|x)=\frac{p(x,y=c)}{\sum_{c&#39;=1}^Cp(x,y=c&#39;)}=\frac{k_c}{K}
 \]</span></p>
 
         
