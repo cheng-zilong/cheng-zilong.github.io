@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="Cheng-Zilong">
 <meta property="og:description" content="8.4 A symmetric Gauss-Seidel based semi-proximal ADMM/ALM Let us consider the following convex composite quadratic programming, \[ \text{(P)}\quad \begin{array}{rCl} \min &amp;amp; \theta(y_1)+f(y_1,y_">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-21T12:27:26.822Z">
+<meta property="og:updated_time" content="2020-12-22T07:29:40.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8. ADMM methods for convex composite conic programming (2)">
 <meta name="twitter:description" content="8.4 A symmetric Gauss-Seidel based semi-proximal ADMM/ALM Let us consider the following convex composite quadratic programming, \[ \text{(P)}\quad \begin{array}{rCl} \min &amp;amp; \theta(y_1)+f(y_1,y_">
@@ -251,19 +251,11 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+              <time title="Created: 2020-12-22 13:48:40 / Modified: 15:29:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-21 20:27:26" itemprop="dateModified" datetime="2019-11-21T20:27:26+08:00">2019-11-21</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -382,23 +374,19 @@ g(z)=\frac{1}{2}\langle z,\mathcal Qz\rangle -\langle b_g,z\rangle.
 \]</span> And define <span class="math display">\[
 \mathcal U&#39;=\left(\begin{array}{cccc}0 &amp; \mathcal P_{12}+\sigma \mathcal A_1\mathcal A_2^* &amp; \dotsm &amp; \mathcal P_{1p}+\sigma \mathcal A_1\mathcal A_p^*\\0 &amp; 0 &amp; \dotsm &amp; \mathcal P_{2p}+\sigma \mathcal A_2\mathcal A_p^*\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; 0\\\end{array}\right)\\\mathcal D&#39;=\left(\begin{array}{cccc}\mathcal P_{11}+\sigma \mathcal A_1\mathcal A_1^* &amp; 0 &amp; \dotsm &amp; 0\\0 &amp; \mathcal P_{22}+\sigma \mathcal A_2\mathcal A_2^* &amp; \dotsm &amp; 0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; \mathcal P_{pp}+\sigma \mathcal A_p\mathcal A_p^*\\\end{array}\right).
 \]</span> Then sGS method can be applied to solve this subproblem if <span class="math inline">\(\mathcal S_\mathcal M\)</span> is chosen as <span class="math inline">\({\mathcal S_\mathcal M} = \mathcal U&#39;(\mathcal D&#39;)^{-1} (\mathcal U&#39;)^*\)</span>.</p>
-But if this decomposition is applied, the subproblem to <span class="math inline">\(y^{k+1}_1\)</span> will be very difficult to solve because of the non-smooth function <span class="math inline">\(\theta(y_1)\)</span>. The subproblem is denoted as $$
-<span class="math display">\[\begin{array}{rcl}
+<p>But if this decomposition is applied, the subproblem to <span class="math inline">\(y^{k+1}_1\)</span> will be very difficult to solve because of the non-smooth function <span class="math inline">\(\theta(y_1)\)</span>. The subproblem is denoted as <span class="math display">\[
+\begin{array}{rcl}
 y_{1}^{k+1}&amp;=&amp;\operatorname{argmin}_{y_{1}} \mathcal{L}_{\sigma}\left(\left(y_{1}, \bar{y}_{\geq 2}^{k}\right), z^{k} ; x^{k}\right),\\
 &amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+f(y)+\varphi_g(z)+\langle x,\mathcal A^* y+\mathcal B^*z-c\rangle +\frac{\sigma}{2}||\mathcal A^* y+\mathcal B^* z-c||^2\\
-
 &amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+\frac{1}{2}\langle y,\mathcal Py\rangle -\langle b_f,y\rangle+\langle x,\mathcal A^* y\rangle +\frac{\sigma}{2}||\mathcal A^* y+\mathcal B^* z-c||^2\\
-
 &amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+\frac{1}{2}\langle y,(\mathcal P+\sigma \mathcal A^*\mathcal A)y\rangle -\langle b,y\rangle
-\end{array}\]</span>
-<span class="math display">\[
-which is a non-smooth function. To solve this problem is as difficult as to solve the original problem. Therefore we hope to introduce the regulation part to each of the subproblems, especially the subproblem to  $y^{k+1}_1$, to make the subproblems easy to solve. The form we hope the subproblem to be is
-\]</span>
-<span class="math display">\[\begin{array}{rcl}
+\end{array}
+\]</span> which is a non-smooth function. To solve this problem is as difficult as to solve the original problem. Therefore we hope to introduce the regulation part to each of the subproblems, especially the subproblem to <span class="math inline">\(y^{k+1}_1\)</span>, to make the subproblems easy to solve. The form we hope the subproblem to be is <span class="math display">\[
+\begin{array}{rcl}
 y_{1}^{k+1}
 &amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+||y_1-y_1^k||^2_\mathcal {SS},
-\end{array}\]</span>
-<p>$$ where <span class="math inline">\(\mathcal {SS}\)</span> is chosen from some positive definite symmetric matrices such that this problem can become a proximal operator to the function <span class="math inline">\(\theta\)</span>. Now let us see how we can achieve this goal.</p>
+\end{array}
+\]</span> where <span class="math inline">\(\mathcal {SS}\)</span> is chosen from some positive definite symmetric matrices such that this problem can become a proximal operator to the function <span class="math inline">\(\theta\)</span>. Now let us see how we can achieve this goal.</p>
 <p>We consider the following problem by introducing another regulation part <span class="math inline">\(\mathcal S\)</span>. <span class="math display">\[
 \begin{array}{rcl}
 y^{k+1}&amp;=&amp; \arg\min_y\left\{\theta(y_1)+\frac{1}{2}\langle y,(\mathcal P+\sigma \mathcal A\mathcal A^*)y\rangle-\langle b,y\rangle
