@@ -218,6 +218,203 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" class="post-title-link" itemprop="url">Chapter 6. Canonical Forms</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-17 13:33:56 / Modified: 14:21:59" itemprop="dateCreated datePublished" datetime="2018-11-17T13:33:56+08:00">2018-11-17</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="controllable-canonical-form">Controllable Canonical Form</h2>
+<p>Proof of existence,</p>
+<p>When <span class="math inline">\(rank(M_c)=n\)</span>, then <span class="math inline">\(M_c^{-1}\)</span> exists. Let <span class="math inline">\(q^T\)</span> be the n<sup>th</sup> row of <span class="math inline">\(M_c^{-1}\)</span></p>
+<p>Then from <span class="math inline">\(M_c^{-1}M_c=I\)</span> , we have <span class="math display">\[
+q^TA^iB=0 \quad(i=0,1,2,\dotsm,n-2) \\
+q^TA^{n-1}B=1
+\]</span> Let the transfer function <span class="math display">\[
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix}\\
+\bar B = TB=\begin{bmatrix} 0 \\0\\ \vdots \\1 \end{bmatrix} \\
+\bar AT=TA \\
+\bar A\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} = \begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} A =\begin{bmatrix}
+q^TA \\q^TA^2 \\ \vdots \\q^TA^{n}
+\end{bmatrix}
+\]</span> Denote <span class="math inline">\(\bar A_i\)</span> is the i<sup>th</sup> line of <span class="math inline">\(\bar A_i\)</span></p>
+<p>We can observe the above equation and find the solution <span class="math display">\[
+\bar A_1=\begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_2=\begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_i=\begin{bmatrix} 0 &amp; 0 &amp; \overbrace{1}^{i} &amp; \dotsm &amp; 0 \end{bmatrix}
+\]</span> Then we need to solve the last line</p>
+<p>According to Caley-Hamilton Equation <span class="math display">\[
+A^n=-\sum_{i=0}^{n-1}a_iA^i
+\]</span> Therefore, <span class="math display">\[
+\bar A_n=\begin{bmatrix} -a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-1} \end{bmatrix}\\
+\]</span> Q.E.D.</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+M_c= \begin{bmatrix}B &amp; AB \end{bmatrix} = \begin{bmatrix}1 &amp; -8\\ 2 &amp; -14 \end{bmatrix} \\
+M_c^{-1}=\begin{bmatrix}-7 &amp; 4 \\ -1 &amp; 0.5\end{bmatrix} \\
+q^T=[-1 \quad 0.5]\\
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix}=\begin{bmatrix}-1 &amp; 0.5 \\ 0 &amp; 0.5\end{bmatrix}\\
+\bar B = TB = \begin{bmatrix}0 \\ 1 \end{bmatrix} \\
+\bar A= TAT^{-1} = \begin{bmatrix}0 &amp; 1 \\ 2 &amp; -7\end{bmatrix}
+\]</span> We get the Controllable Canonical Form.</p>
+<h2 id="observable-canonical-form">Observable Canonical Form</h2>
+<p><span class="math inline">\(w\)</span> is the last column of observability matrix inverse <span class="math inline">\(M_o^{-1}\)</span> <span class="math display">\[
+M_o=\begin{bmatrix}
+C\\
+CA\\
+\vdots\\
+CA^{n-1}
+\end{bmatrix}\\
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w] \\
+\bar A = Q^{-1}AQ \\
+\bar B = Q^{-1}B \\
+\bar C=CQ
+\]</span> Proof is similar to the previous</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+C= \begin{bmatrix}1 &amp; 1 \end{bmatrix} \\
+M_o= \begin{bmatrix}C \\CA \end{bmatrix} =  \begin{bmatrix}1&amp;1 \\ -6 &amp; -8 \end{bmatrix} \\
+M_o^{-1}= \begin{bmatrix}4 &amp; 0.5 \\ -3&amp; -0.5 \end{bmatrix} \\
+w=\begin{bmatrix}0.5 \\ -0.5 \end{bmatrix} \\
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w]=\begin{bmatrix}0.5 &amp; 0.5 \\-0.5 &amp; 0.5\end{bmatrix} \\
+\bar A= Q^{-1}AQ=\begin{bmatrix}0 &amp; 2 \\1 &amp; -7\end{bmatrix}\\
+\bar B= Q^{-1}B=\begin{bmatrix}-1 \\3\end{bmatrix}\\
+\bar C=CQ=[0 \quad 1]
+\]</span></p>
+<h2 id="transfer-function">Transfer Function</h2>
+<p><span class="math display">\[
+\frac{Y(s)}{U(s)}=\frac{b_{n-1}s^{n-1}+b_{n-2}s^{n-2}+\dotsm+b_{1}s^{1}+b_0}{a_n+a_{n-1}s^{n-1}+a_{n-2}s^{n-2}+\dotsm+a_{1}s^{1}+a_0}
+\]</span></p>
+<p>Controllable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 1  &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+0 &amp; 0  &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0  &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
+-a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-2} &amp; -a_{n-1}
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+0\\
+0\\
+\vdots\\
+0\\
+1
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+b_0 &amp; b_1 &amp; \dotsm &amp; b_{n-2} &amp; b_{n-1}
+\end{bmatrix}
+\]</span> Observable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_0\\
+1 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_1\\
+0 &amp; 1  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_2\\
+\vdots  &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0 &amp;-a_{n-1}\\
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+b_0\\
+b_1\\
+\vdots\\
+b_{n-2}\\
+b_{n-1}
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -494,301 +691,11 @@ zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-title-link" itemprop="url">2. Computer Control and Discrete-Time Systems</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-14 13:44:42 / Modified: 00:04:50" itemprop="dateCreated datePublished" datetime="2018-11-14T13:44:42+08:00">2018-11-14</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="pole-cancellation">1. Pole Cancellation</h2>
-<p>If the whole system is stable, then the poles and zeros can be cancelled out each other, then the reduced transfer function is good approximation of the original one.</p>
-<p>If the common factors are related to the same variables, they must cancel out.</p>
-<p>If the common factors are related to different variables, they should remain.</p>
-<p>The best tools to check whether they can be cancelled out or not is time domain. Proof is omitted.</p>
-<p>Example</p>
-<p>---u------G1------v------G2------y <span class="math display">\[
-G_1=\frac{s-1}{s^2+s+1}\\
-G_2=\frac{1}{s-1}\\
-\]</span> Then <span class="math display">\[
-G_1G_2=\frac{s-1}{(s^2+s+1)(s-1)}\\
-\]</span> ---u------G2------v------G1------y <span class="math display">\[
-G_2G_1=\frac{1}{s^2+s+1}\\
-\]</span></p>
-<h2 id="zero-order-hold-discrete-instead-of-first-order-hold">2. Zero-order Hold Discrete instead of First Order Hold</h2>
-<p>Because you will never know what will happen in the next time. So we can only choose zero-order hold for the computer control system.</p>
-<h2 id="how-to-solve-the-differential-equation">3. How to Solve the Differential Equation</h2>
-<p><span class="math display">\[
-x(t)=\underbrace{e^{At}x(0)}_{\text{zero input response}}+\underbrace{\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau}_{\text{zero-state response}}\\
-\]</span></p>
-<p>For continuous time, we have differential equation, differentiation operator, Laplace Transform, continuous state space.</p>
-<p>For discrete time, we have difference equation, shift operator, Z Transform, discrete state space.</p>
-<h2 id="discrete-with-zero-order-hold">4. Discrete with Zero-Order Hold</h2>
-<p>For a constant in the whole interval <span class="math inline">\([t_k,t_{k+1})\)</span> <span class="math display">\[
-x(t)=e^{A(t-t_k)}x(t_k)+\int_{t_k}^{t}e^{A(t-\tau)}d\tau Bu(t_k)\\
-\]</span> For the second part we have <span class="math inline">\(v=t-\tau\)</span> <span class="math display">\[
-\int_{t_k}^{t}e^{A(t-\tau)}d\tau=\int_0^{t-t_k}e^{Av}dv\\
-\]</span> If the sampling time is h, we have <span class="math display">\[
-x(kh+h)=e^{Ah}x(kh)+\int_0^he^{Av}dvBu(kh)=\Phi x(kh)+\Gamma u(kh)\\
-\]</span> To be simple <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y=Cx\\
-\]</span> where <span class="math display">\[
-\Phi=e^{Ah} \\
-\Gamma=\int_0^he^{Av}dvB\\
-\]</span></p>
-<p>Difference Equation <span class="math display">\[
-y(k+1)=a_1y(k)+a_2y(k-1)+b_0u(k)+b_1u(k-1)\\
-y(k+1)-a_1y(k)-a_2y(k-1)=b_0u(k)+b_1u(k-1)\\
-\]</span> We define shift-operator q <span class="math display">\[
-qf(k)=f(k+1)\\
-q^{-1}f(k)=f(k-1)\\
-\]</span> Then we will have <span class="math display">\[
-qy(k)-a_1y(k)-a_2q^{-1}y(k)=b_0u(k)+b_1q^{-1}u(k)\\
-\frac{y(k)}{u(k)}=\frac{b_0+b_1q^{-1}}{q-a_1-a_2q^{-1}}=\frac{b_0q+b_1}{q^2-a_1q-a_2}=\frac{B(q)}{A(q)}\\
-\]</span></p>
-<h2 id="z-transform">5. Z Transform</h2>
-<p>In continuous time domain, we have <span class="math display">\[
-u=e^{st}\quad y=H(s)e^{st}\\
-\]</span> In discrete time domain, we have <span class="math display">\[
-e^{st\quad\underrightarrow{t\rightarrow kh}}\quad e^{skh\quad\underrightarrow{e^{sh}\rightarrow a}} \quad a^k\\
-\]</span> Therefore, <span class="math display">\[
-u(k)=a^k\quad y(k)=H(a)a^k\\
-\]</span> Then we have the following calculation which has the same properties. <span class="math display">\[
-F(z)=\sum^\infty_{k=0}f(k)z^{-k}\\
-\]</span> Which is Z transform.</p>
-<p>For impulse signal, we have <span class="math inline">\(U(z)=1\)</span>.</p>
-<p>For <span class="math inline">\(u=a^k\)</span>, we have <span class="math inline">\(U(z)=\frac{1}{z-a}\)</span>.</p>
-<p>Inverse Z Transform e.g. <span class="math display">\[
-z^2Y(z)-Y(z)=zU(z)+2U \\
-\frac{Y}{U}=G(z)=\frac{z+2}{z^2-1}\\
-\frac{G(z)}{z}=\frac{z+2}{z(z+1)(z-1)}=\frac{A_1}{z}+\frac{A_2}{z+1}+\frac{A_3}{z-1} \\
-G(Z)=\frac{z+2}{z(z+1)(z-1)}=-1+\frac{0.5z}{z+1}+\frac{0.5z}{z-1} \\
-\]</span> After inverse z transform <span class="math display">\[
-y(k)=-\delta(k)+0.5(-1)^k+0.5 (1)^k
-\]</span> Apply z transform to state space equation <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y(k) = cx(k) \\
-zX(z)-x(0)=\Phi X(z)+\Gamma U(z) \\
-(zI-\Phi)X(z)=x(0)+\Gamma U(z) \\
-X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z) \\
-Y(z)=cX(Z)=c(zI-\Phi)^{-1}x(0)+c(zI-\Phi)^{-1}\Gamma U(z)\\
-\]</span></p>
-<p>For s domain, steady state gain(SSG) is H(0).</p>
-<p>For z domain, SSG is H(1).</p>
-<p>Poles in continuous time domain(CTD) is <span class="math inline">\(\lambda\)</span> , in the discrete time is <span class="math inline">\(e^{h\lambda }\)</span></p>
-<p>In CTD, if <span class="math inline">\(\lambda = \sigma+j\omega\)</span> , <span class="math inline">\(e^{\sigma+j\omega}=e^{\sigma}(cos (\omega)+jsin(\omega))\)</span></p>
-<p>In DTD, <span class="math inline">\(e^{h\lambda}=e^{h(\sigma+jw)}=e^{h\sigma}e^{jhw}\)</span></p>
-<p>Therefore, we can map poles from continuous time domain to discrete time domain.</p>
-<h2 id="example">6. Example</h2>
-<p>We have one electrical system <span class="math inline">\(L=C=R=1\)</span> <span class="math display">\[
-L\frac{di}{dt}+Ri+\frac{1}{C}\int idt=e_i\\
-\frac{1}{C}\int idi=e_o
-\]</span> a) Derive transfer function. Input is <span class="math inline">\(e_i\)</span>. Output is <span class="math inline">\(e_o\)</span>. <span class="math display">\[
-s^2Y(s)+sY(s)+Y(s)=U(s)\\
-\frac{Y(s)}{U(s)}=\frac{1}{s^2+s+1}\\
-\]</span> b) Define <span class="math inline">\(x_1=e_o,x_2=\dot e_o\)</span>, derive state space representation. <span class="math display">\[
-\dot x_1=x_2\\
-\dot x_2=-x_2-x_1+u\\
-x=Ax+Bu\\
-y=Cx\\
-A=
-\begin{bmatrix}
-0 &amp; 1\\
--1 &amp; -1
-\end{bmatrix}x+
-\begin{bmatrix}
-0\\
-1
-\end{bmatrix}u\\
-y=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}x\\
-\]</span> c) Discrete this system with h=1. <span class="math display">\[
-x(k+1)=\Phi x+\Gamma u\\
-y=Cx\\
-\Phi=e^{Ah}\\
-\]</span> According to Caley-Hamilton Equation <span class="math display">\[
-f(\lambda)=e^{\lambda t}\\
-h(\lambda)=\beta_0+\beta_1\lambda\\
-\lambda_1=-0.5+\frac{\sqrt3}{2}i\\
-\lambda_2=-0.5-\frac{\sqrt3}{2}i\\
-f(\lambda_1)=e^{(-0.5+\frac{\sqrt3}{2}i)t}=h(\lambda_1)=\beta_0+\beta_1(-0.5+\frac{\sqrt3}{2}i)\\
-f(\lambda_2)=e^{(-0.5-\frac{\sqrt3}{2}i)t}=h(\lambda_2)=\beta_0+\beta_1(-0.5-\frac{\sqrt3}{2}i)\\
-\]</span> Then we can solve that <span class="math display">\[
-\beta_0=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
-\\
-\beta_1=\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
-\]</span> Then we have <span class="math display">\[
-f(A)=h(A)=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}+
-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}
-\begin{bmatrix}
-0 &amp; 1\\
--1 &amp; -1
-\end{bmatrix}\\
-=\begin{bmatrix}
-e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]&amp;
-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
--\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}&amp;
-e^{-0.5t}[\cos{\frac{\sqrt3}{2}t-\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
-\end{bmatrix}\\
-\]</span> Then we have <span class="math display">\[
-\Phi=
-\begin{bmatrix}
-0.6597 &amp; 0.5335\\
--0.5335 &amp; 0.1262\\
-\end{bmatrix}\\
-\Gamma=A^{-1}[e^{Ah}-I]B=
-\begin{bmatrix}
-0.3403\\
-0.5335
-\end{bmatrix}\\
-C=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}\\
-\]</span> d) Apply z-transform to c), and obtain input-output model <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y(k)=Cx(k)\\
-zX(z)-x(0)=\Phi X(z)+\Gamma U(z)\\
-X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z)\\
-Y(z)=C(zI-\Phi)^{-1}x(0)+C(zI-\Phi)^{-1}\Gamma U(z)\\
-=\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335\\
--0.5335 &amp; z-0.6579
-\end{bmatrix}x(0)+\\
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335\\
--0.5335 &amp; z-0.6579
-\end{bmatrix}
-\begin{bmatrix}
-0.3403\\
-0.5335
-\end{bmatrix}U(z)=\\
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335
-\end{bmatrix}x(0)+\\
-\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
-\]</span> We assume initial state is zero. <span class="math display">\[
-Y(z)=\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
-y(k+2)-0.7859y(k+1)+0.3679y(k)=0.3403u(k+1)+0.2417u(k)\\
-y(k+1)=0.7859y(k)-0.3679y(k-1)+0.3403u(k)+0.2419u(k-1)\\
-\]</span> e) Assuming initial condition is <span class="math inline">\(x_1(0)=1,x_2(0)=0\)</span> , with step input, calculate the output <span class="math inline">\(y(k)\)</span>. <span class="math display">\[
-Y(z)=
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335
-\end{bmatrix}
-(
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}z+
-\begin{bmatrix}
-0.3403\\
-0.5335\\
-\end{bmatrix}\frac{z}{z-1}
-)\\
-=\frac{z}{z-1}\\
-\]</span></p>
-<p>Therefore, <span class="math inline">\(y(z)=1\)</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -833,7 +740,7 @@ z-0.1262 &amp; 0.5335
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -862,7 +769,9 @@ z-0.1262 &amp; 0.5335
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

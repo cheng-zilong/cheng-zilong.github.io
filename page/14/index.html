@@ -218,6 +218,298 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/28/Introduction to Hilbert Spaces with Applications/2. The Lebesgue Integral/" class="post-title-link" itemprop="url">Chapter 2-1. The Lebesgue Integral</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-07-28 13:48:00 / Modified: 14:58:52" itemprop="dateCreated datePublished" datetime="2019-07-28T13:48:00+08:00">2019-07-28</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="the-lebesgue-integral">The Lebesgue Integral</h1>
+<h2 id="introduction">2.1 Introduction</h2>
+<p>The main purpose of this book is a presentation of basic methods and applications of Hilbert spaces. One of the most important applications of the theory is the solution of differential equations. To this aim, we need, for example, a Hilbert space which contains all differentiable functions defined on some intervals [a,b] for which the inner product is defined by <span class="math display">\[
+\langle f,g \rangle = \int_a^bf(x)\overline{g(x)}dx
+\]</span> The smallest Hilbert space satisfying these conditions is the space of Lebesgue square integrable functions on [a,b]. Thus, the Lebesgue integral is essential for understanding some of the most important applications of Hilbert space theory.</p>
+<h2 id="step-functions">2.2 Step Functions</h2>
+<p>By a step function on the real line <span class="math inline">\(R\)</span> we mean a finite linear combination of characteristic functions of semi-open intervals <span class="math inline">\([a,b)\subseteq R\)</span>. Thus for every step function <span class="math inline">\(f\)</span>, there are intervals <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm,[a_n,b_n)\)</span> and numbers <span class="math inline">\(\lambda_1,\lambda_2,\dotsm,\lambda_n \in R\)</span> such that <span class="math display">\[
+f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)
+\]</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k)\)</span>. That means for <span class="math inline">\(x\in [a_k,b_k)\)</span>, <span class="math inline">\(f(x)=1\)</span>, and <span class="math inline">\(f(x)=0\)</span>, otherwise.</p>
+<p>If we assume that intervals are disjoint and the minimal number of intervals are used, then the representation can be unique. This representation is called basic representation of <span class="math inline">\(f\)</span> and we call <span class="math inline">\(f=0\)</span> the basic representation of the zero function.</p>
+<p>The collection of all step function on R is a vector space. The absolute value of a step function is again a step function.</p>
+<p>If <span class="math inline">\(f=\alpha_1f_1+\alpha_2f_2+\dotsm+\alpha_nf_n\)</span> is a basic representation of a step function, then <span class="math display">\[
+|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n
+\]</span> For any real value functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have <span class="math display">\[
+\min(f,g)=\frac{1}{2}(f+g-|f-g|)\quad \max(f,g)=\frac{1}{2}(f+g+|f-g|)
+\]</span> That means <span class="math inline">\(\min(f,g)\)</span> and <span class="math inline">\(\max(f,g)\)</span> are step functions.</p>
+<p>By the ==support== of a nonzero function <span class="math inline">\(f\)</span>, denoted by supp <span class="math inline">\(f\)</span>, we mean the set of all points <span class="math inline">\(x\in R\)</span> for which <span class="math inline">\(f(x)\neq 0\)</span>. The support of a nonzero step function is always a finite union of semi-open intervals. If <span class="math inline">\(f=0\)</span>, supp <span class="math inline">\(f=\empty\)</span></p>
+<p>==Definition 2.2.1== Integral of a step function</p>
+<p>The integral <span class="math inline">\(\int f\)</span> of a step function <span class="math inline">\(f(x)=\lambda_1f_1(x)+\lambda_2f_2(x)+\dotsm+\lambda_nf_n(x)\)</span> where <span class="math inline">\(f_k\)</span> is the characteristic function of <span class="math inline">\([a_k,b_k),k=1,\dotsm,n\)</span> is defined by <span class="math display">\[
+\int f=\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)
+\]</span> clearly, the value of <span class="math inline">\(\int f\)</span> is equal to the Riemann Integral of <span class="math inline">\(f\)</span>. From the properties of Riemann integral it follows that the defined integral does not depend on a particular representation.</p>
+<p>==Theorem 2.2.1==</p>
+<p>For any step functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we have</p>
+<ol type="a">
+<li><p><span class="math inline">\(\int (f+g)=\int f+\int g\)</span></p></li>
+<li><p><span class="math inline">\(\int \lambda f=\lambda \int f\)</span>, <span class="math inline">\(\lambda \in R\)</span></p></li>
+<li><p><span class="math inline">\(f\le g\implies \int f\le \int g\)</span></p></li>
+<li><p><span class="math inline">\(|\int f|\le \int |f|\)</span></p></li>
+</ol>
+<p>Proof.</p>
+<ol type="a">
+<li><ol start="2" type="a">
+<li>can be proved directly from definition</li>
+</ol></li>
+<li>We only need to prove <span class="math inline">\(g-f\ge 0\implies \int (g-f)\ge 0\)</span> i.e. <span class="math inline">\(f\ge 0\implies \int f\ge 0\)</span></li>
+</ol>
+<p>If <span class="math inline">\(f\ge 0\)</span>, then all parameters are positive and <span class="math inline">\(\int f \ge 0\)</span></p>
+<ol start="4" type="a">
+<li><span class="math inline">\(|\int f|=|\lambda_1(b_1-a_1)+\lambda_2(b_2-a_2)+\dotsm+\lambda_n(b_n-a_n)|\)</span></li>
+</ol>
+<p><span class="math inline">\(\int |f|=|\lambda_1|(b_1-a_1)+|\lambda_2|(b_2-a_2)+\dotsm+|\lambda_n|(b_n-a_n)\)</span></p>
+<p>==Lemma 2.2.1==</p>
+<p>Let <span class="math inline">\(f\)</span> be a step function whose support is contained in the union of semi-open intervals <span class="math inline">\([a_1,b_1),\dotsm,[a_n,b_n)\)</span>. If <span class="math inline">\(|f|&lt;M\)</span> for some constant <span class="math inline">\(M&gt;0\)</span>, then <span class="math display">\[
+\int |f|\le M\sum_{k=1}^n(b_k-a_k)
+\]</span> Proof.</p>
+<p><span class="math inline">\(|f|=|\alpha_1|f_1+|\alpha_2|f_2+\dotsm+|\alpha_n|f_n\)</span>. Then we choose <span class="math inline">\(M &gt; \max\{|\alpha_1|,\dots,|\alpha_n|\}\)</span></p>
+<p>Then <span class="math display">\[
+\int |f|=|\alpha_1|(b_1-a_1)+|\alpha_2|(b_2-a_2)+\dotsm+|\alpha_n|(b_n-a_n)\\
+\le M(b_1-a_1)+M(b_2-a_2)+\dotsm+M(b_n-a_n)\\
+=M\sum_{k=1}^n(b_k-a_k)
+\]</span> ==Lemma 2.2.2==</p>
+<p>Let <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm\)</span> be disjoint subintervals of an interval <span class="math inline">\([a,b)\)</span> such that <span class="math display">\[
+\bigcup_{n=1}^\infty [a_n,b_n)=[a,b)
+\]</span> Then <span class="math display">\[
+\sum_{n=1}^\infty (b_n-a_n)=b-a
+\]</span> Proof.</p>
+<p>Let <span class="math inline">\(S \subset [a,b)\)</span> consist of all points <span class="math inline">\(c\)</span> such that the lemma holds for the interval <span class="math inline">\([a,c)\)</span> and for each of the subintervals <span class="math inline">\([a_n,b_n)\cap [a,c)\)</span> , S is not empty because <span class="math inline">\(a=a_{n_0}\)</span> for some <span class="math inline">\(n_0\in N\)</span> and then <span class="math inline">\(b_{n_0}\in S\)</span>. If <span class="math inline">\(c\in S\)</span>, then <span class="math inline">\(\sum_n(b_{c,n}-a_n)\)</span> where <span class="math inline">\(b_{c,n}=\min \{b_n,c\}\)</span>. It suffices to prove <span class="math inline">\(b\in S\)</span>.</p>
+<p>To this end, we first prove lub <span class="math inline">\(S \in S\)</span>. Indeed, if <span class="math inline">\(s=\)</span> lub S and <span class="math inline">\(\{s_n\}\)</span> is a non-decreasing sequence of elements of S convergent to s, then <span class="math display">\[
+s_n-a=\sum_m (b_{s_n,m}-a_m)\le \sum_m(b_{s,m}-a_m)\le s-a
+\]</span> Then <span class="math inline">\(s_n-a\rightarrow s-a\implies \sum_m(b_{s,m}-a_m)= s-a\)</span>, then <span class="math inline">\(s\in S\)</span>, then easily <span class="math inline">\(s=b\)</span></p>
+<p>Q.E.D.</p>
+<p>==Theorem 2.2.2==</p>
+<p>Let <span class="math inline">\((f_n)\)</span> be a non-increasing sequence of non-negative step functions such that <span class="math inline">\(\lim_{n\rightarrow \infty} f_n(x)=0\)</span> for every <span class="math inline">\(x\in R\)</span>. Then <span class="math inline">\(\lim_{n\rightarrow \infty} \int f_n=0\)</span>.</p>
+<p>Proof.</p>
+<p><span class="math inline">\((f_n)\)</span> is non-increasing sequence, and therefore $f_{n+1}f_nf_{n+1}f_n $</p>
+<p><span class="math inline">\(f_n \ge 0\implies \int f_n \ge 0\)</span></p>
+<p>Therefore <span class="math inline">\((\int f_n)\)</span> is non-increasing and bounded from below, it converges.</p>
+<p>Let <span class="math display">\[
+\lim_{n\rightarrow \infty} \int f_n=\varepsilon&gt;0
+\]</span> Let <span class="math inline">\([a,b)\)</span> be an interval containing all the support of <span class="math inline">\(f_1\)</span> (and therefore, <span class="math inline">\(f_n\)</span>). Put <span class="math inline">\(\alpha=\varepsilon /(2(b-a))\)</span> <span class="math display">\[
+A_n=\{x\in[a,b):f_n(x)&lt;\alpha\}\\
+\begin{array}{rcl}
+B_1=A_1 &amp; B_2=A_2\backslash A_1 &amp; B_2=A_3\backslash A_2\dotsm
+\end{array}
+\]</span> Note that <span class="math inline">\(B_n\)</span> are disjoint and <span class="math inline">\(\bigcup_{n=1}^\infty B_n=[a,b)\)</span></p>
+<p>Because <span class="math inline">\(f_n\)</span> are step functions, <span class="math display">\[
+B_n=[a_{n,1},b_{n,1})\cup\dotsm \cup[a_{n,k_n},b_{n,k_n})
+\]</span> By lemma 2.2.2, <span class="math display">\[
+\sum_{n=1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})=b-a
+\]</span> Let <span class="math inline">\(n_0 \in N\)</span> such that <span class="math display">\[
+\sum_{n=n_0+1}^\infty \sum_{k=1}^{k_n}(b_{n,k}-a_{n,k})&lt;\delta
+\]</span> where <span class="math inline">\(\delta = \varepsilon/(2\max|f_1|)\)</span>.</p>
+<p>Define <span class="math display">\[
+F=[a_{1,1},b_{1,1})\cup \dotsm\cup [a_{1,k_1},b_{1,k_1})\cup\dotsm\cup[a_{n_0,1},b_{n_0,1})\cup\dotsm\cup[a_{n_0,k_{n_0}},b_{n_0,k_{n_0}})
+\]</span> Then, <span class="math display">\[
+g(x)=
+\begin{cases}
+f_{n_0}(x) &amp; x\in F\\
+0 &amp; otherwise
+\end{cases}\\
+h(x)=
+\begin{cases}
+0 &amp; x\in F\\
+f_{n_0}(x) &amp; otherwise
+\end{cases}
+\]</span> <span class="math inline">\(x\in F\implies x\in A_{n_0}\)</span>, and thus <span class="math inline">\(f_{n_0}(x)&lt;\alpha\)</span> <span class="math display">\[
+\int g&lt;\alpha(b-a)=\frac{\varepsilon }{2} 
+\]</span> and, <span class="math display">\[
+\int h&lt;\delta \max|f_{n_0}|\le \delta\max|f_{1}|=\frac{\varepsilon }{2} 
+\]</span> Therefore, <span class="math display">\[
+\int f=\int g+\int h &lt;\varepsilon
+\]</span> Q.E.D.</p>
+<p>==Lemma 2.2.3==</p>
+<p>Let <span class="math inline">\((g_n)\)</span> and <span class="math inline">\((h_n)\)</span> be non-decreasing sequences of step functions. If <span class="math inline">\(\lim_{n\rightarrow \infty} h_n(x)\le \lim_{n\rightarrow \infty} g_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span>, then <span class="math inline">\(\lim_{n\rightarrow \infty} \int h_n(x)\le \lim_{n\rightarrow \infty} \int g_n(x)\)</span></p>
+<p>Proof.</p>
+<p>Fix <span class="math inline">\(k\in N\)</span>. $h_k-(h_k,g_n)(n) $ is non-decreasing sequence converging to zero for every <span class="math inline">\(x\in R\)</span></p>
+<p>By theorem 2.2.2 <span class="math display">\[
+0=\lim_{n\rightarrow \infty}\int (h_k-\min(h_k,g_n))\\
+=\lim_{n\rightarrow \infty}\int h_k-\lim_{n\rightarrow \infty}\int\min(h_k,g_n)\\
+\]</span> Q.E.D.</p>
+<h2 id="lebesgue-integrable-functions">2.3 Lebesgue Integrable Functions</h2>
+<p>==Definition 2.3.1== (Lebesgue Integral)</p>
+<p>A real-valued function <span class="math inline">\(f\)</span> defined on <span class="math inline">\(R\)</span> is called Lebesgue integrable if there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that the following two conditions are satisfied:</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>The integral of <span class="math inline">\(f\)</span> is then defined by <span class="math display">\[
+\int f=\sum_{n=1}^\infty \int f_n
+\]</span> If a function <span class="math inline">\(f\)</span> and a sequence of step function <span class="math inline">\((f_n)\)</span> satisfy (a) and (b), then we will write <span class="math display">\[
+f \simeq \sum_{n=1}^\infty f_n\text{ or } f\simeq f_1+f_2+\dotsm
+\]</span> ==Theorem 2.3.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(f\ge 0\)</span>, then <span class="math inline">\(\int f_1+\int f_2 +\dotsm \ge 0\)</span></p>
+<p>Proof</p>
+<p><span class="math display">\[
+\forall \varepsilon&gt;0,\exists n_0\in N\quad \sum_{n=n_0+1}^\infty \int |f_n|&lt;\varepsilon
+\]</span> Then define <span class="math display">\[
+g_n = f_1+\dotsm+f_{n_0}+|f_{n_0+1}|+\dotsm+|f_{n_0+n}|\\
+h_n=\max (g_n,0)\\
+\]</span> and <span class="math inline">\(g_n\)</span> and <span class="math inline">\(h_n\)</span> are non-decreasing sequences</p>
+<p>Then <span class="math display">\[
+\lim _{n\rightarrow \infty }g_n=\lim_{n \rightarrow \infty} h_n \implies \\
+\lim _{n\rightarrow \infty }\int g_n=\lim_{n \rightarrow \infty}\int  h_n\ge0
+\]</span> and this <span class="math display">\[
+\int f_1+\dotsm+\int f_{n_0}+\int |f_{n_0+1}|+\dotsm\ge 0 \\
+\int f_1+\dotsm+2\sum_{n=n_0+1}^\infty\int |f_{n}|\ge 0 \\
+\int f_1+\dotsm+2\varepsilon\ge 0 \\
+\]</span> because <span class="math inline">\(\varepsilon\)</span> is arbitrary, Q.E.D.</p>
+<p>==Corollary 2.3.1==</p>
+<p>If <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span> and <span class="math inline">\(f\simeq \sum_{n=1}^\infty g_n\)</span>. then <span class="math inline">\(\sum_{n=1}^\infty \int f_n=\sum_{n=1}^\infty \int g_n\)</span></p>
+<p>By theorem 2.3.1. Q.E.D.</p>
+<p>The space of all ==Lebesgue integrable functions== defined on R will be denoted as <span class="math inline">\(L^1(R)\)</span>. In the sequel, Lebesgue integrable functions will be called simply ==integrable==.</p>
+<p>It will be proved that every Riemann integrable function is Lebesgue integrable and both integrals are equal.</p>
+<p>==Theorem 2.3.2==</p>
+<p><span class="math inline">\(L^1(R)\)</span> is a vector space and <span class="math inline">\(\int\)</span> is a linear functional on <span class="math inline">\(L^1(R)\)</span>.</p>
+<p>==Theorem 2.3.3==</p>
+<p>If <span class="math inline">\(f,g \in L^1(R)\)</span> and <span class="math inline">\(f&lt;g\)</span>, then <span class="math inline">\(\int f\le \int g\)</span></p>
+<p>Definition 2.3.1 is fairly simple although it may be a little disturbing.</p>
+<h2 id="the-absolute-value-of-an-integrable-function">2.4 The absolute value of an integrable function</h2>
+<p>In the previous section, we mentioned that all Riemann integrable functions are Lebesgue integrable.</p>
+<p>For improper integrals it is not so. For instance, the integral <span class="math display">\[
+\int_{-\infty}^\infty \frac{\sin x}{x}dx
+\]</span> converges, although the function is not Lebesgue integrable. It is clear from the following theorem,</p>
+<p>==Theorem 2.4.1==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(|f|\in L^1(R)\)</span> and <span class="math inline">\(|\int f| \le \int |f|\)</span></p>
+<p><span class="math inline">\(f\in L^1(R)\)</span> means</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int|f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>Let <span class="math inline">\(f=f_1+f_2+\dotsm\)</span> and define <span class="math display">\[
+Z=\{x\in R:\sum_{n=1}^\infty |f_n(x)|&lt;\infty\}\\
+s_n=f_1+f_2+\dotsm+f_n
+\]</span> Then <span class="math display">\[
+f(x)=\lim_{n\rightarrow \infty} s_n(x)\\
+|f(x)|=|\lim_{n\rightarrow \infty} s_n(x)|=\lim_{n\rightarrow \infty} |s_n(x)|\\
+=|s_1|+(|s_2|-|s_1|)+(|s_3|-|s_2|)\dotsm
+\]</span> define <span class="math inline">\(g_1=|s_1|\)</span>, <span class="math inline">\(g_n=|s_n|-|s_{n-1}|\)</span> <span class="math display">\[
+|f(x)|=\sum_{n=1}^\infty g_n(x)
+\]</span> Then we have <span class="math display">\[
+|g_n|\le |s_n-s_{n-1}|=|f_n|\\
+\int |g_n|\le \int |f_n|\\
+\sum_{n=1}^\infty \int |g_n|&lt;\infty
+\]</span> Q.E.D.</p>
+<p>==Corollary 2.4.1==</p>
+<p>If <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(\int |f|\le \sum_{n=1}^\infty\int |f_n|\)</span></p>
+<p>==Corollary 2.4.2==</p>
+<p>If <span class="math inline">\(f,g\in L^1(R)\)</span>, then <span class="math inline">\(\min(f,g),\max(f,g) \in L^1(R)\)</span>.</p>
+<p>==Theorem 2.4.2==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then <span class="math inline">\(\lim_{t\rightarrow 0}\int |f(x+t)-f(x)|dx=0\)</span></p>
+<h2 id="series-of-integrable-functions">2.5 Series of integrable functions</h2>
+<p>In the construction described in the preceding sections, we start with an integral of step functions and extend it to a larger class of functions by expanding them in series of step functions <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>. The functions in that class have a well-defined integral. This result is a form of completeness of the space of Lebesgue integrable functions. It is of fundamental importance for the theory of the Lebesgue integral.</p>
+<p>==Definition 2.5.1==</p>
+<p>Let <span class="math inline">\(f\)</span> be a real-valued function and let <span class="math inline">\((f_n)\)</span> be a sequence of <strong>integrable functions</strong> (Not step functions). If</p>
+<ol type="a">
+<li><p><span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span></p></li>
+<li><p><span class="math inline">\(f(x)=\sum_{n=1}^\infty f_n(x)\)</span> for every <span class="math inline">\(x\in R\)</span> such that <span class="math inline">\(\sum_{n=1}^\infty |f_n(x)|&lt;\infty\)</span></p></li>
+</ol>
+<p>then we write <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> or <span class="math inline">\(f\simeq \sum_{n=1}^\infty f_n\)</span></p>
+<p>==Lemma 2.5.1==</p>
+<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then for every <span class="math inline">\(\epsilon&gt;0\)</span> there exists a sequence of step functions <span class="math inline">\((f_n)\)</span> such that <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span> and <span class="math inline">\(\sum_{n=1}^\infty\int |f_n|\le \int |f|+\epsilon\)</span></p>
+<p>Proof.</p>
+<p>Define, <span class="math inline">\(f\simeq g_1+g_2+\dotsm\)</span>, for every <span class="math inline">\(\varepsilon&gt;0\)</span> there exists <span class="math inline">\(n_0\in N\)</span> such that <span class="math display">\[
+\sum_{n=n_0+1}^\infty \int |g_n|&lt;\frac{\varepsilon}{2}
+\]</span> Define <span class="math display">\[
+f_1=g_1+\dotsm+g_n\\
+f_n=g_{n_0+n-1}\\
+f\simeq f_1+f_2+\dotsm\\
+f-f_1\simeq f_2+f_3+\dotsm\\
+\int |f_1|-\int |f|\le\int |f-f_1|\le \sum_{n=2}^\infty |f_n|\\
+\sum_{n=1}^\infty \int |f_n|=\int |f_1|+\sum_{n=2}^\infty |f_n|\\
+\le \int |f|+2\sum_{n=2}^\infty |f_n|\\
+=\int |f|+\varepsilon
+\]</span> ==Theorem 2.5.1==</p>
+<p>If <span class="math inline">\((f_n)\)</span> is a sequence of integrable functions and <span class="math inline">\(f\simeq f_1+f_2+\dotsm\)</span>, then <span class="math inline">\(f\)</span> is integrable and <span class="math inline">\(\int f=\int f_1+\int f_2+\dotsm\)</span></p>
+<p>==Corollary 2.5.1==</p>
+<p>Let <span class="math inline">\(f_1,f_2,\dotsm\in L^1(R)\)</span>. If <span class="math inline">\(\sum_{n=1}^\infty \int |f_n|&lt;\infty\)</span>, then there exists an integrable function <span class="math inline">\(f\)</span> such that <span class="math inline">\(f=f_1+f_2+\dotsm\)</span>.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/Introduction to Hilbert Spaces with Applications/1.7 Completion of Normed Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -315,502 +607,11 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/Convex Optimization/5. Duality/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/07/13/Convex Optimization/5. Duality/" class="post-title-link" itemprop="url">Chapter 5. Duality</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-07-13 13:49:01 / Modified: 13:57:57" itemprop="dateCreated datePublished" datetime="2019-07-13T13:49:01+08:00">2019-07-13</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="duality">5. Duality</h1>
-<h2 id="the-lagrange-dual-function">5.1 The Lagrange dual function</h2>
-<h3 id="the-lagrangian">5.1.1 The Lagrangian</h3>
-<p>We consider the optimization problem (we do not assume convex) in the standard form <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\le 0\\h_i(x)=0
-\end{array}
-\end{array}.
-\]</span> The basic idea in Lagrangian duality is to take the constraints in (5.1) into account by augmenting the objective function with a weighted sum of the constraint functions. <span class="math display">\[
-L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^p v_i h_i(x).
-\]</span> The vectors <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(v\)</span> are called <strong>dual variables</strong> or <strong>Lagrange Multiplier vectors</strong>.</p>
-<h3 id="the-lagrange-dual-function-1">5.1.2 The Lagrange dual function</h3>
-<p>We define the Lagrange dual function as the minimum value of the Lagrangian over x <span class="math display">\[
-g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right).
-\]</span> Since the dual function is the pointwise infimum of a family of affine functions of <span class="math inline">\((\lambda,v)\)</span>, it is concave even when the original problem is not convex.</p>
-<h3 id="lower-bounds-on-optimal-value">5.1.3 Lower bounds on optimal value</h3>
-<p>The dual function yields the lower bounds on the optimal value <span class="math inline">\(p^\star\)</span> of the problem. For any <span class="math inline">\(\lambda \succeq 0\)</span> and any <span class="math inline">\(v\)</span> we have <span class="math display">\[
-g(\lambda,v)\le p^\star
-\]</span> This important property is easily verified, suppose <span class="math inline">\(\tilde x\)</span> is a feasible point for the problem, i.e. <span class="math inline">\(f_i(\tilde x)\le 0\)</span> and <span class="math inline">\(h_i(\tilde x)=0\)</span>. Then we have <span class="math display">\[
-\sum_{i=1}^m \lambda_if_i(\tilde x)+\sum_{i=1}^p v_ih_i(\tilde x)\le 0.
-\]</span> Then we have <span class="math display">\[
-g(\lambda,v)=\inf_{x\in \mathcal D}\left(f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)\right)\le L(\tilde x,\lambda,v)\le f_0(\tilde x).
-\]</span> The equality holds, but is vacuous when <span class="math inline">\(g(\lambda,v) = -\infty\)</span>. The dual function gives a nontrivial lower bound on <span class="math inline">\(p^\star\)</span> only when <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \text{dom} g\)</span>.</p>
-<p>We refer to a pair <span class="math inline">\((\lambda, v)\)</span> with <span class="math inline">\(\lambda \succeq 0\)</span> and <span class="math inline">\((\lambda,v) \in \text{dom} g\)</span> as dual feasible to let <span class="math inline">\(g(\lambda,v)&gt; -\infty\)</span>.</p>
-<h3 id="linear-approximation-interpretation">5.1.4 Linear approximation interpretation</h3>
-<p>The Lagrangian and lower bound property can be given a simple interpretation.</p>
-<p>We first rewrite the origin problem as an unconstrained problem <span class="math display">\[
-\text{minimize }f_0(x)+\sum_{i=1}^mI_-(f_i(x))+\sum_{i=1}^pI_0(h_i(x))
-\]</span> where <span class="math display">\[
-I_-(u)=\begin{cases}0&amp;u\le 0\\\infty &amp;u&gt;0\end{cases}
-\]</span> and similar for <span class="math inline">\(I_0(u)\)</span>.The two indicator functions can be interpreted as expressing out displeasure associated with a constraint function. Then we can use <span class="math inline">\(\lambda_if_i(x)\)</span> and <span class="math inline">\(v_ih_i(x)\)</span> to replace the indicator functions to show the displeasure. Then the objective becomes the Lagrangian <span class="math display">\[
-\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_if_i(x)+\sum_{i=1}^p v_ih_i(x)
-\]</span> and the dual function value <span class="math inline">\(g(\lambda,v)\)</span> is the optimal value of the problem.</p>
-<h3 id="examples">5.1.5 Examples</h3>
-<p><strong>Least-squares solution of linear equations</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-x^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}.
-\]</span> Then the Lagrangian <span class="math inline">\(L(x,v)=x^Tx +v^T(Ax-b)\)</span>.</p>
-<p>The dual function <span class="math inline">\(g(v)=\inf_x L(x,v)=\inf_x {(x^Tx +v^T(Ax-b))}\)</span>.</p>
-<p>We hope to derive the analytical expression <span class="math display">\[
-\nabla_xL(x,v)=2x+A^Tv=0\\
-x=-\frac{1}{2}A^Tv\\
-g(v)=\frac{1}{4}v^TAA^Tv+v^T(-\frac{1}{2}AA^Tv-b)=-\frac{1}{4}v^TAA^Tv-v^Tb,
-\]</span> which is a concave quadratic function.</p>
-<p><strong>Standard form LP</strong> <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-c^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b\\x\succeq 0
-\end{array}
-\end{array}.
-\]</span> The Lagrangian <span class="math inline">\(L(x,\lambda,v)= c^Tx -\lambda^T x+v^T(Ax-b)\)</span>.</p>
-<p>The dual function <span class="math inline">\(g(\lambda,v) = \inf_x L(x,\lambda,v)\)</span>, <span class="math display">\[
-\inf_x(c^Tx -\lambda^T x+v^T(Ax-b))=-v^Tb+\inf_x(c^T-\lambda^T+v^TA)x.
-\]</span> Therefore <span class="math display">\[
-g(\lambda,v)=
-\begin{cases}
--v^Tb&amp;c^T-\lambda^T+v^TA=0\\
--\infty&amp;\text{otherwise.}
-\end{cases}
-\]</span></p>
-<h3 id="the-lagrange-dual-function-and-conjugate-functions">5.1.6 The Lagrange dual function and conjugate functions</h3>
-<p>Recall that the conjugate <span class="math inline">\(f^*\)</span> of a function <span class="math inline">\(f\)</span> is given by <span class="math display">\[
-f^*(y)=\sup_{x\in domf}(y^Tx-f(x)).
-\]</span> The conjugate function and Lagrange dual function are closely related.</p>
-<p>Consider an optimization problem with linear inequality and equality constraints, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax\preceq b\\Cx=d
-\end{array}
-\end{array}.
-\]</span> We can write the dual function as <span class="math display">\[
-g(\lambda,v)=\inf _x(f_0(x)+\lambda^T(Ax-b)+v^T(Cx-d))\\
-=-b^T\lambda-d^Tv+\inf_x(f_0(x)+(A^T\lambda+C^Tv)^Tx)\\
-=-b^T\lambda-d^Tv-f_0^*(-A^T\lambda-C^Tv).
-\]</span></p>
-<h2 id="the-lagrange-dual-problem">5.2 The Lagrange dual problem</h2>
-<p>For each pair <span class="math inline">\((\lambda,v)\)</span> with <span class="math inline">\(\lambda\ge 0\)</span>, the Lagrange dual function gives us a lower bound on the optimal value <span class="math inline">\(p^\star\)</span> of the optimization problem. We hope to know the best lower bound , <span class="math display">\[
-\begin{array}{rl}
-\text{maxmize} &amp;g(\lambda,v)\\
-\text{subject to}&amp;\lambda\succeq 0.
-\end{array}
-\]</span> This problem is called <strong>Lagrange dual problem</strong>. The original problem is sometimes called the <strong>primal problem</strong>. We refer to <span class="math inline">\((\lambda^\star,v^\star)\)</span> as dual optimal or optimal Lagrange multipliers.</p>
-<h3 id="making-dual-constraint-explicit">5.2.1 Making dual constraint explicit</h3>
-<p>We have known that the Lagrange dual function for the standard form LP <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-c^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b\\x\succeq0
-\end{array}
-\end{array},
-\]</span> is given by <span class="math display">\[
-g(\lambda,v)=\begin{cases}-b^Tv&amp;A^Tv-\lambda+c=0\\-\infty &amp; \text{otherwise}.\end{cases}
-\]</span> We can form an equivalent problem by making these equality constraints explicit <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-b^Tv
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-A^Tv-\lambda+c=0\\ \lambda\succeq 0
-\end{array}
-\end{array}.
-\]</span> The problem can be further simplified as <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-b^Tv
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-A^Tv+c\succeq 0
-\end{array}
-\end{array}.
-\]</span></p>
-<h3 id="weak-duality">5.2.2 Weak duality</h3>
-<p>The optimal value of the Lagrange dual problem, which we denote as <span class="math inline">\(d^\star\)</span>. We have the simple but important inequality <span class="math display">\[
-d^\star \le p^\star
-\]</span> which holds even if the original problem is not convex. This property is called <strong>weak duality</strong>.</p>
-<p>The weak duality inequality holds when <span class="math inline">\(d^\star\)</span> and <span class="math inline">\(p^\star\)</span> are infinite. For example, if the primal problem is unbounded below, so that <span class="math inline">\(p^\star=-\infty\)</span>, we must have <span class="math inline">\(d^\star =-\infty\)</span>, i.e. the Lagrange dual problem is infeasible. Conversely, if the dual problem is unbounded above, the primal problem is infeasible.</p>
-<p>We refer to the difference <span class="math inline">\(p^\star -d^\star\)</span> as the optimal <strong>duality gap</strong>.</p>
-<h3 id="strong-duality-and-slaters-constraint-qualification">5.2.3 Strong duality and Slater's constraint qualification</h3>
-<p>If the equality <span class="math display">\[
-d^\star=p^\star 
-\]</span> holds, we say that strong duality holds.</p>
-<p>Strong duality does not hold in general. But if the primal problem is convex, we usually have strong duality. There are many results that establish conditions on the problem under which strong duality holds. These conditions are called constraint qualifications.</p>
-<p><strong>Slater's Condition</strong></p>
-<p>There exists an <span class="math inline">\(x\in \text{relint }\mathcal D\)</span> such that if the first <span class="math inline">\(k\)</span> constraint functions <span class="math inline">\(f_1,\dotsm,f_k\)</span> are affine, then <span class="math display">\[
-\begin{array}{rcl}
-f_i(x)&amp;\le&amp;0,&amp;i=1,\dotsm,k\\
-f_i(x)&amp;&lt;&amp;0,&amp;i=k+1,\dotsm,m\\
-Ax&amp;=&amp;b.
-\end{array}
-\]</span> Slater's theorem states that strong duality holds if Slater's condition holds.</p>
-<h3 id="examples-1">5.2.4 Examples</h3>
-<p>Least-squares solution of equations, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-x^Tx
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}.
-\]</span> The associated dual problem is <span class="math display">\[
-\text{maxmize }-(1/4)v^TAA^Tv-b^Tv.
-\]</span> We have <span class="math display">\[
-p^\star=d^\star.
-\]</span></p>
-<h3 id="mixed-strategies-for-matrix-games">5.2.5 Mixed strategies for matrix games</h3>
-<p>In this section, we use strong duality to derive a basic result for zero-sum matrix games. The players use randomized strategies, then the expected payoff from player 1 to player 2 is then <span class="math display">\[
-\sum_{k=1}^n\sum_{l=1}^m u_kv_lP_{kl}=u^TPv.
-\]</span> Player 1 wishes to choose u to minimize <span class="math inline">\(u^TPv\)</span> while the player 2 wishes to maximize.</p>
-<p>If player 1 knows the strategy of player 2, (player 2 will choose <span class="math inline">\(v\)</span> to maximize <span class="math inline">\(u^TPv\)</span>, which results in the following) <span class="math display">\[
-\sup\{u^TPv| v\succeq 0,1^Tv=1\}=\max_{i=1,\dotsm,m} (P^Tu)_i.
-\]</span> The best thing player 1 can do is to minimize the worst case, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\max_{i=1,\dotsm,m} (P^Tu)_i
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-u\succeq 0&amp;1^Tu=1
-\end{array}
-\end{array}.
-\]</span> Similarly, if player 2 knows the strategy of player 1, we have <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\min_{i=1,\dotsm,m} (Pv)_i
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-v\succeq 0&amp;1^Tv=1
-\end{array}
-\end{array}.
-\]</span></p>
-<p>It can be shown that the dual gap is zero.</p>
-<h2 id="geometric-interpretation">5.3 Geometric interpretation</h2>
-<h3 id="weak-and-strong-duality-via-set-of-values">5.3.1 Weak and strong duality via set of values</h3>
-<p>We can give a simple geometric interpretation of the dual function in terms of the set <span class="math display">\[
-\mathcal G=\{f_1(x),\dotsm,f_m(x),h_1(x),\dotsm,h_p(x),f_0(x)\in\mathbb R^m\times \mathbb R^p\times \mathbb R\;|\;x\in \mathcal D\},
-\]</span> which is the set of values taken on by the constraint and objective functions. The optimal value <span class="math inline">\(p^*\)</span> can be expressed in terms of <span class="math inline">\(\mathcal G\)</span> as <span class="math display">\[
-p^*=\inf\{t\;|\; (u,v,t)\in \mathcal G,\; u\preceq 0,\; v=0\}.
-\]</span> If we only consider one inequality constraint, we have the Lagrangian function, <span class="math display">\[
-L(\lambda,x)=t(x)+\lambda u(x),\quad u(x)\le 0,\lambda\ge0.
-\]</span> Then the primal problem is to minimize <span class="math inline">\(t(x)\)</span>. The dual problem is to maximize <span class="math inline">\(g(\lambda)=\inf\{\lambda u+t\}\)</span>=<span class="math inline">\(\inf ((\lambda,1)^T(u,t))\)</span>, which is a supporting plane with slope <span class="math inline">\(-\lambda\)</span>. <span class="math inline">\(u=0\)</span> gives <span class="math inline">\(g(\lambda)\)</span>.</p>
-<h3 id="proof-of-strong-duality-under-constraint-qualification">5.3.2 Proof of strong duality under constraint qualification</h3>
-<h3 id="multicriterion-interpretation">5.3.3 Multicriterion interpretation</h3>
-<h2 id="saddle-point-interpretation">5.4 Saddle-point interpretation</h2>
-<p>You can refer to the notes for <strong>Nonlinear Optimization</strong>.</p>
-<h2 id="optimality-conditions">5.5 Optimality conditions</h2>
-<h3 id="certificate-of-suboptimality-and-stopping-criteria">5.5.1 Certificate of suboptimality and stopping criteria</h3>
-<p>If we can find a dual feasible <span class="math inline">\((\lambda,v)\)</span>, we establish a lower bound on the optimal value of the primal problem: <span class="math inline">\(p^\star \ge g(\lambda,v)\)</span>. Dual feasible points allow us to bound how suboptimal a given feasible point is, without knowing the exact value of <span class="math inline">\(p^\star\)</span> <span class="math display">\[
-f_0(x)-p^\star\le f_0(x)-g(\lambda,v).
-\]</span> In particular, this establishes that <span class="math inline">\(x\)</span> is <span class="math inline">\(\epsilon-\)</span>suboptimal with <span class="math inline">\(\epsilon= f_0(x)-g(\lambda,v)\)</span>.</p>
-<p>This can be used as a stop criteria.</p>
-<h3 id="complementary-slackness">5.5.2 Complementary slackness</h3>
-<p>If the strong duality holds, Let <span class="math inline">\(x^\star\)</span> be a primal optimal and <span class="math inline">\((\lambda^\star, v^\star)\)</span> be a dual optimal point. This means that <span class="math display">\[
-\begin{array}{rcl}
-f_0(x^\star)&amp;=&amp;g(\lambda^\star,v^\star)\\
-&amp;=&amp;\displaystyle{\inf_x(f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x)}\\
-&amp;\le&amp; \displaystyle{f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star f_i(x^\star)+\sum_{i=1}^pv_i^\star h_i(x^\star)}\\
-&amp;\le&amp; f_0(x^\star).
-\end{array}
-\]</span> We conclude that two inequalities in this chain hold with equality.</p>
-<p>That means <span class="math display">\[
-\begin{array}{rcl}
-h_i(x^\star)&amp;=&amp;0\\
-\displaystyle\sum_{i=1}^m \lambda_i^\star f_i(x^\star)&amp;=&amp;0.
-\end{array}
-\]</span> The second equality means <span class="math display">\[
-\lambda_i^\star &gt;0\implies f_i(x^\star)=0\\
-f_i(x^\star)&lt;0 \implies \lambda_i^\star=0
-\]</span></p>
-<h3 id="kkt-optimality-conditions">5.5.3 KKT optimality conditions</h3>
-<p>We now assume that the functions are differentiable, but we make no assumptions yet about convexity.</p>
-<p><strong>KKT condition for problems</strong></p>
-<p>Since <span class="math inline">\(x^\star\)</span> minimizes <span class="math inline">\(L(x,\lambda^\star,v^\star)\)</span>, the gradient must vanish. Thus we have <span class="math display">\[
-\begin{array}{rcl}
-f_i(x^\star)&amp;\le&amp; 0\\
-h_i(x^\star) &amp;=&amp;0\\
-\lambda_i^\star&amp;\ge&amp; 0\\
-\lambda_i^\star f_i(x^\star)&amp;=&amp;0\\
-\nabla f_0(x^\star)+\sum_{i=1}^m \lambda_i^\star \nabla f_i(x^\star)+\sum_{i=1}^p v_i^\star \nabla h_i(x^\star)&amp;=&amp;0
-\end{array}
-\]</span> which are called the Karush-Kuhn-Tucker (KKT) conditions.</p>
-<p>To summarize, for any optimization problem with differentiable objective and constraint functions for which strong duality obtains, any pair of primal and dual optimal points must satisfy the KKT conditions.</p>
-<p>When the primal problem is convex, the KKT conditions are also sufficient for the points to be primal and dual optimal.</p>
-<h3 id="mechanic-interpretation-of-kkt-conditions">5.5.4 Mechanic interpretation of KKT conditions</h3>
-<p>The potential energy in the springs as a function of the block positions, is given by <span class="math display">\[
-f_0(x_1,x_2)=\frac{1}{2}k_1x_1^2+\frac{1}{2}k_2(x_2-x_1)^2+\frac{1}{2}k_3(l-x_2)^2.
-\]</span> The equilibrium position <span class="math inline">\(x^\star\)</span> is the position that minimizes the potential energy subject to the inequalities <span class="math display">\[
-w/2-x_1\le 0\\
-w+x_1-x_2\le 0\\
-w/2-l+x_2\le 0.
-\]</span> The KKT conditions for the problem consist of the constraints, <span class="math inline">\(\lambda_i\ge 0\)</span>, the complementary slackness conditions <span class="math display">\[
-\lambda_1(w/2-x_1)= 0\\
-\lambda_2(w+x_1-x_2)= 0\\
-\lambda_3(w/2-l+x_2)= 0,
-\]</span> and the zero gradient condition <span class="math display">\[
-\begin{bmatrix}
-k_1x_1-k_2(x_2-x_1)\\k_2(x_2-x_1)-k_3(l-x_2)
-\end{bmatrix}+
-\lambda_1
-\begin{bmatrix}
--1\\0
-\end{bmatrix}+
-\lambda_2
-\begin{bmatrix}
-1\\-1
-\end{bmatrix}+
-\lambda_3
-\begin{bmatrix}
-0\\1
-\end{bmatrix}=0.
-\]</span> The gradient condition can be interpreted as the force balance equations for the two blocks.</p>
-<p><span class="math inline">\(\lambda_1\)</span> is the force from the left wall, <span class="math inline">\(\lambda_2\)</span> is the force between two blocks' contact, <span class="math inline">\(\lambda_3\)</span> is the force from the right wall. If no contact, the force will be zero, which is decided by the slackness conditions.</p>
-<h3 id="solving-the-primal-problem-via-the-dual">5.5.5 Solving the primal problem via the dual</h3>
-<p>Suppose we have strong duality and an optimal <span class="math inline">\((\lambda^\star, v^\star)\)</span> is known. Suppose the solution of <span class="math display">\[
-\text{minimize }f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^pv_i^\star h_i(x),
-\]</span> is unique. Then if the solution is primal feasible, it must be primal optimal. If it is not primal feasible, then no primal optimal point can exist.</p>
-<h2 id="perturbation-and-sensitivity-analysis">5.6 Perturbation and sensitivity analysis</h2>
-<p>You can refer to the notes for <strong>Nonlinear Optimization</strong>.</p>
-<h2 id="examples-2">5.7 Examples</h2>
-<p>In this section, we show by examples that simple equivalent reformulations of a problem can lead to very different dual problems. We will consider the following reformulations.</p>
-<ol type="1">
-<li>Introducing new variables and associated equality constraints.</li>
-<li>Replacing the objective with an increasing function of the original objective.</li>
-<li>Making explicit constraints implicit.</li>
-</ol>
-<h3 id="introducing-new-variables">5.7.1 Introducing new variables</h3>
-<p>Consider an unconstrained problem of the form <span class="math display">\[
-\text{minimize}\quad f_0(Ax+b).
-\]</span> Its Lagrange dual function is the constant <span class="math inline">\(p^*\)</span>. So while we do have the strong duality, the Lagrangian dual is neither useful nor interesting.</p>
-<p>Now reformulate the problem as <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; f_0(y)\\
-\text{subject to}&amp; Ax+b=y.
-\end{array}
-\]</span> Then the Lagrangian of the reformulated problem is <span class="math display">\[
-L(x,y,v)=f_0(y)+v^T(Ax+b-y).
-\]</span> To find the dual function, we minimize <span class="math inline">\(L\)</span> over <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. <span class="math display">\[
-\begin{array}{rcl}
-g(v)&amp;=&amp;b^Tv+\inf_{x,y} \{f_0(y)+v^T(Ax-y)\}\\
-&amp;=&amp;b^Tv+\inf_{y}\{f_0(y)-v^Ty\}\quad(v^TA=0)\\
-&amp;=&amp;b^Tv-f_0^*(v)\quad(v^TA=0)\\
-\end{array}
-\]</span> Therefore, the dual problem is <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; b^Tv-f_0^*(v)\\
-\text{subject to}&amp; A^Tv=0.
-\end{array}
-\]</span> Thus, the dual problem of the reformulated problem is considerably more useful than the dual of the original problem.</p>
-<p>This idea of introducing new equality constraints can be applied to the constraint functions as well.</p>
-<h3 id="transforming-the-objective">5.7.2 Transforming the objective</h3>
-<p>We consider the minimum norm problem <span class="math display">\[
-\text{minimize}\quad ||Ax+b||.
-\]</span> We reformulate the problem as <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; \frac{1}{2}||y||^2\\
-\text{subject to}&amp; Ax-b=y.
-\end{array}
-\]</span> Then the dual of the problem is <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; -\frac{1}{2}||v||_*^2+b^Tv\\
-\text{subject to}&amp; A^Tv=0.
-\end{array}
-\]</span></p>
-<h3 id="implicit-constraints">5.7.3 Implicit constraints</h3>
-<h2 id="theorems-of-alternatives">5.8 Theorems of alternatives</h2>
-<h3 id="weak-alternatives-via-the-dual-function">5.8.1 Weak alternatives via the dual function</h3>
-<p>In this section, we apply Lagrange duality theory to the problem of determining feasibility of a system of inequalities and equalities. We can think of this problem as the standard problem with objective function <span class="math inline">\(f_0=0\)</span>, <span class="math display">\[
-\begin{array}{rl}
-\text{minimize}&amp; 0\\
-\text{subject to}&amp; f_i(x)\le 0, &amp;i=1,\dotsm,m\\
-&amp;h_i(x)=0,&amp;i=1,\dotsm,p.
-\end{array}
-\]</span> This problem has optimal value <span class="math display">\[
-p^*=\begin{cases}0&amp;\text{feasible}\\ \infty&amp;\text{infeasible}.\end{cases}
-\]</span> <strong>The dual function</strong> <span class="math display">\[
-g(\lambda,v)=\inf_{x\in\mathcal D}\left(\sum_{i=1}^m \lambda_if_i(x)+\sum_{i=1}^pv_ih_i(x)\right),
-\]</span> If the inequality system <span class="math display">\[
-\lambda \succeq 0,\quad g(\lambda,v)&gt;0,
-\]</span> is feasible. Then the primal problem is infeasible. If the primal problem is feasible, then the dual problem is infeasible. Two systems of inequalities (equalities) are called weak alternatives if at most one of the two is feasible.</p>
-<h3 id="strong-alternatives">5.8.2 Strong alternatives</h3>
-<h2 id="generalized-inequalities">5.9 Generalized inequalities</h2>
-<p>In this section, we examine how Lagrange duality extends to a problem with generalized inequality constraints, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array},
-\]</span> where <span class="math inline">\(K_i\subseteq \mathbb R^{k_i}\)</span> are proper cones.</p>
-<h3 id="the-lagrange-dual">5.9.1 The Lagrange dual</h3>
-<p>With the generalized inequality <span class="math inline">\(f_i(x)\preceq_{k_i}0\)</span>, we associate a Lagrange multiplier vector <span class="math inline">\(\lambda_i\in\mathbb R^{k_i}\)</span> and define the associated Lagrangian as <span class="math display">\[
-L(x,\lambda,\mu)=f_0(x)+\lambda_1^Tf_1(x)+\dotsm+\lambda_m^T f_m(x)+v_1h_1(x)+\dotsm+v_ph_p(x),
-\]</span> where <span class="math inline">\(\lambda=(\lambda_1,\dotsm,\lambda_m)\)</span> and <span class="math inline">\(v=(v_1,\dotsm,v_p)\)</span>. The dual function is defined as <span class="math display">\[
-g(\lambda,v)=\inf_{x\in\mathcal D}L(x,\lambda,v).
-\]</span> As in a problem with scalar inequalities, the dual function gives the lower bounds on <span class="math inline">\(p^*\)</span>, the optimal value of the primal problem. For a problem with scalar inequalities, we require <span class="math inline">\(\lambda_i\ge 0\)</span>. Here the nonnegativity requirement on the dual variables is replaced by the condition, <span class="math display">\[
-\lambda_i\succeq_{K_i^*} 0,\quad \forall i=1,\dotsm,m,
-\]</span> where <span class="math inline">\(K_{i}^*\)</span> denotes the dual cone of <span class="math inline">\(K_i\)</span>. In other words, the Lagrange multipliers associated with the inequalities must be <strong>dual nonnegative</strong>.</p>
-<p><strong>Weak duality</strong> follows immediately from the definition of dual cone. If <span class="math inline">\(\lambda_i\succeq_{k_i^*}0\)</span> and <span class="math inline">\(f_i(\tilde x)\preceq_{k_i}0\)</span>, then <span class="math inline">\(\lambda_if_i(\tilde x)\le 0\)</span>.</p>
-<p>The Lagrange dual optimization problem is <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{maximize}\quad &amp; 
-\begin{array}{lll}
-g(\lambda,v)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-\lambda_i\succeq_{k_i^*}0,&amp;i=1,\dotsm,m
-\end{array}
-\end{array}.
-\]</span> We always have weak duality whether or not the primal problem is convex.</p>
-<p><strong>Slater’s condition and strong duality</strong></p>
-<p>Strong duality holds when the primal problem is convex and satisfies an appropriate constraint problem. For example, a generalized version of Slater’s condition for the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f_0(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-f_i(x)\preceq_{K_i} 0&amp;i=1,\dotsm,m\\
-h_i(x)=0 &amp; i=1,\dotsm,p
-\end{array}
-\end{array},
-\]</span> where <span class="math inline">\(f_0(x)\)</span> is convex and <span class="math inline">\(f_i\)</span> is <span class="math inline">\(K_i\)</span>-convex, is that there exists an <span class="math inline">\(x\in\text{relint}\mathcal D\)</span> with <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(f_i(x)\prec_{k_i}0,\forall i=1,\dotsm,m\)</span>. This condition implies strong duality.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -855,7 +656,7 @@ h_i(x)=0 &amp; i=1,\dotsm,p
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -884,7 +685,9 @@ h_i(x)=0 &amp; i=1,\dotsm,p
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

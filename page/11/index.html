@@ -218,6 +218,186 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" class="post-title-link" itemprop="url">Chapter 3-2. Orthogonal and Orthonormal System</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-26 13:48:00 / Modified: 14:59:54" itemprop="dateCreated datePublished" datetime="2019-08-26T13:48:00+08:00">2019-08-26</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="orthogonal-and-orthonormal-system">3.6 Orthogonal and Orthonormal System</h2>
+<p>By a basis of a vector space E, we mean a linearly independent family <span class="math inline">\(\mathscr B\)</span> of vectors from E such that any vector <span class="math inline">\(x\in E\)</span> can be written as <span class="math inline">\(x=\sum_{n=1}^m \lambda_nx_n\)</span> where <span class="math inline">\(x_n\in \mathscr B\)</span> and <span class="math inline">\(\lambda_n\)</span>’s are scalars. In the inner product space, orthonormal bases are of much greater importance. Instead of finite combinations <span class="math inline">\(\sum_{n=1}^m \lambda_nx_n\)</span>, infinite sums are allowed and the ==condition of linear independence== is replaced by orthogonality.</p>
+<p>==Definition 3.6.1== (Orthogonal and Orthonormal systems)</p>
+<p>Let E be an inner product space. A family S of non-zero vectors in E is called an orthogonal system if <span class="math inline">\(x\perp y\)</span> for any two distinct elements of S. If, in addition, <span class="math inline">\(||x||=1\)</span> for all <span class="math inline">\(x\in S\)</span>, then S is called an orthonormal system.</p>
+<p>Every orthogonal set of non-zero vectors can be normalized. If S is an orthogonal system, then the family <span class="math display">\[
+S_1=\{\frac{x}{||x||}:x\in S\} 
+\]</span> is an orthonormal system.</p>
+<p>==Theorem 3.6.1==</p>
+<p>Orthogonal systems are linearly independent.</p>
+<p>==Definition 3.6.2== (Orthonormal sequence)</p>
+<p>A sequence of vectors which constitute an orthonormal system is called an orthonormal sequence.</p>
+<p>The condition of orthogonality of a sequence <span class="math inline">\((x_n)\)</span> can be expressed in terms of the Kronecker delta symbol <span class="math display">\[
+&lt;x_m,x_n&gt;=\delta_{mn}=\begin{cases}0&amp;m\neq n\\1&amp;m=n\end{cases}
+\]</span> ==Example 3.6.1==</p>
+<h2 id="properties-of-orthonormal-systems">3.7 Properties of Orthonormal systems</h2>
+<p>In section 3.3, we proved that Pythagorean formula holds for any pair of orthogonal vectors in an inner product space. It turns out that it can be generalized to any finite number of orthogonal vectors.</p>
+<p>==Theorem 3.7.1== (Pythagorean formula)</p>
+<p>If <span class="math inline">\(x_1,\dotsm,x_n\)</span> are orthogonal vectors in an inner product space, then <span class="math display">\[
+||\sum_{k=1}^nx_k||^2=\sum_{k=1}^n||x_k||^2
+\]</span> ==Theorem 3.7.2== Bessel’s equality and inequality</p>
+<p>Let <span class="math inline">\(x_1,\dotsm,x_n\)</span> be an orthonormal set of vectors in an inner product space E. Then, for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
+\left|\left|x-\sum_{k=1}^n &lt;x,x_k&gt;x_k\right|\right|^2=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2
+\]</span> and <span class="math display">\[
+\sum_{k=1}^n|&lt;x,x_k&gt;|^2\le ||x||^2
+\]</span> Proof.</p>
+<p>In view of the Pythagorean Formula, we have <span class="math display">\[
+\left|\left|\sum_{k=1}^n\alpha_kx_k\right|\right|^2=\sum_{k=1}^n|\alpha_k|^2
+\]</span> Then <span class="math display">\[
+\left|\left|x-\sum_{k=1}^n\alpha_kx_k\right|\right|^2\\
+=\left\langle x-\sum_{k=1}^n\alpha_kx_k,x-\sum_{k=1}^n\alpha_kx_k \right\rangle\\
+=||x||^2
+-\sum_{k=1}^n\bar \alpha_k\left\langle x,x_k\right\rangle
+-\sum_{k=1}^n\alpha_k\overline{\left\langle x,x_k \right\rangle}
++\sum_{k=1}^n|\alpha_k|^2||x_k||^2\\
+=||x||^2-\sum_{k=1}^n|&lt;x,x_k&gt;|^2+\sum_{k=1}^n |&lt;x,x_k&gt;-\alpha_k|^2
+\]</span> Then let <span class="math inline">\(\alpha_k=&lt;x,x_k&gt;\)</span>, Q.E.D.</p>
+<ol type="1">
+<li><p>This choice of <span class="math inline">\(\alpha_k\)</span>’s minimizes <span class="math inline">\(||x-\sum_{k=1}^n\alpha_kx_k||\)</span> and thus it provides the best approximation of <span class="math inline">\(x\)</span> by a linear combination of vectors <span class="math inline">\(x_1,x_2,\dotsm,x_n\)</span>.</p></li>
+<li><p>If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence of vectors in an inner product space E, then we have <span class="math display">\[
+\sum_{n=1}^\infty |&lt;x,x_k&gt;|^2\le ||x||^2
+\]</span> This shows that the series <span class="math inline">\(\sum_{k=1}^\infty |&lt;x,x_k&gt;|^2\)</span> converges for every <span class="math inline">\(x\in E\)</span>.</p>
+<p>In another words, the sequence <span class="math inline">\((&lt;x,x_n&gt;)\)</span> is an elements of <span class="math inline">\(l^2\)</span>. We can say that an orthonormal sequence in E induces a mapping from E into <span class="math inline">\(l^2\)</span>. <span class="math display">\[
+x\sim \sum_{n=1}^\infty &lt;x,x_n&gt;x_n
+\]</span> is called generalized Fourier series of <span class="math inline">\(x\)</span>. In general we do not know whether the series if convergent. However, the next theorem show that the completeness of the space ensures the convergence.</p></li>
+</ol>
+<p>==Theorem 3.7.3==</p>
+<p>Let <span class="math inline">\((x_n)\)</span> be an orthonormal sequence in a Hilbert space H and let <span class="math inline">\((\alpha_n)\)</span> be a sequence of complex numbers. Then the series <span class="math inline">\(\sum_{n=1}^\infty\alpha_n x_n\)</span> converges if and only if $_{n=1}^|_n|^2&lt;$, and in that case <span class="math display">\[
+||\sum_{n=1}^\infty \alpha_nx_n||^2=\sum_{n=1}^\infty |\alpha_n|^2
+\]</span> The proceeding theorem imply that in a Hilbert space H the series <span class="math inline">\(\sum_{n=1}^\infty &lt;x,x_n&gt;x_n\)</span> converges for every <span class="math inline">\(x\in H\)</span>. However, it can happen that it converges to an element different from <span class="math inline">\(x\)</span>.</p>
+<p>==Example 3.7.1==</p>
+<p>Let <span class="math inline">\(H=L^2([-\pi,\pi])\)</span> and let <span class="math inline">\(x_n=\frac{1}{\sqrt \pi}\sin nt\)</span> for <span class="math inline">\(n=1,2,\dotsm\)</span>. The sequence <span class="math inline">\((x_n)\)</span> is an orthonormal set in H. On the other hand, for <span class="math inline">\(x(t)=\cos t\)</span>, we have <span class="math display">\[
+\sum_{n=1}^\infty &lt;x,x_n&gt;x_n(t)=\sum_{n=1}^\infty [\frac{1}{\sqrt \pi}\int _{-\pi}^\pi \cos t\sin nt dt]\frac{\sin nt}{\sqrt \pi}=0\neq \cos t
+\]</span> If <span class="math inline">\((x_n)\)</span> is an orthonormal sequence in an inner product space E, then for every <span class="math inline">\(x\in E\)</span>, we have <span class="math display">\[
+\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2&lt;\infty
+\]</span> and consequently, <span class="math display">\[
+\lim_{n\rightarrow \infty }&lt;x,x_n&gt;=0
+\]</span> Therefore, orthonormal sequence are weakly convergent to zero. But <span class="math inline">\(||x_n||=1\)</span>, they are not strongly convergent.</p>
+<p>==Definition 3.7.1== (Complete orthonormal sequence)</p>
+<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in an inner product space E is said to be complete if for every <span class="math inline">\(x\in E\)</span> we have <span class="math display">\[
+x=\sum_{n=1}^\infty &lt;x,x_n&gt;x_n
+\]</span> ==Definition 3.7.2== (Orthonormal basis)</p>
+<p>An orthonormal system B in an inner product space E is called an orthonormal basis if every <span class="math inline">\(x\in E\)</span> has a unique representation <span class="math display">\[
+x=\sum_{n=1}^\infty \alpha_nx_n
+\]</span> where <span class="math inline">\(\alpha_n \in C\)</span> and <span class="math inline">\(x_n\)</span>’s are distinct elements of B.</p>
+<p>==Theorem 3.7.4==</p>
+<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math inline">\(&lt;x,x_n&gt;=0\)</span> for all <span class="math inline">\(n\in N\)</span> implies <span class="math inline">\(x=0\)</span></p>
+<p>==Theorem 3.7.5== (Parseval’s Formula)</p>
+<p>An orthonormal sequence <span class="math inline">\((x_n)\)</span> in a Hilbert space is complete if and only if <span class="math display">\[
+||x||^2=\sum_{n=1}^\infty |&lt;x,x_n&gt;|^2
+\]</span> for every <span class="math inline">\(x\in H\)</span>.</p>
+<h2 id="orthogonal-complements-and-projection-theorem">3.9 Orthogonal Complements and projection theorem</h2>
+<p>By a subspace of a Hilbert space, we mean a vector subspace of H. A subspace of a Hilbert space is an inner product space. If we additionally assume that S is a closed subspace of H, then S is a Hilbert space itself, because a closed subspace of complete normed space is complete.</p>
+<p>==Definition 3.9.1== Orthogonal Complement</p>
+<p>Let S be a non-empty subset of a Hilbert space H. An element <span class="math inline">\(x\in H\)</span> is said to be orthogonal to S, denoted by <span class="math inline">\(x\perp S\)</span>, if <span class="math inline">\(&lt;x,y&gt;=0\)</span> for every <span class="math inline">\(y\in S\)</span>. The set of all elements of H orthogonal to S, denoted by <span class="math inline">\(S^\perp\)</span> is called the orthogonal complement of S. In symbols, <span class="math display">\[
+S^\perp =\{x\in H,x\perp S\}
+\]</span> The orthogonal complement of <span class="math inline">\(S^\perp\)</span> is denoted by <span class="math inline">\(S^{\perp\perp}\)</span></p>
+<p>Two subsets of A and B is said to be orthogonal if <span class="math inline">\(x\perp y\)</span> for every <span class="math inline">\(x\in A\)</span> and <span class="math inline">\(y\in B\)</span>. This is denoted by <span class="math inline">\(A\perp B\)</span>. Note that if <span class="math inline">\(A\perp B\)</span>, then <span class="math inline">\(A\bigcap B=\empty\)</span></p>
+<p>==Theorem 3.9.1==</p>
+<p>For any subset S of a Hilbert space H, the set <span class="math inline">\(S^\perp\)</span> is a closed subspace of H.</p>
+<p>==Definition 3.9.2== (Convex sets)</p>
+<p>A set <span class="math inline">\(U\)</span> in a vector space is called convex if for any <span class="math inline">\(x,y \in U\)</span> and <span class="math inline">\(\alpha\in(0,1)\)</span>, we have <span class="math inline">\(\alpha x+(1-\alpha)y \in U\)</span></p>
+<p>The following theorem, concerning the minimization of the norm, is of fundamental importance in approximation theory.</p>
+<p>==Theorem 3.9.2== (The closet point property)</p>
+<p>Let S be a closed convex subset of a Hilbert space H. For every point <span class="math inline">\(x\in H\)</span> there exists a unique point <span class="math inline">\(y\in S\)</span> such that <span class="math display">\[
+||x-y||=\inf_{z\in S}||x-z||
+\]</span> ==Theorem 3.9.3==</p>
+<p>Let S be a closed convex subset of a real Hilbert space H, <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(x\in H\)</span>. Then the following conditions are equivalent.</p>
+<ol type="a">
+<li><p><span class="math inline">\(||x-y||=\inf_{z\in S}||x-z||\)</span></p></li>
+<li><p><span class="math inline">\(&lt;x-y,z-y&gt;\le 0\)</span> for all <span class="math inline">\(z\in S\)</span></p></li>
+</ol>
+<p>==Theorem 3.9.4== (Orthogonal projection)</p>
+<p>If S is a closed subspace of a Hilbert space H, then every element <span class="math inline">\(x\in H\)</span> has a unique decomposition in the form <span class="math inline">\(x=y+z\)</span> where <span class="math inline">\(y\in S\)</span> and <span class="math inline">\(z\in S^\perp\)</span></p>
+<p>==Theorem 3.9.5==</p>
+<p>If S is a closed subspace of a Hilbert space H, then <span class="math inline">\(S^{\perp\perp}=S\)</span>.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -392,148 +572,11 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/08/20/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/" class="post-title-link" itemprop="url">Chapter 2-3. The Lebesgue Integral</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-08-20 13:48:00 / Modified: 14:59:07" itemprop="dateCreated datePublished" datetime="2019-08-20T13:48:00+08:00">2019-08-20</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="locally-integrable-functions">2.9 Locally Integrable Functions</h2>
-<p>The integral <span class="math inline">\(\int f\)</span> corresponds to the integration over the entire real line, so the symbols <span class="math inline">\(\int ^\infty_{-\infty}\)</span> or <span class="math inline">\(\int _R\)</span> could be used instead. In applications we often need to integrate functions over bounded intervals. This concept can be easily defined using the integral <span class="math inline">\(\int f\)</span></p>
-<p>==Definition 2.9.1== Integral over an interval</p>
-<p>By the integral of a function <span class="math inline">\(f\)</span> over an interval <span class="math inline">\([a,b]\)</span>, denoted by <span class="math inline">\(\int_a^b f\)</span>, we mean the value of the integral <span class="math inline">\(\int f \mathcal X_{[a,b]}\)</span>, where <span class="math inline">\(\mathcal X_{[a,b]}\)</span> denotes the characteristic function of <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(f\mathcal X_{[a,b]}\)</span> is the product of <span class="math inline">\(f\)</span> and <span class="math inline">\(\mathcal X_{[a,b]}\)</span></p>
-<p>In proofs, it is often more convenient to use <span class="math inline">\(\mathcal X_{[a,b)}\)</span> instead of <span class="math inline">\(\mathcal X_{[a,b]}\)</span></p>
-<p>==Theorem 2.9.1==</p>
-<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then for every interval <span class="math inline">\([a,b]\)</span> the integral <span class="math inline">\(\int _a^b f\)</span> exists.</p>
-<p>==Definition 2.9.2== Locally integrable functions</p>
-<p>A function <span class="math inline">\(f\)</span> on R is called locally integrable if for <strong>every</strong> <span class="math inline">\(-\infty&lt;a&lt;b&lt;\infty\)</span> the integral <span class="math inline">\(\int _a^b f\)</span> exists.</p>
-<p>It is sufficient to check that the integral <span class="math inline">\(\int_{-n}^n f\)</span> exists for every <span class="math inline">\(n\in N\)</span>. The absolute value of a locally integrable functions is locally integrable. However, the product of integrable functions need not be integrable.</p>
-<p>==Theorem 2.9.2==</p>
-<p>Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> be locally integrable functions. If <span class="math inline">\(g\)</span> is bounded on <span class="math inline">\([a,b]\)</span> for every <span class="math inline">\(-\infty&lt;a&lt;b&lt;\infty\)</span>, then the product <span class="math inline">\(fg\)</span> is locally integrable functions.</p>
-<p>==Theorem 2.9.3==</p>
-<p>If <span class="math inline">\(f\)</span> is locally integrable function such that <span class="math inline">\(|f|\le g\)</span> for some <span class="math inline">\(g\in L^1(R)\)</span>, then <span class="math inline">\(f\in L^1(R)\)</span></p>
-<h2 id="the-lebesgue-integral-and-the-riemann-integral">2.10 The Lebesgue Integral and the Riemann Integral</h2>
-<p>In this section we are going to prove that Riemann integrable functions are Lebesgue integrable. Then we will prove some theorems which show that useful properties of the Riemann integral are not lost when the more general Lebesgue integral is considered.</p>
-<p>==Theorem 2.10.1== A Riemann integrable function is Lebesgue integrable and the integrals are equal.</p>
-<p>==Theorem 2.10.2== Let <span class="math inline">\(f\)</span> be a Lebesgue integral function on a bounded or unbounded interval <span class="math inline">\((a,b)\)</span> and Let <span class="math inline">\(a\le c\le b\)</span>. Then the function <span class="math inline">\(F(x)=\int ^x _c f\)</span> is continuous in <span class="math inline">\((a,b)\)</span> and the limits <span class="math display">\[
-F(a)=\lim_{x\rightarrow a+} F(x)\quad F(b)=\lim_{x\rightarrow b-} F(x)
-\]</span> ==Theorem 2.10.3== Let <span class="math inline">\(f\)</span> be a function integrable over <span class="math inline">\((a,b)\)</span> and let <span class="math inline">\(F(x)=\int _c^x f\)</span> where $c(a,b) $. If <span class="math inline">\(f\)</span> is continuous at a point <span class="math inline">\(x_0 \in (a,b)\)</span>, then F is differentiable at <span class="math inline">\(x_0\)</span> and we have <span class="math inline">\(F&#39;(x_0)=f(x_0)\)</span>.</p>
-<p>The following theorem establishes the same change of variables formula for the Lebesgue integral as for the Riemann integral. The theorem is only a special case of a more general theorem on the change of variables for the Lebesgue integral, but it is sufficient for most applications.</p>
-<p>==Theorem 2.10.4== Change of variables</p>
-<p>Let <span class="math inline">\(g\)</span> be a non-decreasing differentiable function defined on a bounded or unbounded interval <span class="math inline">\((a,b)\)</span> such that <span class="math inline">\(g&#39;\)</span> is integrable over <span class="math inline">\((a,b)\)</span>. Denote by <span class="math inline">\(g(a)\)</span> and <span class="math inline">\(g(b)\)</span> the limits of <span class="math inline">\(g\)</span> at <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> respectively, i.e. <span class="math inline">\(g(a)=\lim_{x\rightarrow a+} g(x)\)</span> and <span class="math inline">\(g(b)=\lim_{x\rightarrow b-} g(x)\)</span>. If <span class="math inline">\(f\)</span> is an integrable function <span class="math inline">\((g(a),g(b))\)</span>, then the product <span class="math inline">\(f(g(t))g&#39;(t)\)</span> is integrable over <span class="math inline">\((a,b)\)</span> and <span class="math display">\[
-\int _{g(a)}^{g(b)} f(t)dt=\int_a^b f(g(t))g&#39;(t)dt
-\]</span></p>
-<h2 id="lebesgue-measure-on-r">2.11 Lebesgue Measure on R</h2>
-<p>Our presentation of the Lebesgue integral does not require the concept of measure. On the other hand, once the integral is defined, we can easily define measurable set and Lebesgue measure.</p>
-<p>Lebesgue measure is an extension of the concept of length of an interval onto a large class of sets.</p>
-<p>==Definition 2.11.1== Measurable sets</p>
-<p>A set S is called measurable if the characteristic function of S is locally integrable function.</p>
-<p>To every measurable set, we assign a non-negative number or infinity which is called the measure of that set.</p>
-<p>==Definition 2.11.2== Measure</p>
-<p>Let S be a measurable set. If the characteristic function $X_S $ is an integrable function, then by the measure of S, denoted by <span class="math inline">\(\mu(S)\)</span>, we mean the value of the integral <span class="math inline">\(\mu(S)=\int \mathcal X_S\)</span>. If <span class="math inline">\(\mathcal X_S\)</span> is not integrable, then we define <span class="math inline">\(\mu(S)=\infty\)</span>.</p>
-<p>==Null sets== are sets whose measure is 0. The following theorem gives a useful tool for proving that a set is a null set.</p>
-<p>==Theorem 2.11.1==</p>
-<p>Let <span class="math inline">\(S\subseteq R\)</span> be such that for every <span class="math inline">\(\epsilon &gt;0\)</span> there exist intervals <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm\)</span> such that <span class="math display">\[
-S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
-\sum_{n=1}^\infty (b_n-a_n)&lt;\epsilon
-\]</span> Then S is a null set.</p>
-<p>The property of the measure proven in the next theorem is called <span class="math inline">\(\sigma-\)</span>additivity of the measure. It is one of the most fundamental properties of the measure.</p>
-<p>==Theorem 2.11.2== Let <span class="math inline">\(S_1, S_2,\dotsm\)</span> be a sequence of disjoint measurable sets. Then the union <span class="math inline">\(S=\bigcup_{n=1}^\infty S_n\)</span> is measurable and we have <span class="math display">\[
-\mu(S)=\sum_{n=1}^\infty \mu(S_n)
-\]</span> In section 2.9, we defined the integral <span class="math inline">\(\int _a^b f\)</span> which corresponds to the integral over interval <span class="math inline">\([a,b]\)</span>. In a similar way we can define the integral over any measurable set <span class="math inline">\(\Omega\)</span>. <span class="math display">\[
-\int _{\Omega}=\int f \mathcal X_{\Omega}
-\]</span> If <span class="math inline">\(f\)</span> is a measurable function, then <span class="math inline">\(|f|\in L^1(R)\)</span> implies <span class="math inline">\(f\in L^1(R)\)</span></p>
-<p>==Definition 2.11.3== Measurable functions</p>
-<p>A <span class="math inline">\(f\)</span> is called measurable if there exists a sequence of step functions <span class="math inline">\(f_1,f_2,\dotsm\)</span> such that <span class="math inline">\(f_n\rightarrow f\)</span> a.e.</p>
-<p>Obviously, every integrable function is measurable and every locally integrable function is measurable.</p>
-<p>==Theorem 2.11.3== The measurable functions form a vector space. The absolute value of a measurable function is a measurable function. The product of measurable functions is a measurable function.</p>
-<p>==Theorem 2.11.4==</p>
-<p>If <span class="math inline">\(f\)</span> is a measurable function and <span class="math inline">\(|f|\le g\)</span> for some locally integrable function <span class="math inline">\(g\)</span>, then <span class="math inline">\(f\)</span> is locally integrable.</p>
-<h2 id="section"></h2>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -578,7 +621,7 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -607,7 +650,9 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

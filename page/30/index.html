@@ -218,6 +218,355 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/EE5104 Computer Control/6. Kalman Filter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/21/EE5104 Computer Control/6. Kalman Filter/" class="post-title-link" itemprop="url">6. Kalman Filter</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-21 13:44:42 / Modified: 00:05:18" itemprop="dateCreated datePublished" datetime="2018-11-21T13:44:42+08:00">2018-11-21</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="kalman-filter-proof">Kalman Filter Proof</h2>
+<p>Here gives a derivation of KF control theory, optimal control.</p>
+<p>First, we introduce the Thomas Algorithm</p>
+<p>Thomas Algorithm</p>
+<p>Consider the system of equation <span class="math display">\[
+\begin{bmatrix}
+b_1 &amp; c_1 &amp;0 &amp; 0 \\
+a_2 &amp; b_2 &amp;c_2 &amp; 0 \\
+0 &amp; a_3 &amp;b_3 &amp; c_3 \\
+0 &amp; 0 &amp;a_4 &amp; b_4 \\
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2\\ x_3\\ x_4
+\end{bmatrix}=
+\begin{bmatrix}
+z_1 \\ z_2\\ z_3\\ z_4
+\end{bmatrix}
+\]</span> For the row 1</p>
+<p>We have <span class="math display">\[
+\tag{1.1}
+b_1x_1+c_1x_2=z_1 \\
+x_1+\frac{c_1}{b_1}x_2=\frac{1}{b_1}z_1\\
+\]</span> If let <span class="math inline">\(\gamma_1=\frac{c_1}{b_1}\quad\rho_1=\frac{z_1}{b_1}\)</span> , we have <span class="math inline">\(x_1+\gamma_1x_2=\rho_1\)</span></p>
+<p>For the row 2 <span class="math display">\[
+\tag{1.2}
+a_2x_1+b_2x_2+c_2x_3=z_2 \\
+\]</span> With row 1, we have</p>
+<p><span class="math display">\[
+x_2+\frac{c_2}{b_2-a_2\gamma_1}x_3=\frac{z_2-a_2\rho_1}{b_2-a_2\gamma_1}
+\]</span> For here <span class="math display">\[
+\gamma_2=\frac{c_2}{b_2-a_2\gamma_1} \\
+\rho_2=\frac{z_2-a_2\rho_1}{b_2-a_2\gamma_1}
+\]</span> Similarly, for the 3rd row, we have <span class="math display">\[
+x_3+\frac{c_3}{b_3-a_3\gamma_2}x_4=\frac{z_3-a_3\rho_2}{b_3-a_3\gamma_2} \\
+\gamma_3=\frac{c_3}{b_3-a_3\gamma_2} \\
+\rho_3=\frac{z_3-a_3\rho_2}{b_3-a_3\gamma_2}
+\]</span> For the last row, we have <span class="math display">\[
+x_4=\frac{z_4-a_4\rho_3}{b_4-a_4\gamma_3} \\
+\]</span> Therefore, we can draw a conclusion <span class="math display">\[
+x_n=\frac{z_n-a_n\rho_{n-1}}{b_n-a_n\gamma_{n-1}} \\
+\gamma_{n-1}=\frac{c_{n-1}}{b_{n-1}-a_{n-1}\gamma_{n-2}} \\
+\rho_{n-1}=\frac{z_{n-1}-a_{n-1}\rho_{n-2}}{b_{n-1}-a_{n-1}\gamma_{n-2}}
+\]</span></p>
+<p>Example</p>
+<p>We try to solve the last row directly with Thomas Algorithm <span class="math display">\[
+\begin{bmatrix}
+2 &amp; 3 &amp; 0 &amp; 0\\
+1 &amp; 2 &amp; 3 &amp; 0\\
+0 &amp; 1 &amp; 2 &amp; 3\\
+0 &amp; 0 &amp; 1 &amp; 2\\
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+\end{bmatrix}=
+\begin{bmatrix}
+1\\
+2\\
+3\\
+4\\
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\gamma_1=\frac{3}{2}\quad\rho_1=\frac{1}{2}\\
+\gamma_2=\frac{3}{2-1.5}=6\quad\rho_2=\frac{2-0.5}{2-1.5}=3\\
+\gamma_3=-\frac{3}{4} \quad \rho_3=\frac{z_1}{2}=0\\
+x_4=\frac{4-0.75}{2-0}=\frac{16}{11}
+\]</span></p>
+<p>Least Square Estimation</p>
+<p>If some linear equations cannot be solved because of the number of equations are greater than the number of variables, we need Least Square Estimation to estimate the closet solution. <span class="math display">\[
+\Phi = \begin{bmatrix}
+\Phi_{11} &amp; \Phi_{12} \\
+\Phi_{21} &amp; \Phi_{22} \\
+\Phi_{31} &amp; \Phi_{32} \\
+\end{bmatrix} \\
+\theta = \begin{bmatrix}
+\theta_{1} \\
+\theta_{2} \\
+\end{bmatrix}\\
+Y = \begin{bmatrix}
+y_{1} \\
+y_{2} \\
+y_{3} \\
+\end{bmatrix}\\
+\]</span> If we want to solve <span class="math inline">\(\Phi\theta=Y\)</span>, it is impossible.</p>
+<p>We can define <span class="math display">\[
+\tag{1.3}
+V=(Y-\Phi\theta)^T(Y-\Phi\theta)
+\]</span> If V is the least, that means the <span class="math inline">\(\theta\)</span> we choose makes the result of the left hand closet to Y.</p>
+<p>How to get <span class="math inline">\(V_{min}\)</span>.</p>
+<p>We can use derivatives. <span class="math display">\[
+\frac{dV}{d\theta}=0
+\]</span> We have <span class="math display">\[
+-\Phi^TY+\Phi^T\Phi\hat \theta=0
+\]</span> If <span class="math inline">\(\Phi^T\Phi\)</span> is invertible, <span class="math display">\[
+\hat \theta=(\Phi^T\Phi)^{-1}\Phi^TY
+\]</span></p>
+<p>Example <span class="math display">\[
+\begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 1\\
+2 &amp; 1\\
+\end{bmatrix}
+\begin{bmatrix}
+m\\
+c
+\end{bmatrix}=
+\begin{bmatrix}
+0.6\\
+1.3\\
+2.6
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+\hat \theta=
+\begin{bmatrix}
+1\\
+0.5
+\end{bmatrix}
+\]</span> Now we will give introduction to Kalman Filter,</p>
+<p>Consider the first order process model <span class="math display">\[
+x(k+1)=Ax(k)+w(k) \\
+y(k)=Cx(k)+v(k)
+\]</span> Now, we can only measure the output <span class="math inline">\(y(k)\)</span> and we know this model.</p>
+<p><span class="math inline">\(w(k)\)</span> and <span class="math inline">\(v(k)\)</span> are the estimate noise and measurement noise separately with gauss noise. and we know the covariances of the two noises.</p>
+<p>For example, for k=0,1,2,3, we know the output <span class="math inline">\(y(0) \quad y(1)\quad y(2)\quad y(3)\)</span>, and we hope to get the states <span class="math display">\[x(0) \quad x(1)\quad x(2)\quad x(3)\]</span> of the above equations. <span class="math display">\[
+x(1)=Ax(0) \\
+y(0)=Cx(0) \\
+x(2)=Ax(1) \\
+y(1)=Cx(1) \\
+x(3)=Ax(2) \\
+y(2)=Cx(2) \\
+y(3)=Cx(3) \\
+\]</span> We define the function like (1.3) but for now we know the covariances of the two noises and we can use the as the parameters of weight. We need to use these 7 equations to solve 4 variables. This is a Least Square Problem. Therefore we get the equation <span class="math display">\[
+J=\frac{1}{2R_1}[(\hat x(1)-A\hat x(0))^2+(\hat x(2)-A\hat x(1))^2+(\hat x(3)-A\hat x(2))^2]+\\
+\frac{1}{2R_2}[(y(0)-C\hat x(0))^2+(y(1)-C\hat x(1))^2+(y(2)-C\hat x(2))^2+(y(3)-C\hat x(3))^2]\\
+\]</span> We derivative J <span class="math display">\[
+\frac{dJ}{d \hat x(0)}=\frac{-A(\hat x(1)-A\hat x(0))}{R_1}+\frac{-C(\hat y(0)-C\hat x(0))}{R_2}=0 \\
+\frac{dJ}{d \hat x(1)}=\frac{\hat x(1)-A\hat x(0)}{R_1}+\frac{-A(\hat x(2)-A\hat x(1))}{R_1}+\frac{-C(\hat y(1)-C\hat x(1))}{R_2}=0 \\
+\frac{dJ}{d \hat x(2)}=\frac{\hat x(2)-A\hat x(1)}{R_1}+\frac{-A(\hat x(3)-A\hat x(2))}{R_1}+\frac{-C(\hat y(2)-C\hat x(2))}{R_2}=0 \\
+\frac{dJ}{d \hat x(3)}=\frac{\hat x(3)-A\hat x(2)}{R_1}+\frac{-C(\hat y(3)-C\hat x(3))}{R_2}=0 \\
+\]</span> Now we get the matrix equation, <span class="math display">\[
+\begin{bmatrix}
+\frac{A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1} &amp; 0 &amp; 0 \\
+\frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1} &amp; 0  \\
+0 &amp; \frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} &amp; \frac{-A}{R_1}   \\
+0 &amp; 0 &amp;  \frac{-A}{R_1} &amp; \frac{1+A^2}{R_1}+\frac{C^2}{R_2} \\
+\end{bmatrix}
+\begin{bmatrix}
+\hat x(0)\\
+\hat x(1)\\
+\hat x(2)\\
+\hat x(3)\\
+\end{bmatrix}=\frac{C}{R_2}
+\begin{bmatrix}
+y(0)\\
+y(1)\\
+y(2)\\
+y(3)
+\end{bmatrix}
+\]</span></p>
+<p>For general, we get the matrix equation, <span class="math display">\[
+\begin{bmatrix}
+\beta-\frac{1}{R_1} &amp; \alpha &amp; 0 &amp; 0   &amp; 0 &amp; \dotsm &amp; 0\\
+\alpha &amp; \beta &amp; \alpha &amp; 0 &amp; 0 &amp; \dotsm  &amp; 0\\
+0 &amp; \alpha &amp; \beta &amp; \alpha &amp; 0 &amp; \dotsm  &amp; 0\\
+\vdots&amp; \ddots &amp; \ddots &amp; \ddots  &amp; \ddots &amp; \ddots &amp; \vdots
+\\
+0 &amp; \dotsm &amp; 0 &amp;  \alpha &amp; \beta &amp; \alpha  &amp; 0\\
+0 &amp; \dotsm &amp; 0 &amp;  0 &amp; \alpha &amp; \beta &amp; \alpha  \\
+0 &amp; \dotsm &amp; 0 &amp; 0&amp;  0 &amp; \alpha &amp; \beta-\frac{A^2}{R_1}  \\
+\end{bmatrix}
+\begin{bmatrix}
+\hat x(0)\\
+\hat x(1)\\
+\hat x(2)\\
+\vdots\\
+\hat x(n-1)\\
+\hat x(k)
+\end{bmatrix}=
+\begin{bmatrix}
+z(0)\\
+z(1)\\
+z(2)\\
+\vdots\\
+z(n-1)\\
+z(k)
+\end{bmatrix}
+\]</span> Where, <span class="math display">\[
+\alpha=-\frac{A}{R_1}\\
+\beta=\frac{1}{R_1}+\frac{C^2}{R_2}+\frac{A^2}{R_1}\\
+z(k)=\frac{C}{R_2}y(k)
+\]</span> Using Thomas Algorithm, we have <span class="math display">\[
+x_n=\frac{z_n-a_n\rho_{n-1}}{b_n-a_n\gamma_{n-1}} \\
+\gamma_{n-1}=\frac{c_{n-1}}{b_{n-1}-a_{n-1}\gamma_{n-2}} \\
+\rho_{n-1}=\frac{z_{n-1}-a_{n-1}\rho_{n-2}}{b_{n-1}-a_{n-1}\gamma_{n-2}}
+\]</span> Then <span class="math display">\[
+x(k)=\frac{z(k)-\alpha\rho(k-1)}{\beta-\frac{A^2}{R_1}-\alpha\gamma(k-1)}
+\]</span> If we define <span class="math display">\[
+P(k)=(\beta-\frac{A^2}{R_1}-\alpha\gamma(k-1))^{-1}
+\]</span> We have <span class="math display">\[
+x(k)=P(k)[z(k)-\alpha\rho(k-1)]
+\]</span> Where <span class="math display">\[
+\gamma(k-1)=\frac{\alpha}{\beta-\alpha \gamma(k-2)}\\
+\rho(k-1)=\frac{z(k-1)-\alpha\rho(k-2)}{\beta-\alpha\gamma(k-2)}
+\]</span> Now we consider k-1 samples. We hope to use recursive algorithm to calculate. <span class="math display">\[
+\gamma(k-2)=\frac{\alpha}{\beta-\alpha \gamma(k-3)}\\
+\rho(k-2)=\frac{z(k-2)-\alpha\rho(k-3)}{\beta-\alpha\gamma(k-3)}\\
+P(k-1)=(\beta-\frac{A^2}{R_1}-\alpha\gamma(k-2))^{-1}\\
+x(k-1)=P(k-1)[z(k-1)-\alpha\rho(k-2)]
+\]</span> Now we cancel out <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\beta\)</span></p>
+<p>Therefore, we can get the Kalman Filter with iterative method.</p>
+<p>Skip the steps of mathematical derivation.</p>
+<p>Finally we get the Kalman Filter in the following form <span class="math display">\[
+\begin{array}{rcl}
+K_f(k)&amp;=&amp;P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1} \\
+K(k)&amp;=&amp;(AP(k|k-1)C^T)(CP(k|k-1)C^T+R_2)^{-1} \\
+\hat x(k|k)&amp;=&amp;\hat x(k|k-1)+K_f(k)(y(k)-C\hat x(k|k-1))\\
+\hat x(k+1|k)&amp;=&amp;A\hat x(k|k-1)+Bu(k)+K(k)(y(k)-C\hat x(k|k-1))\\
+P(k|k)&amp;=&amp;P(k|k-1)-P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1}CP(k|k-1) \\
+p(k+1|k)&amp;=&amp;AP(k|k-1)A^T-K(k)(CP(k|k-1)C^T+R_2)K^T(k)+R_1
+\end{array}
+\]</span></p>
+<p>Simpler version <span class="math display">\[
+\begin{array}{rcl}
+K_f(k)&amp;=&amp;P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1} \\
+K(k)&amp;=&amp;Ak_f(k) \\
+\hat x(k|k)&amp;=&amp;\hat x(k|k-1)+K_f(k)(y(k)-C\hat x(k|k-1))\\
+\hat x(k+1|k)&amp;=&amp;A\hat x(k|k)+Bu(k)\\
+P(k|k)&amp;=&amp;P(k|k-1)-P(k|k-1)C^T(CP(k|k-1)C^T+R_2)^{-1}CP(k|k-1) \\
+P(k+1|k)&amp;=&amp;AP(k|k)A^T+R_1
+\end{array}
+\]</span></p>
+<p>Example</p>
+<p>We have one system <span class="math display">\[
+x(k+1)=x(k)+w(k)\\
+y(k)=x(k)+v(k)
+\]</span> We have measurement <span class="math display">\[
+y(0)=0\\
+y(1)=1\\
+y(2)=2\\
+\]</span> Kalman Filter initialized with <span class="math display">\[
+\hat x(0|-1)=0\\
+P(0|-1)=\infty\\
+R_1=R_2=1
+\]</span> Now we have <span class="math display">\[
+\begin{array}{lll}
+k=0\\
+K_f(0)=1 &amp; K(0)=1\\
+\hat x(0|0)=0 &amp; \hat x(1|0)=0\\
+P(0|0)=1 &amp; P(1|0)=2\\
+\hline
+k=1\\
+K_f(1)=\frac{2}{3} &amp; K(1)=\frac{2}{3}\\
+\hat x(1|1)=\frac{2}{3} &amp; \hat x(2|1)=\frac{2}{3}\\
+P(1|1)=\frac{2}{3} &amp; P(2|1)=\frac{5}{3}\\
+\hline
+k=2\\
+K_f(2)=\frac{5}{8} &amp; K(2)=\frac{5}{8}\\
+\hat x(2|2)=\frac{3}{2} &amp; \hat x(3|2)=\frac{3}{2}\\
+P(2|2)=\frac{5}{8} &amp; P(3|2)=\frac{13}{8}\\
+\end{array}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/EE5101 Linear Systems/7. Pole Placement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -538,276 +887,11 @@ K=\bar KT=
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/EE5104 Computer Control/5. Pole Placement Problem IO Model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/18/EE5104 Computer Control/5. Pole Placement Problem IO Model/" class="post-title-link" itemprop="url">5. Pole Placement Problem IO Model</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-18 13:44:42 / Modified: 00:02:29" itemprop="dateCreated datePublished" datetime="2018-11-18T13:44:42+08:00">2018-11-18</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="io-pole-placement">1. IO Pole Placement</h2>
-<p>For a input-output model</p>
-<p>Plant:<span class="math inline">\(\frac{B(z)}{A(z)}\)</span></p>
-<p>Feedback controller:<span class="math inline">\(\frac{S(z)}{R(z)}\)</span></p>
-<p>Feedforward controller:<span class="math inline">\(\frac{T(z)}{R(z)}\)</span></p>
-<p>For the close loop:,</p>
-<p>We have close loop t.f. <span class="math display">\[
-H_{cl}=\frac{RB}{AR+SB}\frac{T}{R}=\frac{TB}{AR+SB}
-\]</span> We have the c.p. <span class="math display">\[
-A_{cl}(z)=A_m(z)A_o(z)=A(z)R(z)+S(z)B(z)
-\]</span> If the order of the plant is n,</p>
-<p>we will have the following in order to tune all parameters <span class="math display">\[
-Deg \space A_{cl}=2n-1\\
-Deg \space S=n-1\\
-Deg \space R=n-1
-\]</span></p>
-<h2 id="reduce-order-by-pole-zero-cancellation">2.Reduce Order by Pole-Zero Cancellation</h2>
-<p>If we want to cancel out stable zeros, we can choose <span class="math display">\[
-A_{cl}=\bar{A}_{cl}B^+(z)\\
-\]</span> Then <span class="math display">\[
-H_{cl}=\frac{TB^{+}B^{-}}{\bar A_{cl}B^{+}}=\frac{TB^{-}}{\bar A_{cl}}
-\]</span> But we cannot cancel unstable zeros.</p>
-<p>and we can also cancel stable poles by choosing <span class="math display">\[
-T=\bar TA^+
-\]</span> and <span class="math display">\[
-A_{cl}=\bar{A}_{cl}A^+B^+(z)\\
-\]</span> and we can also cancel them at the same time.</p>
-<p>and the equation becomes <span class="math display">\[
-A^+A^-R+SB^+B^-=A_{cl}=\bar{A}_{cl}A^+B^+(z)
-\]</span> in order to cancel <span class="math inline">\(A^+B^+\)</span></p>
-<p>we need to choose <span class="math display">\[
-R=B^+\bar R\\
-S=A^+\bar S\\
-T=\bar TA^+\\
-\]</span> Then we have <span class="math display">\[
-A^-\bar R+\bar SB^-=\bar{A}_{cl}
-\]</span> The order of the equation is becoming less.</p>
-<h2 id="disturbance-rejection">3. Disturbance Rejection</h2>
-<p>we find the transfer function between disturbance and output is <span class="math display">\[
-H_{v}=\frac{Y(z)}{V(z)}=\frac{\frac{B}{A}}{1+\frac{SB}{RA}}=\frac{RB}{AR+SB}
-\]</span> if the disturbance is constant, we just need <span class="math inline">\(H_v(1)=0 \quad R(1)=0\)</span>.</p>
-<p>therefore, we just need <span class="math display">\[
-R(z)=(z-1)R&#39;
-\]</span> Tracking Problem</p>
-<p><span class="math inline">\(B(z)\)</span> is stable, i.e. the system has stable inverse.</p>
-<h2 id="design-steps">4. Design Steps</h2>
-<p>First build feedback controller and then build feedforward controller.</p>
-<p>how to build feedback controller</p>
-<ol type="1">
-<li>Design R, if zero cancelled, R needs to contain zero. if disturbance is cancelled, R needs to contain z-1.</li>
-<li>Design R and S by solving <span class="math inline">\(AR+BS=A_{cl}\)</span></li>
-<li>Choose T or <span class="math inline">\(H_{ff}\)</span> at the final stage.</li>
-</ol>
-<h2 id="io-example">5. IO Example</h2>
-<p>The Plant <span class="math display">\[
-G(z)=\frac{0.00058}{z-0.942}
-\]</span> The Desired Model <span class="math display">\[
-H_d(z)=\frac{0.0952z+0.0755}{z^2-1.331z+0.5016}
-\]</span> We need disturbance rejection <span class="math display">\[
-R=z-1\\
-S=s_0z+s_1\\
-A_{cl}=z^2-1.331z+0.5016\\
-AR+SB=(z-0.942)(z-1)+\\(s_0z+s_1)(0.00058)\\=z^2-1.331z+0.5016
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=1053.448\\
-s_1=-759.31
-\end{cases}
-\]</span> Then we have <span class="math display">\[
-R=z-1\\
-S=1053.448z-759.31
-\]</span> Then the feedback close loop system is <span class="math display">\[
-H_{fbc}=\frac{(z-1)0.00058}{z^2-1.331z+0.5016}
-\]</span> Now we will design the feedforward controller, <span class="math display">\[
-H_{fbc}H_{ff}=H_d\\
-H_{ff}=\frac{0.0952z+0.0755}{(z-1)0.00058}\\=\frac{16.41z+130.17}{z-1}
-\]</span> Therefore the controller is <span class="math display">\[
-U(z)=-H_{fb}(z)Y(z)+H_{ff}(z)U_c(z)\\
-H_{fb}=\frac{1053.448z-759.31}{z-1}\\
-H_{ff}=\frac{16.41z+130.17}{z-1}
-\]</span> Example</p>
-<p>Plant <span class="math display">\[
-H(z)=\frac{z+0.9}{z^2-2.5z+1}
-\]</span> The desired <span class="math display">\[
-A_m(z)=z^2-1.
-8z+0.9
-\]</span> a) The process zero is canceled</p>
-<p>The order of the plant is 2. <span class="math display">\[
-R=(z+0.9)\\
-S=s_0z+s_1\\
-A_{cl}=(z+0.9)(z^2-1.8z+0.9)
-\]</span> Then we have Diophantine Equation <span class="math display">\[
-AR+SB=(z^2-2.5z+1)(z+0.9)+(s_0z+s_1)(z+0.9)\\
-=A_{cl}=(z+0.9)(z^2-1.8z+0.9)\\
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=0.7\\
-s_1=-0.1\\
-\end{cases}
-\]</span> Then the close loop system is <span class="math display">\[
-H_{ff}=\frac{T}{R}
-\\H_{cl}=\frac{RB}{AR+SB}H_{ff}\\=\frac{TB}{AR+SB}\\=\frac{T}{z^2-1.8z+0.9}
-\]</span> We know <span class="math display">\[
-H_{cl}(1)=1
-\]</span> Then we have <span class="math display">\[
-T=0.1
-\]</span> Therefore <span class="math display">\[
-U(z)=-\frac{S}{R}Y(z)+\frac{T}{R}U(z)\\=-\frac{0.7z-0.1}{z+0.9}Y(z)+\frac{0.1}{z+0.9}U_c(z)
-\]</span></p>
-<ol start="2" type="a">
-<li>The process zero is not canceled <span class="math display">\[
-A_{cl}=zA_m=z^3-1.8z^2+0.9z\\
-S=s_0z+s_1\\
-R=z+r_1
-\]</span> Then we have Diophantine Equation <span class="math display">\[
-AR+SB=A_{cl}\\
-(z^2-2.5z+1)(z+r_1)+\\(s_0z+s_1)(z+0.9)=\\z^3-1.8z^2+0.9z
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-r_1=0.1618\\
-s_0=0.5382\\
-s_1=-0.1798
-\end{cases}
-\]</span> Then we design the feedforward controller. <span class="math display">\[
-H_{cl}=\frac{TB}{AR+SB}\\
-H_{cl}(1)=1\\
-T=0.05263\\
-\]</span></li>
-</ol>
-<p>Therefore, the controller is <span class="math display">\[
-U(z)=-\frac{0.5382z-0.1798}{z+0.1618}Y(z)\\+\frac{0.05263}{z+0.1618}U_c(z)
-\]</span></p>
-<p>Example <span class="math display">\[
-H(z)=\frac{z-0.5}{z^2-1}\\
-H_m(z)=\frac{1}{z^2}\\
-\]</span> (a)Desgin a controller in the form <span class="math inline">\(R(q)u(k)=T(q)u_c(k)-S(q)y(k)\)</span>. Match the reference model and reject disturbance. <span class="math display">\[
-R(z)=(z-1)(z-0.5)\\
-S(z)=s_0z^2+s_1z+s_2\\
-A_{cl}=A_oA_m=z^3(z-0.5)\\
-AR+SB=A_{cl}\\
-\]</span> Then we have <span class="math display">\[
-\begin{cases}
-s_0=1\\
-s_1=1\\
-s_2=-1\\
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-\frac{RB}{AR+SB}\frac{T}{R}=H_m(z)\\
-\frac{zt_0}{z^3}=\frac{1}{z^2}\\
-t_0=1\\
-\]</span></p>
-<p><span class="math display">\[
-U(z)=-\frac{z^2+z-1}{(z-1)(z-0.5)}Y(z)+\frac{z}{(z-1)(z-0.5)}U_c(z)\\
-(z^2-1.5z+0.5)U(z)=-(z^2+z-1)Y(z)+zU_c(z)\\
-u(k+2)-1.5u(k+1)+0.5u(k)=\\-y(k+2)-y(k+1)+y(k)+u_c(k+1)\\
-u(k)=1.5u(k-1)-0.5u(k-2)\\-y(k)-y(k-1)+y(k-2)+u_c(k-1)
-\]</span></p>
-<ol start="2" type="a">
-<li>Design controller in the form of <span class="math inline">\(u(k)=u_{fb}(k)+u_{ff}(k)\)</span> <span class="math display">\[
-R(z)=(z-1)(z+r_1)\\
-S(z)=s_0z^2+s_1z+s_2\\
-A_{cl}=A_oA_m=z^4\\
-AR+SB=\\(z^2-1)(z-1)(z+r_1)\\+(s_0z^2+s_1z+s_2)(z-0.5)\\
-=z^4\\
-\]</span> We can get the result <span class="math display">\[
-\begin{cases}
-r_1=-\frac{1}{3}\\
-s_0=\frac{4}{3}\\
-s_1=\frac{4}{3}\\
-s_2=-\frac{2}{3}\\
-\end{cases}
-\]</span></li>
-</ol>
-<p><span class="math display">\[
-\frac{RB}{AR+SB}H_{ff}\\=\frac{(z-1)(z-\frac{1}{3})(z-0.5)}{z^4}H_{ff}\\
-=\frac{1}{z^2}\\
-H_{ff}(z)=\frac{z^2}{(z-1)(z-\frac{1}{3})(z-0.5)}\\
-U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H_{ff}U_c(z)
-\]</span></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -852,7 +936,7 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -881,7 +965,9 @@ U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
