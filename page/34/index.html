@@ -218,216 +218,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/EE5101 Linear Systems/5. Stability/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/13/EE5101 Linear Systems/5. Stability/" class="post-title-link" itemprop="url">Chapter 5. Stability</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-13 13:33:56 / Modified: 14:21:42" itemprop="dateCreated datePublished" datetime="2018-11-13T13:33:56+08:00">2018-11-13</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="input-output-stability">1. Input-Output Stability</h2>
-<p>==Theorem 1==</p>
-<p>A SISO system is BIBO stable if and only if <span class="math display">\[
-\int_0^\infty|g(t)|dt \le k\le\infty
-\]</span> for some constant k.</p>
-<p>==Theorem 2==</p>
-<p>A transfer function G(s) is BIBO stable if and only if all poles of G(s) are in the open left-half s-plane.</p>
-<p>Equivalently, all poles of G(s) have negative real parts.</p>
-<h2 id="internal-stability-bibo-stability">2. Internal Stability BIBO Stability</h2>
-<p>Deal with zero-input stability</p>
-<h2 id="lyapunov-theorem">3. Lyapunov Theorem</h2>
-<p>==Theorem 3==</p>
-<blockquote>
-<ol type="1">
-<li>V(x) is continuous in domain D</li>
-<li>V(0)=0</li>
-<li>V(0)&gt;0 except at x=0</li>
-<li><span class="math inline">\(\frac{dV}{dt}\le0\)</span> stable</li>
-<li><span class="math inline">\(\frac{dV}{dt} &lt; 0\)</span> asymptotically stable</li>
-</ol>
-</blockquote>
-<p>==Theorem 4==</p>
-<p>Given <span class="math inline">\(\dot x=Ax\)</span> .The system is said to be stable in the sense of Lyapunov (i.s.L.) if and only if all eigenvalues of A have zero or negative real parts and those with zero real parts has no Jordan block of order 2 or higher.</p>
-<p>The system is asymptotically stable if all the eigenvalues of A have negative real parts.</p>
-<p>==Theorem 5==</p>
-<p>Asymptotically stable i.s.L. implies BIBO stability</p>
-<p>==Theorem 6==</p>
-<p>The linear system <span class="math display">\[
-\dot x(t)=Ax
-\]</span> is asymptotically stable if and only if for any Q which is positive definite and symmetric, there exists a P which is symmetric and positive definite satisfying the following equation <span class="math display">\[
-A^TP+PA=-Q
-\]</span> known as the Lyapunov equation.</p>
-<p>==Example== <span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}x \\
-\]</span> We choose <span class="math inline">\(Q=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span> . Then we have <span class="math display">\[
-A^TP+PA=-Q \\
-\begin{bmatrix}
-0 &amp; -1 \\ 1 &amp; -1
-\end{bmatrix}
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}+
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}=-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\]</span> We get <span class="math display">\[
-P=\begin{bmatrix}
-1.5 &amp; 0.5 \\ 0.5 &amp; 1
-\end{bmatrix}
-\]</span> Therefore, the system is asymptotically stable.</p>
-<h2 id="l-stability">4. L stability</h2>
-<p>Define <span class="math inline">\(\mathcal L_1\)</span> <span class="math display">\[
-||u(t)||_1=\int_0^\infty|u_i(t)|dt \\
-\]</span> For MIMO <span class="math display">\[
-||u(t)||_1=\sum_{i=1}^m||u_i(t)||_1
-\]</span> Define <span class="math inline">\(\mathcal L_2\)</span> <span class="math display">\[
-||u(t)||_2=\sqrt{\int_0^\infty u(t)^Tu(t)dt}
-\]</span> Define<span class="math inline">\(\mathcal L_\infty\)</span><br>
-<span class="math display">\[
-||u(t)||_\infty=max||u(t)||
-\]</span> The system can be seen as a mapping in the form of <span class="math inline">\(y=Su\)</span></p>
-<p>Then the system norm is <span class="math display">\[
-||S||_p=sup\frac{||y||_p}{||u||_p}=sup\frac{||Su||_p}{||u||_p} 
-\]</span> ==Definition==</p>
-<p>A system with input-output model S is <span class="math inline">\(\mathcal L_p\)</span> stable if</p>
-<p>and only if its p induced norm is finite. Particularly, a system</p>
-<p>is BIBO stable if and only if it is <span class="math inline">\(\mathcal L_\infty\)</span> stable.</p>
-<p>For the MIMO (m-input-q-output) system <span class="math display">\[
-||S||_\infty=\max_{1\le i\le q}\sum_{1\le j\le m}\int_0^\infty|H_{ij}(t)|dt
-\]</span> For the SISO system <span class="math display">\[
-||S||_\infty=\int_0^\infty|h(t)|dt
-\]</span></p>
-<p>==<span class="math inline">\(\mathcal{H}_\infty\)</span>== <span class="math display">\[
-||S||_2&lt;max_{w\in R}||H(w)||_2
-\]</span></p>
-<p><span class="math inline">\(max_{w\in R}||H(w)||_2\)</span> is known as <span class="math inline">\(\mathcal H_\infty\)</span> norm of system S</p>
-<p>We define <span class="math display">\[
-M_\gamma=\begin{bmatrix}
-A  &amp; \frac{1}{\gamma^2}BB^T\\
--C^TC &amp; -A^T
-\end{bmatrix}
-\]</span> then <span class="math inline">\(\mathcal H_\infty &lt; \gamma\)</span> if and only if <span class="math inline">\(M_\gamma\)</span> has no purely imaginary eigenvalues.</p>
-<p>==<span class="math inline">\(\mathcal{H}_2\)</span>==</p>
-<p><span class="math inline">\(\frac{1}{2\pi}Tr\int_{-\infty}^\infty H^T(w)H(w)dw\)</span> is known as <span class="math inline">\(\mathcal H_2\)</span> norm of system S <span class="math display">\[
-\mathcal H_2^2=Tr(CWC^T)=Tr(B^TMB) \\
-\text{W is Controllability Grammain}\\
-\text{M is Observability Grammain}\\
-AW+WA^T+BB^T=0 \\
-A^TM+MA+C^TC=0
-\]</span></p>
-<p>==Relationship==</p>
-<p>If one system is asymptotically stable, it must be BIBO stable.</p>
-<p>If one system is not asymptotically stable, it can be BIBO stable.</p>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx\\
-A=\begin{bmatrix}
-0 &amp; 2\\
-1 &amp; -1\\
-\end{bmatrix}
-B=\begin{bmatrix}
--1  \\
-1
-\end{bmatrix}
-C=\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}\\
-|\lambda I-A|=\begin{vmatrix}
-\lambda &amp; -2\\
--1 &amp; \lambda+1
-\end{vmatrix}=\lambda(\lambda+1)-2=0\\
-\lambda_1=1 \\
-\lambda_2=-2\\
-\]</span> The system is not asymptotically stable.</p>
-<p>However, the transfer function are <span class="math display">\[
-C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
-\]</span> Which is BIBO stable.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/EE5101 Linear Systems/4. Controllability and Observability/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -739,11 +529,306 @@ P^{-1}=
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/EE5101 Linear Systems/3. State-Space Solution and Propoerties/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/06/EE5101 Linear Systems/3. State-Space Solution and Propoerties/" class="post-title-link" itemprop="url">Chapter 3. State-Space Solution and Properties</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-06 13:33:56 / Modified: 14:15:23" itemprop="dateCreated datePublished" datetime="2018-11-06T13:33:56+08:00">2018-11-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="homogeneous-solution">Homogeneous Solution</h2>
+<p>The state-space model denoted as <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx+Du
+\]</span> First we want to solve <span class="math display">\[
+\dot x=Ax \\
+x=e^{A(t-t_0)}x_0 \\
+t_0=0 \\
+x=e^{At}x(0)
+\]</span> ## Properties of <span class="math inline">\(e^{At}\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(\frac{d}{dt}e^{At}=Ae^{At}=e^{At}A\)</span></li>
+<li><span class="math inline">\(e^{At}=\mathcal{L}^{-1}[(sI-A)^{-1}]\)</span></li>
+<li><span class="math inline">\(e^{At_1}e^{At_1}=e^{A(t_1+t_2)}\)</span></li>
+<li><span class="math inline">\([e^{At}]^T=e^{A^Tt}\)</span></li>
+<li><span class="math inline">\(e^{At}e^{Bt}=e^{(A+B)t}\)</span> only and only if AB=BA</li>
+<li><span class="math inline">\(e^{At}=\displaystyle\sum_{k=0}^\infty \frac{A^kt^k}{k!}\)</span></li>
+</ol>
+<h2 id="how-to-solve-eat">How to Solve <span class="math inline">\(e^{At}\)</span></h2>
+<ol type="1">
+<li>Series Expansion</li>
+</ol>
+<p><span class="math display">\[
+e^{At}=I+At+\frac{1}{2!}A^2t^2+\dotsm+\frac{1}{n!}A^nt^n+\dotsm
+\]</span></p>
+<ol type="1">
+<li><p>Using Inverse Laplace Transform</p>
+<p>Example:</p></li>
+</ol>
+<p><span class="math display">\[
+A =\begin{bmatrix}
+0 &amp; 1 \\-2 &amp; -3
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+e^{At}=\mathcal{L}^{-1}[(sI-A)^{-1}] \\
+(sI-A)=
+\begin{bmatrix}
+s &amp; -1 \\ 2 &amp; s+3
+\end{bmatrix}\\
+(sI-A)^{-1}=\frac{1}{s(s+3)+2}
+\begin{bmatrix}
+s+3 &amp; 1 \\ -2 &amp; s
+\end{bmatrix}=
+\begin{bmatrix}
+\frac{s+3}{(s+1)(s+2)} &amp; \frac{1}{(s+1)(s+2)} \\
+\frac{-2}{(s+1)(s+2)} &amp; \frac{s}{(s+1)(s+2)}
+\end{bmatrix} = 
+\begin{bmatrix}
+\frac{2}{s+1}-\frac{1}{s+2} &amp; \frac{1}{s+1}-\frac{1}{s+2} \\ 
+\frac{-2}{s+1}-\frac{-2}{s+2} &amp; \frac{-1}{s+1}-\frac{-2}{s+2}
+\end{bmatrix}\\
+\mathcal{L}^{-1}[*^{-1}]=
+\begin{bmatrix}
+2e^{-t}-e^{-2t} &amp; e^{-t}-e^{-2t} \\ -2e^{-t}+2e^{-2t} &amp; -e^{-t}+2e^{-2t}
+\end{bmatrix}
+\]</span></p>
+<ol start="3" type="1">
+<li>Using Caley-Hamilton Theorem</li>
+</ol>
+<p>Example <span class="math display">\[
+A =\begin{bmatrix}
+0 &amp; 1 \\-2 &amp; -3
+\end{bmatrix}\\
+f(\lambda)=e^{\lambda t} \\
+h(\lambda)=\beta_0+\beta_1\lambda \\
+\lambda_1=-1 \quad \lambda_2=-2 \\
+\begin{array}{}
+e^{-t}&amp;=&amp;\beta_0+\beta_1(-1) \\
+e^{-2t}&amp;=&amp; \beta_0+\beta_1(-2) \\
+\end{array}\\
+\text{We can get the result:} \\
+\beta_0=2e^{-t}-e^{-2t} \\
+\beta_1=e^{-t}-e^{-2t} \\
+\text{Then we have:} \\
+h(\lambda)=2e^{-t}-e^{-2t}+(e^{-t}-e^{-2t})\lambda\\
+f(A)=h(A)=(2e^{-t}-e^{-2t})I+(e^{-t}-e^{-2t})A =
+\begin{bmatrix}
+2e^{-t}-e^{-2t} &amp; e^{-t}-e^{-2t} \\ -2e^{-t}+2e^{-2t} &amp; -e^{-t}+2e^{-2t}
+\end{bmatrix}
+\]</span></p>
+<ol start="3" type="1">
+<li>Using Diagonalization</li>
+</ol>
+<h2 id="full-solution">Full Solution</h2>
+<p><span class="math display">\[
+x(t)=e^{At}x(0)+\int_0^te^{A(t-\tau)}Bu(\tau)d\tau
+\]</span> Example: <span class="math display">\[
+\dot x=\begin{bmatrix}
+0 &amp; 1 \\ -2 &amp; 3
+\end{bmatrix}
+x+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix} u
+\]</span> Input is unit step.</p>
+<p>We have get the solution in the previous <span class="math display">\[
+e^{At}=\begin{bmatrix}
+2e^{-t}-e^{-2t} &amp; e^{-t}-e^{-2t} \\ -2e^{-t}+2e^{-2t} &amp; -e^{-t}+2e^{-2t}
+\end{bmatrix}
+\]</span> Then <span class="math display">\[
+\int_0^te^{A(t-\tau)}Bd\tau=\int_0^t\begin{bmatrix}
+2e^{-(t-\tau)}-e^{-2(t-\tau)} &amp; e^{-(t-\tau)}-e^{-2(t-\tau)} \\ -2e^{-(t-\tau)}+2e^{-2(t-\tau)} &amp; -e^{-(t-\tau)}+2e^{-2(t-\tau)}
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}d\tau \\
+=\int_0^t
+\begin{bmatrix}
+e^{-(t-\tau)}-e^{-2(t-\tau)} \\ -e^{-(t-\tau)}+2e^{-2(t-\tau)}
+\end{bmatrix}d\tau
+=
+\begin{bmatrix}
+\frac{1}{2}-e^{-t}+\frac{1}{2}e^{-2t} \\ e^{-t}-e^{-2t}
+\end{bmatrix}
+\]</span> ## Relationship Between T.F. Matrix and S.S. Equation</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu\\
+y=Cx \\
+A=
+\begin{bmatrix}
+0 &amp; 1 \\
+-\frac{k}{m} &amp; -\frac{b}{m}
+\end{bmatrix} \quad
+B=\begin{bmatrix}
+0\\\frac{1}{m} 
+\end{bmatrix}\quad
+C=[1 \quad 0]
+\]</span> After Laplace Transform <span class="math display">\[
+sX(s)=AX(s)+BU(s) \\
+X(s)=(sI-A)^{-1}BU(s) \\
+Y(s)=C(sI-A)^{-1}BU(s) \\
+G(s)=C(sI-A)^{-1}B \\
+(sI-A)=\begin{bmatrix}
+s &amp; -1\\\frac{k}{m} &amp; s+\frac{b}{m}
+\end{bmatrix}\\
+(sI-A)^{-1}=\begin{bmatrix}
+\frac{ms+b}{ms^2+bs+k} &amp; \frac{m}{ms^2+bs+k} \\
+\frac{-k}{ms^2+bs+k} &amp; \frac{ms}{ms^2+bs+k}
+\end{bmatrix}\\
+G(s)=\frac{1}{ms^2+bs+k}
+\]</span> ## Modes of System</p>
+<p>Consider <span class="math inline">\(\dot x=Ax\)</span> <span class="math display">\[
+Q=[q_1 \quad q_2 \quad\dotsm\quad q_n]
+\]</span> where <span class="math inline">\(q_i\)</span> are the eigenvectors of A <span class="math display">\[
+Q^{-1}=
+\begin{bmatrix}
+p_1 \\ p_2 \\ \vdots \\ p_n
+\end{bmatrix}
+\]</span> Where <span class="math inline">\(p_i\)</span> is i<sup>th</sup> row vector of Q<sup>-1</sup> .</p>
+<p>Then we have <span class="math display">\[
+x(t)=\sum_{i=1}^ne^{\lambda_it}q_ip_ix_0 = \sum_{i=1}^ne^{\lambda_it}q_i\mu_i
+\]</span> Where <span class="math inline">\(\mu_i=p_ix_0\)</span></p>
+<p>The above shows that the solution is the sum of n modes.</p>
+<p>Example <span class="math display">\[
+\dot x=
+\begin{bmatrix}
+0 &amp; 1\\
+-4 &amp; -5\\
+\end{bmatrix}x\\
+\]</span> Eigenvalues are -1 and -4 <span class="math display">\[
+Q=\begin{bmatrix}
+1 &amp; -1\\
+-1 &amp; 4\\
+\end{bmatrix}
+Q^{-1}=
+\frac{1}{3}\begin{bmatrix}
+4 &amp; 1\\
+1 &amp; 1\\
+\end{bmatrix}\\
+p_1=[\frac{4}{3}\quad\frac{1}{3}]\\
+p_2=[\frac{1}{3}\quad\frac{1}{3}]\\
+x_1(t)=\frac{1}{3}[(4x_{10}+x_{20})e^{-t}-(x_{10}+x_{20})e^{-4t}]\\
+x_2(t)=\frac{1}{3}[(-4x_{10}-x_{20})e^{-t}+(4x_{10}+4x_{20})e^{-4t}]\\
+\]</span></p>
+<h2 id="ltv-general-solution">LTV General Solution</h2>
+<p><span class="math display">\[
+X=[x_1 \quad x_2 \quad \dotsm \quad x_n] \\
+\dot{x}=Ax \\
+\dot X(t)=A(t)X(t) \\
+\phi(t,t_0)=X(t)X(t_0)^{-1} \\
+x(t)=\phi(t,t_0)x(t_0)
+\]</span></p>
+<p>With <span class="math inline">\(\varphi(t,t_0)\)</span> , we can get the full solution <span class="math display">\[
+x(t)=\varphi(t,t_0)x(t_0)+\int_{t_0}^{t}\varphi(t,\tau)B(\tau)u(\tau)d\tau
+\]</span> Example <span class="math display">\[
+\dot x(t)=\begin{bmatrix}
+0 &amp; 0 \\ t &amp; 0
+\end{bmatrix} x(t)\\
+x_1(t)=x_1(0) \\
+x_2(t)=0.5t^2x_1(0)+x_2(0)\\
+x(0)=\begin{bmatrix}
+1 \\ 0
+\end{bmatrix} \rightarrow x(t)=\begin{bmatrix}
+1 \\ 0.5t^2
+\end{bmatrix}\\
+x(0)=\begin{bmatrix}
+1 \\ 1
+\end{bmatrix} \rightarrow x(t)=\begin{bmatrix}
+1 \\ 0.5t^2+1
+\end{bmatrix}\\
+X(t)=\begin{bmatrix}
+1 &amp; 1 \\ 0.5t^2 &amp; 0.5t^2+1
+\end{bmatrix}\\
+X(t_0)^{-1}=\begin{bmatrix}
+0.5t_0^2+1 &amp; -1 \\ -0.5t_0^2 &amp; 1
+\end{bmatrix}\\
+X(t)X(t_0)^{-1}=\begin{bmatrix}
+1 &amp; 0 \\ 0.5(t^2-t_0^2) &amp; 1
+\end{bmatrix}
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/33/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/35/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/33/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/35/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -788,7 +873,7 @@ P^{-1}=
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -817,9 +902,7 @@ P^{-1}=
         
           
         
-          
-        
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

@@ -218,171 +218,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/04/19/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/" class="post-title-link" itemprop="url">Chapter 7. Unsupervised Feature Learning</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-04-19 13:46:13 / Modified: 14:53:00" itemprop="dateCreated datePublished" datetime="2019-04-19T13:46:13+08:00">2019-04-19</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="unsupervised-feature-learning">Unsupervised Feature Learning</h1>
-<p>Representation learning refers to transforming the raw data into another (possibly lower-dimensional) space, such that one can do pattern recognition more easily.</p>
-<p>Why Feature Extraction?</p>
-<p>Visualization: projecting high-dimensional data onto 2D or 3D planes.</p>
-<p>Data compression: efficient storage and retrieval</p>
-<p>Noise removal: positive effect on testing accuracy</p>
-<h2 id="principal-component-analysis">1. Principal Component Analysis</h2>
-<p>PCA reduces the dimensionality of a collection of observations by finding a new set of variables, smaller than the original set of variables. It captures big variability in the data and ignore the small variability. The new variables are called principal components.</p>
-<p>For a group of data, the first PC is a line with minimum distance. The second PC is a line orthogonal to the first line with minimum distance.</p>
-<p>PCs are a series of linear least squares fits to a sample set each orthogonal to all the previous ones.</p>
-<p>Define the first principal component by the linear projection <span class="math inline">\(a_1\)</span> <span class="math display">\[
-z_1=a_1^Tx
-\]</span> where <span class="math inline">\(a_1=(a_{11},a_{21},\dotsm,a_{d1})\)</span>, we hope to find the <span class="math inline">\(a_1\)</span> such that the variance of <span class="math inline">\(z_1\)</span> is maximum <span class="math display">\[
-\begin{array}{rcl}
-var(z_1)&amp;=&amp;E((z_1-\bar z_1)^2)\\
-&amp;=&amp;\frac{1}{n} \sum_{i=1}^n(a_1^T x_i-a_1^T\bar x)^2\\
-&amp;=&amp;a_1^T\left[\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\right] a_1 \\
-&amp;=&amp; a_1^TSa_1
-\end{array}
-\]</span> where <span class="math inline">\(S=\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\)</span>, <span class="math inline">\(\bar x\)</span> is the mean.</p>
-<p>Then we hope to find <span class="math inline">\(a_1\)</span> that maximizes the variance, for example <span class="math display">\[
-x=
-\begin{bmatrix}
-1 &amp; 2 &amp; 3 &amp; 4\\
-4 &amp; 3 &amp; 2 &amp; 1
-\end{bmatrix}\\
-\bar x=
-\begin{bmatrix}
-2.5 \\ 2.5
-\end{bmatrix}
-\]</span> Then we hope to find <span class="math inline">\(a_1=[a_{11},a_{12}]&#39;\)</span> and <span class="math inline">\(a_2=[a_{21},a_{22}]&#39;\)</span> to maximum the variance of <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span></p>
-<p>To find <span class="math inline">\(a_1\)</span> that maximizes the variance subject to <span class="math inline">\(a_1^Ta_1=c\)</span>, let <span class="math inline">\(\lambda\)</span> be a Lagrange multiplier <span class="math display">\[
-L=a_1^TSa_1-\lambda(a_1^Ta_1-c)\\
-\frac{\partial L}{\partial a_1}=Sa_1-\lambda a_1=0\\
-(S-\lambda I)a_1=0
-\]</span> therefore, <span class="math inline">\(a_1\)</span> is the eigenvector of S, corresponding the largest eigenvalue <span class="math inline">\(\lambda=\lambda_1\)</span></p>
-<p>It is easily found that <span class="math inline">\(var(z_k)=a_k^TSa_k=\lambda_k\)</span></p>
-<p>Therefore, we choose the <span class="math inline">\(k^{th}\)</span> largest eigenvalues of S.</p>
-<p>In practice, we compute the PCs via singular value decomposition (SVD) on the centered data matrix. <span class="math display">\[
-X=U_{d,d}D_{d,n}V^T_{n,n}
-\]</span> where U and V are orthogonal matrices, D is a diagonal matrix, <span class="math inline">\(X=\{(x_1-\bar x),\dotsm,(x_n-\bar x)\}\)</span></p>
-<p>The covariance matrix can be written <span class="math display">\[
-S=XX^T=UD^2U^T
-\]</span> So the eigenvectors of S are the columns of <span class="math inline">\(U\)</span> and the eigenvalues of S are the diagonal elements of <span class="math inline">\(D^2\)</span></p>
-<p>Take only a few significant eigenvalues <span class="math inline">\(p\)</span>, the reconstructed data is <span class="math display">\[
-x_i=\bar x+U_{d,p}U_{d,p}^T(x_i-\bar x)
-\]</span> How many PCs kept? <span class="math display">\[
-\frac{\sum_{i=1}^p \lambda_i}{\sum_{i=1}^d \lambda_i}\ge0.95(Threshold)
-\]</span></p>
-<h3 id="summary-of-pca">Summary of PCA</h3>
-<p>Input samples <span class="math inline">\(\{x_1,x_2,\dotsm,x_N\}\)</span></p>
-<ol type="1">
-<li>Compute the covariance matrix S</li>
-</ol>
-<p><span class="math display">\[
-S=\frac{1}{N}\sum_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T
-\]</span></p>
-<ol start="2" type="1">
-<li><p>perform eigenvalue decomposition [U]=eig(S)</p></li>
-<li><p>Output PCs U(:,1:p)</p></li>
-</ol>
-<h2 id="nonnegative-matrix-factorization">2. Nonnegative Matrix Factorization</h2>
-<p>Find a set of orthogonal principal components</p>
-<p>The reconstructed image is a linear combination of the principal components plus mean face.</p>
-<p>Matrix factorization <span class="math display">\[
-V\approx WH
-\]</span> V: <span class="math inline">\(n\times m\)</span> matrix. Each column contains n nonnegative pixel values of one of the m facial images.</p>
-<p>W: <span class="math inline">\(n\times r\)</span> matrix. r columns of W are called the basis images.</p>
-<p>H: <span class="math inline">\(r\times m\)</span> matrix. each column of H is called encoding.</p>
-<p>Using gradient decent method $$ H_{a}H_{a}\</p>
-<p>W_{a}W_{a}\ $$</p>
-<h3 id="summary-of-nmf">Summary of NMF</h3>
-<p>Input sample matrix <span class="math inline">\(V=[v_1,v_2,\dotsm,v_N]\)</span></p>
-<p>Initialize <span class="math inline">\(W^0\)</span> and <span class="math inline">\(H^0\)</span> randomly as positive matrices</p>
-<p>for t=0:1:T_max do</p>
-<p>gradient decent method</p>
-<p>if <span class="math inline">\(||W^t-W^{t+1}||\le \epsilon_1\)</span> and <span class="math inline">\(||H^t-H^{t+1}||\le \epsilon_2\)</span></p>
-<p>return;</p>
-<p>end for</p>
-<p>output matrices W and H.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/17/EE5907 Pattern Recognition/6. Bayesian Statistics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -576,11 +411,324 @@ p(z=2|D)=\frac{0.0826}{0.0826+0.0437}=0.634\\
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/EE5904 Neural Network/1.MLP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/04/11/EE5904 Neural Network/1.MLP/" class="post-title-link" itemprop="url">Chapter 1. Multi-Layer Perceptron</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-04-11 13:45:47 / Modified: 14:40:28" itemprop="dateCreated datePublished" datetime="2019-04-11T13:45:47+08:00">2019-04-11</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="what-is-learning-in-nn">1. What is Learning in NN</h2>
+<p>Learning is a process by which the free parameters of a neural network are adapted through a process of stimulation by the environment in which the network is embedded.</p>
+<p>Process of learning</p>
+<ol type="1">
+<li>The NN is stimulated by the environment</li>
+<li>NN undergoes changes in its free parameters</li>
+<li>NN responds in a new way to the environment</li>
+</ol>
+<p>Supervised Learning:</p>
+<ol type="1">
+<li>The NN is fed with input and produce an output</li>
+<li>The teacher will tell what the desired output should be</li>
+<li>The weights are adjusted by the error signals</li>
+</ol>
+<p>Unsupervised Learning:</p>
+<ol type="1">
+<li>NN is interacting with the environment by taking various actions</li>
+<li>The learning system will be rewarded or penalized by its actions</li>
+<li>The weights are adjusted by the reinforcement signal</li>
+</ol>
+<h2 id="perceptron">2. Perceptron</h2>
+<p><span class="math display">\[
+v = \sum_{i=1}^mw_ix_i+b\\
+\]</span></p>
+<p>For simplicity <span class="math display">\[
+x(n)=[1,x_1(n),x_2(n),\dotsm,x_m(n)]^T\\
+w(n)=[b(n),w_1(n),w_2(n),\dotsm,w_m(n)]^T\\
+v(n)=w^T(n)x(n)
+\]</span> where n denotes iteration step.</p>
+<p>How to tune the parameters</p>
+<p>First, consider the case, <span class="math display">\[
+v=w^Tx&lt;0\quad \varphi(v)=0
+\]</span> if the desired output is <span class="math inline">\(d=0\)</span>, then nothing needs to be done</p>
+<p>if the desired output is <span class="math inline">\(d=1\)</span>, then we hope <span class="math inline">\(v&#39;\)</span> to be greater</p>
+<p>then we have <span class="math display">\[
+v&#39;-v = (w&#39;^T-w^T)x=\Delta w x&gt;0
+\]</span> the most simple choice is <span class="math inline">\(\Delta w=x^T\)</span></p>
+<p>then we have <span class="math display">\[
+w&#39; = w+\eta x
+\]</span> For the other case <span class="math display">\[
+v=w^Tx&gt;0\quad \varphi(v)=1
+\]</span> if the desired output is <span class="math inline">\(d=0\)</span>, then we hope <span class="math inline">\(v&#39;\)</span> to be smaller <span class="math display">\[
+v&#39;-v = (w&#39;^T-w^T)x=\Delta w x&lt;0
+\]</span> the most simple choice is <span class="math inline">\(\Delta w=-x^T\)</span> <span class="math display">\[
+w&#39; = w-\eta x
+\]</span> then we have <span class="math display">\[
+w&#39;=w+\eta e x
+\]</span></p>
+<p>To summarize,</p>
+<p>Perceptron Learning Algorithm</p>
+<p>Start with a randomly chosen weight vector <span class="math inline">\(w(1)\)</span></p>
+<p>while there exist input vectors that are misclassified by <span class="math inline">\(w(n)\)</span></p>
+<p>Do Let <span class="math inline">\(x(n)\)</span> be a misclassified input vector</p>
+<p>​ update the weight vector to</p>
+<p>​ <span class="math inline">\(w(n+1)=w(n)+\eta e(n)x(n)\)</span></p>
+<p>​ <span class="math inline">\(e(n)=d(n)-y(n)\)</span></p>
+<p>​ where <span class="math inline">\(\eta&gt;0\)</span> and d=<span class="math inline">\(\begin{cases} 1\text{ if x belongs to class 1} \\ 0\text{ if x belongs to class 2}\end{cases}\)</span></p>
+<p>​ n=n+1</p>
+<p>end while</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">xc0 = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0.5</span>, <span class="number">0.6</span>, <span class="number">0.4</span>, <span class="number">0.6</span>, <span class="number">0.5</span>], [<span class="number">1.0</span>, <span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.2</span>, <span class="number">1.1</span>]])</span><br><span class="line">xc1 = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">2.5</span>, <span class="number">2.6</span>, <span class="number">2.4</span>, <span class="number">2.6</span>, <span class="number">2.5</span>], [<span class="number">3.0</span>, <span class="number">3.1</span>, <span class="number">3.2</span>, <span class="number">3.2</span>, <span class="number">3.0</span>]])</span><br><span class="line">w = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">fig1 = plt.plot(xc0[<span class="number">1</span>, :], xc0[<span class="number">2</span>, :], <span class="string">'bo'</span>, xc1[<span class="number">1</span>, :], xc1[<span class="number">2</span>, :], <span class="string">'ro'</span>)</span><br><span class="line">yplot = -w[<span class="number">1</span>]/w[<span class="number">2</span>]*np.array([<span class="number">0</span>, <span class="number">3</span>]) - w[<span class="number">0</span>]/w[<span class="number">2</span>]</span><br><span class="line">plt.plot(np.array([<span class="number">0</span>, <span class="number">3</span>]), yplot, <span class="string">'r'</span>)</span><br><span class="line">eta = <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    <span class="comment"># This is for c0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">        v = w.transpose().dot(xc0[:, j])</span><br><span class="line">        <span class="keyword">if</span> v &gt; <span class="number">0</span>:</span><br><span class="line">            y = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y = <span class="number">0</span></span><br><span class="line">        e = <span class="number">0</span> - y</span><br><span class="line">        w = w + eta*e*xc0[:, j]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># This is for c1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">        v = w.transpose().dot(xc1[:, j])</span><br><span class="line">        <span class="keyword">if</span> v &gt; <span class="number">0</span>:</span><br><span class="line">            y = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y = <span class="number">0</span></span><br><span class="line">        e = <span class="number">1</span> - y</span><br><span class="line">        w = w + eta*e*xc1[:, j]</span><br><span class="line">    yplot = -w[<span class="number">1</span>] / w[<span class="number">2</span>] * np.array([<span class="number">0</span>, <span class="number">3</span>]) - w[<span class="number">0</span>] / w[<span class="number">2</span>]</span><br><span class="line">    plt.plot(np.array([<span class="number">0</span>, <span class="number">3</span>]), yplot, color=(<span class="number">0.5</span>, <span class="number">0.5</span>, i/<span class="number">10</span>))</span><br><span class="line">    plt.pause(<span class="number">1</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>Proof of Convergence</p>
+<p>There exists <span class="math inline">\(w_0\)</span> such that</p>
+<p>For samples in class <span class="math inline">\(C_1\)</span> <span class="math inline">\(w_0^Tx(k)&gt;0\)</span></p>
+<p>For samples in class <span class="math inline">\(C_2\)</span> <span class="math inline">\(w_0^Tx(k)&lt;0\)</span> <span class="math display">\[
+w(n+1)=w(n)+e(n)x(n)=e(1)x(1)+e(2)x(2)+\dotsm+e(n)x(n)\\
+w_0^Tw(n+1)=e(1)w_0^Tx(1)+e(2)w_0^Tx(2)+\dotsm+e(n)w_0^Tx(n)\\
+e(k)w_0^Tx(k)=|w_0^Tx(k)|&gt;0\\
+\alpha=\min\{|w_0^Tx(i)|\}
+\]</span> Then we have <span class="math display">\[
+w_0^Tw(n+1)\ge n\alpha\\
+||w_0||\cdot||w(n+1)||\ge||w_0^Tw(n+1)||\ge n\alpha\\
+\]</span> we have <span class="math display">\[
+||w(n+1)||\ge\frac{n\alpha}{||w_0||}
+\]</span> Let <span class="math inline">\(\beta = \max \{||x(i)||^2\}\)</span></p>
+<p>And we have <span class="math display">\[
+||w(n+1)||^2\le n \beta
+\]</span> Overall, we have <span class="math display">\[
+\frac{n^2\alpha^2}{||w_o||^2}\le ||w(n+1)||^2\le n\beta
+\]</span> Therefore, n must be finite. Otherwise, the inequality will not be satisfied.</p>
+<h2 id="linear-regression-problem">3. Linear Regression Problem</h2>
+<p><span class="math display">\[
+E(w)=\frac{1}{2}e(w)^2\\
+e(w)=d-x^Tw\\
+g(w)=\frac{\partial E}{\partial w}=\frac{\partial E}{\partial e}\frac{\partial e}{\partial w}=-e(w)x^T\\
+\]</span></p>
+<p>Then we have <span class="math display">\[
+w(n+1)=w(n)+\eta e(n)x(n)
+\]</span></p>
+<p>Example</p>
+<p>Training samples {(1, 3.5), (1, 3.5), (1.5, 2.5), (3, 2), (3.5, 1), (4, 1)}</p>
+<p>Initial weight <span class="math inline">\(w(1)=[2, 0]^T\)</span></p>
+<p>Learning rate <span class="math inline">\(\eta\)</span> is 0.1.</p>
+<p>==Iteration 1==</p>
+<p>Forward Propagation <span class="math display">\[
+e(1)=d^{(1)}-w(1)^Tx^{(1)}=3.5-2=1.5
+\]</span> Backward Propagation <span class="math display">\[
+w(2)=w(1)+\eta x^{(1)}e(1)=[2.15\quad 0.15]^T
+\]</span> ==Iteration 2==</p>
+<p>Forward Propagation <span class="math display">\[
+e(2)=d^{(2)}-w(2)^Tx^{(2)}=0.125
+\]</span> Backward Propagation <span class="math display">\[
+w(3)=w(2)+\eta x^{(2)}e(2)=[2.1625\quad 0.1688]^T
+\]</span></p>
+<h2 id="multilayer-perceptrons">4. Multilayer Perceptrons</h2>
+<p>MLP generally adopts a smooth nonlinear activation function, such as the following logistic function</p>
+<p>Sigmoid Function <span class="math display">\[
+\varphi(v)=\frac{1}{1+e^{-av}}
+\]</span></p>
+<p>MLP is fed with an input vector <span class="math inline">\(x(n)\)</span>, and produces an output vector <span class="math inline">\(y(n)\)</span>, where <span class="math inline">\(n\)</span> is the iteration number.</p>
+<p>If we have a three layers NN, for the third layer</p>
+Let <span class="math inline">\(d(n)\)</span> denote the desired network output, and then the error is <span class="math display">\[
+e(n)=d(n)-y(n)=d(n)-x^{(3)}_{out}(n)
+\]</span> Then the cost function is <span class="math display">\[
+E(n)=\frac{1}{2}\sum_{j=1}^{n_3}(d_j(n)-x_{out,j}^{(3)}(n))^2
+\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer <span class="math display">\[
+x^{(3)}_{out,j}=\varphi(v^{(3)}_{j})\\
+v^{(3)}_{j} = \sum_i w_{ji}^{(3)}x^{(2)}_i
+\]</span> Then we have $$
+<span class="math display">\[\begin{array}{rcl}
+\Delta w^{(3)}_{ji}(n)&amp;=&amp;-\eta\frac{\partial E(n)}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial v_j^{(3)}}
+\frac{\partial v_j^{(3)}}{\partial w_{ji}^{(3)}(n)}\\
+
+&amp;=&amp; \eta \delta_j^{(3)}(n)x_{out,i}^{(2)}(n)
+\end{array}\]</span>
+<p>$$</p>
+<p>where <span class="math display">\[
+\delta_j^{(3)}(n)=e_j(n)\dot \varphi^{(3)}(v_j^{(3)}(n))
+\]</span> For the second layer,</p>
+<p>Let d(n) denote the desired network output, and the error is then <span class="math display">\[
+e(n)=d(n)-y(n)=d(n)-x^{(3)}_{out}(n)
+\]</span> Then the cost function is <span class="math display">\[
+E(n)=\frac{1}{2}\sum_{k=1}^{n_3}(d_k(n)-x_{out,k}^{(3)}(n))^2
+\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer <span class="math display">\[
+x^{(3)}_{out,k}=\varphi(v^{(3)}_{k})\\
+v^{(3)}_{k} = \sum_j w_{kj}^{(3)}x^{(2)}_j\\
+x^{(2)}_{out,j}=\varphi(v^{(2)}_{j})\\
+v^{(2)}_{j} = \sum_i w_{ji}^{(2)}x^{(1)}_i
+\]</span> Then we have <span class="math display">\[
+\Delta w^{(2)}_{ji}(n)=-\eta\frac{\partial E(n)}{\partial w_{ji}^{(2)}(n)}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial v^{(3)}_k}
+\frac{\partial v^{(3)}_k}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)})
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial v_{j}^{(2)}}
+\frac{\partial v_{j}^{(2)}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+=\eta\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+= \eta \delta_j^{(2)}(n)x_{out,i}^{(1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(2)}(n)=
+\left(\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}\right)
+\dot \varphi^{(2)}(v_j^{(2)}(n))\\
+\]</span> Then we can summary <span class="math display">\[
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\eta \delta_j^{(s)}(n)x_{out,i}^{(s-1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(s)}(n)=e_j(n)\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right)\quad\text{Output Layer}\\
+\delta_j^{(s)}(n)=
+\left(\sum_{k=1}^{n_{s+1}}\delta_k^{(s+1)}(n)
+w_{kj}^{(s+1)}(n)\right)
+\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right) \quad \text{Hidden Layer}\\
+\]</span> To increase learning speed, modify the delta rule <span class="math display">\[
+\Delta w_{ji}^{(s)}(k)=\alpha \Delta w_{ji}^{(s)}(k-1) + \eta \delta_j^{(s)}(k)x_{out,i}^{(s-1)}(k)\\
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\Delta w_{ji}^{(s)}(k)
+\]</span></p>
+<h2 id="mlp-design-and-training-issues">5. MLP Design and Training Issues</h2>
+<p>Many design and training issues to consider</p>
+<h3 id="sequential-mode-or-batch-mode">1. Sequential mode or batch mode</h3>
+<p>For sequential mode, weight updating is performed after each presentation of the training example. N times adjustments in one epoch.</p>
+<p>For batch mode, update weight after the presentation of all the training examples. One time adjustment in one epoch.</p>
+<p>Sequential learning is generally the preferred one since sequential learning often results in better solutions. Nonlinear networks often have multiple local minima. Batch learning can easily get trapped into the local minimum.</p>
+<p>But sequential mode always causes fluctuation because of the noise.</p>
+<p>One way to reduce fluctuation is to use mini-batches.</p>
+<p>That is to start with a small batch size and increase the size as the training proceeds.</p>
+<p>Second Order Method <span class="math display">\[
+E(w(n+1))=E(w(n)+\Delta w(n))=E(w(n))+g^T(n)\Delta w(n)+\frac{1}{2}\Delta w^T(n)H(n)\Delta w(n)
+\]</span> If we hope to get choose <span class="math inline">\(\Delta w(n)\)</span> to let <span class="math inline">\(E(w(n+1))\)</span> be minimized <span class="math display">\[
+\frac{\partial E(w(n+1))}{\partial \Delta w(n)}=g^T(n)+\Delta w^T(n)H(n)=0\\
+\Delta w(n) = -H^{-1}(n)g(n)
+\]</span> This is so called Newton's method.</p>
+<h3 id="normalize-the-input-variables">2. Normalize the input variables</h3>
+<p>In general, any shift of the average input away from zero will bias the updates in a partialicular direction and this slow down learning.</p>
+<p>Normalize <span class="math display">\[
+\bar x_i = \frac{\sum_{n=1}^Nx_i(n)}{N}\quad \sigma=\sqrt \frac{\sum_{n=1}^N (x_i(n)-\bar x_i)}{N}\quad x_i&#39;(n) = \frac{x_i(n)-\bar x_i}{\sigma}
+\]</span> Let the range are close to [-1, 1]</p>
+<h3 id="how-to-choose-activation-functions-in-hidden-layers">3. How to choose activation functions in hidden layers</h3>
+<p>For the hidden layers, <span class="math display">\[
+\tan sig(x)=\frac{2}{1+e^{-2x}}-1
+\]</span> is better than <span class="math display">\[
+\log sig(x)=\frac{1}{1+e^{-x}}
+\]</span> Every neuron output is closed to [-1, 1]</p>
+<p>However, for the output layer, if the problem is pattern recognition problem <span class="math display">\[
+\log sig(x)=\frac{1}{1+e^{-x}}
+\]</span> is better because the output is 0 or 1</p>
+<p>For regression problem, using linear neuron at the output layer would be more flexible.</p>
+<h3 id="how-to-choose-target-values-for-pattern-recognition">4. How to choose target values for pattern recognition</h3>
+<p>For the sigmoid function, the training process will try to derive the output as close as possible to the target value, that can cause the input to the output layer to be bigger and bigger in the training process. Therefore, it is better to choose [-0.6, 0.6] for tansig and [0.2, 0.8] for logsig.</p>
+<h3 id="how-many-hidden-layers-and-how-many-hidden-neurons-in-each-layer">5. How many hidden layers AND how many hidden neurons in each layer</h3>
+<p>Adding more layers can reduce the parameters but may make the MLP more prone to local minima traps because of its more complicated structure.</p>
+<h3 id="how-to-avoid-over-fitting">6. How to avoid over-fitting</h3>
+<p>One way is to limit the number of hidden units. It is important to seek the minimal structure of the MLP</p>
+<p>For valid generation, the size of the weights is more important than the size of the network</p>
+<p>Use regularization techniques</p>
+<h3 id="use-singular-value-decomposition-svd-to-decide-the-minimal-structure">7. Use Singular Value Decomposition (SVD) to decide the minimal structure</h3>
+<p>Calculate the outputs of the hidden neurons for each training sample input vector <span class="math inline">\(x(k)\)</span> <span class="math display">\[
+h_{ki} = f_i(\sum_{j=1}^M w_{ij}x_j(k)+b_i)\in H
+\]</span> Use SVD to get the effective rank of H. The threshold is always chosen as 0.95 or 0.99.</p>
+<p>Train the MLP on the N training samples (<span class="math inline">\(X_{N\times M}\)</span>) with sufficiently large number of <span class="math inline">\(n\)</span> hidden neurons until converge.</p>
+<p>Calculate the effective rank.</p>
+<p>Train the MLP with number of effective rank hidden neurons until converge.</p>
+<p>Repeat the procedure until convergence.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -625,7 +773,7 @@ p(z=2|D)=\frac{0.0826}{0.0826+0.0437}=0.634\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -654,9 +802,7 @@ p(z=2|D)=\frac{0.0826}{0.0826+0.0437}=0.634\\
         
           
         
-          
-        
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
