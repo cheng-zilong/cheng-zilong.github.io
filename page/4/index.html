@@ -1,0 +1,2910 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheng-Zilong">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cheng-Zilong">
+  <link rel="canonical" href="http://yoursite.com/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/4 Financial Reporting and Analysis 1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/06/01/CFA LEVEL1/4 Financial Reporting and Analysis 1/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-03 15:47:31" itemprop="dateModified" datetime="2021-05-03T15:47:31+08:00">2021-05-03</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="financial-reporting-and-analysis-1">4. Financial Reporting and Analysis 1</h1>
+<h2 id="reading-19-introduction-to-financial-statement-analysis">Reading 19 Introduction to Financial Statement Analysis</h2>
+<h3 id="financial-statement-analysis-structure">0. Financial Statement Analysis Structure</h3>
+<h4 id="the-way-companies-provide-information">The Way Companies Provide Information</h4>
+<ul>
+<li>Financial position
+<ul>
+<li>时间点</li>
+</ul></li>
+<li>Financial performance
+<ul>
+<li>时间段</li>
+</ul></li>
+<li>Changes in financial position
+<ul>
+<li>结合点和段</li>
+</ul></li>
+</ul>
+<h4 id="role">Role</h4>
+<ul>
+<li>Making financial decisions</li>
+</ul>
+<h4 id="structure">Structure</h4>
+<ul>
+<li><p>Financial reporting</p>
+<p>财务报告</p>
+<ul>
+<li><p>Financial Statements</p>
+<p>财务报表（四表一附注），需要审计</p>
+<ul>
+<li>Balance sheet</li>
+<li>Statement of comprehensive income</li>
+<li>Cash flow statement</li>
+<li>Statement of changes in equity</li>
+<li>Footnotes</li>
+</ul></li>
+<li><p>Supplementary information</p>
+<ul>
+<li>Management discussion and analysis (MD&amp;A)</li>
+<li>Audit’s report 支撑财务报表的准确性</li>
+</ul></li>
+</ul></li>
+<li><p>Other information</p>
+<ul>
+<li>Proxy statement</li>
+<li>Conference call</li>
+<li>Press release</li>
+<li>Interim reports</li>
+</ul></li>
+</ul>
+<h3 id="balance-sheet-bs">1. Balance Sheet (B/S)</h3>
+<h4 id="format">Format</h4>
+$$
+<span class="math display">\[\begin{array}{c|c}
+
+\begin{array}{c}
+\textbf{Assets} \\
+\text{*Cash 现金流量表}\\
+（以上是资金的存在形式）
+\end{array} &amp;  
+
+\begin{array}{c} 
+\textbf{Liabilities}
+
+\end{array} \\&amp;
+
+\begin{array}{c}
+\hline
+\textbf{Equity}\\
+\text{Owner&#39;s Contribution}\\
+\text{*Retained Earnings 利润表}\\
+（以上是资金的来源）
+\end{array}
+
+
+\end{array}\]</span>
+<p>$$</p>
+<h4 id="features">Features</h4>
+<ul>
+<li><p>B/S表示主要的，剩下的I/S和C/F是补充B/S</p></li>
+<li><p>是存量表，衡量的是某一个时间点的经营状况</p></li>
+<li><p>会计恒等式 Asset = Liability + Equity</p></li>
+<li><p>Equity 也可以叫做 Net assets 或者 Residual interest，因为 E = A - L，但是L = A - E不对</p></li>
+<li><p>Double Entry 复试记账，每笔交易或者业务至少影响两个账户</p></li>
+<li><p>Accrual Basis 权责发生制，必须满足以下两个条件</p>
+<ul>
+<li><p>权利和义务已经发生转移</p></li>
+<li><p>收回款项可以确信</p></li>
+</ul></li>
+</ul>
+<h4 id="four-accounts">Four Accounts</h4>
+<ul>
+<li><p>卖东西，货已发，钱未收</p>
+<p>Equity: R/E+,</p>
+<p>Asset: Account Receivable (A/R)+</p>
+<p>钱到账</p>
+<p>Asset: A/R-</p>
+<p>Asset: Cash+</p></li>
+<li><p>买东西，货已拿，钱未付</p>
+<p>Asset: Inventory+</p>
+<p>liability: Account Payable+</p>
+<p>付钱</p>
+<p>liability: Account Payable-</p>
+<p>Asset: cash-</p></li>
+<li><p>卖订阅杂志</p>
+<p>Asset: Cash+</p>
+<p>Liability: Unearned Revenue+</p>
+<p>寄出杂志</p>
+<p>Liability: Unearned Revenue-</p>
+<p>Equity: R/E+</p></li>
+<li><p>买订阅杂志</p>
+<p>Asset: Cash-</p>
+<p>Asset: Prepaid Expense+</p>
+<p>收到杂志</p>
+<p>Asset: Prepaid Expense-</p>
+<p>Equity: R/E-</p></li>
+</ul>
+<h3 id="income-statement-is">2. Income Statement (I/S)</h3>
+<h4 id="features-1">Features</h4>
+<ul>
+<li>衡量某一段时间经营状况，Accrual Basis</li>
+<li>Net income is known as the <strong>bottom line</strong></li>
+</ul>
+<h4 id="relationship">Relationship</h4>
+<ul>
+<li>两张B/S和一张I/S勾稽</li>
+<li>Net income =
+<ul>
+<li>Dividend</li>
+<li><span class="math inline">\(\Delta\)</span> R/E</li>
+</ul></li>
+<li>BASE法则: Begin + Add - Subject = End</li>
+<li>Begin RE (B/S) + Net income (I/S) - Dividend (I/S) = End RE (B/S)</li>
+</ul>
+<h3 id="cash-flow-statement-cf">3. Cash Flow Statement (C/F)</h3>
+<ul>
+<li>Cash Basis 收付实现制</li>
+<li>CFO (Operating)</li>
+<li>CFI (Investment)</li>
+<li>CFF (Financing)</li>
+<li>勾稽关系
+<ul>
+<li>Begin Cash (B/S) + Change in cash balance (CFS) = End Cash (B/S)</li>
+</ul></li>
+</ul>
+<h3 id="statement-of-changes-in-equity">4. Statement of Changes in Equity</h3>
+<ul>
+<li>B/S中Equity每个科目的变动单独编制报表</li>
+</ul>
+<h3 id="footnotes">5. Footnotes</h3>
+<ul>
+<li>提供了Accounting method, Assumption, Estimation</li>
+</ul>
+<h3 id="supplementary-information">6. Supplementary Information</h3>
+<ul>
+<li>MD&amp;A
+<ul>
+<li>业务本质，对未来看法</li>
+<li>表外负债</li>
+</ul></li>
+<li>Audit report
+<ul>
+<li>独立第三方对财务报告提供reasonably assure，不能提供绝对保证</li>
+<li>对Internal controls provide opinion</li>
+<li>Auditor’s opinion
+<ul>
+<li>Unqualified opinion 不保留意见</li>
+<li>Qualified opinion 保留意见</li>
+<li>Adverse opinion 否定意见</li>
+<li>Disclaimer of opinion 无法给出意见（scope limitation）</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="other-information">7. Other Information</h3>
+<ul>
+<li>Quarterly report</li>
+<li>Proxy statement</li>
+<li>Press release</li>
+<li>SEC filling</li>
+<li>Conference call</li>
+</ul>
+<h2 id="reading-20-financial-reporting-standards">Reading 20 Financial Reporting Standards</h2>
+<h3 id="standard-setting-bodies">1. Standard-Setting Bodies</h3>
+<ul>
+<li>International Accounting Standards Board (IASB)
+<ul>
+<li>IFRS</li>
+</ul></li>
+<li>Financial Accounting Standards Board (FASB)
+<ul>
+<li>U.S. GAAP</li>
+</ul></li>
+</ul>
+<h3 id="regulatory-authorities">2. Regulatory Authorities</h3>
+<h4 id="authorities">Authorities</h4>
+<ul>
+<li>Securities and Exchange Commission (SEC) in USA</li>
+<li>International Organization of Securities Commissions (IOSCO)</li>
+</ul>
+<h4 id="iosco-objective">IOSCO Objective</h4>
+<ul>
+<li>Protect investor</li>
+<li>Ensure that markets are fair, efficient, and transparent</li>
+<li>Reduce systemic risk</li>
+</ul>
+<h3 id="sec-fillings">3. SEC Fillings</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Fillings</th>
+<th style="text-align: center;">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">S-1</td>
+<td style="text-align: center;">发股</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">DEF-14A</td>
+<td style="text-align: center;">proxy statement</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8-k</td>
+<td style="text-align: center;">重大事项公告</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10-k</td>
+<td style="text-align: center;">年报</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10-Q</td>
+<td style="text-align: center;">季报</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">144</td>
+<td style="text-align: center;">限售股解禁</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ifrs-characteristics">4. IFRS Characteristics</h3>
+<h4 id="two-fundamental-characteristics">Two Fundamental Characteristics</h4>
+<ul>
+<li>Relevance</li>
+<li>Faithful representation
+<ul>
+<li>Complete</li>
+<li>Neutral</li>
+<li>Free from error</li>
+</ul></li>
+</ul>
+<h4 id="four-enhancement-characteristics">Four Enhancement Characteristics</h4>
+<ul>
+<li>Comparability</li>
+<li>Verifiability</li>
+<li>Timeliness</li>
+<li>Understandability</li>
+</ul>
+<h3 id="general-features-of-financial-statements">5. General Features of Financial Statements</h3>
+<ul>
+<li>Going concern basis
+<ul>
+<li>永续经营假定</li>
+</ul></li>
+<li>Accrual basis of accounting
+<ul>
+<li>权责发生制</li>
+<li>对应 Cash basis 收付实现制</li>
+</ul></li>
+</ul>
+<h2 id="reading-21-understanding-income-statement">Reading 21 Understanding Income Statement</h2>
+<h3 id="components-and-format">1. Components and Format</h3>
+<h4 id="net-income-components">Net Income Components</h4>
+<ul>
+<li>Recurring item:
+<ul>
+<li>+/- Revenues (Ordinary expenses) +/- Other incomes (Other expenses) +/- Gains (Losses)</li>
+</ul></li>
+<li>Non-recurring
+<ul>
+<li>+/- Gain (Loss) from unusual or infrequent items</li>
+<li>+/- Gain (Loss) from discontinued operation</li>
+</ul></li>
+<li>前2行是Continuing operation，第3行是Discontinuing operation</li>
+<li>Revenue/Ordinary expense 主营业务</li>
+<li>Other incomes/Other expenses 其他业务</li>
+<li>Gain/Loss 炒股等</li>
+</ul>
+<h4 id="format-1">Format</h4>
+<p><span class="math display">\[
+\begin{array}{l}
+\text{Revenue 主营业务收入}\\
+-\text{COGS 主营业务成本 Cost of goods sold}\\\hline
+\text{Gross Profits}\\
+-\text{SG&amp;A (selling, general, admin)}\\\hline
+\text{Operating income}\\
++/- \text{Other income (Expense)}\\
++/- \text{Gain (Loss)}\\
++/- \text{Gain (Loss) from unusual or infrequent items}\\\hline
+\text{EBIT}\\
+-\text{Interest}\\
+-\text{Tax}\\\hline
+\text{NI from continuing operaton}\\
++/-\text{gain (loss) from discoutinued operation}\\\hline
+\text{NI}
+\end{array}
+\]</span></p>
+<h4 id="unusual-or-infrequent-items">Unusual or Infrequent Items</h4>
+<ul>
+<li>Impairments
+<ul>
+<li>减值</li>
+</ul></li>
+<li>Restructuring costs
+<ul>
+<li>重组费用</li>
+</ul></li>
+<li>G/L from the sales of assets
+<ul>
+<li>卖设备</li>
+</ul></li>
+<li>Changes in accounting policies are to be reported retrospectively</li>
+</ul>
+<h4 id="discontinued-operation-items">Discontinued Operation Items</h4>
+<ul>
+<li>卖分公司，决策后到执行前得到的收入 (phaseout period)</li>
+<li>卖分公司所得的收入属于Unusual or infrequent items</li>
+</ul>
+<h3 id="general-principles-of-revenueexpense-recognition">2. General Principles of Revenue/Expense Recognition</h3>
+<h4 id="revenue-recognition">Revenue Recognition</h4>
+<ul>
+<li>Accrual method of accounting</li>
+</ul>
+<h4 id="expense-recognition">Expense Recognition</h4>
+<ul>
+<li>Matching Principle (费用的确认要匹配收入)
+<ul>
+<li>COGS 确认主营业务收入同时结转已售商品成本</li>
+<li>Depreciation and amortization 确认收入时折旧</li>
+<li>Doubtful account R/E直接减掉有问题账户</li>
+<li>Warranties 根据历史经验估计保修费用</li>
+</ul></li>
+<li>Period Expenses
+<ul>
+<li>不能被匹配的费用</li>
+<li>记录在某一期间内</li>
+<li>比如行政管理费用</li>
+</ul></li>
+</ul>
+<h4 id="aggressive-accounting-or-conservative-accounting">Aggressive Accounting or Conservative Accounting</h4>
+<ul>
+<li>Aggressive
+<ul>
+<li>过早确认收入和过晚的确认费用</li>
+</ul></li>
+<li>Conservative
+<ul>
+<li>过晚确认收入和过早的确认费用</li>
+</ul></li>
+<li>前提是都要符合会计准则</li>
+<li>大部分企业都Aggressive</li>
+</ul>
+<h3 id="five-steps-in-recognizing-revenue">3. Five Steps in Recognizing Revenue</h3>
+<ul>
+<li>Identify the contract with consumer</li>
+<li>Identify the obligation in the contract</li>
+<li>Determine the transaction price</li>
+<li>Allocate the transaction price to the performance obligation in the contract</li>
+<li>Recognize revenue</li>
+</ul>
+<h3 id="basic-earnings-per-share-eps">4. Basic Earnings Per Share (EPS)</h3>
+<ul>
+<li><p>严格定义为每一股普通股股份所对应的利润，所以应该把 Preferred stock 减掉</p>
+<p><span class="math display">\[
+  EPS=\frac{NI-DIV_{\text{pref. stock}}}{\text{Weighted average number of common shares outstanding}}
+  \]</span></p>
+<ul>
+<li>增发（New issue）和回购（Repurchase）加权平均</li>
+<li>拆股和并股（2 for 1，1拆2；1 for 2，2并1），不做加权平均，对之前进行追溯处理</li>
+<li>Stock dividend，相当于拆股，比如10% stock dividend，则相当于10股拆11股</li>
+</ul></li>
+</ul>
+<h3 id="diluted-earnings-per-share">5. Diluted Earnings Per Share</h3>
+<ul>
+<li><p>复杂的资本结构需要计算Diluted EPS</p>
+<ul>
+<li>Convertible preferred stock</li>
+<li>Convertible debt</li>
+<li>Stock options / warrants</li>
+</ul></li>
+<li><p>如果行使权力后的EPS比Basic大，叫做Anti-dilutive，则Diluted EPS就等于Basic EPS</p></li>
+<li><p>Diluted EPS cannot be higher than the basic EPS</p></li>
+<li><p>要计算Basic EPS，取小的为Diluted EPS</p></li>
+<li><p>Convertible preferred stock</p>
+<p><span class="math display">\[
+  \text{Diluted EPS}=\frac{NI-DIV_{\text{Pref.}}+DIV_{\text{Conv. Pref.}}}{\text{Weighted average shares} + \text{Shares form conversion of conv. pref.}}
+  \]</span></p></li>
+<li><p>Convertible debt</p>
+<p><span class="math display">\[
+  \text{Diluted EPS} = \frac{NI-DIV_{\text{Pref.}}+\text{Conv. Debt Interest}(1-t)}{\text{Weighted average shares} +\text{Shares from conversion of conv. debt}}
+  \]</span></p></li>
+<li><p>Stock options / warrants</p>
+<p><span class="math display">\[
+  \text{Diluted EPS}=\frac{NI-DIV_\text{Pref.}}{\text{Weighted average shares} + \text{库存股}}
+  \]</span></p>
+<ul>
+<li><p>库存股(Treasury stock) = 发出股票-收到钱/股票全年平均价格</p>
+<ul>
+<li>本质：当公司收到期权人行权后会拿行权人给的钱去市场上回购股票</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="analysis-of-income-statement">6. Analysis of Income Statement</h3>
+<ul>
+<li>Common size analysis
+<ul>
+<li>Revenue设为100%</li>
+<li>分析公司成本结构</li>
+</ul></li>
+</ul>
+<h3 id="comprehensive-income">7. Comprehensive Income</h3>
+<h4 id="where-is-ci">Where is CI</h4>
+<ul>
+<li>OCI可以放在利润表后边，也可以单独成表</li>
+</ul>
+<h4 id="ci-includes">CI Includes</h4>
+<ul>
+<li>NI + OCI = CI</li>
+</ul>
+<h4 id="oci-components">OCI Components</h4>
+<ul>
+<li><strong>Foreign currency translation</strong> gains and losses</li>
+<li>Adjustments for minimum pension liability (<strong>DB plan</strong>)</li>
+<li>Unrealized gains and losses from <strong>cash flow hedging</strong> derivatives</li>
+<li>Unrealized gains and losses from <strong>available-for-sale</strong> securities</li>
+<li><strong>Revaluation surplus for long-lived asset</strong> (IFRS only)</li>
+</ul>
+<h2 id="reading-22-understanding-the-bs">Reading 22 Understanding the B/S</h2>
+<h3 id="balance-sheet-format-and-components">1. Balance Sheet Format and Components</h3>
+<h4 id="asset-structure">Asset Structure</h4>
+$$
+<span class="math display">\[\begin{array}{rcl}
+    \text{Asset}\left\{ 
+    \begin{array}{l}
+    \text{Current Asset}
+    \\
+    \text{Non-Current Asset}\left\{
+    \begin{array}{l}
+    \text{Tangible Asset (PPE)}\\
+    
+    
+    \text{Intangible Asset}\left\{
+    \begin{array}{l}
+    \text{Identifiable Asset (Patent)}\\
+    
+    \text{Unidentifiable Asset (Goodwill)}
+    \end{array}
+    \right.
+    \end{array}
+    \right.
+    \end{array}
+    \right.
+    \end{array}\]</span>
+<p>$$</p>
+<h4 id="how-to-determine-current-asset">How to Determine Current Asset</h4>
+<ul>
+<li>通过max{1年，Operating Circle}判断Current Asset还是Non-Current Asset</li>
+</ul>
+<h4 id="asset-includes">Asset Includes</h4>
+<ul>
+<li><p>Current Asset</p>
+<ul>
+<li>Cash</li>
+<li>Account receivable
+<ul>
+<li>Allowance for bad debt（备抵账户）</li>
+</ul></li>
+<li>Inventory</li>
+<li>Short-term marketable securities</li>
+</ul></li>
+<li><p>Non-current Asset</p>
+<ul>
+<li>Property plant equipment (PPE)
+<ul>
+<li>Accumulated depreciation</li>
+</ul></li>
+<li>Intangible assets
+<ul>
+<li>Patents, Goodwill (不摊销)</li>
+<li>Accumulated amortization</li>
+</ul></li>
+<li>Long-term investment</li>
+<li>Deferred tax assets (DTA)</li>
+</ul></li>
+</ul>
+<h4 id="liability-includes">Liability Includes</h4>
+<ul>
+<li>Current liability
+<ul>
+<li>Accounts payable</li>
+<li>Unearned revenue</li>
+<li>Accrued Expense</li>
+<li>Tax payable</li>
+</ul></li>
+<li>Non-current liability
+<ul>
+<li>Long-term debt
+<ul>
+<li>Current portion of long-term debt 属于current liability</li>
+</ul></li>
+<li>Deferred tax liability (DTL)</li>
+</ul></li>
+<li>Contingent liability</li>
+<li>不是 liability
+<ul>
+<li>例如：被告上法庭可能需要赔钱</li>
+</ul></li>
+</ul>
+<h4 id="owners-equity-includes">Owner’s Equity Includes</h4>
+<ul>
+<li>Capital
+<ul>
+<li>股本，一元一股</li>
+</ul></li>
+<li>Additional paid in
+<ul>
+<li>超过股本的钱</li>
+</ul></li>
+<li>Treasury
+<ul>
+<li>库存股（备抵科目，对上边两个，回购股票这里列负数）</li>
+</ul></li>
+<li>RE</li>
+<li>AOCI</li>
+<li>Minority interest</li>
+</ul>
+<h3 id="analysis-balance-sheet">2. Analysis Balance Sheet</h3>
+<ul>
+<li>Liquidity 短期偿债能力</li>
+<li>Solvency 长期偿债能力</li>
+<li>Common size comparison
+<ul>
+<li>把total asset设为100%</li>
+</ul></li>
+</ul>
+<h3 id="financial-assets">3. Financial Assets</h3>
+<h4 id="classification">Classification</h4>
+<ul>
+<li>Held-to-Maturity （HTM）
+<ul>
+<li>以持有为目的</li>
+<li>债券</li>
+</ul></li>
+<li>Trading Security
+<ul>
+<li>以短期获利为目的</li>
+<li>债券、股票</li>
+</ul></li>
+<li>Available-for-sale
+<ul>
+<li>不确定以什么为目的</li>
+<li>债券、股票</li>
+</ul></li>
+</ul>
+<h4 id="how-to-recognize">How to Recognize</h4>
+<ul>
+<li><table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Trading Securities</th>
+<th style="text-align: center;">Available-for-sale Securities</th>
+<th style="text-align: center;">HTM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Recognition</td>
+<td style="text-align: center;">Fair Value</td>
+<td style="text-align: center;">Fair Value</td>
+<td style="text-align: center;">Amortized Cost</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Unrealized G/L</td>
+<td style="text-align: center;">I/S</td>
+<td style="text-align: center;">OCI</td>
+<td style="text-align: center;">Not report</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Realized G/L</td>
+<td style="text-align: center;">I/S</td>
+<td style="text-align: center;">I/S</td>
+<td style="text-align: center;">I/S</td>
+</tr>
+</tbody>
+</table></li>
+<li>Available-for-sale 金融资产卖出时，从AOCI账户进入利润表，最后反映在RE</li>
+</ul>
+<h2 id="reading-23-understanding-cf">Reading 23 Understanding C/F</h2>
+<h3 id="cash-flow-classification-under-gaap-and-ifrs">1. Cash Flow Classification under GAAP and IFRS</h3>
+<h4 id="components-and-format-1">Components and Format</h4>
+<ul>
+<li><p>US GAAP Cash Flow Classification</p></li>
+<li><p>CFO</p></li>
+<li><p>经营活动</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Inflow</th>
+<th style="text-align: center;">Outflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Cash received from customers</td>
+<td style="text-align: center;">Cash paid to suppliers</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Sale from trading securities</td>
+<td style="text-align: center;">Acquisition of trading securities</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Interest received</td>
+<td style="text-align: center;">Interest paid</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dividend received</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Taxes paid</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>CFI</p>
+<ul>
+<li>投资活动（固定资产，其他投资）</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Inflow</th>
+<th style="text-align: center;">Outflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Sale from fixed asset</td>
+<td style="text-align: center;">Acquisition of fixed asset</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">sale from non-trading investment</td>
+<td style="text-align: center;">Acquisition of non-trading investment</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Principle received from loans made to others</td>
+<td style="text-align: center;">Loans made to others</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>CFF</p>
+<ul>
+<li>融资活动</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Inflow</th>
+<th style="text-align: center;">Outflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Principal amount of debt issued</td>
+<td style="text-align: center;">Principal paid on debt</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Issuing shares</td>
+<td style="text-align: center;">Repurchase shares</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Dividend paid</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<h4 id="gaap-and-ifrs-comparison">GAAP and IFRS Comparison</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">US GAAP</th>
+<th style="text-align: center;">IFRS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Interest received</td>
+<td style="text-align: center;">CFO</td>
+<td style="text-align: center;">CFO/CFI</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dividend received</td>
+<td style="text-align: center;">CFO</td>
+<td style="text-align: center;">CFO/CFI</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Interest paid</td>
+<td style="text-align: center;">CFO</td>
+<td style="text-align: center;">CFO/CFF</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dividend paid</td>
+<td style="text-align: center;">CFF</td>
+<td style="text-align: center;">CFO/CFF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Tax paid</td>
+<td style="text-align: center;">CFO</td>
+<td style="text-align: center;">CFO/CFI/CFF</td>
+</tr>
+</tbody>
+</table>
+<h3 id="direct-method-for-calculating-cfo">2. Direct Method for Calculating CFO</h3>
+<ul>
+<li>+ Cash from customer
+<ul>
+<li>Beginning A/R + Revenue - Cash received = Ending A/R</li>
+</ul></li>
+<li>- Cash paid to suppliers
+<ul>
+<li>Beginning A/P + Purchase - Cash paid = Ending A/P</li>
+<li>Beginning Inventory + Purchase - COGS = Ending Inventory</li>
+</ul></li>
+<li>- Cash paid to employees
+<ul>
+<li>Beginning wage payable + Wage expense - Cash paid = Ending wage payable</li>
+</ul></li>
+<li>- Interest paid
+<ul>
+<li>Beginning interest payable + Interest expense - Cash paid = Ending interest payable</li>
+</ul></li>
+<li>- Taxes paid
+<ul>
+<li>Beginning tax payable + Taxable income <span class="math inline">\(\times\)</span> Tax rate - Cash paid = Ending tax payable</li>
+<li>所得税费用(tax expense) = 应纳所得税(taxable income <span class="math inline">\(\times\)</span> tax rate) + <span class="math inline">\(\Delta DTL\)</span> - <span class="math inline">\(\Delta DTA\)</span></li>
+</ul></li>
+</ul>
+<h3 id="indirect-method-for-calculating-cfo">3. Indirect Method for Calculating CFO</h3>
+<ul>
+<li>Net income
+<ul>
+<li>Cash = E + L - <span class="math inline">\(A&#39;\)</span></li>
+</ul></li>
+<li>I/S
+<ul>
+<li>+ None cash charge (Depreciation)</li>
+<li>+/- None operating items (Gain from sailing old machine)</li>
+</ul></li>
+<li>B/S
+<ul>
+<li>长期资产和负债与CFO无关</li>
+<li>- Increase in current asset accounts (A/R, Inventory)</li>
+<li>+ Increase in current liability accounts (A/P, Tax payable)</li>
+</ul></li>
+</ul>
+<h3 id="direct-method-for-calculating-cfi">4. Direct Method for Calculating CFI</h3>
+<ul>
+<li><p>买卖PPE：</p>
+<p>CFI = Inflow（Selling price）- Outflow（Purchase）</p>
+<ul>
+<li><p>Selling price= G/L + <span class="math inline">\(NBV_{\text{disposal}}\)</span></p>
+<p><span class="math inline">\(NBV_{\text{disposal}}\)</span> = Gross disposal - Acc. Depreciation</p></li>
+<li><p><span class="math inline">\(NBV_{\text{total, begin}} + \text{Purchase} - \text{S} = NBV_{\text{total, end}}\)</span></p>
+<ul>
+<li><p>S:</p>
+<p><span class="math inline">\(NBV_{\text{disposal}}\)</span></p>
+<p>Depreciation expense</p>
+<p>Impairment （基本不考 ）</p></li>
+</ul></li>
+</ul>
+<p>CFI = G/L - Depreciation expense - $NBV_{} $</p></li>
+</ul>
+<h3 id="direct-method-for-calculating-cff">5. Direct Method for Calculating CFF</h3>
+<ul>
+<li>Review long-term debt and stock</li>
+<li>Dividend paid
+<ul>
+<li>Begin dividend payable + Dividend declared - Dividend paid = Ending dividend payable</li>
+<li>Begin R/E + Net income - dividend declared = End R/E</li>
+</ul></li>
+</ul>
+<h3 id="analysis-of-cash-flow">6. Analysis of Cash Flow</h3>
+<ul>
+<li><p>Common size analysis</p>
+<p><span class="math display">\[
+  \frac{\text{Cash flow}}{\text{Revenue}}
+  \]</span> <span class="math display">\[
+  \frac{\text{Cash inflow}}{\text{Total cash inflow}}
+  \]</span></p>
+<p><span class="math display">\[
+  \frac{\text{Cash outflow}}{\text{Total cash outflow}}
+  \]</span></p></li>
+</ul>
+<h3 id="free-cash-flow">7. Free Cash Flow</h3>
+<ul>
+<li><p>能够自由使用的Cash flow</p></li>
+<li><p>Free cash flow to firm (FCFF)</p>
+<ul>
+<li>FCFF =NI + None cash charge (depreciation) - WC Inv. - FC Inv. + [Interest <span class="math inline">\(\times\)</span> (1-tax rate)]
+<ul>
+<li>CA - CL = WC</li>
+<li>FCFF = CFO - FC Inv. + [Interest <span class="math inline">\(\times\)</span> (1-tax rate)]</li>
+</ul></li>
+</ul></li>
+<li><p>Free cash flow to equity (FCFE)</p>
+<ul>
+<li>FCFE = FCFF - [interest <span class="math inline">\(\times\)</span> (1-tax rate)] + Net debt borrowing
+<ul>
+<li>FCFE = CFO - FC Inv. + Net debt borrowing</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="reading-24-financial-analysis-techniques">Reading 24 Financial Analysis Techniques</h2>
+<h3 id="structure-1">1. Structure</h3>
+<ul>
+<li>Ratio
+<ul>
+<li>Activity ratio</li>
+<li>Liquidity ratio</li>
+<li>Solvency ratio</li>
+<li>Profitability ratio
+<ul>
+<li>Dupont Analysis</li>
+</ul></li>
+</ul></li>
+<li>Other issues</li>
+</ul>
+<h3 id="activity-ratio">2. Activity Ratio</h3>
+<ul>
+<li><p>一般情况 xx turnover = Revenue / Average xx</p></li>
+<li><p><strong>Inventory turnover</strong> = COGS / Average inventory</p>
+<ul>
+<li>Days of inventory on hand (DOH) = 365 / Inventory turnover</li>
+</ul></li>
+<li><p><strong>Receivable turnover</strong> = Revenue / Average receivable</p>
+<ul>
+<li>Days of sales outstanding (DSO) = 365 / Receivable turnover</li>
+</ul></li>
+<li><p><strong>Payable turnover</strong> = Purchase / Average payable</p>
+<ul>
+<li>Begin Inventory + Purchase - COGS = End Inventory</li>
+<li>Number of days of payable = 365 / Payable turnover</li>
+</ul></li>
+<li><p>Total asset turnover =Revenue / Average total asset</p></li>
+<li><p>Fix asset turnover = Revenue / Average net fixed asset</p></li>
+<li><p>Working capital turnover = Revenue / Average working capital</p>
+<ul>
+<li>working capital = CA - CL</li>
+</ul></li>
+<li><p><strong>Operating circle</strong> = DOH + DSO</p></li>
+<li><p><strong>Cash conversion cycle (Net operating circle)</strong> = DOH + DSO - Number of days of payable</p></li>
+</ul>
+<h3 id="liquidity-ratio">3. Liquidity Ratio</h3>
+<ul>
+<li>Current ratio = Current assets / Current liabilities</li>
+<li>Quick ratio = (Cash + Short-term marketable security + Receivable) / Current liabilities
+<ul>
+<li>速动比率</li>
+<li>拿掉了inventory</li>
+</ul></li>
+<li>Cash ratio = (Cash + Short-term marketable security) / Current liabilities
+<ul>
+<li>现金比率</li>
+</ul></li>
+<li>Defensive interval = (Cash + Short-term marketable security + Receivable) / Daily cash expenditures</li>
+</ul>
+<h3 id="solvency-ratio">4. Solvency Ratio</h3>
+<ul>
+<li><p>Debt-to-equity ratio = Total debt / Total equity</p></li>
+<li><p>Debt-to-capital ratio = Total debt / (Total debt + Total equity)</p>
+<ul>
+<li>去掉了 Non-debt 的 Liability</li>
+<li>不是Equity里的的capital（股本）</li>
+<li>这里是资本的意思</li>
+</ul></li>
+<li><p>Debt-to-asset ratio</p></li>
+<li><p>Financial leverage = Average total asset / Average total equity</p></li>
+<li><p>Coverage ratio</p>
+<ul>
+<li>Interest coverage = EBIT / Interest</li>
+<li>Fixed charge coverage = (EBIT + Lease payments) / (Interest + Lease payments)
+<ul>
+<li>Lease payments 每年必须支出的部分</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="profitability-ratio">5. Profitability Ratio</h3>
+<ul>
+<li><p>I/S items</p>
+<ul>
+<li>Gross profit margin = Gross profit / Net revenue
+<ul>
+<li>毛利率</li>
+</ul></li>
+<li>Operating profit margin = EBIT / Net revenue</li>
+<li>Pretax margin = EBT / Net revenue</li>
+<li>Net profit margin = Net income / Net revenue
+<ul>
+<li>净利率</li>
+</ul></li>
+</ul></li>
+<li><p>B/S items</p>
+<ul>
+<li>Return on asset (ROA) = NI / Average total assets
+<ul>
+<li>Operating ROA = EBIT / Average total assets</li>
+</ul></li>
+<li>Return on equity (ROE) = NI / Average total equity</li>
+</ul></li>
+<li><p>DuPoint Analysis</p>
+<ul>
+<li><p>Two parts <span class="math display">\[
+ROE=\frac{\text{Net income}}{\text{Total asset}}\times \frac{\text{Total asset}}{\text{Net income}}=ROA\times \text{Financial Leverage}
+\]</span></p></li>
+<li><p>Three parts <span class="math display">\[
+ROE=\frac{\text{Net income}}{\text{Revenue}}\times \frac{\text{Revenue}}{\text{Total asset}}\times \frac{\text{Total asset}}{\text{Net income}}\\=\text{Net profit margin}\times \text{Asset turnover}\times \text{Financial leverage}
+\]</span></p></li>
+<li><p>Five parts <span class="math display">\[
+ROE=\frac{\text{Net income}}{EBT}\times \frac{EBT}{EBIT}\times\frac{EBIT}{\text{Revenue}}\times \frac{\text{Revenue}}{\text{Total asset}}\times \frac{\text{Total asset}}{\text{Net income}}\\
+=\text{Tax burden }(1-t)\times \text{Interest burden }(1-t&#39;) \times \text{Operating profit margin} \times \text{Asset turnover}\times \text{Financial Leverage}
+\]</span></p></li>
+</ul></li>
+</ul>
+<h3 id="equity-credit-analysis-and-segment-analysis">6. Equity, Credit Analysis and Segment Analysis</h3>
+<ul>
+<li>Equity Analysis
+<ul>
+<li>Dividend payout ratio = Dividend / Net income</li>
+<li>Retention ratio = 1 - Dividend Payout ratio</li>
+<li><strong>Sustainable growth rate (g)</strong> = ROE <span class="math inline">\(\times\)</span> Retention ratio</li>
+</ul></li>
+<li>Credit Analysis
+<ul>
+<li>Z - score
+<ul>
+<li>Z &lt; 1.81 可能破产</li>
+</ul></li>
+</ul></li>
+<li>Segment reporting
+<ul>
+<li>如果有一个分公司 Revenue, Asset 或者 Profit 超过10%，需要在Footnotes里披露</li>
+</ul></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/3. Economics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/06/01/CFA LEVEL1/3. Economics/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-09 12:10:15" itemprop="dateModified" datetime="2021-07-09T12:10:15+08:00">2021-07-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="economics">3. Economics</h1>
+<h2 id="reading-12-topics-in-demand-and-supply-analysis">Reading 12 Topics in Demand and Supply Analysis</h2>
+<h3 id="demand-function">1. Demand Function</h3>
+<ul>
+<li><span class="math inline">\(Q_D^{X}=f(P_X,I,P_Y)\)</span>
+<ul>
+<li><span class="math inline">\(P_X\)</span> denotes the price of goods <span class="math inline">\(X\)</span></li>
+<li>负系数</li>
+<li><span class="math inline">\(I\)</span> denotes the income</li>
+<li>正系数：Normal goods</li>
+<li>负系数：Inferior goods</li>
+<li><span class="math inline">\(P_Y\)</span> denotes the price of goods <span class="math inline">\(Y\)</span>
+<ul>
+<li>正系数：替代品</li>
+<li>负系数：互补品</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="supply-function">2. Supply Function</h3>
+<ul>
+<li><span class="math inline">\(Q_S^X = f(P_X,W,P_Y)\)</span>
+<ul>
+<li><span class="math inline">\(P_X\)</span> denotes the price of goods <span class="math inline">\(X\)</span>
+<ul>
+<li>正系数</li>
+</ul></li>
+<li><span class="math inline">\(W\)</span> denotes the wage
+<ul>
+<li>负系数</li>
+</ul></li>
+<li><span class="math inline">\(P_Y\)</span> denotes the price of 原料
+<ul>
+<li>负系数</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="movements-and-shifts">3. Movements and Shifts</h3>
+<ul>
+<li>Price change
+<ul>
+<li>Movements along demand and supply curves</li>
+</ul></li>
+<li>Other factors change
+<ul>
+<li>Shifts in demand and supply curves</li>
+</ul></li>
+</ul>
+<h3 id="equilibrium-surplus-and-deadweight-loss">4. Equilibrium, Surplus and Deadweight Loss</h3>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210430103954911.png" alt="image-20210430103954911" style="zoom:25%;"></p>
+<ul>
+<li><p><span class="math inline">\(P^*\)</span>: Equilibrium price</p></li>
+<li><p><span class="math inline">\(Q^*\)</span>: Equilibrium quantity</p></li>
+<li><p>CS: Consumer Surplus</p>
+<ul>
+<li>支付意愿的价格-实际价格</li>
+</ul></li>
+<li><p>PS: Producer Surplus</p>
+<ul>
+<li>实际价格-成本</li>
+</ul></li>
+<li><p>Total Surplus = CS+PS</p>
+<ul>
+<li>就是社会福利</li>
+</ul></li>
+<li><p>Deadweight Loss</p>
+<ul>
+<li>生产过量</li>
+<li>生产不足</li>
+</ul></li>
+</ul>
+<h3 id="elasticity">5. Elasticity</h3>
+<h4 id="price-elasticity">Price elasticity</h4>
+<ul>
+<li><span class="math inline">\(E_{P_X}=\frac{\Delta Q/Q}{\Delta P/P}=\frac{\Delta Q}{\Delta P}\frac{P}{Q}\)</span>
+<ul>
+<li>大于1，弹性大</li>
+<li>小于1，弹性小</li>
+</ul></li>
+<li>垂直线：Perfectly inelastic
+<ul>
+<li>刚需（胰岛素）</li>
+</ul></li>
+<li>水平线：Perfectly elastic</li>
+<li>Unitary elasticity：弹性等于1的点</li>
+</ul>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210303121830766.png" alt="image-20210303121830766" style="zoom:30%;"></p>
+<ul>
+<li>弹性等于1，Revenue最高
+<ul>
+<li>Revenue = PQ</li>
+<li>弹性大，降价，Q变动比P快</li>
+<li>弹性小，涨价，P变动比Q快</li>
+</ul></li>
+</ul>
+<h4 id="income-elasticity">Income Elasticity</h4>
+<ul>
+<li>Positive: Normal good
+<ul>
+<li>大于1：Luxury good</li>
+<li>小于1：Necessities</li>
+</ul></li>
+<li>Negative: Inferior good</li>
+</ul>
+<h4 id="cross-elasticity">Cross Elasticity</h4>
+<ul>
+<li>Negative：互补品</li>
+<li>Positive：替代品</li>
+<li>计算相同</li>
+</ul>
+<h3 id="substitution-effect-and-income-effect">6. Substitution Effect and Income Effect</h3>
+<h4 id="substitution-effect">Substitution effect</h4>
+<ul>
+<li>Price下降，数量上升</li>
+</ul>
+<h4 id="income-effect">Income effect</h4>
+<ul>
+<li>Price下降，相当于收入提高
+<ul>
+<li>如果是normal goods，则数量上升</li>
+<li>若果是inferior goods，
+<ul>
+<li>Normal inferior good: substitution effect强，上升</li>
+<li>Giffen good, 特殊的inferior good，income effect强，下降（饥荒时期口粮是Giffen商品）</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="veblen-goods">Veblen Goods</h4>
+<ul>
+<li><p>高端奢侈品（超跑）</p></li>
+<li><p>价格越高，数量越大</p></li>
+<li><p>与Giffen goods相比</p>
+<ul>
+<li>不能被经济学解释</li>
+<li>Veblen是高端奢侈品(conspicuous good，彰显地位的商品)，Giffen是inferior good</li>
+</ul></li>
+</ul>
+<h3 id="profit-product-revenue-and-costs">7. Profit, Product, Revenue and Costs</h3>
+<h4 id="profit-classification">Profit Classification</h4>
+<ul>
+<li><p>Economic profit = abnormal profit = 超额利润</p></li>
+<li><p>Economic profit = accounting profit-implicit costs = total revenue - total economic costs <span class="math display">\[
+\text{Revenue}\left\{\begin{array}{rl}
+\text{accounting profit}&amp;\left\{\begin{array}{l}\text{economic profit (abnormal profit)}\\
+\text{implicit cost (normal profit)}\end{array}\right.\\
+\text{acounting cost} &amp; \text{explicit cost}\\
+\end{array}\right.
+\]</span></p>
+<ul>
+<li><p>Economic cost = implicit cost + explicit cost</p></li>
+<li><p>Implicit cost 包含资金成本和人力成本</p></li>
+</ul></li>
+</ul>
+<h4 id="product">Product</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210429213908416.png" alt="image-20210429213908416" style="zoom:25%;"></p>
+<ul>
+<li>Key terms
+<ul>
+<li>Total product (TP)</li>
+<li>Average product (AP)
+<ul>
+<li>单位劳动力的产量</li>
+</ul></li>
+<li>Marginal product (MP)
+<ul>
+<li>新增带来的新增</li>
+</ul></li>
+</ul></li>
+<li>Law of diminishing marginal returns
+<ul>
+<li>MP是TP的斜率，MP=0时，TP最大</li>
+<li>MP&gt;AP，AP 上升</li>
+<li>MP=AP，AP最大</li>
+<li>MP&lt;AP，AP减小</li>
+</ul></li>
+</ul>
+<h4 id="revenue">Revenue</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210429214153099.png" alt="image-20210429214153099" style="zoom:25%;"></p>
+<ul>
+<li><p>Key terms</p>
+<ul>
+<li>Total Revenue (TR)
+<ul>
+<li><span class="math inline">\(P\times Q\)</span></li>
+</ul></li>
+<li>Average Revenue (AR)</li>
+<li>Marginal Revenue (MR)</li>
+</ul></li>
+<li><p>Under perfect competition</p>
+<ul>
+<li>AR=MR=P=D</li>
+</ul></li>
+<li><p>Under imperfect competition</p>
+<ul>
+<li><span class="math inline">\(R=PQ\\ MR=\frac{\Delta P}{\Delta Q}Q+P= P(1+\frac{Q}{P}\frac{\Delta P}{\Delta Q})=P\left[1+\frac{1}{E_p}\right]\)</span>
+<ul>
+<li>其中<span class="math inline">\(E_p\)</span> 是负数</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="costs">Costs</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210429214540852.png" alt="image-20210429214540852" style="zoom:25%;"></p>
+<ul>
+<li><p>Key terms</p>
+<ul>
+<li>Short term
+<ul>
+<li>有固定成本</li>
+</ul></li>
+<li>Long term
+<ul>
+<li>没有固定成本</li>
+</ul></li>
+<li>Total cost = Total fixed cost (TFC) + Total variable cost (TVC)</li>
+<li>Average total cost (ATC)</li>
+<li>Average variable cost (AVC)</li>
+<li>Marginal Cost (MC)
+<ul>
+<li>MC和AVC交在AVC最低点</li>
+<li>MC和ATC交在ATC最低点</li>
+</ul></li>
+</ul></li>
+<li><p>Profit maximization</p></li>
+<li><p>TR-TC最大</p></li>
+<li><p>MR=MC</p></li>
+</ul>
+<h4 id="breakeven-point-and-shutdown-point">Breakeven point and shutdown point</h4>
+<ul>
+<li><p>Breakeven point</p>
+<ul>
+<li>AR=ATC</li>
+<li>短期stay in market，长期exit market</li>
+</ul></li>
+<li><p>Shutdown point</p>
+<ul>
+<li>AR=AVC</li>
+</ul></li>
+<li><p>Perfect competition</p>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210429215023662.png" alt="image-20210429215023662" style="zoom:25%;"></p></li>
+</ul>
+<h4 id="economics-of-scale-and-diseconomies-of-scale-in-long-run">Economics of Scale and Diseconomies of Scale in Long Run</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210429215440400.png" alt="image-20210429215440400" style="zoom:25%;"></p>
+<ul>
+<li>Long-run average total cost curve</li>
+</ul>
+<h2 id="reading-13-the-firm-and-market-structures">Reading 13 The Firm and Market Structures</h2>
+<table>
+<colgroup>
+<col style="width: 19%">
+<col style="width: 12%">
+<col style="width: 18%">
+<col style="width: 22%">
+<col style="width: 16%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Number of firms</th>
+<th style="text-align: center;">Difference of product</th>
+<th style="text-align: center;">difficulty to enter or leave</th>
+<th style="text-align: center;">Pricing Power</th>
+<th style="text-align: center;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Perfect competition</td>
+<td style="text-align: center;">Many</td>
+<td style="text-align: center;">Same</td>
+<td style="text-align: center;">Easy</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Agriculture</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Monopolistic competition</td>
+<td style="text-align: center;">Many</td>
+<td style="text-align: center;">Some difference</td>
+<td style="text-align: center;">Relatively easy</td>
+<td style="text-align: center;">Some</td>
+<td style="text-align: center;">Toothpaste</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Oligopoly</td>
+<td style="text-align: center;">Many&gt; &gt;Single</td>
+<td style="text-align: center;">Little or no difference</td>
+<td style="text-align: center;">Difficult</td>
+<td style="text-align: center;">Some or considerable</td>
+<td style="text-align: center;">Automotive oil</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Monopoly</td>
+<td style="text-align: center;">Single</td>
+<td style="text-align: center;">No substitute</td>
+<td style="text-align: center;">No way</td>
+<td style="text-align: center;">Considerable</td>
+<td style="text-align: center;">Electricity</td>
+</tr>
+</tbody>
+</table>
+<h3 id="perfect-competition">1.Perfect Competition</h3>
+<h4 id="feature">Feature</h4>
+<ul>
+<li>P=D=MR=AR</li>
+</ul>
+<h4 id="short-run">Short run</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210430130455141.png" alt="image-20210430130455141" style="zoom:25%;"></p>
+<h4 id="long-run">Long run</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210430130600288.png" alt="image-20210430130600288" style="zoom:25%;"></p>
+<h3 id="monopolistic-competition">2. Monopolistic Competition</h3>
+<h4 id="feature-1">Feature</h4>
+<ul>
+<li><p>Differentiated product</p></li>
+<li><p>Product development and marketing</p>
+<ul>
+<li>Innovation</li>
+<li>Brand names</li>
+<li>Advertising</li>
+</ul></li>
+</ul>
+<h4 id="short-run-1">Short-run</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210430131023093.png" alt="image-20210430131023093" style="zoom:25%;"></p>
+<h4 id="long-run-1">Long-run</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210430131527933.png" alt="image-20210430131527933" style="zoom:25%;"></p>
+<h3 id="oligopoly">3. Oligopoly</h3>
+<h4 id="feature-2">Feature</h4>
+<ul>
+<li>Interdependence among competitors</li>
+</ul>
+<h4 id="models">Models</h4>
+<ul>
+<li><p>Kinked demand curve model</p>
+<ul>
+<li><p>涨价其他厂商不跟涨</p></li>
+<li><p>降价其他厂商跟降价</p>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210430132220157.png" alt="image-20210430132220157" style="zoom:25%;"></p></li>
+<li><p>模型问题是无法定价</p></li>
+</ul></li>
+<li><p>Cournot model</p></li>
+<li><p>Nash Equilibrium Model</p>
+<ul>
+<li><p>每个人都选择对自己最有利的</p></li>
+<li><p>寡头市场倾向于想collusion（串谋），一起宰消费者，但串谋倾向于失败</p></li>
+</ul></li>
+<li><p>Dominant firm model</p>
+<ul>
+<li><p>主导厂商定价</p></li>
+<li><p>如果其他小厂商降价，则主导厂商份额会上升（因为会淘汰小厂商）</p></li>
+<li><p>长期看，主导厂商份额会下降，因为有利润，会有新的小厂商进入</p></li>
+</ul></li>
+</ul>
+<h3 id="monopoly">4. Monopoly</h3>
+<h4 id="type-of-barrier">Type of Barrier</h4>
+<ul>
+<li>Legal barrier：政府许可，专利等</li>
+<li>Natural barrier：一家供货成本最低</li>
+</ul>
+<h4 id="feature-3">Feature</h4>
+<ul>
+<li>长短期都会存在超额利润</li>
+<li>会存在deadweight loss</li>
+</ul>
+<h4 id="price-discrimination">Price Discrimination</h4>
+<ul>
+<li>增加社会福利</li>
+<li>Classification
+<ul>
+<li>First-degree 对每个人征收他愿意出的最高价格</li>
+<li>Second-degree 对质量和数量价格歧视</li>
+<li>Third-degree 对人群特征价格歧视（学生票，老人票）</li>
+</ul></li>
+</ul>
+<h4 id="government-regulation">Government Regulation</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/image-20210430132922948.png" alt="image-20210430132922948" style="zoom:25%;"></p>
+<ul>
+<li>Q1
+<ul>
+<li>No regulation</li>
+</ul></li>
+<li>Q2
+<ul>
+<li>ATC=D</li>
+<li>TR=TC</li>
+</ul></li>
+<li>Q3
+<ul>
+<li>MC=D</li>
+<li>政府补贴</li>
+</ul></li>
+</ul>
+<h3 id="concentration-measure">5. Concentration Measure</h3>
+<ul>
+<li>N-firm Concentration Ratio
+<ul>
+<li>最大N家市场份额</li>
+<li>对大公司收购兼并不敏感</li>
+</ul></li>
+<li>HHI
+<ul>
+<li>前N家市场份额的平方数相加</li>
+</ul></li>
+<li>两个方法的缺点
+<ul>
+<li>只能看到历史，没有前瞻性</li>
+<li>Barrier to entry看不到</li>
+</ul></li>
+</ul>
+<h2 id="reading-14-aggregate-output-prices-and-economic-growth">Reading 14 Aggregate Output, Prices, and Economic Growth</h2>
+<h3 id="gdp">1. GDP</h3>
+<h4 id="definition">Definition</h4>
+<ul>
+<li><p><strong>Total market value</strong> of <strong>final goods and services produced</strong> in <strong>a country</strong> within <strong>a certain period of time</strong></p></li>
+<li><p>Exception</p>
+<ul>
+<li>Rent of own house
+<ul>
+<li>用租金核算</li>
+</ul></li>
+<li>Government services
+<ul>
+<li>用成本核算</li>
+</ul></li>
+</ul></li>
+<li><p>GNP是国民概念，GDP是地理概念</p></li>
+</ul>
+<h4 id="nominal-gdp-and-real-gdp">Nominal GDP and Real GDP</h4>
+<ul>
+<li><p>Nominal GDP</p>
+<ul>
+<li>今年的量，今年的价格</li>
+</ul></li>
+<li><p>Real GDP</p>
+<ul>
+<li>今年的量，过去的价格</li>
+</ul></li>
+<li><p>GDP deflator = Nominal GDP / Real GDP</p></li>
+<li><p>Real GDP (Aggregate Output) = Aggregate Income = Aggregate Expenditure = Y</p></li>
+</ul>
+<h4 id="expenditure-approach">Expenditure Approach</h4>
+<ul>
+<li><p>支出法 (以最终商品计算)</p></li>
+<li><p>Economic Structure</p>
+<ul>
+<li>Domestic
+<ul>
+<li>Private sector
+<ul>
+<li>Household</li>
+<li>Firm</li>
+</ul></li>
+<li>Government</li>
+</ul></li>
+<li>Foreign</li>
+</ul></li>
+<li><p>四部门经济</p>
+<ul>
+<li>Household</li>
+<li>Firm</li>
+<li>Government</li>
+<li>Rest of world</li>
+</ul></li>
+<li><p>GDP=C+I+G+(X-M) 对应四部门经济</p>
+<ul>
+<li>C 家庭消费支出
+<ul>
+<li>个人金融投资不算，算储蓄，不属于支出行为</li>
+</ul></li>
+<li>I 企业投资支出
+<ul>
+<li>算金融投资，不算实物投资和存货投资，这些算企业的储蓄</li>
+</ul></li>
+<li>G 政府支出
+<ul>
+<li>不考虑政府的税收</li>
+</ul></li>
+<li>X-M 国际支持</li>
+</ul></li>
+</ul>
+<h4 id="income-approach">Income Approach</h4>
+<ul>
+<li><p>收入法 (以原材料和中间附加值计算)</p></li>
+<li><p>GDP = National income + Capital consumption allowance (CCA) + Statistical discrepancy (SD)</p>
+<ul>
+<li>挖铁矿，需要铁锹，铁锹会磨损，所以要把挖出来的铁补 一部分到铁锹上(CCA)，剩下的就是National income</li>
+</ul></li>
+</ul>
+<h4 id="personal-income">Personal Income</h4>
+<ul>
+<li><p>National income 减去不属于个人的部分</p></li>
+<li><p>Household disposable income(HDI) = Personal income - Personal taxes</p></li>
+<li><p>HDI = Personal Consumption + Personal Saving</p></li>
+<li><p>MPC和MPS</p>
+<ul>
+<li>Marginal Propensity to Consume (MPC)
+<ul>
+<li>每增加一块钱消费多少</li>
+</ul></li>
+<li>Marginal Propensity to Saving
+<ul>
+<li>每增加一块钱储蓄多少</li>
+</ul></li>
+<li>MPC+MPS = 1</li>
+</ul></li>
+<li><p>GDP = C + S + T</p>
+<ul>
+<li>C: 家庭消费支出</li>
+<li>S: Private sector savings
+<ul>
+<li>= Business savings + Household savings</li>
+</ul></li>
+<li>T: Net Tax
+<ul>
+<li>Tax - 转移支付</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="summary">Summary</h4>
+<ul>
+<li><p>Expenditure approach</p>
+<ul>
+<li>GDP = C+I+G+(X-M)</li>
+</ul></li>
+<li><p>Income approach</p>
+<ul>
+<li>GDP = National income + CCA + SD</li>
+<li>GDP = C+S+T</li>
+</ul></li>
+<li><p>I+G+(X-M) = S+T</p>
+<ul>
+<li>S = I + (G-T) + (X-M)
+<ul>
+<li>国内的saving可以给三类人花
+<ul>
+<li>I: 企业</li>
+<li>G-T：Fiscal balance 政府</li>
+<li>X-M: Trade balance 海外</li>
+</ul></li>
+</ul></li>
+<li>G-T = (S-I) - (X-M)
+<ul>
+<li>S-I 国内的储蓄</li>
+<li>X-M 国外的钱</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="investment-saving-is-curve">2. Investment-Saving (IS) Curve</h3>
+<h4 id="fiscal-balance-and-trade-balance">Fiscal Balance and Trade Balance</h4>
+<ul>
+<li>(S-I)=(G-T)+(X-M)
+<ul>
+<li>G-T: Fiscal balance
+<ul>
+<li>&gt; 0, Government deficit</li>
+<li>&lt; 0, Government surplus</li>
+</ul></li>
+<li>X-M: Trade balance
+<ul>
+<li>&gt; 0, Trade surplus</li>
+<li>&lt; 0, Trade deficit</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="is-curve-meaning">IS Curve Meaning</h4>
+<ul>
+<li>商品市场均衡</li>
+</ul>
+<h4 id="is-curve-assumption">IS Curve Assumption</h4>
+<ul>
+<li>S=I，忽略G-T和X-M</li>
+</ul>
+<h4 id="is-curve-derivation">IS Curve Derivation</h4>
+<ul>
+<li><p><span class="math inline">\(S(Y) = I(r)\)</span></p>
+<ul>
+<li>S 与 Y 同向关系</li>
+<li>I 与 Y 同向关系，与r反向关系，但是r对I影响更大</li>
+</ul></li>
+<li><p>反映了Real Interest和Real GDP在商品市场 (GDP核算的角度) 的关系</p></li>
+</ul>
+<h4 id="position-in-is-curve">Position in IS Curve</h4>
+<ul>
+<li>在线上I=S</li>
+<li>在右上方I&lt;S，供给过剩</li>
+<li>在左下方I&gt;S，需求过剩</li>
+</ul>
+<h4 id="movements-and-shifts-1">Movements and Shifts</h4>
+<ul>
+<li>利率变：Movement along the curve</li>
+<li>X-M增加或扩张财政政策：Right shift the curve</li>
+</ul>
+<h3 id="liquidity-money-lm-curve">3. Liquidity-Money (LM) Curve</h3>
+<h4 id="quantity-theory-of-money">Quantity theory of money</h4>
+<ul>
+<li>MV = PY
+<ul>
+<li>M: Nominal money supply</li>
+<li>V: Velocity of money</li>
+<li>P: Price level</li>
+<li>Y: Real GDP</li>
+</ul></li>
+</ul>
+<h4 id="money-neutrality">Money Neutrality</h4>
+<ul>
+<li><p>短时间内V和Y基本不变</p></li>
+<li><p>M增加会导致P增加</p></li>
+<li><p>M/P=Y/V=常数</p></li>
+</ul>
+<h4 id="money-demand-theory">Money Demand Theory</h4>
+<ul>
+<li>L1 Demand
+<ul>
+<li>Transaction demand</li>
+<li>Precautionary demand</li>
+<li>L1与Y同向关系</li>
+</ul></li>
+<li>L2 Demand
+<ul>
+<li>Speculative demand</li>
+<li>L2与r反向关系</li>
+</ul></li>
+</ul>
+<h4 id="lm-curve-derivation">LM Curve Derivation</h4>
+<ul>
+<li>r上升，L2下降，M/P是不变的，所以L2上升，Y上升</li>
+</ul>
+<h4 id="position-in-lm-curve">Position in LM Curve</h4>
+<ul>
+<li>落在线上，需求等于供给</li>
+<li>右下方，需求过剩</li>
+<li>左上方，供给过剩</li>
+</ul>
+<h4 id="movements-and-shifts-2">Movements and Shifts</h4>
+<ul>
+<li>利率变：Movement along</li>
+<li>M/P增加或扩张型货币政策：Right shift</li>
+</ul>
+<h3 id="aggregate-demand-ad-curve">4. Aggregate Demand (AD) Curve</h3>
+<h4 id="ad-curve-meaning">AD Curve Meaning</h4>
+<ul>
+<li>IS与LM相交交点是AD线，反应了P (Price Level)和Y (Real GDP)的关系</li>
+</ul>
+<h4 id="movements-and-shifts-3">Movements and Shifts</h4>
+<ul>
+<li>Price Level 影响 Real GDP变: Move along</li>
+<li>Shift:
+<ul>
+<li>Household wealth</li>
+<li>Fiscal policy 影响IS曲线</li>
+<li>Monetary policy 影响LM曲线</li>
+<li>全球经济等等</li>
+</ul></li>
+</ul>
+<h3 id="aggregate-supply-as-curve">5. Aggregate Supply (AS) Curve</h3>
+<h4 id="as-curve-classification">AS Curve Classification</h4>
+<ul>
+<li><p>Very short run (VSRAS)</p>
+<ul>
+<li><p>在短期，可以不改变物价，但是产出更多产品（增加工人工作时间）</p></li>
+<li><p>产出量不会影响价格，水平线</p></li>
+</ul></li>
+<li><p>Short run (SRAS)</p>
+<ul>
+<li><p>斜向上的线，物价水平高，Y高</p></li>
+<li><p>但因为工资有粘性，成本会上升，导致总产出变化减小</p></li>
+</ul></li>
+<li><p>Long run (LRAS)</p>
+<ul>
+<li>一定技术下最大产出量，竖直线</li>
+</ul></li>
+</ul>
+<h4 id="potential-gdp-and-full-employment">Potential GDP and Full Employment</h4>
+<ul>
+<li><p>LRAS所对应的Real GDP叫做Potential GDP，是在full employment下的GDP</p></li>
+<li><p>Full employment定义为在Natural rate of unemployment下的就业</p></li>
+</ul>
+<h4 id="shifts">Shifts</h4>
+<ul>
+<li>对长期和短期的共同影响：人力，资本（自然资源，机器等），科技</li>
+<li>只影响短期的（影响成本的因素）：
+<ul>
+<li>就是企业的生产意愿，比如工资，能源价格，预计未来价格，补贴，税收，汇率</li>
+</ul></li>
+</ul>
+<h3 id="macroeconomic-equilibrium">6. Macroeconomic Equilibrium</h3>
+<ul>
+<li>Long-run equilibrium
+<ul>
+<li>AD线对长期的Y (Potential GDP)没有影响</li>
+</ul></li>
+<li>Recession
+<ul>
+<li>Decrease in AD</li>
+<li>Do nothing</li>
+<li>需求下降，产量降低，价格降低
+<ul>
+<li>工资下降，成本下降，供给增加</li>
+</ul></li>
+<li>Fiscal and monetary policy
+<ul>
+<li>扩张政策将AD推回去</li>
+</ul></li>
+</ul></li>
+<li>Inflation
+<ul>
+<li>Increase in AD</li>
+<li>Do nothing 同上</li>
+<li>Fiscal and monetary policy
+<ul>
+<li>紧缩政策将AD推回去</li>
+</ul></li>
+</ul></li>
+<li>Stagflation（滞胀）:
+<ul>
+<li>Decrease in AS</li>
+<li>能源价格上升，供给减少</li>
+<li>经济停滞，通货膨胀发生</li>
+<li>Do nothing
+<ul>
+<li>AS回到原来位置，有政治压力</li>
+</ul></li>
+<li>政府干预
+<ul>
+<li>增加AD，会导致物价上升</li>
+</ul></li>
+</ul></li>
+<li>Decrease in input price
+<ul>
+<li>能源价格下降，供给增加</li>
+<li>好事，更高的GDP，更低的价格</li>
+</ul></li>
+</ul>
+<h3 id="economic-growth">7. Economic Growth</h3>
+<h4 id="factors-influencing-economic-growth">Factors Influencing Economic Growth</h4>
+<ul>
+<li><p>劳动力：Labor and human capital</p></li>
+<li><p>资本：Physical capital stock and nature resources</p></li>
+<li><p>科技：Technology</p></li>
+</ul>
+<h4 id="cobb-douglas-production-function">Cobb-Douglas Production Function</h4>
+<ul>
+<li><p><span class="math inline">\(Y=A\times f(L,K)=AK^\alpha L^{1-\alpha}\)</span></p>
+<ul>
+<li>Y: Aggregate economic output</li>
+<li>A: Total factor productivity 全要素生产力（科技）</li>
+<li>L: Size of labor force</li>
+<li>K: Amount of capital</li>
+</ul></li>
+<li><p><span class="math inline">\(\log Y = \log A+\alpha \log K+(1-\alpha)\log L\)</span></p>
+<ul>
+<li><p>求导得到<span class="math inline">\(\frac{\Delta Y}{Y} = \frac{\Delta A}{A} + \alpha \frac{\Delta K}{K}+(1-\alpha)\frac{\Delta L}{L}\)</span></p>
+<ul>
+<li><p>Growth in potential GDP = Growth in technology + <span class="math inline">\(W_L\)</span> (Growth in labor) + <span class="math inline">\(W_c\)</span> (Growth in capital)</p></li>
+<li><p>其中，<span class="math inline">\(W_L\)</span> 和 <span class="math inline">\(W_c\)</span> 是劳动力和资本在国民收入中share的比例</p></li>
+</ul></li>
+<li><p>人均GDP增长</p>
+<p><span class="math display">\[
+  Y/L = A(K/L)^\alpha\\
+  \log (Y/L) = \log A+\alpha \log (K/L)\\
+  \frac{\Delta (Y/L)}{Y/L} = \frac{\Delta A}{A} + \alpha \frac{\Delta(K/L)}{K/L}
+  \]</span></p>
+<ul>
+<li>Growth in per-capita potential GDP = Growth in technology + <span class="math inline">\(W_c\)</span> (Growth in the capital to labor ratio)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="sustainable-growth-model">Sustainable Growth Model</h4>
+<p><span class="math display">\[
+Y=Y=(Y/L)L\\
+\log Y = \log (Y/L)+\log L\\
+\frac{\Delta Y}{Y}=\frac{\Delta(Y/L)}{Y/L}+\frac{\Delta L}{L}
+\]</span> * Growth in potential GDP = Growth in labor productivity + Growth in rate of labor force</p>
+<h2 id="reading-15-understand-business-cycles">Reading 15 Understand Business Cycles</h2>
+<h3 id="business-cycles-classification">1. Business Cycles Classification</h3>
+<ul>
+<li><p>Contraction</p></li>
+<li><p>Trough</p></li>
+<li><p>Expansion</p></li>
+<li><p>Peak ### 2. Resources Use Fluctuation</p></li>
+<li><p>Ratio of inventory to sales</p>
+<ul>
+<li><p>在peak达到最高点，去库存，在trough达到最低，重建库存</p></li>
+<li><p>该指标有很大滞后性</p></li>
+</ul></li>
+<li><p>Utilization of labor levels</p>
+<ul>
+<li><p>经济变差，先减少工作时长，再开除工人</p></li>
+<li><p>该指标有滞后性</p></li>
+</ul></li>
+<li><p>Utilization of physical capital levels</p>
+<ul>
+<li>经济变差，先减少小设备，再减少重设备</li>
+<li>该指标有滞后性 ### 3. Factors Influencing Housing Sector Activity</li>
+</ul></li>
+<li><p>Mortgage Rate</p></li>
+<li><p>Income</p></li>
+<li><p>Speculative activity</p></li>
+<li><p>Demographic</p></li>
+</ul>
+<h3 id="business-cycle-theories">4. Business Cycle Theories</h3>
+<ul>
+<li>Neoclassical school
+<ul>
+<li>看不见的手会调节市场，市场不应该干预市场</li>
+<li>科技带来经济周期</li>
+</ul></li>
+<li>Keynesian school
+<ul>
+<li>政府应该干预</li>
+<li>工资有downward sticky，工资下降有粘性</li>
+<li>New Keynesian
+<ul>
+<li>原料也downward sticky，价格下降有粘性</li>
+</ul></li>
+</ul></li>
+<li>Monetarist school
+<ul>
+<li>央行的货币供应造成经济周期，不要乱发货币</li>
+</ul></li>
+<li>Austrian school
+<ul>
+<li>政府干预引起经济周期</li>
+</ul></li>
+<li>New classical school
+<ul>
+<li>Introduced real business cycle theory (RBC)
+<ul>
+<li>外部冲击导致经济周期，政府不干预</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="inflation-and-indicators">5. Inflation and Indicators</h3>
+<h4 id="labor-market-structure">Labor Market Structure</h4>
+<ul>
+<li><p>Working age population -&gt; labor force(愿意工作的人)-&gt;employment(就业的人)</p></li>
+<li><p>不想工作不叫失业</p></li>
+</ul>
+<h4 id="unemployment-classification">Unemployment Classification</h4>
+<ul>
+<li>Frictional unemployment 找工作需要时间<br>
+</li>
+<li>Structural unemployment 技术进步导致技术不匹配</li>
+<li>Cyclical unemployment 周期性失业
+<ul>
+<li>Full employment 是没有 Cyclical unemployment，因为第一个是必然，第二个是好事</li>
+</ul></li>
+</ul>
+<h4 id="labor-force-participation-rate">Labor Force Participation Rate</h4>
+<ul>
+<li>Labor force / Working age population</li>
+</ul>
+<h4 id="unemployment-rate">Unemployment Rate</h4>
+<ul>
+<li><p>(Labor force - Employment) / Labor force</p></li>
+<li><p>不影响Unemployment rate的因素</p>
+<ul>
+<li>Underemployed 高技术人员做低等工作</li>
+<li>Discouraged worker 找不到工作所以不找了，放弃了，不算失业</li>
+<li>Voluntarily unemployed 就不想上班</li>
+</ul></li>
+</ul>
+<h4 id="inflation-deflation-disinflation">Inflation, Deflation, Disinflation</h4>
+<ul>
+<li>Deflation 通缩会对经济有负面作用</li>
+<li>Disinflation 通胀率在下降</li>
+</ul>
+<h4 id="consumer-price-index-cpi-calculation">Consumer Price Index (CPI) Calculation</h4>
+<ul>
+<li><p>CPI = Cost of basket at current prices / Cost of basket at base period prices</p></li>
+<li><p>Lapsers index (last)</p>
+<ul>
+<li>用过去一篮子计算</li>
+<li>问题：高估趋势
+<ul>
+<li>New goods: 因为新商品价格会变高（手机）</li>
+<li>Quality changes: 质量变好，价格变高（桌子）</li>
+<li>Substitution: 新东西替代旧东西，还在计算旧东西（电缆）</li>
+</ul></li>
+</ul></li>
+<li><p>Paashche index (present)</p>
+<ul>
+<li>用当前一篮子计算</li>
+</ul></li>
+<li><p>Fisher index</p>
+<ul>
+<li>Fisher index = <span class="math inline">\(\sqrt{I_p\times I_L}\)</span></li>
+</ul></li>
+</ul>
+<h4 id="other-inflation-measurement">Other Inflation Measurement</h4>
+<ul>
+<li>GDP deflator</li>
+<li>Producer price index (PPI) = Wholesale price index (WPI)
+<ul>
+<li>它是CPI的先行指数</li>
+</ul></li>
+<li>Headline inflation 所有商品inflation</li>
+<li>Core inflation 排除食品和能源，因为食品和能源是国际报价，所以排除</li>
+</ul>
+<h4 id="inflation-comes-from">Inflation Comes From</h4>
+<ul>
+<li>Cost push inflation</li>
+<li>Demand pull inflation</li>
+</ul>
+<h4 id="economic-indicators-classification">Economic Indicators Classification</h4>
+<ul>
+<li><p>Leading</p>
+<ul>
+<li><p>Stock index 股票</p></li>
+<li><p>Money supply 货币</p>
+<p>货币供应量增加，经济变好</p></li>
+<li><p>Interest rate spread 利率</p>
+<p>短期利率一般是稳定的，长期利率下降，说明经济变差</p></li>
+<li><p>Index of consumer expectations 信心</p></li>
+<li><p>Average weekly hours 工作时长</p></li>
+<li><p>Vendor performance 交货时长</p></li>
+<li><p>New orders 新订单</p></li>
+<li><p>Average weekly initial claims for unemployment insurance 首次领取失业金人数</p></li>
+<li><p>Building permits 建房许可</p></li>
+</ul></li>
+<li><p>Coincident</p>
+<ul>
+<li>Personal income 工人收入</li>
+<li>Industrial production and sale index 公司产量销量</li>
+</ul></li>
+</ul>
+<h2 id="reading-16-monetary-and-fiscal-policy">Reading 16 Monetary and Fiscal Policy</h2>
+<h3 id="money-and-inflation">1. Money and Inflation</h3>
+<h4 id="fiscal-policy">Fiscal Policy</h4>
+<ul>
+<li>Government spending and taxation</li>
+</ul>
+<h4 id="monetary-policy">Monetary Policy</h4>
+<ul>
+<li>Expansionary, Contractionary</li>
+</ul>
+<h4 id="functions-of-money">Functions of Money</h4>
+<ul>
+<li>Medium of exchange</li>
+<li>Unit of account</li>
+<li>Store of value</li>
+</ul>
+<h4 id="money-multiplier">Money Multiplier</h4>
+<ul>
+<li>1/(reserve requirement)</li>
+</ul>
+<h4 id="narrow-money-and-broad-money">Narrow Money and Broad Money</h4>
+<ul>
+<li><p>M1: 流通的现金 + check (活期存款)</p></li>
+<li><p>M2: M1+time deposit (定期存款)</p></li>
+</ul>
+<h4 id="who-determine-money-supply">Who Determine Money Supply</h4>
+<ul>
+<li>Money supply is determined by central bank</li>
+<li>所以是个竖直线</li>
+</ul>
+<h4 id="fisher-effect">Fisher Effect</h4>
+<ul>
+<li>Nominal rate = Real rate + Expected Inflation</li>
+<li>The idea behind is that real rate is relatively stable, and changes in interest rates are driven by changes in expected inflation.</li>
+<li>If risky, Nominal rate = real rate + expected inflation + risk premium</li>
+</ul>
+<h3 id="central-bank">2. Central bank</h3>
+<h4 id="tool-of-central-bank">Tool of Central Bank</h4>
+<ul>
+<li>Policy rate</li>
+<li>Reserve requirements
+<ul>
+<li>最强烈的</li>
+</ul></li>
+<li>Open market operations
+<ul>
+<li>使用最多的</li>
+<li>买债券，扩张政策</li>
+<li>卖债券，紧缩政策</li>
+</ul></li>
+</ul>
+<h4 id="neutral-interest-rate">Neutral Interest Rate</h4>
+<ul>
+<li>Real GDP growth + inflation target</li>
+<li>Policy rate &gt; Neutral rate
+<ul>
+<li>紧缩政策</li>
+</ul></li>
+<li>Policy rate &lt; Neutral rate
+<ul>
+<li>宽松政策</li>
+</ul></li>
+</ul>
+<h4 id="qualities-of-effective-central-bank">Qualities of Effective Central Bank</h4>
+<ul>
+<li>Independence
+<ul>
+<li>不受政府干扰</li>
+<li>Operation independence and target independence</li>
+</ul></li>
+<li>Credible</li>
+<li>Transparent</li>
+</ul>
+<h3 id="monetary-policy-limitations">3. Monetary Policy Limitations</h3>
+<ul>
+<li><p>Bond market vigilantes</p>
+<p>投资者理性分析后操作与央行相反</p></li>
+<li><p>Liquidity trap</p>
+<p>在经济危机中，银行不愿贷款，居民企业也不愿借钱，央行增加流动性是无效的</p>
+<p>解决方法：Quantitative easing，政府买债券来影响利率</p></li>
+</ul>
+<h3 id="fiscal-policy-1">4. Fiscal Policy</h3>
+<h4 id="tools">Tools</h4>
+<ul>
+<li>Spending
+<ul>
+<li>Transfer payments：补贴</li>
+<li>Current spending：买东西</li>
+<li>Capital spending：大项目</li>
+</ul></li>
+<li>Revenue
+<ul>
+<li>直接税：对人课税</li>
+<li>间接税：对物课税（影响更快）</li>
+</ul></li>
+</ul>
+<h4 id="limitations">Limitations</h4>
+<ul>
+<li>Delay
+<ul>
+<li>Recognition lag</li>
+<li>Action lag</li>
+<li>Impact lag</li>
+</ul></li>
+<li>Crowding-out effect
+<ul>
+<li>政府扩张政策，政府借钱，政府拉高利率，私营企业无法借钱</li>
+</ul></li>
+<li>Ricardian equivalence
+<ul>
+<li>政府如果减税，劳动人民看穿会在未来加税，所以大家存钱，财政政策失效</li>
+</ul></li>
+</ul>
+<h4 id="fiscal-multiplier">Fiscal Multiplier</h4>
+<ul>
+<li><span class="math inline">\(\frac{1}{1-MPC(1-t)}\)</span>
+<ul>
+<li>t: tax</li>
+<li>MPC: marginal propensity of consumption 边际消费倾向</li>
+</ul></li>
+</ul>
+<h4 id="debt-ratio">Debt Ratio</h4>
+<ul>
+<li>负债/GDP</li>
+</ul>
+<h3 id="interaction-of-monetary-and-fiscal-policy">5. Interaction of Monetary and Fiscal Policy</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Monetary Policy</th>
+<th>Fiscal Policy</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tight</td>
+<td>Tight</td>
+<td>Lower</td>
+</tr>
+<tr class="even">
+<td>Easy</td>
+<td>Easy</td>
+<td>Higher</td>
+</tr>
+<tr class="odd">
+<td>Tight</td>
+<td>Easy</td>
+<td>Higher</td>
+</tr>
+<tr class="even">
+<td>Easy</td>
+<td>Tight</td>
+<td>Varies</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>因为Fiscal policy Easy更强烈，政府可以花几万亿做项目</li>
+</ul>
+<h2 id="reading-17-international-trade-and-capital-flows">Reading 17 International Trade and Capital Flows</h2>
+<h3 id="international-trade-benefits">1. International Trade Benefits</h3>
+<h4 id="comparative-advantage-explanation">Comparative Advantage Explanation</h4>
+<ul>
+<li>Ricardian Model
+<ul>
+<li>Labor is the only factor of production</li>
+<li>科技不同造成comparative advantage</li>
+</ul></li>
+<li>Heckscher-Ohlin Model
+<ul>
+<li>Both labor and capital are variable factors of production</li>
+<li>各自从事擅长的（中国从事劳动力，美国从事资本）</li>
+</ul></li>
+</ul>
+<h4 id="trade-restrictions">Trade Restrictions</h4>
+<ul>
+<li><p>Tariffs 进口关税</p></li>
+<li><p>Quotas 进口配额</p></li>
+<li><p>Export subsidies</p></li>
+<li><p>Minimum domestic content</p></li>
+<li><p>Voluntary export restraint 自愿出口限制</p></li>
+</ul>
+<h4 id="welfare-effects-of-an-import-tariff-or-quota">Welfare Effects of an Import Tariff or Quota</h4>
+<p><img src="/2021/06/01/CFA LEVEL1/3/WeChat%20Screenshot_20210306153643.png" style="zoom:33%;"></p>
+<ul>
+<li>B和D变成了Deadweight loss
+<ul>
+<li>如果B和D是在小国，社会福利减少</li>
+<li>但如果是大国，可以对某一国加收关税，该国只能降价（为了保住市场份额），大国可以赚C</li>
+</ul></li>
+</ul>
+<h3 id="balance-of-payment-bop-国际收支平衡表">2. Balance of Payment (BOP) 国际收支平衡表</h3>
+<ul>
+<li>Current account
+<ul>
+<li>Flows of goods and services</li>
+<li>Merchandise and service 进出口商品和服务</li>
+<li>Income receipts 投资融资的dividend和interest</li>
+<li>Unilateral transfers 奖学金，救灾</li>
+</ul></li>
+<li>Capital account
+<ul>
+<li>Capital transfers</li>
+<li>买卖自然资源和无形资产（买卖商标）</li>
+</ul></li>
+<li>Financial account
+<ul>
+<li>政府相关的</li>
+</ul></li>
+<li>X-M=(S-I)-(G-T)=private savings - investment + government savings
+<ul>
+<li>current account surplus if X-M&gt;0</li>
+</ul></li>
+</ul>
+<h3 id="organization">4. Organization</h3>
+<ul>
+<li>International monetary fund (IMF)
+<ul>
+<li>协调货币政策</li>
+</ul></li>
+<li>World Bank
+<ul>
+<li>扶贫</li>
+</ul></li>
+<li>WTO
+<ul>
+<li>国际贸易协调</li>
+</ul></li>
+</ul>
+<h3 id="trading-blocs">5. Trading Blocs</h3>
+<ul>
+<li><p>Free trade areas (上海自贸区)</p>
+<ul>
+<li>没有贸易限制</li>
+</ul></li>
+<li><p>Custom union (关税同盟)</p>
+<ul>
+<li>对其他非成员采取相同关税策略</li>
+</ul></li>
+<li><p>Common market (共同市场)</p>
+<ul>
+<li>可以允许劳动力和资本自由流动</li>
+</ul></li>
+<li><p>Economic union (欧盟)</p>
+<ul>
+<li>采用相同经济政策</li>
+</ul></li>
+<li><p>Monetary union (欧元区)</p>
+<ul>
+<li>采用相同货币</li>
+</ul></li>
+</ul>
+<h2 id="reading-18-currency-exchange-rates">Reading 18 Currency Exchange Rates</h2>
+<h3 id="foreign-exchange-rate">1. Foreign Exchange Rate</h3>
+<h4 id="nominal-and-real-exchange-rate">Nominal and Real Exchange Rate</h4>
+<ul>
+<li><p>7.1 RMB/USD 是Nominal exchange rate</p></li>
+<li><p><span class="math inline">\(\frac{7.1/CPI_{RMB}}{1/CPI_{USD}}\)</span>是Real exchange rate</p></li>
+</ul>
+<h4 id="direct-quota-and-indirect-quota">Direct Quota and Indirect Quota</h4>
+<ul>
+<li><p>2 元/苹果，考察对象是苹果，所以A/B的考察对象是B</p></li>
+<li><p>50 A/B</p>
+<ul>
+<li>A
+<ul>
+<li>Price currency</li>
+<li>Domestic currency</li>
+<li>Indirect quota</li>
+</ul></li>
+<li>B
+<ul>
+<li>Base currency</li>
+<li>Foreign currency</li>
+<li>Direct quota</li>
+</ul></li>
+</ul></li>
+<li><p>Cross Rate</p></li>
+</ul>
+<h3 id="forward-exchange-rates">2. Forward Exchange Rates</h3>
+<h4 id="forward-discount-or-premium">Forward Discount or Premium</h4>
+<ul>
+<li><p>Derivation <span class="math display">\[
+1+r_{DC}=\frac{1}{S}(1+r_{FC})\times F\\
+\frac{F}{S} = \frac{1+r_{DC}}{1+r_{FC}}
+\]</span></p></li>
+<li><p>所以如果给A/B，则有 <span class="math inline">\(\frac{F}{S}=\frac{1+r_A}{1+r_B}\)</span></p></li>
+</ul>
+<h4 id="interest-rate-parity-irp">Interest Rate Parity (IRP)</h4>
+<p><span class="math display">\[
+\frac{F-S}{S} = \frac{r_X-r_Y}{1+r_Y} \approx r_X-r_Y
+\]</span></p>
+<h3 id="managing-exchange-rates">3. Managing Exchange Rates</h3>
+<ul>
+<li><p>无货币</p></li>
+<li><p>有货币</p>
+<ul>
+<li>Currency board 货币局制度，港币</li>
+<li>Fixed pad 变动1%</li>
+<li>Target zoon 变动2%</li>
+<li>Crawling peg</li>
+<li>Management of exchange rate within crawling bands</li>
+<li>Managed floating exchange rates</li>
+<li>Independent floating</li>
+</ul></li>
+</ul>
+<h3 id="trade-deficit-and-surplus">4. Trade Deficit and Surplus</h3>
+<h4 id="trade-deficit">Trade Deficit</h4>
+<ul>
+<li>X-M&lt;0</li>
+</ul>
+<h4 id="improve-trade-deficit">Improve Trade Deficit</h4>
+<ul>
+<li><p>Elasticity Approach</p>
+<ul>
+<li><p>进出口商品弹性大才有用</p></li>
+<li><p>所以进出口奢侈品和有替代品的商品有用，必需品没用</p></li>
+<li><p>J-Curve</p>
+<ul>
+<li>有滞后性，因为原来是有合同的，所以刚开始会恶化赤字</li>
+</ul></li>
+</ul></li>
+<li><p>Absorption Approach</p>
+<ul>
+<li><p>Y=C+I+G+(X-M)</p></li>
+<li><p>X-M = Y-(C+I+G)</p></li>
+<li><p>C+I+G是本国吸收</p></li>
+</ul></li>
+<li><p>希望X-M上升，所以增加Y（如果没有实现完全就业可以实现完全就业）或减少C+I+G，降C,I不好，所以降低G</p></li>
+</ul>
+<h1 id="错题">错题</h1>
+<ol type="1">
+<li><p>As suggested particularly by the earliest RBC models, a person is unemployed because he or she is asking for wages that are too high.</p></li>
+<li><p>Demand–pull inflation depends upon the relationship between actual and potential GDP and industrial capacity utilization.</p></li>
+<li><p>Slope of demand function and demand curve.</p></li>
+<li><p>Convergence of incomes over time between emerging market countries and developed countries is <em>most likely</em> due to: diminishing marginal productivity of capital.</p></li>
+<li><p>When the spread between 10-year US Treasury yields and the federal funds rate narrows and at the same time the prime rate stays unchanged, this mix of indicators <em>most likely</em> forecasts future economic: decline.</p></li>
+<li><p>A central bank will <em>most likely</em> allow the economy to self-correct in periods of: high inflation, slow economic growth, and high unemployment.</p></li>
+<li><p>The <em>least likely</em> consequence of a period of hyperinflation is the: reduced velocity of money.</p></li>
+<li><p>Companies <em>most likely</em> have a well-defined supply function when the market structure is perfect competition.</p></li>
+<li><p>If the GDP deflator values for year 1 and year 2 were 190 and 212.8, respectively, which of the following <em>best</em> describes the annual growth rate of the overall price level? (212.8/190)^{1/2}</p></li>
+<li><p>According to Real Business Cycle models, an economic contraction is <em>most likely</em> caused by:</p>
+<ol type="1">
+<li>sticky wages.</li>
+<li><strong>rising energy prices.</strong></li>
+<li>a contraction in the money supply.</li>
+</ol>
+<p>Real Business Cycle models conclude that expansions and contractions of the economy are responses to external shocks</p></li>
+<li><p>The characteristic business cycle patterns of trough, expansion, peak, and contraction are recurrent.</p></li>
+<li><p>In the neoclassical or Solow growth model, an increase in total factor productivity reflects an increase in output for given inputs.</p></li>
+<li><p>Increased household wealth will <em>most likely</em> cause an increase in:</p></li>
+</ol>
+<pre><code>1. household saving.
+2. investment expenditures.
+3. **consumption expenditures.**
+
+The wealth effect explains the impact of increases or decreases in household wealth on economic activity. Household wealth includes financial and real assets. As asset values increase, consumers save less and spend more out of current income since they will still be able to meet their wealth accumulation goals. Therefore, an increase in household wealth results in a rightward shift in the aggregate demand curve.</code></pre>
+<ol start="14" type="1">
+<li><p>The full employment, or natural, level of output is <em>best</em> described as: a level with a modest, stable pool of unemployed workers transitioning to new jobs.</p></li>
+<li><p>国民生产净值=国民生产总值-资本消耗补偿</p>
+<p>National income = GDP – Capital consumption allowance (CCA)</p></li>
+<li><p>When companies have similar market shares, competitive forces tend to outweigh the benefits of collusion.</p></li>
+<li><p>The elasticity of demand for a good is <em>most likely</em> greater when: the adjustment to a price change takes a longer time.</p></li>
+<li><p>In a recession, companies are <em>most likely</em> to adjust their stock of physical capital by: not maintaining equipment.</p></li>
+<li><p>An increase in the official policy rate will <em>most likely</em> lead to: reduced credit availability.</p></li>
+<li><p>Selling government bonds results in a reduction of bank reserves and reduces their ability to lend, causing a decline in money growth through the multiplier mechanism and hence a contraction in the economy.</p></li>
+<li><p>A “pay-as-you-go” rule is a neutral policy because any increases in spending or reductions in revenues would be offset.</p></li>
+<li><p>Which of the following statements regarding the characteristics of money is correct?</p>
+<ol type="1">
+<li>Compared to a barter economy, an economy in which money is the medium of exchange has more prices.</li>
+<li><strong>Money as a medium of exchange depends on shared beliefs about its value.</strong></li>
+</ol>
+<p>Compared to a barter economy, an economy in which money is the medium of exchange has less prices.</p></li>
+<li><p>In a hypothetical economy, consumption is 70% of pre-tax income, and the average tax rate is 25% of total income. If planned government expenditures are expected to increase by $1.25 billion, the increase in total income and spending, in billions, is <em>closest</em> to:</p>
+<p>The fiscal multiplier is <span class="math inline">\(\frac{1}{1-c(1-T)}\)</span></p>
+<p>where</p>
+<p><em>c</em> = marginal propensity to consume = consumption/disposable income</p>
+<p><em>T</em> = the tax rate</p></li>
+<li><p>What will be the effect on a direct exchange rate quote if the domestic currency appreciates?</p>
+<p>decline</p></li>
+<li><p>Which of the following trade restrictions is likely to result in the greatest welfare loss for the importing country?</p>
+<p>A tariff.</p>
+<p>An import quota.</p>
+<p><strong>A voluntary export restraint.</strong></p></li>
+<li><p>Which of the following <em>best</em> describes a fundamental assumption when monetary policy is used to influence the economy?Money is not neutral in the short run.</p></li>
+<li><p>The inability to determine exactly the neutral rate of interest does not necessarily limit the power of monetary policy.</p></li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Model Predictive Control with Constraints From the last note, we derive the augmented state space model \[ x(k+1)=Ax(k)+B\Delta u(k) \\ y(k)=Cx(k) \\ Y = Fx(k)+\Phi\Delta U\\ J=\frac{1}{2}\Delta">
+<meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8. MPC with Constraint">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:description" content="Model Predictive Control with Constraints From the last note, we derive the augmented state space model \[ x(k+1)=Ax(k)+B\Delta u(k) \\ y(k)=Cx(k) \\ Y = Fx(k)+\Phi\Delta U\\ J=\frac{1}{2}\Delta">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-26T16:03:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8. MPC with Constraint">
+<meta name="twitter:description" content="Model Predictive Control with Constraints From the last note, we derive the augmented state space model \[ x(k+1)=Ax(k)+B\Delta u(k) \\ y(k)=Cx(k) \\ Y = Fx(k)+\Phi\Delta U\\ J=\frac{1}{2}\Delta">
+  <link rel="canonical" href="http://yoursite.com/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>8. MPC with Constraint | Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/27/EE5104 Computer Control/8. MPC with Constraint/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">8. MPC with Constraint
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-27 13:44:42 / Modified: 00:03:07" itemprop="dateCreated datePublished" datetime="2018-11-27T13:44:42+08:00">2018-11-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="model-predictive-control-with-constraints">Model Predictive Control with Constraints</h2>
+<p>From the last note, we derive the augmented state space model <span class="math display">\[
+x(k+1)=Ax(k)+B\Delta u(k) \\
+y(k)=Cx(k) \\
+Y = Fx(k)+\Phi\Delta U\\
+J=\frac{1}{2}\Delta U^T(\Phi^T\Phi+\bar R)\Delta U-\Delta U^T \Phi^T(R_s-Fx(k))
+\]</span> If we denote <span class="math display">\[
+H=\Phi^T\Phi+\bar R \\
+f=-\Phi^T(R_s-Fx(k))
+\]</span> We have <span class="math display">\[
+J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f
+\]</span> Now we will discuss different kinds of constraints.</p>
+<h3 id="constraints-on-the-control-variable-incremental-variation">1. Constraints on the control variable incremental variation</h3>
+<p><span class="math display">\[
+\Delta U^{min}\le\Delta U \le\Delta U^{max}
+\]</span></p>
+<p>We will have <span class="math display">\[
+\Delta U\le \Delta U^{max}\\
+-\Delta U\le -\Delta U^{min}
+\]</span> Equally, we have <span class="math display">\[
+\begin{bmatrix}
+-I \\
+I
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-\Delta U^{min} \\
+\Delta U^{max}
+\end{bmatrix}
+\]</span></p>
+<h3 id="constraints-on-the-amplitude-of-control-variable">2. Constraints on the amplitude of control variable</h3>
+<p><span class="math display">\[
+U^{min}\le U \le U^{max}
+\]</span></p>
+<p><span class="math display">\[
+\overbrace{\begin{bmatrix}
+u(k)\\
+u(k+1)\\
+\vdots\\
+u(k+N_c-1)
+\end{bmatrix}}^{U}=
+\overbrace{\begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1
+\end{bmatrix}}^{C_1}u(k-1)+
+\overbrace{\begin{bmatrix}
+1 &amp; 0 &amp; \dotsm &amp; 0\\
+1 &amp; 1 &amp; \dotsm &amp; 0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+1&amp;1&amp;\dotsm&amp;1
+\end{bmatrix}}^{C_2}
+\overbrace{\begin{bmatrix}
+\Delta u(k)\\
+\Delta u(k+1)\\
+\vdots\\
+\Delta u(k+N_c-1)
+\end{bmatrix}}^{\Delta U}
+\]</span></p>
+<p>Equally, we have <span class="math display">\[
+U=C_1u(k-1)+C_2\Delta U
+\]</span> We can get the following result <span class="math display">\[
+\begin{bmatrix}
+-C_2 \\
+C_2
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-U^{min}+C_1u(k-1) \\
+U^{max}-C_1u(k-1)
+\end{bmatrix}
+\]</span></p>
+<h3 id="output-constraints">3. Output Constraints</h3>
+<p><span class="math display">\[
+Y^{min}\le Y \le Y^{max}
+\]</span></p>
+<p>We have the conclusion form the last note <span class="math display">\[
+Y=Fx(k)+\Phi\Delta U
+\]</span> We can derive the same result as the previous procedures <span class="math display">\[
+\begin{bmatrix}
+-\Phi \\
+\Phi
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-Y^{min}+Fx(k) \\
+Y^{max}-Fx(k) 
+\end{bmatrix}
+\]</span></p>
+<h3 id="conclusion">4. Conclusion</h3>
+<p><span class="math display">\[
+\begin{bmatrix}
+-I \\
+I \\
+-C_2 \\
+C_2 \\
+-\Phi \\
+\Phi
+\end{bmatrix}
+\Delta U
+\le
+\begin{bmatrix}
+-\Delta U^{min} \\
+\Delta U^{max} \\
+-U^{min}+C_1u(k-1) \\
+U^{max}-C_1u(k-1) \\
+-Y^{min}+Fx(k) \\
+Y^{max}-Fx(k) 
+\end{bmatrix}\\
+C_1=\overbrace{\begin{bmatrix}
+1 &amp; 
+1 &amp; 
+\dotsm &amp; 
+1
+\end{bmatrix}^T}^{N_c}\\
+C_2=\overbrace{\begin{bmatrix}
+1 &amp; 0 &amp; \dotsm &amp; 0\\
+1 &amp; 1 &amp; \dotsm &amp; 0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+1&amp;1&amp;\dotsm&amp;1
+\end{bmatrix}}^{N_c}
+\]</span></p>
+<h3 id="example">5. Example</h3>
+<p>We have the state space model <span class="math display">\[
+x_p(k+1)=x_p(k)+u(k) \\
+y(k)=x_p(k)
+\]</span> The control horizon is 1 and the predictive horizon is 2. <span class="math display">\[
+N_c=1 \\
+N_p=2 \\
+r_w=5 \\
+r(k)=1\quad(k\ge0) \\
+Y^{max}=[1 \quad 1]^T
+\]</span> First we have the augmented state space model <span class="math display">\[
+A=\begin{bmatrix} 1 &amp; 0 \\ 1 &amp; 1\end{bmatrix}\quad 
+B=\begin{bmatrix} 1  \\ 1 \end{bmatrix}\quad
+C=\begin{bmatrix} 0 &amp; 1 \end{bmatrix}
+\]</span> Then we get <span class="math display">\[
+F=\begin{bmatrix} 1 &amp; 1 \\ 2&amp;1\end{bmatrix}\quad 
+\Phi=\begin{bmatrix} 1  \\ 2 \end{bmatrix}\quad
+\]</span> According to the question <span class="math display">\[
+\begin{bmatrix} 1 \\ 2 \end{bmatrix} 
+\Delta u(k) \le \begin{bmatrix} 1-x_1(k)-x_2(k) \\ 1-2x_1(k)-x_2(k) \end{bmatrix}
+\]</span> Also we need to calculate J <span class="math display">\[
+H=\Phi^T\Phi+\bar R = 10\\
+f=-\Phi^T(R_s-Fx(k)) = 5x_1(k)+3x_2(k)-3\\
+J=5\Delta u^2(k)+\Delta u(k)(5x_1(k)+3x_2(k)-3)
+\]</span> For k=0 <span class="math display">\[
+\Delta u(0)\le0.5 \\
+J=5\Delta u^2-3\Delta u
+\]</span> We can get <span class="math display">\[
+\Delta u(0)=0.3
+\]</span> For k=1 <span class="math display">\[
+x(1)=Ax(0)+B\Delta u(0)=[0.3 \quad 0.3]^T\\
+\Delta u(1) \le0.05 \\
+J=5\Delta u^2(1)-0.6\Delta u(1)
+\]</span> we can get <span class="math display">\[
+u(1)=0.05
+\]</span></p>
+<p>One more example</p>
+<p>We have an augmented state space <span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+1 &amp; 1\\
+0 &amp; 1
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}\Delta u(k)\\
+y(k)=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}x(k)
+\]</span></p>
+<p>We choose <span class="math display">\[
+N_c=2\quad N_p=3\quad r_w=1 \quad r(k)=15
+\]</span> The constraints are <span class="math display">\[
+Y\le Y_{max}=15\\
+\Delta U\ge\Delta U_{min}=-5
+\]</span> Then we have the constraint inequations <span class="math display">\[
+\begin{bmatrix}
+-I\\\Phi
+\end{bmatrix}\Delta U\le
+\begin{bmatrix}
+-\Delta U_{min}\\
+Y_{max}-Fx(k)
+\end{bmatrix}
+\]</span> We have <span class="math display">\[
+F=
+\begin{bmatrix}
+CA\\CA^2\\CA^3
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1\\
+1 &amp; 2\\
+1 &amp; 3\\
+\end{bmatrix}\quad
+\Phi=
+\begin{bmatrix}
+CB &amp; 0\\
+CAB &amp; CB\\
+CA^2B &amp; CAB
+\end{bmatrix}=
+\begin{bmatrix}
+0 &amp; 0\\
+1 &amp; 0\\
+2 &amp; 1\\
+\end{bmatrix}
+\]</span> And we have <span class="math display">\[
+H=\Phi^T\Phi+\bar R =
+\begin{bmatrix}
+6 &amp; 2\\
+2 &amp; 2
+\end{bmatrix}\\
+f=-\Phi^T(R_s-Fx(k))=
+\begin{bmatrix}
+-45+3x_1(k)+8x_2(k)\\
+-15+x_1(k)+3x_2(k)
+\end{bmatrix}\\
+J=\frac{1}{2}\Delta U^TH\Delta U+\Delta U^T f=
+\]</span> Not finished!!!</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/11/25/EE5101 Linear Systems/8. Quadratic Optimal Control/" rel="next" title="Chapter 8. Quadratic Optimal Control">
+                  <i class="fa fa-chevron-left"></i> Chapter 8. Quadratic Optimal Control
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/11/28/EE5101 Linear Systems/9. Decoupling Control/" rel="prev" title="Chapter 9. Decoupling Control">
+                  Chapter 9. Decoupling Control <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#model-predictive-control-with-constraints"><span class="nav-text">Model Predictive Control with Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#constraints-on-the-control-variable-incremental-variation"><span class="nav-text">1. Constraints on the control variable incremental variation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constraints-on-the-amplitude-of-control-variable"><span class="nav-text">2. Constraints on the amplitude of control variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#output-constraints"><span class="nav-text">3. Output Constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-text">4. Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-text">5. Example</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>
