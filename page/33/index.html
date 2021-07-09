@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/EE5104 Computer Control/1. Computer Control Background/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/17/EE5104 Computer Control/4. Pole Placement Problem SS Approach/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/13/EE5104 Computer Control/1. Computer Control Background/" class="post-title-link" itemprop="url">1. Computer Control Background</a>
+            <a href="/2018/11/17/EE5104 Computer Control/4. Pole Placement Problem SS Approach/" class="post-title-link" itemprop="url">4. Pole Placement Problem SS Approach</a>
           
         </h1>
 
@@ -247,7 +247,7 @@
                 
               
 
-              <time title="Created: 2018-11-13 13:44:42 / Modified: 00:00:39" itemprop="dateCreated datePublished" datetime="2018-11-13T13:44:42+08:00">2018-11-13</time>
+              <time title="Created: 2018-11-17 13:44:42 / Modified: 00:02:15" itemprop="dateCreated datePublished" datetime="2018-11-17T13:44:42+08:00">2018-11-17</time>
             </span>
           
             
@@ -279,78 +279,248 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="laplace-transform">1. Laplace Transform</h2>
-<p>Here we need to talk about Laplace Transform firstly. For the system <span class="math display">\[
-\ddot y-y=u
-\]</span> if <span class="math inline">\(u=e^{st} \quad y=H(s)e^{st}\)</span></p>
-<p>we can build the relationship between u and y. <span class="math display">\[
-s^2H(s)e^{st}-H(s)e^{st}=e^{st}
-\]</span> Then we can get the following equation <span class="math display">\[
-H(s)=\frac{1}{s^2-1}
-\]</span> The meaning of this equation is quite clear. If we choose one input <span class="math display">\[
-u=e^{2t}
-\]</span> Obviously, s=2.</p>
-<p>The output will be <span class="math display">\[
-y=H(2)e^{2t}=\frac{1}{3}e^{2t}
-\]</span> Now we will choose another general tool which has the same properties. <span class="math display">\[
-u(t)=\frac{1}{2\pi i}\int_{a-i\infty}^{a+i\infty}U(s)e^{st}ds
-\]</span> And then we can get U(s) <span class="math display">\[
-U(s)=\int_0^\infty u(t)e^{-st}dt
-\]</span> This is the famous Laplace Transform. Fourier Transform transforms domain form time to frequencies. Laplace transform is another kind of transformation which may not have very clear physical meaning. But it has the very convenient calculate properties.</p>
-<h2 id="stability">2. Stability</h2>
-<p>Stable: small deviation from the equilibrium will remain small.</p>
-<p>Asymptotic Stable: small deviation from the equilibrium point will be completely eliminated.</p>
-<p>Unstable: small deviation from the equilibrium point will result in huge deviation.</p>
-<p>We will introduce a invert pendulum to this introduction part.</p>
-<p>For a invert pendulum, we have the following equations derived from Newton's Second Law. <span class="math display">\[
-ml^2\ddot \theta=u(t)-mlgsin(\theta(t))
-\]</span> To make the problem simple, we have <span class="math display">\[
-ml^2=mgl=1\\
-\ddot \theta+sin(\theta(t))=u(t)
-\]</span> We can find two equilibrium points from physics <span class="math display">\[
-\theta=0,\dot \theta=0\quad\theta=\pi,\dot \theta=0
-\]</span> What is equilibrium in math?</p>
-<p>Equilibrium points are the state of the system if once <span class="math inline">\(x(t)\)</span> is equal to <span class="math inline">\(x^*\)</span> , it remains to <span class="math inline">\(x^*\)</span> for all future time.</p>
-<p>Because of <span class="math display">\[
-\tag{3.1}
-\dot{\mathbf x} = \mathbf f(\mathbf x)
-\]</span> We have <span class="math display">\[
-\mathbf f(\mathbf x^*)= \mathbf 0
-\]</span> For a LTI system <span class="math display">\[
-\dot{\mathbf x}=A\mathbf x\\
-A\mathbf x^*=0
-\]</span> If <span class="math inline">\(A\)</span> is nonsingular, that means there is no nontrivial solution for the equation, there is only trivial solution <span class="math inline">\(\mathbf x^*=0\)</span> , there is only one equilibrium for the system and if <span class="math inline">\(A\)</span> is singular, there are equilibriums same as the solutions for the above equation.​</p>
-<p>And if the equilibrium is not at the origin, we can transfer it to the origin. <span class="math display">\[
-\begin{array}{lll}
-\mathbf y = \mathbf x - \mathbf x^*\\
-\mathbf x= \mathbf y + \mathbf x^* \\
-{(\mathbf y + \mathbf x^*）&#39;}=\mathbf f(\mathbf y + \mathbf x^*) \\
-\dot{\mathbf y}=\mathbf f(\mathbf y + \mathbf x^*)
-\end{array}
-\]</span> Then we can say, for the invert pendulum, we have the following equations to get the equilibrium points. <span class="math display">\[
-\ddot \theta=0\quad\dot\theta=0\quad u=0
-\]</span> How to check whether the point is stable or not. Many methods. Here we talk about linearization.</p>
-<p>With the help of Taylor Series, we can easily find linear equations for a nonlinear system in one point and its close area. Therefore, we will use Taylor Series to expand the invert pendulum system. Then we can get the following form. <span class="math display">\[
-\ddot y(t)-y=u(t)
+          <h2 id="pole-placement-for-state-space-model">1. Pole Placement for State Space Model</h2>
+<p>If one matrix is controllable canonical form <span class="math display">\[
+x(k+1)= \Phi x(k)+\Gamma u(k) \\
+y(k)=Cx(k)
 \]</span></p>
-<h2 id="section"></h2>
-<p>State space to time domain <span class="math display">\[
-x(t)=e^{At}x(0)+\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau
-\]</span> transfer function to time domain</p>
-<p>look up the table</p>
-<p>State space to transfer function <span class="math display">\[
-\begin{array}{}
-\dot x&amp;=&amp;Ax+Bu \\
-y&amp;=&amp;cx \\
-sX(s)&amp;=&amp;AX(s)+BU(s) \\
-X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
-\end{array}
-\]</span> Transfer function to state space</p>
-<p>(skip)</p>
-<p>==Second Order System==</p>
-<p>rise time <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
-<p>settling time <span class="math inline">\(t_r=\frac{4.6}{\xi\omega_n}\)</span></p>
-<p>overshoot <span class="math inline">\(e^{\frac{-\pi\xi}{\sqrt{1-\xi^2}}}\)</span></p>
+<p><span class="math display">\[
+\Phi=\begin{bmatrix}{}
+-a_1 &amp; -a_2 &amp;\dotsm &amp;-a_{n-1} &amp;-a_n\\
+1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
+0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
+\end{bmatrix}\\\\
+\]</span></p>
+<p>If we choose <span class="math inline">\(u=-Lx(k)\quad L=[l_1\quad l_2\quad \dotsm l_n ] \quad \Gamma=[1 \quad 0 \quad 0 \dotsm]^T\)</span> <span class="math display">\[
+x(k+1)=(\Phi-\Gamma L)x(k)
+\]</span></p>
+<p><span class="math display">\[
+\Phi-\Gamma L=\begin{bmatrix}{}
+-(a_1+l_1) &amp; -(a_2+l_2) &amp;\dotsm &amp;-(a_{n-1}+l_{n-1}) &amp;-(a_n+l_n)\\
+1 &amp; 0 &amp;\dotsm &amp; 0&amp;0\\
+0 &amp; 1 &amp;\dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp;\ddots &amp; \vdots&amp; \vdots\\
+0 &amp; 0 &amp;\dotsm &amp; 1&amp; 0\\
+\end{bmatrix}
+\]</span></p>
+<p>For any state space model, according to Ackermann's Formula, we have <span class="math display">\[
+L=[0\quad0\quad\dotsm\quad1]M_c^{-1}A_m(\Phi)
+\]</span> For a uncontrollable system, if we use state feedback control, some poles cannot be changed.</p>
+<p>If uncontrollable poles are stable, we can still control some poles.</p>
+<h2 id="observer">2. Observer</h2>
+<p><span class="math display">\[
+\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
+\hat y=C\hat x(k) \\
+e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
+\]</span> Common used observer</p>
+<p>Deadbeat Observer <span class="math display">\[
+A_o(\Phi)=\Phi^n
+\]</span> From Ackerman's Formula <span class="math display">\[
+K=A_o(\Phi)M_o^{-1}[0\quad0\quad\dotsm\quad1]^T
+\]</span> ## 3. Disturbance Rejection</p>
+<p>Augmented state vector <span class="math display">\[
+z(k)=\begin{bmatrix}
+x(k)\\
+\omega(k)
+\end{bmatrix}\\
+z(k+1)=\begin{bmatrix}
+\Phi&amp;\Phi_{\omega x}\\
+0&amp;\Phi_\omega
+\end{bmatrix}z(k)
++\begin{bmatrix}
+\Gamma\\
+0
+\end{bmatrix}u(k)
+\]</span> If we choose <span class="math inline">\(u(k)=-Lx(k)-L_ww(k)\)</span>,</p>
+<p>Then <span class="math display">\[
+x(k+1)=(\Phi-\Gamma L)x(k)+(\Phi_{wx}-\Gamma L_w)w(k)
+\]</span> Therefore, we only need <span class="math display">\[
+\Phi_{wx}-\Gamma L_w=0
+\]</span> If the above cannot be satisfied, we can use the following method,</p>
+<p>if the disturbance is constant <span class="math display">\[
+x(k+1)=\Phi x(k)+\Phi_{x\omega}\omega(k)+\Gamma u(k) \\
+\]</span> If we use state feedback controller, then we will have, <span class="math display">\[
+u(k)=-Lx(k)-L_w\omega(k) \\
+x(k+1)=(\Phi-\Gamma L) x(k)+(\Phi_{x\omega}-\Gamma L_\omega)\omega(k) \\
+(zI-(\Phi-\Gamma L))X(z)=(\Phi_{x\omega}-\Gamma L_\omega)W(z) \\
+G_{x\omega}(z)=(zI-(\Phi-\Gamma L))^{-1}(\Phi_{x\omega}-\Gamma L_\omega) \\
+G_{x\omega}(1)=0
+\]</span> If the disturbance is not constant, then frequency analysis should be used.</p>
+<p>Example <span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+1 &amp; h\\
+0 &amp; 1\\
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+\frac{h^2}{2}\\
+h
+\end{bmatrix}(u(k)+w(k))\\
+w(k+1)=w(k)
+\]</span> We can get the augmented state space model <span class="math display">\[
+z(k+1)=
+\begin{bmatrix}
+1 &amp; h &amp; \frac{h^2}{2}\\
+0 &amp; 1 &amp; h\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}z(k)+
+\begin{bmatrix}
+\frac{h^2}{2}\\
+h\\
+0\\
+\end{bmatrix}u(k)\\
+\]</span> Step1. Disturbance Rejection <span class="math display">\[
+\Phi_{wx}-\Gamma L_{w}=0\\
+\]</span> Then we have <span class="math display">\[
+L_w=1
+\]</span> If not satisfied and the disturbance is constant, we will have <span class="math display">\[
+G_{xw}(1)=0
+\]</span> Step2. Observer <span class="math display">\[
+A_o(\Phi)=\tilde A^n\\
+M_o=\begin{bmatrix}
+\tilde C\\
+\tilde C\tilde\Phi\\
+\tilde C\tilde\Phi^2
+\end{bmatrix}
+\\
+K=A_o(\Phi)M_o^{-1}\begin{bmatrix}
+0\\0\\1
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+\hat z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)+K(y-\tilde C\hat z)
+\]</span> Step3. Pole Placement <span class="math display">\[
+L=
+\begin{bmatrix}
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+M_c^{-1}A_m(\Phi)\\
+u(k)=-L\hat x-L_w\hat w
+\]</span></p>
+<h2 id="ss-feedforward-controller">4. SS Feedforward Controller</h2>
+<p>We can check the transfer function from feedforward input <span class="math inline">\(u_{ff}\)</span> to Output y <span class="math display">\[
+H_{cl}(z)=C(zI-\Phi+\Gamma L)^{-1}\Gamma L_c=L_c\frac{B(z)}{A_m(z)}
+\]</span> Therefore, we can choose <span class="math display">\[
+H_{ff}=L_c=\frac{B_m}{B}
+\]</span></p>
+<p>We can achieve perfect tracking if and only if B is stable. Then the input of the feedforward controller is bounded.</p>
+<h2 id="ss-example">5. SS Example</h2>
+<p><span class="math display">\[
+x(k+1)=
+\begin{bmatrix}
+0.5 &amp; 1\\
+0.2 &amp; 0.8\\
+\end{bmatrix}x(k)+
+\begin{bmatrix}
+1\\
+1\\
+\end{bmatrix}u(k)+
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}v(k)\\
+y=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}x(k)
+\]</span></p>
+<p>Where, disturbance v is constant. Design controllers such that influence of v can be eliminated in s.s. in the following cases.</p>
+<ol type="a">
+<li>The state and v can be measured.</li>
+</ol>
+<p>The augmented state space model is <span class="math display">\[
+z(k+1)=\tilde \Phi z(k)+\tilde \Gamma u(k)\\
+z(k+1)=
+\begin{bmatrix}
+x(k+1)\\
+v(k+1)
+\end{bmatrix}=
+\begin{bmatrix}
+0.5 &amp; 1 &amp; 1\\
+0.2 &amp; 0.8 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}
+\begin{bmatrix}
+x(k)\\
+v(k)
+\end{bmatrix}+
+\begin{bmatrix}
+1\\
+1\\
+0\\
+\end{bmatrix}u(k)
+\]</span> We can choose the controller, <span class="math display">\[
+u(k)=-Lx-L_vv
+\]</span> Step 1. Disturbance Rejection. <span class="math display">\[
+\Phi_{vx}-\Gamma L_v=0\\
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}-
+\begin{bmatrix}
+1\\
+1\\
+\end{bmatrix}L_v=0
+\]</span> We cannot get a <span class="math inline">\(L_v\)</span> to solve this equation.</p>
+<p>Step 2. Feedback Controller <span class="math display">\[
+A_m(\Phi)=\Phi^2\\
+M_c=
+\begin{bmatrix}
+1 &amp; 1.5\\
+1 &amp; 1\\
+\end{bmatrix}\\
+L=
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}M_c^{-1}A_m(\Phi)=
+\begin{bmatrix}
+0.38 &amp; 0.92
+\end{bmatrix}\\
+\]</span> Then we have <span class="math display">\[
+u(k)=-Lx-L_vv
+\]</span> Then <span class="math display">\[
+H_v(z)=C(zI-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)\\
+H_v(1)=C(I-\Phi+\Gamma L)^{-1}(\Phi_{vx}-\Gamma L_v)=0\\
+\]</span> We can get <span class="math display">\[
+L_v=0.9333
+\]</span> b) The state can be measured.</p>
+<p>We set k=0. <span class="math display">\[
+x(1)=\Phi x(0)+\Gamma u(0)+\Phi_{vx}v
+\]</span> Because states can be measured, we can solve v</p>
+<p>Then the controller is the same as a).</p>
+<ol start="3" type="a">
+<li>The input can be measured.</li>
+</ol>
+<p>Now we need to design an Deadbeat observer. <span class="math display">\[
+A_o(\tilde\Phi)=\tilde \Phi^3=
+\begin{bmatrix}
+0.485 &amp; 1.49 &amp; 1.95\\
+0.298 &amp; 0.932 &amp; 0.46 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\\
+M_o=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0.5 &amp; 1 &amp; 1\\
+0.45 &amp; 1.3 &amp; 1.5\\
+\end{bmatrix}\\
+K=A_o(\tilde\Phi)M_o^{-1}
+\begin{bmatrix}
+0\\
+0\\
+1\\
+\end{bmatrix}=
+\begin{bmatrix}
+2.3\\
+-2.36\\
+5\\
+\end{bmatrix}
+\]</span> Then we have <span class="math display">\[
+{\hat z(k+1)}=\tilde \Phi \hat z(k)+\tilde \Gamma u(k)+K(y(k)-\tilde C\hat z(k))
+\]</span> Now our controller should be <span class="math display">\[
+u(k)=-L\hat x(k)-L_v\hat v
+\]</span></p>
 
         
       
@@ -375,7 +545,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/EE5101 Linear Systems/5. Stability/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -389,7 +559,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/13/EE5101 Linear Systems/5. Stability/" class="post-title-link" itemprop="url">Chapter 5. Stability</a>
+            <a href="/2018/11/17/EE5101 Linear Systems/6. Canonical Forms/" class="post-title-link" itemprop="url">Chapter 6. Canonical Forms</a>
           
         </h1>
 
@@ -404,7 +574,7 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
                 
               
 
-              <time title="Created: 2018-11-13 13:33:56 / Modified: 14:21:42" itemprop="dateCreated datePublished" datetime="2018-11-13T13:33:56+08:00">2018-11-13</time>
+              <time title="Created: 2018-11-17 13:33:56 / Modified: 14:21:59" itemprop="dateCreated datePublished" datetime="2018-11-17T13:33:56+08:00">2018-11-17</time>
             </span>
           
             
@@ -436,131 +606,118 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="input-output-stability">1. Input-Output Stability</h2>
-<p>==Theorem 1==</p>
-<p>A SISO system is BIBO stable if and only if <span class="math display">\[
-\int_0^\infty|g(t)|dt \le k\le\infty
-\]</span> for some constant k.</p>
-<p>==Theorem 2==</p>
-<p>A transfer function G(s) is BIBO stable if and only if all poles of G(s) are in the open left-half s-plane.</p>
-<p>Equivalently, all poles of G(s) have negative real parts.</p>
-<h2 id="internal-stability-bibo-stability">2. Internal Stability BIBO Stability</h2>
-<p>Deal with zero-input stability</p>
-<h2 id="lyapunov-theorem">3. Lyapunov Theorem</h2>
-<p>==Theorem 3==</p>
-<blockquote>
-<ol type="1">
-<li>V(x) is continuous in domain D</li>
-<li>V(0)=0</li>
-<li>V(0)&gt;0 except at x=0</li>
-<li><span class="math inline">\(\frac{dV}{dt}\le0\)</span> stable</li>
-<li><span class="math inline">\(\frac{dV}{dt} &lt; 0\)</span> asymptotically stable</li>
-</ol>
-</blockquote>
-<p>==Theorem 4==</p>
-<p>Given <span class="math inline">\(\dot x=Ax\)</span> .The system is said to be stable in the sense of Lyapunov (i.s.L.) if and only if all eigenvalues of A have zero or negative real parts and those with zero real parts has no Jordan block of order 2 or higher.</p>
-<p>The system is asymptotically stable if all the eigenvalues of A have negative real parts.</p>
-<p>==Theorem 5==</p>
-<p>Asymptotically stable i.s.L. implies BIBO stability</p>
-<p>==Theorem 6==</p>
-<p>The linear system <span class="math display">\[
-\dot x(t)=Ax
-\]</span> is asymptotically stable if and only if for any Q which is positive definite and symmetric, there exists a P which is symmetric and positive definite satisfying the following equation <span class="math display">\[
-A^TP+PA=-Q
-\]</span> known as the Lyapunov equation.</p>
-<p>==Example== <span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}x \\
-\]</span> We choose <span class="math inline">\(Q=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span> . Then we have <span class="math display">\[
-A^TP+PA=-Q \\
-\begin{bmatrix}
-0 &amp; -1 \\ 1 &amp; -1
+          <h2 id="controllable-canonical-form">Controllable Canonical Form</h2>
+<p>Proof of existence,</p>
+<p>When <span class="math inline">\(rank(M_c)=n\)</span>, then <span class="math inline">\(M_c^{-1}\)</span> exists. Let <span class="math inline">\(q^T\)</span> be the n<sup>th</sup> row of <span class="math inline">\(M_c^{-1}\)</span></p>
+<p>Then from <span class="math inline">\(M_c^{-1}M_c=I\)</span> , we have <span class="math display">\[
+q^TA^iB=0 \quad(i=0,1,2,\dotsm,n-2) \\
+q^TA^{n-1}B=1
+\]</span> Let the transfer function <span class="math display">\[
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix}\\
+\bar B = TB=\begin{bmatrix} 0 \\0\\ \vdots \\1 \end{bmatrix} \\
+\bar AT=TA \\
+\bar A\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} = \begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix} A =\begin{bmatrix}
+q^TA \\q^TA^2 \\ \vdots \\q^TA^{n}
 \end{bmatrix}
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}+
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}=-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\]</span> We get <span class="math display">\[
-P=\begin{bmatrix}
-1.5 &amp; 0.5 \\ 0.5 &amp; 1
-\end{bmatrix}
-\]</span> Therefore, the system is asymptotically stable.</p>
-<h2 id="l-stability">4. L stability</h2>
-<p>Define <span class="math inline">\(\mathcal L_1\)</span> <span class="math display">\[
-||u(t)||_1=\int_0^\infty|u_i(t)|dt \\
-\]</span> For MIMO <span class="math display">\[
-||u(t)||_1=\sum_{i=1}^m||u_i(t)||_1
-\]</span> Define <span class="math inline">\(\mathcal L_2\)</span> <span class="math display">\[
-||u(t)||_2=\sqrt{\int_0^\infty u(t)^Tu(t)dt}
-\]</span> Define<span class="math inline">\(\mathcal L_\infty\)</span><br>
-<span class="math display">\[
-||u(t)||_\infty=max||u(t)||
-\]</span> The system can be seen as a mapping in the form of <span class="math inline">\(y=Su\)</span></p>
-<p>Then the system norm is <span class="math display">\[
-||S||_p=sup\frac{||y||_p}{||u||_p}=sup\frac{||Su||_p}{||u||_p} 
-\]</span> ==Definition==</p>
-<p>A system with input-output model S is <span class="math inline">\(\mathcal L_p\)</span> stable if</p>
-<p>and only if its p induced norm is finite. Particularly, a system</p>
-<p>is BIBO stable if and only if it is <span class="math inline">\(\mathcal L_\infty\)</span> stable.</p>
-<p>For the MIMO (m-input-q-output) system <span class="math display">\[
-||S||_\infty=\max_{1\le i\le q}\sum_{1\le j\le m}\int_0^\infty|H_{ij}(t)|dt
-\]</span> For the SISO system <span class="math display">\[
-||S||_\infty=\int_0^\infty|h(t)|dt
-\]</span></p>
-<p>==<span class="math inline">\(\mathcal{H}_\infty\)</span>== <span class="math display">\[
-||S||_2&lt;max_{w\in R}||H(w)||_2
-\]</span></p>
-<p><span class="math inline">\(max_{w\in R}||H(w)||_2\)</span> is known as <span class="math inline">\(\mathcal H_\infty\)</span> norm of system S</p>
-<p>We define <span class="math display">\[
-M_\gamma=\begin{bmatrix}
-A  &amp; \frac{1}{\gamma^2}BB^T\\
--C^TC &amp; -A^T
-\end{bmatrix}
-\]</span> then <span class="math inline">\(\mathcal H_\infty &lt; \gamma\)</span> if and only if <span class="math inline">\(M_\gamma\)</span> has no purely imaginary eigenvalues.</p>
-<p>==<span class="math inline">\(\mathcal{H}_2\)</span>==</p>
-<p><span class="math inline">\(\frac{1}{2\pi}Tr\int_{-\infty}^\infty H^T(w)H(w)dw\)</span> is known as <span class="math inline">\(\mathcal H_2\)</span> norm of system S <span class="math display">\[
-\mathcal H_2^2=Tr(CWC^T)=Tr(B^TMB) \\
-\text{W is Controllability Grammain}\\
-\text{M is Observability Grammain}\\
-AW+WA^T+BB^T=0 \\
-A^TM+MA+C^TC=0
-\]</span></p>
-<p>==Relationship==</p>
-<p>If one system is asymptotically stable, it must be BIBO stable.</p>
-<p>If one system is not asymptotically stable, it can be BIBO stable.</p>
+\]</span> Denote <span class="math inline">\(\bar A_i\)</span> is the i<sup>th</sup> line of <span class="math inline">\(\bar A_i\)</span></p>
+<p>We can observe the above equation and find the solution <span class="math display">\[
+\bar A_1=\begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_2=\begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; \dotsm &amp; 0 \end{bmatrix} \\
+\bar A_i=\begin{bmatrix} 0 &amp; 0 &amp; \overbrace{1}^{i} &amp; \dotsm &amp; 0 \end{bmatrix}
+\]</span> Then we need to solve the last line</p>
+<p>According to Caley-Hamilton Equation <span class="math display">\[
+A^n=-\sum_{i=0}^{n-1}a_iA^i
+\]</span> Therefore, <span class="math display">\[
+\bar A_n=\begin{bmatrix} -a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-1} \end{bmatrix}\\
+\]</span> Q.E.D.</p>
 <p>Example <span class="math display">\[
 \dot x=Ax+Bu \\
-y=Cx\\
-A=\begin{bmatrix}
-0 &amp; 2\\
-1 &amp; -1\\
-\end{bmatrix}
-B=\begin{bmatrix}
--1  \\
-1
-\end{bmatrix}
-C=\begin{bmatrix}
-0 &amp; 1
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+M_c= \begin{bmatrix}B &amp; AB \end{bmatrix} = \begin{bmatrix}1 &amp; -8\\ 2 &amp; -14 \end{bmatrix} \\
+M_c^{-1}=\begin{bmatrix}-7 &amp; 4 \\ -1 &amp; 0.5\end{bmatrix} \\
+q^T=[-1 \quad 0.5]\\
+T=\begin{bmatrix}
+q^T \\q^TA \\ \vdots \\q^TA^{n-1}
+\end{bmatrix}=\begin{bmatrix}-1 &amp; 0.5 \\ 0 &amp; 0.5\end{bmatrix}\\
+\bar B = TB = \begin{bmatrix}0 \\ 1 \end{bmatrix} \\
+\bar A= TAT^{-1} = \begin{bmatrix}0 &amp; 1 \\ 2 &amp; -7\end{bmatrix}
+\]</span> We get the Controllable Canonical Form.</p>
+<h2 id="observable-canonical-form">Observable Canonical Form</h2>
+<p><span class="math inline">\(w\)</span> is the last column of observability matrix inverse <span class="math inline">\(M_o^{-1}\)</span> <span class="math display">\[
+M_o=\begin{bmatrix}
+C\\
+CA\\
+\vdots\\
+CA^{n-1}
 \end{bmatrix}\\
-|\lambda I-A|=\begin{vmatrix}
-\lambda &amp; -2\\
--1 &amp; \lambda+1
-\end{vmatrix}=\lambda(\lambda+1)-2=0\\
-\lambda_1=1 \\
-\lambda_2=-2\\
-\]</span> The system is not asymptotically stable.</p>
-<p>However, the transfer function are <span class="math display">\[
-C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
-\]</span> Which is BIBO stable.</p>
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w] \\
+\bar A = Q^{-1}AQ \\
+\bar B = Q^{-1}B \\
+\bar C=CQ
+\]</span> Proof is similar to the previous</p>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A= \begin{bmatrix}-2 &amp; -3 \\ -4 &amp; -5 \end{bmatrix}
+B= \begin{bmatrix}1 \\ 2 \end{bmatrix} \\
+C= \begin{bmatrix}1 &amp; 1 \end{bmatrix} \\
+M_o= \begin{bmatrix}C \\CA \end{bmatrix} =  \begin{bmatrix}1&amp;1 \\ -6 &amp; -8 \end{bmatrix} \\
+M_o^{-1}= \begin{bmatrix}4 &amp; 0.5 \\ -3&amp; -0.5 \end{bmatrix} \\
+w=\begin{bmatrix}0.5 \\ -0.5 \end{bmatrix} \\
+Q=[w \quad Aw \quad \dotsm \quad A^{n-1}w]=\begin{bmatrix}0.5 &amp; 0.5 \\-0.5 &amp; 0.5\end{bmatrix} \\
+\bar A= Q^{-1}AQ=\begin{bmatrix}0 &amp; 2 \\1 &amp; -7\end{bmatrix}\\
+\bar B= Q^{-1}B=\begin{bmatrix}-1 \\3\end{bmatrix}\\
+\bar C=CQ=[0 \quad 1]
+\]</span></p>
+<h2 id="transfer-function">Transfer Function</h2>
+<p><span class="math display">\[
+\frac{Y(s)}{U(s)}=\frac{b_{n-1}s^{n-1}+b_{n-2}s^{n-2}+\dotsm+b_{1}s^{1}+b_0}{a_n+a_{n-1}s^{n-1}+a_{n-2}s^{n-2}+\dotsm+a_{1}s^{1}+a_0}
+\]</span></p>
+<p>Controllable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 1  &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
+0 &amp; 0  &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0  &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
+-a_0 &amp; -a_1 &amp; -a_2 &amp; \dotsm &amp; -a_{n-2} &amp; -a_{n-1}
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+0\\
+0\\
+\vdots\\
+0\\
+1
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+b_0 &amp; b_1 &amp; \dotsm &amp; b_{n-2} &amp; b_{n-1}
+\end{bmatrix}
+\]</span> Observable Canonical Form <span class="math display">\[
+\bar A=
+\begin{bmatrix}
+0 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_0\\
+1 &amp; 0  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_1\\
+0 &amp; 1  &amp; \dotsm &amp; 0 &amp; 0 &amp; -a_2\\
+\vdots  &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0 &amp;-a_{n-1}\\
+\end{bmatrix}\\
+\bar B=\begin{bmatrix}
+b_0\\
+b_1\\
+\vdots\\
+b_{n-2}\\
+b_{n-1}
+\end{bmatrix}\\
+\bar C=\begin{bmatrix}
+0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1
+\end{bmatrix}
+\]</span></p>
 
         
       
@@ -584,7 +741,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -629,7 +786,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -658,7 +815,9 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -692,7 +851,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

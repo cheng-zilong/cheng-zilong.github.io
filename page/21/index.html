@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/17/EE5904 Neural Network/5.RL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/05/06/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" class="post-title-link" itemprop="url">Chapter 10. Gaussian Mixture Model and Boosting</a>
+            <a href="/2019/05/17/EE5904 Neural Network/5.RL/" class="post-title-link" itemprop="url">Chapter 5. Reinfocement Learning</a>
           
         </h1>
 
@@ -247,7 +247,7 @@
                 
               
 
-              <time title="Created: 2019-05-06 13:46:13 / Modified: 14:47:38" itemprop="dateCreated datePublished" datetime="2019-05-06T13:46:13+08:00">2019-05-06</time>
+              <time title="Created: 2019-05-17 13:45:47 / Modified: 14:36:50" itemprop="dateCreated datePublished" datetime="2019-05-17T13:45:47+08:00">2019-05-17</time>
             </span>
           
             
@@ -260,7 +260,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
 
                 
                 
@@ -279,74 +279,132 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="gaussian-mixture-model-and-boosting">Gaussian Mixture Model and Boosting</h1>
-<p>A generative model learns the joint probability distribution <span class="math inline">\(p(x,y)\)</span> and a discriminative model learns the conditional probability distribution <span class="math inline">\(p(x|y)\)</span></p>
-<h2 id="gaussian-mixture-model-gmm">1. Gaussian Mixture Model (GMM)</h2>
-<p>GMM: the weighted sum of a number of Gaussians where the weights are determined by a distribution <span class="math inline">\(\pi\)</span>. <span class="math display">\[
-\begin{array}{lll}
-p(x)&amp;=&amp;\pi_1 N(x|\mu_1,\Sigma_1)+\pi_2 N(x|\mu_2,\Sigma_2)+\dotsm+\pi_K N(x|\mu_K,\Sigma_K)\\
-&amp;=&amp; \sum_{i=1}^K \pi_iN(x|\mu_i,\Sigma_i)
-\end{array}
-\]</span> The ==Expectation-maximization algorithm== (EM) is a method for finding maximum likelihood (or maximum a posteriori) estimate of parameters in statistical model, where the model depends on unobserved latent variables.</p>
-<p>EM is a iterative method which alternates between performing and Expectation (E) Step and Maximization (M) Step.</p>
-<p>E-Step: Computes the expectation of the log-likelihood evaluated using the current estimated distributions for the latent variables based on the parameters inferred from previous step.</p>
-<p>M-Step: Computes parameters maximizing the expected log-likelihood from the E-Step. These parameters are then used to determine the distribution of the latent variables in the next E-Step.</p>
-<p>It seems like a K-means algorithm.</p>
-<p>==Example==</p>
-<p>Let events be ''grades in a class'' <span class="math display">\[
-P(A)=0.5\\p(B)=\mu\\P(C)=2\mu\\P(D)=0.5-3\mu\\P(a,b,c,d|\mu)=K(0.5)^a \mu^b (2\mu)^c (0.5-3\mu)^d
-\]</span> We hope to get the max like <span class="math inline">\(\mu\)</span> <span class="math display">\[
-\log P=\log K+a\log0.5 + b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
-\frac{\partial \log P}{\partial \mu}=\frac{b}{\mu}+\frac{c}{\mu}-\frac{3d}{0.5-3\mu}=0\\
-\mu=\frac{b+c}{6(b+c+d)}
-\]</span> If the class got A=14,B=6,C=9,D=10, then we have <span class="math inline">\(\mu=\frac{1}{10}\)</span></p>
-<p>If we have a latent variable in the problem, A+B=h, C=c, D=d</p>
-<p>Then the probability is <span class="math display">\[
-P(h,c,d|\mu,b)=K(0.5)^{h-b}\mu^{b}(2\mu)^c (0.5-3\mu)^d\\
-\log P=\log K+(h-b)\log 0.5+b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
-\]</span> E-Step</p>
-<p>If we know <span class="math inline">\(\mu\)</span>, then we can get the expected b <span class="math display">\[
-E_\mu(b)=\frac{\mu}{0.5+\mu}h
-\]</span> M-Step</p>
-<p>If we know b, then we can get the optimal <span class="math inline">\(\mu\)</span> <span class="math display">\[
-\mu_b=\frac{E_\mu(b)+c}{6(E_\mu(b)+c+d)}
-\]</span> Then if we iterate between E-Step and M-Step, the values will be converged to a local minimum.</p>
-<p>Then we can use this algorithm to solve the GMM problems</p>
-<p>We define <span class="math display">\[
-\pi_i=p(w_i)\quad \sum_i \pi_i=1\\
-z_i=p(w_i|x)=\frac{p(w_i)p(x|w_i)}{\sum_{j=1}^Kp(w_j)p(x|w_j)}\\
-z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
-\]</span> Then the hidden variables <span class="math inline">\(z_k^n\)</span> indicating which component <span class="math inline">\(k\)</span> the datum <span class="math inline">\(n\)</span> is sampled from</p>
-<p>Identify the likelihood <span class="math display">\[
-P(x_1,\dotsm,x_N|\pi,\mu)=\prod_{n=1}^NP(x_n|\pi,\mu)\\
-=\prod_{n=1}^N \sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\\
-\log P =\sum_{n=1}^N\log \left[\sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\right]
-\]</span> Set the partials to zero, we have (Similarly for the other parameters) <span class="math display">\[
-\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
-\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
-\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
-\]</span> Therefore,</p>
-<p>E-Step: <span class="math display">\[
-z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
-\]</span> M-Step: <span class="math display">\[
-\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
-\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
-\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
+          <h1 id="reinforcement-learning">Reinforcement Learning</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>Agent learns to maximize reward when completing tasks</p>
+<p>Unsupervised: Agent does not know the desired output.</p>
+<p>Uncertain or unknown system behavior.</p>
+<p>Reward received after each action is the only feedback.</p>
+<p>Objective: Maximize total reward when executing a task.</p>
+<h2 id="markov-decision-process">2. Markov Decision Process</h2>
+<p>A set of state: <span class="math inline">\(S=\{s_1,s_2,\dots\}\)</span></p>
+<p>A set of actions: <span class="math inline">\(A=\{a_1,a_2,\dotsm\}\)</span></p>
+<p>A transition function</p>
+<p>Deterministic: <span class="math display">\[
+\bar f(s,a)=s&#39;
+\]</span> That means after one specific action, the next state is deterministic.</p>
+<p>Non-deterministic: <span class="math display">\[
+f(s,a,s&#39;)=P(s_{t+1}=s&#39;|s_t=s,a_t=a)=P_{ss&#39;}^a
+\]</span> That means after one specific action, the next state is determined by probability. (For example, the robot's operation may be influenced by uncertainties such as slippery floor)</p>
+<p>After every, there are two changes.</p>
+<ol type="1">
+<li><p>Agent takes action <span class="math inline">\(a\)</span> to move from <span class="math inline">\(s\)</span> to <span class="math inline">\(s&#39;\)</span></p></li>
+<li><p>Agent receives reward <span class="math inline">\(r\)</span> one time-step later</p></li>
+</ol>
+<p>Reward function <span class="math display">\[
+r_{t+1}=\rho(s_t,a_t,s_{t+1})
+\]</span> For non-deterministic transitions: <span class="math display">\[
+E[r_{t+1}|s_t=s]=\sum_{s&#39;}\left(P^a_{ss&#39;} r_{t+1}|s_{t+1}=s&#39;\right)=\sum_{s&#39;}\left(P^a_{ss&#39;} \rho(s,a,s&#39;)\right)
+\]</span> The total transition reward <span class="math display">\[
+R_{t}=r_{t+1}+\gamma r_{t+2}+\gamma^2 r_{t+2}+\dotsm=\sum _{k=0}^\infty \gamma^k r_{t+k+1}
+\]</span> Policy (<span class="math inline">\(\pi\)</span>):</p>
+<p>Decision-making mechanism for controlling a Markov process</p>
+<p>specifies which action to take at a state</p>
+<p>can be deterministic</p>
+<p>Specifies particular action to be taken at particular state</p>
+<p>non-deterministic</p>
+<p>Specifies probability of action being taken at particular state</p>
+<p>In this module, we consider deterministic policies only</p>
+<p>In this following, key questions are</p>
+<p>What is the best policy?</p>
+<p>How to find the best policy?</p>
+<h2 id="q-function">3. Q-function</h2>
+<p>Q-function measures the ''worth'' of taking a at s under <span class="math inline">\(\pi\)</span></p>
+<p>Worth is represented by <span class="math display">\[
+Q^\pi:S\times A\rightarrow R
+\]</span> defined as the expected return from taking action a at state s at time step t and thereafter following policy <span class="math inline">\(\pi\)</span> <span class="math display">\[
+Q^{\pi}(s,a)=E^\pi[R_t|s_t=s]
+\]</span> An optimal policy is one that maximizes values of Q-function over all possible (s,a) pairs</p>
+<p>Solving the RL problem is about finding an optimal policy</p>
+<p>To do this requires the Bellman Equation</p>
+<h2 id="bellman-equation">4. Bellman Equation</h2>
+<p>Bellman equation represents the relationship between <span class="math inline">\(Q^\pi (s,a)\)</span> and <span class="math inline">\(Q^\pi (s&#39;,a&#39;)\)</span></p>
+$$
+<span class="math display">\[\begin{array}{rcl}
+Q^\pi(s,a)&amp;=&amp;E^\pi[R_t|s_t=s]\\
+&amp;=&amp; E^\pi[\sum_{k=0}^\infty|s_t=s]\\
+&amp;=&amp; E^\pi\left[r_{t+1}+\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}|s_t=s\right]\\
+&amp;=&amp; E^\pi\left[r_{t+1}\right]+\underbrace{E^\pi\left[\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}|s_t=s\right]}_{s_t=s \text{ is omitted}}\\
+
+&amp;=&amp; E^\pi\left[r_{t+1}\right]+E^\pi\left[\gamma\sum_{k=0}^\infty \gamma^k r_{t+k+2}\right]\\
+
+&amp;=&amp; \sum_{s&#39;} P_{ss&#39;}^a\left(\rho(s,a,s&#39;)+\gamma Q^\pi(s&#39;,a&#39;)\right)
+\end{array}\]</span>
+<p>$$</p>
+<p>The policy whose Q-function values are greater or equal to that of all other policies is called an optimal policy</p>
+<p>This Q function is called the optimal Q-function <span class="math display">\[
+Q^*(s,a)=\max_\pi Q^\pi(s,a)\\
+\pi^*(s)\in \arg \max_a Q^*(s,a)
+\]</span> Then <span class="math inline">\(Q^*(s,a)\)</span> satisfies Bellman Equation <span class="math display">\[
+Q^*(s,a)=\sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q^*(s&#39;,a&#39;)\right)
+\]</span> That is the sum of reward in current state for the chosen action <span class="math inline">\(a\)</span> and discounted value of Q-function for the best action available in the successor state <span class="math inline">\(s&#39;\)</span></p>
+<p>There are two methods to solve for <span class="math inline">\(Q^*\)</span> to get <span class="math inline">\(\pi^*\)</span></p>
+<ol type="1">
+<li>Value Iteration</li>
+<li>Policy Iteration</li>
+</ol>
+<h2 id="value-iteration">5. Value Iteration</h2>
+<p>Input: state-transition probability f, reward function <span class="math inline">\(\rho\)</span>, discount factor <span class="math inline">\(\gamma\)</span></p>
+<p>Initialize Q-function, e.g. <span class="math inline">\(Q_0\leftarrow 0\)</span></p>
+<p>​ Repeat for each l</p>
+<p>​ <span class="math inline">\(Q\leftarrow Q_l\)</span></p>
+<p>​ For every (s,a) do</p>
+<p>​ <span class="math inline">\(Q(s,a)\leftarrow \sum_{s&#39;}P^a_{ss&#39;}\rho(s,a,s&#39;)+\gamma\max_{a&#39;}Q(s&#39;,a&#39;))\)</span></p>
+<p>​ end for-loop</p>
+<p>​ <span class="math inline">\(Q_{l+1}\leftarrow Q\)</span></p>
+<p>​ Until <span class="math inline">\(Q_{l+1}=Q_l\)</span></p>
+<p>Output <span class="math inline">\(Q^*=Q_l\)</span></p>
+<p>Proof of convergence</p>
+<p>Consider <span class="math inline">\(Q_k\)</span> at iteration k <span class="math display">\[
+\delta_k=\max_{s,a}|Q^*-Q_k|
+\]</span> Then <span class="math display">\[
+|Q^*-Q_k|\le \delta_k\\
+Q^*-\delta_k\le Q_k\le Q^*+\delta_k\\
+\]</span> And we have <span class="math display">\[
+Q_{k+1}(s,a)=\sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q_k(s&#39;,a&#39;)\right)\\
+\le \sum_{s&#39;}P^a_{ss&#39;}\left(\rho(s,a,s&#39;)+\gamma \max_{a&#39;}Q^*(s&#39;,a&#39;)+\gamma \delta_k\right)\\
+=Q^*(s,a)+\gamma\delta_k\\
+\]</span> Then <span class="math display">\[
+\delta_{k+1}=\max_{s,a}|Q^*-Q_{k+1}|\le\max_{s,a}|\gamma \delta_k|=\gamma\delta_k
+\]</span> Since <span class="math inline">\(0\le\gamma&lt;1\)</span> Q.E.D.</p>
+<p>However, dynamic programming needs the information of model, What if no such model is available?</p>
+<h2 id="q-learning">4. Q-learning</h2>
+<p>Iterative update rule <span class="math display">\[
+Q_{k+1}(s_k,a_k)=Q_{k}\left(s_{k}, a_{k}\right)+\alpha_{k}\left(\underbrace{r_{k+1}+\gamma \max _{a^{\prime}} Q_{k}\left(s_{k+1}, a^{\prime}\right)}_{\text { Estimate of } Q^{*}\left(s_{k}, a_{k}\right)}-Q_{k}\left(s_{k}, a_{k}\right)\right)
+\]</span> Q-learning update rule converges to <span class="math inline">\(Q^*\)</span> as <span class="math inline">\(k\rightarrow \infty\)</span> if</p>
+<ol type="1">
+<li><span class="math inline">\(\sum_{k=0}^{\infty} \alpha_{k}^{2}&lt;\infty \quad \text { and } \quad \sum_{k=0}^{\infty} \alpha_{k} \rightarrow \infty\)</span></li>
+<li>All (s,a) pairs are (asymptotically) visited infinitely often</li>
+</ol>
+<p>We have two state for every action</p>
+<ol type="1">
+<li>Exploitation: Use greedy policy to select currently known best action</li>
+</ol>
+<p><span class="math display">\[
+a_{k+1}=\max_{a&#39;}Q_k(s_{k+1},a&#39;)
 \]</span></p>
-<h2 id="boosting">2. Boosting</h2>
-<p>Easy to implement, not requires external optimization tools</p>
-<p>Boosting fits the additive model <span class="math display">\[
-F(x)=f_1(x)+f_2(x)+f_3(x)+\dotsm
-\]</span> by minimizing the exponential loss <span class="math display">\[
-J(F)=\sum_{t=1}^Ne^{-y_tF(x_t)}
-\]</span> Sequential Procedure. At each step m we add <span class="math display">\[
-F(x)\leftarrow F(x)+f_m(x)
-\]</span> to minimize the residual loss <span class="math display">\[
-(\phi_m)=\arg\min_{\phi}\sum_{t=1}^N J(y_t,F(x_t)+f(x_t;\phi))
-\]</span> At each iteration, we choose <span class="math inline">\(f_m(x)\)</span> that minimizes the cost <span class="math display">\[
-J(F+f_m)=\sum_{t=1}^Ne^{-y_t(F(x_t)+f_m(x_t))}
-\]</span> Instead of doing exact optimization, gentle Boosting minimizes the approximation of the error <span class="math display">\[
-J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
+<ol start="2" type="1">
+<li>Exploration: Try action other than currently known best action</li>
+</ol>
+<p><span class="math display">\[
+a_{k+1}\neq\max_{a&#39;}Q_k(s_{k+1},a&#39;)
+\]</span></p>
+<p>We need to balancing exploration-exploitation trade-off, that is <span class="math inline">\(\epsilon-greedy\)</span> exploration <span class="math display">\[
+a_k=
+\begin{cases}
+a\in\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }1-\epsilon_k\\
+a_{k+1}\notin\arg\max_{\hat a}Q_k(s_k|\hat a) &amp; \text{with probability }\epsilon_k
+\end{cases}
 \]</span></p>
 
         
@@ -372,7 +430,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/EE5907 Pattern Recognition/9.Clustering and Application/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/EE5904 Neural Network/4.SVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -386,7 +444,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/04/26/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-title-link" itemprop="url">Chapter 9. Clustering and Applications</a>
+            <a href="/2019/05/13/EE5904 Neural Network/4.SVM/" class="post-title-link" itemprop="url">Chapter 4. Support Vector Machine</a>
           
         </h1>
 
@@ -401,7 +459,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
                 
               
 
-              <time title="Created: 2019-04-26 13:46:14 / Modified: 14:47:27" itemprop="dateCreated datePublished" datetime="2019-04-26T13:46:14+08:00">2019-04-26</time>
+              <time title="Created: 2019-05-13 13:45:47 / Modified: 14:36:35" itemprop="dateCreated datePublished" datetime="2019-05-13T13:45:47+08:00">2019-05-13</time>
             </span>
           
             
@@ -414,7 +472,7 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
 
                 
                 
@@ -433,73 +491,251 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="clustering-and-applications">Clustering and Applications</h1>
-<h2 id="what-is-cluster-analysis">1. What is Cluster Analysis</h2>
-<p>Finding groups of objects such that the objects in a group will be similar to one another and different from the objects in other groups.</p>
-<p>A clustering is a set of clusters.</p>
-<p>Partitional Clustering: A division of data objects into non-overlapping subsets, such that each data object is in exactly one subset.</p>
-<p>Hierarchical clustering: A set of nested clusters organized as a hierarchical tree.</p>
-<p>Exclusive and non-exclusive: In non-exclusive clustering, points may belong to multiple clusters.</p>
-<p>Fuzzy and non-fuzzy: In fuzzy clustering, a point belongs to every cluster with some weight between 0 and 1.</p>
-<p>Partial and Complete: In some cases, we only want to cluster some of the data.</p>
-<h2 id="k-means">2. K-means</h2>
+          <h1 id="support-vector-machine-svm">Support Vector Machine (SVM)</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>There are many planes to separate data. SVM is one of the best planes.</p>
+<h2 id="data">2. Data</h2>
+<p>Data set <span class="math inline">\(\sum\)</span> containing <span class="math inline">\(N+\bar N\)</span> examples is partitioned into a training set <span class="math display">\[
+S=\{(x_1,d_1),\dotsm,(x_N,d_N)\}
+\]</span> and a test set <span class="math display">\[
+\bar S=\{(\bar x_1,\bar d_1),\dotsm,(\bar x_\bar N,\bar d_\bar N)\}
+\]</span></p>
+<h2 id="classification">3. Classification</h2>
+<p>A hyperplane denoted by <span class="math inline">\((w,b)\)</span> can be expressed by <span class="math display">\[
+g(x)=w^Tx+b=0
+\]</span> Hyperplane classifies a given <span class="math inline">\(x_i\)</span> with <span class="math display">\[
+sgn[g(x_i)]=
+\begin{cases}
++1\quad if\quad g(x_i)&gt;0\\
+-1\quad if\quad g(x_i)&lt;0
+\end{cases}
+\]</span> Hyperplane classifies an example <span class="math inline">\((x_i,d_i)\)</span> correctly if <span class="math display">\[
+sgn[d_i g(x_i)]=1
+\]</span> Two classes of data are linearly separable if and only if there exists a hyperplane that separates the two classes.</p>
+<h2 id="margins">4. Margins</h2>
+<p>The functional margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
+\gamma_i^f=d_i(w^Tx_i+b)
+\]</span> The Geometric margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
+\gamma_i^g=d_i(\frac{1}{||w||}w^Tx_i+\frac{1}{||w||}b)
+\]</span> that is the Euclidean distance from the point to the hyperplane.</p>
+<p>It is easy to see that <span class="math inline">\(\frac{1}{||w||}b\)</span> is the distance from origin to the hyperplane. <span class="math inline">\(\frac{1}{||w||}w^T x_i\)</span> is the projection distance (vector projection distance) from the point <span class="math inline">\(x_i\)</span> to the subspace <span class="math inline">\(w\)</span> , therefore <span class="math inline">\(\gamma_i^g\)</span> is the Euclidean distance from the point to the hyperplane.</p>
+<p>The hyperplane does not change when scaled by a real constant. <span class="math display">\[
+w^Tx+b=0\\
+cw^Tx+cb=0
+\]</span> <span class="math inline">\(\gamma_i^g\)</span> does not change but <span class="math inline">\(\gamma_i^f\)</span> changes (This property is important).</p>
+<p>We have the following equation <span class="math display">\[
+\gamma_i^g=\frac{\gamma_i^f}{||w||}
+\]</span> The functional margin of the training set is defined as <span class="math display">\[
+\gamma^f=\min_{1\le i\le N}\{\gamma_i^f\}
+\]</span> The geometric margin of a training set is defined as <span class="math display">\[
+\gamma^g=\min_{1\le i \le N}\{\gamma_i^g\}
+\]</span> The training set S can have different geometric margins depending on how hyperplane is defined.</p>
+<p>The optimal hyperplane for a given S is one that gives maximum <span class="math inline">\(\gamma^g\)</span> over all possible hyperplanes. <span class="math display">\[
+\gamma =\max\{\gamma^g_{(w_1,b_1)},\gamma^g_{(w_2,b_2)},\dotsm\}
+\]</span></p>
+<h2 id="primal">5. Primal</h2>
+<p>How to find the margin of S?</p>
+<p>For a given w, We have <span class="math display">\[
+\gamma_i^g=\frac{\gamma_i^f}{||w||}
+\]</span> The sample k that yields <span class="math display">\[
+\gamma^f=\gamma^f_k
+\]</span> also yields <span class="math display">\[
+\gamma^g =\gamma_k^g
+\]</span> So we have <span class="math display">\[
+\gamma^g=\frac{\gamma^f}{||w||}
+\]</span> therefore, we can maximize <span class="math inline">\(\gamma^g\)</span> by fixing <span class="math inline">\(\gamma^f\)</span> and then minimizing <span class="math inline">\(||w||\)</span> <span class="math display">\[
+\gamma^f = d_k(w^Tx_k+b)=1
+\]</span> That means we choose different to satisfy <span class="math inline">\(\gamma^f=1\)</span> . Without this constraint, we have infinite solutions <span class="math inline">\(w\)</span> since <span class="math inline">\(w&#39;=cw\)</span> and <span class="math inline">\(b&#39;=cb\)</span> where <span class="math inline">\(c\)</span> can any number.</p>
+<p>With <span class="math inline">\(\gamma^f\)</span> fixed at 1, for any examples in <span class="math inline">\(x_i\)</span> , we have <span class="math display">\[
+d_i(w^Tx_i+b)\ge1
+\]</span></p>
+<p>Therefore we get the constraint optimization problem, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
+\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
+\end{array}
+\]</span> Solving this problem yields the optimal hyperplane <span class="math inline">\((w_0,b_0)\)</span></p>
+<p>Then the discriminant function is <span class="math display">\[
+g(x)=w_0^Tx+b_0
+\]</span></p>
+<h2 id="lagrange-multipliers-and-kkt-conditions">6. Lagrange Multipliers and KKT Conditions</h2>
+<p>For the constraint optimization problem <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)\\
+\text{Subject to:} &amp; h(w)=0\\
+\end{array}
+\]</span> We can use Lagrange Theorem to solve. The necessary for the existence of an optimal solution <span class="math inline">\(w_0\)</span> corresponding to a minimum of <span class="math inline">\(f(w)\)</span> subject to <span class="math inline">\(h_i(w)=0\)</span> are <span class="math display">\[
+\frac{\partial L(w_0,\beta_0)}{\partial w}=0\\
+\frac{\partial L(w_0,\beta_0)}{\partial \beta_i}=0\\
+\]</span></p>
+<p>where we define the Lagrangian Function <span class="math display">\[
+L(w,\beta)=f(w)+\sum_{i=1}^m \beta_i h_i(w)
+\]</span> Lagrange Theorem can be generalized to deal with problems having both equality and inequality constraints.</p>
+<p>For the primal problem, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)\\
+\text{Subject to:} &amp; q_i(w)\le 0\\
+&amp; h_i(w)=0
+\end{array}
+\]</span> We have the generalized Lagrangian function <span class="math display">\[
+L(w,\alpha,\beta)=f(w)+\sum_{i=1}^k \alpha_iq_i(w)+\sum_{i=1}^m\beta_ih_i(w)
+\]</span> where <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_i\)</span> are the Lagrange Multipliers.</p>
+<p>In order to solve the primal problem, we have Kuhn-Tucker Theorem</p>
+<p>The sufficient and necessary condition for a point <span class="math inline">\(w_o\)</span> to be an optimal solution is the existence of <span class="math inline">\(\alpha_o\)</span> and <span class="math inline">\(\beta_o\)</span> such that <span class="math display">\[
+\begin{array}{rcl}
+\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial w}&amp;=&amp;0\\
+\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial \beta_i}&amp;=&amp;0\\
+\alpha_{o,i}q_i(w_o)&amp;=&amp;0\\
+q_i(w_o)&amp;\le&amp;0\\
+\alpha_{o,i}&amp;\ge&amp;0
+\end{array}
+\]</span></p>
+<h2 id="lagrange-dual-problem">7. Lagrange Dual Problem</h2>
+<p>In mathematical optimization theory, duality or the duality principle is the principle that optimization problems may be viewed from either of two perspectives, the primal problem or the dual problem. The solution to the dual problem provides a lower bound to the solution of the primal (minimization) problem. However in general the optimal values of the primal and dual problems need not be equal. Their difference is called the ==duality gap==. For convex optimization problems, the duality gap is zero under a constraint qualification condition (Regularity conditions). (From Wikipedia Duality (Optimization))</p>
+<p>The Lagrangian dual problem is obtained by forming the Lagrangian of a minimization problem by using nonnegative Lagrange multipliers to add the constraints to the objective function, and then solving for the primal variable values that minimize the original objective function. This solution gives the primal variables as functions of the Lagrange multipliers, which are called dual variables, so that the new problem is to maximize the objective function with respect to the dual variables under the derived constraints on the dual variables (including at least the nonnegativity constraints).</p>
+For a convex minimization problem with inequality constraints (primal problem), <span class="math display">\[
+\begin{array}{ll}{\underset{x}{\operatorname{minimize}}} &amp; {f(x)} \\ {\text { subject to }} &amp; {g_{i}(x) \leq 0, \quad i=1, \ldots, m}\end{array}
+\]</span> The Lagrangian Dual Problem is <span class="math display">\[
+\begin{array}{cl}{\underset{u}{\operatorname{maximize}}} &amp; {\inf _{x}\left(f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x)\right)} \\ {\text { subject to }} &amp; {u_{i} \geq 0, \quad i=1, \ldots, m}\end{array}
+\]</span> The infimum occurs where the gradient is equal to zero. Then problem is denoted as <span class="math display">\[
+\begin{array}{cl}
+\underset{x, u}{\operatorname{maximize}} &amp; f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x) \\ 
+\text { subject to } &amp; \nabla f(x)+\sum_{j=1}^{m} u_{j} \nabla g_{j}(x)=0 \\ 
+&amp; {u_{i} \geq 0, \quad i=1, \ldots, m}
+\end{array}
+\]</span> Therefore, for the primal problem of SVM, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
+\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
+\end{array}
+\]</span> we have the dual problem <span class="math display">\[
+\begin{array}{rl}
+\text{Maximize:} &amp; L(w,\alpha,\beta)\\
+\text{Subject to:} &amp; \frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}=0\\
+&amp;\alpha\ge0 
+\end{array}
+\]</span> Then we hope to reduce the variables in the dual problem <span class="math display">\[
+\begin{array}{rcl}
+q_i &amp;=&amp; -d_i(w^Tx_i+b)+1\le0\\
+L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_i(d_i(w^Tx_i+b)-1)\\
+&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}&amp;=&amp; \frac{1}{2}\frac{\partial w^Tw}{\partial w}-\sum_{i=1}^N\alpha_id_i(\frac{\partial w^Tx_i}{\partial w})\\
+&amp;=&amp;w-\sum_{i=1}^N\alpha_id_ix_i=0\\
+w&amp;=&amp;\sum_{i=1}^N\alpha_id_ix_i\\
+\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial b}&amp;=&amp;\sum_{i=1}^Na_id_i=0
+\end{array}
+\]</span> Then we have the simplified dual problem $$
+<span class="math display">\[\begin{array}{rcl}
+L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
+
+&amp;=&amp;\frac{1}{2}\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]\left[\sum_{i=1}^N\alpha_id_ix_i\right]\\
+&amp;&amp;-\sum_{i=1}^N\alpha_id_i\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]x_i\\
+&amp;&amp;-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
+
+&amp;=&amp; \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+&amp;&amp;-\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+&amp;&amp;-0+\sum_{i=1}^N\alpha_i
+\end{array}\]</span>
+<span class="math display">\[
+Then we have the dual problem
+\]</span>
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+
+\text{Subject to:} &amp; \alpha_i\ge0 \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<p><span class="math display">\[
+From the KKT condition, we have
+\]</span> _{o,i}(d_i(w_o^Tx_i+b_o)-1)=0 $$ For the support vectors, we have <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> Then <span class="math inline">\(\alpha_{o,i}\neq 0\)</span></p>
+<p>Furthermore, fore a support vector <span class="math inline">\(x_i\)</span>, <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> then <span class="math inline">\(b_o=\frac{1}{d_i}-w_o^Tx_i\)</span> .</p>
+<p>As <span class="math inline">\(\alpha_{o,i}\)</span> is obtained, we can calculate <span class="math inline">\(w_o\)</span> and <span class="math inline">\(b_o\)</span> as follows <span class="math display">\[
+w_o=\sum_{i=1}^N \alpha_{o,i}d_ix_i\\
+b_o=\frac{1}{d^{(s)}}-w_o^Tx^{(s)}\\
+\]</span> <span class="math inline">\(\alpha_{o,i}\)</span> can be solved by many methods such as quadratic programming.</p>
+<h2 id="soft-margin">8. Soft Margin</h2>
+<p>We add nonnegative slack variables <span class="math inline">\(\xi_i\)</span></p>
+<p><span class="math inline">\(\xi_i =0\)</span> when data point is not in region of separation</p>
+<p><span class="math inline">\(0\le \xi_i\le 1\)</span> when data point is in the region of separation and on correct side of hyperplane</p>
+<p><span class="math inline">\(\xi_i &gt; 0\)</span> when data point is in the region of separation but on wrong side of hyperplane</p>
+<p>We hope to minimize the cost function <span class="math display">\[
+f(w,\xi)=\frac{1}{2}w^Tw+C\sum_{i=1}^N \xi_i
+\]</span> A large C generally leads to smaller margin but also fewer misclassification</p>
+<p>A small C generally leads to larger margin but also more misclassification</p>
+Then for an example we have <span class="math display">\[
+d_i(w^Tx_i+b)\ge 1-\xi_i 
+\]</span> Finally we have the dual problem $$
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<p>$$ Then we try to find the support vector</p>
 <ol type="1">
-<li>partitional clustering approach</li>
-<li>Each cluster is associated with a centroid</li>
-<li>Each point is assigned to a cluster with the closest centroid</li>
-<li>Number of clusters, K, must be specified</li>
+<li>For the support vector with <span class="math inline">\(\alpha_i&lt;C\)</span> . Support is located on the boarder of margin of separation.</li>
+<li>For the support vector with <span class="math inline">\(\alpha_i=C\)</span>. Support is located inside the margin of separation.</li>
 </ol>
-<p>Algorithm</p>
-<p>Select K points as the initial centroids</p>
-<p>repeat</p>
-<p>From K clusters by assigning all points to the closest centroid.</p>
-<p>Recompute the centroid of each cluster.</p>
-<p>until the centroid don't change</p>
-<h2 id="evaluating-k-means-clusters">3. Evaluating K-means Clusters</h2>
-<p>Most common measure is Sum of Squared Error (SSE) <span class="math display">\[
-SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
-\]</span> the initial chosen points are very important.</p>
-<p>Solutions to Initial centroids problem</p>
+<p>Then for each sample <span class="math inline">\(x_i\)</span> with <span class="math inline">\(0\le \alpha_i \le C\)</span> <span class="math display">\[
+w_o=\sum_{i=1}^N\alpha_{o,i}d_ix_i\\
+b_{o,i}=\frac{1}{d_i}-w_o^Tx_i\\
+b_o=\frac{\sum_{i=1}^mb_{o,i}}{m}
+\]</span></p>
+<h2 id="kernel">9. Kernel</h2>
+<p>Cover's Theorem</p>
+<p>Probability that classes are linearly separable increases when data points in input space are nonlinearly mapped to a higher dimensional feature space.</p>
+<p>Then if we map <span class="math inline">\(x_i\)</span> to <span class="math inline">\(\varphi(x_i)\)</span></p>
+The discriminant function becomes <span class="math display">\[
+g(x)=w_o^T\varphi(x)+b_o
+\]</span> The dual problem becomes $$
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_j\varphi(x_i)^T\varphi(x_j)\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<span class="math display">\[
+Given the optimal value $\alpha_{o,i}$ 
+\]</span> w_o=<em>{i=1}^N</em>{o,i}d_i(x_i)\ b_o=-w_o<sup>T(x</sup>{(s)})\ <span class="math display">\[
+Solution requires $\varphi$ but finding explicit form of $\varphi$ is not easy, then we define
+\]</span> K(x,y)=^T(x)(y) <span class="math display">\[
+The dual problem becomes
+\]</span>
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jK(x_i,x_j)\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<span class="math display">\[
+Given the optimal value $\alpha_{o,i}$, we have
+\]</span> b_o=-<em>{i=1}<sup>N<em>{o,i}d_iK(x_i,x^{(s)}) <span class="math display">\[
+The discriminant function is 
+\]</span> g(x)=</em>{i=1}</sup>N</em>{o,i}d_iK(x_i,x)+b_o <span class="math display">\[
+==Attention== the expression for $K$ must satisfy Mercer&#39;s Condition
+\]</span> K=
+<span class="math display">\[\begin{bmatrix}
+k(x_1,x_1) &amp; \dotsm &amp; K(x_1,x_N)\\
+\vdots &amp; \ddots &amp; \vdots\\
+K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
+\end{bmatrix}\]</span>
+<p>$$ is positive semi-definite.</p>
+<h2 id="summary">10. Summary</h2>
+<p>Given a training set <span class="math inline">\(S=\{(x_i,d_i)\}\)</span></p>
 <ol type="1">
-<li>Multiple runs</li>
-<li>Use hierarchical clustering to determine initial centroids</li>
-<li>Select more than K initial centroids and then select among these initial centroids (Select most widely separated)</li>
-<li>Postprocessing
-<ol type="1">
-<li>Eliminate small clusters that may represent outliers</li>
-<li>Split loose clusters (Clusters with relatively high SSE)</li>
-<li>Merge close clusters (Clusters with relatively low SSE)</li>
-</ol></li>
+<li>Find a suitable kernel and check Mercer's condition</li>
+<li>Choose a value for C</li>
+<li>Solve for <span class="math inline">\(\alpha_{o,i}\)</span></li>
+<li>Determine <span class="math inline">\(b_o\)</span></li>
+<li>Use discriminant function</li>
 </ol>
-<p>Limitations of K-means</p>
-<p>K-means has problems when clusters are of differing sizes, densities.</p>
-<p>when the data contains outliers (not belonging to any cluster).</p>
-<p>The similarity function is suitable or not.</p>
-<h2 id="hierarchical-clustering">4. Hierarchical Clustering</h2>
-<p>Do not have assume any particular number of clusters</p>
-<p>Any desired number of clusters can be obtained by cutting the dendrogram at the proper level</p>
-<p>Two main types of hierarchical clustering</p>
-<h3 id="agglomerative-clustering-algorithm">1. Agglomerative clustering algorithm</h3>
-<p>Agglomerative: Start with the points as individual clusters and at each step, merge the closest part of clusters until only one cluster (or k clusters) left. (More popular)</p>
-<p>Algorithm:</p>
-<p>Compute the proximity/distance matrix</p>
-<p>Let each point be a cluster</p>
-<p>repeat</p>
-<p>​ Merge the two closet clusters</p>
-<p>​ update the proximity/distance matrix</p>
-<p>until only a single cluster remains</p>
-<h3 id="divisive-clustering-algorithm">2. Divisive clustering algorithm</h3>
-<p>Divisive: Start with one, all-inclusive cluster and at each step, split a cluster until each cluster contains a point (or there are k clusters)</p>
-<p>Traditional hierarchical algorithms use a similarity or distance matrix to merge or split one cluster at a time</p>
-<h2 id="inter-cluster-similarity">5. Inter-cluster Similarity</h2>
-<p>MIN: most similar (closest) points in the different clusters</p>
-<p>MAX: two least similar (most distant) points in the different clusters</p>
-<p>Group Average: Proximity of two clusters is the average of pairwise proximity between points in the two clusters.</p>
-<p>Distance Between Centroids</p>
-<h2 id="problems-and-limitations">6. Problems and Limitations</h2>
-<p>No objective function is directly minimized</p>
-<p>Different schemes have problems with one or more of the following:</p>
-<p>Sensitivity to noise and outliers Difficulty handling different sized clusters Breaking large clusters</p>
 
         
       
@@ -523,7 +759,7 @@ SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -568,7 +804,7 @@ SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -597,7 +833,9 @@ SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -631,7 +869,7 @@ SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

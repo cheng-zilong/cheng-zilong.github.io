@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/8. ADMM methods for convex composite conic programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/6. Duality/" class="post-title-link" itemprop="url">6. Basic Lagrange Duality and Saddle Point Optimality Conditions</a>
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/8. ADMM methods for convex composite conic programming/" class="post-title-link" itemprop="url">8. ADMM methods for convex composite conic programming (1)</a>
           
         </h1>
 
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-11 20:26:54" itemprop="dateModified" datetime="2019-11-11T20:26:54+08:00">2019-11-11</time>
+                <time title="Modified: 2019-11-16 17:23:26" itemprop="dateModified" datetime="2019-11-16T17:23:26+08:00">2019-11-16</time>
               </span>
             
           
@@ -287,233 +287,446 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>You can also refer to https://orandragon.github.io/2019/05/25/Convex%20Optimization/5.%20Duality/</p>
-<h1 id="basic-lagrange-duality-and-saddle-point-optimality-conditions">Basic Lagrange Duality and Saddle Point Optimality Conditions</h1>
-<p>Given an nonlinear programming problem, there is another nonlinear programming problem closely associated with it via the Lagrangian function. The former is called the <strong>primal problem</strong> and the latter is called the <strong>Lagrangian dual problem</strong>.</p>
-<h2 id="lagrangian-dual-problem">6.1 Lagrangian dual problem</h2>
-<p>Consider the following general nonlinear programming problem, which is known as a primal problem, <span class="math display">\[
+          <h1 id="admm-methods-for-convex-composite-conic-programming">8. ADMM methods for convex composite conic programming</h1>
+<h2 id="a-generic-2-block-semi-proximal-admm">8.1 A generic 2-block semi-proximal ADMM</h2>
+<p>Let <span class="math inline">\(\mathcal X\)</span>, <span class="math inline">\(\mathcal Y\)</span>, and <span class="math inline">\(\mathcal Z\)</span> be finite dimensional real Euclidean spaces. Let <span class="math inline">\(f:\mathcal Y\rightarrow (-\infty,+\infty]\)</span> and <span class="math inline">\(g:\mathcal Z\rightarrow (-\infty,+\infty]\)</span> be closed proper convex functions, <span class="math inline">\(\mathcal A:\mathcal X\rightarrow \mathcal Y\)</span> and <span class="math inline">\(\mathcal B:\mathcal X\rightarrow \mathcal Z\)</span> be linear maps. Let <span class="math inline">\(\partial f\)</span> and <span class="math inline">\(\partial g\)</span> be the subdifferential mappings of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, respectively. Since both <span class="math inline">\(\partial f\)</span> and <span class="math inline">\(\partial g\)</span> are maximally monotone, there exists two self-adjoint and positive semidefinite operators <span class="math inline">\(\Sigma_f\)</span> and <span class="math inline">\(\Sigma_g\)</span> such that for all <span class="math inline">\(y,y’\in\text{dom}(f)\)</span>, <span class="math inline">\(\xi\in\partial f(y)\)</span>, and <span class="math inline">\(\xi&#39;\in\partial f(y&#39;)\)</span>, <span class="math display">\[
+\langle \xi-\xi&#39;,y-y&#39;\rangle \ge ||y-y&#39;||^2_{\Sigma_f}
+\]</span> and for all <span class="math inline">\(z,z’\in\text{dom}(g)\)</span>, <span class="math inline">\(\zeta\in\partial g(z)\)</span>, and <span class="math inline">\(\zeta&#39;\in\partial g(z&#39;)\)</span>, <span class="math display">\[
+\langle \zeta-\zeta&#39;,z-z&#39;\rangle \ge ||z-z&#39;||^2_{\Sigma_g}.
+\]</span> Consider the convex optimization problem with the following 2-block separable structure <span class="math display">\[
 \text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
-&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
-&amp;x\in X,
+\min &amp; f(y)+g(z)\\
+\text{subject to}&amp; \mathcal A^*y+\mathcal B^*z=c.
 \end{array}
-\]</span> where <span class="math inline">\(X\subseteq \mathbb R^n\)</span>.</p>
-<p><strong>Remark</strong></p>
-<p><span class="math inline">\(x\in X\)</span> is to impose additional requirements that we may wish to handle separately. Some examples are</p>
-<ol type="1">
-<li><span class="math inline">\(X=\{x\in\mathbb R^n\;|\; x_i\ge 0,\;\forall i=1,2,\dotsm,n\}\)</span>. The nonnegativity constraints on the variables.</li>
-<li><span class="math inline">\(X\)</span> could be a subset of $R^n $ with integer components.</li>
-<li><span class="math inline">\(X=\mathbb R^n\)</span> if no special requirement.</li>
-</ol>
-<p>Let <span class="math display">\[
+\]</span> The dual problem is given by <span class="math display">\[
+\text{(D)}\quad \max\left\{-\langle c,x\rangle-f^*(-\mathcal Ax)-g^*(-\mathcal Bx)\right\}.
+\]</span> The augmented Lagrangian function associated with (P) is given as follows, for any <span class="math inline">\((y,z,x)\in\mathcal Y\times \mathcal Z\times \mathcal X\)</span>, <span class="math display">\[
 \begin{array}{rcl}
-L(x,\lambda,\mu)&amp;=&amp; f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)}\\
-&amp;=&amp;f(x)+\lambda^T g(x)+\mu ^Th(x),
+\mathcal L_\sigma(y,z;x)&amp;=&amp;f(y)+g(z)+\langle x,\mathcal A^*y+\mathcal B^*z-c\rangle+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z-c||^2\\
+&amp;=&amp; f(y)+g(z)+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z-c+\sigma^{-1}x||^2-\frac{1}{2\sigma}||x||^2
 \end{array}
-\]</span> where <span class="math inline">\(\mu\ge 0\)</span>.</p>
-<p>Define <span class="math display">\[
-\theta (\lambda,\mu)=\inf_x \left\{f(x)+\displaystyle{\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)}\right\},
-\]</span> which is called the <strong>Lagrange dual function</strong>.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li><p>Each equality constraint <span class="math inline">\(g_i(x)=0\)</span> is replaced by a term <span class="math inline">\(\lambda_ig_i(x)\)</span>, where <span class="math inline">\(\lambda_i\in \mathbb R,i=1,2,\dotsm,m\)</span>. This term gives a non-zero value whenever this equality is violated.</p></li>
-<li><p>Each inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is replaced by a term <span class="math inline">\(\mu_jh_j(x)\)</span>, where <span class="math inline">\(\mu_j\ge 0,j=1,2,\dotsm,p\)</span>. If an inequality constraint is violated, i.e., <span class="math inline">\(h_j(x)&gt;0\)</span>, then it is reflected by a positive value.</p></li>
-<li><p>In evaluating <span class="math inline">\(\theta (\lambda,\mu)\)</span> for each <span class="math inline">\(\lambda,\mu\)</span>, the following unconstrained problem (Lagrangian dual subproblem) <span class="math display">\[
-\begin{array}{rCl}
-\min &amp; f(x)+\lambda^Tg(x)+\mu^T h(x)\\
-\text{subject to} &amp;x\in X,
-\end{array}
-\]</span> must be solved.</p></li>
-</ol>
-<p>Suppose <span class="math inline">\(x^*\)</span> is an optimal solution of (P)​. Then <span class="math inline">\(g_i(x^*)=0\)</span> and <span class="math inline">\(h_j(x^*)\le 0\)</span>. Therefore, <span class="math display">\[
-\theta(\lambda,\mu)\le f(x^*)+\mu^T h(x^*)\le f(x^*).
-\]</span> This implies for any <span class="math inline">\(\lambda,\mu\)</span>, <span class="math inline">\(\theta(\lambda,\mu)\)</span> is the lower bound of the optimal objective value <span class="math inline">\(f^*(x)\)</span>.</p>
-<p>We hope to derive the greatest lower bound for <span class="math inline">\(f(x^*)\)</span>. This leads to the following nonlinear programming problem which is called the <strong>Lagrangian dual problem</strong> (D)​, <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
-\text{subject to}&amp; \lambda\in \mathbb R^m\\
-&amp;\mu\in\mathbb R^p_+.
-\end{array}
-\]</span> <strong>Definition</strong> (Lagrange Dual Problem)</p>
-<p>For a given primal nonlinear programming problem (P), <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
-&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
-&amp;x\in X,
-\end{array}
-\]</span> where <span class="math inline">\(X\subseteq \mathbb R\)</span>. The <strong>Lagrange Dual Problem</strong> (D) is the following nonlinear programming problem, <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \theta(\lambda,\mu )=\displaystyle{\inf_x \left\{f(x)+\sum_{i=1}^m\lambda_ig_i(x)+\sum_{j=1}^p\mu_jh_j(x)\right\} }\\
-\text{subject to}&amp; \lambda\in \mathbb R^m\\
-&amp;\mu\in\mathbb R^p_+.
-\end{array}
-\]</span> The dual variables <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\(\mu_j\)</span> are called <strong>Lagrangian dual variables</strong> or <strong>Lagrangian Multipliers</strong>.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li>Evaluation of <span class="math inline">\(\theta(\lambda,\mu)\)</span> can be called as the <strong>Lagrangian dual subproblem</strong>.</li>
-<li>For general nonlinear programming problems, it is <strong>not true</strong> that one has an optimal solution, then the other will have an optimal solution. However, this is true for convex programming problems.</li>
-<li>Under certain convexity assumptions and suitable constraint qualifications, the primal and dual problems have equal optimal objective value and hence it is possible to solve the primal problem indirectly by solving the dual problem. The dual problem is sometimes easier.</li>
-</ol>
-<p><strong>Example</strong></p>
-<p>Obtain the Lagrangian dual problem of the following nonlinear programming problem (P), <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(x)=x_1x_2x_3\\
-\text{subject to}&amp; x_1-x_2+5x_3=6\\
-&amp; x_1+2x_2^3\le 4\\
-&amp;(x_1-3)^3-4x_2^2+x_3\le 0\\
-&amp;x_1^2+x_2^2-x_3\le 4.
-\end{array}
-\]</span> The Lagrangian function is given by <span class="math display">\[
+\]</span> <strong>Algorithm</strong></p>
+<p>Let <span class="math inline">\(\sigma&gt;0\)</span> and <span class="math inline">\(\tau \in(0,\infty)\)</span> be given parameters. Let <span class="math inline">\(\mathcal S\)</span> and <span class="math inline">\(\mathcal T\)</span> be given self-adjoint positive semidefinite (not necessarily positive definite) linear operators defined on <span class="math inline">\(\mathcal Y\)</span> and <span class="math inline">\(\mathcal Z\)</span>, respectively. Choose <span class="math inline">\((x^0,y^0,z^0)\in\mathcal X\times \text{dom}(f)\times \text{dom}(g)\)</span>. For <span class="math inline">\(k=0,1,2,\dotsm\)</span>, perform the <span class="math inline">\(k\)</span>th iteration as follows,</p>
+<p><strong>Step 1</strong> <span class="math display">\[
 \begin{array}{rcl}
-L(x,\lambda,\mu)&amp;=&amp;x_1x_2x_3\\
-&amp;&amp;+\lambda (x_1-x_2+5x_3-6)\\
-&amp;&amp;+\mu_1(x_1+2x_2^3-4)\\
-&amp;&amp;+\mu_2[(x_1-3)^3-4x_2^2+x_3]\\
-&amp;&amp;+\mu_3(x_1^2+x_2^2-x_3-4).
-\end{array}
-\]</span> The Lagrangian dual function is given by <span class="math display">\[
-\theta (\lambda,\mu)=\min_x L(x,\lambda,\mu).
-\]</span> The Lagrangian dual problem is given by <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \min_x L(x,\lambda,\mu)\\
-\text{subject to}&amp; \mu\ge 0.
-\end{array}
-\]</span> <strong>Example</strong></p>
-<p>Solve the following convex program and its Lagrangian dual problem. <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(x)=x_1^2+x_2^2\\
-\text{subject to}&amp; h(x)=-x_1-x_2+4\le 0,\\
-&amp;x\in X=\left\{\begin{bmatrix}x_1\\x_2\end{bmatrix} \;\Bigg|\; x_1,x_2\ge 0\right\},
-\end{array}
-\]</span> Note that the optimal solution occurs at <span class="math inline">\(x^*=\begin{bmatrix}2\\2\end{bmatrix}\)</span>, and <span class="math inline">\(f(x^*)=8\)</span>.</p>
-<p>The Lagrangian function is <span class="math display">\[
-L(x,\mu)=x_1^2+x_2^2+\mu (-x_1-x_2+4).
-\]</span> The Lagrangian dual problem is <span class="math display">\[
-\begin{array}{rcl}
-\theta(\mu)&amp;=&amp;\inf_{x_1,x_2\ge 0}\left\{x_1^2+x_2^2+\mu (-x_1-x_2+4)\right\}\\
-&amp;=&amp;\inf_{x_1,x_2\ge 0}\left\{x_1^2-\mu x_1+x_2^2-\mu x_2+4 \mu \right\}\\
-&amp;=&amp;\inf_{x_1\ge 0}\left\{x_1^2-\mu x_1\right\}+\inf_{x_2\ge 0}\left\{x_2^2-\mu x_2\right\}+4 \mu\\
-&amp;=&amp;-\frac{\mu^2}{2}+4\mu\quad (x_1=\frac{\mu}{2},x_2=\frac{\mu}{2}).
-\end{array}
-\]</span> Thus the dual problem is <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \theta(\mu)=-\frac{\mu^2}{2}+4\mu\\
-\text{subject to}&amp; \mu\ge 0.
-\end{array}
-\]</span> It is easy to see that <span class="math inline">\(\mu^*=4\)</span> and <span class="math inline">\(\theta(\mu^*)=8\)</span>. We can also obtain that <span class="math inline">\(x_1^*=x_2^*=\frac{\mu^*}{2}=2\)</span>.</p>
-<p><strong>Remark</strong></p>
-<p>In general, the dual function of a primal problem cannot be obtained explicitly. In this situation, the dual problem may include primal variables <span class="math inline">\((x)\)</span> as well as the dual variables <span class="math inline">\((\lambda,\mu)\)</span>.</p>
-<p><strong>Example</strong></p>
-<p>Consider the problem <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(x)=\exp (x)\\
-\text{subject to}&amp; x^2-1\le 0.
-\end{array}
-\]</span> For <span class="math inline">\(\mu\ge 0\)</span>, the Lagrangian dual function is <span class="math display">\[
-\theta(\mu)=\inf_{x}\left(\exp(x)+\mu(x^2-1)\right),
-\]</span> which is convex on <span class="math inline">\(\mathbb R\)</span>. Therefore, any stationary point will be a global minimizer. Then we have if <span class="math inline">\(\mu&gt;0\)</span>, <span class="math display">\[
-\exp (x^*)+2\mu x^*=0,
-\]</span> otherwise <span class="math inline">\((\mu=0)\)</span>, <span class="math display">\[
-\theta(0)=0.
-\]</span> Therefore, we have <span class="math display">\[
-\theta(\mu)=
-\begin{cases}
-\exp(x)+\mu(x^2-1)&amp; \text{and}&amp;\exp(x)+2\mu x=0,&amp; \mu&gt;0\\
-0&amp;&amp;&amp;\mu=0.
-\end{cases}
-\]</span> Therefore, the dual problem is <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \theta(\mu)=\exp (x)+\mu(x^2-1)\\
-\text{subject to}&amp; \exp(x)+2\mu x=0\\&amp;\mu&gt;0\\&amp;x\in\mathbb R.
+y^{k+1}&amp;=&amp;\arg\min_y\mathcal L_\sigma(y,z^k;x^k)+\frac{1}{2}||y-y^k||^2_\mathcal S\\
+&amp;=&amp;\arg\min_y\mathcal f(y)+g(z^{k})+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z^{k}-c+\sigma^{-1}x^{k}||^2-\frac{1}{2\sigma}||x^{k}||^2+\frac{1}{2}||y-y^k||^2_\mathcal S\\
+&amp;=&amp;\arg\min_y\mathcal f(y)+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z^{k}-c+\sigma^{-1}x^{k}||^2+\frac{1}{2}||y-y^k||^2_\mathcal S.
 \end{array}
 \]</span></p>
-<h2 id="weak-and-strong-duality-theorems">6.2 Weak and strong duality theorems</h2>
-<p>We shall discuss the relationship between a nonlinear programming problem and its Lagrangian dual problem for a primal minimization problem.</p>
-<p><strong>Theorem</strong> (Weak Duality Theorem)</p>
-<p>Consider the primal nonlinear programming problem (P). Let <span class="math inline">\(x\)</span> be a feasible point to (P) and <span class="math inline">\((\lambda,\mu)\)</span> be a feasible solution to (D). Then <span class="math display">\[
-f(x)\ge \theta(\lambda,\mu).
-\]</span> <strong>Corollary</strong></p>
+<p><strong>Step 2</strong> <span class="math display">\[
+   z^{k+1}=\arg\min_z\mathcal L_\sigma(y^{k+1},z;x^k)+\frac{1}{2}||z-z^k||^2_\mathcal T.
+\]</span> <strong>Step 3</strong> <span class="math display">\[
+x^{k+1}=x^k+\tau\sigma(\mathcal A^*y^{k+1}+\mathcal B^* z^{k+1}-c).
+\]</span> ### 8.1.1 Literature review</p>
+<p>When <span class="math inline">\(\mathcal S=0\)</span> and <span class="math inline">\(\mathcal T=0\)</span>, algorithm sPADMM reduces to the classic 2-block ADMM for solving the problem.</p>
+<h3 id="convergence-of-spadmm">8.1.2 Convergence of sPADMM</h3>
+<p>For the convergence of the 2-block semi-proximal ADMM, we need the following assumption.</p>
+<p><strong>Assumption</strong></p>
+<p>There exists <span class="math inline">\((\hat y,\hat z)\in \text{relint}(\text{dom}(f)\times\text{dom}(g))\)</span> such that <span class="math inline">\(\mathcal A^*\hat y+\mathcal B^*\hat z=c\)</span>.</p>
+<p>Suppose that the CQ holds. Then we know that <span class="math inline">\((\bar y,\bar z)\in\text{dom}(f)\times \text{dom}(g)\)</span> is an optimal solution to the problem if and only if there exists a Lagrange multiplier <span class="math inline">\(\bar x\in\mathcal X\)</span> such that <span class="math inline">\((\bar x,\bar y,\bar z)\)</span> is a solution to the following KKT system, <span class="math display">\[
+0\in\mathcal Ax+\partial f(y)\\
+0\in\mathcal Bx+\partial g(z)\\
+\mathcal A^*y+\mathcal B^*z-c=0.
+\]</span> For simplicity, we define <span class="math display">\[
+\begin{cases}
+H(y,z)=\mathcal A^*y+\mathcal B^*z\\
+\theta (x,y,z;x&#39;,y&#39;,z&#39;)=(\tau \sigma)^{-1}||x-x&#39;||^2+||y-y&#39;||^2_\mathcal S+||z-z&#39;||^2_{\mathcal T}+\sigma||\mathcal B^*(z-z&#39;)||^2.
+\end{cases}
+\]</span> <strong>Theorem</strong></p>
+<p>Suppose that the solution set of problem is nonempty and the assumption holds.</p>
+<p>Assume that <span class="math inline">\(\mathcal S\)</span> and <span class="math inline">\(\mathcal T\)</span> are chosen such that the sequence <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span> generated by sPADMM is well defined.</p>
+<p>Let <span class="math inline">\((\bar x,\bar y,\bar z)\)</span> be a solution to the KKT system.</p>
+<p>For <span class="math inline">\(k=0,1,\dotsm\)</span>, we denote <span class="math display">\[
+\begin{cases}
+x_e^k=x^k-\bar x\\
+y_e^k=y^k-\bar y\\
+z_e^k=z^k-\bar z,
+\end{cases}
+\]</span> and <span class="math display">\[
+\begin{cases}
+\psi_{k+1}=\theta(x^{k+1},y^{k+1},z^{k+1};\bar x,\bar y,\bar z)+||z^{k+1}-z^k||^2_\mathcal T\\
+\delta_{k+1}=\min(\tau,1+\tau-\tau^2)\sigma||\mathcal B^*(z^{k+1}-z^k)||^2+||z^{k+1}-z^k||^2_\mathcal T\\
+t_{k+1}=\delta_{k+1}+||y^{k+1}-y^k||^2_\mathcal S+2||y^{k+1}-\bar y||^2_{\Sigma_f}+2||z^{k+1}-\bar z||^2_{\Sigma_g}.
+\end{cases}
+\]</span> Then the following results hold,</p>
 <ol type="1">
-<li><p><span class="math inline">\(\min\{f(x)\;|\; x\in S\}\ge \max \{\theta(\lambda,\mu)\;|\; \lambda\in\mathbb R^m,\mu\in \mathbb R^p_+\}\)</span>.</p></li>
-<li><p>If <span class="math inline">\(x^*\)</span> is a feasible solution to (P) and <span class="math inline">\((\lambda^*,\mu^*)\)</span> is a feasible solution to (D) such that <span class="math display">\[
-f(x^*)=\theta(\lambda^*,\mu^*),
-\]</span> then <span class="math inline">\(x^*\)</span> is an optimal solution to (P) and <span class="math inline">\((\lambda^*,\mu^*)\)</span> is an optimal solution to (D).</p></li>
-</ol>
-<p>In general, the optimal primal objective value and the optimal dual objective value may not be equal. This leads to the following definition.</p>
-<p><strong>Definition</strong> (Duality Gap)</p>
-<p>The difference <span class="math display">\[
-\min\{f(x)\;|\; x\in S\}-\max \{\theta(\lambda,\mu)\;|\; \mu \in \mathbb R_+^p\},
-\]</span> is called the duality gap.</p>
-<p><strong>Theorem</strong> (Strong Duality Theorem)</p>
-<p>Consider the primal nonlinear programming problem. Suppose <span class="math inline">\(X\)</span> is a convex set, <span class="math inline">\(f,h_i,\;\forall i=1,\dotsm,p\)</span> are convex functions, and <span class="math inline">\(g_i,\;\forall i=1,\dotsm,m\)</span> are affine functions. If there exists <span class="math inline">\(\hat x\in X\)</span> such that <span class="math inline">\(h(\hat x)&lt;0\)</span>, <span class="math inline">\(g(\hat x)=0\)</span>, and <span class="math inline">\(0\in \text{int}(g(X))\)</span> where <span class="math inline">\(g(X)=\{g(x)\;|\; x\in X\}\)</span>. Then <span class="math display">\[
-\inf \{f(x)\;|\;g(x)=0,h(x)\le 0,x\in X\}=\sup\{\theta(\lambda,\mu)\;|\; \mu \in\mathbb R^p_+,\lambda\in \mathbb R^m\}.
-\]</span> Furthermore, if inf is finite, then sup is attained at some <span class="math inline">\(\lambda_*,\mu_*\)</span>. If inf is attained at <span class="math inline">\(x^*\)</span>, then <span class="math inline">\(\mu_*^Th(x^*)=0\)</span>.</p>
-<h2 id="saddle-point-optimality-condition-and-kkt-conditions">6.3 Saddle point optimality condition and KKT conditions</h2>
-<p>In this section, we discuss about the relationship between the saddle point of the Lagrangian function and KKT optimality conditions.</p>
-<p><strong>Definition</strong> (Saddle point of <span class="math inline">\(L\)</span>)</p>
-<p>A point <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is called a saddle point of the Lagrangian function <span class="math display">\[
-L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^T h(x),
-\]</span> if <span class="math inline">\(x^*\in X\)</span>, <span class="math inline">\(\mu^* \ge 0\)</span> and <span class="math display">\[
-L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
-\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li>For a fixed <span class="math inline">\(x^*\)</span>, <span class="math inline">\((\lambda^*,\mu ^*)\)</span> maximizes <span class="math inline">\(L(x^*,\lambda,\mu)\)</span> over all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu \ge 0\)</span>.</li>
-<li>For a fixed <span class="math inline">\((\lambda^*,\mu^*)\)</span>, <span class="math inline">\(x^*\)</span> minimizes <span class="math inline">\(L(x,\lambda^*,\mu^*)\)</span> over all <span class="math inline">\(x\in X\)</span>.</li>
-</ol>
-<p><strong>Theorem</strong> (Saddle point optimality)</p>
-<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a saddle point of the Lagrangian function <span class="math display">\[
-L(x,\lambda,\mu)=f(x)+\lambda^Tg(x)+\mu^Th(x).
-\]</span> Then <span class="math inline">\(x^*\)</span> and <span class="math inline">\((\lambda^*,\mu^*)\)</span> are optimal solutions of the primal problem (P) and the dual problem <span class="math inline">\((D),\)</span> respectively.</p>
-<p><strong>Proof</strong></p>
-<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a saddle point of the Lagrangian function. Then we have <span class="math display">\[
-L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
-\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>. Thus we have <span class="math display">\[
-f(x^*)+\lambda^Tg(x^*)+\mu^Th(x^*)\le f(x^*)+(\lambda^*)^Tg(x^*)+(\mu^*)^Th(x^*),
-\]</span> for all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
-<p>Firstly, we prove that <span class="math inline">\(x^*\)</span> is a feasible point, which means <span class="math display">\[
-g(x^*)=0\\
-h(x^*)&lt;0.
-\]</span> Let <span class="math inline">\(\mu=\mu^*\)</span>, we have <span class="math display">\[
-(\lambda-\lambda^*)^T g(x^*)\le 0, \;\forall \lambda \in \mathbb R^n.
-\]</span> If <span class="math inline">\(g(x^*)\neq 0\)</span>, we can choose <span class="math inline">\(\lambda = \lambda^* +g(x^*)\)</span>, which leads to contradiction. Therefore, <span class="math inline">\(g(x^*)=0\)</span>.</p>
-<p>Let <span class="math inline">\(\lambda=\lambda^*\)</span>, we have <span class="math display">\[
-(\mu-\mu^*)^Th(x^*)\le 0,\;\forall \mu\ge 0.
-\]</span> If <span class="math inline">\(h(x^*)&gt;0\)</span>, then we can choose <span class="math inline">\(\mu = \mu^*+ h(x^*)\)</span>, which leads to contradiction. Therefore, <span class="math inline">\(h(x^*)\le 0\)</span>.</p>
-<p>Then we will prove <span class="math inline">\(x^*\)</span> is an optimal solution to (P).</p>
-<p>Let <span class="math inline">\(\mu = 0\)</span>, we have <span class="math inline">\((\mu^*)^T h(x^*)\ge 0\)</span>. Since <span class="math inline">\(\mu^*\ge 0\)</span> and <span class="math inline">\(h(x^*)\le 0\)</span>, we also have <span class="math inline">\((\mu^*)^T h(x^*)\le 0\)</span>. Therefore, <span class="math inline">\((\mu^*)^T h(x^*)= 0\)</span>.</p>
-<p>Then we have <span class="math display">\[
-f(x^*)=L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
-\]</span> for every <span class="math inline">\(x\in S\)</span>. Therefore <span class="math inline">\(f(x^*)\le \inf\{L(x,\lambda^*,\mu^*)\}=\theta(\lambda^*,\mu^*)\)</span>.</p>
-<p>On the other hand, <span class="math display">\[
-\theta(\lambda^*,\mu^*)\le \max\{\theta(\lambda,\mu)\;|\;\mu\ge 0\}\le \min \{f(x)\;|\; x\in S\}=f(x^*).
-\]</span> Therefore, we have <span class="math display">\[
-f(x^*)=\theta(\lambda^*,\mu^*).
-\]</span> Q.E.D.</p>
-<p><strong>Corollary</strong></p>
-<p>Suppose <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span>, with <span class="math inline">\(x^* \in \text{int}(X)\)</span> and <span class="math inline">\(\mu^*\ge 0\)</span>, is a saddle point of <span class="math inline">\(L(x,\lambda,\mu)\)</span>, then <span class="math inline">\(x^*\)</span> is a feasible solution to (P) and <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT conditions.</p>
-<h2 id="convex-program">6.4 Convex Program</h2>
-<p>The converse of the above corollary is not true in general. However, for a convex programming problem, the following result gives the relationship between a KKT point and a saddle point of the Lagrangian function.</p>
-<p><strong>Theorem</strong> (A KKT point of a convex program is a saddle point)</p>
-<p>Let <span class="math inline">\(S\)</span> be a feasible region of <span class="math display">\[
-\text{(CP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; g_i(x)=0,&amp;i=1,2,\dotsm,m\\
-&amp;h_j(x)\le 0,&amp;j=1,2,\dotsm,p\\
-&amp;x\in X\subseteq \mathbb R^n.
+<li><p>if <span class="math inline">\(\tau\in(0,1]\)</span>, we have for <span class="math inline">\(k\ge 1\)</span> that <span class="math display">\[
+\begin{array}{l}
+\left[\psi_{k+1}+(1-\tau)\sigma||H(y^{k+1},z^{k+1})-c||^2\right]\\
+\quad-\left[\psi_k+(1-\tau)\sigma||H(y^k,z^k)-c||^2\right]\\
+\le -\left[t_{k+1}+\sigma||H(y^{k+1},z^{k+1})-c||^2\right];
 \end{array}
-\]</span> Suppose <span class="math inline">\(x^*\)</span> is a KKT point, i.e., there exists <span class="math inline">\(\lambda^*\in\mathbb R^n,\mu^*\ge 0\)</span> such that <span class="math display">\[
-\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p \mu_j^*\nabla  h_j(x^*)=0\\
-\mu_j^* h_j(x^*)=0,\;\forall j=1,\dotsm,p.
-\]</span> Then <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> us a saddle point of the Lagrangian function <span class="math inline">\(L(x,\lambda,\mu)\)</span>, i.e., <span class="math display">\[
-L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
-\]</span> for all <span class="math inline">\(x\in X\)</span> and all <span class="math inline">\((\lambda,\mu)\)</span> with <span class="math inline">\(\mu\ge0\)</span>.</p>
-<p><strong>Corollary</strong></p>
-<p>Consider the convex problem (CP). If <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point, then <span class="math inline">\(x^*\)</span> and <span class="math inline">\((\lambda^*,\mu^*)\)</span> are optimal solutions of the primal problem (P) and the dual problem <span class="math inline">\((D),\)</span> respectively.</p>
+\]</span></p></li>
+<li><p>If <span class="math inline">\(\tau &gt;1\)</span>, we have for <span class="math inline">\(k\ge 1\)</span> that <span class="math display">\[
+\begin{array}{l}
+\left[\psi_{k+1}+(1-\tau^{-1})\sigma||H(y^{k+1},z^{k+1})-c||^2\right]\\
+\quad-\left[\psi_k+(1-\tau^{-1})\sigma||H(y^k,z^k)-c||^2\right]\\
+\le -\left[t_{k+1}+\tau^{-1}(1+\tau-\tau^{-2})\sigma||H(y^{k+1},z^{k+1})-c||^2\right];
+\end{array}
+\]</span></p></li>
+<li><p>Suppose the either of the following condition holds,</p>
+<ol type="1">
+<li><span class="math inline">\(\tau\in(0,(1+\sqrt5)/2)\)</span></li>
+<li><span class="math inline">\(\tau \ge (1+\sqrt 5)/2\)</span> and <span class="math inline">\(\displaystyle\sum_{k=0}^\infty ||x^{k+1}-x^k||^2&lt;\infty\)</span>.</li>
+</ol>
+<p>Then the sequence <span class="math display">\[
+    \left\{||x_e^{k+1}||^2+||y_{e}^{k+1}||^2_{\Sigma_f+\mathcal S+\sigma\mathcal A\mathcal A^*}+||z_e^{k+1}||^2_{\Sigma_g+\mathcal T+\sigma\mathcal B\mathcal B^*}\right\}
+\]</span> is bounded.</p>
+<p>Moreover, if <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span> is an accumulation point of <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span>. Then <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span> is a solution of the KKT system, and <span class="math display">\[
+    \lim_{k\rightarrow \infty}\left(||x_e^{k+1}||^2+||y_{e}^{k+1}||^2_{\Sigma_f+\mathcal S+\sigma\mathcal A\mathcal A^*}+||z_e^{k+1}||^2_{\Sigma_g+\mathcal T+\sigma\mathcal B\mathcal B^*}\right)=0,
+\]</span> where in the definition of <span class="math inline">\((x^k_e,y^k_e,z^k_e)\)</span>, the point is replaced by <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span>. Consequently, if both <span class="math inline">\(\Sigma_f+\mathcal S+\sigma\mathcal A\mathcal A^*\)</span> and <span class="math inline">\(\Sigma_g+\mathcal T+\sigma\mathcal B\mathcal B^*\)</span> are positive definite, then the sequence <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span>, which is automatically well-defined, converge to a unique limit, say <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span> with <span class="math inline">\((y^\infty,z^\infty)\)</span> solving (P) and <span class="math inline">\((x^\infty)\)</span> solving (D), respectively.</p></li>
+<li><p>If <strong>y-part</strong> is vacuous, then we have that for all <span class="math inline">\(k\ge0\)</span>, <span class="math display">\[
+    \begin{array}{l}
+    (\tau\sigma)^{-1}||x^{k+1}-\bar x||^2+||z^{k+1}-\bar z||^2_\mathcal T\\
+    \le (\tau\sigma)^{-1}||x^{k}-\bar x||^2+||z^{k}-\bar z||^2_\mathcal T\\
+    \quad-\left[(2-\tau)\sigma||\mathcal B^*z^{k+1}-c||^2+||z^{k+1}-z^k||^2_\mathcal T+2||z^{k+1}-\bar z||^2_{\Sigma_g}\right].
+    \end{array}
+ \]</span> The corresponding result in part 3 also holds.</p></li>
+</ol>
 <p>Proof.</p>
-<p>By combining the two theorems.</p>
+<p>Since both <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are proper closed convex functions and an infinite sequence <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span> is assumed to be generated by sPADMM, we have for <span class="math inline">\(k&gt;0\)</span>, by using the algorithm, <span class="math display">\[
+\begin{array}{l}
+0\in\mathcal Ax^{k}+\partial f(y^{k+1})+\mathcal S(y^{k+1}-y^k)\\
+0\in\mathcal Bx^{k}+\partial g(z^{k+1})+\mathcal T(z^{k+1}-z^k)\\
+x^{k+1}=x^k+\tau\sigma(\mathcal A^*y^{k+1}+\mathcal B^* z^{k+1}-c)\\
+\;\:\:\:\;\;\;\:\:=x^k+\tau\sigma(H(y^{k+1},z^{k+1})-c)\\
+0=H(y^{k+1},z^{k+1})-c-(\tau\sigma)^{-1}(x^{k+1}-x^k),
+\end{array}
+\]</span> we have</p>
+<p>Not done yet.</p>
+<h3 id="admm-for-solving-the-dual-problem-d-of-the-sparse-regression-problem">8.1.3 ADMM for solving the dual problem (D) of the sparse regression problem</h3>
+<p>Consider the sparse regression problem, <span class="math display">\[
+\min\left\{\frac{1}{2}||Ax-b||^2+\lambda||x||_1\;|\; x\in\mathbb R^n\right\},
+\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb R^m\)</span> are given data. The equivalent problem can be denoted as <span class="math display">\[
+\text{(P)}\quad \begin{array}{rCl}
+\min &amp; f(u)+g(x)\\
+\text{subject to}&amp; u+Ax=b.
+\end{array}
+\]</span> where <span class="math inline">\(f(u)=\frac{1}{2}||u||^2\)</span> and <span class="math inline">\(g(x)=\lambda||x||_1\)</span>. Then we consider how to derive the dual problem.</p>
+<p>The Lagrangian function can be denoted as <span class="math display">\[
+\begin{array}{rcl}
+\mathcal L(u,x;\xi)&amp;=&amp;f(u)+g(x)+\langle \xi,b-u-Ax\rangle\\
+&amp;=&amp; f(u)-\langle \xi,u\rangle+g(x)-\langle A^T\xi,x\rangle +\langle \xi,b\rangle.
+\end{array}
+\]</span> The Lagrangian dual function can be denoted as <span class="math display">\[
+\begin{array}{rcl}
+\min_{u,x}\mathcal L(u,x;\xi) &amp;=&amp; \langle \xi,b\rangle+\min_u \left\{f(u)-\langle \xi,u\right\rangle\}+\min_x\{g(x)-\langle A^T\xi,x\rangle \}\\ 
+&amp;=&amp; \langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(A^T\xi),
+\end{array}
+\]</span> where <span class="math inline">\(B_\lambda =\{v\in\mathbb R^n\;|\; ||v||_\infty\le \lambda\}\)</span>.</p>
+<p>The Lagrangian dual problem can be denoted as (we define <span class="math inline">\(v+A^T\xi=0\)</span>) <span class="math display">\[
+\text{(D)}\quad \begin{array}{rCl}
+\max &amp; \langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(v)\\
+\text{subject to}&amp; A^T\xi+v=0
+\end{array}\\\iff\\
+\text{(D)}\quad \begin{array}{rCl}
+\min &amp; -\langle \xi,b\rangle+\frac{1}{2}||\xi||^2+\delta_{B_\lambda}(v)\\
+\text{subject to}&amp; A^T\xi+v=0.
+\end{array}
+\]</span> Now we can apply the 2-block ADMM to solve (D). In this case, we have <span class="math inline">\(f(\xi)=-\langle b,\xi\rangle+\frac{1}{2}||\xi||^2\)</span>, <span class="math inline">\(g(v)=\delta_{B_{\lambda}}(v)\)</span>, <span class="math inline">\(\mathcal B=I\)</span> and <span class="math inline">\(c=0\)</span>. The augmented Lagrangian function is given by</p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+\mathcal L_\sigma(\xi,u;x) &amp;=&amp; -\langle b,\xi\rangle+\frac{1}{2}||\xi||^2+\delta_{B_{\lambda}}(v)+\langle x,A^T\xi+v\rangle+\frac{\sigma}{2}||A^T\xi+v||^2\\
+&amp;=&amp;-\langle b,\xi\rangle+\frac{1}{2}||\xi||^2+\delta_{B_{\lambda}}(v)+\frac{\sigma}{2}||A^T\xi+v+\sigma^{-1}x||^2-\frac{1}{2\sigma}||x||^2.
+\end{array}
+\]</span> Then we can use 2-block ADMM to solve this problem.</p>
+<p><strong>Step 1</strong> <span class="math display">\[
+\begin{array}{rcl}
+\xi^{k+1}&amp;=&amp; \arg\min _\xi \mathcal L_\sigma (\xi,v^k;x^k)\\
+&amp;=&amp; \arg\min_\xi \left\{-\langle b,\xi\rangle+\dfrac{1}{2}||\xi||^2+\dfrac{\sigma}{2}||A^T\xi+v+\sigma^{-1}x||^2\right\}.
+\end{array}
+\]</span> From the optimality condition, we know that <span class="math inline">\(\xi^{k+1}\)</span> is the solution of the subproblem <span class="math display">\[
+(I+\sigma A A^T)\xi=b-\sigma A(v^k+\sigma^{-1} x^k).
+\]</span> <strong>Step 2</strong> <span class="math display">\[
+\begin{array}{rcl}
+v^{k+1}&amp;=&amp; \arg\min _v \mathcal L_\sigma (\xi^{k+1},v;x^k)\\
+&amp;=&amp; \arg\min_v \left\{\delta_{B_{\lambda}}(v)+\frac{\sigma}{2}||A^T\xi+v+\sigma^{-1}x||^2\right\}\\
+&amp;=&amp; \Pi_{B_{\lambda}}(-A^T\xi^{k+1}-\sigma^{-1}x^k).
+\end{array}
+\]</span> <strong>Step 3</strong> <span class="math display">\[
+x^{k+1}=x^k+\tau\sigma (A^* \xi^{k+1}+v^{k+1}),
+\]</span> where <span class="math inline">\(\tau \in(0,\frac{1+\sqrt 5}{2})\)</span> is the stepsize. In practice, for faster convergence, we take <span class="math inline">\(\tau = 1.618\)</span>.</p>
+<p><strong>Step 4</strong></p>
+<p>For a given tolerance <span class="math inline">\(\varepsilon\)</span>, check the relative KKT residual, if <span class="math display">\[
+\max\left\{\frac{||R_p^{k+1}||}{1+||b||},\frac{||R_d^{k+1}||}{1+||v^k||},\frac{||R_c^{k+1}||}{1+||x^k||+||v^k||}\right\}\le \varepsilon,
+\]</span> stop.</p>
+<p>The KKT conditions are <span class="math display">\[
+Ax-b+\xi=0,\quad 0\in x+\partial g(v),\quad A^T\xi+v=0.
+\]</span></p>
+<p>Thus to measure whether the computed iterate <span class="math inline">\((\xi^k,v^k,x^k)\)</span> is a good solution, we compute the KKT residual, <span class="math display">\[
+\begin{array}{rcl}
+R_p^k&amp;=&amp;||Ax^k+\xi^k-b||,\\
+R_d^k&amp;=&amp;||A^T\xi^k+v^k||,\\
+R_c^k&amp;=&amp;|| v^k-\Pi_{B_\lambda}(v^k-x^k)||.
+\end{array}
+\]</span></p>
+<p><strong>Remark</strong></p>
+<p>If <span class="math inline">\(||A^Tb||_\infty \le \lambda\)</span>, then we have <span class="math inline">\(x^*=0\)</span>, <span class="math inline">\(\xi^*=b\)</span>, and <span class="math inline">\(v^*=-A^Tb\)</span>. Since we have <span class="math inline">\(v^*\in B_\lambda\)</span>, we have <span class="math display">\[
+v^*=\Pi_{B_\lambda}(v^*)=\Pi_{B_\lambda}(v^*-x^*).
+\]</span></p>
+<h3 id="linearized-admm-for-solving-the-primal-problem-p-of-the-sparse-regression-problem">8.1.4 Linearized ADMM for solving the primal problem (P) of the sparse regression problem</h3>
+<p>One may attempt to apply the 2-block ADMM to the primal problem (P). But we will see that the subproblem corresponding to <span class="math inline">\(x^{k+1}\)</span> is very difficult to solve.</p>
+<p>The augmented Lagrangian function associated with (P) is given by <span class="math display">\[
+\begin{array}{rcl}
+\mathcal L_\sigma (u,x;y) &amp;=&amp; f(u)+g(x)+\langle y,u+Ax-b\rangle +\frac{\sigma}{2}||u+Ax-b||^2\\
+&amp;=&amp; f(u)+g(x)+\frac{\sigma}{2}||u+Ax-b+\sigma^{-1}y||^2-\frac{1}{2\sigma}||y||^2.
+\end{array}
+\]</span> The linearized 2-block ADMM for solving the problem (P) is given as follows.</p>
+<strong>Step 1</strong> <span class="math display">\[
+\begin{array}{rcl}
+u^{k+1}&amp;=&amp; \arg\min _u\mathcal L_\sigma (u,x^k;y^k)\\
+&amp;=&amp; \arg\min _u \{\frac{1}{2}||u||^2+\frac{\sigma}{2}||u+Ax^k-b+\sigma^{-1}y^k||^2\}.
+\end{array}
+\]</span> Then we have <span class="math display">\[
+u^{k+1}=\frac{-\sigma}{1+\sigma}(Ax^k-b+\sigma^{-1}y^k).
+\]</span> <strong>Step 2</strong> <span class="math display">\[
+\begin{array}{rcl}
+x^{k+1}&amp;=&amp;\arg \min_{x} \left\{ L_\sigma (u^{k+1},x;y^k)+\frac{\sigma}{2}||x-x^k||^2_\mathcal T\right\}\\
+&amp;=&amp; \arg\min_x \left\{\lambda ||x||_1+\frac{\sigma}{2}||u^{k+1}+Ax-b+\sigma^{-1}y^k||^2+\frac{\sigma}{2}||x-x^k||^2_\mathcal T\right\}.
+\end{array}
+\]</span> Observe that if <span class="math inline">\(\mathcal T=0\)</span>, solving the subproblem is as difficult as solving the original problem. Suppose we choose <span class="math display">\[
+\mathcal T=\rho I-A^TA
+\]</span> where <span class="math inline">\(\rho\)</span> denotes the largest eigenvalue of <span class="math inline">\(A^TA\)</span>. Such a choice of <span class="math inline">\(\mathcal T\)</span> reduces the semi-proximal ADMM to the so-called linearized ADMM. Then we reduce the subproblem to $$
+<span class="math display">\[\begin{array}{rcl}
+x^{k+1}&amp;=&amp;\arg\min_x\left\{
+\begin{array}{l}
+\lambda ||x||_1+\frac{\sigma}{2}||Ax+u^{k+1}-b+\sigma^{-1}y^k||^2+\frac{\sigma}{2}||x-x^k||^2_\mathcal T
+\end{array}\]</span>
+<p>}\</p>
+&amp;=&amp; _x{
+<span class="math display">\[\begin{array}{l}
+\lambda ||x||_1+\frac{\sigma }{2}\left(\langle x,A^TAx\rangle+2\langle x,A^T(u^{k+1}-b+\sigma^{-1}y^k)\rangle\\
++\langle x,(\rho I-A^TA)x\rangle -2\langle x,(\rho I-A^TA)x^k\rangle 
+\right)
+\end{array}\]</span>
+<p>}\</p>
+&amp;=&amp; _x{
+<span class="math display">\[\begin{array}{l}
+\lambda ||x||_1+\frac{\sigma }{2}\left(\rho\langle x,x\rangle +2\langle x,A^T(u^{k+1}-b+\sigma^{-1}y^k)-(\rho I-A^TA)x^k\rangle\right)
+\end{array}\]</span>
+<p>}\</p>
+<p>&amp;=&amp; _x{||x||_1+||x-h||^2}(), \end{array} <span class="math display">\[
+where
+\]</span> h=x<sup>k-</sup>{-1 }A<sup>T(u</sup>{k+1}+Ax<sup>k-b+</sup>{-1}y^k). <span class="math display">\[
+**Step 3**
+\]</span> y<sup>{k+1}=y</sup>k+()(Ax<sup>{k+1}+u</sup>{k+1}-b). $$</p>
+<h2 id="directly-extended-admm-for-multi-block-convex-programming-problem">8.2 Directly extended ADMM for multi-block convex programming problem</h2>
+<p>It is natural for one directly extend the 2-block ADMM. But it does not work.</p>
+<h2 id="a-symmetric-gauss-seidel-decomposition-theorem">8.3 A symmetric Gauss-Seidel decomposition theorem</h2>
+<p>Let <span class="math inline">\(s\ge 2\)</span> be a given integer and <span class="math inline">\(\mathcal X=\mathcal X_1\times \mathcal X_2\times \dotsm\times \mathcal X_s\)</span>. For any <span class="math inline">\(x\in\mathcal X\)</span> we write <span class="math inline">\(x=(x_1,x_2,\dotsm,x_s)\in\mathcal X\)</span>. Let <span class="math inline">\(\mathcal H:\mathcal X\rightarrow \mathcal X\)</span> be a given self-adjoint positive semidefinite linear operator. Consider the following decomposition <span class="math display">\[
+\mathcal Hx = 
+\left[\begin{array}{rcl}
+\mathcal H_{11}&amp;\mathcal H_{12}&amp; \dotsm&amp; \mathcal H_{1s}\\
+\mathcal H_{12}^*&amp;\mathcal H_{22}&amp; \dotsm&amp; \mathcal H_{2s}\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+\mathcal H_{1s}^*&amp;\mathcal H_{2s}^*&amp; \dotsm&amp; \mathcal H_{ss}
+\end{array}\right]
+\begin{bmatrix}
+x_1\\x_2\\ \vdots \\ x_s
+\end{bmatrix},
+\]</span> where <span class="math inline">\(\mathcal H_{ii}:\mathcal X_i\rightarrow \mathcal X_i,\; i=1,\dotsm,s\)</span> are self-adjoint positive semidefinite linear operator, <span class="math inline">\(\mathcal H_{ij}:\mathcal X_j\rightarrow \mathcal X_i,\; i=1,\dotsm,s-1,j&gt;i\)</span> are linear maps. Here, we further assume that <span class="math display">\[
+\mathcal H_{ii}\succ 0,\quad \forall i=1,\dotsm,s.
+\]</span></p>
+<p>Define <span class="math display">\[
+x_{\le i}=(x_1,x_2,\dotsm,x_i),\; x_{\ge i}=(x_i,x_{i+1},\dotsm,x_s),\; i=0,\dotsm,s+1
+\]</span> with the convention that <span class="math inline">\(x_{\le 0}=x_{\ge s+1}=\emptyset\)</span>.</p>
+<p>Denote the linear operator <span class="math inline">\(\mathcal U,\mathcal D:\mathcal X\rightarrow \mathcal X\)</span> by <span class="math display">\[
+\mathcal U=
+\begin{bmatrix}
+0 &amp; \mathcal H_{12} &amp; \dotsm &amp; \mathcal H_{1s}\\
+&amp;\ddots &amp; \dotsm&amp;\vdots\\
+&amp;&amp; 0 &amp;\mathcal H_{(s-1)s}\\
+&amp;&amp;&amp;0
+\end{bmatrix}\quad \mathcal D=\text{diag}(\mathcal H_{11},\mathcal H_{22},\dotsm,\mathcal H_{ss}).
+\]</span> Then we have <span class="math inline">\(\mathcal H=\mathcal D+\mathcal U+\mathcal U^*\)</span> and <span class="math inline">\(\mathcal D\succ 0\)</span>. Let <span class="math inline">\(r=(r_1,r_2,\dotsm,r_s)\in\mathcal X\)</span> be given. Define the convex quadratic function <span class="math inline">\(h:\mathcal X\rightarrow \mathbb R\)</span> by <span class="math display">\[
+h(x)=\frac{1}{2}\langle x,\mathcal Hx\rangle -\langle r,x\rangle ,\quad x\in \mathcal X.
+\]</span> Let <span class="math inline">\(\phi:\mathcal X_1\rightarrow (-\infty,\infty]\)</span> be a given closed proper convex function. Define the following self-adjoint positive semidefinite linear operator <span class="math inline">\(\mathcal T:\mathcal X\rightarrow \mathcal X\)</span> as <span class="math display">\[
+\mathcal T=\mathcal U\mathcal D^{-1}\mathcal U^*.
+\]</span></p>
+<p>Denote <span class="math inline">\(\delta&#39; = (\delta_1&#39;,\dotsm,\delta_s&#39;)\)</span> and <span class="math inline">\(\delta^+=(\delta_1^+,\dotsm,\delta_s^+)\)</span> with <span class="math inline">\(\delta_1&#39;=\delta_1^+\)</span>. Denote <span class="math display">\[
+\Delta(\delta&#39;,\delta^+)=\delta&#39;+(\mathcal D+\mathcal U)\mathcal D^{-1}(\delta^+-\delta&#39;).
+\]</span> Let <span class="math inline">\(\bar x\)</span> be given. Define <span class="math display">\[
+\begin{array}{rcl}
+x^+ &amp;=&amp;\arg\min_x\left\{\phi(x_1)+h(x)+\frac{1}{2}||x-\bar x||_\mathcal T^2-\langle x,\Delta (\delta&#39;,\delta^+)\rangle\right\}\\
+&amp;=&amp; \arg\min_x\left\{\phi(x_1)+\frac{1}{2}\langle x,\mathcal Hx\rangle -\langle r,x\rangle+\frac{1}{2}||x-\bar x||_\mathcal T^2-\langle x,\Delta (\delta&#39;,\delta^+)\rangle\right\}\\
+\end{array}
+\]</span> The optimality condition for <span class="math inline">\(x^+\)</span> is <span class="math display">\[
+(\mathcal H+\mathcal T)x=r-\gamma +\mathcal T \bar x+\Delta(\delta&#39;,\delta^+),
+\]</span> where <span class="math inline">\(\gamma = (\gamma_1,0,\dotsm,0)\)</span>, <span class="math inline">\(\gamma_1 \in \partial \phi(x_1)\)</span>.</p>
+<p>The meaning of <span class="math inline">\(\Delta(\delta&#39;,\delta^+)\)</span> is some numerical error when we solve the subproblem, since the subproblem cannot be solved exactly precisely.</p>
+<p>The following theorem describe an equivalent symmetric Gauss-Seidel procedure for computing <span class="math inline">\(x^+\)</span>.</p>
+<p><strong>Theorem</strong> (sGS Decomposition)</p>
+<p>Assume that <span class="math inline">\(\mathcal H_{ii}\succ 0,\; \forall i=1,\dotsm,s\)</span> holds. Then we have <span class="math display">\[
+\mathcal H+\mathcal T=(\mathcal D+\mathcal U)\mathcal D^{-1}(\mathcal D+\mathcal U^*)\succ 0.
+\]</span> Furthermore, for <span class="math inline">\(i=s,\dotsm,2\)</span>, define <span class="math inline">\(x&#39;_i\in\mathcal X_i\)</span> by <span class="math display">\[
+\begin{array}{rcl}
+x_i&#39; &amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \{\phi(\bar x_1)+h(\bar x_{\le i-1},x_i,x&#39;_{\ge i+1})-\lang\delta_i&#39;,x_i\rangle\}\\
+&amp;=&amp;\mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j).
+\end{array}
+\]</span> Then the optimal solution <span class="math inline">\(x^+\)</span> defined by <span class="math display">\[
+x^+=\arg\min_x\left\{\phi(x_1)+h(x)+\frac{1}{2}||x-\bar x||_\mathcal T^2-\left\langle x,\Delta (\delta&#39;,\delta^+)\right\rangle\right\},
+\]</span> can be obtained exactly via <span class="math display">\[
+\begin{cases}
+x_1^+ &amp; = &amp; \arg\min_{x_1}\phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
+x_i^+&amp;=&amp; \arg\min _{x_i} \phi(x_1^+)+h(x^+_{\le i-1},x_i,x&#39;_{\ge i+1})-\langle \delta_i^+,x_i\rangle\\
+&amp;=&amp; \mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^* x_j^+-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j), \quad i=2,\dotsm,s.
+\end{cases}
+\]</span> Proof.</p>
+<p>It is obvious <span class="math inline">\(\mathcal H+\mathcal T=(\mathcal D+\mathcal U)\mathcal D^{-1}(\mathcal D+\mathcal U^*)\succ 0\)</span>.</p>
+<p>Then <span class="math display">\[
+\begin{array}{rcl}
+x_i&#39; &amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \{\phi(\bar x_1)+h(\bar x_{\le i-1},x_i,x&#39;_{\ge i+1})-\lang\delta_i&#39;,x_i\rangle\}\\
+&amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \left\{\begin{array}{l}
+\frac{1}{2}\langle (\bar x_1,\dotsm,\bar x_{i-1},x_i,x&#39;_{i+1},\dotsm,x&#39;_s),\mathcal H(\bar x_1,\dotsm,\bar x_{i-1},x_i,x&#39;_{i+1},\dotsm,x&#39;_s)\rangle \\
+-\langle r,(\bar x_1,\dotsm,\bar x_{i-1},x_i,x&#39;_{i+1},\dotsm,x&#39;_s)\rangle\\
+-\lang\delta_i&#39;,x_i\rangle
+\end{array}\right\}\\
+&amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \left\{\begin{array}{l}
+\frac{1}{2}(
+\sum_{j=1}^{i-1} x_i\mathcal H_{ji}^*\bar x_j+x_i\mathcal H_{ii}x_i+\sum_{j=i+1}^s x_i\mathcal H_{ij}x&#39;_j\\
++\sum_{j=1}^{i-1}  x_i\mathcal H_{ji}^*\bar x_j+\sum_{j=i+1}^s x_i\mathcal H_{ij}x_j&#39;)\\
+-\langle\delta_i&#39;+r_i,x_i\rangle
+\end{array}\right\}\\
+&amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \left\{\begin{array}{l}
+\sum_{j=1}^{i-1} x_i\mathcal H_{ji}^*\bar x_j+\frac{1}{2}x_i\mathcal H_{ii}x_i+\sum_{j=i+1}^s x_i\mathcal H_{ij}x&#39;_j-\langle\delta_i&#39;+r_i,x_i\rangle
+\end{array}\right\}.
+\end{array}
+\]</span> The optimality condition is given by <span class="math display">\[
+\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j+\mathcal H_{ii}x_i+\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j-\delta_i&#39;-r_i=0.
+\]</span> Then we have <span class="math display">\[
+x_i&#39;=\mathcal H_{ii}^{-1}\left(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j\right).
+\]</span> The remaining part is to prove that <span class="math display">\[
+\begin{cases}
+x_1^+ &amp; = &amp; \arg\min_{x_1}\phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
+x_i^+ &amp; = &amp; \mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^* x_j^+-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j), \quad i=2,\dotsm,s
+\end{cases}
+\]</span> is equivalent to <span class="math display">\[
+x^+=\arg\min_x\left\{\phi(x_1)+h(x)+\frac{1}{2}||x-\bar x||_\mathcal T^2-\langle x,\Delta (\delta,\delta^+)\rangle\right\}.
+\]</span> We define <span class="math display">\[
+\begin{array}{rcl}
+x_1&#39;&amp;=&amp;\arg\min_{x_1} \phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1,x_1\rangle\\
+&amp;=&amp; \arg\min_{x_1} \phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
+&amp;=&amp; x_1^+.
+\end{array}
+\]</span> Since we have <span class="math inline">\(\delta_1=\delta^+_1\)</span>, and we check the optimality condition we have <span class="math display">\[
+\begin{cases}
+\mathcal H_{11} x_1&#39;&amp;=&amp;r_1-\gamma _1+\delta _1&#39;-\sum_{j=2}^{s}\mathcal H_{ij}x_j&#39;\\
+\mathcal H_{11}x_1^+&amp;=&amp;r_1-\gamma _1+\delta _1^+-\sum_{j=2}^{s}\mathcal H_{ij}x_j&#39;.
+\end{cases}
+\]</span> By using $ x_1'=H_{11}^{-1}(r_1-<em>1+<em>1'-</em>{j=2}^{s}H</em>{1j}x_j')$ and <span class="math inline">\(x_i&#39;=\mathcal H_{ii}^{-1}\left(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j-\sum_{j=i+1}^s \mathcal H_{1j}x&#39;_j\right)\)</span>, we have <span class="math display">\[
+\begin{array}{rcccl}
+\mathcal H_{11} x_1&#39;&amp;=&amp;r_1&amp;-\gamma _1&amp;+\delta _1&#39;&amp;&amp;-\sum_{j=2}^{s}\mathcal H_{1j}x_j&#39;\\
+\mathcal H_{22}x_2&#39;&amp;=&amp;r_2&amp;-0&amp;+\delta_2&#39;&amp;- \mathcal H_{12}^*\bar x_1&amp;-\sum_{j=3}^s \mathcal H_{2j}x&#39;_j\\
+&amp;\vdots&amp;\\
+\mathcal H_{(s-1)(s-1)}x_{s-1}&#39;&amp;=&amp;r_{s-1}&amp;-0&amp;+\delta_{s-1}&#39;&amp;-\sum_{j=1}^{s-2} \mathcal H_{j({s-1})}^*\bar x_j&amp;- \mathcal H_{(s-1)s}x&#39;_s\\
+\mathcal H_{ss} x_s&#39;&amp;=&amp;r_s&amp;-0&amp;+\delta_s&#39;&amp;-\sum_{j=1}^{s-1} \mathcal H_{js}^*\bar x_j.
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\mathcal D x&#39;=r-\gamma+\delta&#39;-\mathcal U^* \bar x-\mathcal Ux&#39;\\
+\iff\\
+(\mathcal D+\mathcal U)x&#39;=r-\gamma +\delta&#39;-\mathcal U^*\bar x.
+\]</span> From <span class="math display">\[
+\begin{cases}
+x_1^+ &amp; = &amp; \arg\min_{x_1}\phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
+x_i^+ &amp; = &amp; \mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^* x_j^+-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j), \quad i=2,\dotsm,s
+\end{cases}
+\]</span> and <span class="math display">\[
+\mathcal H_{11}x_1^+=r_1-\gamma _1+\delta _1^+-\sum_{j=2}^{s}\mathcal H_{ij}x_j&#39;,
+\]</span> we have <span class="math display">\[
+(\mathcal D+\mathcal U^*)x^+=r-\gamma +\delta^+-\mathcal U x&#39;.
+\]</span> Since we have <span class="math inline">\(x&#39;=(\mathcal D+\mathcal U)^{-1}(r-\gamma +\delta&#39;-\mathcal U^*\bar x)\)</span>, we have <span class="math display">\[
+\begin{array}{rcl}
+(\mathcal D+\mathcal U^*)x^+&amp;=&amp;r-\gamma +\delta^+-\mathcal U (\mathcal D+\mathcal U)^{-1}(r-\gamma +\delta&#39;-\mathcal U^*\bar x)\\
+&amp;=&amp; ((\mathcal D+\mathcal U)(\mathcal D+\mathcal U)^{-1} -\mathcal U (\mathcal D+\mathcal U)^{-1})(r-\gamma) +\mathcal U (\mathcal D+\mathcal U)^{-1}\mathcal U^*\bar x+\delta^+-\mathcal U (\mathcal D+\mathcal U)^{-1}\delta&#39;\\
+&amp;=&amp; \mathcal D(\mathcal D+\mathcal U)^{-1}(r-\gamma) +\mathcal U (\mathcal D+\mathcal U)^{-1}\mathcal U^*\bar x+\delta^+-\mathcal U (\mathcal D+\mathcal U)^{-1}\delta&#39;.
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+(\mathcal D+\mathcal U)\mathcal D^{-1}(\mathcal D+\mathcal U^*)x^+
+&amp;=&amp;r-\gamma +(\mathcal D+\mathcal U)\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}\mathcal U^*\bar x+\delta^+-(\mathcal D+\mathcal U)\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}\delta&#39;,
+\end{array}
+\]</span> We have the fact <span class="math display">\[
+\begin{array}{rcl}
+(\mathcal D+\mathcal U)\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}&amp;=&amp;
+(\mathcal U+\mathcal U \mathcal D^{-1}\mathcal U) (\mathcal D+\mathcal U)^{-1}\\
+&amp;=&amp; \mathcal U(\mathcal D+\mathcal U)^{-1}+\mathcal U\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}\\
+&amp;=&amp; \mathcal U(\mathcal D+\mathcal U)^{-1}+\mathcal U(\mathcal D^{-1}-(\mathcal D+\mathcal U)^{-1})\\
+&amp;=&amp; \mathcal U\mathcal D^{-1}.\\
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+(\mathcal H+\mathcal T)x^+
+&amp;=&amp;r-\gamma +\mathcal T\bar x+\delta^++\Delta(\delta&#39;,\delta^+).
+\end{array}
+\]</span> Q.E.D.</p>
+<p><strong>Example</strong> <span class="math display">\[
+\min\{p(x_1)+\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle\;|\; \mathcal Ax=d\},
+\]</span> where <span class="math inline">\(\mathcal P\)</span> is a positive semidefinite linear operator on <span class="math inline">\(\mathcal X\)</span>, and <span class="math inline">\(\mathcal A:\mathcal X\rightarrow \mathcal Y\)</span> is a given linear map, and <span class="math inline">\(g\in\mathcal X\)</span>, and <span class="math inline">\(d\in\mathcal Y\)</span> are given data. The Lagrangian function is given as <span class="math display">\[
+\mathcal L_\sigma (x;y)=p(x_1)+\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle+\frac{\sigma }{2} ||\mathcal Ax-d+\sigma ^{-1}y||^2-\frac{1}{2\sigma}||y||^2.
+\]</span> Proximal ALM method is given as</p>
+<p><strong>Step 1</strong> <span class="math display">\[
+\begin{array}{rcl}
+x^{k+1}&amp;=&amp;\arg\min_x\{\mathcal L_\sigma(x;y^k)+\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}\\
+&amp;=&amp;\arg\min_x\{p(x_1)+
+\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle+
+\frac{\sigma }{2} ||\mathcal Ax-d+\sigma ^{-1}y||^2
++\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}\\
+&amp;=&amp;\arg\min_x\{p(x_1)+
+\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle
++\frac{\sigma}{2}\langle x,\mathcal A^*\mathcal Ax\rangle
++\sigma\langle x,\mathcal A^*(-d+\sigma^{-1}y)\rangle
++\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}\\
+&amp;=&amp;\arg\min_x\{p(x_1)
++\frac{1}{2}\langle x,(\mathcal P+\sigma \mathcal A^*\mathcal A)x\rangle
+-\langle g+ \mathcal A^*(\sigma d-y),x\rangle
++\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}.
+\end{array}
+\]</span> If we define <span class="math inline">\(b = g+ \mathcal A^*(\sigma d-y)\)</span>, then we have <span class="math display">\[
+x^{k+1}=\arg\min _x \left\{p(x_1)
++\frac{1}{2}\langle x,(\mathcal P+\sigma \mathcal A^*\mathcal A)x\rangle
+-\langle b,x\rangle
++\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\right\}.
+\]</span> Then if we choose <span class="math inline">\(\mathcal T= \mathcal T_{\mathcal P+\sigma \mathcal A^*\mathcal A}\)</span>, sGS decomposition can be applied.</p>
+<p><strong>Step 2</strong></p>
+<p>Compute <span class="math inline">\(y^{k+1}=y^k+\tau\sigma (\mathcal Ax^k-d)\)</span>, where <span class="math inline">\(\tau\in(0,2)\)</span> is the dual step-length.</p>
+<p><strong>Example</strong></p>
+<p>The important class of standard convex quadratic semidefinite programming (QSDP) in the dual form is given by <span class="math display">\[
+\min\left\{\frac{1}{2}\langle W,\mathcal HW\rangle -\langle h,\xi\rangle \;|\; Z+\mathcal B^*\xi+\mathcal H W=C,\xi\in\mathbb R^p,Z\in\mathbb S^n_+,W\in\mathcal W\right\},
+\]</span> where <span class="math inline">\(\mathcal H:\mathbb S^n\rightarrow \mathbb S^n\)</span> is a self-adjoint positive semidefinite linear operator.</p>
+<p>In this problem, we have <span class="math display">\[
+\mathcal Ax = \left[
+\begin{array}{rcl}
+I &amp;\mathcal B^* &amp; \mathcal H
+\end{array}
+\right]
+\left(
+\begin{array}{c}
+Z\\ \xi\\  W
+\end{array}
+\right)=C\\
+\mathcal P = \text{diag}(0,0,\mathcal H).
+\]</span> Then we have <span class="math display">\[
+\mathcal Q = \mathcal P+\sigma \mathcal A^*\mathcal A = 
+\begin{bmatrix}
+0,0,0\\
+0,0,0\\
+0,0,\mathcal H
+\end{bmatrix}+
+\sigma 
+\begin{bmatrix}
+I\\\mathcal B\\\mathcal H
+\end{bmatrix}
+\begin{bmatrix}
+I&amp;\mathcal B^*&amp;\mathcal H
+\end{bmatrix}=
+\sigma 
+\begin{bmatrix}
+I &amp; \mathcal B^* &amp;\mathcal H \\
+\mathcal B &amp; \mathcal B\mathcal B^*&amp;\mathcal B\mathcal H\\
+\mathcal H &amp; \mathcal H\mathcal B^* &amp; \sigma^{-1}\mathcal H+\mathcal H^2
+\end{bmatrix}.
+\]</span></p>
 
         
       
@@ -538,7 +751,7 @@ L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -552,7 +765,7 @@ L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/5. Basic nonlinear programming/" class="post-title-link" itemprop="url">5. Basic Nonlinear Programming</a>
+            <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/" class="post-title-link" itemprop="url">8. Nonlinear conic programming (3)</a>
           
         </h1>
 
@@ -578,7 +791,7 @@ L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-31 20:41:53" itemprop="dateModified" datetime="2019-10-31T20:41:53+08:00">2019-10-31</time>
+                <time title="Modified: 2019-11-03 13:51:15" itemprop="dateModified" datetime="2019-11-03T13:51:15+08:00">2019-11-03</time>
               </span>
             
           
@@ -607,474 +820,169 @@ L(x^*,\lambda,\mu)\le L(x^*,\lambda^*,\mu^*)\le L(x,\lambda^*,\mu^*),
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="basic-nonlinear-programming">5. Basic Nonlinear Programming</h1>
-<p>This chapter is concerned with the following multi-dimensional general constrained minimization problem, <span class="math display">\[
-\begin{array}{rCll}
-\min &amp; f(x)\\
-\text{subject to}&amp; g_i(x)=0,&amp; i=1,2,\dots,m\\
-&amp;h_j(x)\le0,&amp; j=1,2,\dots,p\\
-&amp;x\in\mathbb R^n,
+          <h2 id="applications-to-semidefinite-programming">7.5 Applications to semidefinite programming</h2>
+<p>In this section, we consider the cone <span class="math inline">\(\mathcal C=\mathbb S^n_+\)</span>. Note that <span class="math inline">\(\mathcal C^*=\mathbb S_+^n\)</span>. Consider the linear SDP problem, <span class="math display">\[
+\text{(SDP)}\quad \begin{array}{rCl}
+\min &amp; \langle C,X\rangle\\
+\text{subject to}&amp; \mathcal A (X)=b\\
+&amp;X\in \mathbb S_+^n,
 \end{array}
-\]</span> where <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> are continuous functions, for <span class="math inline">\(i=1,2\dots,m\)</span> and <span class="math inline">\(j=1,2,\dots,p\)</span>. The feasible set of the problem is the following subset of <span class="math inline">\(\mathbb R^n\)</span>, <span class="math display">\[
-S=\left\{
-x\in\mathbb R^n\;\; 
-\begin{array}{|rl}
-\;g_i(x)=0,&amp;i=1,2,\dots,m
-\\
-h_j(x)\le0,&amp;j=1,2,\dots,p
+\]</span> where <span class="math inline">\(C\in\mathbb S^n\)</span>, <span class="math inline">\(b\in\mathbb R^m\)</span> are given data and <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a given linear map. The dual problem is given by <span class="math display">\[
+\text{(SDD)}\quad \begin{array}{rCl}
+\min &amp; \langle b,y\rangle\\
+\text{subject to}&amp; \mathcal A^* y+Z=C\\
+&amp;Z\in \mathbb S_+^n.
 \end{array}
-\right\}.
-\]</span> <span class="math inline">\(S\)</span> is a closed set. The KKT necessary conditions are very useful in locating possible candidates for a global minimizer.</p>
-<h2 id="regular-point">5.1 Regular point</h2>
-<p><strong>Definition</strong> (Active constraint)</p>
-<p>Let <span class="math inline">\(x^*\in S\)</span>. An inequality constraint <span class="math inline">\(h_j(x)\le 0\)</span> is said to be active at <span class="math inline">\(x^*\)</span> if <span class="math inline">\(h_j(x^*)=0\)</span>. Otherwise, it is said to be inactive at <span class="math inline">\(x^*\)</span>. Graphically, if the constraint is active, then the point lies on the boundary defined by the condition <span class="math inline">\(h_j(x)=0\)</span>.</p>
-<p><strong>Definition</strong> (Regular point)</p>
-<p>Let <span class="math inline">\(x^* \in S\)</span> be a feasible point. Let <span class="math display">\[
-J(x^*)=\{j\in\{1,\dotsm,p\}\;|\;h_j(x^*)=0\},
-\]</span> be the index set of active constraints at <span class="math inline">\(x^*\)</span>. Suppose the set of gradient vectors <span class="math display">\[
-\{\nabla g_i(x^*)\;|\; i=1,2,\dotsm,m\}\cup\{\nabla h_j(x^*)\;|\;j\in J(x^*)\}
-\]</span> are linearly independent. Then we say <span class="math inline">\(x^*\)</span> is a regular point, or the regularity condition holds at <span class="math inline">\(x^*\)</span>.</p>
-<p>The above condition is called <strong>constraint qualification</strong> at <span class="math inline">\(x^*\in S\)</span>. There are other types of constraint qualifications. In this chapter, we shall only consider the above linearly independence constraint qualification (LICQ).</p>
-<p>In particular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\emptyset\)</span>. We shall call a point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\emptyset\)</span> a regular point.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li><p>For an equality constraint nonlinear programming problem without inequality constraints, <span class="math inline">\(x^*\)</span> is a regular point if and only if the set of gradient vectors <span class="math display">\[
-\{\nabla g_i(x^*)\;i=1,2,\dotsm,m\}
-\]</span> is linearly independent.</p></li>
-<li><p>Suppose an NLP contains only inequality constraints and no equality constraint. Then <span class="math inline">\(x^*\)</span> is a regular point if and only if the set of gradient vectors <span class="math display">\[
-\{\nabla h_j(x^*)\;j\in J(x^*)\}
-\]</span> is linearly independent. In partucular, if <span class="math inline">\(x^*\)</span> is an interior-point of the feasible region, then <span class="math inline">\(J(x^*)=\emptyset\)</span>. We shall call the point <span class="math inline">\(x^*\)</span> such that <span class="math inline">\(J(x^*)=\emptyset\)</span> a regular point.</p></li>
-</ol>
-<p><strong>Example</strong></p>
-<p>Consider the constraints, <span class="math display">\[
+\]</span> The KKT optimality conditions are given as <span class="math display">\[
 \begin{array}{rcl}
-g_1(x)&amp;=&amp; x_1-x_2+5x_3-26=0\\
-h_1(x)&amp;=&amp; x_1+2x_2^3-4\le 0\\
-h_2(x)&amp;=&amp; (x_1-3)^3-4x_2^2+x_3\le 0\\
-h_3(x)&amp;=&amp; x_1^2+x_2^2-x_3-4\le 0.
+\mathcal A^*+Z&amp;=&amp;C\\
+\mathcal AX&amp;=&amp;b\\
+\mathbb S_n^+\ni X&amp;\perp&amp; Z\in \mathbb S_n^+. 
 \end{array}
-\]</span> Show that the feasible point <span class="math inline">\(x^*=[2;1;5]\)</span> is a regular point.</p>
-<p>Solution</p>
-<p>Equality constraint <span class="math inline">\(g_1(x^*)=0\)</span>.</p>
-<p>Active inequality constriants <span class="math inline">\(h_1(x^*)=0\)</span> and <span class="math inline">\(h_2(x^*)=0\)</span>.</p>
-<p>The gradient vectors at <span class="math inline">\(x^*\)</span> are <span class="math display">\[
-\begin{array}{rcl}
-[\nabla g_1(x^*)\; \nabla h_1(x^*)\;\nabla h_2(x^*)]=
+\]</span> The last condition is equivalent to <span class="math display">\[
+\langle X,Z\rangle =0,\;X,Z\in\mathbb S_+^n.
+\]</span> The last condition is also equivalent to <span class="math display">\[
+-X\in N_{\mathbb S^+_n}(Z)\iff Z-\Pi_{\mathbb S_n^+}(Z-X)=0=X-\Pi_{\mathbb S_n^+}(X-Z).
+\]</span> For any <span class="math inline">\(A\in\mathbb S^n\)</span>, let <span class="math inline">\(A_+ = \Pi_{\mathbb S_n^+}(A)\)</span>. Assume that A has the following spectral decomposition, <span class="math display">\[
+A=P\Lambda P^T,
+\]</span> where <span class="math inline">\(\Lambda = \text{Diag}(\lambda)\)</span> is the diagonal matrix of the eigenvalues <span class="math inline">\(\lambda_1\ge \lambda_2\ge \dotsm\ge \lambda_n\)</span> and <span class="math inline">\(P\)</span> is a corresponding orthogonal matrix of eigenvectors. Then <span class="math display">\[
+A_+=P\Lambda_+ P^T,
+\]</span> where <span class="math inline">\(\Lambda_+ = \text{Diag} (\lambda_+)\)</span>. Define three index sets of positive zero, and negative, <span class="math display">\[
+\alpha =\{i\;|\; \lambda_i&gt;0\}\\
+\beta =\{i\;|\; \lambda_i=0\}\\
+\gamma =\{i\;|\; \lambda_i&lt;0\}.
+\]</span> We can write <span class="math display">\[
+\Lambda = \begin{bmatrix}
+\Lambda_\alpha &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; \Lambda_\gamma
+\end{bmatrix}\\
+P=[P_\alpha, P_\beta,P_\gamma],
+\]</span> where <span class="math inline">\(P_\alpha \in \mathbb R^{n\times |\alpha|}\)</span>, <span class="math inline">\(P_\beta \in \mathbb R^{n\times |\beta|}\)</span>, <span class="math inline">\(P_\gamma \in\mathbb R^{n\times |\gamma|}\)</span>. Define for <span class="math inline">\(i\notin \beta\)</span> or <span class="math inline">\(j\notin \beta\)</span>,</p>
+<p><strong>Case 1</strong> (<span class="math inline">\(\beta = \emptyset\)</span>). Then <span class="math inline">\(\Pi_{\mathbb S_+^n}\)</span> is Fréchet differentiable at <span class="math inline">\(A\)</span> and the directional derivative is given by <span class="math display">\[
+\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{cc}{\widetilde{H}_{\alpha \alpha}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0}\end{array}\right] P^{T}
+\]</span> where <span class="math inline">\(\widetilde H = P^THP\)</span>.</p>
+<p><strong>Cases 2</strong> (<span class="math inline">\(\beta \neq \emptyset\)</span>) it has been proven that for any <span class="math inline">\(H\in\mathbb S^n\)</span>, it follows <span class="math display">\[
+\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{ccc}{\widetilde{H}_{\alpha \alpha}} &amp; {\widetilde{H}_{\alpha \beta}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\widetilde{H}_{\alpha \beta}^{T}} &amp; {\Pi_{\mathbb{S}_+^{|\beta|}}\left(\widetilde{H}_{\beta \beta}\right)} &amp; {0} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0} &amp; {0}\end{array}\right] P^{T}.
+\]</span></p>
+<p>skip something......</p>
+<p>The Robinson's CQ for (SDP) is given by <span class="math display">\[
 \begin{bmatrix}
-1&amp;1&amp;3\\
--1&amp;6&amp;-8\\
-5&amp;0&amp;1
-\end{bmatrix}
-\end{array}.
-\]</span> Tha matrix has rank 3, thus is linearly independent. Therefore, <span class="math inline">\(x^*\)</span> is a regular point.</p>
-<h2 id="karush-kuhn-tucker-necessary-conditions">5.2 Karush-Kuhn-Tucker necessary conditions</h2>
-<p>We state the <strong>KKT necessary conditions</strong> for a local minimizer <span class="math inline">\(x^*\)</span> at which the regularity condition holds.</p>
-<p><strong>Theorem</strong> (KKT first order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R\)</span> for all <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, has continuous first partial derivatives on the feasible set <span class="math inline">\(S\)</span>. Suppose <span class="math inline">\(x^*\in S\)</span> is a <strong>regular point</strong>.</p>
-<p>If <span class="math inline">\(x^*\)</span> is a local minimizer, then there exists (unique) scalars <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> such that the following conditions hold, <span class="math display">\[
-\begin{array}{rCll}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)&amp;=&amp;0\\
-\mu_j^*&amp;\ge&amp;0,  &amp;\forall j=1,\dotsm,p\\
-\mu_j^*&amp;=&amp;0,&amp;\forall j\notin J(x^*),
-\end{array}
-\]</span> where <span class="math inline">\(J(x^*)\)</span> is the index set of active inequality constraints at <span class="math inline">\(x^*\)</span>.</p>
-<p><strong>Theorem</strong> (KKT second order necessary conditions)</p>
-<p>Suppose <span class="math inline">\(f,g_i,\)</span> and <span class="math inline">\(h_j\)</span>, for all <span class="math inline">\(i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span>, have continuous second partial derivatives on <span class="math inline">\(S\)</span>. Let <span class="math display">\[
-H_L(x^*)=H_f(x^*)+\sum_{i=1}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p \mu_j^*H_{h_j}(x^*).
-\]</span> If <span class="math inline">\(x^*\)</span> is a local minimizer, then <span class="math display">\[
-y^TH_L(x^*)y\ge 0,
-\]</span> for all <span class="math inline">\(y\in T(x^*)\)</span>, where <span class="math display">\[
-T(x^*)=
-\left\{
-y\in\mathbb R^n \;
-\begin{array}{|rl}
-\nabla g_i(x^*)^Ty=0, &amp;i=1,2,\dotsm,m\\
-\; \nabla h_j(x^*)^T y=0, &amp; j\in J(x^*).
-\end{array}
-\right\}.
-\]</span> <strong>Remark</strong> (On the KKT necessary conditions)</p>
-<ol type="1">
-<li><p>We say that <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> is a KKT point whenever <span class="math inline">\((x^*,\lambda^*,\mu^*)\)</span> satisfies the KKT first order conditions. KKT points are some times also called KKT solutions.</p></li>
-<li><p>The scalar <span class="math inline">\(\lambda_1^*,\dotsm,\lambda_m^*\)</span> and <span class="math inline">\(\mu_1^*,\dotsm,\mu_p^*\)</span> are called <strong>Lagrange multipliers</strong>.</p></li>
-<li><p>The conditions <span class="math inline">\(\mu_j^*=0,\;\forall j\notin J(x^*)\)</span> means that the Lagrange multiplier corresponding to the inactive constraint must be zero. Since <span class="math inline">\(h_j(x^*)&lt;0\;\forall j\notin J(x^*)\)</span> and <span class="math inline">\(h_j(x^*)=0\;\forall j\in J(x^*)\)</span>, the condition <span class="math inline">\(\mu_j^*=0\;\forall j\notin J(x^*)\)</span> is equivalent to <span class="math display">\[
-\mu_j^*h_j(x^*)=0,\quad \forall j=1,\dotsm,p.
-\]</span> This is called the <strong>complementary slackness condition</strong>. The name is derived from the fact that for each <span class="math inline">\(j\)</span>, whenever the constraint <span class="math inline">\(h_j(x^*)\le 0\)</span> is slack, i.e., <span class="math inline">\(h_j(x^*)&lt;0\)</span>, the constraint <span class="math inline">\(\mu_j^*\ge 0\)</span> must not be slack, and vice versa.</p></li>
-<li><p>The set <span class="math inline">\(T(x^*)\)</span> consists of vectors in the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. To see this, note that the normal space <span class="math inline">\(N(x^*)\)</span> to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace spanned by the set of normal vectors <span class="math display">\[
-\nabla g_1(x^*),\nabla g_1(x^*),\dotsm\nabla g_m(x^*),\quad \nabla h_j(x^*)\;\forall j\in J(x^*).
-\]</span> Now the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span> is the subspace of vectors that are orthogonal to all the normal vectors at <span class="math inline">\(x^*\)</span>. <span class="math display">\[
-\text{Tangent} (x^*)=\{y\in\mathbb R^n\;|\; u^Ty=0,\forall u\in N(x^*)\}
-\]</span></p></li>
-<li><p>In deciding whether <span class="math inline">\(x^*\)</span> is a local optimizer, the definiteness of <span class="math inline">\(H_L(x)\)</span> is tested <strong>only</strong> for vectors in <span class="math inline">\(T(x^*)\)</span>.</p></li>
-</ol>
-<p>The next result provides an easier check for the KKT second order conditions.</p>
-<p><strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(S\)</span> be the feasible set. Suppose <span class="math inline">\(x^*\in S\)</span> and <span class="math inline">\(J(x^*)\)</span> is the index set of active constraints at <span class="math inline">\(x^*\)</span>.</p>
-<p>Consider the matrix <span class="math display">\[
-\mathcal D(x^*)=\left(\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*),[\nabla h_j(x^*)\;|\;j\in J(x^*)]\right).
-\]</span> Then <span class="math display">\[
-y^TH_L(x^*)y\ge 0,\quad \forall y\in T(x^*)\iff Z(x^*)^TH_L(x^*)Z(x^*)\in \mathbb S_+^n,
-\]</span> where <span class="math inline">\(Z(x^*)\in \mathbb R^{n\times q}\)</span> is a matrix whose columns form a basis of the null space of <span class="math inline">\(\mathcal D(x^*)^T\)</span>.</p>
-<p>Proof.</p>
-<p>Note that <span class="math inline">\(T(x^*)\)</span> is the null space of the matrix <span class="math inline">\(\mathcal D(x^*)^T\)</span>. So we have <span class="math inline">\(T(x^*)=\{Z(x^*)u\;|\; u\in\mathbb R^q\}\)</span>. Thus <span class="math display">\[
-\begin{array}{rlc}
-y^TH_L(x^*)y\ge 0,&amp;\forall y\in T(x^*)&amp;\iff\\
-u^TZ(x^*)^TH_L(x^*)Z(x^*)u\ge 0, &amp; \forall u\in\mathbb R^q&amp;\iff\\
-Z(x^*)^TH_L(x^*)Z(x^*)\in\mathbb S_+^N.
-\end{array}
-\]</span></p>
-<h2 id="examples-to-illustrate-the-kkt-necessary-conditions.">5.3 Examples to illustrate the KKT necessary conditions.</h2>
-<p><strong>Corollary</strong></p>
-<p>Suppose the following two conditions hold,</p>
-<ol type="1">
-<li>A global minimizer <span class="math inline">\(x^*\)</span> is known to exist.</li>
-<li><span class="math inline">\(x^*\)</span> is a regular point.</li>
-</ol>
-<p>Then <span class="math inline">\(x^*\)</span> is a KKT point, i.e. there exists <span class="math inline">\(\lambda^*\in \mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that the following conditions hold <span class="math display">\[
-\begin{array}{rCl}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)=0\\
-g_i(x^*)=0,\;i=1,2,\dotsm,m\\
-\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)=0,\;\forall j=1,2,\dotsm,p.
-\end{array}
-\]</span> <strong>Example</strong> (Projection onto a simplex)</p>
-<p>Given <span class="math inline">\(g\in\mathbb R^n\)</span> and <span class="math inline">\(b&gt;0\)</span>. Consider the problem, <span class="math display">\[
-\min\left\{f(x)=\frac{1}{2}||x-g||^2\;|\; e^Tx=b,x\ge 0 \right\},
-\]</span> where <span class="math inline">\(e\)</span> is the vector of all ones. Its optimal solution <span class="math inline">\(x^*\)</span> can be computed analytically.</p>
-<p>Solution</p>
-<p>Assume <span class="math inline">\(g_1\ge g_2\ge \dotsm\ge g_n\)</span>.</p>
-<ol type="1">
-<li><p>Claim that the optimal solution <span class="math inline">\(x^*\)</span> must also satisfy the condition <span class="math inline">\(x_1^*\ge x_2^*\ge\dotsm\ge x_n^*\)</span>. To prove this claim, we suppose on the contrary that there exists indices <span class="math inline">\(i&lt;j\)</span> such that with <span class="math inline">\(x_i^*&lt;x_j^*\)</span>. Consider a new point <span class="math inline">\(\bar x\)</span> defined by (Just switch two elements) <span class="math display">\[
-\bar x=\begin{cases}
-x_k^*&amp;\text{if }k\neq i,j\\
-x_j^*&amp;\text{if }k=i\\
-x_i^*&amp;\text{if }k=j
-\end{cases}.
-\]</span> Then it follows <span class="math display">\[
-\begin{array}{rcl}
-f(\bar x)-f(x^*)&amp;=&amp;\frac{1}{2}\left((x_i^*-g_j)^2+(x_j^*-g_i^2)\right)-\frac{1}{2}\left((x_i^*-g_i)^2+(x_j^*-g_j^2)\right)\\
-&amp;=&amp;(g_i-g_j)(x_i^*-x_j^*)\\
-&amp;\le&amp; 0.
-\end{array}
-\]</span> Hence <span class="math inline">\(f(\bar x)\le f(x^*)\)</span>. Since <span class="math inline">\(x^*\)</span> is a global minimizer, this contradicts the fact that <span class="math inline">\(x^*\)</span> is unique. Therefore, <span class="math inline">\(x_1^*\ge x_2^*\ge\dotsm\ge x_n^*\)</span> holds.</p></li>
-<li><p>Then the KKT conditions are given by, <span class="math display">\[
-\begin{array}{rcl}
-x^*-g-\mu-\lambda e&amp;=&amp;0,\quad \mu\ge 0,\;\lambda\in \mathbb R,\; x^*\ge 0\\
-e^Tx^*&amp;=&amp;b\\
-\mu x^*&amp;=&amp;0.
-\end{array}
-\]</span> The first equation implies that <span class="math inline">\(x^*=g+\mu+\lambda e\)</span>.</p>
-<p>Now if <span class="math inline">\(g_i+\lambda &gt;0\)</span>, let <span class="math inline">\(x_i^*=g_i+\lambda\)</span> and <span class="math inline">\(\mu_i=0\)</span>. If <span class="math inline">\(g_i+\lambda \le 0\)</span>, let <span class="math inline">\(x_i^*=0\)</span> and <span class="math inline">\(\mu_i=-(g_i+\lambda)\)</span>.</p>
-<p>Now suppose <span class="math inline">\(x_i^*&gt;0\)</span> for <span class="math inline">\(i=1,\dotsm,r\)</span> and <span class="math inline">\(x^*_i=0\)</span> for <span class="math inline">\(i=r+1,\dotsm,n\)</span>. Then we have <span class="math display">\[
-b=e^Tx=\sum_{i=1}^rx^*_i=\sum_{i=1}^r g_i+\lambda r\implies \lambda =\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right).
-\]</span> Now we need to find the largest <span class="math inline">\(r\)</span> denoted as <span class="math inline">\(\bar r\)</span> such that <span class="math display">\[
-\bar r = \max \{r\;|\;x_r\ge 0\},
-\]</span> where <span class="math inline">\(x_r=g_r+\lambda=g_r+\frac{1}{r}\left(b-\sum_{i=1}^rg_i\right)\)</span>.</p></li>
-</ol>
-<p>Finally, it follows <span class="math display">\[
-   x_i^*=\begin{cases} g_i+\lambda &amp; \text{if } i\le \bar r\\0&amp; \text{if }i&gt;\bar r.\end{cases}
-\]</span></p>
-<ol start="3" type="1">
-<li>If the components of <span class="math inline">\(g\)</span> is not sorted in a descending order, we can find a permutation matrix <span class="math inline">\(P\)</span> such that <span class="math inline">\(\hat g=Pg\)</span> has its components arranged in a descending order. Then the optimal solution <span class="math inline">\(x^*\)</span> is given by <span class="math inline">\(x^*=P^T\hat x^*\)</span>.</li>
-</ol>
-<h2 id="interpretation-of-the-lagrange-multipliers">5.4 Interpretation of the Lagrange multipliers</h2>
-<p>The Lagrange multipliers <span class="math inline">\(\lambda_i^*(i=1,\dotsm,m)\)</span>, <span class="math inline">\(\mu_j^*(j=1,\dotsm,p)\)</span> associated with the local optimizer <span class="math inline">\(x^*\)</span> in the KKT theorem measures the sensitivity of <span class="math inline">\(f(x^*)\)</span> to a small perturbation of the corresponding constraints <span class="math inline">\(g_i(x)=0\)</span> or <span class="math inline">\(h_j(x)\le 0\)</span>. In this section, we shall justify this interpretation for an equality constrained NLP. Consider the following equality constrained NLP, <span class="math display">\[
-\begin{array}{rll}
-\min&amp;f(x)\\
-\text{subject to} &amp;g_i(x)=0&amp;\forall i=1,2,\dotsm,m.
-\end{array}
-\]</span> Suppose the constraints are relaxed as follows, <span class="math display">\[
-\hat g_i(x;c)=g_i(x)+c_i,\quad i=1,2,\dotsm,m.
-\]</span> Let <span class="math inline">\(C\subseteq \mathbb R^n\)</span> be an open neighborhood of <span class="math inline">\(0\)</span>. For each <span class="math inline">\(c\in C\)</span>, suppose there is a local minimizer <span class="math inline">\(x^*(c)\)</span> of <span class="math inline">\(f\)</span> on the constraint set <span class="math display">\[
-\{x\in\mathbb R^n\;|\; \hat g_i(x;c)=0,\;\forall i=1,\dotsm,m\}.
-\]</span> Note that <span class="math inline">\(x^*(0)=x^*\)</span> and <span class="math inline">\(\lambda^*(0)=\lambda^*\)</span>. Assume the regularity condition holds at each <span class="math inline">\(x^*(c)\)</span>. Now by the KKT theorem, there exists <span class="math inline">\(\lambda^*(c)\in\mathbb R^m\)</span> such that <span class="math display">\[
-\nabla f(x^*(c))+\sum_{i=1}^m\lambda_i^*(c)\nabla \hat g_i(x^*(c))=0.
-\]</span> Note that <span class="math display">\[
-\frac{\partial \hat g_i}{x_l}(x)=\frac{\partial g_i}{x_l}(x),
-\]</span> thus for each <span class="math inline">\(1\le l\le n\)</span>, we have <span class="math display">\[
-\frac{\partial f}{\partial x_l}(x^*(c))+\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))=0.
-\]</span> <strong>Proposition</strong></p>
-<p>Let <span class="math inline">\(F(c)=f(x^*(c))\)</span>. Suppose that <span class="math inline">\(F(c)\)</span> changes smoothly with respect to changes in <span class="math inline">\(c\)</span>. Then <span class="math display">\[
-\frac{\partial F(c)}{\partial c_k}=\lambda^*_k(c),\quad \forall k=1,\dotsm,m.
-\]</span> Proof. <span class="math display">\[
-\begin{array}{rcl}
-\frac{\partial F(c)}{\partial c_k}&amp;=&amp;\sum_{l=1}^n \frac{\partial f}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\\
-&amp;=&amp;\sum_{l=1}^n\left[-\sum_{i=1}^m \lambda_i^*(c)\frac{\partial g_i}{\partial x_l}(x^*(c))\right]\frac{\partial x_l(c)}{\partial c_k}\\
-&amp;=&amp;-\sum_{i=1}^m \lambda_i^*(c)\left[\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}\right].
-\end{array}
-\]</span> Since <span class="math inline">\(g_i(x^*(c))=-c_i\)</span> for all <span class="math inline">\(i=1,\dotsm,m\)</span>, we have <span class="math display">\[
-\sum_{l=1}^n\frac{\partial g_i}{\partial x_l}(x^*(c))\frac{\partial x_l(c)}{\partial c_k}=-\frac{\partial c_i}{\partial c_k}=\begin{cases}0&amp;\text{if }k\neq i\\-1&amp;\text{if }k=i\end{cases}.
-\]</span> Therefore, we have <span class="math display">\[
-\frac{\partial F(c)}{c_k}=\lambda_k^*(c).
-\]</span> <strong>Remark</strong></p>
-<ol type="1">
-<li>Proposition says that the small change in the <span class="math inline">\(k\)</span>th constraint from <span class="math inline">\(g_k(x)=0\)</span> to <span class="math inline">\(g_k(x)+c_k=0\)</span> will change the optimal objective value <span class="math inline">\(f(x^*)\)</span> at the rate of <span class="math inline">\(\lambda_k^*\)</span>. That is the new optimal objective value is given approximately by <span class="math inline">\(f(x^*)+\lambda_k^*c_k\)</span>.</li>
-<li>It is also applied to the inequality constraints.</li>
-<li>At an optimal solution, a decision-maker can decide whether it is worth to relax the <span class="math inline">\(k\)</span>th constraint based on the multiplier values <span class="math inline">\(\lambda^*_k\)</span> and <span class="math inline">\(\mu^*_k\)</span>.</li>
-</ol>
-<p><strong>Example</strong></p>
-<p>From the example, the global minimizer <span class="math inline">\(x^*=[0;1]\)</span> with multiplier <span class="math inline">\(\mu_3=\frac{1}{2}\)</span>. Thus relaxing the constraint to <span class="math inline">\(g_i(x)+\epsilon\le 0\)</span> would change the objective value by <span class="math inline">\(\frac{1}{2}\epsilon\)</span>.</p>
-<h2 id="kkt-sufficient-conditions">5.5 KKT sufficient conditions</h2>
-<p>When a KKT point satisfies a stronger second order condition, we obtain a strict local minimizer. Note that the sufficient conditions for a strict local minimizer <strong>do not</strong> require any regularity conditions.</p>
-<p><strong>Theorem</strong> (KKT sufficient conditions)</p>
-<p>Let <span class="math inline">\(f,g_i,h_j:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,2,\dotsm,m\)</span> and <span class="math inline">\(j=1,2,\dotsm,p\)</span> be functions with continuous second partial derivatives.</p>
-<p>Let <span class="math inline">\(S\)</span> be the feasible set of NLP. Suppose <span class="math inline">\(x^*\in S\)</span> is a KKT point, i.e., there exist <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> and <span class="math inline">\(\mu^*\in\mathbb R^p\)</span> such that <span class="math display">\[
-\begin{array}{rCl}
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^*\nabla g_i(x^*)+\sum_{j=1}^p\mu_j^*\nabla h_j(x^*)&amp;=&amp;0\\
-g_i(x^*)&amp;=&amp;0,\;\forall i=1,2,\dotsm,m\\
-\mu_j^*\ge 0,\;h_j(x^*)\le 0,\;\mu_j^*h_j(x^*)&amp;=&amp;0,\;\forall j=1,2,\dotsm,p.
-\end{array}
-\]</span> Let <span class="math display">\[
-H_L(x^*)=H_f(x^*)+\sum_{i1=}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p\mu_{j}^*H_{h_{j}}(x^*).
-\]</span> Suppose <span class="math display">\[
-y^TH_L(x^*)y&gt;0,\;\forall y\in T(x^*)-\{0\},
-\]</span> where <span class="math inline">\(T(x^*)\)</span> is the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. Then <span class="math inline">\(x^*\)</span> is a <strong>strict local minimizer</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>Suppose <span class="math display">\[
-y^TH_L(x^*)y&lt;0,\;\forall y\in T(x^*)-\{0\},
-\]</span> where <span class="math inline">\(T(x^*)\)</span> is the tangent space to <span class="math inline">\(S\)</span> at <span class="math inline">\(x^*\)</span>. Then <span class="math inline">\(x^*\)</span> is a <strong>strict local maximizer</strong> of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p><strong>Example</strong></p>
-<p>Consider the following nonlinear programming problem, <span class="math display">\[
-\begin{array}{rl}
-\min &amp; f(x)=-(x_1+x_2)\\
-\text{subject to} &amp; h(x)=1-x_1x_2\le 0,\;x\in\mathbb R^2.
-\end{array}
-\]</span> Verify that <span class="math inline">\(x^*=[-1;-1]\)</span> is a strict local minimizer.</p>
-<p>By using the KKT condition, we have <span class="math display">\[
-\begin{array}{rcl}
-\nabla f(x^*)+\mu^*\circ \nabla h(x^*)&amp;=&amp;0\\
-1-x_1^*x_2^*\le 0,\quad \mu^* &amp;\ge &amp;0.
-\end{array}
-\]</span> That is <span class="math inline">\(\mu^*=1\)</span>. <span class="math inline">\(([-1;-1],1)\)</span> is a KKT point.</p>
-<p>From the second order KKT condition, it follows <span class="math display">\[
-\begin{array}{rcl}
-H_L(x^*)&amp;=&amp;H_f(x^*)+\sum_{i=1}^m \lambda_i^*H_{g_i}(x^*)+\sum_{j=1}^p \mu_j^*H_{h_j}(x^*)\\
-&amp;=&amp; 0+0+\begin{bmatrix}0&amp;-1\\-1&amp;0\end{bmatrix}\\
-&amp;=&amp;\begin{bmatrix}0&amp;-1\\-1&amp;0\end{bmatrix}.
-\end{array}
-\]</span> For <span class="math inline">\(Z(x^*)\)</span>, it follows <span class="math inline">\(\mathcal D(x^*)=[1;1]\)</span>. Then <span class="math display">\[
-\text{Null}(\mathcal D(x^*)^T)=\text{Null}([1,1])
-=\left\{\begin{bmatrix}x_1\\x_2\end{bmatrix}\;\Bigg|\;x_1+x_2=0\right\}
-=\left\{\begin{bmatrix}x_1\\-x_1\end{bmatrix}\right\}.
-\]</span> Then we can choose <span class="math inline">\(Z(x*)=[1;-1]\)</span>, and it follows <span class="math display">\[
-Z(x^*)^TH_L(x^*)Z(x^*)=[1,-1]\begin{bmatrix}0&amp;-1\\-1&amp;0\end{bmatrix}\begin{bmatrix}1\\-1\end{bmatrix}=2\ge 0.
-\]</span> Hence, <span class="math inline">\(x^*\)</span> is a strict local minimizer.</p>
-<h2 id="kkt-conditions-for-constrained-convex-programming-problems">5.6 KKT conditions for constrained convex programming problems</h2>
-<p>Convexity is a very strong condition. In fact, for a convex problem, a feasible point <span class="math inline">\(x^*\)</span> is a KKT point implies it is a global minimizer.</p>
-Consider the following convex programming problem, $$
-<span class="math display">\[\begin{array}{rCl}
-\min&amp;f(x)\\
-\text{subject to} &amp; g_i(x)=a_i^Tx-b_i=0,&amp;i=1,\dotsm,m\\
-&amp;h_j(x)\le 0,&amp;j=1,\dotsm,p
-
+\mathcal A\\ \mathcal I
+\end{bmatrix} \mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\ \mathcal T_\mathcal C(\bar X)
+\end{bmatrix}=
+\begin{bmatrix}
+\mathbb R^m \\
+\mathbb S^n
+\end{bmatrix},
+\]</span> where <span class="math inline">\(\mathcal I:\mathbb S^n\rightarrow \mathbb S^n\)</span> is the identity map. A sufficient condition for the multipliers <span class="math inline">\((\bar y,\bar Z)\in\mathcal M(\bar x)\)</span> to be unique is that <span class="math display">\[
+\begin{bmatrix}
+\mathbb R^m\\\mathbb S^n
+\end{bmatrix}=
+\begin{bmatrix}
+\mathcal A\\\mathcal I
+\end{bmatrix}\mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\\mathcal T_\mathcal C(\bar X)\cap (\bar Z)^\perp
+\end{bmatrix}\subset \\
+\begin{bmatrix}
+\mathcal A\\\mathcal I
+\end{bmatrix}\mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\\mathcal T_\mathcal C(\bar X)
+\end{bmatrix}\cap
+\begin{bmatrix}
+-\bar y\\-\bar Z
+\end{bmatrix}^\perp.
+\]</span> <strong>Definition</strong> (Robinson's constraint nondegeneracy)</p>
+<p>We said that a feasible <span class="math inline">\(\bar x\)</span> to problem (COP) is constraint nondegenerate if <span class="math display">\[
+G&#39;(\bar x)\mathcal X+\text{lin}(\mathcal T_\mathcal K(G(\bar x)))=\mathcal Y
+\]</span> where <span class="math inline">\(\text{lin}(\mathcal T_\mathcal K(G(\bar x)))\)</span> denotes the largest linear subspace contained in <span class="math inline">\(\mathcal T_{\mathcal K}(G(\bar x))\)</span>.</p>
+<p>For the problem (SDP), the Robinson's constraint nondegeneracy condition is said to hold at a feasible point <span class="math inline">\(\bar X\in\mathbb S_+^n\)</span> if <span class="math display">\[
+\begin{bmatrix}
+\mathbb R^m\\\mathbb S^n
+\end{bmatrix}=
+\begin{bmatrix}
+\mathcal A\\
+\mathcal I
+\end{bmatrix}\mathbb S^n+
+\begin{bmatrix}
+\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar X))
+\end{bmatrix}.
+\]</span> <strong>Exercise</strong></p>
+Show that the above condition is equivalent to <span class="math display">\[
+\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m.
+\]</span> It means that for all <span class="math inline">\(y\in\mathbb R^m\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(d\in\mathbb S^n\)</span> such that $$
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal Ad\\
+z&amp;\in&amp; d+\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
+\end{array}\iff\]</span>
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal Ad\\
+d&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
 \end{array}\]</span>
-<span class="math display">\[
-where $f,h_j:\mathbb R^n\rightarrow \mathbb R$ are convex functions. It can be expressed as
+<p>\</p>
+<span class="math display">\[\begin{array}{|rcl|}\hline 
+y\in \mathcal A(z-\text{lin}(\mathcal T_\mathcal C(\bar X)))
+\\\hline \end{array}
+\iff 
+\begin{array}{|rcl|}\hline 
+y\in\mathcal Az-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
+\\\hline \end{array}\]</span>
+\
+<span class="math display">\[\begin{array}{|rcl|}\hline 
+\mathcal Az-y\in \mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
+\\\hline \end{array}
+\iff
+\begin{array}{|rcl|}\hline 
+\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m
+\\\hline \end{array}\]</span>
+. <span class="math display">\[
+For the dual problem (SDD), the Robinson&#39;s constraint nondegeneracy condition is said to hold at a feasible point $(\bar y,\bar Z)\in\mathbb R^m\times \mathbb S_+^n$ if
 \]</span>
-<span class="math display">\[\begin{array}{rCl}
-\min&amp;f(x)\\
-\text{subject to} &amp; Ax-b=0\\
-&amp;h_j(x)\le 0,&amp;j=1,\dotsm,p
-
+<span class="math display">\[\begin{bmatrix}
+\mathbb S^n\\\mathbb S^n
+\end{bmatrix}\]</span>
+=
+<span class="math display">\[\begin{bmatrix}
+\mathcal A^* &amp; \mathcal I\\
+0&amp;\mathcal I
+\end{bmatrix}
+\begin{bmatrix}
+\mathbb R^m\\ \mathbb S^n
+\end{bmatrix}\]</span>
+<ul>
+<li><span class="math display">\[\begin{bmatrix}
+\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar Z))
+\end{bmatrix}\]</span>
+. $$ <strong>Exercise</strong></li>
+</ul>
+Show that the above condition is equivalent to (???what is <span class="math inline">\(\bar S\)</span>) <span class="math display">\[
+\mathcal A^*\mathbb R^m+\text{lin}(\mathcal T_\mathcal C(\bar S))=\mathbb S^n.
+\]</span> It means that for all <span class="math inline">\(y\in\mathbb S^n\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(v\in\mathbb R^m\)</span> and <span class="math inline">\(w\in\mathbb S^n\)</span> such that $$
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal A^* v+w\\
+z&amp;\in&amp; w+\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
+\end{array}\iff\]</span>
+<span class="math display">\[\begin{array}{|rcl|}
+\hline 
+y&amp;\in&amp; \mathcal A^* v+w\\
+w&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
 \end{array}\]</span>
-<p>$$ <strong>Theorem</strong> (KKT point is an optimal solution under convexity)</p>
-<p>Suppose <span class="math inline">\(f,h_j:\mathbb R^n\rightarrow \mathbb R,\;j=1,\dotsm,p\)</span> are <strong>differentiable convex functions</strong>, and <span class="math inline">\(g_i(x)=a_i^Tx-b_i,\;i=1,\dotsm,m\)</span>. Let <span class="math inline">\(S\)</span> be the feasible region of NLP. If <span class="math inline">\(x^*\in S\)</span> is a KKT point, then <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>Proof.</p>
-<p>If <span class="math inline">\(x^*\)</span> is a KKT point, then we need to prove <span class="math inline">\(f(x)\ge f(x^*)\)</span>.</p>
-<p>Since we have <span class="math display">\[
-\begin{array}{rcll}
-f(y)&amp;\ge&amp; f(x)+\nabla f(x)^T(y-x)\;\forall x,y\in\mathbb R^n&amp;\implies \\
-f(x)&amp;\ge&amp; f(x^*)+\nabla f(x^*)(x-x^*).
-\end{array}
-\]</span> Therefore, to prove <span class="math inline">\(f(x)\ge f(x^*)\)</span>, we only need to prove <span class="math display">\[
-\nabla f(x^*)(x-x^*)\ge 0.
-\]</span> <span class="math inline">\(x^*\in S\)</span> is a KKT point implies <span class="math inline">\(\exists \lambda \in \mathbb R^m\)</span> and <span class="math inline">\(\mu_j^*\ge 0,\;\forall j\in J(x^*)\)</span> such that <span class="math display">\[
-\begin{array}{rcl}
-\nabla f(x^*)+\sum_{i=1}^m \lambda_i^*a_i+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)&amp;=&amp;0
-\quad\implies\\
-\nabla f(x^*)(x-x^*)+\sum_{i=1}^m \lambda_i^*a_i(x-x^*)+\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*)&amp;=&amp;0
-\quad\implies\\
-\nabla f(x^*)(x-x^*)&amp;=&amp;-\sum_{j\in J(x^*)}\mu_j^*\nabla h_j(x^*)(x-x^*).
-\end{array}
-\]</span> Since <span class="math inline">\(h_j\)</span> is convex, we have <span class="math display">\[
-0\ge h_j(x)\ge h_j(x^*)+\nabla h_j(x^*)(x-x^*)=\nabla h_j(x^*)(x-x^*).
-\]</span> Then we have <span class="math display">\[
-\nabla f(x^*)(x-x^*)\ge 0.
-\]</span> <strong>Remark</strong></p>
-<p>The converse of the Theorem is not true without additional assumption, i.e. a global minimizer of a convex program may not be a KKT point. With regularity condition, a global minimizer is a KKT point. For convex programming problem with at least one inequality constraints, the <strong>Slater's condition</strong> ensures that a global minimizer is a KKT point.</p>
-<p><strong>Theorem</strong> (Converse of the theorem under Slater’s condition)</p>
-<p>Suppose <span class="math inline">\(f,h_j:\mathbb R^n\rightarrow \mathbb R,\;j=1,\dotsm,p\)</span> are <strong>differentiable convex functions</strong>, and <span class="math inline">\(g_i(x)=a_i^Tx-b_i,\;i=1,\dotsm,m\)</span>. Suppose <span class="math inline">\(p\ge 1\)</span> and that the <strong>Slater's condition</strong> holds, i.e., there exists <span class="math inline">\(\hat x\in\mathbb R^n\)</span> such that <span class="math inline">\(g_i(\hat x)=0,\;\forall i=1,\dotsm,m\)</span> and <span class="math inline">\(h_j(\hat x)&lt;0,\;\forall j=1,\dotsm,p\)</span>. Let <span class="math inline">\(S\)</span> be the feasible region. Suppose <span class="math inline">\(x^*\in S\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>. Then <span class="math inline">\(x^*\)</span> is a KKT point.</p>
-<h3 id="linear-equality-constrained-convex-program">5.6.1 Linear equality constrained convex program</h3>
-<p>Consider the following linear equality constrained NLP, <span class="math display">\[
-\text{(ENLP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; Ax=b, &amp; x\in\mathbb R^n,
-\end{array}
-\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(f;\mathbb R^n\rightarrow \mathbb R\)</span> is a differentiable function on the feasible region <span class="math inline">\(S\)</span>. Note that a feasible solution <span class="math inline">\(x^*\)</span> is a KKT point if there exists <span class="math inline">\(\lambda^*\in\mathbb R^m\)</span> such that <span class="math display">\[
-\nabla f(x^*)+\sum_{i=1}^m \lambda_i^* a_i=0 \iff \nabla f(x^*)+A^T\lambda^*=0.
-\]</span> <strong>Theorem</strong> (Linear equality constrained convex program)</p>
-<p>Consider the following linear equality constrained convex NLP, <span class="math display">\[
-\text{(ECP)}\quad \begin{array}{rCl}
-\min &amp; f(x)\\
-\text{subject to}&amp; Ax=b, &amp; x\in\mathbb R^n,
-\end{array}
-\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> is a differentiable convex function. Suppose the feasible region <span class="math inline">\(S\)</span> is non-empty. Then a point <span class="math inline">\(x^*\in S\)</span> is a KKT point if and only if <span class="math inline">\(x^*\)</span> is a global minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p><strong>Remark</strong></p>
-<p>No singularity or Slater’s condition is needed.</p>
-<h3 id="linear-and-convex-quadratic-programming-problems">5.6.2 Linear and convex quadratic programming problems</h3>
-<p><strong>Linear Programming</strong> <span class="math display">\[
-\text{(LP)}\quad \begin{array}{rCl}
-\min &amp; f(x)=c^Tx\\
-\text{subject to}&amp; b-Ax=0\\
-&amp; x\in\mathbb R^n_+,
-\end{array}
-\]</span> where <span class="math inline">\(A\)</span> is an <span class="math inline">\(m\times n\)</span> matrix and <span class="math inline">\(b\in \mathbb R^m\)</span>.</p>
-<p>Note the linear constraints can be rewritten as, <span class="math display">\[
-\begin{array}{rcl}
-g_i(x)=b_i-a_i^Tx&amp;=&amp;0,&amp;i=1,\dotsm,m\\
-h_j(x)=-e_i^Tx&amp;\le&amp; 0,&amp; j=1,\dotsm,n,
-\end{array}
-\]</span> with <span class="math inline">\(\nabla g_i(x)=-a_i\)</span> and <span class="math inline">\(\nabla h_j(x)=-e_j\)</span>.</p>
-<p>KKT conditions become <span class="math display">\[
-\begin{array}{rcl}
-c-\displaystyle\sum_{i=1}^m\lambda_ia_i-\sum_{j=1}^n\mu_je_j=0,\\
-b_i-a_i^Tx=0,&amp;i=1,2,\dotsm,m\\
-\mu_j\ge 0,\;-x_i\le 0,\;\mu_jx_j=0,&amp; j=1,2,\dotsm ,n.\\\hline 
-\end{array}\\
-\iff\\
-\begin{array}{rcl}
-\hline 
-c-A^T\lambda-\mu=0,\\
-b-A^Tx=0,\\
-\mu\ge 0,\;x\ge 0,\;\mu\circ x=0,
-\end{array}
-\]</span> where <span class="math display">\[
-\mu\circ x=\begin{bmatrix}\mu_1x_1\\\mu_2x_2\\\vdots\\\mu_nx_n \end{bmatrix}.
-\]</span> <strong>Convex quadratic programming problem</strong> <span class="math display">\[
-\text{(QP)}\quad \begin{array}{rCl}
-\min &amp; f(x)=\frac{1}{2}x^TQx+c^Tx\\
-\text{subject to}&amp; Ax-b\le 0\\
-&amp; x\in\mathbb R^n_+,
-\end{array}
-\]</span> where <span class="math inline">\(Q\)</span> is positive semidefinite, <span class="math inline">\(b\in\mathbb R^m\)</span> and <span class="math inline">\(A\in\mathbb R^{m\times n}\)</span>.</p>
-<p>KKT conditions become, <span class="math display">\[
-\begin{array}{rcl}
-Qx+c+\displaystyle\sum_{i=1}^m\mu_ia_i+\sum_{j=1}^n \hat \mu_j(-e_j)=0,\\
-\mu_i\ge 0,\;a_i^Tx-b_i\le 0,\;\mu_i(a_i^Tx-b_i)=0,&amp; i=1,2,\dotsm ,n.\\
-\hat \mu_j\ge 0,\;x_i\ge 0,\;\hat \mu_jx_j=0,&amp; j=1,2,\dotsm ,n.\\
-\hline
-\end{array}\\
-\iff\\
-\begin{array}{rcl}
-\hline 
-Qx+c+A^T\mu-\hat \mu=0,\\
-\mu\ge 0,\;Ax-b\le 0,\;\mu\circ (Ax-b)=0,\\
-\hat \mu\ge 0,\;x\ge 0,\;\hat \mu\circ x=0.
-\end{array}
-\]</span> <strong>Sparse regression problem</strong></p>
-<p>Recall the sparse regression problem <span class="math display">\[
-\frac{1}{2}||Ax-b||^2+\rho||x||_1,
-\]</span> where <span class="math inline">\(\rho&gt;0\)</span> is a parameter. To derive the KKT conditions for this problem, we first reformulate it to the following form, <span class="math display">\[
-\quad \begin{array}{rCl}
-\min &amp; f(x,u^{(1)}),u^{(2)})=\frac{1}{2}||Ax-b||^2+\rho\langle e,u^{(1)}+u^{(2)}\rangle\\
-\text{subject to}&amp; g(x,u^{(1)},u^{(2)})=x-u^{(1)}+u^{(2)}=0\\
-&amp; h_1(x,u^{(1)},u^{(2)})=-u^{(1)}\le 0\\
-&amp; h_2(x,u^{(1)},u^{(2)})=-u^{(2)}\le 0.
-\end{array}
-\]</span> We can see that <span class="math inline">\(u^{(1)}=\max (x,0),u^{(2)}=\max (-x,0)\)</span>, and therefore <span class="math inline">\(x=u^{(1)}-u^{(2)}\)</span>.</p>
-<p>Then KKT conditions are given as follows, <span class="math display">\[
-\left(
-\begin{array}{c}
-A^T(Ax-b)\\\rho e\\\rho e
-\end{array}
-\right)+
-\left(
-\begin{array}{c}
-I\\-I\\I
-\end{array}
-\right)\lambda+
-\left(
-\begin{array}{c}
-0\\-I\\0
-\end{array}
-\right)\mu^{(1)}+
-\left(
-\begin{array}{c}
-0\\0\\-I
-\end{array}
-\right)\mu^{(2)}=
-\left(
-\begin{array}{c}
-0\\0\\0
-\end{array}
-\right)\\
-x-u^{(1)}+u^{(2)}=0\\
-\mu^{(1)}\circ u^{(1)}=0,\;\mu^{(2)}\circ u^{(2)}=0\\
-u^{(1)},u^{(2)},\mu^{(1)},\mu^{(2)}\ge0.
-\]</span> From the first equation, it follows <span class="math display">\[
-\rho e- \lambda-\mu^{(1)}=0\\
-\rho e+ \lambda-\mu^{(2)}=0,
-\]</span> which can be expressed as <span class="math display">\[
-\mu^{(1)}=\rho e-\lambda \\
-\mu^{(2)}=\rho e+\lambda .
-\]</span> Then it follows <span class="math display">\[
-A^T(Ax-b)+ \lambda=0\\
-(\rho e-\lambda)\circ \max (x,0)=0\\(\rho e+\lambda)\circ \max (-x,0)=0\\
--\rho e\le\lambda \le\rho e.
-\]</span> Then we have <span class="math display">\[
-\lambda_i=
-\begin{cases}
-\{\rho_i\},&amp;\text{if }x_i&gt;0\\
-\ [-\rho_i,\rho_i] &amp; \text{if }x_i=0\\
-\{-\rho_i\},&amp;\text{if }x_i&lt;0
-\end{cases}\quad i=1,\dotsm,n.
-\]</span> ## 5.7 Proof of the KKT first order necessary conditions</p>
-<p><strong>Theorem</strong> (KKT necessary conditions for equality constrained NLP)</p>
-<p>Let <span class="math inline">\(f:\mathbb R^n\rightarrow \mathbb R\)</span> and <span class="math inline">\(g_i:\mathbb R^n\rightarrow \mathbb R,\;\forall i=1,\dotsm,m\)</span> be functions with continuous first partial derivatives. Suppose <span class="math inline">\(x^*\)</span> is a local minimizer of <span class="math inline">\(f\)</span> on the feasible set <span class="math display">\[
-S=\{x\in\mathbb R^n\;|\; g_i(x)=0,i=1,\dotsm,m\}.
-\]</span> Suppose that <span class="math inline">\(x^*\)</span> is singular. Then there exists a unique vector <span class="math inline">\(\lambda^*\in\mathbb R^n\)</span> such that <span class="math display">\[
-\nabla f(x^*)+\sum_{i=1}^m\lambda_i^* \nabla g_i(x^*)=0.
-\]</span> Proof.</p>
-<p>We approximate the original constrained problem by a sequence of unconstrained optimization that involves a penalty for violation of the constraints.</p>
-<p>Let <span class="math inline">\(x^*\)</span> be a local minimizer of <span class="math inline">\(f\)</span> on <span class="math inline">\(S\)</span>.</p>
-<p>For each positive integer <span class="math inline">\(k\)</span>, let <span class="math display">\[
-F^k(x)=f(x)+\frac{k}{2}||g(x)||^2+\frac{\alpha}{2}||x-x^*||^2,
-\]</span> where <span class="math inline">\(g(x)=[g_1(x),g_2(x),\dotsm,g_m(x)]\)</span>, and <span class="math inline">\(\alpha\)</span> is a positive scalar.</p>
-<p>Since <span class="math inline">\(x^*\)</span> is a local minimizer, <span class="math inline">\(\exists \epsilon &gt;0\)</span>, such that <span class="math inline">\(f(x^*)\le f(x)\)</span> for all feasible <span class="math inline">\(x\)</span> in the closed ball <span class="math inline">\(B\)</span>.</p>
-<p>Consider the penalized problem, <span class="math display">\[
-\begin{array}{rl}
-\min &amp; F^k(x)\\
-\text{subject to } &amp; x\in B.
-\end{array}
-\]</span> Since <span class="math inline">\(B\)</span> is compact and <span class="math inline">\(F^k(x)\)</span> is continuous on <span class="math inline">\(B\)</span>, there is a global minimizer <span class="math inline">\(x^{(k)}\in B\)</span> for <span class="math inline">\(F^k\)</span>. We have <span class="math display">\[
-F^k(x^{(k)})\le F^k(x^*)=f(x^*).
-\]</span> <span class="math inline">\(f\)</span> is continuous on the compact set <span class="math inline">\(B\)</span> implies <span class="math inline">\(\left\{f(x^{(k)})\right\}_{k=1}^\infty\)</span> is bounded.</p>
-<p>Since we have <span class="math display">\[
-f(x^{(k)})\le F^k(x^{(k)})\le f(x^*),
-\]</span> <span class="math inline">\(F^k(x^{(k)})\)</span> is also bounded. Therefore, <span class="math inline">\(\lim_{k\rightarrow \infty}||g(x^{(k)})||=0\)</span>, otherwise <span class="math inline">\(F^k(x^{(k)})\)</span> is not bounded.</p>
-<p><strong>Claim</strong> The sequence <span class="math inline">\(\{x^{(k)}\}\)</span> converges to <span class="math inline">\(x^*\)</span>.</p>
-<p>We denote <span class="math inline">\(\bar x=\lim_{k\rightarrow \infty} x^{(k)}\)</span>. We have known that <span class="math inline">\(g(\bar x)=0\)</span>. Then we have <span class="math display">\[
-F^k(\bar x)=f(\bar x)+\frac{\alpha}{2}||\bar x-x^*||^2\le f(x^*).
-\]</span> Since <span class="math inline">\(x^*\)</span> is the local minimizer, we also have <span class="math display">\[
-f(x^*)\le f(\bar x).
-\]</span> Therefore, <span class="math inline">\(\bar x=x^*\)</span>.</p>
-<p>Since <span class="math inline">\(x^{(k)}\)</span> is the global optimal point for <span class="math inline">\(F^k(x)\)</span>, it is a stationary point of <span class="math inline">\(F^k(x)\)</span>, i.e., <span class="math display">\[
-\nabla F^k(x^{(k)})=0.
-\]</span> This is equivalent to <span class="math display">\[
-\nabla f(x^{(k)})+kG_kg(x^{(k)})+\alpha (x^{(k)}-x^*)=0,
-\]</span> where <span class="math display">\[
-G_k=\left[\nabla g_1(x^{(k)}),\nabla g_2(x^{(k)}),\dotsm,\nabla g_m(x^{(k)})\right].
-\]</span> Since <span class="math inline">\(x^*\)</span> is a regular point, this implies that the matrix <span class="math display">\[
-G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
-\]</span> has rank <span class="math inline">\(m\)</span>. We have <span class="math display">\[
-(G_k^TG_k)^{-1}G_k^T\nabla f(x^{(k)})+kg(x^{(k)})+\alpha (G_k^TG_k)^{-1}G_k^T(x^{(k)}-x^*)=0.
-\]</span> Define <span class="math inline">\(\lambda_k=kg(x^{(k)})\)</span>. Then when <span class="math inline">\(k\rightarrow \infty\)</span>, we have <span class="math display">\[
-\lambda^*=\lim_{k\rightarrow \infty} kg(x^{(k)})=(G_*^TG_*)^{-1}G_*^T\nabla f(x^*).
-\]</span> Therefore, we obtain the first order condition <span class="math display">\[
-\nabla f(x^*)+G_*\lambda^*=0.
-\]</span> Q.E.D.</p>
-<p><strong>Remark</strong></p>
-<ol type="1">
-<li>The term <span class="math inline">\(\frac{k}{2}||g(x)||^2\)</span> imposes a penalty for violating the constraint <span class="math inline">\(g(x)=0\)</span>.</li>
-<li>The term <span class="math inline">\(\frac{\alpha}{2}||x-x^*||^2\)</span> is introduced to ensure that <span class="math inline">\(x^*\)</span> is a strict local minimizer of the function <span class="math inline">\(f(x)+\frac{\alpha}{2}||x-x^*||^2\)</span> subject to <span class="math inline">\(g(x)=0\)</span>.</li>
-</ol>
+\
+<span class="math display">\[\begin{array}{|rcl|}\hline 
+y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
+\\\hline\end{array}
+\iff
+\begin{array}{|rcl|}\hline 
+\mathbb S^n&amp;=&amp; \mathcal A^* \mathbb R^m-\text{lin}(\mathcal T_\mathcal C(\bar Z))
+\\\hline\end{array}\]</span>
+<p>. $$</p>
 
         
       
@@ -1098,7 +1006,7 @@ G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1143,7 +1051,7 @@ G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1172,7 +1080,9 @@ G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -1206,7 +1116,7 @@ G_*=\left[\nabla g_1(x^*),\nabla g_2(x^*),\dotsm,\nabla g_m(x^*)\right],
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/8. ADMM methods for convex composite conic programming/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/LeetCode Note/146. LRU Cache/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/8. ADMM methods for convex composite conic programming/" class="post-title-link" itemprop="url">8. ADMM methods for convex composite conic programming (1)</a>
+            <a href="/2021/01/25/LeetCode Note/146. LRU Cache/" class="post-title-link" itemprop="url">146. LRU Cache</a>
           
         </h1>
 
@@ -247,19 +247,11 @@
                 
               
 
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+              <time title="Created: 2021-01-25 16:52:49 / Modified: 17:17:05" itemprop="dateCreated datePublished" datetime="2021-01-25T16:52:49+08:00">2021-01-25</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-16 17:23:26" itemprop="dateModified" datetime="2019-11-16T17:23:26+08:00">2019-11-16</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -268,7 +260,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LeetCode-Note/" itemprop="url" rel="index"><span itemprop="name">LeetCode Note</span></a></span>
 
                 
                 
@@ -287,446 +279,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="admm-methods-for-convex-composite-conic-programming">8. ADMM methods for convex composite conic programming</h1>
-<h2 id="a-generic-2-block-semi-proximal-admm">8.1 A generic 2-block semi-proximal ADMM</h2>
-<p>Let <span class="math inline">\(\mathcal X\)</span>, <span class="math inline">\(\mathcal Y\)</span>, and <span class="math inline">\(\mathcal Z\)</span> be finite dimensional real Euclidean spaces. Let <span class="math inline">\(f:\mathcal Y\rightarrow (-\infty,+\infty]\)</span> and <span class="math inline">\(g:\mathcal Z\rightarrow (-\infty,+\infty]\)</span> be closed proper convex functions, <span class="math inline">\(\mathcal A:\mathcal X\rightarrow \mathcal Y\)</span> and <span class="math inline">\(\mathcal B:\mathcal X\rightarrow \mathcal Z\)</span> be linear maps. Let <span class="math inline">\(\partial f\)</span> and <span class="math inline">\(\partial g\)</span> be the subdifferential mappings of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, respectively. Since both <span class="math inline">\(\partial f\)</span> and <span class="math inline">\(\partial g\)</span> are maximally monotone, there exists two self-adjoint and positive semidefinite operators <span class="math inline">\(\Sigma_f\)</span> and <span class="math inline">\(\Sigma_g\)</span> such that for all <span class="math inline">\(y,y’\in\text{dom}(f)\)</span>, <span class="math inline">\(\xi\in\partial f(y)\)</span>, and <span class="math inline">\(\xi&#39;\in\partial f(y&#39;)\)</span>, <span class="math display">\[
-\langle \xi-\xi&#39;,y-y&#39;\rangle \ge ||y-y&#39;||^2_{\Sigma_f}
-\]</span> and for all <span class="math inline">\(z,z’\in\text{dom}(g)\)</span>, <span class="math inline">\(\zeta\in\partial g(z)\)</span>, and <span class="math inline">\(\zeta&#39;\in\partial g(z&#39;)\)</span>, <span class="math display">\[
-\langle \zeta-\zeta&#39;,z-z&#39;\rangle \ge ||z-z&#39;||^2_{\Sigma_g}.
-\]</span> Consider the convex optimization problem with the following 2-block separable structure <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(y)+g(z)\\
-\text{subject to}&amp; \mathcal A^*y+\mathcal B^*z=c.
-\end{array}
-\]</span> The dual problem is given by <span class="math display">\[
-\text{(D)}\quad \max\left\{-\langle c,x\rangle-f^*(-\mathcal Ax)-g^*(-\mathcal Bx)\right\}.
-\]</span> The augmented Lagrangian function associated with (P) is given as follows, for any <span class="math inline">\((y,z,x)\in\mathcal Y\times \mathcal Z\times \mathcal X\)</span>, <span class="math display">\[
-\begin{array}{rcl}
-\mathcal L_\sigma(y,z;x)&amp;=&amp;f(y)+g(z)+\langle x,\mathcal A^*y+\mathcal B^*z-c\rangle+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z-c||^2\\
-&amp;=&amp; f(y)+g(z)+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z-c+\sigma^{-1}x||^2-\frac{1}{2\sigma}||x||^2
-\end{array}
-\]</span> <strong>Algorithm</strong></p>
-<p>Let <span class="math inline">\(\sigma&gt;0\)</span> and <span class="math inline">\(\tau \in(0,\infty)\)</span> be given parameters. Let <span class="math inline">\(\mathcal S\)</span> and <span class="math inline">\(\mathcal T\)</span> be given self-adjoint positive semidefinite (not necessarily positive definite) linear operators defined on <span class="math inline">\(\mathcal Y\)</span> and <span class="math inline">\(\mathcal Z\)</span>, respectively. Choose <span class="math inline">\((x^0,y^0,z^0)\in\mathcal X\times \text{dom}(f)\times \text{dom}(g)\)</span>. For <span class="math inline">\(k=0,1,2,\dotsm\)</span>, perform the <span class="math inline">\(k\)</span>th iteration as follows,</p>
-<p><strong>Step 1</strong> <span class="math display">\[
-\begin{array}{rcl}
-y^{k+1}&amp;=&amp;\arg\min_y\mathcal L_\sigma(y,z^k;x^k)+\frac{1}{2}||y-y^k||^2_\mathcal S\\
-&amp;=&amp;\arg\min_y\mathcal f(y)+g(z^{k})+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z^{k}-c+\sigma^{-1}x^{k}||^2-\frac{1}{2\sigma}||x^{k}||^2+\frac{1}{2}||y-y^k||^2_\mathcal S\\
-&amp;=&amp;\arg\min_y\mathcal f(y)+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z^{k}-c+\sigma^{-1}x^{k}||^2+\frac{1}{2}||y-y^k||^2_\mathcal S.
-\end{array}
-\]</span></p>
-<p><strong>Step 2</strong> <span class="math display">\[
-   z^{k+1}=\arg\min_z\mathcal L_\sigma(y^{k+1},z;x^k)+\frac{1}{2}||z-z^k||^2_\mathcal T.
-\]</span> <strong>Step 3</strong> <span class="math display">\[
-x^{k+1}=x^k+\tau\sigma(\mathcal A^*y^{k+1}+\mathcal B^* z^{k+1}-c).
-\]</span> ### 8.1.1 Literature review</p>
-<p>When <span class="math inline">\(\mathcal S=0\)</span> and <span class="math inline">\(\mathcal T=0\)</span>, algorithm sPADMM reduces to the classic 2-block ADMM for solving the problem.</p>
-<h3 id="convergence-of-spadmm">8.1.2 Convergence of sPADMM</h3>
-<p>For the convergence of the 2-block semi-proximal ADMM, we need the following assumption.</p>
-<p><strong>Assumption</strong></p>
-<p>There exists <span class="math inline">\((\hat y,\hat z)\in \text{relint}(\text{dom}(f)\times\text{dom}(g))\)</span> such that <span class="math inline">\(\mathcal A^*\hat y+\mathcal B^*\hat z=c\)</span>.</p>
-<p>Suppose that the CQ holds. Then we know that <span class="math inline">\((\bar y,\bar z)\in\text{dom}(f)\times \text{dom}(g)\)</span> is an optimal solution to the problem if and only if there exists a Lagrange multiplier <span class="math inline">\(\bar x\in\mathcal X\)</span> such that <span class="math inline">\((\bar x,\bar y,\bar z)\)</span> is a solution to the following KKT system, <span class="math display">\[
-0\in\mathcal Ax+\partial f(y)\\
-0\in\mathcal Bx+\partial g(z)\\
-\mathcal A^*y+\mathcal B^*z-c=0.
-\]</span> For simplicity, we define <span class="math display">\[
-\begin{cases}
-H(y,z)=\mathcal A^*y+\mathcal B^*z\\
-\theta (x,y,z;x&#39;,y&#39;,z&#39;)=(\tau \sigma)^{-1}||x-x&#39;||^2+||y-y&#39;||^2_\mathcal S+||z-z&#39;||^2_{\mathcal T}+\sigma||\mathcal B^*(z-z&#39;)||^2.
-\end{cases}
-\]</span> <strong>Theorem</strong></p>
-<p>Suppose that the solution set of problem is nonempty and the assumption holds.</p>
-<p>Assume that <span class="math inline">\(\mathcal S\)</span> and <span class="math inline">\(\mathcal T\)</span> are chosen such that the sequence <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span> generated by sPADMM is well defined.</p>
-<p>Let <span class="math inline">\((\bar x,\bar y,\bar z)\)</span> be a solution to the KKT system.</p>
-<p>For <span class="math inline">\(k=0,1,\dotsm\)</span>, we denote <span class="math display">\[
-\begin{cases}
-x_e^k=x^k-\bar x\\
-y_e^k=y^k-\bar y\\
-z_e^k=z^k-\bar z,
-\end{cases}
-\]</span> and <span class="math display">\[
-\begin{cases}
-\psi_{k+1}=\theta(x^{k+1},y^{k+1},z^{k+1};\bar x,\bar y,\bar z)+||z^{k+1}-z^k||^2_\mathcal T\\
-\delta_{k+1}=\min(\tau,1+\tau-\tau^2)\sigma||\mathcal B^*(z^{k+1}-z^k)||^2+||z^{k+1}-z^k||^2_\mathcal T\\
-t_{k+1}=\delta_{k+1}+||y^{k+1}-y^k||^2_\mathcal S+2||y^{k+1}-\bar y||^2_{\Sigma_f}+2||z^{k+1}-\bar z||^2_{\Sigma_g}.
-\end{cases}
-\]</span> Then the following results hold,</p>
-<ol type="1">
-<li><p>if <span class="math inline">\(\tau\in(0,1]\)</span>, we have for <span class="math inline">\(k\ge 1\)</span> that <span class="math display">\[
-\begin{array}{l}
-\left[\psi_{k+1}+(1-\tau)\sigma||H(y^{k+1},z^{k+1})-c||^2\right]\\
-\quad-\left[\psi_k+(1-\tau)\sigma||H(y^k,z^k)-c||^2\right]\\
-\le -\left[t_{k+1}+\sigma||H(y^{k+1},z^{k+1})-c||^2\right];
-\end{array}
-\]</span></p></li>
-<li><p>If <span class="math inline">\(\tau &gt;1\)</span>, we have for <span class="math inline">\(k\ge 1\)</span> that <span class="math display">\[
-\begin{array}{l}
-\left[\psi_{k+1}+(1-\tau^{-1})\sigma||H(y^{k+1},z^{k+1})-c||^2\right]\\
-\quad-\left[\psi_k+(1-\tau^{-1})\sigma||H(y^k,z^k)-c||^2\right]\\
-\le -\left[t_{k+1}+\tau^{-1}(1+\tau-\tau^{-2})\sigma||H(y^{k+1},z^{k+1})-c||^2\right];
-\end{array}
-\]</span></p></li>
-<li><p>Suppose the either of the following condition holds,</p>
-<ol type="1">
-<li><span class="math inline">\(\tau\in(0,(1+\sqrt5)/2)\)</span></li>
-<li><span class="math inline">\(\tau \ge (1+\sqrt 5)/2\)</span> and <span class="math inline">\(\displaystyle\sum_{k=0}^\infty ||x^{k+1}-x^k||^2&lt;\infty\)</span>.</li>
-</ol>
-<p>Then the sequence <span class="math display">\[
-    \left\{||x_e^{k+1}||^2+||y_{e}^{k+1}||^2_{\Sigma_f+\mathcal S+\sigma\mathcal A\mathcal A^*}+||z_e^{k+1}||^2_{\Sigma_g+\mathcal T+\sigma\mathcal B\mathcal B^*}\right\}
-\]</span> is bounded.</p>
-<p>Moreover, if <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span> is an accumulation point of <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span>. Then <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span> is a solution of the KKT system, and <span class="math display">\[
-    \lim_{k\rightarrow \infty}\left(||x_e^{k+1}||^2+||y_{e}^{k+1}||^2_{\Sigma_f+\mathcal S+\sigma\mathcal A\mathcal A^*}+||z_e^{k+1}||^2_{\Sigma_g+\mathcal T+\sigma\mathcal B\mathcal B^*}\right)=0,
-\]</span> where in the definition of <span class="math inline">\((x^k_e,y^k_e,z^k_e)\)</span>, the point is replaced by <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span>. Consequently, if both <span class="math inline">\(\Sigma_f+\mathcal S+\sigma\mathcal A\mathcal A^*\)</span> and <span class="math inline">\(\Sigma_g+\mathcal T+\sigma\mathcal B\mathcal B^*\)</span> are positive definite, then the sequence <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span>, which is automatically well-defined, converge to a unique limit, say <span class="math inline">\((x^\infty,y^\infty,z^\infty)\)</span> with <span class="math inline">\((y^\infty,z^\infty)\)</span> solving (P) and <span class="math inline">\((x^\infty)\)</span> solving (D), respectively.</p></li>
-<li><p>If <strong>y-part</strong> is vacuous, then we have that for all <span class="math inline">\(k\ge0\)</span>, <span class="math display">\[
-    \begin{array}{l}
-    (\tau\sigma)^{-1}||x^{k+1}-\bar x||^2+||z^{k+1}-\bar z||^2_\mathcal T\\
-    \le (\tau\sigma)^{-1}||x^{k}-\bar x||^2+||z^{k}-\bar z||^2_\mathcal T\\
-    \quad-\left[(2-\tau)\sigma||\mathcal B^*z^{k+1}-c||^2+||z^{k+1}-z^k||^2_\mathcal T+2||z^{k+1}-\bar z||^2_{\Sigma_g}\right].
-    \end{array}
- \]</span> The corresponding result in part 3 also holds.</p></li>
-</ol>
-<p>Proof.</p>
-<p>Since both <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are proper closed convex functions and an infinite sequence <span class="math inline">\(\{(x^k,y^k,z^k)\}\)</span> is assumed to be generated by sPADMM, we have for <span class="math inline">\(k&gt;0\)</span>, by using the algorithm, <span class="math display">\[
-\begin{array}{l}
-0\in\mathcal Ax^{k}+\partial f(y^{k+1})+\mathcal S(y^{k+1}-y^k)\\
-0\in\mathcal Bx^{k}+\partial g(z^{k+1})+\mathcal T(z^{k+1}-z^k)\\
-x^{k+1}=x^k+\tau\sigma(\mathcal A^*y^{k+1}+\mathcal B^* z^{k+1}-c)\\
-\;\:\:\:\;\;\;\:\:=x^k+\tau\sigma(H(y^{k+1},z^{k+1})-c)\\
-0=H(y^{k+1},z^{k+1})-c-(\tau\sigma)^{-1}(x^{k+1}-x^k),
-\end{array}
-\]</span> we have</p>
-<p>Not done yet.</p>
-<h3 id="admm-for-solving-the-dual-problem-d-of-the-sparse-regression-problem">8.1.3 ADMM for solving the dual problem (D) of the sparse regression problem</h3>
-<p>Consider the sparse regression problem, <span class="math display">\[
-\min\left\{\frac{1}{2}||Ax-b||^2+\lambda||x||_1\;|\; x\in\mathbb R^n\right\},
-\]</span> where <span class="math inline">\(A\in \mathbb R^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb R^m\)</span> are given data. The equivalent problem can be denoted as <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; f(u)+g(x)\\
-\text{subject to}&amp; u+Ax=b.
-\end{array}
-\]</span> where <span class="math inline">\(f(u)=\frac{1}{2}||u||^2\)</span> and <span class="math inline">\(g(x)=\lambda||x||_1\)</span>. Then we consider how to derive the dual problem.</p>
-<p>The Lagrangian function can be denoted as <span class="math display">\[
-\begin{array}{rcl}
-\mathcal L(u,x;\xi)&amp;=&amp;f(u)+g(x)+\langle \xi,b-u-Ax\rangle\\
-&amp;=&amp; f(u)-\langle \xi,u\rangle+g(x)-\langle A^T\xi,x\rangle +\langle \xi,b\rangle.
-\end{array}
-\]</span> The Lagrangian dual function can be denoted as <span class="math display">\[
-\begin{array}{rcl}
-\min_{u,x}\mathcal L(u,x;\xi) &amp;=&amp; \langle \xi,b\rangle+\min_u \left\{f(u)-\langle \xi,u\right\rangle\}+\min_x\{g(x)-\langle A^T\xi,x\rangle \}\\ 
-&amp;=&amp; \langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(A^T\xi),
-\end{array}
-\]</span> where <span class="math inline">\(B_\lambda =\{v\in\mathbb R^n\;|\; ||v||_\infty\le \lambda\}\)</span>.</p>
-<p>The Lagrangian dual problem can be denoted as (we define <span class="math inline">\(v+A^T\xi=0\)</span>) <span class="math display">\[
-\text{(D)}\quad \begin{array}{rCl}
-\max &amp; \langle \xi,b\rangle-\frac{1}{2}||\xi||^2-\delta_{B_\lambda}(v)\\
-\text{subject to}&amp; A^T\xi+v=0
-\end{array}\\\iff\\
-\text{(D)}\quad \begin{array}{rCl}
-\min &amp; -\langle \xi,b\rangle+\frac{1}{2}||\xi||^2+\delta_{B_\lambda}(v)\\
-\text{subject to}&amp; A^T\xi+v=0.
-\end{array}
-\]</span> Now we can apply the 2-block ADMM to solve (D). In this case, we have <span class="math inline">\(f(\xi)=-\langle b,\xi\rangle+\frac{1}{2}||\xi||^2\)</span>, <span class="math inline">\(g(v)=\delta_{B_{\lambda}}(v)\)</span>, <span class="math inline">\(\mathcal B=I\)</span> and <span class="math inline">\(c=0\)</span>. The augmented Lagrangian function is given by</p>
-<p><span class="math display">\[
-\begin{array}{rcl}
-\mathcal L_\sigma(\xi,u;x) &amp;=&amp; -\langle b,\xi\rangle+\frac{1}{2}||\xi||^2+\delta_{B_{\lambda}}(v)+\langle x,A^T\xi+v\rangle+\frac{\sigma}{2}||A^T\xi+v||^2\\
-&amp;=&amp;-\langle b,\xi\rangle+\frac{1}{2}||\xi||^2+\delta_{B_{\lambda}}(v)+\frac{\sigma}{2}||A^T\xi+v+\sigma^{-1}x||^2-\frac{1}{2\sigma}||x||^2.
-\end{array}
-\]</span> Then we can use 2-block ADMM to solve this problem.</p>
-<p><strong>Step 1</strong> <span class="math display">\[
-\begin{array}{rcl}
-\xi^{k+1}&amp;=&amp; \arg\min _\xi \mathcal L_\sigma (\xi,v^k;x^k)\\
-&amp;=&amp; \arg\min_\xi \left\{-\langle b,\xi\rangle+\dfrac{1}{2}||\xi||^2+\dfrac{\sigma}{2}||A^T\xi+v+\sigma^{-1}x||^2\right\}.
-\end{array}
-\]</span> From the optimality condition, we know that <span class="math inline">\(\xi^{k+1}\)</span> is the solution of the subproblem <span class="math display">\[
-(I+\sigma A A^T)\xi=b-\sigma A(v^k+\sigma^{-1} x^k).
-\]</span> <strong>Step 2</strong> <span class="math display">\[
-\begin{array}{rcl}
-v^{k+1}&amp;=&amp; \arg\min _v \mathcal L_\sigma (\xi^{k+1},v;x^k)\\
-&amp;=&amp; \arg\min_v \left\{\delta_{B_{\lambda}}(v)+\frac{\sigma}{2}||A^T\xi+v+\sigma^{-1}x||^2\right\}\\
-&amp;=&amp; \Pi_{B_{\lambda}}(-A^T\xi^{k+1}-\sigma^{-1}x^k).
-\end{array}
-\]</span> <strong>Step 3</strong> <span class="math display">\[
-x^{k+1}=x^k+\tau\sigma (A^* \xi^{k+1}+v^{k+1}),
-\]</span> where <span class="math inline">\(\tau \in(0,\frac{1+\sqrt 5}{2})\)</span> is the stepsize. In practice, for faster convergence, we take <span class="math inline">\(\tau = 1.618\)</span>.</p>
-<p><strong>Step 4</strong></p>
-<p>For a given tolerance <span class="math inline">\(\varepsilon\)</span>, check the relative KKT residual, if <span class="math display">\[
-\max\left\{\frac{||R_p^{k+1}||}{1+||b||},\frac{||R_d^{k+1}||}{1+||v^k||},\frac{||R_c^{k+1}||}{1+||x^k||+||v^k||}\right\}\le \varepsilon,
-\]</span> stop.</p>
-<p>The KKT conditions are <span class="math display">\[
-Ax-b+\xi=0,\quad 0\in x+\partial g(v),\quad A^T\xi+v=0.
-\]</span></p>
-<p>Thus to measure whether the computed iterate <span class="math inline">\((\xi^k,v^k,x^k)\)</span> is a good solution, we compute the KKT residual, <span class="math display">\[
-\begin{array}{rcl}
-R_p^k&amp;=&amp;||Ax^k+\xi^k-b||,\\
-R_d^k&amp;=&amp;||A^T\xi^k+v^k||,\\
-R_c^k&amp;=&amp;|| v^k-\Pi_{B_\lambda}(v^k-x^k)||.
-\end{array}
-\]</span></p>
-<p><strong>Remark</strong></p>
-<p>If <span class="math inline">\(||A^Tb||_\infty \le \lambda\)</span>, then we have <span class="math inline">\(x^*=0\)</span>, <span class="math inline">\(\xi^*=b\)</span>, and <span class="math inline">\(v^*=-A^Tb\)</span>. Since we have <span class="math inline">\(v^*\in B_\lambda\)</span>, we have <span class="math display">\[
-v^*=\Pi_{B_\lambda}(v^*)=\Pi_{B_\lambda}(v^*-x^*).
-\]</span></p>
-<h3 id="linearized-admm-for-solving-the-primal-problem-p-of-the-sparse-regression-problem">8.1.4 Linearized ADMM for solving the primal problem (P) of the sparse regression problem</h3>
-<p>One may attempt to apply the 2-block ADMM to the primal problem (P). But we will see that the subproblem corresponding to <span class="math inline">\(x^{k+1}\)</span> is very difficult to solve.</p>
-<p>The augmented Lagrangian function associated with (P) is given by <span class="math display">\[
-\begin{array}{rcl}
-\mathcal L_\sigma (u,x;y) &amp;=&amp; f(u)+g(x)+\langle y,u+Ax-b\rangle +\frac{\sigma}{2}||u+Ax-b||^2\\
-&amp;=&amp; f(u)+g(x)+\frac{\sigma}{2}||u+Ax-b+\sigma^{-1}y||^2-\frac{1}{2\sigma}||y||^2.
-\end{array}
-\]</span> The linearized 2-block ADMM for solving the problem (P) is given as follows.</p>
-<strong>Step 1</strong> <span class="math display">\[
-\begin{array}{rcl}
-u^{k+1}&amp;=&amp; \arg\min _u\mathcal L_\sigma (u,x^k;y^k)\\
-&amp;=&amp; \arg\min _u \{\frac{1}{2}||u||^2+\frac{\sigma}{2}||u+Ax^k-b+\sigma^{-1}y^k||^2\}.
-\end{array}
-\]</span> Then we have <span class="math display">\[
-u^{k+1}=\frac{-\sigma}{1+\sigma}(Ax^k-b+\sigma^{-1}y^k).
-\]</span> <strong>Step 2</strong> <span class="math display">\[
-\begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg \min_{x} \left\{ L_\sigma (u^{k+1},x;y^k)+\frac{\sigma}{2}||x-x^k||^2_\mathcal T\right\}\\
-&amp;=&amp; \arg\min_x \left\{\lambda ||x||_1+\frac{\sigma}{2}||u^{k+1}+Ax-b+\sigma^{-1}y^k||^2+\frac{\sigma}{2}||x-x^k||^2_\mathcal T\right\}.
-\end{array}
-\]</span> Observe that if <span class="math inline">\(\mathcal T=0\)</span>, solving the subproblem is as difficult as solving the original problem. Suppose we choose <span class="math display">\[
-\mathcal T=\rho I-A^TA
-\]</span> where <span class="math inline">\(\rho\)</span> denotes the largest eigenvalue of <span class="math inline">\(A^TA\)</span>. Such a choice of <span class="math inline">\(\mathcal T\)</span> reduces the semi-proximal ADMM to the so-called linearized ADMM. Then we reduce the subproblem to $$
-<span class="math display">\[\begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg\min_x\left\{
-\begin{array}{l}
-\lambda ||x||_1+\frac{\sigma}{2}||Ax+u^{k+1}-b+\sigma^{-1}y^k||^2+\frac{\sigma}{2}||x-x^k||^2_\mathcal T
-\end{array}\]</span>
-<p>}\</p>
-&amp;=&amp; _x{
-<span class="math display">\[\begin{array}{l}
-\lambda ||x||_1+\frac{\sigma }{2}\left(\langle x,A^TAx\rangle+2\langle x,A^T(u^{k+1}-b+\sigma^{-1}y^k)\rangle\\
-+\langle x,(\rho I-A^TA)x\rangle -2\langle x,(\rho I-A^TA)x^k\rangle 
-\right)
-\end{array}\]</span>
-<p>}\</p>
-&amp;=&amp; _x{
-<span class="math display">\[\begin{array}{l}
-\lambda ||x||_1+\frac{\sigma }{2}\left(\rho\langle x,x\rangle +2\langle x,A^T(u^{k+1}-b+\sigma^{-1}y^k)-(\rho I-A^TA)x^k\rangle\right)
-\end{array}\]</span>
-<p>}\</p>
-<p>&amp;=&amp; _x{||x||_1+||x-h||^2}(), \end{array} <span class="math display">\[
-where
-\]</span> h=x<sup>k-</sup>{-1 }A<sup>T(u</sup>{k+1}+Ax<sup>k-b+</sup>{-1}y^k). <span class="math display">\[
-**Step 3**
-\]</span> y<sup>{k+1}=y</sup>k+()(Ax<sup>{k+1}+u</sup>{k+1}-b). $$</p>
-<h2 id="directly-extended-admm-for-multi-block-convex-programming-problem">8.2 Directly extended ADMM for multi-block convex programming problem</h2>
-<p>It is natural for one directly extend the 2-block ADMM. But it does not work.</p>
-<h2 id="a-symmetric-gauss-seidel-decomposition-theorem">8.3 A symmetric Gauss-Seidel decomposition theorem</h2>
-<p>Let <span class="math inline">\(s\ge 2\)</span> be a given integer and <span class="math inline">\(\mathcal X=\mathcal X_1\times \mathcal X_2\times \dotsm\times \mathcal X_s\)</span>. For any <span class="math inline">\(x\in\mathcal X\)</span> we write <span class="math inline">\(x=(x_1,x_2,\dotsm,x_s)\in\mathcal X\)</span>. Let <span class="math inline">\(\mathcal H:\mathcal X\rightarrow \mathcal X\)</span> be a given self-adjoint positive semidefinite linear operator. Consider the following decomposition <span class="math display">\[
-\mathcal Hx = 
-\left[\begin{array}{rcl}
-\mathcal H_{11}&amp;\mathcal H_{12}&amp; \dotsm&amp; \mathcal H_{1s}\\
-\mathcal H_{12}^*&amp;\mathcal H_{22}&amp; \dotsm&amp; \mathcal H_{2s}\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-\mathcal H_{1s}^*&amp;\mathcal H_{2s}^*&amp; \dotsm&amp; \mathcal H_{ss}
-\end{array}\right]
-\begin{bmatrix}
-x_1\\x_2\\ \vdots \\ x_s
-\end{bmatrix},
-\]</span> where <span class="math inline">\(\mathcal H_{ii}:\mathcal X_i\rightarrow \mathcal X_i,\; i=1,\dotsm,s\)</span> are self-adjoint positive semidefinite linear operator, <span class="math inline">\(\mathcal H_{ij}:\mathcal X_j\rightarrow \mathcal X_i,\; i=1,\dotsm,s-1,j&gt;i\)</span> are linear maps. Here, we further assume that <span class="math display">\[
-\mathcal H_{ii}\succ 0,\quad \forall i=1,\dotsm,s.
-\]</span></p>
-<p>Define <span class="math display">\[
-x_{\le i}=(x_1,x_2,\dotsm,x_i),\; x_{\ge i}=(x_i,x_{i+1},\dotsm,x_s),\; i=0,\dotsm,s+1
-\]</span> with the convention that <span class="math inline">\(x_{\le 0}=x_{\ge s+1}=\emptyset\)</span>.</p>
-<p>Denote the linear operator <span class="math inline">\(\mathcal U,\mathcal D:\mathcal X\rightarrow \mathcal X\)</span> by <span class="math display">\[
-\mathcal U=
-\begin{bmatrix}
-0 &amp; \mathcal H_{12} &amp; \dotsm &amp; \mathcal H_{1s}\\
-&amp;\ddots &amp; \dotsm&amp;\vdots\\
-&amp;&amp; 0 &amp;\mathcal H_{(s-1)s}\\
-&amp;&amp;&amp;0
-\end{bmatrix}\quad \mathcal D=\text{diag}(\mathcal H_{11},\mathcal H_{22},\dotsm,\mathcal H_{ss}).
-\]</span> Then we have <span class="math inline">\(\mathcal H=\mathcal D+\mathcal U+\mathcal U^*\)</span> and <span class="math inline">\(\mathcal D\succ 0\)</span>. Let <span class="math inline">\(r=(r_1,r_2,\dotsm,r_s)\in\mathcal X\)</span> be given. Define the convex quadratic function <span class="math inline">\(h:\mathcal X\rightarrow \mathbb R\)</span> by <span class="math display">\[
-h(x)=\frac{1}{2}\langle x,\mathcal Hx\rangle -\langle r,x\rangle ,\quad x\in \mathcal X.
-\]</span> Let <span class="math inline">\(\phi:\mathcal X_1\rightarrow (-\infty,\infty]\)</span> be a given closed proper convex function. Define the following self-adjoint positive semidefinite linear operator <span class="math inline">\(\mathcal T:\mathcal X\rightarrow \mathcal X\)</span> as <span class="math display">\[
-\mathcal T=\mathcal U\mathcal D^{-1}\mathcal U^*.
-\]</span></p>
-<p>Denote <span class="math inline">\(\delta&#39; = (\delta_1&#39;,\dotsm,\delta_s&#39;)\)</span> and <span class="math inline">\(\delta^+=(\delta_1^+,\dotsm,\delta_s^+)\)</span> with <span class="math inline">\(\delta_1&#39;=\delta_1^+\)</span>. Denote <span class="math display">\[
-\Delta(\delta&#39;,\delta^+)=\delta&#39;+(\mathcal D+\mathcal U)\mathcal D^{-1}(\delta^+-\delta&#39;).
-\]</span> Let <span class="math inline">\(\bar x\)</span> be given. Define <span class="math display">\[
-\begin{array}{rcl}
-x^+ &amp;=&amp;\arg\min_x\left\{\phi(x_1)+h(x)+\frac{1}{2}||x-\bar x||_\mathcal T^2-\langle x,\Delta (\delta&#39;,\delta^+)\rangle\right\}\\
-&amp;=&amp; \arg\min_x\left\{\phi(x_1)+\frac{1}{2}\langle x,\mathcal Hx\rangle -\langle r,x\rangle+\frac{1}{2}||x-\bar x||_\mathcal T^2-\langle x,\Delta (\delta&#39;,\delta^+)\rangle\right\}\\
-\end{array}
-\]</span> The optimality condition for <span class="math inline">\(x^+\)</span> is <span class="math display">\[
-(\mathcal H+\mathcal T)x=r-\gamma +\mathcal T \bar x+\Delta(\delta&#39;,\delta^+),
-\]</span> where <span class="math inline">\(\gamma = (\gamma_1,0,\dotsm,0)\)</span>, <span class="math inline">\(\gamma_1 \in \partial \phi(x_1)\)</span>.</p>
-<p>The meaning of <span class="math inline">\(\Delta(\delta&#39;,\delta^+)\)</span> is some numerical error when we solve the subproblem, since the subproblem cannot be solved exactly precisely.</p>
-<p>The following theorem describe an equivalent symmetric Gauss-Seidel procedure for computing <span class="math inline">\(x^+\)</span>.</p>
-<p><strong>Theorem</strong> (sGS Decomposition)</p>
-<p>Assume that <span class="math inline">\(\mathcal H_{ii}\succ 0,\; \forall i=1,\dotsm,s\)</span> holds. Then we have <span class="math display">\[
-\mathcal H+\mathcal T=(\mathcal D+\mathcal U)\mathcal D^{-1}(\mathcal D+\mathcal U^*)\succ 0.
-\]</span> Furthermore, for <span class="math inline">\(i=s,\dotsm,2\)</span>, define <span class="math inline">\(x&#39;_i\in\mathcal X_i\)</span> by <span class="math display">\[
-\begin{array}{rcl}
-x_i&#39; &amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \{\phi(\bar x_1)+h(\bar x_{\le i-1},x_i,x&#39;_{\ge i+1})-\lang\delta_i&#39;,x_i\rangle\}\\
-&amp;=&amp;\mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j).
-\end{array}
-\]</span> Then the optimal solution <span class="math inline">\(x^+\)</span> defined by <span class="math display">\[
-x^+=\arg\min_x\left\{\phi(x_1)+h(x)+\frac{1}{2}||x-\bar x||_\mathcal T^2-\left\langle x,\Delta (\delta&#39;,\delta^+)\right\rangle\right\},
-\]</span> can be obtained exactly via <span class="math display">\[
-\begin{cases}
-x_1^+ &amp; = &amp; \arg\min_{x_1}\phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
-x_i^+&amp;=&amp; \arg\min _{x_i} \phi(x_1^+)+h(x^+_{\le i-1},x_i,x&#39;_{\ge i+1})-\langle \delta_i^+,x_i\rangle\\
-&amp;=&amp; \mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^* x_j^+-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j), \quad i=2,\dotsm,s.
-\end{cases}
-\]</span> Proof.</p>
-<p>It is obvious <span class="math inline">\(\mathcal H+\mathcal T=(\mathcal D+\mathcal U)\mathcal D^{-1}(\mathcal D+\mathcal U^*)\succ 0\)</span>.</p>
-<p>Then <span class="math display">\[
-\begin{array}{rcl}
-x_i&#39; &amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \{\phi(\bar x_1)+h(\bar x_{\le i-1},x_i,x&#39;_{\ge i+1})-\lang\delta_i&#39;,x_i\rangle\}\\
-&amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \left\{\begin{array}{l}
-\frac{1}{2}\langle (\bar x_1,\dotsm,\bar x_{i-1},x_i,x&#39;_{i+1},\dotsm,x&#39;_s),\mathcal H(\bar x_1,\dotsm,\bar x_{i-1},x_i,x&#39;_{i+1},\dotsm,x&#39;_s)\rangle \\
--\langle r,(\bar x_1,\dotsm,\bar x_{i-1},x_i,x&#39;_{i+1},\dotsm,x&#39;_s)\rangle\\
--\lang\delta_i&#39;,x_i\rangle
-\end{array}\right\}\\
-&amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \left\{\begin{array}{l}
-\frac{1}{2}(
-\sum_{j=1}^{i-1} x_i\mathcal H_{ji}^*\bar x_j+x_i\mathcal H_{ii}x_i+\sum_{j=i+1}^s x_i\mathcal H_{ij}x&#39;_j\\
-+\sum_{j=1}^{i-1}  x_i\mathcal H_{ji}^*\bar x_j+\sum_{j=i+1}^s x_i\mathcal H_{ij}x_j&#39;)\\
--\langle\delta_i&#39;+r_i,x_i\rangle
-\end{array}\right\}\\
-&amp;=&amp; \arg\min_{x_i\in\mathcal X_i} \left\{\begin{array}{l}
-\sum_{j=1}^{i-1} x_i\mathcal H_{ji}^*\bar x_j+\frac{1}{2}x_i\mathcal H_{ii}x_i+\sum_{j=i+1}^s x_i\mathcal H_{ij}x&#39;_j-\langle\delta_i&#39;+r_i,x_i\rangle
-\end{array}\right\}.
-\end{array}
-\]</span> The optimality condition is given by <span class="math display">\[
-\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j+\mathcal H_{ii}x_i+\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j-\delta_i&#39;-r_i=0.
-\]</span> Then we have <span class="math display">\[
-x_i&#39;=\mathcal H_{ii}^{-1}\left(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j\right).
-\]</span> The remaining part is to prove that <span class="math display">\[
-\begin{cases}
-x_1^+ &amp; = &amp; \arg\min_{x_1}\phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
-x_i^+ &amp; = &amp; \mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^* x_j^+-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j), \quad i=2,\dotsm,s
-\end{cases}
-\]</span> is equivalent to <span class="math display">\[
-x^+=\arg\min_x\left\{\phi(x_1)+h(x)+\frac{1}{2}||x-\bar x||_\mathcal T^2-\langle x,\Delta (\delta,\delta^+)\rangle\right\}.
-\]</span> We define <span class="math display">\[
-\begin{array}{rcl}
-x_1&#39;&amp;=&amp;\arg\min_{x_1} \phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1,x_1\rangle\\
-&amp;=&amp; \arg\min_{x_1} \phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
-&amp;=&amp; x_1^+.
-\end{array}
-\]</span> Since we have <span class="math inline">\(\delta_1=\delta^+_1\)</span>, and we check the optimality condition we have <span class="math display">\[
-\begin{cases}
-\mathcal H_{11} x_1&#39;&amp;=&amp;r_1-\gamma _1+\delta _1&#39;-\sum_{j=2}^{s}\mathcal H_{ij}x_j&#39;\\
-\mathcal H_{11}x_1^+&amp;=&amp;r_1-\gamma _1+\delta _1^+-\sum_{j=2}^{s}\mathcal H_{ij}x_j&#39;.
-\end{cases}
-\]</span> By using $ x_1'=H_{11}^{-1}(r_1-<em>1+<em>1'-</em>{j=2}^{s}H</em>{1j}x_j')$ and <span class="math inline">\(x_i&#39;=\mathcal H_{ii}^{-1}\left(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^*\bar x_j-\sum_{j=i+1}^s \mathcal H_{1j}x&#39;_j\right)\)</span>, we have <span class="math display">\[
-\begin{array}{rcccl}
-\mathcal H_{11} x_1&#39;&amp;=&amp;r_1&amp;-\gamma _1&amp;+\delta _1&#39;&amp;&amp;-\sum_{j=2}^{s}\mathcal H_{1j}x_j&#39;\\
-\mathcal H_{22}x_2&#39;&amp;=&amp;r_2&amp;-0&amp;+\delta_2&#39;&amp;- \mathcal H_{12}^*\bar x_1&amp;-\sum_{j=3}^s \mathcal H_{2j}x&#39;_j\\
-&amp;\vdots&amp;\\
-\mathcal H_{(s-1)(s-1)}x_{s-1}&#39;&amp;=&amp;r_{s-1}&amp;-0&amp;+\delta_{s-1}&#39;&amp;-\sum_{j=1}^{s-2} \mathcal H_{j({s-1})}^*\bar x_j&amp;- \mathcal H_{(s-1)s}x&#39;_s\\
-\mathcal H_{ss} x_s&#39;&amp;=&amp;r_s&amp;-0&amp;+\delta_s&#39;&amp;-\sum_{j=1}^{s-1} \mathcal H_{js}^*\bar x_j.
-\end{array}
-\]</span> Then we have <span class="math display">\[
-\mathcal D x&#39;=r-\gamma+\delta&#39;-\mathcal U^* \bar x-\mathcal Ux&#39;\\
-\iff\\
-(\mathcal D+\mathcal U)x&#39;=r-\gamma +\delta&#39;-\mathcal U^*\bar x.
-\]</span> From <span class="math display">\[
-\begin{cases}
-x_1^+ &amp; = &amp; \arg\min_{x_1}\phi(x_1)+h(x_1,x&#39;_{\ge 2})-\langle \delta_1^+,x_1\rangle\\
-x_i^+ &amp; = &amp; \mathcal H_{ii}^{-1}(r_i+\delta_i&#39;-\sum_{j=1}^{i-1} \mathcal H_{ji}^* x_j^+-\sum_{j=i+1}^s \mathcal H_{ij}x&#39;_j), \quad i=2,\dotsm,s
-\end{cases}
-\]</span> and <span class="math display">\[
-\mathcal H_{11}x_1^+=r_1-\gamma _1+\delta _1^+-\sum_{j=2}^{s}\mathcal H_{ij}x_j&#39;,
-\]</span> we have <span class="math display">\[
-(\mathcal D+\mathcal U^*)x^+=r-\gamma +\delta^+-\mathcal U x&#39;.
-\]</span> Since we have <span class="math inline">\(x&#39;=(\mathcal D+\mathcal U)^{-1}(r-\gamma +\delta&#39;-\mathcal U^*\bar x)\)</span>, we have <span class="math display">\[
-\begin{array}{rcl}
-(\mathcal D+\mathcal U^*)x^+&amp;=&amp;r-\gamma +\delta^+-\mathcal U (\mathcal D+\mathcal U)^{-1}(r-\gamma +\delta&#39;-\mathcal U^*\bar x)\\
-&amp;=&amp; ((\mathcal D+\mathcal U)(\mathcal D+\mathcal U)^{-1} -\mathcal U (\mathcal D+\mathcal U)^{-1})(r-\gamma) +\mathcal U (\mathcal D+\mathcal U)^{-1}\mathcal U^*\bar x+\delta^+-\mathcal U (\mathcal D+\mathcal U)^{-1}\delta&#39;\\
-&amp;=&amp; \mathcal D(\mathcal D+\mathcal U)^{-1}(r-\gamma) +\mathcal U (\mathcal D+\mathcal U)^{-1}\mathcal U^*\bar x+\delta^+-\mathcal U (\mathcal D+\mathcal U)^{-1}\delta&#39;.
-\end{array}
-\]</span> Then we have <span class="math display">\[
-\begin{array}{rcl}
-(\mathcal D+\mathcal U)\mathcal D^{-1}(\mathcal D+\mathcal U^*)x^+
-&amp;=&amp;r-\gamma +(\mathcal D+\mathcal U)\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}\mathcal U^*\bar x+\delta^+-(\mathcal D+\mathcal U)\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}\delta&#39;,
-\end{array}
-\]</span> We have the fact <span class="math display">\[
-\begin{array}{rcl}
-(\mathcal D+\mathcal U)\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}&amp;=&amp;
-(\mathcal U+\mathcal U \mathcal D^{-1}\mathcal U) (\mathcal D+\mathcal U)^{-1}\\
-&amp;=&amp; \mathcal U(\mathcal D+\mathcal U)^{-1}+\mathcal U\mathcal D^{-1}\mathcal U (\mathcal D+\mathcal U)^{-1}\\
-&amp;=&amp; \mathcal U(\mathcal D+\mathcal U)^{-1}+\mathcal U(\mathcal D^{-1}-(\mathcal D+\mathcal U)^{-1})\\
-&amp;=&amp; \mathcal U\mathcal D^{-1}.\\
-\end{array}
-\]</span> Then we have <span class="math display">\[
-\begin{array}{rcl}
-(\mathcal H+\mathcal T)x^+
-&amp;=&amp;r-\gamma +\mathcal T\bar x+\delta^++\Delta(\delta&#39;,\delta^+).
-\end{array}
-\]</span> Q.E.D.</p>
-<p><strong>Example</strong> <span class="math display">\[
-\min\{p(x_1)+\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle\;|\; \mathcal Ax=d\},
-\]</span> where <span class="math inline">\(\mathcal P\)</span> is a positive semidefinite linear operator on <span class="math inline">\(\mathcal X\)</span>, and <span class="math inline">\(\mathcal A:\mathcal X\rightarrow \mathcal Y\)</span> is a given linear map, and <span class="math inline">\(g\in\mathcal X\)</span>, and <span class="math inline">\(d\in\mathcal Y\)</span> are given data. The Lagrangian function is given as <span class="math display">\[
-\mathcal L_\sigma (x;y)=p(x_1)+\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle+\frac{\sigma }{2} ||\mathcal Ax-d+\sigma ^{-1}y||^2-\frac{1}{2\sigma}||y||^2.
-\]</span> Proximal ALM method is given as</p>
-<p><strong>Step 1</strong> <span class="math display">\[
-\begin{array}{rcl}
-x^{k+1}&amp;=&amp;\arg\min_x\{\mathcal L_\sigma(x;y^k)+\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}\\
-&amp;=&amp;\arg\min_x\{p(x_1)+
-\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle+
-\frac{\sigma }{2} ||\mathcal Ax-d+\sigma ^{-1}y||^2
-+\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}\\
-&amp;=&amp;\arg\min_x\{p(x_1)+
-\frac{1}{2}\langle x,\mathcal Px\rangle -\langle g,x\rangle
-+\frac{\sigma}{2}\langle x,\mathcal A^*\mathcal Ax\rangle
-+\sigma\langle x,\mathcal A^*(-d+\sigma^{-1}y)\rangle
-+\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}\\
-&amp;=&amp;\arg\min_x\{p(x_1)
-+\frac{1}{2}\langle x,(\mathcal P+\sigma \mathcal A^*\mathcal A)x\rangle
--\langle g+ \mathcal A^*(\sigma d-y),x\rangle
-+\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\}.
-\end{array}
-\]</span> If we define <span class="math inline">\(b = g+ \mathcal A^*(\sigma d-y)\)</span>, then we have <span class="math display">\[
-x^{k+1}=\arg\min _x \left\{p(x_1)
-+\frac{1}{2}\langle x,(\mathcal P+\sigma \mathcal A^*\mathcal A)x\rangle
--\langle b,x\rangle
-+\frac{1}{2}||x-x^k||_\mathcal T^2\;|\; x\in\mathcal X\right\}.
-\]</span> Then if we choose <span class="math inline">\(\mathcal T= \mathcal T_{\mathcal P+\sigma \mathcal A^*\mathcal A}\)</span>, sGS decomposition can be applied.</p>
-<p><strong>Step 2</strong></p>
-<p>Compute <span class="math inline">\(y^{k+1}=y^k+\tau\sigma (\mathcal Ax^k-d)\)</span>, where <span class="math inline">\(\tau\in(0,2)\)</span> is the dual step-length.</p>
-<p><strong>Example</strong></p>
-<p>The important class of standard convex quadratic semidefinite programming (QSDP) in the dual form is given by <span class="math display">\[
-\min\left\{\frac{1}{2}\langle W,\mathcal HW\rangle -\langle h,\xi\rangle \;|\; Z+\mathcal B^*\xi+\mathcal H W=C,\xi\in\mathbb R^p,Z\in\mathbb S^n_+,W\in\mathcal W\right\},
-\]</span> where <span class="math inline">\(\mathcal H:\mathbb S^n\rightarrow \mathbb S^n\)</span> is a self-adjoint positive semidefinite linear operator.</p>
-<p>In this problem, we have <span class="math display">\[
-\mathcal Ax = \left[
-\begin{array}{rcl}
-I &amp;\mathcal B^* &amp; \mathcal H
-\end{array}
-\right]
-\left(
-\begin{array}{c}
-Z\\ \xi\\  W
-\end{array}
-\right)=C\\
-\mathcal P = \text{diag}(0,0,\mathcal H).
-\]</span> Then we have <span class="math display">\[
-\mathcal Q = \mathcal P+\sigma \mathcal A^*\mathcal A = 
-\begin{bmatrix}
-0,0,0\\
-0,0,0\\
-0,0,\mathcal H
-\end{bmatrix}+
-\sigma 
-\begin{bmatrix}
-I\\\mathcal B\\\mathcal H
-\end{bmatrix}
-\begin{bmatrix}
-I&amp;\mathcal B^*&amp;\mathcal H
-\end{bmatrix}=
-\sigma 
-\begin{bmatrix}
-I &amp; \mathcal B^* &amp;\mathcal H \\
-\mathcal B &amp; \mathcal B\mathcal B^*&amp;\mathcal B\mathcal H\\
-\mathcal H &amp; \mathcal H\mathcal B^* &amp; \sigma^{-1}\mathcal H+\mathcal H^2
-\end{bmatrix}.
-\]</span></p>
+          <h1 id="lru-cache">146. LRU Cache</h1>
+<h2 id="question">1. Question</h2>
+<p>Design a data structure that follows the constraints of a <strong><a href="https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU" target="_blank" rel="noopener">Least Recently Used (LRU) cache</a></strong>.</p>
+<p>Implement the <code>LRUCache</code> class:</p>
+<ul>
+<li><code>LRUCache(int capacity)</code> Initialize the LRU cache with <strong>positive</strong> size <code>capacity</code>.</li>
+<li><code>int get(int key)</code> Return the value of the <code>key</code> if the key exists, otherwise return <code>-1</code>.</li>
+<li><code>void put(int key, int value)</code> Update the value of the <code>key</code> if the <code>key</code> exists. Otherwise, add the <code>key-value</code> pair to the cache. If the number of keys exceeds the <code>capacity</code> from this operation, <strong>evict</strong> the least recently used key.</li>
+</ul>
+<p><strong>Follow up:</strong> Could you do <code>get</code> and <code>put</code> in <code>O(1)</code> time complexity?</p>
+<h2 id="thought">2. Thought</h2>
+<p>Because both operations are required in <code>O(1)</code> time complexity, we need to use the hash table to realize. In this problem, we use a hash double linked list.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;pair&lt;<span class="keyword">uint16_t</span>, <span class="keyword">uint16_t</span>&gt;&gt; LRUlist;</span><br><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">uint16_t</span>, <span class="keyword">uint16_t</span>&gt;&gt;::iterator&gt; LRUmap;</span><br></pre></td></tr></table></figure>
+<p>By using such table, we can find the item by key in <code>o(1)</code> time complexity. Do remember that we have a hash table and double linked list and hence we need to maintain them simultaneously. Let’s analyze the procedure in detail.</p>
+<h3 id="put">1) Put</h3>
+<ul>
+<li><p>Key not in the cache</p>
+<ul>
+<li><p>If cache is full, delete the least recent item.</p>
+<p>Remove the least recent item in the <code>LRUlist</code> by calling <code>pop_back()</code>.</p>
+<p>Remove the least recent item in the <code>LRUmap</code>.</p></li>
+<li><p>Add new item in the cache.</p>
+<p><code>push_front</code> the new item in <code>LRUlist</code>.</p>
+<p><code>emplace</code> the new key in the <code>LRUmap</code>.</p></li>
+</ul></li>
+<li><p>Key already in the cache</p>
+<p><code>push_front</code> the new item with the new value in <code>LRUlist</code>.</p>
+<p>Remove the item in the <code>LRUlist</code>.</p>
+<p>Update the item in the <code>LRUmap</code>.</p></li>
+</ul>
+<h3 id="get">2) Get</h3>
+<ul>
+<li><p>Key not in the cache</p>
+<p>Return -1.</p></li>
+<li><p>Key already in the cache</p>
+<p><code>push_front</code> the new item with the same value in <code>LRUlist</code>.</p>
+<p>Remove the item in the <code>LRUlist</code>.</p>
+<p>Update the item in the <code>LRUmap</code>.</p></li>
+</ul>
+<h2 id="code">3. Code</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">uint16_t</span>, <span class="keyword">uint16_t</span>&gt;&gt; LRUlist;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">uint16_t</span>, <span class="keyword">uint16_t</span>&gt;&gt;::iterator&gt; LRUmap;</span><br><span class="line">    LRUCache(<span class="keyword">int</span> capacity): capacity(capacity) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (LRUmap.find(key) == LRUmap.end()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span>&#123;<span class="comment">// if find</span></span><br><span class="line">            LRUlist.push_front(*(LRUmap[key]));</span><br><span class="line">            LRUlist.erase(LRUmap[key]);</span><br><span class="line">            LRUmap[key] = LRUlist.begin();</span><br><span class="line">            <span class="keyword">return</span> LRUlist.front().second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (LRUmap.find(key) == LRUmap.end())&#123;<span class="comment">// Key not in the cache </span></span><br><span class="line">            <span class="keyword">if</span> (size == capacity)&#123;<span class="comment">//if full, delete the last item</span></span><br><span class="line">                LRUmap.erase(LRUlist.back().first);</span><br><span class="line">                LRUlist.pop_back();</span><br><span class="line">            &#125; <span class="keyword">else</span> size++;</span><br><span class="line">            LRUlist.push_front(&#123;key, value&#125;);</span><br><span class="line">            LRUmap.emplace(key, LRUlist.begin());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;<span class="comment">// if found</span></span><br><span class="line">            LRUlist.push_front(&#123;key, value&#125;);</span><br><span class="line">            LRUlist.erase(LRUmap[key]);</span><br><span class="line">            LRUmap[key] = LRUlist.begin();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
         
       
@@ -751,7 +344,7 @@ I &amp; \mathcal B^* &amp;\mathcal H \\
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/LeetCode Note/460. LFU Cache/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -765,7 +358,7 @@ I &amp; \mathcal B^* &amp;\mathcal H \\
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/7.3 Nonlinear conic programming/" class="post-title-link" itemprop="url">8. Nonlinear conic programming (3)</a>
+            <a href="/2021/01/25/LeetCode Note/460. LFU Cache/" class="post-title-link" itemprop="url">460. LFU Cache</a>
           
         </h1>
 
@@ -780,19 +373,11 @@ I &amp; \mathcal B^* &amp;\mathcal H \\
                 
               
 
-              <time title="Created: 2020-12-22 13:48:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
+              <time title="Created: 2021-01-25 12:00:47 / Modified: 16:51:20" itemprop="dateCreated datePublished" datetime="2021-01-25T12:00:47+08:00">2021-01-25</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-03 13:51:15" itemprop="dateModified" datetime="2019-11-03T13:51:15+08:00">2019-11-03</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -801,7 +386,7 @@ I &amp; \mathcal B^* &amp;\mathcal H \\
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LeetCode-Note/" itemprop="url" rel="index"><span itemprop="name">LeetCode Note</span></a></span>
 
                 
                 
@@ -820,169 +405,81 @@ I &amp; \mathcal B^* &amp;\mathcal H \\
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="applications-to-semidefinite-programming">7.5 Applications to semidefinite programming</h2>
-<p>In this section, we consider the cone <span class="math inline">\(\mathcal C=\mathbb S^n_+\)</span>. Note that <span class="math inline">\(\mathcal C^*=\mathbb S_+^n\)</span>. Consider the linear SDP problem, <span class="math display">\[
-\text{(SDP)}\quad \begin{array}{rCl}
-\min &amp; \langle C,X\rangle\\
-\text{subject to}&amp; \mathcal A (X)=b\\
-&amp;X\in \mathbb S_+^n,
-\end{array}
-\]</span> where <span class="math inline">\(C\in\mathbb S^n\)</span>, <span class="math inline">\(b\in\mathbb R^m\)</span> are given data and <span class="math inline">\(\mathcal A:\mathbb S^n\rightarrow \mathbb R^m\)</span> is a given linear map. The dual problem is given by <span class="math display">\[
-\text{(SDD)}\quad \begin{array}{rCl}
-\min &amp; \langle b,y\rangle\\
-\text{subject to}&amp; \mathcal A^* y+Z=C\\
-&amp;Z\in \mathbb S_+^n.
-\end{array}
-\]</span> The KKT optimality conditions are given as <span class="math display">\[
-\begin{array}{rcl}
-\mathcal A^*+Z&amp;=&amp;C\\
-\mathcal AX&amp;=&amp;b\\
-\mathbb S_n^+\ni X&amp;\perp&amp; Z\in \mathbb S_n^+. 
-\end{array}
-\]</span> The last condition is equivalent to <span class="math display">\[
-\langle X,Z\rangle =0,\;X,Z\in\mathbb S_+^n.
-\]</span> The last condition is also equivalent to <span class="math display">\[
--X\in N_{\mathbb S^+_n}(Z)\iff Z-\Pi_{\mathbb S_n^+}(Z-X)=0=X-\Pi_{\mathbb S_n^+}(X-Z).
-\]</span> For any <span class="math inline">\(A\in\mathbb S^n\)</span>, let <span class="math inline">\(A_+ = \Pi_{\mathbb S_n^+}(A)\)</span>. Assume that A has the following spectral decomposition, <span class="math display">\[
-A=P\Lambda P^T,
-\]</span> where <span class="math inline">\(\Lambda = \text{Diag}(\lambda)\)</span> is the diagonal matrix of the eigenvalues <span class="math inline">\(\lambda_1\ge \lambda_2\ge \dotsm\ge \lambda_n\)</span> and <span class="math inline">\(P\)</span> is a corresponding orthogonal matrix of eigenvectors. Then <span class="math display">\[
-A_+=P\Lambda_+ P^T,
-\]</span> where <span class="math inline">\(\Lambda_+ = \text{Diag} (\lambda_+)\)</span>. Define three index sets of positive zero, and negative, <span class="math display">\[
-\alpha =\{i\;|\; \lambda_i&gt;0\}\\
-\beta =\{i\;|\; \lambda_i=0\}\\
-\gamma =\{i\;|\; \lambda_i&lt;0\}.
-\]</span> We can write <span class="math display">\[
-\Lambda = \begin{bmatrix}
-\Lambda_\alpha &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; 0\\
-0 &amp; 0 &amp; \Lambda_\gamma
-\end{bmatrix}\\
-P=[P_\alpha, P_\beta,P_\gamma],
-\]</span> where <span class="math inline">\(P_\alpha \in \mathbb R^{n\times |\alpha|}\)</span>, <span class="math inline">\(P_\beta \in \mathbb R^{n\times |\beta|}\)</span>, <span class="math inline">\(P_\gamma \in\mathbb R^{n\times |\gamma|}\)</span>. Define for <span class="math inline">\(i\notin \beta\)</span> or <span class="math inline">\(j\notin \beta\)</span>,</p>
-<p><strong>Case 1</strong> (<span class="math inline">\(\beta = \emptyset\)</span>). Then <span class="math inline">\(\Pi_{\mathbb S_+^n}\)</span> is Fréchet differentiable at <span class="math inline">\(A\)</span> and the directional derivative is given by <span class="math display">\[
-\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{cc}{\widetilde{H}_{\alpha \alpha}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0}\end{array}\right] P^{T}
-\]</span> where <span class="math inline">\(\widetilde H = P^THP\)</span>.</p>
-<p><strong>Cases 2</strong> (<span class="math inline">\(\beta \neq \emptyset\)</span>) it has been proven that for any <span class="math inline">\(H\in\mathbb S^n\)</span>, it follows <span class="math display">\[
-\Pi_{\mathrm{S}_{+}^{n}}^{\prime}(A)[H]=P\left[\begin{array}{ccc}{\widetilde{H}_{\alpha \alpha}} &amp; {\widetilde{H}_{\alpha \beta}} &amp; {\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}} \\ {\widetilde{H}_{\alpha \beta}^{T}} &amp; {\Pi_{\mathbb{S}_+^{|\beta|}}\left(\widetilde{H}_{\beta \beta}\right)} &amp; {0} \\ {\left(\Omega_{\alpha \gamma} \circ \widetilde{H}_{\alpha \gamma}\right)^{T}} &amp; {0} &amp; {0}\end{array}\right] P^{T}.
-\]</span></p>
-<p>skip something......</p>
-<p>The Robinson's CQ for (SDP) is given by <span class="math display">\[
-\begin{bmatrix}
-\mathcal A\\ \mathcal I
-\end{bmatrix} \mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\ \mathcal T_\mathcal C(\bar X)
-\end{bmatrix}=
-\begin{bmatrix}
-\mathbb R^m \\
-\mathbb S^n
-\end{bmatrix},
-\]</span> where <span class="math inline">\(\mathcal I:\mathbb S^n\rightarrow \mathbb S^n\)</span> is the identity map. A sufficient condition for the multipliers <span class="math inline">\((\bar y,\bar Z)\in\mathcal M(\bar x)\)</span> to be unique is that <span class="math display">\[
-\begin{bmatrix}
-\mathbb R^m\\\mathbb S^n
-\end{bmatrix}=
-\begin{bmatrix}
-\mathcal A\\\mathcal I
-\end{bmatrix}\mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\\mathcal T_\mathcal C(\bar X)\cap (\bar Z)^\perp
-\end{bmatrix}\subset \\
-\begin{bmatrix}
-\mathcal A\\\mathcal I
-\end{bmatrix}\mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\\mathcal T_\mathcal C(\bar X)
-\end{bmatrix}\cap
-\begin{bmatrix}
--\bar y\\-\bar Z
-\end{bmatrix}^\perp.
-\]</span> <strong>Definition</strong> (Robinson's constraint nondegeneracy)</p>
-<p>We said that a feasible <span class="math inline">\(\bar x\)</span> to problem (COP) is constraint nondegenerate if <span class="math display">\[
-G&#39;(\bar x)\mathcal X+\text{lin}(\mathcal T_\mathcal K(G(\bar x)))=\mathcal Y
-\]</span> where <span class="math inline">\(\text{lin}(\mathcal T_\mathcal K(G(\bar x)))\)</span> denotes the largest linear subspace contained in <span class="math inline">\(\mathcal T_{\mathcal K}(G(\bar x))\)</span>.</p>
-<p>For the problem (SDP), the Robinson's constraint nondegeneracy condition is said to hold at a feasible point <span class="math inline">\(\bar X\in\mathbb S_+^n\)</span> if <span class="math display">\[
-\begin{bmatrix}
-\mathbb R^m\\\mathbb S^n
-\end{bmatrix}=
-\begin{bmatrix}
-\mathcal A\\
-\mathcal I
-\end{bmatrix}\mathbb S^n+
-\begin{bmatrix}
-\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar X))
-\end{bmatrix}.
-\]</span> <strong>Exercise</strong></p>
-Show that the above condition is equivalent to <span class="math display">\[
-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m.
-\]</span> It means that for all <span class="math inline">\(y\in\mathbb R^m\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(d\in\mathbb S^n\)</span> such that $$
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal Ad\\
-z&amp;\in&amp; d+\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
-\end{array}\iff\]</span>
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal Ad\\
-d&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar X))\\\hline
-\end{array}\]</span>
-<p>\</p>
-<span class="math display">\[\begin{array}{|rcl|}\hline 
-y\in \mathcal A(z-\text{lin}(\mathcal T_\mathcal C(\bar X)))
-\\\hline \end{array}
-\iff 
-\begin{array}{|rcl|}\hline 
-y\in\mathcal Az-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
-\\\hline \end{array}\]</span>
-\
-<span class="math display">\[\begin{array}{|rcl|}\hline 
-\mathcal Az-y\in \mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))
-\\\hline \end{array}
-\iff
-\begin{array}{|rcl|}\hline 
-\mathcal A(\text{lin}(\mathcal T_\mathcal C(\bar X)))=\mathbb R^m
-\\\hline \end{array}\]</span>
-. <span class="math display">\[
-For the dual problem (SDD), the Robinson&#39;s constraint nondegeneracy condition is said to hold at a feasible point $(\bar y,\bar Z)\in\mathbb R^m\times \mathbb S_+^n$ if
-\]</span>
-<span class="math display">\[\begin{bmatrix}
-\mathbb S^n\\\mathbb S^n
-\end{bmatrix}\]</span>
-=
-<span class="math display">\[\begin{bmatrix}
-\mathcal A^* &amp; \mathcal I\\
-0&amp;\mathcal I
-\end{bmatrix}
-\begin{bmatrix}
-\mathbb R^m\\ \mathbb S^n
-\end{bmatrix}\]</span>
+          <h1 id="lfu-cache">460. LFU Cache</h1>
+<h2 id="question">1. Question</h2>
+<p>Design and implement a data structure for <a href="https://en.wikipedia.org/wiki/Least_frequently_used" target="_blank" rel="noopener">Least Frequently Used (LFU)</a> cache.</p>
+<p>Implement the <code>LFUCache</code> class:</p>
 <ul>
-<li><span class="math display">\[\begin{bmatrix}
-\{0_m\}\\ \text{lin}(\mathcal T_\mathcal C(\bar Z))
-\end{bmatrix}\]</span>
-. $$ <strong>Exercise</strong></li>
+<li><code>LFUCache(int capacity)</code> Initializes the object with the <code>capacity</code> of the data structure.</li>
+<li><code>int get(int key)</code> Gets the value of the <code>key</code> if the <code>key</code> exists in the cache. Otherwise, returns <code>-1</code>.</li>
+<li><code>void put(int key, int value)</code> Sets or inserts the value if the <code>key</code> is not already present. When the cache reaches its <code>capacity</code>, it should invalidate the least frequently used item before inserting a new item. For this problem, when there is a tie (i.e., two or more keys with the same frequency), <strong>the least recently</strong> used <code>key</code> would be evicted.</li>
 </ul>
-Show that the above condition is equivalent to (???what is <span class="math inline">\(\bar S\)</span>) <span class="math display">\[
-\mathcal A^*\mathbb R^m+\text{lin}(\mathcal T_\mathcal C(\bar S))=\mathbb S^n.
-\]</span> It means that for all <span class="math inline">\(y\in\mathbb S^n\)</span> and <span class="math inline">\(z\in\mathbb S^n\)</span>, there exists <span class="math inline">\(v\in\mathbb R^m\)</span> and <span class="math inline">\(w\in\mathbb S^n\)</span> such that $$
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal A^* v+w\\
-z&amp;\in&amp; w+\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
-\end{array}\iff\]</span>
-<span class="math display">\[\begin{array}{|rcl|}
-\hline 
-y&amp;\in&amp; \mathcal A^* v+w\\
-w&amp;\in&amp; z-\text{lin}(\mathcal T_\mathcal C(\bar Z))\\\hline 
-\end{array}\]</span>
-\
-<span class="math display">\[\begin{array}{|rcl|}\hline 
-y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
-\\\hline\end{array}
-\iff
-\begin{array}{|rcl|}\hline 
-\mathbb S^n&amp;=&amp; \mathcal A^* \mathbb R^m-\text{lin}(\mathcal T_\mathcal C(\bar Z))
-\\\hline\end{array}\]</span>
-<p>. $$</p>
+<p><strong>Notice that</strong> the number of times an item is used is the number of calls to the <code>get</code> and <code>put</code> functions for that item since it was inserted. This number is set to zero when the item is removed.</p>
+<p>Could you do both operations in <code>O(1)</code> time complexity?</p>
+<h2 id="thought">2. Thought</h2>
+<p>Because both operations are required in <code>O(1)</code> time complexity, we need to use the hash table to realize. In this problem, we use two hash tables.</p>
+<p>The first one maps from the frequency to a double linked list.</p>
+<p>The second one maps from the key to the <strong>pointer of item in the list</strong> (list::iterator).</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">list</span>&lt;LFUitem&gt; LFUlist_t;</span><br><span class="line"><span class="comment">// Hash table, freq-&gt;LFUlist</span></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t&gt; LFUfreqmap; </span><br><span class="line"><span class="comment">// Hash table, key-&gt;LFUlist::iterator</span></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t::iterator&gt; LFUkeymap;</span><br></pre></td></tr></table></figure>
+<p>By using such two hash tables, we can find the item by key in <code>o(1)</code> time complexity, and find the least frequent item in <code>o(1)</code> time complexity. Do remember that we have two tables and thus each operation is related to the two tables. Let’s analyze the procedure in detail.</p>
+<h3 id="put">1) Put</h3>
+<ul>
+<li><p>Capacity is zero</p>
+<p>Do nothing.</p></li>
+<li><p>Key not in the cache</p>
+<ul>
+<li><p>If cache is full, delete the least frequent item.</p>
+<p>Find the least frequent item by calling <code>LFUfreqmap[minfreq].back()</code>.</p>
+<p>Remove the least frequent item in the <code>LFUkeymap.</code></p>
+<p>Remove the least frequent item in the <code>LFUfreqmap</code> by calling <code>pop_back()</code>.</p></li>
+<li><p>Add new item in the cache.</p>
+<p>Check whether the list with frequency 1 exists in <code>LFUfreqmap</code>. If not exists, create the list.</p>
+<p><code>push_front</code> the new item in the list with frequency 1 in <code>LFUfreqmap</code>.</p>
+<p><code>emplace</code> the new key in the <code>LFUkeymap</code>.</p></li>
+<li><p>Set minimum frequency as 1 because the frequency of the new item must be 1.</p></li>
+</ul></li>
+<li><p>Key already in the cache</p>
+<p><em>Increase the frequency of the item with the given key.</em></p>
+<p>Update the value of the item with the given key.</p></li>
+</ul>
+<h3 id="get">2) Get</h3>
+<ul>
+<li><p>Capacity is zero</p>
+<p>Return -1.</p></li>
+<li><p>Key not in the cache</p>
+<p>Return -1.</p></li>
+<li><p>Key already in the cache</p>
+<p><em>Increase the frequency of the item with the given key.</em></p>
+<p>Return the value of the item with the given key.</p></li>
+</ul>
+<h3 id="increase-the-frequency-of-the-item-with-the-given-key">3) Increase the frequency of the item with the given key</h3>
+<p>Notice that in both <code>put</code> and <code>get</code> operations, we need to increase the frequency of the item with the specific key. Therefore we can write an independent function to realize it.</p>
+<ul>
+<li><p>Create a new item in the new list with the old frequency + 1.</p>
+<p>Check whether the list with old frequency + 1 exists in <code>LFUfreqmap</code>. If not exists, create the list.</p>
+<p><code>push_front</code> the new item in the list with old frequency + 1 in <code>LFUfreqmap</code>.</p>
+<p>Update the new key in the <code>LFUkeymap</code>.</p></li>
+<li><p>Delete the item in the old list with the old frequency.</p></li>
+</ul>
+<h3 id="how-to-maintain-the-minimum-frequency">4) How to maintain the minimum frequency</h3>
+<ul>
+<li><p>Put</p>
+<ul>
+<li><p>Key not in the cache</p>
+<p>Minimum frequency must be 1.</p></li>
+<li><p>Key in the cache</p>
+<p>If the item with the given key has the minimum frequency, then after erasing this item f rom the list with the minimum frequency, if the list is empty, then minimum frequency increases 1, otherwise, minimum frequency does not change.</p></li>
+</ul></li>
+<li><p>Get</p>
+<ul>
+<li><p>Key not in the cache</p>
+<p>Minimum frequency does not change.</p></li>
+<li><p>Key in the cache</p>
+<p>Same as the <code>Key in the cache</code> case in <code>put</code>.</p></li>
+</ul></li>
+</ul>
+<h2 id="code">3. Code</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LFUitem</span>&#123;</span></span><br><span class="line">    <span class="keyword">uint16_t</span> key;</span><br><span class="line">    <span class="keyword">uint16_t</span> freq;</span><br><span class="line">    <span class="keyword">uint16_t</span> val;</span><br><span class="line">    LFUitem(<span class="keyword">uint16_t</span> key_, <span class="keyword">uint16_t</span> freq_, <span class="keyword">uint16_t</span> val_): key(key_), freq(freq_), val(val_) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">list</span>&lt;LFUitem&gt; LFUlist_t;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">uint16_t</span> capacity;</span><br><span class="line">    <span class="keyword">uint16_t</span> size=<span class="number">0</span>;</span><br><span class="line">    <span class="comment">// Hash table, freq-&gt;LFUlist</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t&gt; LFUfreqmap; </span><br><span class="line">    <span class="comment">// Hash table, key-&gt;LFUlist::iterator</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t::iterator&gt; LFUkeymap; </span><br><span class="line">    <span class="keyword">uint16_t</span> minfreq=<span class="number">0</span>; <span class="comment">// minimum frequency</span></span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) : capacity(capacity) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">increaseFreq</span><span class="params">(LFUlist_t::iterator iter)</span></span>&#123;</span><br><span class="line">        <span class="keyword">uint16_t</span> curr_freq = iter-&gt;freq;</span><br><span class="line">        <span class="comment">// create new item in curr_freq+1 list</span></span><br><span class="line">        <span class="keyword">if</span> (LFUfreqmap.find(curr_freq + <span class="number">1</span>) == LFUfreqmap.end()) </span><br><span class="line">            LFUfreqmap.emplace(curr_freq + <span class="number">1</span>, LFUlist_t()); <span class="comment">// there is no curr_freq+1 list, create list</span></span><br><span class="line">        LFUfreqmap[curr_freq + <span class="number">1</span>].push_front(LFUitem(iter-&gt;key, curr_freq + <span class="number">1</span>, iter-&gt;val)); <span class="comment">//push in a new item</span></span><br><span class="line">        LFUkeymap[iter-&gt;key] = LFUfreqmap[curr_freq + <span class="number">1</span>].begin();</span><br><span class="line">        <span class="comment">// delete old item in curr_freq list (which must exist)</span></span><br><span class="line">        LFUfreqmap[curr_freq].erase(iter);</span><br><span class="line">        <span class="comment">// if curr_freq list is empty, it is the minfreq list. Therefore increase minfreq</span></span><br><span class="line">        <span class="keyword">if</span> (minfreq == curr_freq &amp;&amp; LFUfreqmap[curr_freq].size() == <span class="number">0</span>) minfreq += <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;capacity == <span class="number">0</span> || LFUkeymap.find(key) == LFUkeymap.end()) <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// if not found </span></span><br><span class="line">        increaseFreq(LFUkeymap[key]); <span class="comment">// if found, just increase the freq in terms of the given key</span></span><br><span class="line">        <span class="keyword">return</span> LFUkeymap[key]-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;capacity == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (LFUkeymap.find(key) == LFUkeymap.end())&#123;<span class="comment">// if key is not found </span></span><br><span class="line">            <span class="keyword">if</span> (size == capacity)&#123;<span class="comment">// delete something</span></span><br><span class="line">                LFUkeymap.erase(LFUfreqmap[minfreq].back().key);</span><br><span class="line">                LFUfreqmap[minfreq].pop_back();</span><br><span class="line">            &#125; <span class="keyword">else</span> size++;</span><br><span class="line">            <span class="keyword">if</span> (LFUfreqmap.find(<span class="number">1</span>) == LFUfreqmap.end()) </span><br><span class="line">                LFUfreqmap.emplace(<span class="number">1</span>, LFUlist_t()); <span class="comment">// if there is no freq key 1 list, create list</span></span><br><span class="line">            LFUfreqmap[<span class="number">1</span>].push_front(LFUitem(key, <span class="number">1</span>, value)); <span class="comment">// push in a new item</span></span><br><span class="line">            LFUkeymap.emplace(key, LFUfreqmap[<span class="number">1</span>].begin());</span><br><span class="line">            minfreq=<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">// if key is found</span></span><br><span class="line">            increaseFreq(LFUkeymap[key]);</span><br><span class="line">            LFUkeymap[key]-&gt;val = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
         
       
@@ -1006,7 +503,7 @@ y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1051,7 +548,7 @@ y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1080,7 +577,9 @@ y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -1114,7 +613,7 @@ y&amp;\in&amp; \mathcal A^* v+z-\text{lin}(\mathcal T_\mathcal C(\bar Z))
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/EE5101 Linear Systems/7. Pole Placement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/16/EE5104 Computer Control/3. Analysis of Discrete Time System/" class="post-title-link" itemprop="url">3. Analysis of Discrete Time System</a>
+            <a href="/2018/11/21/EE5101 Linear Systems/7. Pole Placement/" class="post-title-link" itemprop="url">Chapter 7. Pole Placement</a>
           
         </h1>
 
@@ -247,7 +247,7 @@
                 
               
 
-              <time title="Created: 2018-11-16 13:44:42 / Modified: 00:04:46" itemprop="dateCreated datePublished" datetime="2018-11-16T13:44:42+08:00">2018-11-16</time>
+              <time title="Created: 2018-11-21 13:33:56 / Modified: 14:22:29" itemprop="dateCreated datePublished" datetime="2018-11-21T13:33:56+08:00">2018-11-21</time>
             </span>
           
             
@@ -260,7 +260,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
 
                 
                 
@@ -279,202 +279,246 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="stability">1. Stability</h2>
-<p>Jury's Stability Test</p>
-<p>For the system <span class="math display">\[
-\frac{1}{z^2+a_1z+a_2}
-\]</span> Using Jury's Stability Test <span class="math display">\[
-\begin{array}{ccc}
-1 &amp; a_1 &amp; a_2\\
-a_2 &amp; a_1 &amp; 1 &amp; \times -a_2\\ \hline
-1-a_2^2 &amp; a_1-a_1a_2\\ 
-a_1-a_1a_2 &amp; 1-a_2^2 &amp;  &amp; \times-\frac{a_1}{1+a_2}\\ \hline
-\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}
-\end{array}
-\]</span> If the system is stable, we have <span class="math display">\[
-1-a_2^2 &gt;0\\
-\frac{(1-a_2)[(1+a_2)^2-a_1^2]}{1+a_2}&gt;0
-\]</span></p>
-<h2 id="controllability">2. Controllability</h2>
-<p>Controllable: The system can be driven from any initial state to any other destination in finite time.</p>
-<p>For the system <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y(k)=Cx(k)\\
-\]</span> We have the initial state <span class="math inline">\(x(0)\)</span></p>
-<p>Then <span class="math display">\[
-x(1)=\Phi x(0)+\Gamma u(0)\\
-x(2)=\Phi x(1)+\Gamma u(1)=\Phi(\Phi x(0)+\Gamma u(0))+\Gamma u(1)\\
-=\Phi^2 x(0)+\Phi\Gamma u(0)+\Gamma u(1)\\
-\vdots\\
-x(n)=\Phi^nx(0)+\Phi^{n-1}\Gamma u(0)+\Phi^{n-2}\Gamma u(1)+\dotsm+\Gamma u(n-1)
-\]</span> If the system can be driven to any state in finite steps, we just need to ensure <span class="math display">\[
-W_c=\begin{bmatrix}
-\Gamma &amp; \Phi\Gamma &amp; \Phi^2\Gamma &amp; \dotsm &amp; \Phi^{n-1}\Gamma
-\end{bmatrix}
-\]</span> is NONSINGULAR.</p>
-<p>If we cannot get to one state with n-1 steps, we cannot to get to one state with n steps.</p>
-<p>Proof <span class="math display">\[
-A(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\dotsm+\ a_n \\
-\]</span> Then we have <span class="math display">\[
-A(\Phi)=\Phi^n+a_1\Phi^{n-1}+a_2\Phi^{n-2}+\dotsm+\ a_nI \\
-\]</span> Similarly,</p>
-<p>We know <span class="math inline">\(\Phi^n\)</span> is linear combination of <span class="math inline">\(\Phi^0, \quad \Phi,\quad\dotsm\quad\Phi^{n-1}\)</span>.</p>
-<p>Therefore, we still cannot get to arbitrary desired state.</p>
-<p>Controllable Canonical Form <span class="math display">\[
-\Phi=
-\begin{bmatrix}
--a_{n} &amp; -a_{n-1} &amp; \dotsm &amp; -a_{2} &amp; -a_1\\
-1 &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; \dotsm &amp; 0 &amp; 0\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots&amp; \vdots\\
-0 &amp; 0 &amp; \dotsm &amp; 1 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-1\\
-0\\
-0\\
-\vdots\\
-0\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-b_n &amp; b_{n-1} &amp; \dotsm &amp; b_1
-\end{bmatrix}
-\]</span></p>
-<h2 id="observability">3. Observability</h2>
-<p>Observer <span class="math display">\[
-\hat x(k+1)=\Phi\hat x(k)+ \Gamma u(k)+K(y(k)-\hat y(k))\\
-\hat y=C\hat x(k) \\
-e(k+1)=\Phi e(k)-KCe(k)=(\Phi-KC)e(k)
-\]</span> Observability Matrix <span class="math display">\[
-M_o^{-1}=\begin{bmatrix}
-C\\C\Phi\\C\Phi^2\\\vdots\\C\Phi^{n-1}
-\end{bmatrix}
-\]</span> Observable Canonical Form <span class="math display">\[
-\Phi=
-\begin{bmatrix}
--a_{n} &amp; 1 &amp; 0 &amp; \dotsm &amp; 0\\
--a_{n-1} &amp; 0 &amp; 1 &amp; \dotsm  &amp; 0\\
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
--a_{2} &amp; 0 &amp; \dotsm &amp; 0 &amp; 1\\
--a_{1} &amp; 0 &amp; \dotsm &amp; 0 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-b_n\\
-b_{n-1}\\
-b_{n-2}\\
-\vdots\\
-b_1\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; \dotsm &amp; 0
-\end{bmatrix}
-\]</span></p>
-<h2 id="how-to-create-state-space-from-difference-equation">4. How to Create State Space From Difference Equation</h2>
-<p>Example <span class="math display">\[
-y(k+1)=-a_1y(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
-\]</span> First, we choose <span class="math display">\[
-x_1(k)=y(k)
-\]</span> Then we have <span class="math display">\[
-x_1(k+1)=y(k+1)=-a_1x_1(k)-a_2y(k-1)-a_3y(k-2)+b_1u(k)+b_2u(k-1)+b_3u(k-2)
-\]</span> Then we choose <span class="math display">\[
-x_2(k)=-a_2y(k-1)-a_3y(k-2)+b_2u(k-1)+b_3u(k-2)\\
-x_2(k+1)=-a_2y(k)-a_3y(k-1)+b_2u(k)+b_3u(k-1)\\
-x_3(k)=-a_3y(k-1)+b_3u(k-1)\\
-x_3(k+1)=-a_3y(k)+b_3u(k)
-\]</span> Therefore, we have <span class="math display">\[
-x_1(k+1)=-a_1x_1+x_2(k)+b_1u(k)\\
-x_2(k+1)=-a_2x_1(k)+x_3(k)+b_2u(k)\\
-x_3(k+1)=-a_3x_1(k)+b_3u(k)\\
-\]</span> Therefore, <span class="math display">\[
-\Phi=\begin{bmatrix}
--a_1 &amp; 1 &amp; 0\\
--a_2 &amp; 0 &amp; 1\\
--a_3 &amp; 0 &amp; 0
-\end{bmatrix}
-\Gamma=\begin{bmatrix}
-b_1\\b_2\\b_3
-\end{bmatrix}
-C=\begin{bmatrix}
-1 &amp; 0 &amp; 0
-\end{bmatrix}
-\]</span></p>
-<h2 id="some-useful-conclusions">5. Some Useful Conclusions</h2>
-<ol type="1">
-<li>The minimal realization has the same order as that of the transfer function. If higher, it is called non-minimal realization.</li>
-<li>The minimal realization can be always cast into the form of observable canonical form. Therefore, the minimal realization is always observable.</li>
-<li>If there are common zeros and poles, uncontrollable, otherwise, controllable.</li>
-</ol>
-<h2 id="example">6. Example</h2>
-<p>Example 1 <span class="math display">\[
-y(k+1)=3y(k)-2y(k-1)+u(k-1)+2u(k-2)
-\]</span> a) What is the Transfer Function? <span class="math display">\[
-zY(z)=3Y(z)-2z^{-1}Y(z)+z^{-1}U(z)+2z^{-2}U(z)\\
-\frac{Y(z)}{U(z)}=\frac{z^{-1}+2z^{-2}}{z-3+2z^{-1}}=\frac{z+2}{z^3-3z^2+2z}=\frac{z+2}{z(z-1)(z-2)}
-\]</span> b) is it possible to realize the system such that it is observable but not controllable.</p>
-<p>It is not controllable, therefore, it should have common zeros and poles. <span class="math display">\[
-G(z)=\frac{(z+2)(z+1)}{z(z-1)(z-2)(z+1)}=\frac{z^2+3z+2}{z^4-2z^3-z^2+2z}\\
-\]</span> The system is observable, therefore, we realize the system in observable canonical form. <span class="math display">\[
-\Phi=
-\begin{bmatrix}
-2 &amp; 1 &amp; 0 &amp; 0\\
-1 &amp; 0 &amp; 1 &amp; 0\\
--2 &amp; 0 &amp; 0 &amp; 1\\
-0 &amp; 0 &amp; 0 &amp; 0\\
-\end{bmatrix}
-\Gamma=
-\begin{bmatrix}
-0\\
-1\\
-3\\
-2\\
-\end{bmatrix}
-C=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0
-\end{bmatrix}\\
-\]</span></p>
+          <h2 id="state-feedback">1. State Feedback</h2>
+<p>For a system <span class="math display">\[
+\dot x=Ax+Bu \\
+y=Cx
+\]</span> We have a control law <span class="math display">\[
+u=-Kx+Fr
+\]</span> Then the system can be changed to <span class="math display">\[
+\dot x=(A-BK)x+BFr \\
+y=Cx
+\]</span> ==Lemma1==</p>
+<p>The controllability of the system is unaltered by state feedback</p>
+<p>==Lemma2==</p>
+<p>The closed-loop poles are affected only by feedback gain matrix K but independent of F.</p>
+<h2 id="why-pole-placement">2. Why Pole Placement</h2>
 <p><span class="math display">\[
-M_C=
-\begin{bmatrix}
-0 &amp; 1 &amp; 5 &amp; 13\\
-1 &amp; 3 &amp; 3 &amp; 3\\
-3 &amp; 2 &amp; -2 &amp; -10\\
-2 &amp; 0 &amp; 0 &amp; 0\\
-\end{bmatrix}
-M_o=
-\begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-2 &amp; 1 &amp; 0 &amp; 0\\
-5 &amp; 2 &amp; 1 &amp; 0\\
-10 &amp; 5 &amp; 2 &amp; 1
-\end{bmatrix}\\
+G(s)=\frac{\omega_n^2}{s^2+2\xi\omega_ns+\omega_n^2}
 \]</span></p>
-<p>Therefore, the system is observable but not controllable.</p>
-<p>However, we need to check if this space state is that transfer function. It is easy to find that it is exactly the G(z) instead of the transfer function in the question. Therefore, it is <strong>impossible</strong> to realize this system in observable but not controllable form.</p>
-<ol start="3" type="a">
-<li>is it possible to realize the system such that it is controllable but not observable.</li>
+<p>Rise time: <span class="math inline">\(t_r=\frac{1.8}{\omega_n}\)</span></p>
+<p>Peak overshoot: <span class="math inline">\(M_p=e^{\frac{-\pi \xi}{\sqrt{1-\xi^2}}}\)</span></p>
+<p>2% settling time: <span class="math inline">\(t_s=\frac{4}{\xi \omega_n}\)</span></p>
+<p>poles: <span class="math inline">\(\lambda=-\xi\omega_n\pm\omega_n\sqrt{\xi^2-1}\)</span></p>
+<h2 id="single-input-case">3.Single-input Case</h2>
+<p>Ackerman's Formula <span class="math display">\[
+k^T=\begin{matrix} [0 &amp; 0 &amp; \dotsm &amp; 0 &amp; 1] \end{matrix}M_c^{-1}\Phi(A)
+\]</span></p>
+<p>Choose two poles according to second order system and choose other poles 2~5 times left to these two dominant poles.</p>
+<h2 id="multi-input-case">4. Multi-input Case</h2>
+<p>For u <span class="math display">\[
+u=\begin{bmatrix}
+u_1 \\u_2\\\vdots\\u_m
+\end{bmatrix}
+\]</span> First we try direct comparison method</p>
+<p>Example <span class="math display">\[
+\dot x=\
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}x+
+\begin{bmatrix}
+1 &amp; 0\\0&amp;1
+\end{bmatrix}u
+\]</span> The desired polynomial is <span class="math display">\[
+s^2+2s+2
+\]</span> Then the controllability matrix is <span class="math display">\[
+M_c=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0
+\end{bmatrix}
+\]</span> The system is controllable.</p>
+<p>We choose <span class="math display">\[
+u=-Kx+Fr \\
+\dot x= Ax+Bu=Ax+B(-Kx+Fr)=(A-BK)x+BFr \\
+= 
+\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix}-
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+k_{11} &amp; k_{12} \\
+k_{21} &amp; k_{22}
+\end{bmatrix}=
+\begin{bmatrix}
+-k_{11} &amp;1-k_{12} \\
+-k_{21} &amp; -k_{22}
+\end{bmatrix}
+\]</span> The determinant is <span class="math display">\[
+\lambda^2+(k_{11}+k_{12})\lambda+k_{11}k_{12}-k_{12}k_{21}-k_{21}
+\]</span> Obviously, there are infinite solutions.</p>
+<h3 id="unity-rank-k">4.1 Unity Rank K</h3>
+<p>We choose <span class="math display">\[
+u=\begin{bmatrix}
+q_1\\q_2\\\vdots\\q_n
+\end{bmatrix}v
+\]</span> We can have different weights for different input. Then the system becomes single input system <span class="math display">\[
+\dot x=Ax+Bqv
+\]</span> Algorithm</p>
+<blockquote>
+<ol type="1">
+<li><p>Choose the weight vector q</p></li>
+<li><p>use the single input design <span class="math inline">\(k^T\)</span></p></li>
+<li><p><span class="math inline">\(K=qk^T\)</span></p></li>
 </ol>
-<p>Same as the above, it is possible to realize.</p>
-<ol start="4" type="a">
-<li>is it possible to realize the system such that it is both controllable and observable.</li>
-</ol>
-<p>Obviously, it is possible.</p>
-<p>Example 2. <span class="math display">\[
-y(k+1)=3y(k-1)-2y(k-2)+u(k)-2u(k-1)+u(k-2)\\
-\]</span> The questions are same as the above.</p>
-<ol type="a">
-<li><p><span class="math display">\[
-zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
-\frac{Y(z)}{U(z)}=\frac{z^2-2z+1}{z^3-3z-2}=\frac{(z-1)^2}{(z-1)^2(z+2)}
-\]</span></p></li>
-<li><p>it is possible observable but not controllable</p></li>
-<li><p>it is not possible controllable but not observable</p></li>
-<li><p>it is not possible controllable and observable</p></li>
-</ol>
+</blockquote>
+<p>Example <span class="math display">\[
+\dot x=Ax+Bu \\
+A=\begin{bmatrix}
+0 &amp; 1 \\ 0 &amp; 0
+\end{bmatrix} \\
+B=\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}
+\]</span> The desired polynomial is <span class="math display">\[
+s^2+2s+2
+\]</span> Choose weight vector <span class="math display">\[
+q=
+\begin{bmatrix}
+0 \\1
+\end{bmatrix} \\
+Bq=
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}\\
+M_c=
+\begin{bmatrix}
+0 &amp; 1\\ 1 &amp; 0
+\end{bmatrix} \\
+M_c^{-1} = 
+\begin{bmatrix}
+0 &amp; 1\\ 1 &amp; 0
+\end{bmatrix} \\
+\Phi(A)=A^2+2A+2I=
+\begin{bmatrix}
+2&amp;2\\0&amp;2
+\end{bmatrix}\\
+k^T=[0 \quad 1]M_c^{-1}\Phi(A)=[2 \quad 2] \\
+K=qk^T=
+\begin{bmatrix}
+0&amp;0\\2&amp;2
+\end{bmatrix}
+\]</span> For this method, we need to choose q to make the single input system [A Bq] is controllable.</p>
+<h3 id="full-rank-method">4.2 Full Rank Method</h3>
+For the single input system $$ M_c^{-1}=
+<span class="math display">\[\begin{bmatrix}
+q_1^T \\ q_2^T \\ \vdots \\ q_n^T
+\end{bmatrix}\]</span>
+<p>\</p>
+T=
+<span class="math display">\[\begin{bmatrix}
+q_n^T \\q_n^TA \\ \vdots \\q_n^TA^{n-1}
+\end{bmatrix}\]</span>
+\ B=TB=
+<span class="math display">\[\begin{bmatrix}
+0 \\0 \\ \vdots \\0\\1
+\end{bmatrix}\]</span>
+<p>$$</p>
+<p>For the multi-input system, shown in example</p>
+<p>for the system <span class="math display">\[
+\dot x=Ax+Bu \\
+A=
+\begin{bmatrix}
+-1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 1\\0 &amp; 0 &amp; 2
+\end{bmatrix}
+B=
+\begin{bmatrix}
+1 &amp; 1\\0 &amp; 0\\ 0 &amp; 1
+\end{bmatrix}
+\]</span> First we need the controllability matrix <span class="math inline">\(M_c\)</span> <span class="math display">\[
+M_c=
+\begin{bmatrix}
+B &amp; AB &amp; A^2B
+\end{bmatrix} = 
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 &amp; -1 &amp; 1 &amp;2\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 3\\
+0 &amp; 1 &amp; 0 &amp; 2 &amp; 0 &amp; 4\\
+\end{bmatrix}
+\]</span></p>
+<p>Then we choose independent vectors from left to right and group them in C <span class="math display">\[
+C=
+\begin{bmatrix}
+b_1 &amp; Ab_1 &amp; A^2b_1 &amp; \dotsm &amp; A^{d_1-1}b_1 &amp; | &amp; 
+b_2 &amp; Ab_2 &amp; A^2b_2 &amp; \dotsm &amp; A^{d_2-1}b_1 &amp; | &amp; \dotsm
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 \\
+0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 2
+\end{bmatrix}
+\]</span> 1 vector for the first input and 2 vectors for the second input</p>
+<p>We denote <span class="math inline">\(d_1=1\quad d_2=2\)</span></p>
+<p>Then we get <span class="math display">\[
+C^{-1}=
+\begin{bmatrix}
+1 &amp; 3 &amp; -1 \\
+0 &amp; -2 &amp; 1 \\
+0 &amp; 1 &amp; 0 \\
+\end{bmatrix}
+\]</span> And we choose <span class="math display">\[
+T=
+\begin{bmatrix}
+q_1 \\ q_3 \\ q_3A
+\end{bmatrix}=
+\begin{bmatrix}
+1&amp;3&amp;-1\\
+0&amp;1&amp;0\\
+0&amp;1&amp;1
+\end{bmatrix}\\
+T^{-1}=
+\begin{bmatrix}
+1 &amp; -4 &amp; 1 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 1 \\
+\end{bmatrix}\\
+\bar A=TAT^{-1}=
+\begin{bmatrix}
+-1&amp;|&amp;7&amp;0\\\hdashline
+0&amp;|&amp;0&amp;1\\
+0&amp;\Big|&amp;-2&amp;3
+\end{bmatrix} \\
+\bar B=TB=
+\begin{bmatrix}
+1 &amp; 0\\\hdashline0&amp; 0\\0&amp; 1
+\end{bmatrix}
+\]</span> Design the feedback gain matrix <span class="math display">\[
+\bar K=
+\begin{bmatrix}
+\bar k_{11}&amp;\bar k_{12}&amp;\bar k_{13}\\
+\bar k_{21}&amp;\bar k_{22}&amp;\bar k_{23}
+\end{bmatrix} \\
+\bar A-\bar B \bar K=
+\begin{bmatrix}
+-1-\bar k_{11} &amp; 7-\bar k_{12} &amp; -\bar k_{13}\\
+0&amp;0&amp;1\\
+-\bar k_{21} &amp; -2-\bar k_{22} &amp; 3-\bar k_{23}
+\end{bmatrix}
+\]</span></p>
+<p>We have the desired the eigenvalues -1 -2 -3</p>
+<p>Then we can choose the polynomial <span class="math display">\[
+(s+1)(s+2)(s+3)=(s+1)(s^2+5s+6)
+\]</span> And choose the desired matrix <span class="math display">\[
+A_d=
+\begin{bmatrix}
+-1 &amp;|&amp; 0 &amp; 0 \\\hdashline
+0&amp;|&amp;0&amp;1\\
+0&amp;|&amp;-6&amp;-5
+\end{bmatrix}
+\]</span> Then we can get the solution <span class="math display">\[
+\bar k_{11}=\bar k_{13}=\bar k_{21}=0 \\
+\bar k_{12}=7\\
+\bar k_{22}=4\\
+\bar k_{23}=8
+\]</span> Finally, <span class="math display">\[
+K=\bar KT=
+\begin{bmatrix}
+0 &amp; 7 &amp; 0 \\
+0 &amp; 12 &amp; 8 
+\end{bmatrix}
+\]</span></p>
 
         
       
@@ -499,7 +543,7 @@ zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/EE5104 Computer Control/5. Pole Placement Problem IO Model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -513,7 +557,7 @@ zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-title-link" itemprop="url">2. Computer Control and Discrete-Time Systems</a>
+            <a href="/2018/11/18/EE5104 Computer Control/5. Pole Placement Problem IO Model/" class="post-title-link" itemprop="url">5. Pole Placement Problem IO Model</a>
           
         </h1>
 
@@ -528,7 +572,7 @@ zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
                 
               
 
-              <time title="Created: 2018-11-14 13:44:42 / Modified: 00:04:50" itemprop="dateCreated datePublished" datetime="2018-11-14T13:44:42+08:00">2018-11-14</time>
+              <time title="Created: 2018-11-18 13:44:42 / Modified: 00:02:29" itemprop="dateCreated datePublished" datetime="2018-11-18T13:44:42+08:00">2018-11-18</time>
             </span>
           
             
@@ -560,211 +604,186 @@ zY(z)=3z^{-1}Y(z)-2z^{-2}Y(z)+U(z)-2z^{-1}U(z)+z^{-2}U(z)\\
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="pole-cancellation">1. Pole Cancellation</h2>
-<p>If the whole system is stable, then the poles and zeros can be cancelled out each other, then the reduced transfer function is good approximation of the original one.</p>
-<p>If the common factors are related to the same variables, they must cancel out.</p>
-<p>If the common factors are related to different variables, they should remain.</p>
-<p>The best tools to check whether they can be cancelled out or not is time domain. Proof is omitted.</p>
-<p>Example</p>
-<p>---u------G1------v------G2------y <span class="math display">\[
-G_1=\frac{s-1}{s^2+s+1}\\
-G_2=\frac{1}{s-1}\\
+          <h2 id="io-pole-placement">1. IO Pole Placement</h2>
+<p>For a input-output model</p>
+<p>Plant:<span class="math inline">\(\frac{B(z)}{A(z)}\)</span></p>
+<p>Feedback controller:<span class="math inline">\(\frac{S(z)}{R(z)}\)</span></p>
+<p>Feedforward controller:<span class="math inline">\(\frac{T(z)}{R(z)}\)</span></p>
+<p>For the close loop:,</p>
+<p>We have close loop t.f. <span class="math display">\[
+H_{cl}=\frac{RB}{AR+SB}\frac{T}{R}=\frac{TB}{AR+SB}
+\]</span> We have the c.p. <span class="math display">\[
+A_{cl}(z)=A_m(z)A_o(z)=A(z)R(z)+S(z)B(z)
+\]</span> If the order of the plant is n,</p>
+<p>we will have the following in order to tune all parameters <span class="math display">\[
+Deg \space A_{cl}=2n-1\\
+Deg \space S=n-1\\
+Deg \space R=n-1
+\]</span></p>
+<h2 id="reduce-order-by-pole-zero-cancellation">2.Reduce Order by Pole-Zero Cancellation</h2>
+<p>If we want to cancel out stable zeros, we can choose <span class="math display">\[
+A_{cl}=\bar{A}_{cl}B^+(z)\\
 \]</span> Then <span class="math display">\[
-G_1G_2=\frac{s-1}{(s^2+s+1)(s-1)}\\
-\]</span> ---u------G2------v------G1------y <span class="math display">\[
-G_2G_1=\frac{1}{s^2+s+1}\\
+H_{cl}=\frac{TB^{+}B^{-}}{\bar A_{cl}B^{+}}=\frac{TB^{-}}{\bar A_{cl}}
+\]</span> But we cannot cancel unstable zeros.</p>
+<p>and we can also cancel stable poles by choosing <span class="math display">\[
+T=\bar TA^+
+\]</span> and <span class="math display">\[
+A_{cl}=\bar{A}_{cl}A^+B^+(z)\\
+\]</span> and we can also cancel them at the same time.</p>
+<p>and the equation becomes <span class="math display">\[
+A^+A^-R+SB^+B^-=A_{cl}=\bar{A}_{cl}A^+B^+(z)
+\]</span> in order to cancel <span class="math inline">\(A^+B^+\)</span></p>
+<p>we need to choose <span class="math display">\[
+R=B^+\bar R\\
+S=A^+\bar S\\
+T=\bar TA^+\\
+\]</span> Then we have <span class="math display">\[
+A^-\bar R+\bar SB^-=\bar{A}_{cl}
+\]</span> The order of the equation is becoming less.</p>
+<h2 id="disturbance-rejection">3. Disturbance Rejection</h2>
+<p>we find the transfer function between disturbance and output is <span class="math display">\[
+H_{v}=\frac{Y(z)}{V(z)}=\frac{\frac{B}{A}}{1+\frac{SB}{RA}}=\frac{RB}{AR+SB}
+\]</span> if the disturbance is constant, we just need <span class="math inline">\(H_v(1)=0 \quad R(1)=0\)</span>.</p>
+<p>therefore, we just need <span class="math display">\[
+R(z)=(z-1)R&#39;
+\]</span> Tracking Problem</p>
+<p><span class="math inline">\(B(z)\)</span> is stable, i.e. the system has stable inverse.</p>
+<h2 id="design-steps">4. Design Steps</h2>
+<p>First build feedback controller and then build feedforward controller.</p>
+<p>how to build feedback controller</p>
+<ol type="1">
+<li>Design R, if zero cancelled, R needs to contain zero. if disturbance is cancelled, R needs to contain z-1.</li>
+<li>Design R and S by solving <span class="math inline">\(AR+BS=A_{cl}\)</span></li>
+<li>Choose T or <span class="math inline">\(H_{ff}\)</span> at the final stage.</li>
+</ol>
+<h2 id="io-example">5. IO Example</h2>
+<p>The Plant <span class="math display">\[
+G(z)=\frac{0.00058}{z-0.942}
+\]</span> The Desired Model <span class="math display">\[
+H_d(z)=\frac{0.0952z+0.0755}{z^2-1.331z+0.5016}
+\]</span> We need disturbance rejection <span class="math display">\[
+R=z-1\\
+S=s_0z+s_1\\
+A_{cl}=z^2-1.331z+0.5016\\
+AR+SB=(z-0.942)(z-1)+\\(s_0z+s_1)(0.00058)\\=z^2-1.331z+0.5016
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=1053.448\\
+s_1=-759.31
+\end{cases}
+\]</span> Then we have <span class="math display">\[
+R=z-1\\
+S=1053.448z-759.31
+\]</span> Then the feedback close loop system is <span class="math display">\[
+H_{fbc}=\frac{(z-1)0.00058}{z^2-1.331z+0.5016}
+\]</span> Now we will design the feedforward controller, <span class="math display">\[
+H_{fbc}H_{ff}=H_d\\
+H_{ff}=\frac{0.0952z+0.0755}{(z-1)0.00058}\\=\frac{16.41z+130.17}{z-1}
+\]</span> Therefore the controller is <span class="math display">\[
+U(z)=-H_{fb}(z)Y(z)+H_{ff}(z)U_c(z)\\
+H_{fb}=\frac{1053.448z-759.31}{z-1}\\
+H_{ff}=\frac{16.41z+130.17}{z-1}
+\]</span> Example</p>
+<p>Plant <span class="math display">\[
+H(z)=\frac{z+0.9}{z^2-2.5z+1}
+\]</span> The desired <span class="math display">\[
+A_m(z)=z^2-1.
+8z+0.9
+\]</span> a) The process zero is canceled</p>
+<p>The order of the plant is 2. <span class="math display">\[
+R=(z+0.9)\\
+S=s_0z+s_1\\
+A_{cl}=(z+0.9)(z^2-1.8z+0.9)
+\]</span> Then we have Diophantine Equation <span class="math display">\[
+AR+SB=(z^2-2.5z+1)(z+0.9)+(s_0z+s_1)(z+0.9)\\
+=A_{cl}=(z+0.9)(z^2-1.8z+0.9)\\
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=0.7\\
+s_1=-0.1\\
+\end{cases}
+\]</span> Then the close loop system is <span class="math display">\[
+H_{ff}=\frac{T}{R}
+\\H_{cl}=\frac{RB}{AR+SB}H_{ff}\\=\frac{TB}{AR+SB}\\=\frac{T}{z^2-1.8z+0.9}
+\]</span> We know <span class="math display">\[
+H_{cl}(1)=1
+\]</span> Then we have <span class="math display">\[
+T=0.1
+\]</span> Therefore <span class="math display">\[
+U(z)=-\frac{S}{R}Y(z)+\frac{T}{R}U(z)\\=-\frac{0.7z-0.1}{z+0.9}Y(z)+\frac{0.1}{z+0.9}U_c(z)
 \]</span></p>
-<h2 id="zero-order-hold-discrete-instead-of-first-order-hold">2. Zero-order Hold Discrete instead of First Order Hold</h2>
-<p>Because you will never know what will happen in the next time. So we can only choose zero-order hold for the computer control system.</p>
-<h2 id="how-to-solve-the-differential-equation">3. How to Solve the Differential Equation</h2>
+<ol start="2" type="a">
+<li>The process zero is not canceled <span class="math display">\[
+A_{cl}=zA_m=z^3-1.8z^2+0.9z\\
+S=s_0z+s_1\\
+R=z+r_1
+\]</span> Then we have Diophantine Equation <span class="math display">\[
+AR+SB=A_{cl}\\
+(z^2-2.5z+1)(z+r_1)+\\(s_0z+s_1)(z+0.9)=\\z^3-1.8z^2+0.9z
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+r_1=0.1618\\
+s_0=0.5382\\
+s_1=-0.1798
+\end{cases}
+\]</span> Then we design the feedforward controller. <span class="math display">\[
+H_{cl}=\frac{TB}{AR+SB}\\
+H_{cl}(1)=1\\
+T=0.05263\\
+\]</span></li>
+</ol>
+<p>Therefore, the controller is <span class="math display">\[
+U(z)=-\frac{0.5382z-0.1798}{z+0.1618}Y(z)\\+\frac{0.05263}{z+0.1618}U_c(z)
+\]</span></p>
+<p>Example <span class="math display">\[
+H(z)=\frac{z-0.5}{z^2-1}\\
+H_m(z)=\frac{1}{z^2}\\
+\]</span> (a)Desgin a controller in the form <span class="math inline">\(R(q)u(k)=T(q)u_c(k)-S(q)y(k)\)</span>. Match the reference model and reject disturbance. <span class="math display">\[
+R(z)=(z-1)(z-0.5)\\
+S(z)=s_0z^2+s_1z+s_2\\
+A_{cl}=A_oA_m=z^3(z-0.5)\\
+AR+SB=A_{cl}\\
+\]</span> Then we have <span class="math display">\[
+\begin{cases}
+s_0=1\\
+s_1=1\\
+s_2=-1\\
+\end{cases}
+\]</span></p>
 <p><span class="math display">\[
-x(t)=\underbrace{e^{At}x(0)}_{\text{zero input response}}+\underbrace{\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau}_{\text{zero-state response}}\\
+\frac{RB}{AR+SB}\frac{T}{R}=H_m(z)\\
+\frac{zt_0}{z^3}=\frac{1}{z^2}\\
+t_0=1\\
 \]</span></p>
-<p>For continuous time, we have differential equation, differentiation operator, Laplace Transform, continuous state space.</p>
-<p>For discrete time, we have difference equation, shift operator, Z Transform, discrete state space.</p>
-<h2 id="discrete-with-zero-order-hold">4. Discrete with Zero-Order Hold</h2>
-<p>For a constant in the whole interval <span class="math inline">\([t_k,t_{k+1})\)</span> <span class="math display">\[
-x(t)=e^{A(t-t_k)}x(t_k)+\int_{t_k}^{t}e^{A(t-\tau)}d\tau Bu(t_k)\\
-\]</span> For the second part we have <span class="math inline">\(v=t-\tau\)</span> <span class="math display">\[
-\int_{t_k}^{t}e^{A(t-\tau)}d\tau=\int_0^{t-t_k}e^{Av}dv\\
-\]</span> If the sampling time is h, we have <span class="math display">\[
-x(kh+h)=e^{Ah}x(kh)+\int_0^he^{Av}dvBu(kh)=\Phi x(kh)+\Gamma u(kh)\\
-\]</span> To be simple <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y=Cx\\
-\]</span> where <span class="math display">\[
-\Phi=e^{Ah} \\
-\Gamma=\int_0^he^{Av}dvB\\
+<p><span class="math display">\[
+U(z)=-\frac{z^2+z-1}{(z-1)(z-0.5)}Y(z)+\frac{z}{(z-1)(z-0.5)}U_c(z)\\
+(z^2-1.5z+0.5)U(z)=-(z^2+z-1)Y(z)+zU_c(z)\\
+u(k+2)-1.5u(k+1)+0.5u(k)=\\-y(k+2)-y(k+1)+y(k)+u_c(k+1)\\
+u(k)=1.5u(k-1)-0.5u(k-2)\\-y(k)-y(k-1)+y(k-2)+u_c(k-1)
 \]</span></p>
-<p>Difference Equation <span class="math display">\[
-y(k+1)=a_1y(k)+a_2y(k-1)+b_0u(k)+b_1u(k-1)\\
-y(k+1)-a_1y(k)-a_2y(k-1)=b_0u(k)+b_1u(k-1)\\
-\]</span> We define shift-operator q <span class="math display">\[
-qf(k)=f(k+1)\\
-q^{-1}f(k)=f(k-1)\\
-\]</span> Then we will have <span class="math display">\[
-qy(k)-a_1y(k)-a_2q^{-1}y(k)=b_0u(k)+b_1q^{-1}u(k)\\
-\frac{y(k)}{u(k)}=\frac{b_0+b_1q^{-1}}{q-a_1-a_2q^{-1}}=\frac{b_0q+b_1}{q^2-a_1q-a_2}=\frac{B(q)}{A(q)}\\
+<ol start="2" type="a">
+<li>Design controller in the form of <span class="math inline">\(u(k)=u_{fb}(k)+u_{ff}(k)\)</span> <span class="math display">\[
+R(z)=(z-1)(z+r_1)\\
+S(z)=s_0z^2+s_1z+s_2\\
+A_{cl}=A_oA_m=z^4\\
+AR+SB=\\(z^2-1)(z-1)(z+r_1)\\+(s_0z^2+s_1z+s_2)(z-0.5)\\
+=z^4\\
+\]</span> We can get the result <span class="math display">\[
+\begin{cases}
+r_1=-\frac{1}{3}\\
+s_0=\frac{4}{3}\\
+s_1=\frac{4}{3}\\
+s_2=-\frac{2}{3}\\
+\end{cases}
+\]</span></li>
+</ol>
+<p><span class="math display">\[
+\frac{RB}{AR+SB}H_{ff}\\=\frac{(z-1)(z-\frac{1}{3})(z-0.5)}{z^4}H_{ff}\\
+=\frac{1}{z^2}\\
+H_{ff}(z)=\frac{z^2}{(z-1)(z-\frac{1}{3})(z-0.5)}\\
+U(z)=-\frac{\frac{4}{3}z^2+\frac{4}{3}z-\frac{2}{3}}{(z-1)(z-\frac{1}{3})}Y(z)+H_{ff}U_c(z)
 \]</span></p>
-<h2 id="z-transform">5. Z Transform</h2>
-<p>In continuous time domain, we have <span class="math display">\[
-u=e^{st}\quad y=H(s)e^{st}\\
-\]</span> In discrete time domain, we have <span class="math display">\[
-e^{st\quad\underrightarrow{t\rightarrow kh}}\quad e^{skh\quad\underrightarrow{e^{sh}\rightarrow a}} \quad a^k\\
-\]</span> Therefore, <span class="math display">\[
-u(k)=a^k\quad y(k)=H(a)a^k\\
-\]</span> Then we have the following calculation which has the same properties. <span class="math display">\[
-F(z)=\sum^\infty_{k=0}f(k)z^{-k}\\
-\]</span> Which is Z transform.</p>
-<p>For impulse signal, we have <span class="math inline">\(U(z)=1\)</span>.</p>
-<p>For <span class="math inline">\(u=a^k\)</span>, we have <span class="math inline">\(U(z)=\frac{1}{z-a}\)</span>.</p>
-<p>Inverse Z Transform e.g. <span class="math display">\[
-z^2Y(z)-Y(z)=zU(z)+2U \\
-\frac{Y}{U}=G(z)=\frac{z+2}{z^2-1}\\
-\frac{G(z)}{z}=\frac{z+2}{z(z+1)(z-1)}=\frac{A_1}{z}+\frac{A_2}{z+1}+\frac{A_3}{z-1} \\
-G(Z)=\frac{z+2}{z(z+1)(z-1)}=-1+\frac{0.5z}{z+1}+\frac{0.5z}{z-1} \\
-\]</span> After inverse z transform <span class="math display">\[
-y(k)=-\delta(k)+0.5(-1)^k+0.5 (1)^k
-\]</span> Apply z transform to state space equation <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y(k) = cx(k) \\
-zX(z)-x(0)=\Phi X(z)+\Gamma U(z) \\
-(zI-\Phi)X(z)=x(0)+\Gamma U(z) \\
-X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z) \\
-Y(z)=cX(Z)=c(zI-\Phi)^{-1}x(0)+c(zI-\Phi)^{-1}\Gamma U(z)\\
-\]</span></p>
-<p>For s domain, steady state gain(SSG) is H(0).</p>
-<p>For z domain, SSG is H(1).</p>
-<p>Poles in continuous time domain(CTD) is <span class="math inline">\(\lambda\)</span> , in the discrete time is <span class="math inline">\(e^{h\lambda }\)</span></p>
-<p>In CTD, if <span class="math inline">\(\lambda = \sigma+j\omega\)</span> , <span class="math inline">\(e^{\sigma+j\omega}=e^{\sigma}(cos (\omega)+jsin(\omega))\)</span></p>
-<p>In DTD, <span class="math inline">\(e^{h\lambda}=e^{h(\sigma+jw)}=e^{h\sigma}e^{jhw}\)</span></p>
-<p>Therefore, we can map poles from continuous time domain to discrete time domain.</p>
-<h2 id="example">6. Example</h2>
-<p>We have one electrical system <span class="math inline">\(L=C=R=1\)</span> <span class="math display">\[
-L\frac{di}{dt}+Ri+\frac{1}{C}\int idt=e_i\\
-\frac{1}{C}\int idi=e_o
-\]</span> a) Derive transfer function. Input is <span class="math inline">\(e_i\)</span>. Output is <span class="math inline">\(e_o\)</span>. <span class="math display">\[
-s^2Y(s)+sY(s)+Y(s)=U(s)\\
-\frac{Y(s)}{U(s)}=\frac{1}{s^2+s+1}\\
-\]</span> b) Define <span class="math inline">\(x_1=e_o,x_2=\dot e_o\)</span>, derive state space representation. <span class="math display">\[
-\dot x_1=x_2\\
-\dot x_2=-x_2-x_1+u\\
-x=Ax+Bu\\
-y=Cx\\
-A=
-\begin{bmatrix}
-0 &amp; 1\\
--1 &amp; -1
-\end{bmatrix}x+
-\begin{bmatrix}
-0\\
-1
-\end{bmatrix}u\\
-y=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}x\\
-\]</span> c) Discrete this system with h=1. <span class="math display">\[
-x(k+1)=\Phi x+\Gamma u\\
-y=Cx\\
-\Phi=e^{Ah}\\
-\]</span> According to Caley-Hamilton Equation <span class="math display">\[
-f(\lambda)=e^{\lambda t}\\
-h(\lambda)=\beta_0+\beta_1\lambda\\
-\lambda_1=-0.5+\frac{\sqrt3}{2}i\\
-\lambda_2=-0.5-\frac{\sqrt3}{2}i\\
-f(\lambda_1)=e^{(-0.5+\frac{\sqrt3}{2}i)t}=h(\lambda_1)=\beta_0+\beta_1(-0.5+\frac{\sqrt3}{2}i)\\
-f(\lambda_2)=e^{(-0.5-\frac{\sqrt3}{2}i)t}=h(\lambda_2)=\beta_0+\beta_1(-0.5-\frac{\sqrt3}{2}i)\\
-\]</span> Then we can solve that <span class="math display">\[
-\beta_0=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
-\\
-\beta_1=\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
-\]</span> Then we have <span class="math display">\[
-f(A)=h(A)=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
-\begin{bmatrix}
-1 &amp; 0\\
-0 &amp; 1\\
-\end{bmatrix}+
-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}
-\begin{bmatrix}
-0 &amp; 1\\
--1 &amp; -1
-\end{bmatrix}\\
-=\begin{bmatrix}
-e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]&amp;
-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
--\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}&amp;
-e^{-0.5t}[\cos{\frac{\sqrt3}{2}t-\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
-\end{bmatrix}\\
-\]</span> Then we have <span class="math display">\[
-\Phi=
-\begin{bmatrix}
-0.6597 &amp; 0.5335\\
--0.5335 &amp; 0.1262\\
-\end{bmatrix}\\
-\Gamma=A^{-1}[e^{Ah}-I]B=
-\begin{bmatrix}
-0.3403\\
-0.5335
-\end{bmatrix}\\
-C=
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}\\
-\]</span> d) Apply z-transform to c), and obtain input-output model <span class="math display">\[
-x(k+1)=\Phi x(k)+\Gamma u(k)\\
-y(k)=Cx(k)\\
-zX(z)-x(0)=\Phi X(z)+\Gamma U(z)\\
-X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z)\\
-Y(z)=C(zI-\Phi)^{-1}x(0)+C(zI-\Phi)^{-1}\Gamma U(z)\\
-=\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335\\
--0.5335 &amp; z-0.6579
-\end{bmatrix}x(0)+\\
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335\\
--0.5335 &amp; z-0.6579
-\end{bmatrix}
-\begin{bmatrix}
-0.3403\\
-0.5335
-\end{bmatrix}U(z)=\\
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335
-\end{bmatrix}x(0)+\\
-\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
-\]</span> We assume initial state is zero. <span class="math display">\[
-Y(z)=\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
-y(k+2)-0.7859y(k+1)+0.3679y(k)=0.3403u(k+1)+0.2417u(k)\\
-y(k+1)=0.7859y(k)-0.3679y(k-1)+0.3403u(k)+0.2419u(k-1)\\
-\]</span> e) Assuming initial condition is <span class="math inline">\(x_1(0)=1,x_2(0)=0\)</span> , with step input, calculate the output <span class="math inline">\(y(k)\)</span>. <span class="math display">\[
-Y(z)=
-\frac{1}{z^2-0.7859z+0.3679}
-\begin{bmatrix}
-z-0.1262 &amp; 0.5335
-\end{bmatrix}
-(
-\begin{bmatrix}
-1\\
-0\\
-\end{bmatrix}z+
-\begin{bmatrix}
-0.3403\\
-0.5335\\
-\end{bmatrix}\frac{z}{z-1}
-)\\
-=\frac{z}{z-1}\\
-\]</span></p>
-<p>Therefore, <span class="math inline">\(y(z)=1\)</span></p>
 
         
       
@@ -788,7 +807,7 @@ z-0.1262 &amp; 0.5335
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -833,7 +852,7 @@ z-0.1262 &amp; 0.5335
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -862,7 +881,9 @@ z-0.1262 &amp; 0.5335
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -896,7 +917,7 @@ z-0.1262 &amp; 0.5335
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

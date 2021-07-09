@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/EE5907 Pattern Recognition/3. Naive Bayes Classifier/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/17/EE5907 Pattern Recognition/6. Bayesian Statistics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/03/11/EE5907 Pattern Recognition/3. Naive Bayes Classifier/" class="post-title-link" itemprop="url">Chapter 3. Navie Bayes Classifier</a>
+            <a href="/2019/04/17/EE5907 Pattern Recognition/6. Bayesian Statistics/" class="post-title-link" itemprop="url">Chapter 6. Bayesian Statistics</a>
           
         </h1>
 
@@ -247,7 +247,7 @@
                 
               
 
-              <time title="Created: 2019-03-11 13:46:13 / Modified: 14:54:09" itemprop="dateCreated datePublished" datetime="2019-03-11T13:46:13+08:00">2019-03-11</time>
+              <time title="Created: 2019-04-17 13:46:13 / Modified: 14:52:27" itemprop="dateCreated datePublished" datetime="2019-04-17T13:46:13+08:00">2019-04-17</time>
             </span>
           
             
@@ -279,157 +279,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="introduction">1. Introduction</h2>
-<p>Let y be the target class label, x be the feature vector of length D</p>
-<p>Then we have a generative classifier <span class="math display">\[
-p(x,y|\theta)=p(y|\theta)p(x|y,\theta)
-\]</span> To define the classifier, we need to define the distribution <span class="math inline">\(p(y|\theta)\)</span> and <span class="math inline">\(p(x|y,\theta)\)</span></p>
-<p>we split <span class="math inline">\(\theta\)</span> into two parts <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\eta\)</span> .</p>
-<p><span class="math inline">\(\lambda\)</span> are the parameters of prior. For classification, y is by definition discrete then <span class="math inline">\(p(y|\lambda)\)</span> has to be a categorical distribution.</p>
-<p><span class="math inline">\(\eta\)</span> are the parameters of the likelihood. Modeling aspect comes from specifying the feature likelihood. Intuitively, feature likelihood is saying that the data point comes from the specific class with label c, what is pdf of the features x? Naive Bayes Classifier assumes features are conditionally independent given class <span class="math display">\[
-p(x|y=c,\eta)=\prod_{j=1}^Dp(x_j|y=c,\eta)=\prod_{j=1}^Dp(x_j|\eta_{jc})
-\]</span> That means p of the feature vector x given the class label c is equal to the product from feature 1 to D.</p>
-<p>For example <span class="math inline">\(p(x_1|\eta_{1,c1})\)</span> is Gaussian Distribution, then <span class="math inline">\(\eta_{1,c1}=(\mu_{1,c1},\sigma^2_{1,c1})\)</span> . <span class="math inline">\(p(x_2|\eta_{2,c1})\)</span> is Bernoulli Distribution. Each features can be different distribution.</p>
-<p>Naïve because features are probably not conditionally independent.</p>
-<h2 id="strategies-to-estimate-parameters-and-classifying">2. Strategies to Estimate Parameters and Classifying</h2>
-<p>Three strategies</p>
-<p>ML: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{ML}=\arg\max_\theta p(D|\theta)\)</span>. Then predict.</p>
-<p>MAP: Estimate parameter <span class="math inline">\(\theta\)</span> with <span class="math inline">\(\theta_{MAP}=\arg\max_\theta p(\theta|D)\)</span>. Then predict.</p>
-<p>Posterior Predictive/ Beyesian Model Averaging (detailed in the following parts): <span class="math display">\[
-p(\tilde y|\tilde x, D)
-\]</span> Then <span class="math display">\[
-p(x,y|\theta)=p(y|\lambda)p(x|y,\eta)
-\]</span> We hope to use MAP to estimate the model parameters. We can prove the two parameters can be optimized separately. <span class="math display">\[
-\begin{array}{rcl}
-p(\theta|D)&amp;=&amp;p(\lambda,\eta|D)\\
-&amp;=&amp; \frac{p(D|\lambda,\eta)p(\lambda,\eta)}{p(D)}\\
-&amp;=&amp; \frac{p(y_{1:N}|\lambda,\eta)p(x_{1:N}|y_{1:N},\lambda,\eta) p(\lambda)p(\eta)}{p(y_{1:N})p(x_{1:N}|y_{1:N})}\\
-&amp;=&amp;\left(\frac{p(y_{1:N}|\lambda)p(\lambda)}{p(y_{1:N})}\right)
-\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
-&amp;=&amp;p(\lambda|y_{1:N})\left(\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}\right)\\
-\end{array}
-\]</span> ## 3. For the First Part</p>
-<p>if beta prior <span class="math display">\[
-\lambda^{MAP}=\frac{N_{head}+a-1}{N+a+b-2}
-\]</span> if Dirichlet prior <span class="math display">\[
-\lambda^{MAP}=\frac{N_c+\alpha_c-1}{N+\sum_{c=1}^C\alpha_c-C}
-\]</span> ## 4. For the Second Part</p>
-<p>Naïve Bayes means every features are independent <span class="math display">\[
-\frac{p(x_{1:N}|y_{1:N},\eta)p(\eta)}{p(x_{1:N}|y_{1:N})}=\prod_{j=1}^D\prod_{c=1}^C\frac{p(\eta_{jc})p(x_{i\in c,j}|\eta_{jc})}{p(x_{i\in c,j})}\\
-=\prod_{j=1}^D\prod_{c=1}^Cp(\eta_{jc}|x_{i\in c,j})
-\]</span> For every dimension j and every class c, use MAP to estimate parameter <span class="math inline">\(\eta_{jc}\)</span></p>
-<h2 id="predicting-target-class">5. Predicting Target Class</h2>
-<p>Once we have estimate <span class="math inline">\(\lambda^{MAP}\)</span> and <span class="math inline">\(\eta ^{MAP}\)</span> , we can use the parameter to compute for each class c: <span class="math display">\[
-p(\tilde y=c|\tilde x,\lambda^{MAP},\eta^{MAP})=p(\tilde y=c|\lambda^{MAP})p(\tilde x|\eta_{jc}^{MAP})\\
-=\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})
+          <h2 id="bayes-model-selection">1. Bayes Model Selection</h2>
+<p>Bayesian Model Selection tradeoffs complexity with training error</p>
+<p>In practice, cross-validation works better than Bayesian model selection, but this is an important conceptual idea.</p>
+<p>Bayesian model selection <span class="math display">\[
+\hat m = \underset{m}{\operatorname{argmax}} p(m|D)\\
+= \underset{m}{\operatorname{argmax}} p(D|m)p(m)\\
 \]</span></p>
-<p>In practice, for numerical stability, we compute <span class="math display">\[
-\log\lambda_c^{MAP}\prod_{j=1}^Dp(\tilde x_j|\eta_{jc}^{MAP})=\\
-\log \lambda_c^{MAP}+\sum_{j=1}^D \log p(\tilde x_j|\eta_{jc}^{MAP})
-\]</span> Example</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Feature 1</th>
-<th style="text-align: center;">Feature 2</th>
-<th style="text-align: center;">Class Label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">?</td>
-</tr>
-</tbody>
-</table>
-<p>For the first part <span class="math display">\[
-\lambda^{ML}_1=\frac{1}{3}\quad\lambda^{ML}_2=\frac{2}{3}\\
-\]</span> For the second part <span class="math display">\[
-\eta^{ML}_{11}=0\quad \eta^{ML}_{21}=0\\
-\eta^{ML}_{12}=1\quad \eta^{ML}_{22}=0.5\\
-\]</span> Then <span class="math display">\[
-\log p(\tilde y=1|\tilde x,\lambda^{MAP},\eta^{MAP})
-=\log\lambda_1^{MAP}+\sum_{j=1}^2\log p(\tilde x_j|\eta_{j1}^{MAP})\\
-=\log\lambda_1^{MAP}+\log p(\tilde x_1|\eta_{11}^{MAP})+\log p(\tilde x_1|\eta_{21}^{MAP})=-\infty\\
-\log p(\tilde y=2|\tilde x,\lambda^{MAP},\eta^{MAP})
-=\log\lambda_2^{MAP}+\sum_{j=1}^2\log p(\tilde x_j|\eta_{j2}^{MAP})\\
-=\log\lambda_2^{MAP}+\log p(\tilde x_1|\eta_{12}^{MAP})+\log p(\tilde x_1|\eta_{22}^{MAP})\\
-=\log 2/3+\log 1+\log 0.5=-1.1
-\]</span> So <span class="math inline">\(\tilde y=2\)</span></p>
-<h2 id="posterior-predictive-estimation">6. Posterior Predictive Estimation</h2>
+<p>assume all model chosen prior are the same, then we have <span class="math inline">\(p(m)\propto 1\)</span></p>
+<p>then <span class="math display">\[
+\hat m = \underset{m}{\operatorname{argmax}} p(D|m)
+\]</span> Recall we have MAP estimation <span class="math display">\[
+\theta_{MAP}=\underset{\theta}{\operatorname{argmax}} p(\theta|D)\\
+=\underset{\theta}{\operatorname{argmax}} \frac{p(D|\theta)|p(\theta)}{p(D)}\\
+\]</span> The above is based on the model assumption <span class="math display">\[
+\theta_{MAP}=\underset{\theta}{\operatorname{argmax}} p(\theta|D)\\
+=\underset{\theta}{\operatorname{argmax}} \frac{p(D|\theta)|p(\theta)}{p(D)}\\
+=\underset{\theta}{\operatorname{argmax}} \frac{p(D|\theta,m)|p(\theta|m)}{p(D|m)}\\
+\]</span> We ignore the denominator because only consider one model. From the above equation, we can see that the evidence is actually the model likelihood <span class="math inline">\(p(D|m)\)</span>.</p>
+<p>But why it works?</p>
+<p>Complex models can explain many things <span class="math inline">\(p(D&#39;|m)\)</span> is non-zero for many different and complex <span class="math inline">\(D&#39;\)</span></p>
+<p>However, <span class="math inline">\(\sum_{D&#39;}p(D&#39;|m)=1\)</span> and many <span class="math inline">\(p(D&#39;|m)\)</span> are non-zero, which means <span class="math inline">\(p(D&#39;|m)\)</span> cannot be very big either.</p>
+<p>Example, given dots coming from quadratic curve</p>
+<ol type="1">
+<li>M1 is linear curves, it cannot fit dots well, so <span class="math inline">\(p(dots|M_1)\)</span> is very small.</li>
+<li>M3 is linear, quadratic and cubic curves. It can fit dots well but waste none-zero probability on cubic curves. We can think that cubic curves can also fit many other dots very well so <span class="math inline">\(p(dots|M_3)\)</span> is also big for many other data.</li>
+<li>M2 is linear and quadratic curves. It can fit dots well and no waste. Therefore, <span class="math inline">\(p(dots|M_2)\)</span> is the highest.</li>
+</ol>
+<h2 id="computing-marginal-likelihood-evidence">2. Computing Marginal Likelihood (Evidence)</h2>
+<p>Then we try to computing the marginal likelihood <span class="math display">\[
+P(D)=\frac{p(D|\theta)p(\theta)}{p(\theta|D)}
+\]</span> Example <span class="math display">\[
+P(D|\theta)=Bin(N_0,N_1|\theta)\\
+P(\theta)=Beta(a,b)\\
+P(\theta|D)=Beta(a+N_1,b+N_0)\\
+\]</span> then <span class="math display">\[
+P(D)=\frac{p(D|\theta)p(\theta)}{p(\theta|D)}=\left(
+\begin{array}{lll}
+N\\N_1
+\end{array}\right)
+\frac{B(a+N_1,b+N_0)}{B(a,b)}
+\]</span> which is very difficult to compute</p>
+<p>we use Bayesian Information Criteria (BIC) to approximate <span class="math display">\[
+\log p(D)\approx \log p(D|\theta_{ML})-(dof(\theta)/2)\log N
+\]</span> So we see that a more complicated model will generally result in a better log likelihood. On the other hand, a more complex model has higher degree of freedoms and therefore gets penalized in the second term.</p>
+<p>The log N might seem weird. So the more the data, the more penalty there is. If there is more data shouldn’t we be able to fit more complex models?</p>
+<p>Well actually there is no contradiction because the first term grows linearly with N, so as we accumulate more data the first term should grow linearly with N, while the second term grows logarithmically with N.</p>
+<p>Some literature suggests that using MAP estimate works better.</p>
+<h2 id="bayesian-decision-theory">3. Bayesian Decision Theory</h2>
+<p>We have estimated the posterior probability of some parameters, but in real world, we need to translate this posterior probability into action. When we choose an action a, we can define the loose function <span class="math inline">\(L(y,a)\)</span> . For example, <span class="math inline">\(L(y,a)=(y-a)^2\)</span></p>
+<p>Then we can pick an action by minimizing posterior expected loss <span class="math display">\[
+\delta(x)=\arg\min_{a\in A} E(L(y,a))=\arg\min_{a\in A} \sum_y L(y,a)p(y|x) 
+\]</span> MAP Estimate Minimizes 0-1 Loss <span class="math display">\[
+\rho(a|x)=\sum_y L(y,a)p(y|x)=p(y\neq a|x)=1-p(y=a|x)
+\]</span> minimizing <span class="math inline">\(1-p(y=a|x)\)</span> equivalent to maximize <span class="math inline">\(p(y=a|x)\)</span></p>
+<p>Posterior Mean Minimizes <span class="math inline">\(l_2\)</span> Loss <span class="math display">\[
+\rho(a|x)=\sum_y L(y,a)p(y|x)=E [(y-a)^2|x]=E(y^2|x)-2aE(y|x)+a^2\\
+\frac{\partial }{\partial a}\rho(a|x)=0\\
+a=E(y|x)
+\]</span> Posterior Mean Minimizes <span class="math inline">\(l_1\)</span> Loss</p>
 <p><span class="math display">\[
 \begin{array}{rcl}
-p(\tilde y|\tilde x,D)
-&amp;=&amp;\frac{p(\tilde x,\tilde y|D)}{p(\tilde x|D)}\\
-&amp;\propto&amp; p(\tilde x,\tilde y|D)\quad \text{nothing about }\tilde y\\
-&amp;=&amp; p(\tilde x|\tilde y,D)p(\tilde y|D)\\
-&amp;=&amp; p(\tilde x|\tilde y,x_{1:N},y_{1:N})p(\tilde y|x_{1:N},y_{1:N})\\
-&amp;=&amp; p(\tilde y|y_{1:N})p(\tilde x|\tilde y,x_{1:N},y_{1:N})
+\rho(a|x)&amp;=&amp;\sum_y (|y-a|)p(y|x)\\
+&amp;=&amp; \sum_{y\ge a}(y-a)p(y|x)+ \sum_{y&lt; a}(a-y)p(y|x)\\
+\frac{\partial \rho}{\partial a}&amp;=&amp; \sum_{y\ge a}-p(y|x)+ \sum_{y&lt; a}p(y|x)=0\\
+&amp;\implies&amp; p(y&lt;a|x)=p(y\ge a|x)=0.5
 \end{array}
+\]</span> Therefore, a is the median.</p>
+<p>False Positive (FP) - False Negative (FN) Tradeoff <span class="math display">\[
+L(\hat y=0|x)=L_{FN}p(y=1|x)\\
+L(\hat y=1|x)=L_{FP}p(y=0|x)\\
+\]</span> Then we choose <span class="math inline">\(\hat y=1\)</span> when <span class="math display">\[
+L(\hat y=0|x)&gt;L(\hat y=1|x)\\
+L_{FN}p(y=1|x)&gt;L_{FP}p(y=0|x)\\
+\frac{p(y=1|x)}{p(y=0|x)}&gt;\frac{L_{FP}}{L_{FN}}
 \]</span></p>
-<p>The first part is just posterior predictive distribution for beta-binomial or Dirichlet-multinomial model.</p>
-<p>For the second part, we can compute independently for each dimension j and class c. <span class="math display">\[
-p(\tilde x|\tilde y,x_{1:N},y_{1:N})=\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
-\]</span> Then for every dimension <span class="math inline">\(j\)</span> and every class <span class="math inline">\(c\)</span>, we compute posterior predictive distribution of test feature <span class="math inline">\(p(\tilde x_j|x_{i\in c,j},\tilde y=c)\)</span></p>
-<p>To summarize, to predict target class label, we have <span class="math display">\[
-p(\tilde y=c|\tilde x,D)\propto p(\tilde y|y_{1:N})\prod_{j=1}^Dp(\tilde x_j|x_{i\in c,j},\tilde y=c)
-\]</span> For numerical stability, we compute <span class="math display">\[
-\log p(\tilde y=c|\tilde x,D)\propto \log p(\tilde y|y_{1:N})+\sum_{j=1}^D\log p(\tilde x_j|x_{i\in c,j},\tilde y=c)
+<p>From the above, we define a threshold <span class="math inline">\(f(x)=\frac{p(y=1|x)}{p(y=0|x)}\)</span> at <span class="math inline">\(\tau=\frac{L_{FP}}{L_{FN}}\)</span> to make classification decision.</p>
+<p>If we define true positive rate (TPR) as <span class="math inline">\(\frac{N_{TP}}{N_1}\)</span> where <span class="math inline">\(N_1=N_{FN}+N_{TP}\)</span> and false negative rate (FPR) as <span class="math inline">\(\frac{N_{FP}}{N_{0}}\)</span> where <span class="math inline">\(N_0=N_{TN}+N_{FP}\)</span></p>
+<p>Then we can plot with different <span class="math inline">\(\tau\)</span> with x axis as TPR and y axis as <span class="math inline">\(FPR\)</span></p>
+<p>The plot is called receiver operating characteristic (ROC)</p>
+<h2 id="mixture-of-conjugate-priors">3. Mixture of Conjugate Priors</h2>
+<p>Conjugate priors simplify computation but not flexible enough.</p>
+<p>We define the conjugate priors as mixture <span class="math display">\[
+p(\theta)=\sum_kp(z=k)p(\theta|z=k)
+\]</span> Then we have the posterior <span class="math display">\[
+p(\theta|D)=\sum_kp(z=k|D)p(\theta|z=k,D)\\
+\]</span> where <span class="math display">\[
+p(z=k|D)=\frac{p(z=k)p(D|z=k)}{\sum_{k&#39;}p(z=k&#39;)p(D|z=k&#39;)}
 \]</span> Example</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Feature 1</th>
-<th style="text-align: center;">Feature 2</th>
-<th style="text-align: center;">Class Label</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">?</td>
-</tr>
-</tbody>
-</table>
-<p>Predict <span class="math inline">\(\tilde y\)</span> using ML for class prior and We will use posterior predictive with the prior Beta(2,2) for feature likelihood. <span class="math display">\[
-p(\tilde y=1|\lambda^{ML}_1)=\frac{1}{3}\quad p(\tilde y=2|\lambda^{ML}_2)=\frac{2}{3}\\
-p(\tilde x_1|x_{i\in c1,1},\tilde y=c1) =\frac{2}{5} \quad p(\tilde x_2|x_{i\in c1,2},\tilde y=c1) =\frac{2}{5}\\
-p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in c2,2},\tilde y=c2) =\frac{1}{2}
-\]</span> Then we have the probability <span class="math display">\[
-\log p(\tilde y=c1|\tilde x,D)\propto =-2.53\\
-\log p(\tilde y=c2|\tilde x,D)\propto =-1.50\\
+<p>Suppose <span class="math inline">\(p(\theta)=0.5Beta(20,20)+0.5Beta(30,10)\)</span> Suppose we observe 20 heads and 10 tails, then the posterior <span class="math display">\[
+p(D|z=1)=\left(
+\begin{array}{lll}
+N\\N_1
+\end{array}\right)
+\frac{B(a+N_1,b+N_0)}{B(a,b)}=\\
+\left(
+\begin{array}{lll}
+30\\20
+\end{array}\right)
+\frac{B(40,30)}{B(20,20)}=0.0437\\
+p(D|z=2)=\left(
+\begin{array}{lll}
+N\\N_1
+\end{array}\right)
+\frac{B(a+N_1,b+N_0)}{B(a,b)}=\\
+\left(
+\begin{array}{lll}
+30\\20
+\end{array}\right)
+\frac{B(50,20)}{B(30,10)}=0.0826
+\]</span> Then we have <span class="math display">\[
+p(z=1|D)=\frac{0.0437}{0.0826+0.0437}=0.346\\
+p(z=2|D)=\frac{0.0826}{0.0826+0.0437}=0.634\\
 \]</span></p>
 
         
@@ -455,7 +416,7 @@ p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in 
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/EE5907 Pattern Recognition/2. Probabilistic Estimation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/EE5904 Neural Network/1.MLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -469,7 +430,7 @@ p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in 
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/03/06/EE5907 Pattern Recognition/2. Probabilistic Estimation/" class="post-title-link" itemprop="url">Chapter 2. Probabilistic Estimation</a>
+            <a href="/2019/04/11/EE5904 Neural Network/1.MLP/" class="post-title-link" itemprop="url">Chapter 1. Multi-Layer Perceptron</a>
           
         </h1>
 
@@ -484,7 +445,7 @@ p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in 
                 
               
 
-              <time title="Created: 2019-03-06 13:46:13 / Modified: 14:49:50" itemprop="dateCreated datePublished" datetime="2019-03-06T13:46:13+08:00">2019-03-06</time>
+              <time title="Created: 2019-04-11 13:45:47 / Modified: 14:40:28" itemprop="dateCreated datePublished" datetime="2019-04-11T13:45:47+08:00">2019-04-11</time>
             </span>
           
             
@@ -497,7 +458,7 @@ p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in 
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
 
                 
                 
@@ -516,140 +477,234 @@ p(\tilde x_1|x_{i\in c2,1},\tilde y=c2) =\frac{2}{3} \quad p(\tilde x_2|x_{i\in 
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="map-estimation">1. MAP Estimation</h2>
-<p>The key goal in machine learning is to do estimation. That means we give the estimated result when we are given observation. If we have no model of the estimation in the prior, we can give the estimated result only based on the result. So we choose maximum likelihood estimation. But if we have the prior knowledge, we can give the estimated result based on both the data and the prior knowledge, that is the maximum a posterior estimation.</p>
-<p>Maximum a posterior estimation <span class="math display">\[
-\begin{array}{rcl}
-y_{MAP}&amp;=&amp;\underset{y}{\operatorname{argmax}}p(y|x)\\
-&amp;=&amp;\underset{y}{\operatorname{argmax}}\frac{p(y)p(x|y)}{p(x)}\\
-&amp;=&amp;\underset{y}{\operatorname{argmax}}p(y)p(x|y)\\
-\end{array}
-\]</span> In this case, we hope to find a maximum value of the probability when the data is given and we have the prior knowledge of the estimated data <span class="math inline">\(p(y)\)</span>.</p>
-<h2 id="ml-estimation">2. ML Estimation</h2>
-<p>Maximum likelihood estimation</p>
-<p>When <span class="math display">\[
-p(y)=1
+          <h2 id="what-is-learning-in-nn">1. What is Learning in NN</h2>
+<p>Learning is a process by which the free parameters of a neural network are adapted through a process of stimulation by the environment in which the network is embedded.</p>
+<p>Process of learning</p>
+<ol type="1">
+<li>The NN is stimulated by the environment</li>
+<li>NN undergoes changes in its free parameters</li>
+<li>NN responds in a new way to the environment</li>
+</ol>
+<p>Supervised Learning:</p>
+<ol type="1">
+<li>The NN is fed with input and produce an output</li>
+<li>The teacher will tell what the desired output should be</li>
+<li>The weights are adjusted by the error signals</li>
+</ol>
+<p>Unsupervised Learning:</p>
+<ol type="1">
+<li>NN is interacting with the environment by taking various actions</li>
+<li>The learning system will be rewarded or penalized by its actions</li>
+<li>The weights are adjusted by the reinforcement signal</li>
+</ol>
+<h2 id="perceptron">2. Perceptron</h2>
+<p><span class="math display">\[
+v = \sum_{i=1}^mw_ix_i+b\\
+\]</span></p>
+<p>For simplicity <span class="math display">\[
+x(n)=[1,x_1(n),x_2(n),\dotsm,x_m(n)]^T\\
+w(n)=[b(n),w_1(n),w_2(n),\dotsm,w_m(n)]^T\\
+v(n)=w^T(n)x(n)
+\]</span> where n denotes iteration step.</p>
+<p>How to tune the parameters</p>
+<p>First, consider the case, <span class="math display">\[
+v=w^Tx&lt;0\quad \varphi(v)=0
+\]</span> if the desired output is <span class="math inline">\(d=0\)</span>, then nothing needs to be done</p>
+<p>if the desired output is <span class="math inline">\(d=1\)</span>, then we hope <span class="math inline">\(v&#39;\)</span> to be greater</p>
+<p>then we have <span class="math display">\[
+v&#39;-v = (w&#39;^T-w^T)x=\Delta w x&gt;0
+\]</span> the most simple choice is <span class="math inline">\(\Delta w=x^T\)</span></p>
+<p>then we have <span class="math display">\[
+w&#39; = w+\eta x
+\]</span> For the other case <span class="math display">\[
+v=w^Tx&gt;0\quad \varphi(v)=1
+\]</span> if the desired output is <span class="math inline">\(d=0\)</span>, then we hope <span class="math inline">\(v&#39;\)</span> to be smaller <span class="math display">\[
+v&#39;-v = (w&#39;^T-w^T)x=\Delta w x&lt;0
+\]</span> the most simple choice is <span class="math inline">\(\Delta w=-x^T\)</span> <span class="math display">\[
+w&#39; = w-\eta x
+\]</span> then we have <span class="math display">\[
+w&#39;=w+\eta e x
+\]</span></p>
+<p>To summarize,</p>
+<p>Perceptron Learning Algorithm</p>
+<p>Start with a randomly chosen weight vector <span class="math inline">\(w(1)\)</span></p>
+<p>while there exist input vectors that are misclassified by <span class="math inline">\(w(n)\)</span></p>
+<p>Do Let <span class="math inline">\(x(n)\)</span> be a misclassified input vector</p>
+<p>​ update the weight vector to</p>
+<p>​ <span class="math inline">\(w(n+1)=w(n)+\eta e(n)x(n)\)</span></p>
+<p>​ <span class="math inline">\(e(n)=d(n)-y(n)\)</span></p>
+<p>​ where <span class="math inline">\(\eta&gt;0\)</span> and d=<span class="math inline">\(\begin{cases} 1\text{ if x belongs to class 1} \\ 0\text{ if x belongs to class 2}\end{cases}\)</span></p>
+<p>​ n=n+1</p>
+<p>end while</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">xc0 = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">0.5</span>, <span class="number">0.6</span>, <span class="number">0.4</span>, <span class="number">0.6</span>, <span class="number">0.5</span>], [<span class="number">1.0</span>, <span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.2</span>, <span class="number">1.1</span>]])</span><br><span class="line">xc1 = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">2.5</span>, <span class="number">2.6</span>, <span class="number">2.4</span>, <span class="number">2.6</span>, <span class="number">2.5</span>], [<span class="number">3.0</span>, <span class="number">3.1</span>, <span class="number">3.2</span>, <span class="number">3.2</span>, <span class="number">3.0</span>]])</span><br><span class="line">w = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">fig1 = plt.plot(xc0[<span class="number">1</span>, :], xc0[<span class="number">2</span>, :], <span class="string">'bo'</span>, xc1[<span class="number">1</span>, :], xc1[<span class="number">2</span>, :], <span class="string">'ro'</span>)</span><br><span class="line">yplot = -w[<span class="number">1</span>]/w[<span class="number">2</span>]*np.array([<span class="number">0</span>, <span class="number">3</span>]) - w[<span class="number">0</span>]/w[<span class="number">2</span>]</span><br><span class="line">plt.plot(np.array([<span class="number">0</span>, <span class="number">3</span>]), yplot, <span class="string">'r'</span>)</span><br><span class="line">eta = <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    <span class="comment"># This is for c0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">        v = w.transpose().dot(xc0[:, j])</span><br><span class="line">        <span class="keyword">if</span> v &gt; <span class="number">0</span>:</span><br><span class="line">            y = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y = <span class="number">0</span></span><br><span class="line">        e = <span class="number">0</span> - y</span><br><span class="line">        w = w + eta*e*xc0[:, j]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># This is for c1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">4</span>):</span><br><span class="line">        v = w.transpose().dot(xc1[:, j])</span><br><span class="line">        <span class="keyword">if</span> v &gt; <span class="number">0</span>:</span><br><span class="line">            y = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y = <span class="number">0</span></span><br><span class="line">        e = <span class="number">1</span> - y</span><br><span class="line">        w = w + eta*e*xc1[:, j]</span><br><span class="line">    yplot = -w[<span class="number">1</span>] / w[<span class="number">2</span>] * np.array([<span class="number">0</span>, <span class="number">3</span>]) - w[<span class="number">0</span>] / w[<span class="number">2</span>]</span><br><span class="line">    plt.plot(np.array([<span class="number">0</span>, <span class="number">3</span>]), yplot, color=(<span class="number">0.5</span>, <span class="number">0.5</span>, i/<span class="number">10</span>))</span><br><span class="line">    plt.pause(<span class="number">1</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>Proof of Convergence</p>
+<p>There exists <span class="math inline">\(w_0\)</span> such that</p>
+<p>For samples in class <span class="math inline">\(C_1\)</span> <span class="math inline">\(w_0^Tx(k)&gt;0\)</span></p>
+<p>For samples in class <span class="math inline">\(C_2\)</span> <span class="math inline">\(w_0^Tx(k)&lt;0\)</span> <span class="math display">\[
+w(n+1)=w(n)+e(n)x(n)=e(1)x(1)+e(2)x(2)+\dotsm+e(n)x(n)\\
+w_0^Tw(n+1)=e(1)w_0^Tx(1)+e(2)w_0^Tx(2)+\dotsm+e(n)w_0^Tx(n)\\
+e(k)w_0^Tx(k)=|w_0^Tx(k)|&gt;0\\
+\alpha=\min\{|w_0^Tx(i)|\}
+\]</span> Then we have <span class="math display">\[
+w_0^Tw(n+1)\ge n\alpha\\
+||w_0||\cdot||w(n+1)||\ge||w_0^Tw(n+1)||\ge n\alpha\\
 \]</span> we have <span class="math display">\[
-y_{MAP}=\underset{y}{\operatorname{argmax}}p(x|y)=y_{ML}
-\]</span> In this case, we hope to get the max likelihood of the observation x given y. In general, ML estimation is computationally easier than MAP estimation, because we do not need to deal with the extra prior term. We often use ML estimation if the prior is unknown or if we do not feel comfortable assuming priors.</p>
-<p>If sample goes to infinity, then <span class="math display">\[
-\lim_{N\rightarrow\infty}y_{MAP}=y_{ML}
-\]</span></p>
-<h2 id="modeling-pyx">3. Modeling p(y|x)</h2>
+||w(n+1)||\ge\frac{n\alpha}{||w_0||}
+\]</span> Let <span class="math inline">\(\beta = \max \{||x(i)||^2\}\)</span></p>
+<p>And we have <span class="math display">\[
+||w(n+1)||^2\le n \beta
+\]</span> Overall, we have <span class="math display">\[
+\frac{n^2\alpha^2}{||w_o||^2}\le ||w(n+1)||^2\le n\beta
+\]</span> Therefore, n must be finite. Otherwise, the inequality will not be satisfied.</p>
+<h2 id="linear-regression-problem">3. Linear Regression Problem</h2>
 <p><span class="math display">\[
-p(y|x)=\frac{p(x|y)p(y)}{p(x)}
+E(w)=\frac{1}{2}e(w)^2\\
+e(w)=d-x^Tw\\
+g(w)=\frac{\partial E}{\partial w}=\frac{\partial E}{\partial e}\frac{\partial e}{\partial w}=-e(w)x^T\\
 \]</span></p>
-<p>Generative supervised learning: Modeling likelihood p(x|y) and prior p(y) directly, "Generative" because we can generate new data from p(x,y)=p(x|y)p(y)</p>
-<p>Discriminative supervised learning: model p(y|x) directly</p>
-<h2 id="probabilistic-estimation-of-model-parameters">4. Probabilistic Estimation of Model Parameters</h2>
-<p>In general, parameter <span class="math inline">\(\theta\)</span> needs to be learnt from the training set for both generative models <span class="math inline">\(p(x,y|\theta)\)</span> and discriminative models <span class="math inline">\(p(y|x,\theta)\)</span>. Here we can use different strategies to learn the parameters from the data set.</p>
-<p>Strategy 1: ML</p>
-<p>First estimate <span class="math inline">\(\theta_{ML}=\underset{\theta}{\operatorname{argmax}}p(D|\theta)\\\)</span></p>
-<p>Then plug in <span class="math inline">\(\theta_{ML}\)</span> into <span class="math inline">\(p(x,y|\theta_{ML})\)</span> and find ==MAP== estimate of y</p>
-<p>Strategy 2: MAP</p>
-<p>First estimate <span class="math inline">\(\theta_{MAP}=\underset{\theta}{\operatorname{argmax}}p(\theta|D)\\\)</span></p>
-<p>Then plug in <span class="math inline">\(\theta_{MAP}\)</span> into <span class="math inline">\(p(x,y|\theta_{MAP})\)</span> and find ==MAP== estimate of y</p>
-<p>Strategy 3: Posterior Predictive</p>
-<p>Discuss in the future</p>
-<h2 id="beta-binomial-generative-model">5. Beta-Binomial Generative Model</h2>
-<p>Beta Distribution (Discussed in the last passage) <span class="math display">\[
-p(\theta|a,b)=\frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}
-\]</span> Consider N coin tosses: data <span class="math inline">\(D=(N_0,N_1)\)</span>, where <span class="math inline">\(N_0=\#tails\)</span> and <span class="math inline">\(N_1=\#heads\)</span> , <span class="math inline">\(N=N_0+N_1\)</span> . <span class="math inline">\(\theta\)</span> is the probability of head</p>
-<p>Assume beta distribution prior on <span class="math inline">\(\theta\)</span>: <span class="math inline">\(p(\theta|a,b)=Beta(\theta|a,b)\)</span></p>
-<p>Coin tosses problem <span class="math display">\[
-P(D|\theta)=\left(
-\begin{array}{c}
-N\\
-N_0
-\end{array}
-\right)\theta^{N_1}(1-\theta)^{N_0}
+<p>Then we have <span class="math display">\[
+w(n+1)=w(n)+\eta e(n)x(n)
 \]</span></p>
-<p>Posterior <span class="math display">\[
-\begin{array}{lll}
-p(\theta|D)&amp;=&amp;\frac{p(D|\theta)p(\theta)}{p(D)}\\
-&amp;=&amp; \frac{\left(
-\begin{array}{c}
-N\\
-N_0
-\end{array}
-\right)\theta^{N_1}(1-\theta)^{N_0} \quad \frac{1}{B(a,b)}\theta^{a-1}(1-\theta)^{b-1}}{p(D)}\\
-&amp;=&amp; \frac{\frac{B(N_1+a,N_0+b)}{B(a,b)}\left(
-\begin{array}{c}
-N\\
-N_0
-\end{array}
-\right)
-\frac{1}{B(N_1+a,N_0+b)}
-\theta^{N_1+\alpha-1}(1-\theta)^{N_0+b-1} \quad }{p(D)}\\
-&amp;=&amp; \frac{k(N_0,N_1,a,b)Beta(\theta|N_1+a, N_0+b)}{p(D)}\\
-&amp;=&amp; Beta(\theta|N_1+a, N_0+b)
-\end{array}
-\]</span> Here we can see that the posterior is the same form as the prior, so we say that the beta is a conjugate prior of the binomial distribution.</p>
-<p>Since ML is a special case of MAP, first we consider MAP here, and we know that the mode of Beta distribution is <span class="math inline">\(mode=\frac{c-1}{c+d-2}\)</span>, we have <span class="math display">\[
-\begin{array}{rcl}
-\theta_{MAP}&amp;=&amp;\underset{\theta}{\operatorname{argmax}}p(\theta|D)\\
-&amp;=&amp;\frac{N_1+a-1}{N+a+b-2}
-\end{array}
-\]</span> when a=b=1 <span class="math display">\[
-\theta_{ML}=\frac{N_1}{N}
-\]</span> Predicting Future Coin Tosses</p>
-<p>Strategy 1 ML <span class="math inline">\(p(\tilde x=1)=\theta_{ML}\)</span></p>
-<p>Strategy 2 MAP <span class="math inline">\(p(\tilde x=1)=\theta_{MAP}\)</span></p>
-<p>Strategy 3 Posterior Predictive Distribution</p>
-<p>Actually our problem is <span class="math display">\[
-p(\tilde x=1|D)
-=\int_0^1 p(\tilde x=1,\theta|D)d\theta
-=\int_0^1 p(\tilde x=1|\theta,D)p(\theta|D)d\theta 
-= \int_0^1 \theta p(\theta|D)d\theta\\
-= \int_0^1 \theta Beta(\theta|N_1+a, N_0+b)d\theta
-\]</span> This is the mean of posterior distribution <span class="math display">\[
-p(\tilde x=1|D)=\frac{N_0+b}{N+a+b}
+<p>Example</p>
+<p>Training samples {(1, 3.5), (1, 3.5), (1.5, 2.5), (3, 2), (3.5, 1), (4, 1)}</p>
+<p>Initial weight <span class="math inline">\(w(1)=[2, 0]^T\)</span></p>
+<p>Learning rate <span class="math inline">\(\eta\)</span> is 0.1.</p>
+<p>==Iteration 1==</p>
+<p>Forward Propagation <span class="math display">\[
+e(1)=d^{(1)}-w(1)^Tx^{(1)}=3.5-2=1.5
+\]</span> Backward Propagation <span class="math display">\[
+w(2)=w(1)+\eta x^{(1)}e(1)=[2.15\quad 0.15]^T
+\]</span> ==Iteration 2==</p>
+<p>Forward Propagation <span class="math display">\[
+e(2)=d^{(2)}-w(2)^Tx^{(2)}=0.125
+\]</span> Backward Propagation <span class="math display">\[
+w(3)=w(2)+\eta x^{(2)}e(2)=[2.1625\quad 0.1688]^T
 \]</span></p>
-<h2 id="dirichlet-multinomial-generative-model">6. Dirichlet-Multinomial Generative Model</h2>
-<p>Multinomial Distribution <span class="math display">\[
-\begin{array}{ccc}
-P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=\frac{n!}{x_1!x_2!\dotsm x_k!}p_1^{x_1}p_2^{x_2}\dotsm p_k^{x_k}\quad when \sum_{i=1}^kx_i=n\\
-otherwise\quad P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=0
-\end{array}
-\]</span> Dirichlet Distribution <span class="math display">\[
-P(x|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
-\]</span> Consider N rolls of K-sided dice <span class="math display">\[
-p(D|\theta)=\frac{N!}{N_1!N_2!\dotsm N_k!}\theta_1^{N_1}\theta_2^{N_2}\dotsm \theta_K^{N_K}\quad
-\propto\prod_{i=1}^K\theta_i^{N_i}\\
-p(\theta|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
-\]</span> Then <span class="math display">\[
-p(\theta|D)\propto p(D|\theta)p(\theta)=Dir(\theta|N_1+\alpha_1,\dotsm,N_K+\alpha_K)
-\]</span> Then MAP estimation of parameters <span class="math display">\[
-\hat \theta_k^{MAP}=\frac{N_k+\alpha_k-1}{N+\sum_k\alpha_k-K}
-\]</span> ML <span class="math display">\[
-\hat \theta_k^{ML}=\frac{N_k}{N}
+<h2 id="multilayer-perceptrons">4. Multilayer Perceptrons</h2>
+<p>MLP generally adopts a smooth nonlinear activation function, such as the following logistic function</p>
+<p>Sigmoid Function <span class="math display">\[
+\varphi(v)=\frac{1}{1+e^{-av}}
 \]</span></p>
-<p>Predicting Future Dice Rolls</p>
-<p>Strategy 1 ML <span class="math inline">\(p(\tilde x=i)=\theta_{ML}^i\)</span></p>
-<p>Strategy 2 MAP <span class="math inline">\(p(\tilde x=i)=\theta_{MAP}^i\)</span></p>
-<p>Strategy 3 Posterior Predictive Distribution <span class="math inline">\(p(\tilde x=i|D)=\frac{N_i+\alpha_i}{N+\sum_k\alpha_k}\)</span></p>
-<h2 id="univariate-gaussian">7. Univariate Gaussian</h2>
-<p>Binomial and Multinomial are discrete random variables, here we look at continuous variables</p>
-<p>Gaussian Distribution <span class="math display">\[
-P(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
-\]</span> Given training data D, we hope to estimate parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span></p>
-<p>ML: <span class="math display">\[
-(\hat \mu,\hat\sigma^2)=\underset{\hat \mu,\hat\sigma^2}{\operatorname{argmax}}p(D|\hat \mu,\hat\sigma^2)
-\]</span> We have <span class="math display">\[
-\hat \mu=\frac{1}{N}\sum_{n=1}^Nx_n\\
-\hat \sigma^2=\frac{1}{N}\sum_{n=1}^N(x_n-\hat\mu)^2
-\]</span> MAP:</p>
-<p>Using Normal Inverse Gamma Distribution as prior <span class="math display">\[
-p(\mu,\sigma^2)=NormInvGam(\mu,\sigma^2|\alpha,\beta,\gamma,\delta)
+<p>MLP is fed with an input vector <span class="math inline">\(x(n)\)</span>, and produces an output vector <span class="math inline">\(y(n)\)</span>, where <span class="math inline">\(n\)</span> is the iteration number.</p>
+<p>If we have a three layers NN, for the third layer</p>
+Let <span class="math inline">\(d(n)\)</span> denote the desired network output, and then the error is <span class="math display">\[
+e(n)=d(n)-y(n)=d(n)-x^{(3)}_{out}(n)
+\]</span> Then the cost function is <span class="math display">\[
+E(n)=\frac{1}{2}\sum_{j=1}^{n_3}(d_j(n)-x_{out,j}^{(3)}(n))^2
+\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer <span class="math display">\[
+x^{(3)}_{out,j}=\varphi(v^{(3)}_{j})\\
+v^{(3)}_{j} = \sum_i w_{ji}^{(3)}x^{(2)}_i
+\]</span> Then we have $$
+<span class="math display">\[\begin{array}{rcl}
+\Delta w^{(3)}_{ji}(n)&amp;=&amp;-\eta\frac{\partial E(n)}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial w_{ji}^{(3)}(n)}\\
+&amp;=&amp;\eta(d_j(n)-x^{(3)}_{out,j})\frac{\partial x^{(3)}_{out,j}}{\partial v_j^{(3)}}
+\frac{\partial v_j^{(3)}}{\partial w_{ji}^{(3)}(n)}\\
+
+&amp;=&amp; \eta \delta_j^{(3)}(n)x_{out,i}^{(2)}(n)
+\end{array}\]</span>
+<p>$$</p>
+<p>where <span class="math display">\[
+\delta_j^{(3)}(n)=e_j(n)\dot \varphi^{(3)}(v_j^{(3)}(n))
+\]</span> For the second layer,</p>
+<p>Let d(n) denote the desired network output, and the error is then <span class="math display">\[
+e(n)=d(n)-y(n)=d(n)-x^{(3)}_{out}(n)
+\]</span> Then the cost function is <span class="math display">\[
+E(n)=\frac{1}{2}\sum_{k=1}^{n_3}(d_k(n)-x_{out,k}^{(3)}(n))^2
+\]</span> where <span class="math inline">\(n_3\)</span> means the number of neurons in the third layer <span class="math display">\[
+x^{(3)}_{out,k}=\varphi(v^{(3)}_{k})\\
+v^{(3)}_{k} = \sum_j w_{kj}^{(3)}x^{(2)}_j\\
+x^{(2)}_{out,j}=\varphi(v^{(2)}_{j})\\
+v^{(2)}_{j} = \sum_i w_{ji}^{(2)}x^{(1)}_i
+\]</span> Then we have <span class="math display">\[
+\Delta w^{(2)}_{ji}(n)=-\eta\frac{\partial E(n)}{\partial w_{ji}^{(2)}(n)}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})\frac{\partial x^{(3)}_{out,k}}{\partial v^{(3)}_k}
+\frac{\partial v^{(3)}_k}{\partial x^{(2)}_{out,j}}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)})
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\frac{\partial x^{(2)}_{out,j}}{\partial v_{j}^{(2)}}
+\frac{\partial v_{j}^{(2)}}{\partial w_{ji}^{(2)}}\\
+=\eta\sum_{k=1}^{n_3}(d_k(n)-x^{(3)}_{out,k})
+\dot \varphi^{(3)}(v_k^{(3)}(n))
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+=\eta\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}
+\dot \varphi^{(2)}(v_j^{(2)}(n))
+x_{out,i}^{(1)}\\
+= \eta \delta_j^{(2)}(n)x_{out,i}^{(1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(2)}(n)=
+\left(\sum_{k=1}^{n_3}\delta_k^{(3)}
+w_{kj}^{(3)}\right)
+\dot \varphi^{(2)}(v_j^{(2)}(n))\\
+\]</span> Then we can summary <span class="math display">\[
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\eta \delta_j^{(s)}(n)x_{out,i}^{(s-1)}(n)
+\]</span> where <span class="math display">\[
+\delta_j^{(s)}(n)=e_j(n)\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right)\quad\text{Output Layer}\\
+\delta_j^{(s)}(n)=
+\left(\sum_{k=1}^{n_{s+1}}\delta_k^{(s+1)}(n)
+w_{kj}^{(s+1)}(n)\right)
+\dot \varphi^{(s)}\left(v_j^{(s)}(n)\right) \quad \text{Hidden Layer}\\
+\]</span> To increase learning speed, modify the delta rule <span class="math display">\[
+\Delta w_{ji}^{(s)}(k)=\alpha \Delta w_{ji}^{(s)}(k-1) + \eta \delta_j^{(s)}(k)x_{out,i}^{(s-1)}(k)\\
+w_{ji}^{(s)}(n+1)=w_{ji}^{(s)}(n)+\Delta w_{ji}^{(s)}(k)
 \]</span></p>
-<p><span class="math display">\[
-\hat \mu=\frac{\sum_{n=1}^Nx_n+\gamma\delta}{N+\gamma}\\
-\hat \sigma^2=\frac{\sum_{n=1}^N(x_n-\hat \mu)^2+2\beta+\gamma(\delta-\hat \mu)^2}{N+3+2\alpha}
-\]</span></p>
-<p>Predicting Future Gaussian Samples</p>
-<p>Strategy 1 ML <span class="math inline">\(p(x^*)=\mathcal N(\mu_{ML},\sigma^2_{ML})\)</span></p>
-<p>Strategy 2 MAP <span class="math inline">\(p(x^*)=\mathcal N(\mu_{MAP},\sigma^2_{MAP})\)</span></p>
-<p>Strategy 3 Posterior Predictive Distribution (skipped)</p>
+<h2 id="mlp-design-and-training-issues">5. MLP Design and Training Issues</h2>
+<p>Many design and training issues to consider</p>
+<h3 id="sequential-mode-or-batch-mode">1. Sequential mode or batch mode</h3>
+<p>For sequential mode, weight updating is performed after each presentation of the training example. N times adjustments in one epoch.</p>
+<p>For batch mode, update weight after the presentation of all the training examples. One time adjustment in one epoch.</p>
+<p>Sequential learning is generally the preferred one since sequential learning often results in better solutions. Nonlinear networks often have multiple local minima. Batch learning can easily get trapped into the local minimum.</p>
+<p>But sequential mode always causes fluctuation because of the noise.</p>
+<p>One way to reduce fluctuation is to use mini-batches.</p>
+<p>That is to start with a small batch size and increase the size as the training proceeds.</p>
+<p>Second Order Method <span class="math display">\[
+E(w(n+1))=E(w(n)+\Delta w(n))=E(w(n))+g^T(n)\Delta w(n)+\frac{1}{2}\Delta w^T(n)H(n)\Delta w(n)
+\]</span> If we hope to get choose <span class="math inline">\(\Delta w(n)\)</span> to let <span class="math inline">\(E(w(n+1))\)</span> be minimized <span class="math display">\[
+\frac{\partial E(w(n+1))}{\partial \Delta w(n)}=g^T(n)+\Delta w^T(n)H(n)=0\\
+\Delta w(n) = -H^{-1}(n)g(n)
+\]</span> This is so called Newton's method.</p>
+<h3 id="normalize-the-input-variables">2. Normalize the input variables</h3>
+<p>In general, any shift of the average input away from zero will bias the updates in a partialicular direction and this slow down learning.</p>
+<p>Normalize <span class="math display">\[
+\bar x_i = \frac{\sum_{n=1}^Nx_i(n)}{N}\quad \sigma=\sqrt \frac{\sum_{n=1}^N (x_i(n)-\bar x_i)}{N}\quad x_i&#39;(n) = \frac{x_i(n)-\bar x_i}{\sigma}
+\]</span> Let the range are close to [-1, 1]</p>
+<h3 id="how-to-choose-activation-functions-in-hidden-layers">3. How to choose activation functions in hidden layers</h3>
+<p>For the hidden layers, <span class="math display">\[
+\tan sig(x)=\frac{2}{1+e^{-2x}}-1
+\]</span> is better than <span class="math display">\[
+\log sig(x)=\frac{1}{1+e^{-x}}
+\]</span> Every neuron output is closed to [-1, 1]</p>
+<p>However, for the output layer, if the problem is pattern recognition problem <span class="math display">\[
+\log sig(x)=\frac{1}{1+e^{-x}}
+\]</span> is better because the output is 0 or 1</p>
+<p>For regression problem, using linear neuron at the output layer would be more flexible.</p>
+<h3 id="how-to-choose-target-values-for-pattern-recognition">4. How to choose target values for pattern recognition</h3>
+<p>For the sigmoid function, the training process will try to derive the output as close as possible to the target value, that can cause the input to the output layer to be bigger and bigger in the training process. Therefore, it is better to choose [-0.6, 0.6] for tansig and [0.2, 0.8] for logsig.</p>
+<h3 id="how-many-hidden-layers-and-how-many-hidden-neurons-in-each-layer">5. How many hidden layers AND how many hidden neurons in each layer</h3>
+<p>Adding more layers can reduce the parameters but may make the MLP more prone to local minima traps because of its more complicated structure.</p>
+<h3 id="how-to-avoid-over-fitting">6. How to avoid over-fitting</h3>
+<p>One way is to limit the number of hidden units. It is important to seek the minimal structure of the MLP</p>
+<p>For valid generation, the size of the weights is more important than the size of the network</p>
+<p>Use regularization techniques</p>
+<h3 id="use-singular-value-decomposition-svd-to-decide-the-minimal-structure">7. Use Singular Value Decomposition (SVD) to decide the minimal structure</h3>
+<p>Calculate the outputs of the hidden neurons for each training sample input vector <span class="math inline">\(x(k)\)</span> <span class="math display">\[
+h_{ki} = f_i(\sum_{j=1}^M w_{ij}x_j(k)+b_i)\in H
+\]</span> Use SVD to get the effective rank of H. The threshold is always chosen as 0.95 or 0.99.</p>
+<p>Train the MLP on the N training samples (<span class="math inline">\(X_{N\times M}\)</span>) with sufficiently large number of <span class="math inline">\(n\)</span> hidden neurons until converge.</p>
+<p>Calculate the effective rank.</p>
+<p>Train the MLP with number of effective rank hidden neurons until converge.</p>
+<p>Repeat the procedure until convergence.</p>
 
         
       
@@ -673,7 +728,7 @@ p(\mu,\sigma^2)=NormInvGam(\mu,\sigma^2|\alpha,\beta,\gamma,\delta)
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/24/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/26/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/24/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/26/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -718,7 +773,7 @@ p(\mu,\sigma^2)=NormInvGam(\mu,\sigma^2|\alpha,\beta,\gamma,\delta)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -747,7 +802,9 @@ p(\mu,\sigma^2)=NormInvGam(\mu,\sigma^2|\alpha,\beta,\gamma,\delta)
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -781,7 +838,7 @@ p(\mu,\sigma^2)=NormInvGam(\mu,\sigma^2|\alpha,\beta,\gamma,\delta)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

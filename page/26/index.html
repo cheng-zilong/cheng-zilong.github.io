@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/EE5907 Pattern Recognition/1. Probability/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/17/EE5907 Pattern Recognition/5. Non-Parametric Tech/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/03/03/EE5907 Pattern Recognition/1. Probability/" class="post-title-link" itemprop="url">Chapter 1. Probability</a>
+            <a href="/2019/03/17/EE5907 Pattern Recognition/5. Non-Parametric Tech/" class="post-title-link" itemprop="url">Chapter 5. Non-Parametric Techniques</a>
           
         </h1>
 
@@ -247,7 +247,7 @@
                 
               
 
-              <time title="Created: 2019-03-03 13:46:13 / Modified: 14:44:47" itemprop="dateCreated datePublished" datetime="2019-03-03T13:46:13+08:00">2019-03-03</time>
+              <time title="Created: 2019-03-17 13:46:13 / Modified: 14:46:13" itemprop="dateCreated datePublished" datetime="2019-03-17T13:46:13+08:00">2019-03-17</time>
             </span>
           
             
@@ -279,107 +279,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="types-of-machine-learning">1. Types of Machine Learning</h2>
-<p>Supervised Learning: Great if we know what we what to predict</p>
-<p>Unsupervised learning: Great if we want to discover something new</p>
-<h2 id="design-cycle">2. Design Cycle</h2>
-<p>Data collection</p>
-<p>Preprocessing: Image enhancement, remove background, segmentation</p>
-<p>Divide data into training and test sets (Feature Extraction, Train classifier)</p>
-<p>Re-visit previous steps if performance unsatisfactory</p>
-<h2 id="probability-review">3. Probability Review</h2>
-<p>A random variable x is a quantity that is uncertain.</p>
-<p>If x is discrete, then the probability of x <span class="math inline">\(p(x)\)</span> is probability mass function (pmf)</p>
-<p>if x is continuous, then the probability of x <span class="math inline">\(p(x)\)</span> is probability distribution function (pdf)</p>
-<p><span class="math inline">\(p(x,y)\)</span> is joint probability distribution of x and y. we have <span class="math display">\[
-p(y)=\int_x p(x,y)dx\quad or\quad p(y)=\sum_xp(x,y)
-\]</span> This is called marginalization.</p>
-<p>Suppose we observe y to be <span class="math inline">\(y_1\)</span> , then <span class="math inline">\(p(x|y=y_1)\)</span> is how likely x will take on various values given this observation, that read as conditional probability of x given y is equal to <span class="math inline">\(y_1\)</span> . We have <span class="math display">\[
-p(x|y)=\frac{p(x,y)}{p(y)}=\frac{p(y|x)p(x)}{\int_xp(x,y)dx}=\frac{p(y|x)p(x)}{\int_xp(y|x)p(x)dx}
+          <h1 id="non-parametric-techniques">Non-Parametric Techniques</h1>
+<h2 id="non-parametric-tech">1. Non-Parametric Tech</h2>
+<p><span class="math display">\[
+p(x)=\frac{k(x)/N}{V}
 \]</span></p>
-<h2 id="discrete-distributions">4. Discrete Distributions</h2>
-<p>==Bernoulli Distribution== <span class="math display">\[
-P(x)=\lambda^x(1-\lambda)^{1-x}
-\]</span> where x=0, 1</p>
-<p>Bernoulli Distribution describes situation where only two possible outcomes x=0, 1</p>
-<p>==Categorical Distribution== <span class="math display">\[
-P(x=k)=\lambda_k
-\]</span> Categorical Distribution describes situation where K possible outcomes</p>
-<p>==Binomial Distribution==</p>
-<p>The binomial distribution with parameters n and p is the discrete probability distribution of the number of successes in a sequence of n independent experiments, each asking a yes–no question, and each with its own boolean-valued outcome: a random variable containing a single bit of information: success/yes/true/one (with probability p) or failure/no/false/zero (with probability q = 1 − p). <span class="math display">\[
-P(x=k)=\left(
-\begin{array}{c}
-n\\
-k
-\end{array}
-\right)p^{k}(1-p)^k
-\]</span> ==Multinomial Distribution==</p>
-<p>The multinomial distribution is a generalization of the binomial distribution. For example, it models the probability of counts for rolling a k-sided die n times. For n independent trials each of which leads to a success for exactly one of k categories, with each category having a given fixed success probability, the multinomial distribution gives the probability of any particular combination of numbers of successes for the various categories. <span class="math display">\[
-\begin{array}{ccc}
-P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=\frac{n!}{x_1!x_2!\dotsm x_k!}p_1^{x_1}p_2^{x_2}\dotsm p_k^{x_k}\quad when \sum_{i=1}^kx_i=n\\
-otherwise\quad P(X_1=x_1,X_2=x_2,X_3=x_3\dotsm)=0
-\end{array}
-\]</span> ==Poisson Distribution==</p>
-<p>The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring in a fixed interval of time or space if these events occur with a known constant rate and independently of the time since the last event. <span class="math display">\[
-P(x=k)=e^{-\lambda}\frac{\lambda^k}{k!}
+<p>For particular x, count number of samples k falling in the window of volume V centered at x</p>
+<p>Two approaches: Parzen's Window fix <span class="math inline">\(V\)</span>, estimate <span class="math inline">\(k\)</span>; KNN: fix <span class="math inline">\(x\)</span>, determine <span class="math inline">\(V\)</span>.</p>
+<h2 id="parzens-window">2. Parzen's Window</h2>
+<p>Square cube function <span class="math display">\[
+\phi(u)=
+\begin{cases}
+1\quad|u_j|\le0.5,j=1,\dotsm,d\\
+0\quad otherwise
+\end{cases}
+\]</span> d is the dimensionality of data</p>
+<p>Then <span class="math display">\[
+\phi(\frac{x-x_i}{h})=
+\begin{cases}
+1\quad x_i\text{ inside the hypercube of width h centered at x}\\
+0\quad otherwise
+\end{cases}
 \]</span></p>
-<h2 id="continuous-distributions">5. Continuous Distributions</h2>
-<p>==Gaussian Distribution (Normal Distribution)==</p>
-<p>It states that averages of samples of observations of random variables independently drawn from independent distributions converge in distribution to the normal, that is, they become normally distributed when the number of observations is sufficiently large <span class="math display">\[
-P(x|\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
-\]</span> ==Exponential Distribution==</p>
-<p>The exponential distribution is the probability distribution that describes the time between events in a Poisson point process. <span class="math display">\[
-P(X=x)=\lambda e^{-\lambda x}
-\]</span> ==Gamma Distribution==</p>
-<p>The gamma distribution is a two-parameter family of continuous probability distributions. The exponential distribution, Erlang distribution, and chi-squared distribution are special cases of the gamma distribution. <span class="math display">\[
-P(x|\alpha,\beta)=\frac{\beta^\alpha x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}
-\]</span> where <span class="math inline">\(\Gamma(\alpha)\)</span> is the Gamma Function.</p>
-<p>==Beta Distribution==</p>
-<p>The beta distribution is a family of continuous probability distributions defined on the interval [0, 1] parametrized by two positive shape parameters, denoted by α and β, that appear as exponents of the random variable and control the shape of the distribution. It is a special case of the Dirichlet distribution.</p>
-<p>The beta distribution has been applied to model the behavior of random variables limited to intervals of finite length in a wide variety of disciplines.</p>
-<p>In Bayesian inference, the beta distribution is the conjugate prior probability distribution for the Bernoulli, binomial, negative binomial and geometric distributions. For example, the beta distribution can be used in Bayesian analysis to describe initial knowledge concerning probability of success such as the probability that a space vehicle will successfully complete a specified mission. The beta distribution is a suitable model for the random behavior of percentages and proportions. <span class="math display">\[
-P(x|\alpha,\beta)=\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}
-\]</span> where <span class="math inline">\(B(\alpha,\beta)\)</span> is Beta Function defined by <span class="math display">\[
-B(\alpha,\beta)=\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}
-\]</span> ==Dirichlet Distribution==</p>
-<p>the Dirichlet distribution often denoted as Dir(<span class="math inline">\(\alpha\)</span>) is a family of continuous multivariate probability distributions parameterized by a vector <span class="math inline">\(\alpha\)</span> of positive reals. It is a multivariate generalization of the beta distribution, hence its alternative name of Multivariate Beta distribution (MBD). <span class="math display">\[
-P(x|\alpha)=\frac{1}{B(\alpha)}\prod_{i=1}^Kx_i^{\alpha_i-1}
+<p><span class="math display">\[
+k(x)=\sum_i\phi(\frac{x-x_i}{h})\\
+p(x)=\frac{1}{N}\sum_{i=1}^N\frac{1}{h^d}\phi(\frac{x-x_i}{h})
+\]</span> d is the dimension of data</p>
+<p>h is the size of the window</p>
+<p>N is the number of data</p>
+<p>Example</p>
+<p>We have 6 examples at 2,3,4,8,10,11</p>
+<p>We choose d=1, h=3, then <span class="math display">\[
+p(1)=\frac{1}{N}\sum_{i=1}^N\frac{1}{h^d}\phi(\frac{x-x_i}{h})\\
+=\frac{1}{6}\sum_{i=1}^6\frac{1}{3}\phi(\frac{1-x_i}{3})=\frac{1}{18}\\
+\]</span> Smooth window</p>
+<p>Gaussians window</p>
+<p>Convergence Conditions</p>
+<p>The idea is that we might want to change the volume V depending on how many samples we have. So V now depends on N. As <span class="math inline">\(N\rightarrow \infty\)</span> we want <span class="math inline">\(p_N(x)\rightarrow true \space p(x)\)</span>. 4 sufficient conditions</p>
+<ol type="1">
+<li><span class="math inline">\(\sup_u \phi(u)\le \infty\)</span></li>
+<li><span class="math inline">\(\lim_{||u||\rightarrow\infty} \phi(u)\prod_{i=1}^du_i=0\)</span> (This condition means we hope <span class="math inline">\(\phi\)</span> fall rapidly when <span class="math inline">\(u\)</span> goes to infinity)</li>
+<li><span class="math inline">\(\lim_{N\rightarrow\infty}V_N=0\)</span></li>
+<li><span class="math inline">\(\lim_{N\rightarrow\infty}NV_N=\infty\)</span></li>
+</ol>
+<p>Then we can choose <span class="math inline">\(h_N=h_1/\sqrt N\)</span></p>
+<p>Setting window size h: Cross-validation</p>
+<h2 id="knn-density-estimation">3. KNN Density Estimation</h2>
+<p><span class="math display">\[
+P_N(x)=\frac{k_N(x)/N}{V_N}
 \]</span></p>
-<h2 id="bayes-rule">5. Bayes' Rule</h2>
-<p>For continuous <span class="math display">\[
-p(x,y)=p(x)p(y|x)=p(y)p(x|y) \implies \\
-p(y|x)=\frac{p(y)p(x|y)}{p(x)}=\frac{p(y)p(x|y)}{\int p(x,y)dy}=\frac{p(y)p(x|y)}{\int p(y)p(x|y) dy}
-\]</span> For discrete <span class="math display">\[
-p(x,y)=p(x)p(y|x)=p(y)p(x|y) \implies \\
-p(y|x)=\frac{p(y)p(x|y)}{p(x)}=\frac{p(y)p(x|y)}{\sum_y p(x,y)}=\frac{p(y)p(x|y)}{\sum_y p(y)p(x|y) }
-\]</span> Denotion <span class="math display">\[
-\underbrace{p(y|x)}_\text{Posterior}=\frac{\overbrace{p(y)}^\text{Prior}\quad\overbrace{p(x|y)}^\text{Liklihood}}{\underbrace{p(x)}_\text{Evidence}}
-\]</span> Prior: What we know before seeing x</p>
-<p>Posterior: What we know after seeing x</p>
-<p>Likelihood: Propensity for observing a certain value of x given certain value of y</p>
-<p>Evidence: Make sure the left hand is a valid distribution</p>
-<h2 id="expectation">6. Expectation</h2>
-<p>Definition of expectation <span class="math display">\[
-E(f(x))=\sum_xf(x)p(x)\\
-E(f(x))=\int_xf(x)p(x)dx\\
-\]</span> Definition of mean <span class="math display">\[
-E(x)=\int_xxp(x)dx=\mu_x
-\]</span> Definition of variance <span class="math display">\[
-E((x-\mu_x)^2)=\int_x(x-\mu_x)^2p(x)dx=\sigma_x^2
-\]</span> then <span class="math inline">\(\sigma_x\)</span> is called standard deviation</p>
-<p>Definition of covariance <span class="math display">\[
-E((x-\mu_x)(y-\mu_y))=\int\int(x-\mu_x)(y-\mu_y)p(x,y)dxdy=Cov(x,y)
-\]</span> Some important conclusions for expectation <span class="math display">\[
-E(af(x)+bf(y))=aE(f(x))+bE(f(y))\\
-Cov(x,y)=E(xy)-E(x)E(y)\\
-Var(x)=Cov(x,x)=E(x^2)-E^2(x)
-\]</span> Definition of Conditional Expectation <span class="math display">\[
-E(f(x,y)|y)=E_{p(x|y)}[f(x,y)]=\sum_xf(x,y)p(x|y)
-\]</span> Definition of Conditional Independece <span class="math display">\[
-p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
-\]</span> Attention!</p>
-<p><span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are independent does not imply <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are conditionally independent given <span class="math inline">\(x_3\)</span>.</p>
-<p><span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are independent given <span class="math inline">\(x_3\)</span> does not imply <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are independent.</p>
+<p>Rather than fix windows size, grow volume around x until <span class="math inline">\(K_N(x)\)</span> samples</p>
+<p>Convergence condition <span class="math display">\[
+\lim_{N\rightarrow\infty}k_N=\infty\\
+\lim_{N\rightarrow\infty}k_N/N=0
+\]</span> Example</p>
+<p>We have 6 examples at 2,3,4,8,10,11</p>
+<p>We choose k=3 <span class="math display">\[
+P_N(0)=\frac{3/6}{8}=\frac{1}{16}\\
+P_N(3)=\frac{3/6}{2}=\frac{1}{4}
+\]</span></p>
+<h2 id="knn-classification">4. KNN Classification</h2>
+<p>Given feature x, we want to estimate y <span class="math display">\[
+p(x,y=c)=\frac{k_c/N}{V}
+\]</span> Then we have the posterior <span class="math display">\[
+p(y=c|x)=\frac{p(x,y=c)}{\sum_{c&#39;=1}^Cp(x,y=c&#39;)}=\frac{k_c}{K}
+\]</span></p>
 
         
       
@@ -404,7 +368,7 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/EE5101 Linear Systems/11. State Estimation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/EE5907 Pattern Recognition/4. Logistic Regression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -418,7 +382,7 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/12/03/EE5101 Linear Systems/11. State Estimation/" class="post-title-link" itemprop="url">Chapter 11. State Estimation</a>
+            <a href="/2019/03/15/EE5907 Pattern Recognition/4. Logistic Regression/" class="post-title-link" itemprop="url">Chapter 4. Logistic Regression Model</a>
           
         </h1>
 
@@ -433,7 +397,7 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
                 
               
 
-              <time title="Created: 2018-12-03 13:33:56 / Modified: 14:23:37" itemprop="dateCreated datePublished" datetime="2018-12-03T13:33:56+08:00">2018-12-03</time>
+              <time title="Created: 2019-03-15 13:46:13 / Modified: 14:51:36" itemprop="dateCreated datePublished" datetime="2019-03-15T13:46:13+08:00">2019-03-15</time>
             </span>
           
             
@@ -446,7 +410,7 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
 
                 
                 
@@ -465,142 +429,52 @@ p(x_1,x_2|x_3)=p(x_1|x_3)p(x_2|x_3)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="state-estimation">State Estimation</h2>
-<h3 id="why-state-estimation">1. Why State Estimation</h3>
-<p><span class="math display">\[
-u=-Kx+Fr
+          <h1 id="logistic-regression-model">Logistic Regression Model</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>Generative Classifier: build joint model <span class="math inline">\(p(x,y)=p(y)p(x|y)\)</span>, estimate parameters of joint model from training data, then compute <span class="math inline">\(p(y|x)\)</span></p>
+<p>Discriminative Classifier: build model <span class="math inline">\(p(y|x)\)</span> , estimate parameters of model from data, then compute <span class="math inline">\(p(y|x)\)</span></p>
+<p>Logistic Regression is a Discriminative Classifier.</p>
+<h2 id="parameters-and-classifying-new-samples">2. Parameters and Classifying New Samples</h2>
+<p>We have already specify discriminative model <span class="math inline">\(p(y|x,w)\)</span> (Logistic Regression)</p>
+<p>First estimate <span class="math inline">\(\hat w\)</span></p>
+<p>Minimizing Negative Log Likelihood <span class="math display">\[
+\begin{array}{lll}
+\hat w 
+&amp;=&amp; \underset{w}{\operatorname{argmax}} p(y_{1:N}|x_{1:N},w)\\
+&amp;=&amp; \underset{w}{\operatorname{argmax}} \log p(y_{1:N}|x_{1:N},w)\\
+&amp;=&amp; \underset{w}{\operatorname{argmax}} \sum\log p(y_{i}|x_{i},w)\\
+&amp;=&amp; \underset{w}{\operatorname{argmin}} -\sum\log p(y_{i}|x_{i},w)\\
+&amp;=&amp; \underset{w}{\operatorname{argmin}} NLL(w)\\
+\end{array}
 \]</span></p>
-<p>some x cannot be measured.</p>
-<p>we define an estimator <span class="math display">\[
-\dot{\hat x}=A \hat x+Bu+L(y-\hat y) \\
-\dot e=\dot x-\dot{\hat x}=A(x-\hat x)+L(Cx-C \hat x)=(A-LC)e
-\]</span> First, check the observability</p>
-<p>Second, design L, place observer poles 3-5 times faster than control poles.</p>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx \\
-A=\begin{bmatrix}
-0 &amp; 1\\ 0 &amp; 0
-\end{bmatrix}
-B=\begin{bmatrix}
-0 \\ 1
-\end{bmatrix}
-C=\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}\\
-M_o=\begin{bmatrix}
-C \\CA
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}\\
-A-LC=
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}-
-\begin{bmatrix}
-l_1 \\ l_2
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}=
-\begin{bmatrix}
--l_1  &amp; 1 \\-l_2 &amp; 0
-\end{bmatrix}\\
-|\lambda I-(A-LC)|=\lambda^2+l_1\lambda+l_2
-\]</span> We choose two poles <span class="math inline">\(\lambda_1=\lambda_2=-5\)</span></p>
-<p>Then <span class="math inline">\(l_1=10 \quad l_2=25\)</span></p>
-<p>Ackerman's Formula: <span class="math inline">\(L=\Phi_o(A)M_o^{-1}[0 \quad \dotsm\quad 1]^T\)</span></p>
-<h3 id="reduced-order-observers">2. Reduced-Order Observers</h3>
-<p>For now we use output to get some states. We can design the observer <span class="math display">\[
-\hat x=
-\begin{bmatrix}
-C \\ T
-\end{bmatrix}^{-1}
-\begin{bmatrix}
-y \\ \xi
-\end{bmatrix}
-\]</span> We define the observer <span class="math display">\[
-\dot \xi=D\xi+Eu+Gy
-\]</span> Then we have <span class="math display">\[
-\dot \xi-T\dot x=D[\xi-Tx]+(DT-TA-GC)x+(E-TB)u
-\]</span> To make <span class="math inline">\(\dot \xi \rightarrow T\dot x\)</span></p>
-<p>we need <span class="math display">\[
-DT-TA+GC=0 \\
-E-TB=0\\
-\text{D have negative real parts for all eigenvalues}
-\]</span> Design procedures for T D G E</p>
-<blockquote>
-<ol type="1">
-<li>Find the constraints on T such that <span class="math inline">\(\begin{bmatrix} C \\ T\end{bmatrix}\)</span> is nonsingular</li>
-<li>choose D such that its eigenvalues have negative real parts</li>
-<li>Solve DT-TA-GC=0 for T and G</li>
-<li>Calculate E=TB</li>
-</ol>
-</blockquote>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx \\
-A=\begin{bmatrix}
-0 &amp; 1\\ 0 &amp; 0
-\end{bmatrix}
-B=\begin{bmatrix}
-0 \\ 1
-\end{bmatrix}
-C=\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}\\
-\]</span> Design a reduced order observer <span class="math display">\[
-\begin{bmatrix}
-C \\T
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0 \\t_1 &amp; t_2
-\end{bmatrix}
-\]</span> The above is singular if <span class="math inline">\(t_2 \neq0\)</span></p>
-<p>The observer should be 2-1=1 order</p>
-<p>We choose <span class="math inline">\(D=[d]=[-3]\)</span></p>
-<p>Then <span class="math display">\[
-DT-TA+GC=0 \\
--3\begin{bmatrix}
-t_1 &amp; t_2
-\end{bmatrix}-
-\begin{bmatrix}
-t_1&amp;t_2
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1 \\ 0 &amp; 0
-\end{bmatrix}+
-g\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}=0\\
-\begin{cases}
-t_1+3t_2=0 \\
-g=3t_1\\
-t_2 \neq0
-\end{cases}
-\]</span> try <span class="math display">\[
-g=1 \\
-t_1=\frac{1}{3}\\
-t_2=-\frac{1}{9}\\
-e=-\frac{1}{9}
-\]</span> Then the observer is <span class="math display">\[
-\dot \xi=D\xi+Eu+Gy \\
-=-3\xi-\frac{1}{9}u+y \\
-\hat x = 
-\begin{bmatrix}
-C \\ T
-\end{bmatrix}^{-1}
-\begin{bmatrix}
-y \\ \xi
-\end{bmatrix}=
-\begin{bmatrix}
-1 &amp; 0 \\ 3 &amp; -9
-\end{bmatrix}
-\begin{bmatrix}
-y \\ \xi
-\end{bmatrix}
-\]</span></p>
+<p>where <span class="math inline">\(NLL\)</span> stands for negative log likelihood, <span class="math display">\[
+NLL(w)=-\sum\log p(y_{i}|x_{i},w)=-\sum[y_i\log \mu_i+(1-y_i)\log(1-\mu_i)]
+\]</span> where <span class="math display">\[
+\mu_i=\frac{1}{1+\exp(-w^Tx_i)}
+\]</span> Derivatives <span class="math display">\[
+g=\frac{dNLL(w)}{dw}=\sum(\mu_i-y_i)x_i=X^T(\mu-y)\\
+H=\sum\mu_i(1-\mu_i)x_ix_i^T=X^TSX\\
+\]</span> where S is <span class="math inline">\(N\times N\)</span> diagonal matrix where i-th diagonal is <span class="math inline">\(\mu_i(1-\mu_i)\)</span>, <span class="math inline">\(X^T=[x_1,\dotsm,x_N]\)</span>, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(y\)</span> are column vectors.</p>
+<p>Introduce bias term</p>
+<p>We simply introduce one new entry in the vector <span class="math display">\[
+X=[1\quad x_1\quad x_2 \quad \dotsm \quad x_N]
+\]</span> Regularization <span class="math display">\[
+NLL_{reg}=NLL(w)+\frac{1}{2}\lambda w^Tw\\
+g_{reg}(w)=g(w)+\lambda w=X^T(\mu-y)+\lambda w\\
+H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda I
+\]</span> But we do not want to regularize bias term <span class="math display">\[
+NLL_{reg}=NLL(w)+\frac{1}{2}\lambda \mathbf w^T\mathbf w\\
+g_{reg}(w)=g(w)+\lambda w=X^T(\mu-y)+\lambda 
+\left(\begin{array}{c}
+0\\
+\mathbf w_{D\times 1}
+\end{array}\right)\\
+H_{reg}(w)=H(w)+\lambda I=X^TSX+\lambda 
+\left(\begin{array}{c}
+0  &amp; \dotsm\\
+\vdots  &amp; I_{D\times D}
+\end{array}\right)\\
+\]</span> where w is (D+1) x 1 vector but <span class="math inline">\(\mathbf w\)</span> is D x 1 vector</p>
 
         
       
@@ -624,7 +498,7 @@ y \\ \xi
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -669,7 +543,7 @@ y \\ \xi
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -698,7 +572,9 @@ y \\ \xi
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -732,7 +608,7 @@ y \\ \xi
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

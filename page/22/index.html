@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/11/EE5904 Neural Network/3.SOM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/04/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" class="post-title-link" itemprop="url">Chapter 8. Supervised Feature Extraction</a>
+            <a href="/2019/05/11/EE5904 Neural Network/3.SOM/" class="post-title-link" itemprop="url">Chapter 3. Self-Organizing Maps</a>
           
         </h1>
 
@@ -247,7 +247,7 @@
                 
               
 
-              <time title="Created: 2019-04-22 13:46:14 / Modified: 14:47:48" itemprop="dateCreated datePublished" datetime="2019-04-22T13:46:14+08:00">2019-04-22</time>
+              <time title="Created: 2019-05-11 13:45:47 / Modified: 14:36:19" itemprop="dateCreated datePublished" datetime="2019-05-11T13:45:47+08:00">2019-05-11</time>
             </span>
           
             
@@ -260,7 +260,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
 
                 
                 
@@ -279,48 +279,74 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="supervised-feature-extraction">Supervised Feature Extraction</h1>
-<h2 id="linear-discriminant-analysis">1. Linear Discriminant Analysis</h2>
-<p>Linear discriminant analysis (LDA) finds most discriminative projection by maximizing between-class distance and minimizing within-class distance.</p>
-<p>Class-specific mean vector <span class="math display">\[
-\mu_i = \frac{1}{n_i}\sum_{x\in C_i} x
-\]</span> Class-specific covariance matrix <span class="math display">\[
-S_i=\frac{1}{n_i}\sum_{x\in C_i} (x-\mu_i)(x-\mu_i)^T
+          <h1 id="self-organizing-maps">Self-Organizing Maps</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>Learning is a process by which the free parameters of a neural network are adapted through a process of stimulation by the environment in which the network is embedded.</p>
+<p>The topology-conserving mapping can be achieved by SOMs. The network is two layers network. There are only input layer and output layer without hidden layer. There is no hidden layer.</p>
+<p>The location of neurons in the output layer is important.</p>
+<h2 id="architecture">2. Architecture</h2>
+<p>For each output neuron j, there are a set of synaptic weights <span class="math inline">\(w_{ji}\)</span> connected from all input neurons</p>
+<h3 id="randomly-initialize-all-the-weights.">1. Randomly initialize all the weights.</h3>
+<h3 id="select-input-vector-xx_1x_2dotsmx_n-from-the-training-set">2. Select input vector <span class="math inline">\(x=[x_1,x_2,\dotsm,x_n]\)</span> from the training set</h3>
+<p>It can be done by choosing randomly from the training set or one by one in a deterministic manner like that for sequential learning.</p>
+<h3 id="compare-x-with-weights-w_j-for-each-neuron-j-to-determine-winner">3. Compare x with weights <span class="math inline">\(w_j\)</span> for each neuron j to determine winner</h3>
+<p>Find the best-matching neuron w(x), usually the neuron whose weight vector has smallest Euclidean distance from the input vector. <span class="math display">\[
+i(x)=\arg \min _j||x-w_j||
+\]</span> The winning neuron is that which is in some sense closet to the input sector.</p>
+<h3 id="update-winner-so-that-it-becomes-more-like-x-together-with-the-winners-neighbor">4. Update winner so that it becomes more like x, together with the winner's neighbor</h3>
+<p>The typical choice of topological neighborhood function <span class="math display">\[
+h_{j,i(x)}=\exp (-\frac{d_{j,i}^2}{2\sigma^2})
+\]</span> where <span class="math display">\[
+d_{j,i}=\sqrt{(l-n)^2+(m-k)^2}
+\]</span> if the position of the neuron is described by the index of the neuron in the matrix (2-d lattice)</p>
+<h3 id="adjust-parameters-learning-rate-neighborhood-function">5. Adjust parameters: learning rate &amp; neighborhood function</h3>
+<p>Another unique feature of the SOM algorithm is that the size of the topological neighborhood shrinks with time. <span class="math display">\[
+\sigma(n)=\sigma_0\exp (-\frac{n}{\tau_1})
+\]</span> where <span class="math inline">\(\tau_1\)</span> is a time-constant to control the decay rate of the effective width.</p>
+<p>Time-varying neighborhood function <span class="math display">\[
+h_{j,i(x)}=\exp (-\frac{d_{j,i}^2}{2\sigma(n)^2})
+\]</span> It means that the influence of the winner on its neighbors decrease with time.</p>
+<p>Parameters are adapted by <span class="math display">\[
+w_j(n+1)=w_j(n)+\eta(n)h_{j,i(x)}(n)(x-w_j(n))
+\]</span> That means the weight is the weighted average of the input and the current weight.</p>
+<p>The synaptic weight vector <span class="math inline">\(w_i\)</span> of winning neuron i moves to the input vector x.</p>
+<p>All the neurons in the neighborhood of the winning neuron also move to the input vector.</p>
+<p>The learning-rate parameter <span class="math inline">\(\eta\)</span> should also decrease with time <span class="math display">\[
+\eta(n)=\eta_0 \exp (-\frac{n}{\tau_2})
 \]</span></p>
-<p>Total mean vector <span class="math display">\[
-\mu = \frac{1}{N}\sum_x x
-\]</span> Within-class scatter <span class="math display">\[
-S_W=\sum_{i=1}^C \frac{n_i}{N}S_i=\sum_{i=1}^C P_iS_i
-\]</span> where <span class="math inline">\(P_i\)</span> weight of a specific class.</p>
-<p>Between-class scatter <span class="math display">\[
-S_B=\sum_{i=1}^CP_i (\mu_i-\mu)(\mu_i-\mu)^T
-\]</span> That means the sum of the distance of all class specific mean vector to the total mean vector.</p>
-<p>Total covariance <span class="math display">\[
-S_T=\frac{1}{N}\sum_x (x-\mu)(x-\mu)^T=S_W+S_B
-\]</span> Proof skipped.</p>
-<h3 id="two-classes">Two classes</h3>
-<p><span class="math display">\[
-y=w^Tx
-\]</span></p>
-<p>Then we can get the scalar y, of all possible <span class="math inline">\(w\)</span>, we hope to choose the best that maximizes the separability. <span class="math display">\[
-\mu_i=\frac{1}{n_i}\sum_{x\in C_i}x\quad \tilde \mu_i=w^T\mu_i
-\]</span> The distance between the two classes <span class="math display">\[
-J(w)=|\tilde \mu_1-\tilde \mu_2|=|w^T(\mu_1-\mu_2)|
-\]</span> However, the distance can be infinitely large if no constraint to the chosen <span class="math inline">\(w^T\)</span>, therefore, we normalize the distance <span class="math display">\[
-J(w)=\frac{|\tilde \mu_1-\tilde \mu_2|^2}{\tilde S_1^2+\tilde S_2^2}
-\]</span> where <span class="math inline">\(\tilde S_i^2\)</span> is the Class-specific covariance matrix of <span class="math inline">\(\tilde y_i\)</span>, <span class="math inline">\(\tilde S_1^2+\tilde S_2^2\)</span> is the Within-class scatter of <span class="math inline">\(\tilde y_i\)</span></p>
-<p>Then we find <span class="math inline">\(\tilde S_1^2+\tilde S_2^2=w^TS_W w\)</span> and <span class="math inline">\(|\tilde \mu_1-\tilde \mu_2|^2=w^TS_Bw\)</span></p>
-<p>Then <span class="math display">\[
-J(w)=\frac{w^TS_B w}{w^TS_Ww}
-\]</span> We take the derivative and let the derivative be zero (<span class="math inline">\((w^TS_Ww)^2\)</span> is omitted), <span class="math display">\[
-(w^TS_W w) S_Bw-(w^TS_B w) S_Ww=0\\
-S_Bw-J(w)S_Ww=0\\
-S_W^{-1}S_Bw=J(w)w
-\]</span> That means <span class="math inline">\(w^*\)</span> is the eigenvector of <span class="math inline">\(S_w^{-1}S_B\)</span></p>
-<p>For Multi-class <span class="math display">\[
-J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
-(S_B-\lambda_i S_W)w_i^*=0
-\]</span> Then <span class="math inline">\(w_i^*\)</span> are the largest eigenvectors corresponding to the largest eigenvalues.</p>
+<h3 id="repeat-step-2-until-the-map-has-converged.">6. Repeat step 2 until the map has converged.</h3>
+<h2 id="two-phases-of-the-adaptive-process">3. Two phases of the adaptive process</h2>
+<h3 id="the-first-phase">1. The First Phase</h3>
+<p>An ordering or self-organizing phase</p>
+<p>The ordering phase may take as many as 1000 iterations and possibly more.</p>
+<p>The learning rate should begin with a value close to 0.1; there after it should decrease gradually, but remain above 0.01. <span class="math display">\[
+\eta_0=0.1\quad \tau_2=T\quad \eta(n)=0.1\exp(-\frac{n}{T})
+\]</span> T is the total number of iterations for the first phase.</p>
+<p>The neighborhood function should initially include almost all neurons, and then shrink with time. We may set the initial size of the width equal to the “radius” of the lattice. For instance if the size of the lattice is <span class="math inline">\(M\times N\)</span>, then the initial width can be set as <span class="math display">\[
+\sigma_0=\frac{\sqrt{M^2+N^2}}{2}
+\]</span> The time constant can be chosen as <span class="math display">\[
+\tau_1=\frac{T}{\log (\sigma_0)}
+\]</span> Then at the end, <span class="math inline">\(\sigma(T)=1\)</span></p>
+<h3 id="the-second-phase">2. The Second Phase</h3>
+<p>Convergence Phase</p>
+<p>The second phase is needed to fine tune the feature map.</p>
+<p>As a general rule, the number of iterations must be at least 500 times the number of neurons in the network. Thus, the convergence phase may have to go on for thousands and possibly tens of thousands of iterations.</p>
+<p>For a good statistical accuracy, the learning parameter <span class="math inline">\(\eta(n)\)</span> should be kept at a small value, on the order of 0.01.</p>
+<p>In many applications, the second phase is not needed if convergence of the parameters are not critical.</p>
+<h2 id="summary">4. Summary</h2>
+<p>For n-dimensional input space and m output neurons</p>
+<ol type="1">
+<li>Randomly initialize the weight vector <span class="math inline">\(w_i\)</span> for neuron</li>
+<li>Sampling: choose an input vector x from the training set</li>
+<li>Determine winner neuron k</li>
+<li>Update all weight vectors of all neurons (include itself) in the neighborhood of the winning neuron</li>
+<li>If convergence criterion met, Stop</li>
+</ol>
+<p>Example</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">X = <span class="built_in">randn</span>(<span class="number">800</span>,<span class="number">2</span>);</span><br><span class="line">s2 = sum(X.^<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">trainX = (X.*<span class="built_in">repmat</span>(<span class="number">1</span>*(<span class="built_in">gammainc</span>(s2/<span class="number">2</span>,<span class="number">1</span>).^(<span class="number">1</span>/<span class="number">2</span>))./<span class="built_in">sqrt</span>(s2),<span class="number">1</span>,<span class="number">2</span>))';</span><br><span class="line"><span class="built_in">plot</span>(trainX(<span class="number">1</span>,:),trainX(<span class="number">2</span>,:),<span class="string">'+r'</span>); </span><br><span class="line">axis equal</span><br><span class="line"></span><br><span class="line">total_step_number = <span class="number">400000</span>;</span><br><span class="line">W = <span class="built_in">rand</span>(<span class="number">2</span>,<span class="number">64</span>); <span class="comment">%  row number (x-1)/8+1, column number (x-1)%8+1</span></span><br><span class="line">eta_0=<span class="number">0.1</span>; eta = eta_0; </span><br><span class="line">sigma_0 = <span class="number">4</span>; sigma = sigma_0;</span><br><span class="line"></span><br><span class="line">tau = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:(total_step_number/<span class="built_in">size</span>(trainX,<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">for</span> xx=trainX</span><br><span class="line">        [~,winner_index] = <span class="built_in">min</span>(vecnorm(xx-W));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> nn=<span class="number">1</span>:<span class="built_in">size</span>(W,<span class="number">2</span>) <span class="comment">%update neighbors</span></span><br><span class="line">            d_ji=norm([<span class="built_in">fix</span>((nn<span class="number">-1</span>)/<span class="number">8</span>+<span class="number">1</span>);<span class="built_in">mod</span>((nn<span class="number">-1</span>),<span class="number">8</span>)+<span class="number">1</span>]- ...</span><br><span class="line">                [<span class="built_in">fix</span>((winner_index<span class="number">-1</span>)/<span class="number">8</span>+<span class="number">1</span>);<span class="built_in">mod</span>((winner_index<span class="number">-1</span>),<span class="number">8</span>)+<span class="number">1</span>]);</span><br><span class="line">        </span><br><span class="line">            h_ji=<span class="built_in">exp</span>(-(d_ji^<span class="number">2</span>/(<span class="number">2</span>*sigma^<span class="number">2</span>)));</span><br><span class="line">            W(:,nn) =  W(:,nn) + eta*h_ji*(xx-W(:,nn));</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        eta = eta_0 * <span class="built_in">exp</span>(-(<span class="built_in">i</span>/(total_step_number/<span class="built_in">size</span>(trainX,<span class="number">2</span>))));</span><br><span class="line">        sigma = sigma_0 * <span class="built_in">exp</span>(-(<span class="built_in">i</span>/tau));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">axis equal</span><br><span class="line"><span class="built_in">plot</span>(trainX(<span class="number">1</span>,:),trainX(<span class="number">2</span>,:),<span class="string">'+r'</span>);</span><br><span class="line"><span class="built_in">plot</span>(W(<span class="number">1</span>,:),W(<span class="number">2</span>,:),<span class="string">'*b'</span>)</span><br><span class="line"></span><br><span class="line">result = <span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">8</span>,<span class="number">8</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">64</span></span><br><span class="line">    result(:,<span class="built_in">fix</span>((<span class="built_in">i</span><span class="number">-1</span>)/<span class="number">8</span>+<span class="number">1</span>),<span class="built_in">mod</span>((<span class="built_in">i</span><span class="number">-1</span>),<span class="number">8</span>)+<span class="number">1</span>) = W(:,<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">8</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">7</span></span><br><span class="line">       <span class="built_in">plot</span>([result(<span class="number">1</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">1</span>,<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>)],[result(<span class="number">2</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">2</span>,<span class="built_in">i</span>,<span class="built_in">j</span>+<span class="number">1</span>)],<span class="string">'*-'</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">7</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">8</span></span><br><span class="line">       <span class="built_in">plot</span>([result(<span class="number">1</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">1</span>,<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>)],[result(<span class="number">2</span>,<span class="built_in">i</span>,<span class="built_in">j</span>),result(<span class="number">2</span>,<span class="built_in">i</span>+<span class="number">1</span>,<span class="built_in">j</span>)],<span class="string">'*-'</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure>
+<img src="assets/1555772820715.png" alt="Figure."><figcaption aria-hidden="true">Figure.</figcaption>
+</figure>
 
         
       
@@ -345,7 +371,7 @@ J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/EE5904 Neural Network/2.RBFN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -359,7 +385,7 @@ J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/04/19/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/" class="post-title-link" itemprop="url">Chapter 7. Unsupervised Feature Learning</a>
+            <a href="/2019/05/09/EE5904 Neural Network/2.RBFN/" class="post-title-link" itemprop="url">Chapter 2. Radial-Basis Function Networks</a>
           
         </h1>
 
@@ -374,7 +400,7 @@ J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
                 
               
 
-              <time title="Created: 2019-04-19 13:46:13 / Modified: 14:53:00" itemprop="dateCreated datePublished" datetime="2019-04-19T13:46:13+08:00">2019-04-19</time>
+              <time title="Created: 2019-05-09 13:45:47 / Modified: 14:35:51" itemprop="dateCreated datePublished" datetime="2019-05-09T13:45:47+08:00">2019-05-09</time>
             </span>
           
             
@@ -387,7 +413,7 @@ J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
 
                 
                 
@@ -406,86 +432,120 @@ J(W)=\frac{|W^TS_BW|}{|W^tS_WW|}\\
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="unsupervised-feature-learning">Unsupervised Feature Learning</h1>
-<p>Representation learning refers to transforming the raw data into another (possibly lower-dimensional) space, such that one can do pattern recognition more easily.</p>
-<p>Why Feature Extraction?</p>
-<p>Visualization: projecting high-dimensional data onto 2D or 3D planes.</p>
-<p>Data compression: efficient storage and retrieval</p>
-<p>Noise removal: positive effect on testing accuracy</p>
-<h2 id="principal-component-analysis">1. Principal Component Analysis</h2>
-<p>PCA reduces the dimensionality of a collection of observations by finding a new set of variables, smaller than the original set of variables. It captures big variability in the data and ignore the small variability. The new variables are called principal components.</p>
-<p>For a group of data, the first PC is a line with minimum distance. The second PC is a line orthogonal to the first line with minimum distance.</p>
-<p>PCs are a series of linear least squares fits to a sample set each orthogonal to all the previous ones.</p>
-<p>Define the first principal component by the linear projection <span class="math inline">\(a_1\)</span> <span class="math display">\[
-z_1=a_1^Tx
-\]</span> where <span class="math inline">\(a_1=(a_{11},a_{21},\dotsm,a_{d1})\)</span>, we hope to find the <span class="math inline">\(a_1\)</span> such that the variance of <span class="math inline">\(z_1\)</span> is maximum <span class="math display">\[
-\begin{array}{rcl}
-var(z_1)&amp;=&amp;E((z_1-\bar z_1)^2)\\
-&amp;=&amp;\frac{1}{n} \sum_{i=1}^n(a_1^T x_i-a_1^T\bar x)^2\\
-&amp;=&amp;a_1^T\left[\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\right] a_1 \\
-&amp;=&amp; a_1^TSa_1
-\end{array}
-\]</span> where <span class="math inline">\(S=\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\)</span>, <span class="math inline">\(\bar x\)</span> is the mean.</p>
-<p>Then we hope to find <span class="math inline">\(a_1\)</span> that maximizes the variance, for example <span class="math display">\[
-x=
+          <h1 id="radial-basis-function-networks">Radial-Basis Function Networks</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>The activation of a hidden unit is determined by the distance between the input vector and a prototype vector, the center. <span class="math display">\[
+\varphi(||x-c||)=\varphi(r)
+\]</span> Given a set of N data points and a set of N target values.</p>
+<p>The goal is to find a function <span class="math inline">\(f(x)\)</span> that pass through all the training data points.</p>
+<p>There are infinite number of solutions and RBFN is just one solution.</p>
+<p>For the RBFN, we have <span class="math display">\[
+f(x)=\sum_{i=1}^N w_i\varphi(||x-x_i||)
+\]</span></p>
+<h2 id="how-to-determine-the-weights">2. How to Determine the Weights</h2>
+<p>It becomes a typical algebraic problem. <span class="math display">\[
+f(x_j)=\sum_{i=1}^{N}w_i\varphi(||x_j-x_i||)=d_j
+\]</span> Then we can expand the equation to a matrix form <span class="math display">\[
 \begin{bmatrix}
-1 &amp; 2 &amp; 3 &amp; 4\\
-4 &amp; 3 &amp; 2 &amp; 1
-\end{bmatrix}\\
-\bar x=
-\begin{bmatrix}
-2.5 \\ 2.5
+\varphi_{11}  &amp; \varphi_{12} &amp; \dotsm &amp; \varphi_{1N}\\
+\varphi_{21}  &amp; \varphi_{22} &amp; \dotsm &amp; \varphi_{2N}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_{N1}  &amp; \varphi_{N2} &amp; \dotsm &amp; \varphi_{NN}\\
 \end{bmatrix}
-\]</span> Then we hope to find <span class="math inline">\(a_1=[a_{11},a_{12}]&#39;\)</span> and <span class="math inline">\(a_2=[a_{21},a_{22}]&#39;\)</span> to maximum the variance of <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span></p>
-<p>To find <span class="math inline">\(a_1\)</span> that maximizes the variance subject to <span class="math inline">\(a_1^Ta_1=c\)</span>, let <span class="math inline">\(\lambda\)</span> be a Lagrange multiplier <span class="math display">\[
-L=a_1^TSa_1-\lambda(a_1^Ta_1-c)\\
-\frac{\partial L}{\partial a_1}=Sa_1-\lambda a_1=0\\
-(S-\lambda I)a_1=0
-\]</span> therefore, <span class="math inline">\(a_1\)</span> is the eigenvector of S, corresponding the largest eigenvalue <span class="math inline">\(\lambda=\lambda_1\)</span></p>
-<p>It is easily found that <span class="math inline">\(var(z_k)=a_k^TSa_k=\lambda_k\)</span></p>
-<p>Therefore, we choose the <span class="math inline">\(k^{th}\)</span> largest eigenvalues of S.</p>
-<p>In practice, we compute the PCs via singular value decomposition (SVD) on the centered data matrix. <span class="math display">\[
-X=U_{d,d}D_{d,n}V^T_{n,n}
-\]</span> where U and V are orthogonal matrices, D is a diagonal matrix, <span class="math inline">\(X=\{(x_1-\bar x),\dotsm,(x_n-\bar x)\}\)</span></p>
-<p>The covariance matrix can be written <span class="math display">\[
-S=XX^T=UD^2U^T
-\]</span> So the eigenvectors of S are the columns of <span class="math inline">\(U\)</span> and the eigenvalues of S are the diagonal elements of <span class="math inline">\(D^2\)</span></p>
-<p>Take only a few significant eigenvalues <span class="math inline">\(p\)</span>, the reconstructed data is <span class="math display">\[
-x_i=\bar x+U_{d,p}U_{d,p}^T(x_i-\bar x)
-\]</span> How many PCs kept? <span class="math display">\[
-\frac{\sum_{i=1}^p \lambda_i}{\sum_{i=1}^d \lambda_i}\ge0.95(Threshold)
-\]</span></p>
-<h3 id="summary-of-pca">Summary of PCA</h3>
-<p>Input samples <span class="math inline">\(\{x_1,x_2,\dotsm,x_N\}\)</span></p>
+\begin{bmatrix}
+w_1\\w_2\\\vdots\\w_N
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> Then we can have <span class="math display">\[
+w=\Phi^{-1}d
+\]</span> Once we have the weight, we have function that represents a continuous differentiable surface that pass exactly through each data point.</p>
+<h2 id="commonly-used-radial-basis-functions">3. Commonly Used Radial Basis Functions</h2>
+<p>Gaussian Function <span class="math display">\[
+\varphi(r)=\exp (-\frac{r^2}{2\sigma^2})
+\]</span> Inverse Multi-Quadric Function <span class="math display">\[
+\varphi(r)=(r^2+\sigma^2)^{-0.5}
+\]</span> But the network perform poorly for the noisy data for the perfect tracking and large date sets the network will be very cost.</p>
+<p>To summarize,</p>
 <ol type="1">
-<li>Compute the covariance matrix S</li>
+<li>For a given set containing N points</li>
+<li>Choose a RBF function <span class="math inline">\(\varphi\)</span></li>
+<li>Calculate <span class="math inline">\(\varphi_{ji}=\varphi(||x_j-x_i||)\)</span></li>
+<li>Obtain the interpolation matrix <span class="math inline">\(\Phi\)</span></li>
+<li>Solve the linear equation <span class="math inline">\(\Phi w=d\)</span></li>
+<li>Get the Unique solution <span class="math inline">\(w\)</span></li>
 </ol>
-<p><span class="math display">\[
-S=\frac{1}{N}\sum_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T
+<h2 id="train-the-network">4. Train the Network</h2>
+<p>However, the network requires one hidden unit for each training data pattern, and so for large datasets the network will become very costly to evaluate. Therefore, it is not necessary to use the sampling points as the centers. We choose some sampling points <span class="math inline">\(\mu_i\)</span> and then we have <span class="math display">\[
+f(x)=\sum_{i=1}^Mw_i\varphi_i(||x-\mu_i||)+b\\
 \]</span></p>
-<ol start="2" type="1">
-<li><p>perform eigenvalue decomposition [U]=eig(S)</p></li>
-<li><p>Output PCs U(:,1:p)</p></li>
+<p>Let <span class="math inline">\(\varphi_0=1\)</span>, then the bias can be included in the vector. We have <span class="math display">\[
+f(x)=\sum_{i=0}^Mw_i\varphi_i(||x-\mu_i||)\\
+\]</span> Then the centers, spread parameters, and the weights can be learned by training as that for MLP.</p>
+<p>For the case of Gaussian basis functions, we have <span class="math display">\[
+\varphi_i(||x-\mu_i||)=\exp(-\frac{||x-\mu_i||^2}{2\sigma_i^2})
+\]</span> In which we have basis center <span class="math inline">\(\mu_i\)</span> and standard deviations <span class="math inline">\(\sigma_i\)</span>.</p>
+<p>The aim is to develop a process for finding the appropriate values of the weights <span class="math inline">\(w_i\)</span> and the centers and spreads <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i\)</span> .</p>
+<p>We hope to find the parameters <span class="math inline">\(w_i,\mu_i,\sigma_i\)</span> such that the cost function <span class="math display">\[
+E(w)=\sum_{i=1}^N(d(i)-y(i))^2
+\]</span> is minimized.</p>
+<p>There are two stages to tune the parameters.</p>
+<p>Stage 1,</p>
+<p>Use unsupervised learning methods to find center <span class="math inline">\(\mu_i\)</span> and spread <span class="math inline">\(\sigma_i\)</span></p>
+<p>Stage 2,</p>
+<p>Use supervised learning methods to find weight values between hidden and output units.</p>
+<h2 id="finding-the-output-weights">5. Finding the Output Weights</h2>
+<p>Given the hidden unit activations <span class="math inline">\(\varphi(x,\mu_i,\sigma_i)\)</span> is fixed while we determine the output weight <span class="math inline">\(w_i\)</span> <span class="math display">\[
+\begin{bmatrix}
+\varphi_0(x_1) &amp; \varphi_1(x_1) &amp; \dotsm &amp; \varphi_M(x_1)\\
+\varphi_0(x_2) &amp; \varphi_1(x_2) &amp; \dotsm &amp; \varphi_M(x_2)\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_0(x_N) &amp; \varphi_1(x_N) &amp; \dotsm &amp; \varphi_M(x_N)
+\end{bmatrix}
+\begin{bmatrix}
+w_0\\w_1\\\vdots\\w_M
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> That is <span class="math inline">\(\Phi w=d\)</span></p>
+<p>We can solve this problem by linear least squares <span class="math display">\[
+w=(\Phi^T\Phi)^{-1}\Phi^Td
+\]</span></p>
+<h2 id="finding-the-center-and-spread">6. Finding the Center and Spread</h2>
+<p>There are numerous approaches in the literature to find the center and spread for the first stage.</p>
+<p>The simplest and quickest approach to setting the RBF parameters is to take their centers as fixed at M points selected at random from the N data points.</p>
+<p>Specially, we can use RBFs centered at <span class="math inline">\(\mu_i\)</span> defined by <span class="math display">\[
+\varphi_i(x)=\exp (-\frac{M}{d_{max}^2}||x-\mu_i||^2)
+\]</span> That means the spread is <span class="math display">\[
+\sigma_i=\frac{d_{max}}{\sqrt{2M}}
+\]</span> We can also use K-means clustering</p>
+<p>K-means clustering,</p>
+<ol type="1">
+<li>Initialization. Choose random values for the initial centers.</li>
+<li>Sampling. Draw a sample vector from the training set.</li>
+<li>Assignment. Compute the distance from the vector to each center and assign the vector to the closet center.</li>
+<li>Updating. After all vectors are assigned to a center. Calculate the new center by the assigned vectors.</li>
+<li>Do the previous steps until converged.</li>
 </ol>
-<h2 id="nonnegative-matrix-factorization">2. Nonnegative Matrix Factorization</h2>
-<p>Find a set of orthogonal principal components</p>
-<p>The reconstructed image is a linear combination of the principal components plus mean face.</p>
-<p>Matrix factorization <span class="math display">\[
-V\approx WH
-\]</span> V: <span class="math inline">\(n\times m\)</span> matrix. Each column contains n nonnegative pixel values of one of the m facial images.</p>
-<p>W: <span class="math inline">\(n\times r\)</span> matrix. r columns of W are called the basis images.</p>
-<p>H: <span class="math inline">\(r\times m\)</span> matrix. each column of H is called encoding.</p>
-<p>Using gradient decent method $$ H_{a}H_{a}\</p>
-<p>W_{a}W_{a}\ $$</p>
-<h3 id="summary-of-nmf">Summary of NMF</h3>
-<p>Input sample matrix <span class="math inline">\(V=[v_1,v_2,\dotsm,v_N]\)</span></p>
-<p>Initialize <span class="math inline">\(W^0\)</span> and <span class="math inline">\(H^0\)</span> randomly as positive matrices</p>
-<p>for t=0:1:T_max do</p>
-<p>gradient decent method</p>
-<p>if <span class="math inline">\(||W^t-W^{t+1}||\le \epsilon_1\)</span> and <span class="math inline">\(||H^t-H^{t+1}||\le \epsilon_2\)</span></p>
-<p>return;</p>
-<p>end for</p>
-<p>output matrices W and H.</p>
+<h2 id="supervised-rbf-network-training">7. Supervised RBF Network Training</h2>
+<p>The obvious approach is to perform gradient decent on a sum squared output error function as we did for MLPs. <span class="math display">\[
+E=\frac{1}{2}\sum_{j=1}^N(e_j)^2\\
+e_j=d_j-y(x_j)=d_j-\sum_{i=0}^Mw_i\varphi_i(x_j,\mu_i,\sigma_i)
+\]</span> Then we can use the gradient decent method, <span class="math display">\[
+\Delta w=-\eta g(n)
+\]</span></p>
+<h2 id="regularization-theory-for-rbf-networks">8. Regularization Theory for RBF Networks</h2>
+<p>Cost function <span class="math display">\[
+F(w)=\frac{1}{2}\sum_{i=1}^N(y(i)-d(i))^2+\frac{1}{2}\lambda||w||^2=\frac{1}{2}(\Phi w-d)^T(\Phi w-d)+\frac{1}{2}\lambda w^Tw
+\]</span> We hope to get the optimal solution for w <span class="math display">\[
+\frac{\partial F(w)}{\partial w}=0
+\]</span> Then we have <span class="math display">\[
+w=(\Phi^T\Phi+\lambda I)^{-1}\Phi^Td
+\]</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is the regularization factor.</p>
+<p>RBFN can also be used in classification problem.</p>
 
         
       
@@ -509,7 +569,7 @@ V\approx WH
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -554,7 +614,7 @@ V\approx WH
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -583,7 +643,9 @@ V\approx WH
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -617,7 +679,7 @@ V\approx WH
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

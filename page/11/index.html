@@ -218,7 +218,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/08/23/Introduction to Hilbert Spaces with Applications/3.1 Hilbert Spaces and Orthonormal Systems/" class="post-title-link" itemprop="url">Chapter 3-1. Hilbert Spaces and Orthonormal Systems</a>
+            <a href="/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/" class="post-title-link" itemprop="url">Chapter 4-1. Linear Operator on Hilbert Spaces</a>
           
         </h1>
 
@@ -247,7 +247,7 @@
                 
               
 
-              <time title="Created: 2019-08-23 13:48:00 / Modified: 15:00:22" itemprop="dateCreated datePublished" datetime="2019-08-23T13:48:00+08:00">2019-08-23</time>
+              <time title="Created: 2019-09-10 13:48:00 / Modified: 15:00:33" itemprop="dateCreated datePublished" datetime="2019-09-10T13:48:00+08:00">2019-09-10</time>
             </span>
           
             
@@ -279,100 +279,116 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="hilbert-spaces-and-orthonormal-systems">Hilbert Spaces and Orthonormal Systems</h1>
-<h2 id="introduction">3.1 Introduction</h2>
-<p>This chapter is concerned with inner product space and Hilbert Spaces. The basic ideas and properties will be discussed with special attention given to orthonormal systems.</p>
-<h2 id="inner-product-spaces-definition-and-examples">3.2 Inner Product Spaces-Definition and Examples</h2>
-<p>==Definition 3.2.1== Inner product space</p>
-<p>Let E be a complex vector space. A mapping <span class="math inline">\(\langle \cdot,\cdot\rangle:E\times E\rightarrow C\)</span> is called an inner product in E if for any <span class="math inline">\(x,y,z\in E\)</span> and <span class="math inline">\(\alpha,\beta \in C\)</span> the following conditions are satisfied,</p>
+          <h1 id="linear-operator-on-hilbert-spaces">Linear Operator on Hilbert Spaces</h1>
+<h2 id="introduction">4.1 Introduction</h2>
+<p>The conception of an operator (or transformation) on a normed vector space is a natural generalization of the idea of a function of a real variable. Linear operators on a normed vector space are widely used to represent physical quantities, and hence their importance is further enhanced in applied mathematics and mathematical physics.</p>
+<p>The most important operators include <strong>differential, integral, and matrix operators</strong>.</p>
+<h2 id="examples-of-operators">4.2 Examples of Operators</h2>
+<p>In section 4.1, we discussed some basic properties of linear mappings from a vector space <span class="math inline">\(E_1\)</span> into a vector space <span class="math inline">\(E_2\)</span>. In this chapter, we are interested in the cases when <span class="math inline">\(E_1=E_2=E\)</span> or <span class="math inline">\(E_1\subset E_2=E\)</span>, where <span class="math inline">\(E\)</span> is normed space or inner product space. Here we will not consider nonlinear operator so operator just means the linear operator.</p>
+<p>Recall that an operator A is called bounded if there is a number <span class="math inline">\(K\)</span> such that <span class="math inline">\(||Ax||\le K||x\|\)</span> for every <span class="math inline">\(x\)</span> in the domain of A. The norm of A is defined as the least of all numbers K, or equivalently, by <span class="math display">\[
+||A||=\sup_{||x||=1}||Ax||
+\]</span> In section 1.6, we proved that an operator A is bounded if and only if it is continuous. It is often much more difficult to find the norm of an operator than just prove it is bounded.</p>
+<p>==Example 4.2.1== (Identity Operator and Null operator)</p>
+<p>The simplest example of an operator is the identity operator <span class="math inline">\(\mathscr I\)</span>, which leaves every element unchanged: <span class="math inline">\(\mathscr Ix=x\quad \forall x\in E\)</span>. The null operator, which assigns the zero vector to every element of E, will be denoted by 0. The two operators are both bounded and we have <span class="math inline">\(||\mathscr I||=1\)</span> and <span class="math inline">\(||0||=0\)</span>. A scalar multiple <span class="math inline">\(\alpha\mathscr I\)</span> of the identity operator is the operator which multiplies every element by the scalar <span class="math inline">\(\alpha\)</span>: <span class="math inline">\((\alpha\mathscr I)x=\alpha x\)</span>.</p>
+<p>==Example 4.2.2==</p>
+<p>Let A be an operator on <span class="math inline">\(C^N\)</span> and let <span class="math inline">\(\{e_1,\dotsm,e_n\}\)</span> be the standard orthonormal base in <span class="math inline">\(C^N\)</span>, i.e. <span class="math display">\[
+e_1=(1,0,\dotsm,0)\\
+e_2=(0,1,\dotsm,0)\\
+\dotsm\\
+e_n=(0,0,\dotsm,1)
+\]</span> Define <span class="math inline">\(i,j=\{1,2,\dotsm,N\}\)</span>, <span class="math display">\[
+a_{ij}=&lt;Ae_j,e_i&gt;
+\]</span> Then for <span class="math inline">\(x=\sum_{j=1}^N \lambda_je_j\in C^N\)</span>, we have <span class="math inline">\(Ax=\sum_{j=1}^N\lambda_jAe_j\)</span>. <span class="math display">\[
+&lt;Ax,e_i&gt;=\sum_{j=1}^N\lambda_j&lt;Ae_j,e_i&gt;=\sum_{j=1}^N\lambda_j\alpha_{ij}\\
+\]</span> Hence, every operator on the space <span class="math inline">\(C^N\)</span> is defined by a <span class="math inline">\(N\times N\)</span> matrix. Conversely, for every <span class="math inline">\(N\times N\)</span> matrix <span class="math inline">\((\alpha_{ij})\)</span>, it defines an operator on <span class="math inline">\(C^N\)</span>. <span class="math display">\[
+||A||\le \sqrt{\sum_{i=1}^N\sum_{j=1}^N |\alpha_{ij}|^2}
+\]</span> ==Example 4.2.3== (Differential Operator)</p>
+<p>One of the most important operator is the differential operator <span class="math display">\[
+(Df)(x)=\frac{df}{dx}(x)=f&#39;(x)
+\]</span> defined on a space of differentiable functions.</p>
+<p>==Example 4.2.4== (Integral Operator)</p>
+<p>Another important kind of operator is an integral operator defined by <span class="math display">\[
+(Tx)(s)=\int _a^b K(s,t)x(t)dt
+\]</span> where a and b are finite or infinite, <span class="math inline">\(a&lt;b\)</span> and K is a function defined on <span class="math inline">\((a,b)\times (a,b)\)</span>. The function K is called the kernel of the operator. The domain of an integral operator depends on K. If <span class="math display">\[
+\int _a^b\int _a^b|K(s,t)|^2dtds&lt;\infty
+\]</span> Then T is bounded operator on <span class="math inline">\(L^2([a,b])\)</span> and <span class="math display">\[
+||T||\le \sqrt{\int _a^b\int _a^b|K(s,t)|dtds}
+\]</span> ==Example 4.2.5== (Multiplication Operator)</p>
+<p>Let <span class="math inline">\(z\in \mathscr C([a,b])\)</span>. An operator A on <span class="math inline">\(L^2([a,b])\)</span> defined by <span class="math inline">\((Ax)(t)=z(t)x(t)\)</span> is clearly linear. The function z is called the multiplier.</p>
+<p>We have <span class="math display">\[
+||Ax||\le \max_{|a,b|}|z(t)|||x||
+\]</span> and thus A is bounded.</p>
+<p>Two operator on a vector space E is said to be ==equal==, A=B if <span class="math inline">\(Ax=Bx\)</span> for every <span class="math inline">\(x\in E\)</span>.</p>
+<p>The set of all operator constitutes a ==vector space== with the addition and multiplication defined by <span class="math display">\[
+(A+B)x=Ax+Bx\quad and\quad (\alpha A)x=\alpha(Ax)
+\]</span> The product of operator A and B is defined by <span class="math display">\[
+(AB)x=A(Bx)
+\]</span> Thus, AB denotes the composition of A and B.</p>
+<p>The defined operators have the following obvious properties. <span class="math display">\[
+A+B=B+A\\
+(A+B)+C=A+(B+C)\\
+A+0=A\\
+\alpha(A+B)=\alpha A+\alpha B\\
+(\alpha+\beta) A=\alpha A+\beta A\\
+A0=0\\
+A(BC)=(AB)C\\
+(A+B)C=AC+BC\\
+A\mathscr J=\mathscr JA
+\]</span> In general, <span class="math inline">\(AB\)</span> need not equal BA. Operators A and B for which <span class="math inline">\(AB=BA\)</span> are called commuting operators.</p>
+<p>==Example 4.2.6== (Noncommuting Operators)</p>
+<p>Consider the space of differential functions on R and the operators <span class="math display">\[
+Af(x)=xf(x)\quad D=\frac{d}{dx}\\
+AD\neq DA
+\]</span> The ==square== of an operator A is defined as <span class="math inline">\(A^2x=A(Ax)\)</span>. By induction, we can define <span class="math display">\[
+A^nx=A(A^{n-1}x)
+\]</span> for any positive integer n. As usual <span class="math inline">\(A^1=A\)</span> and <span class="math inline">\(A^0=\mathscr I\)</span>.</p>
+<p>==Theorem 4.2.1==</p>
+<p>The product AB of bounded operators A and B is bounded and <span class="math inline">\(||AB||\le ||A||||B||\)</span></p>
+<p>==Theorem 4.2.2==</p>
+<p>A bounded operator on a separable infinite dimensional Hilbert Space can be represented by an infinite matrix.</p>
+<h2 id="bilinear-functionals-and-quadratic-forms">4.3 Bilinear Functionals and Quadratic Forms</h2>
+<p>The concept of Bilinear functional and quadratic form do not require the structure of an inner product space. They can be defined in any vector space. This discussion is presented in this chapter because of important applications to the theory of operators in Hilbert Space.</p>
+<p>==Definition 4.3.1== (Bilinear Functional)</p>
+<p>By a bilinear functional <span class="math inline">\(\phi\)</span> on a complex vector space E, we mean a mapping <span class="math inline">\(E\times E \rightarrow C\)</span> satisfying the following two conditions,</p>
 <ol type="a">
-<li><p><span class="math inline">\(\langle x,y\rangle=\overline {\langle y,x\rangle}\)</span></p></li>
-<li><p><span class="math inline">\(&lt;\alpha x+\beta y,z&gt;=\alpha&lt;x,z&gt;+\beta&lt;y,z&gt;\)</span></p></li>
-<li><p><span class="math inline">\(&lt;x,x&gt;\ge 0\)</span> and <span class="math inline">\(&lt;x,x&gt;=0\implies x=0\)</span></p></li>
+<li><p><span class="math inline">\(\phi(\alpha x_1+\beta x_2,y)=\alpha \phi(x_1,y)+\beta \phi(x_2,y)\)</span></p></li>
+<li><p><span class="math inline">\(\phi(x,\alpha y_1+\beta y_2)=\bar \alpha \phi(x,y_1)+\bar \beta \phi(x,y_2)\)</span></p></li>
 </ol>
-<p>A vector space with an inner product is called a inner product space or pre-Hilbert space.</p>
-<p>According to the definition, we know that the inner product of two vectors is a complex number.</p>
-<p>An inner product is the generalization of the dot product.</p>
-<p>==Example 3.2.1==</p>
-<p>The simplest example is an inner product of complex number C. The inner product is defined as <span class="math display">\[
-\def \norm &lt;#1,#2&gt;{\langle#1,#2\rangle}
-\norm&lt;x,y&gt;=x\bar y
-\]</span> ==Example 3.2.2==</p>
-<p>The space <span class="math inline">\(C^N\)</span> of ordered N-tuples <span class="math inline">\(x=(x_1,x_2,\dotsm,x_N)\)</span> of complex numbers, with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^N x_k \bar y_k
-\]</span> ==Example 3.2.3==</p>
-<p>The space <span class="math inline">\(l^2\)</span> of all sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex numbers such that <span class="math inline">\(\sum_{k=1}^\infty |x_k|^2&lt;\infty\)</span> with the inner product defined by <span class="math display">\[
-\norm&lt;x,y&gt;=\sum_{k=1}^\infty x_k\bar y_k
-\]</span> is an infinite dimensional inner product space.</p>
-<p>==Example 3.2.4==</p>
-<p>Consider the space of sequences <span class="math inline">\((x_1,x_2,\dotsm)\)</span> of complex number with only finite number of items is non-zero. This is an inner product space with the inner product defined as in Example 3.2.3.</p>
-<p>==Example 3.2.5==</p>
-<p>The space <span class="math inline">\(\mathscr C([a,b])\)</span> of all continuous complex-valued functions on the interval [a,b], with the inner product <span class="math display">\[
-\norm&lt;f,g&gt;=\int _a^b f(x)\overline{g(x)} dx
-\]</span> is an inner product space.</p>
-<p>==Example 3.2.6==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> with the inner product defined by <span class="math display">\[
-\int _{-\infty} ^\infty f(x)\overline{g(x)} dx
-\]</span> and more generally, the space <span class="math inline">\(L^2(R^N)\)</span> with the inner product defined by <span class="math display">\[
-\int _{R^N} f(x)\overline{g(x)} dx
-\]</span> are inner product space.</p>
-<p>==Example 3.2.7==</p>
-<p>Let E be the Cartesian product of inner product spaces <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, i.e. <span class="math inline">\(E=E_1\times E_2\)</span>.</p>
-<p>The space E is an inner product space with the inner product defined by <span class="math display">\[
-\norm&lt;(x_1,y_1),(x_2,y_2)&gt; = \norm&lt;x_1,x_2&gt;+\norm&lt;y_1,y_2&gt;
+<p>for any scalar <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> and any <span class="math inline">\(x,x_1,x_2,y,y_1,y_2\in E\)</span>.</p>
+<p>Bilinear functionals are often called ==sesquilinear==. Note that bilinear functional is linear with respect to the first variable and antilinear with respect to the second variable, all bilinear functionals on E constitute a vector space.</p>
+<p>==Example 4.2.1== Inner product is a bilinear functional</p>
+<p>==Example 4.2.2== Let A and B be operators on an inner product space E. Then <span class="math inline">\(\phi_1(x,y)=&lt;Ax,y&gt;\)</span>, <span class="math inline">\(\phi_2(x,y)=&lt;x,By&gt;\)</span>, and <span class="math inline">\(\phi_3(x,y)=&lt;Ax,By&gt;\)</span> are bilinear functionals.</p>
+<p>==Example 4.2.3== Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> be linear functionals on a vector space E. Then <span class="math inline">\(\phi(x,y)=f(x)\overline{g(y)}\)</span> is a bilinear functional on E.</p>
+<p>==Definition 4.3.2== Let <span class="math inline">\(\phi\)</span> be a bilinear functional on E.</p>
+<ol type="a">
+<li><p><span class="math inline">\(\phi\)</span> is called symmetric if <span class="math inline">\(\phi(x,y)=\overline{\phi(y,x)}\)</span> for all <span class="math inline">\(x,y\in E\)</span>.</p></li>
+<li><p><span class="math inline">\(\phi\)</span> is called positive if <span class="math inline">\(\phi(x,x)\ge 0\)</span> for every <span class="math inline">\(x\in E\)</span>.</p></li>
+<li><p><span class="math inline">\(\phi\)</span> is called strictly positive if it is positive and <span class="math inline">\(\phi(x,x)&gt;0\)</span> for every <span class="math inline">\(x\neq 0\)</span>.</p></li>
+<li><p>If E is a normed space, then <span class="math inline">\(\phi\)</span> is called bounded if <span class="math inline">\(|\phi(x,y)|\le K||x|||y||\)</span> for some <span class="math inline">\(K&gt;0\)</span> and all <span class="math inline">\(x,y\in E\)</span>. The norm of a bounded bilinear functional is defined by <span class="math display">\[
+||\phi||=\sup_{||x||=1,||y||=1}|\phi(x,y)|
+\]</span> ==Definition 4.3.3== (Quadratic form)</p></li>
+</ol>
+<p>Let <span class="math inline">\(\phi\)</span> be a bilinear functional on a vector space E. The function <span class="math inline">\(\Phi:E\rightarrow C\)</span> defined by <span class="math inline">\(\Phi(x)=\phi(x,x)\)</span> is called the quadratic form associated with <span class="math inline">\(\phi\)</span>. A quadratic form <span class="math inline">\(\Phi\)</span> on a normed space E is called bounded if there exists a constant <span class="math inline">\(k&gt;0\)</span> such that <span class="math inline">\(|\Phi(x)|\le k||x||^2\)</span> for all <span class="math inline">\(x\in E\)</span>. The norm of a bounded quadratic form is defined by <span class="math display">\[
+||\Phi||=\sup_{||x||=1} |\Phi(x)|
+\]</span> ==Theorem 4.3.1== (Polarization Identity)</p>
+<p>Let <span class="math inline">\(\phi\)</span> be a bilinear functional on E and let <span class="math inline">\(\Phi\)</span> be quadratic form associated with <span class="math inline">\(\phi\)</span>. Then <span class="math display">\[
+4\phi(x,y)=\Phi(x+y)-\Phi(x-y)+i\Phi(x+iy)-i\Phi(x-iy)
+\]</span> for all <span class="math inline">\(x,y\in E\)</span>.</p>
+<p>==Corollary 4.3.1== Let <span class="math inline">\(\phi_1\)</span> and <span class="math inline">\(\phi_2\)</span> be bilinear functional on E. If <span class="math inline">\(\phi_1(x,x)=\phi_2(x,x)\)</span> for all <span class="math inline">\(x\in E\)</span>, then <span class="math inline">\(\phi_1=\phi_2\)</span>. i.e. <span class="math inline">\(\phi_1(x,y)=\phi_2(x,y)\)</span> for all <span class="math inline">\(x,y \in E\)</span>.</p>
+<p>==Theorem 4.3.2== A bilinear functional <span class="math inline">\(\phi\)</span> on E is symmetric if and only if the associated quadratic form <span class="math inline">\(\Phi\)</span> is real.</p>
+<p>==Theorem 4.3.3== A bilinear functional <span class="math inline">\(\phi\)</span> on a normed space E is bounded if and only if the associated quadratic form <span class="math inline">\(\Phi\)</span> is bounded. Moreover, we have <span class="math display">\[
+||\Phi||\le ||\phi||\le 2||\Phi||
+\]</span> ==Theorem 4.3.4== If a bilinear functional <span class="math inline">\(\phi\)</span> on a normed space <span class="math inline">\(E\)</span> is symmetric and bounded, then for the associated form <span class="math inline">\(\Phi\)</span> we have <span class="math inline">\(||\phi||=||\Phi||\)</span>.</p>
+<p>==Theorem 4.3.5== Let <span class="math inline">\(A\)</span> be a bounded operator on a Hilbert space <span class="math inline">\(H\)</span>. Then the bilinear functional defined by <span class="math inline">\(\phi(x,y)=&lt;x,Ay&gt;\)</span> is bounded and <span class="math inline">\(||A||=||\phi||\)</span>.</p>
+<p>==Theorem 4.3.6== Let <span class="math inline">\(\phi\)</span> be a bounded bilinear functional on a Hilbert space H. There exists a unique bounded operator A on H such that <span class="math display">\[
+\phi(x,y)=&lt;x,Ay&gt;\quad \forall x,y\in H
+\]</span> ==Definition 4.3.6== (Coercive Functional)</p>
+<p>A bilinear functional <span class="math inline">\(\phi\)</span> on a normed space <span class="math inline">\(E\)</span> is called coercive (or elliptic) if there exists a positive constant K such that <span class="math display">\[
+\phi(x,x)\ge K||x||^2\quad \forall x\in E 
+\]</span> ==Theorem 4.3.7== (Lax-Milgram Theorem)</p>
+<p>Let <span class="math inline">\(\phi\)</span> be a bounded, coercive, bilinear functional on a Hilbert Space H. For every bounded linear functional <span class="math inline">\(f\)</span> on <span class="math inline">\(H\)</span>, there exists a unique <span class="math inline">\(x_f\in H\)</span> such that <span class="math display">\[
+f(x)=\phi(x,x_f)\quad \forall x\in H
 \]</span></p>
-<h2 id="norm-in-an-inner-product-space">3.3 Norm in an inner product space</h2>
-<p>An inner product space is a vector space with an inner product. It turns out that every inner product space is also a normed space with the norm defined by <span class="math display">\[
-||x||=\sqrt{\norm&lt;x,x&gt;}
-\]</span> ==Definition 3.3.1== (Norm in an Inner Product Space)</p>
-<p>By the norm in an inner product space E, we mean the functional defined by <span class="math inline">\(||x||=\sqrt{\norm&lt;x,x&gt;}\)</span></p>
-<p>We have proved that every inner product space is a normed space. But it is <strong>not true</strong> that any normed space is an inner product space. In the following theorem, we prove a property of a norm in an inner product space which is a necessary and sufficient condition for a normed space to be an inner product space.</p>
-<p>==Theorem 3.3.2== Parallelogram Law</p>
-<p>For any two elements <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of an inner product space we have <span class="math display">\[
-||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)
-\]</span> One of the most important consequences of having the inner product is the possibility of defining <strong>orthogonality</strong> of vectors. This makes the theory of Hilbert spaces very different from the general theory of Banach spaces.</p>
-<p>==Definition 3.3.2== Orthogonal vectors</p>
-<p>Two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in an inner product space are called orthogonal, denoted by <span class="math inline">\(x\perp y\)</span> if <span class="math inline">\(\norm&lt;x,y&gt;=0\)</span>.</p>
-<p>==Theorem 3.3.3== Pythagorean Formula</p>
-<p>For any pair of orthogonal vectors we have <span class="math display">\[
-||x+y||^2=||x||^2+||y||^2
-\]</span></p>
-<h2 id="hilbert-spaces-definition-and-examples">3.4 Hilbert Spaces-Definition and Examples</h2>
-<p>==Definition 3.4.1== Hilbert space</p>
-<p>A complete inner product space is called a Hilbert space.</p>
-<p>By the completeness of an inner product space E, we mean the completeness of E as a ==normed space==.</p>
-<p>Now we are going to discuss completeness of the inner product spaces and give some new examples.</p>
-<p>==Example 3.4.1==</p>
-<p>Since C is complete, it is a Hilbert space.</p>
-<p>==Example 3.4.2==</p>
-<p><span class="math inline">\(C^N\)</span> is Hilbert space.</p>
-<p>==Example 3.4.3==</p>
-<p><span class="math inline">\(l^2\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.4==</p>
-<p>The space described in Example 3.2.4 is ==not== Hilbert space.</p>
-<p>==Example 3.4.5==</p>
-<p><span class="math inline">\(\mathscr C([a,b])\)</span> is ==not== Hilbert space.</p>
-<p>==Example 3.4.6==</p>
-<p>The space <span class="math inline">\(L^2([a,b])\)</span> is a Hilbert space.</p>
-<p>==Example 3.4.7==</p>
-<p>The space <span class="math inline">\(L^2(R)\)</span> is a Hilbert space.</p>
-<h2 id="strong-and-weak-convergence">3.5 Strong and Weak Convergence</h2>
-<p>Since every inner product is a normed , it is equipped with a convergence, namely the convergence defined by the norm. This convergence is called strong convergence.</p>
-<p>==Definition 3.5.1== Strong convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called strongly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(||x_n-x||\rightarrow 0\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>==Definition 3.5.2== Weak convergence</p>
-<p>A sequence <span class="math inline">\((x_n)\)</span> of vectors in an inner product space <span class="math inline">\(E\)</span> is called weakly convergent to a vector <span class="math inline">\(x\)</span> in E if <span class="math inline">\(\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\)</span> as <span class="math inline">\(n\rightarrow 0\)</span>.</p>
-<p>It will be convenient to reserve the notation <span class="math inline">\(x_n\rightarrow x\)</span> for the strong convergent and use <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> for weakly convergent.</p>
-<p>==Theorem 3.5.1==</p>
-<p>A strongly convergent sequence is weakly convergent.</p>
-<p>==Theorem 3.5.2==</p>
-<p>If <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span> and <span class="math inline">\(||x_n||\rightarrow ||x||\)</span>, then <span class="math inline">\(x_n\rightarrow x\)</span></p>
-<p>==Theorem 3.5.3==</p>
-<p>Let <span class="math inline">\(S\)</span> be a subset of an inner product space <span class="math inline">\(E\)</span> such that span S is dense in E. If <span class="math inline">\((x_n)\)</span> is a bounded sequence in E and <span class="math display">\[
-\norm&lt;x_n,y&gt;\rightarrow \norm&lt;x,y&gt;\quad \forall y\in S
-\]</span> then <span class="math inline">\(x_n\overset{w}{\rightarrow} x\)</span>.</p>
-<p>==Theorem 3.5.4==</p>
-<p>Weakly convergent sequences in a <strong>Hilbert Space</strong> are bounded. i.e. if <span class="math inline">\((x_n)\)</span> is a weakly convergent sequence, then there exists a number M such that <span class="math inline">\(||x_n||\le M\)</span> for all <span class="math inline">\(n\in N\)</span>.</p>
 
         
       
@@ -397,7 +413,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/Convex Optimization/10. Equality constrained Minimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cheng-Zilong">
@@ -411,7 +427,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/08/20/Introduction to Hilbert Spaces with Applications/2.9 The Lebesgue Integral/" class="post-title-link" itemprop="url">Chapter 2-3. The Lebesgue Integral</a>
+            <a href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-title-link" itemprop="url">Chapter 10. Equality constrained Minimization</a>
           
         </h1>
 
@@ -426,7 +442,7 @@
                 
               
 
-              <time title="Created: 2019-08-20 13:48:00 / Modified: 14:59:07" itemprop="dateCreated datePublished" datetime="2019-08-20T13:48:00+08:00">2019-08-20</time>
+              <time title="Created: 2019-09-03 13:49:01 / Modified: 13:59:42" itemprop="dateCreated datePublished" datetime="2019-09-03T13:49:01+08:00">2019-09-03</time>
             </span>
           
             
@@ -439,7 +455,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
 
                 
                 
@@ -458,58 +474,157 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="locally-integrable-functions">2.9 Locally Integrable Functions</h2>
-<p>The integral <span class="math inline">\(\int f\)</span> corresponds to the integration over the entire real line, so the symbols <span class="math inline">\(\int ^\infty_{-\infty}\)</span> or <span class="math inline">\(\int _R\)</span> could be used instead. In applications we often need to integrate functions over bounded intervals. This concept can be easily defined using the integral <span class="math inline">\(\int f\)</span></p>
-<p>==Definition 2.9.1== Integral over an interval</p>
-<p>By the integral of a function <span class="math inline">\(f\)</span> over an interval <span class="math inline">\([a,b]\)</span>, denoted by <span class="math inline">\(\int_a^b f\)</span>, we mean the value of the integral <span class="math inline">\(\int f \mathcal X_{[a,b]}\)</span>, where <span class="math inline">\(\mathcal X_{[a,b]}\)</span> denotes the characteristic function of <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(f\mathcal X_{[a,b]}\)</span> is the product of <span class="math inline">\(f\)</span> and <span class="math inline">\(\mathcal X_{[a,b]}\)</span></p>
-<p>In proofs, it is often more convenient to use <span class="math inline">\(\mathcal X_{[a,b)}\)</span> instead of <span class="math inline">\(\mathcal X_{[a,b]}\)</span></p>
-<p>==Theorem 2.9.1==</p>
-<p>If <span class="math inline">\(f\in L^1(R)\)</span>, then for every interval <span class="math inline">\([a,b]\)</span> the integral <span class="math inline">\(\int _a^b f\)</span> exists.</p>
-<p>==Definition 2.9.2== Locally integrable functions</p>
-<p>A function <span class="math inline">\(f\)</span> on R is called locally integrable if for <strong>every</strong> <span class="math inline">\(-\infty&lt;a&lt;b&lt;\infty\)</span> the integral <span class="math inline">\(\int _a^b f\)</span> exists.</p>
-<p>It is sufficient to check that the integral <span class="math inline">\(\int_{-n}^n f\)</span> exists for every <span class="math inline">\(n\in N\)</span>. The absolute value of a locally integrable functions is locally integrable. However, the product of integrable functions need not be integrable.</p>
-<p>==Theorem 2.9.2==</p>
-<p>Let <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> be locally integrable functions. If <span class="math inline">\(g\)</span> is bounded on <span class="math inline">\([a,b]\)</span> for every <span class="math inline">\(-\infty&lt;a&lt;b&lt;\infty\)</span>, then the product <span class="math inline">\(fg\)</span> is locally integrable functions.</p>
-<p>==Theorem 2.9.3==</p>
-<p>If <span class="math inline">\(f\)</span> is locally integrable function such that <span class="math inline">\(|f|\le g\)</span> for some <span class="math inline">\(g\in L^1(R)\)</span>, then <span class="math inline">\(f\in L^1(R)\)</span></p>
-<h2 id="the-lebesgue-integral-and-the-riemann-integral">2.10 The Lebesgue Integral and the Riemann Integral</h2>
-<p>In this section we are going to prove that Riemann integrable functions are Lebesgue integrable. Then we will prove some theorems which show that useful properties of the Riemann integral are not lost when the more general Lebesgue integral is considered.</p>
-<p>==Theorem 2.10.1== A Riemann integrable function is Lebesgue integrable and the integrals are equal.</p>
-<p>==Theorem 2.10.2== Let <span class="math inline">\(f\)</span> be a Lebesgue integral function on a bounded or unbounded interval <span class="math inline">\((a,b)\)</span> and Let <span class="math inline">\(a\le c\le b\)</span>. Then the function <span class="math inline">\(F(x)=\int ^x _c f\)</span> is continuous in <span class="math inline">\((a,b)\)</span> and the limits <span class="math display">\[
-F(a)=\lim_{x\rightarrow a+} F(x)\quad F(b)=\lim_{x\rightarrow b-} F(x)
-\]</span> ==Theorem 2.10.3== Let <span class="math inline">\(f\)</span> be a function integrable over <span class="math inline">\((a,b)\)</span> and let <span class="math inline">\(F(x)=\int _c^x f\)</span> where $c(a,b) $. If <span class="math inline">\(f\)</span> is continuous at a point <span class="math inline">\(x_0 \in (a,b)\)</span>, then F is differentiable at <span class="math inline">\(x_0\)</span> and we have <span class="math inline">\(F&#39;(x_0)=f(x_0)\)</span>.</p>
-<p>The following theorem establishes the same change of variables formula for the Lebesgue integral as for the Riemann integral. The theorem is only a special case of a more general theorem on the change of variables for the Lebesgue integral, but it is sufficient for most applications.</p>
-<p>==Theorem 2.10.4== Change of variables</p>
-<p>Let <span class="math inline">\(g\)</span> be a non-decreasing differentiable function defined on a bounded or unbounded interval <span class="math inline">\((a,b)\)</span> such that <span class="math inline">\(g&#39;\)</span> is integrable over <span class="math inline">\((a,b)\)</span>. Denote by <span class="math inline">\(g(a)\)</span> and <span class="math inline">\(g(b)\)</span> the limits of <span class="math inline">\(g\)</span> at <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> respectively, i.e. <span class="math inline">\(g(a)=\lim_{x\rightarrow a+} g(x)\)</span> and <span class="math inline">\(g(b)=\lim_{x\rightarrow b-} g(x)\)</span>. If <span class="math inline">\(f\)</span> is an integrable function <span class="math inline">\((g(a),g(b))\)</span>, then the product <span class="math inline">\(f(g(t))g&#39;(t)\)</span> is integrable over <span class="math inline">\((a,b)\)</span> and <span class="math display">\[
-\int _{g(a)}^{g(b)} f(t)dt=\int_a^b f(g(t))g&#39;(t)dt
+          <h1 id="equality-constrained-minimization">10. Equality constrained minimization</h1>
+<h2 id="equality-constrained-minimization-problems">10.1 Equality constrained minimization problems</h2>
+<p>In this chapter we describe methods for solving a convex optimization problem with equality constraints, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> We denote <span class="math display">\[
+p^\star=\inf\{f(x)|Ax=b\}=f(x^\star)
+\]</span> Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Solving the equality constrained optimization problem is therefore equivalent to finding a solution of the KKT conditions shown in the above, which is a n+p equations in the n+p variables <span class="math inline">\(v^\star\)</span> and <span class="math inline">\(x^\star\)</span>. The first one is called <strong>primal feasibility equations</strong>, which are linear. The second one is called <strong>dual feasibility equations</strong>, and are in general non-linear.</p>
+<p>The bulk if this chapter is to denoted to extensions of Newton's method that directly handle equality constraints. In many cases, this method is preferable than the methods that reduce an equality constrained problem to unconstrained one. One reason is that the problem structure is destroyed by elimination. Another reason is conceptual, methods that directly handle the constraints can be thought of solving the problem directly.</p>
+<h3 id="equality-constrained-convex-quadratic-minimization">10.1.1 Equality constrained convex quadratic minimization</h3>
+<p><span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+(1/2)x^TPx+q^Tx+r
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
 \]</span></p>
-<h2 id="lebesgue-measure-on-r">2.11 Lebesgue Measure on R</h2>
-<p>Our presentation of the Lebesgue integral does not require the concept of measure. On the other hand, once the integral is defined, we can easily define measurable set and Lebesgue measure.</p>
-<p>Lebesgue measure is an extension of the concept of length of an interval onto a large class of sets.</p>
-<p>==Definition 2.11.1== Measurable sets</p>
-<p>A set S is called measurable if the characteristic function of S is locally integrable function.</p>
-<p>To every measurable set, we assign a non-negative number or infinity which is called the measure of that set.</p>
-<p>==Definition 2.11.2== Measure</p>
-<p>Let S be a measurable set. If the characteristic function $X_S $ is an integrable function, then by the measure of S, denoted by <span class="math inline">\(\mu(S)\)</span>, we mean the value of the integral <span class="math inline">\(\mu(S)=\int \mathcal X_S\)</span>. If <span class="math inline">\(\mathcal X_S\)</span> is not integrable, then we define <span class="math inline">\(\mu(S)=\infty\)</span>.</p>
-<p>==Null sets== are sets whose measure is 0. The following theorem gives a useful tool for proving that a set is a null set.</p>
-<p>==Theorem 2.11.1==</p>
-<p>Let <span class="math inline">\(S\subseteq R\)</span> be such that for every <span class="math inline">\(\epsilon &gt;0\)</span> there exist intervals <span class="math inline">\([a_1,b_1),[a_2,b_2),\dotsm\)</span> such that <span class="math display">\[
-S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
-\sum_{n=1}^\infty (b_n-a_n)&lt;\epsilon
-\]</span> Then S is a null set.</p>
-<p>The property of the measure proven in the next theorem is called <span class="math inline">\(\sigma-\)</span>additivity of the measure. It is one of the most fundamental properties of the measure.</p>
-<p>==Theorem 2.11.2== Let <span class="math inline">\(S_1, S_2,\dotsm\)</span> be a sequence of disjoint measurable sets. Then the union <span class="math inline">\(S=\bigcup_{n=1}^\infty S_n\)</span> is measurable and we have <span class="math display">\[
-\mu(S)=\sum_{n=1}^\infty \mu(S_n)
-\]</span> In section 2.9, we defined the integral <span class="math inline">\(\int _a^b f\)</span> which corresponds to the integral over interval <span class="math inline">\([a,b]\)</span>. In a similar way we can define the integral over any measurable set <span class="math inline">\(\Omega\)</span>. <span class="math display">\[
-\int _{\Omega}=\int f \mathcal X_{\Omega}
-\]</span> If <span class="math inline">\(f\)</span> is a measurable function, then <span class="math inline">\(|f|\in L^1(R)\)</span> implies <span class="math inline">\(f\in L^1(R)\)</span></p>
-<p>==Definition 2.11.3== Measurable functions</p>
-<p>A <span class="math inline">\(f\)</span> is called measurable if there exists a sequence of step functions <span class="math inline">\(f_1,f_2,\dotsm\)</span> such that <span class="math inline">\(f_n\rightarrow f\)</span> a.e.</p>
-<p>Obviously, every integrable function is measurable and every locally integrable function is measurable.</p>
-<p>==Theorem 2.11.3== The measurable functions form a vector space. The absolute value of a measurable function is a measurable function. The product of measurable functions is a measurable function.</p>
-<p>==Theorem 2.11.4==</p>
-<p>If <span class="math inline">\(f\)</span> is a measurable function and <span class="math inline">\(|f|\le g\)</span> for some locally integrable function <span class="math inline">\(g\)</span>, then <span class="math inline">\(f\)</span> is locally integrable.</p>
-<h2 id="section"></h2>
+<p>The optimal conditions are <span class="math display">\[
+Ax^\star =b \quad Px^\star +q+A^Tv^\star=0
+\]</span> which we can write as <span class="math display">\[
+\begin{bmatrix}
+P &amp; A^T\\
+A  &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+x^\star \\ v^\star
+\end{bmatrix}=
+\begin{bmatrix}
+-q\\b
+\end{bmatrix}
+\]</span> This set of <span class="math inline">\(n+p\)</span> linear equations is called <strong>KKT system</strong>. The coefficient matrix is called <strong>KKT matrix</strong>.</p>
+<p>If KKT matrix is nonsingular, there is an unique optimal solution. If singular, there is infinite solutions. If not solvable, the problem is infeasible.</p>
+<h3 id="eliminating-equality-constraints">10.1.2 Eliminating equality constraints</h3>
+<p>We have <span class="math display">\[
+\{x|Ax=b\}=\{Fz+\hat x|z\in R^{n-p}\}
+\]</span> where <span class="math inline">\(\hat x\)</span> is a particular solution of <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(F\)</span> is the null space of A.</p>
+<h3 id="solving-equality-constrained-problem-via-the-dual">10.1.3 Solving equality constrained problem via the dual</h3>
+<p>Another approach is to solving the dual, and then recover the optimal primal variable <span class="math inline">\(x^\star\)</span>.</p>
+<p>The dual function of 10.1 is <span class="math display">\[
+g(v)=-b^Tv+\inf_x(f(x)+v^TAx) \\
+=-b^Tv-f^\star (-A^Tv)
+\]</span></p>
+<p>where <span class="math inline">\(f^*\)</span> is the conjugate of <span class="math inline">\(f\)</span>.</p>
+<h2 id="newtons-method-with-equality-constraints">10.2 Newton's method with equality constraints</h2>
+<p>In this section we describe an extension of Newton's method to include equality constraints. The method is almost the same as Newton's method without constraints, except two differences: the initial point must be feasible, and the definition of Newton step is modified to take the equality constraints into account.</p>
+<h3 id="the-newton-step">10.2.1 The newton step</h3>
+<p>For the equality constrained problem, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> we replace the objective with the second-order Taylor approximation near <span class="math inline">\(x\)</span>, to form the problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+\hat f(x+v)=f(x)+\nabla f(x)^Tv+(1/2)v^T\nabla^2f(x)v
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+A(x+v)=b
+\end{array}
+\end{array}
+\]</span> with variable <span class="math inline">\(v\)</span>. This is a convex quadratic minimization problem with equality constraints, and can be solved analytically. We define the newton step <span class="math inline">\(\Delta x_{nt}\)</span> at <span class="math inline">\(x\)</span> as the solution of the convex quadratic problem in the above. Then we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{nt}\\w
+\end{bmatrix}=
+\begin{bmatrix}
+-\nabla f(x)\\0
+\end{bmatrix}
+\]</span> where <span class="math inline">\(w\)</span> is the optimal dual variable for the quadratic problem.</p>
+<p><strong>Solution of linearized optimality conditions</strong></p>
+<p>Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
+Ax^\star =b\\ \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Newton method can be interpreted by solving the above equations.</p>
+<p>We substitute <span class="math inline">\(x+\Delta x_{nt}\)</span> for <span class="math inline">\(x^\star\)</span> and <span class="math inline">\(w\)</span> for <span class="math inline">\(v^\star\)</span>, and replace the gradient term in the second equation by its linearized approximation around <span class="math inline">\(x\)</span>, to obtain the equation, <span class="math display">\[
+A(x+\Delta x_{nt})=b\\
+\nabla f(x+\Delta x)+A^Tw\approx \nabla f(x)+\nabla^2 f(x)\Delta x_{nt}+A^Tw=0
+\]</span></p>
+<h2 id="infeasible-start-newton-method">10.3 Infeasible start Newton method</h2>
+<p>As in Newton's method, we start with optimality conditions for the equality constrained optimization problem: <span class="math display">\[
+Ax^\star=b\quad \nabla f(x^\star)+A^Tv^\star=0
+\]</span> Let <span class="math inline">\(x\)</span> denote the current point, which we do not assume to be feasible. We will do second-order Taylor expansion around the point <span class="math inline">\(x\)</span>, and our goal is to find a step <span class="math inline">\(\Delta x\)</span> so that <span class="math inline">\(x+\Delta x\)</span> satisfies (at least approximately) the optimality conditions, i.e. <span class="math inline">\(x+\Delta x\approx x^\star\)</span>. <span class="math display">\[
+\nabla f(x+\Delta x)\approx \nabla f(x)+\nabla^2f(x)\Delta x
+\]</span> For the gradient, we have <span class="math display">\[
+A(x+\Delta x)=b\\
+\nabla f(x)+\nabla^2f(x)\Delta x+A^Tw=0
+\]</span> This is a linear equations for <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x) &amp; A^T\\A &amp; 0
+\end{bmatrix}
+ \begin{bmatrix}
+ \Delta x\\ w
+ \end{bmatrix}=
+ -\begin{bmatrix}
+ \nabla f(x)\\Ax-b
+ \end{bmatrix}
+\]</span></p>
+<p><strong>Primal-dual interpretation</strong></p>
+<p>We can give an interpretation of the equation in terms of the primal-dual method for the equality constrained problem. By the primal-dual method, we mean one in which we update both the primal variable <span class="math inline">\(x\)</span> and the dual variable <span class="math inline">\(v\)</span>, in order to satisfy the optimality conditions.</p>
+<p>We express the optimality conditions as <span class="math inline">\(r(x^\star,v^\star)=0\)</span>, where <span class="math inline">\(r:R^n\times R^p \rightarrow R^n\times R^p\)</span> is defined as <span class="math display">\[
+r(x,v)=(r_{dual}(x,v),r_{pri}(x,v))\\
+r_{dual}(x,v)=\nabla f(x)+A^Tv\\
+r_{pri}(x,v)=Ax-b
+\]</span> The first order Taylor approximate of <span class="math inline">\(r\)</span> is <span class="math display">\[
+r(y+z)\approx r(y)+Dr(y)z
+\]</span> We define <span class="math inline">\(\Delta y_{pd}=(\Delta x_{pd},\Delta v_{pd})\)</span> such that the Taylor approximation vanishes, i.e. <span class="math display">\[
+r(y+\Delta y_{pd})=r(y)+Dr(y)\Delta y_{pd}=0
+\]</span> Then we have <span class="math display">\[
+Dr(y)\Delta y_{pd}=-r(y)
+\]</span> Evaluating the derivative of <span class="math inline">\(r\)</span>, we have <span class="math display">\[
+\begin{bmatrix}
+\nabla^2f(x)&amp;A^T\\A&amp;0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{pd}\\\Delta v_{pd}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+r_{dual}\\ r_{pri}
+\end{bmatrix}
+=-
+\begin{bmatrix}
+\nabla f(x)+A^Tv\\ Ax-b
+\end{bmatrix}
+\]</span> Let <span class="math inline">\(w=v+\Delta v_{pd}\)</span>, we have Newton step.</p>
+<p><strong>Using infeasible start Newton method to simplify initialization</strong></p>
+<p>The main advantage of the infeasible start Newton method is in the initialization required.</p>
 
         
       
@@ -533,7 +648,7 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -578,7 +693,7 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -607,7 +722,9 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -641,7 +758,7 @@ S\subseteq \bigcup_{n=1}^\infty [a_n,b_n)\\
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
