@@ -218,6 +218,296 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/14/EE5104 Computer Control/2. Computer Control and Discrete-Time Systems/" class="post-title-link" itemprop="url">2. Computer Control and Discrete-Time Systems</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-11-14 13:44:42 / Modified: 00:04:50" itemprop="dateCreated datePublished" datetime="2018-11-14T13:44:42+08:00">2018-11-14</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5104-Computer-Control/" itemprop="url" rel="index"><span itemprop="name">EE5104 Computer Control</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="pole-cancellation">1. Pole Cancellation</h2>
+<p>If the whole system is stable, then the poles and zeros can be cancelled out each other, then the reduced transfer function is good approximation of the original one.</p>
+<p>If the common factors are related to the same variables, they must cancel out.</p>
+<p>If the common factors are related to different variables, they should remain.</p>
+<p>The best tools to check whether they can be cancelled out or not is time domain. Proof is omitted.</p>
+<p>Example</p>
+<p>---u------G1------v------G2------y <span class="math display">\[
+G_1=\frac{s-1}{s^2+s+1}\\
+G_2=\frac{1}{s-1}\\
+\]</span> Then <span class="math display">\[
+G_1G_2=\frac{s-1}{(s^2+s+1)(s-1)}\\
+\]</span> ---u------G2------v------G1------y <span class="math display">\[
+G_2G_1=\frac{1}{s^2+s+1}\\
+\]</span></p>
+<h2 id="zero-order-hold-discrete-instead-of-first-order-hold">2. Zero-order Hold Discrete instead of First Order Hold</h2>
+<p>Because you will never know what will happen in the next time. So we can only choose zero-order hold for the computer control system.</p>
+<h2 id="how-to-solve-the-differential-equation">3. How to Solve the Differential Equation</h2>
+<p><span class="math display">\[
+x(t)=\underbrace{e^{At}x(0)}_{\text{zero input response}}+\underbrace{\displaystyle \int _0^te^{A(t-\tau)}Bu(\tau)d\tau}_{\text{zero-state response}}\\
+\]</span></p>
+<p>For continuous time, we have differential equation, differentiation operator, Laplace Transform, continuous state space.</p>
+<p>For discrete time, we have difference equation, shift operator, Z Transform, discrete state space.</p>
+<h2 id="discrete-with-zero-order-hold">4. Discrete with Zero-Order Hold</h2>
+<p>For a constant in the whole interval <span class="math inline">\([t_k,t_{k+1})\)</span> <span class="math display">\[
+x(t)=e^{A(t-t_k)}x(t_k)+\int_{t_k}^{t}e^{A(t-\tau)}d\tau Bu(t_k)\\
+\]</span> For the second part we have <span class="math inline">\(v=t-\tau\)</span> <span class="math display">\[
+\int_{t_k}^{t}e^{A(t-\tau)}d\tau=\int_0^{t-t_k}e^{Av}dv\\
+\]</span> If the sampling time is h, we have <span class="math display">\[
+x(kh+h)=e^{Ah}x(kh)+\int_0^he^{Av}dvBu(kh)=\Phi x(kh)+\Gamma u(kh)\\
+\]</span> To be simple <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y=Cx\\
+\]</span> where <span class="math display">\[
+\Phi=e^{Ah} \\
+\Gamma=\int_0^he^{Av}dvB\\
+\]</span></p>
+<p>Difference Equation <span class="math display">\[
+y(k+1)=a_1y(k)+a_2y(k-1)+b_0u(k)+b_1u(k-1)\\
+y(k+1)-a_1y(k)-a_2y(k-1)=b_0u(k)+b_1u(k-1)\\
+\]</span> We define shift-operator q <span class="math display">\[
+qf(k)=f(k+1)\\
+q^{-1}f(k)=f(k-1)\\
+\]</span> Then we will have <span class="math display">\[
+qy(k)-a_1y(k)-a_2q^{-1}y(k)=b_0u(k)+b_1q^{-1}u(k)\\
+\frac{y(k)}{u(k)}=\frac{b_0+b_1q^{-1}}{q-a_1-a_2q^{-1}}=\frac{b_0q+b_1}{q^2-a_1q-a_2}=\frac{B(q)}{A(q)}\\
+\]</span></p>
+<h2 id="z-transform">5. Z Transform</h2>
+<p>In continuous time domain, we have <span class="math display">\[
+u=e^{st}\quad y=H(s)e^{st}\\
+\]</span> In discrete time domain, we have <span class="math display">\[
+e^{st\quad\underrightarrow{t\rightarrow kh}}\quad e^{skh\quad\underrightarrow{e^{sh}\rightarrow a}} \quad a^k\\
+\]</span> Therefore, <span class="math display">\[
+u(k)=a^k\quad y(k)=H(a)a^k\\
+\]</span> Then we have the following calculation which has the same properties. <span class="math display">\[
+F(z)=\sum^\infty_{k=0}f(k)z^{-k}\\
+\]</span> Which is Z transform.</p>
+<p>For impulse signal, we have <span class="math inline">\(U(z)=1\)</span>.</p>
+<p>For <span class="math inline">\(u=a^k\)</span>, we have <span class="math inline">\(U(z)=\frac{1}{z-a}\)</span>.</p>
+<p>Inverse Z Transform e.g. <span class="math display">\[
+z^2Y(z)-Y(z)=zU(z)+2U \\
+\frac{Y}{U}=G(z)=\frac{z+2}{z^2-1}\\
+\frac{G(z)}{z}=\frac{z+2}{z(z+1)(z-1)}=\frac{A_1}{z}+\frac{A_2}{z+1}+\frac{A_3}{z-1} \\
+G(Z)=\frac{z+2}{z(z+1)(z-1)}=-1+\frac{0.5z}{z+1}+\frac{0.5z}{z-1} \\
+\]</span> After inverse z transform <span class="math display">\[
+y(k)=-\delta(k)+0.5(-1)^k+0.5 (1)^k
+\]</span> Apply z transform to state space equation <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k) = cx(k) \\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z) \\
+(zI-\Phi)X(z)=x(0)+\Gamma U(z) \\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z) \\
+Y(z)=cX(Z)=c(zI-\Phi)^{-1}x(0)+c(zI-\Phi)^{-1}\Gamma U(z)\\
+\]</span></p>
+<p>For s domain, steady state gain(SSG) is H(0).</p>
+<p>For z domain, SSG is H(1).</p>
+<p>Poles in continuous time domain(CTD) is <span class="math inline">\(\lambda\)</span> , in the discrete time is <span class="math inline">\(e^{h\lambda }\)</span></p>
+<p>In CTD, if <span class="math inline">\(\lambda = \sigma+j\omega\)</span> , <span class="math inline">\(e^{\sigma+j\omega}=e^{\sigma}(cos (\omega)+jsin(\omega))\)</span></p>
+<p>In DTD, <span class="math inline">\(e^{h\lambda}=e^{h(\sigma+jw)}=e^{h\sigma}e^{jhw}\)</span></p>
+<p>Therefore, we can map poles from continuous time domain to discrete time domain.</p>
+<h2 id="example">6. Example</h2>
+<p>We have one electrical system <span class="math inline">\(L=C=R=1\)</span> <span class="math display">\[
+L\frac{di}{dt}+Ri+\frac{1}{C}\int idt=e_i\\
+\frac{1}{C}\int idi=e_o
+\]</span> a) Derive transfer function. Input is <span class="math inline">\(e_i\)</span>. Output is <span class="math inline">\(e_o\)</span>. <span class="math display">\[
+s^2Y(s)+sY(s)+Y(s)=U(s)\\
+\frac{Y(s)}{U(s)}=\frac{1}{s^2+s+1}\\
+\]</span> b) Define <span class="math inline">\(x_1=e_o,x_2=\dot e_o\)</span>, derive state space representation. <span class="math display">\[
+\dot x_1=x_2\\
+\dot x_2=-x_2-x_1+u\\
+x=Ax+Bu\\
+y=Cx\\
+A=
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}x+
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}u\\
+y=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}x\\
+\]</span> c) Discrete this system with h=1. <span class="math display">\[
+x(k+1)=\Phi x+\Gamma u\\
+y=Cx\\
+\Phi=e^{Ah}\\
+\]</span> According to Caley-Hamilton Equation <span class="math display">\[
+f(\lambda)=e^{\lambda t}\\
+h(\lambda)=\beta_0+\beta_1\lambda\\
+\lambda_1=-0.5+\frac{\sqrt3}{2}i\\
+\lambda_2=-0.5-\frac{\sqrt3}{2}i\\
+f(\lambda_1)=e^{(-0.5+\frac{\sqrt3}{2}i)t}=h(\lambda_1)=\beta_0+\beta_1(-0.5+\frac{\sqrt3}{2}i)\\
+f(\lambda_2)=e^{(-0.5-\frac{\sqrt3}{2}i)t}=h(\lambda_2)=\beta_0+\beta_1(-0.5-\frac{\sqrt3}{2}i)\\
+\]</span> Then we can solve that <span class="math display">\[
+\beta_0=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\\
+\beta_1=\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+\]</span> Then we have <span class="math display">\[
+f(A)=h(A)=e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}+
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}
+\begin{bmatrix}
+0 &amp; 1\\
+-1 &amp; -1
+\end{bmatrix}\\
+=\begin{bmatrix}
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t+\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]&amp;
+\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}\\
+-\frac{2}{\sqrt3}e^{-0.5t}\sin{\frac{\sqrt3}{2}t}&amp;
+e^{-0.5t}[\cos{\frac{\sqrt3}{2}t-\frac{1}{\sqrt3}\sin{\frac{\sqrt3}{2}t}}]
+\end{bmatrix}\\
+\]</span> Then we have <span class="math display">\[
+\Phi=
+\begin{bmatrix}
+0.6597 &amp; 0.5335\\
+-0.5335 &amp; 0.1262\\
+\end{bmatrix}\\
+\Gamma=A^{-1}[e^{Ah}-I]B=
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}\\
+C=
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}\\
+\]</span> d) Apply z-transform to c), and obtain input-output model <span class="math display">\[
+x(k+1)=\Phi x(k)+\Gamma u(k)\\
+y(k)=Cx(k)\\
+zX(z)-x(0)=\Phi X(z)+\Gamma U(z)\\
+X(z)=(zI-\Phi)^{-1}x(0)+(zI-\Phi)^{-1}\Gamma U(z)\\
+Y(z)=C(zI-\Phi)^{-1}x(0)+C(zI-\Phi)^{-1}\Gamma U(z)\\
+=\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}x(0)+\\
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335\\
+-0.5335 &amp; z-0.6579
+\end{bmatrix}
+\begin{bmatrix}
+0.3403\\
+0.5335
+\end{bmatrix}U(z)=\\
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}x(0)+\\
+\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+\]</span> We assume initial state is zero. <span class="math display">\[
+Y(z)=\frac{0.3403z+0.2417}{z^2-0.7859z+0.3679}U(z)\\
+y(k+2)-0.7859y(k+1)+0.3679y(k)=0.3403u(k+1)+0.2417u(k)\\
+y(k+1)=0.7859y(k)-0.3679y(k-1)+0.3403u(k)+0.2419u(k-1)\\
+\]</span> e) Assuming initial condition is <span class="math inline">\(x_1(0)=1,x_2(0)=0\)</span> , with step input, calculate the output <span class="math inline">\(y(k)\)</span>. <span class="math display">\[
+Y(z)=
+\frac{1}{z^2-0.7859z+0.3679}
+\begin{bmatrix}
+z-0.1262 &amp; 0.5335
+\end{bmatrix}
+(
+\begin{bmatrix}
+1\\
+0\\
+\end{bmatrix}z+
+\begin{bmatrix}
+0.3403\\
+0.5335\\
+\end{bmatrix}\frac{z}{z-1}
+)\\
+=\frac{z}{z-1}\\
+\]</span></p>
+<p>Therefore, <span class="math inline">\(y(z)=1\)</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/EE5104 Computer Control/1. Computer Control Background/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -370,221 +660,11 @@ X(S) &amp;=&amp; (sI-A)^{-1}BU(s)
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/EE5101 Linear Systems/5. Stability/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/11/13/EE5101 Linear Systems/5. Stability/" class="post-title-link" itemprop="url">Chapter 5. Stability</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2018-11-13 13:33:56 / Modified: 14:21:42" itemprop="dateCreated datePublished" datetime="2018-11-13T13:33:56+08:00">2018-11-13</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5101-Linear-Systems/" itemprop="url" rel="index"><span itemprop="name">EE5101 Linear Systems</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="input-output-stability">1. Input-Output Stability</h2>
-<p>==Theorem 1==</p>
-<p>A SISO system is BIBO stable if and only if <span class="math display">\[
-\int_0^\infty|g(t)|dt \le k\le\infty
-\]</span> for some constant k.</p>
-<p>==Theorem 2==</p>
-<p>A transfer function G(s) is BIBO stable if and only if all poles of G(s) are in the open left-half s-plane.</p>
-<p>Equivalently, all poles of G(s) have negative real parts.</p>
-<h2 id="internal-stability-bibo-stability">2. Internal Stability BIBO Stability</h2>
-<p>Deal with zero-input stability</p>
-<h2 id="lyapunov-theorem">3. Lyapunov Theorem</h2>
-<p>==Theorem 3==</p>
-<blockquote>
-<ol type="1">
-<li>V(x) is continuous in domain D</li>
-<li>V(0)=0</li>
-<li>V(0)&gt;0 except at x=0</li>
-<li><span class="math inline">\(\frac{dV}{dt}\le0\)</span> stable</li>
-<li><span class="math inline">\(\frac{dV}{dt} &lt; 0\)</span> asymptotically stable</li>
-</ol>
-</blockquote>
-<p>==Theorem 4==</p>
-<p>Given <span class="math inline">\(\dot x=Ax\)</span> .The system is said to be stable in the sense of Lyapunov (i.s.L.) if and only if all eigenvalues of A have zero or negative real parts and those with zero real parts has no Jordan block of order 2 or higher.</p>
-<p>The system is asymptotically stable if all the eigenvalues of A have negative real parts.</p>
-<p>==Theorem 5==</p>
-<p>Asymptotically stable i.s.L. implies BIBO stability</p>
-<p>==Theorem 6==</p>
-<p>The linear system <span class="math display">\[
-\dot x(t)=Ax
-\]</span> is asymptotically stable if and only if for any Q which is positive definite and symmetric, there exists a P which is symmetric and positive definite satisfying the following equation <span class="math display">\[
-A^TP+PA=-Q
-\]</span> known as the Lyapunov equation.</p>
-<p>==Example== <span class="math display">\[
-\dot x=
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}x \\
-\]</span> We choose <span class="math inline">\(Q=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span> . Then we have <span class="math display">\[
-A^TP+PA=-Q \\
-\begin{bmatrix}
-0 &amp; -1 \\ 1 &amp; -1
-\end{bmatrix}
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}+
-\begin{bmatrix}
-p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1 \\ -1 &amp; -1
-\end{bmatrix}=-\begin{bmatrix}
-1 &amp; 0 \\ 0 &amp; 1
-\end{bmatrix}
-\]</span> We get <span class="math display">\[
-P=\begin{bmatrix}
-1.5 &amp; 0.5 \\ 0.5 &amp; 1
-\end{bmatrix}
-\]</span> Therefore, the system is asymptotically stable.</p>
-<h2 id="l-stability">4. L stability</h2>
-<p>Define <span class="math inline">\(\mathcal L_1\)</span> <span class="math display">\[
-||u(t)||_1=\int_0^\infty|u_i(t)|dt \\
-\]</span> For MIMO <span class="math display">\[
-||u(t)||_1=\sum_{i=1}^m||u_i(t)||_1
-\]</span> Define <span class="math inline">\(\mathcal L_2\)</span> <span class="math display">\[
-||u(t)||_2=\sqrt{\int_0^\infty u(t)^Tu(t)dt}
-\]</span> Define<span class="math inline">\(\mathcal L_\infty\)</span><br>
-<span class="math display">\[
-||u(t)||_\infty=max||u(t)||
-\]</span> The system can be seen as a mapping in the form of <span class="math inline">\(y=Su\)</span></p>
-<p>Then the system norm is <span class="math display">\[
-||S||_p=sup\frac{||y||_p}{||u||_p}=sup\frac{||Su||_p}{||u||_p} 
-\]</span> ==Definition==</p>
-<p>A system with input-output model S is <span class="math inline">\(\mathcal L_p\)</span> stable if</p>
-<p>and only if its p induced norm is finite. Particularly, a system</p>
-<p>is BIBO stable if and only if it is <span class="math inline">\(\mathcal L_\infty\)</span> stable.</p>
-<p>For the MIMO (m-input-q-output) system <span class="math display">\[
-||S||_\infty=\max_{1\le i\le q}\sum_{1\le j\le m}\int_0^\infty|H_{ij}(t)|dt
-\]</span> For the SISO system <span class="math display">\[
-||S||_\infty=\int_0^\infty|h(t)|dt
-\]</span></p>
-<p>==<span class="math inline">\(\mathcal{H}_\infty\)</span>== <span class="math display">\[
-||S||_2&lt;max_{w\in R}||H(w)||_2
-\]</span></p>
-<p><span class="math inline">\(max_{w\in R}||H(w)||_2\)</span> is known as <span class="math inline">\(\mathcal H_\infty\)</span> norm of system S</p>
-<p>We define <span class="math display">\[
-M_\gamma=\begin{bmatrix}
-A  &amp; \frac{1}{\gamma^2}BB^T\\
--C^TC &amp; -A^T
-\end{bmatrix}
-\]</span> then <span class="math inline">\(\mathcal H_\infty &lt; \gamma\)</span> if and only if <span class="math inline">\(M_\gamma\)</span> has no purely imaginary eigenvalues.</p>
-<p>==<span class="math inline">\(\mathcal{H}_2\)</span>==</p>
-<p><span class="math inline">\(\frac{1}{2\pi}Tr\int_{-\infty}^\infty H^T(w)H(w)dw\)</span> is known as <span class="math inline">\(\mathcal H_2\)</span> norm of system S <span class="math display">\[
-\mathcal H_2^2=Tr(CWC^T)=Tr(B^TMB) \\
-\text{W is Controllability Grammain}\\
-\text{M is Observability Grammain}\\
-AW+WA^T+BB^T=0 \\
-A^TM+MA+C^TC=0
-\]</span></p>
-<p>==Relationship==</p>
-<p>If one system is asymptotically stable, it must be BIBO stable.</p>
-<p>If one system is not asymptotically stable, it can be BIBO stable.</p>
-<p>Example <span class="math display">\[
-\dot x=Ax+Bu \\
-y=Cx\\
-A=\begin{bmatrix}
-0 &amp; 2\\
-1 &amp; -1\\
-\end{bmatrix}
-B=\begin{bmatrix}
--1  \\
-1
-\end{bmatrix}
-C=\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}\\
-|\lambda I-A|=\begin{vmatrix}
-\lambda &amp; -2\\
--1 &amp; \lambda+1
-\end{vmatrix}=\lambda(\lambda+1)-2=0\\
-\lambda_1=1 \\
-\lambda_2=-2\\
-\]</span> The system is not asymptotically stable.</p>
-<p>However, the transfer function are <span class="math display">\[
-C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
-\]</span> Which is BIBO stable.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -629,7 +709,7 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -660,7 +740,9 @@ C(SI-A)^{-1}B=\frac{s-1}{(s+2)(s-1)}
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

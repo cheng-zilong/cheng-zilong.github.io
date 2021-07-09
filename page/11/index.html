@@ -218,6 +218,247 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/13/Convex Optimization/11. Interior-Point Methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/13/Convex Optimization/11. Interior-Point Methods/" class="post-title-link" itemprop="url">Chapter 11. Interior-point methods</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-09-13 13:49:01 / Modified: 14:00:59" itemprop="dateCreated datePublished" datetime="2019-09-13T13:49:01+08:00">2019-09-13</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="interior-point-methods">11. Interior-point methods</h1>
+<h2 id="inequality-constrained-minimization-problems">11.1 Inequality constrained minimization problems</h2>
+<p>In this section, we discuss interior-point methods for solving convex optimization problems that include inequality constraints. <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+f_i(x)\le 0\\Ax=b
+\end{array}
+\end{array}
+\]</span> We also assume the problem is strictly feasible, there exists dual optimal <span class="math inline">\(\lambda^\star\)</span> and <span class="math inline">\(v^\star\)</span> together with <span class="math inline">\(x^\star\)</span> satisfying the KKT conditions <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;0
+\end{array}
+\]</span></p>
+<p>Interior-point method solve the problem by applying newton’s method to a sequence of equality constrained problem. We will concentrate on a particular interior-point method, called the barrier method, for which we give a proof of convergence and a complexity analysis. We also describe the primal-dual interior point method, but do note give analysis.</p>
+<p>We can view interior-point methods as another level in the hierarchy of convex optimization algorithms.</p>
+<ol type="1">
+<li>Linear equality constrained quadratic problems are the simplest.</li>
+<li>Newton’s method is the next level.</li>
+<li>Interior-point method form the next level.</li>
+</ol>
+<h2 id="logarithmic-barrier-function-and-central-path">11.2 Logarithmic barrier function and central path</h2>
+<p>Our goal is to approximately formulate the inequality constrained problem as an equality constrained problem to which, newton’s method can be applied. Our first step is to rewrite the problem, making the equality constraints implicit in the objective, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^mI_-(f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> where <span class="math inline">\(I_-(u)=\begin{cases}0\quad u\le 0\\\infty\quad u&gt;0\end{cases}\)</span></p>
+<h3 id="logarithmic-barrier">11.2.1 Logarithmic barrier</h3>
+<p>The basic idea of the barrier method is to approximate the indicator function <span class="math inline">\(I_-\)</span> by the function <span class="math display">\[
+\hat I_-(u)=-\frac{1}{t}\log (-u)
+\]</span> Then the problem becomes <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+f_0(x)+\sum_{i=1}^m -(1/t)\log (-f_i(x))
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> The objective here is convex, since <span class="math inline">\(-(1/t)\log(-u)\)</span> is convex and increasing in u, and differentiable.</p>
+<p>The function <span class="math display">\[
+\phi(x)=-\sum_{i=1}^m \log(-f_i(x))
+\]</span> is called the logarithmic barrier or log barrier for the problem.</p>
+<p>Of course, the problem is only an approximation of the original problem, so one may wondering how well. Intuitive suggests, the approximation improves as the parameter <span class="math inline">\(t\)</span> grows. One the other hand, when the parameter <span class="math inline">\(t\)</span> is large, the function <span class="math inline">\(f_0+(1/t)\phi\)</span> is difficult to minimize by Newton’ method, since the Hessian varies rapidly near the boundary feasible set. We will see that this problem can be circumvented by solving a sequence of problems, increasing the parameter <span class="math inline">\(t\)</span> (and therefore, accuracy of the approximation) at each step, and starting each Newton minimization at the solution of the problem for the previous value of <span class="math inline">\(t\)</span>.</p>
+<p>For future reference, we note that the gradient and Hessian of the logarithmic barrier function <span class="math inline">\(\phi\)</span> are given by <span class="math display">\[
+\nabla \phi(x)=\sum_{i=1}^m \frac{1}{-f_i(x)}\nabla f_i(x)\\
+\nabla^2 \phi(x)=\sum_{i=1}^{m} \frac{1}{f_i(x)^2}\nabla f_i(x)\nabla f_i(x)^T+\sum_{i=1}^m  \frac{1}{-f_i(x)}\nabla^2 f_i(x)
+\]</span></p>
+<h3 id="central-path">11.2.2 Central path</h3>
+<p>We now consider in more detail the minimization problem. It will simplify notation later if we use the following form, <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+tf_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> We now assume the problem can be solved by newton method, and it has a <strong>unique solution</strong> for each <span class="math inline">\(t&gt;0\)</span></p>
+<p>For <span class="math inline">\(t&gt;0\)</span>, we define <span class="math inline">\(x^\star(t)\)</span> as the solution. The <strong>central path</strong> associated with the problem is defined as the set of points <span class="math inline">\(x^\star(t)\)</span> for <span class="math inline">\(t&gt;0\)</span>, which we call, the central points. Points on the central path are characterized by the following necessary and sufficient conditions, <span class="math inline">\(x^\star(t)\)</span> is strictly feasible, i.e. <span class="math display">\[
+Ax^\star(t)=b\\
+f_i(x^\star (t))&lt;0
+\]</span> and there exists a <span class="math inline">\(\hat v\)</span> such that <span class="math display">\[
+0=t\nabla f_0(x^\star(t))+\nabla \phi(x^\star(t))+A^T\hat v\\
+=t\nabla f_0(x^\star(t))+\sum_{i=1}^m \frac{1}{-f_i(x^\star(t))}\nabla f_i(x^\star(t))+A^T\hat v
+\]</span> <strong>Dual points from central path</strong></p>
+<p>From the above, we can derive an important property of the central path: every central point yields a dual feasible point, and hence a lower bound on the optimal <span class="math inline">\(p^\star\)</span>. We define <span class="math inline">\(\lambda_i^\star (t)=-\frac{1}{tf_i(x^\star(t))}\)</span>, <span class="math inline">\(v^\star(t)=\hat v/t\)</span></p>
+<p>Then we have <span class="math display">\[
+\nabla f_0(x^\star(t))+\sum_{i=1}^m\lambda_i^\star (t)\nabla f_i(x^\star(t))+A^Tv^\star (t)=0
+\]</span> We see the optimal point <span class="math inline">\(x^\star(t)\)</span> minimizes the Lagrangian, <span class="math display">\[
+L(x,\lambda,v)=f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+v^T(Ax-b)
+\]</span> <strong>Interpretation via KKT conditions</strong> <span class="math display">\[
+\begin{array}{rcl}
+Ax^\star =b\quad f_i(x)&amp;\le&amp; 0\\
+\lambda^\star &amp;\succeq&amp; 0\\
+\nabla f_0(x^\star)+\sum_{i=1}^{m} \lambda_i^\star\nabla f_i(x^\star)+A^Tv^\star&amp;=&amp;0\\
+\lambda_i^\star f_i(x^\star)&amp;=&amp;1/t
+\end{array}
+\]</span> <strong>Force field interpretation</strong></p>
+<h2 id="the-barrier-method">11.3 The barrier method</h2>
+<p>We have seen that the point <span class="math inline">\(x^\star(t)\)</span> is <span class="math inline">\(m/t\)</span>-suboptimal, and that a certificate of this accuracy is provided by the dual feasible pair <span class="math inline">\(\lambda^\star(t)\)</span> and <span class="math inline">\(v^\star(t)\)</span>. This suggestion a very straightforward method for solving the original problem with a guaranteed specified accuracy <span class="math inline">\(\epsilon\)</span>. We simply take <span class="math inline">\(t=m/\epsilon\)</span> and solve the equality constrained problem <span class="math display">\[
+\begin{array}{|l|ll|}
+\text{minimize}\quad &amp; 
+\begin{array}{lll}
+(m/\epsilon)f_0(x)+\phi(x)
+\end{array}\\\hline
+\text{subject to}\quad &amp; 
+\begin{array}{lll}
+Ax=b
+\end{array}
+\end{array}
+\]</span> using newton’s method. This method could be called unconstrained minimization method, since it allows us to solve simple problem, but it does not work well in other cases. As a result it rarely, if ever, used.</p>
+<h3 id="the-barrier-method-1">11.3.1 The barrier method</h3>
+<p>A simple extension of the unconstrained optimization method does work well. It is based on solving a sequence of unconstrained minimization problems, using the last point found as the starting point for the next unconstrained problem.</p>
+<p>In other words, we compute <span class="math inline">\(x^\star(t)\)</span> for a sequence of increasing values of <span class="math inline">\(t\)</span>, until <span class="math inline">\(t\ge m/\epsilon\)</span>, which guarantee that we have an $-suboptimal $ solution of the original problem. When the method is proposed firstly, it is called sequential unconstrained minimization technique. Today, the method is usually called the <strong>barrier method</strong> or <strong>path-following</strong> method.</p>
+<h3 id="examples">11.3.2 Examples</h3>
+<h3 id="convergence-analysis">11.3.3 Convergence Analysis</h3>
+<h3 id="newton-step-for-modified-kkt-conditions">11.3.4 Newton step for modified KKT conditions</h3>
+<p>In the barrier method, the newton step <span class="math inline">\(\Delta x_{nt}\)</span>, and associated dual variables are given by the linear equations, <span class="math display">\[
+\begin{bmatrix}
+t\nabla^2f_0(x)+\nabla^2 \phi(x)&amp;A^T\\A&amp;0
+\end{bmatrix}
+\begin{bmatrix}
+\Delta x_{nt}\\v_{nt}
+\end{bmatrix}=-
+\begin{bmatrix}
+t\nabla f_0(x)+\nabla \phi(x)\\0
+\end{bmatrix}
+\]</span> In this section, we will show how these newton steps for the centering problem can be interpreted as Newton steps for directly solving the modified KKT equations, <span class="math display">\[
+\nabla f_0(x)+\sum_{i=1}^m \lambda_if_i(x)+A^Tv=0\\
+-\lambda_if_i(x)=1/t\\
+Ax=b
+\]</span> in a particular way.</p>
+<h2 id="feasibility-and-phase-i-methods">11.4 Feasibility and phase I methods</h2>
+<h2 id="complexity-analysis-via-self-concordance">11.5 Complexity analysis via self-concordance</h2>
+<h2 id="problems-with-generalized-inequalities">11.6 Problems with generalized inequalities</h2>
+<h2 id="primal-dual-interior-point-methods">11.7 Primal-dual Interior-point methods</h2>
+<p>In this section, we describe a basic primal-dual interior-point method. Primal-dual interior-point methods are very similar to the barrier method, with some differences.</p>
+<ol type="1">
+<li><strong>There is only one loop or iteration</strong>, i.e. there is no distinction between inner and outer iterations as in the barrier method. At each iteration, both the primal and dual variables are updated.</li>
+<li>The search direction in a primal-dual interior-point method are obtained from Newton’s method, applied to the <strong>modified KKT equations.</strong></li>
+<li>In a primal-dual interior-point method, the primal-dual iterates are not necessarily feasible.</li>
+</ol>
+<p>Primal-dual interior-point methods are often more efficient than the barrier method, especially when high accuracy is required, since they can exhibit better than linear convergence.</p>
+<h3 id="primal-dual-search-direction">11.7.1 Primal-dual search direction</h3>
+<p>As in the barrier method, we start with the modified KKT conditions, expressed as <span class="math inline">\(r_t(x,\lambda,v)=0\)</span>, where we define <span class="math display">\[
+r_t(x,\lambda,v)=
+\begin{bmatrix}
+\nabla f_0(x)+Df(x)^T\lambda+A^Tv\\
+-diag(\lambda)f(x)-(1/t)1\\
+Ax-b
+\end{bmatrix}
+\]</span> If <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> satisfy <span class="math inline">\(r_t(x,\lambda,v)=0\)</span> (and <span class="math inline">\(f_i(x)&lt;0\)</span>), then <span class="math inline">\(x=x^\star (t)\)</span>, <span class="math inline">\(\lambda = \lambda^\star (t)\)</span>, <span class="math inline">\(v=v^\star (t)\)</span>. In particular, <span class="math inline">\(x\)</span> is primal feasible, and <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(v\)</span> are dual feasible, with duality gap <span class="math inline">\(m/t\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(r_{dual}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>dual residual</strong>.</li>
+<li><span class="math inline">\(r_{pri}=Ax-b\)</span> is called the <strong>primal residual</strong>.</li>
+<li><span class="math inline">\(r_{cent}=\nabla f_0(x)+Df(x)^T\lambda+A^Tv\)</span> is called the <strong>centrality residual</strong>.</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/10/Introduction to Hilbert Spaces with Applications/4.1 Linear Operators on Hilbert Spaces/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -408,247 +649,11 @@ f(x)=\phi(x,x_f)\quad \forall x\in H
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/Convex Optimization/10. Equality constrained Minimization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" class="post-title-link" itemprop="url">Chapter 10. Equality constrained Minimization</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-09-03 13:49:01 / Modified: 13:59:42" itemprop="dateCreated datePublished" datetime="2019-09-03T13:49:01+08:00">2019-09-03</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Convex-Optimization/" itemprop="url" rel="index"><span itemprop="name">Convex Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="equality-constrained-minimization">10. Equality constrained minimization</h1>
-<h2 id="equality-constrained-minimization-problems">10.1 Equality constrained minimization problems</h2>
-<p>In this chapter we describe methods for solving a convex optimization problem with equality constraints, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> We denote <span class="math display">\[
-p^\star=\inf\{f(x)|Ax=b\}=f(x^\star)
-\]</span> Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
-Ax^\star =b\quad \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Solving the equality constrained optimization problem is therefore equivalent to finding a solution of the KKT conditions shown in the above, which is a n+p equations in the n+p variables <span class="math inline">\(v^\star\)</span> and <span class="math inline">\(x^\star\)</span>. The first one is called <strong>primal feasibility equations</strong>, which are linear. The second one is called <strong>dual feasibility equations</strong>, and are in general non-linear.</p>
-<p>The bulk if this chapter is to denoted to extensions of Newton's method that directly handle equality constraints. In many cases, this method is preferable than the methods that reduce an equality constrained problem to unconstrained one. One reason is that the problem structure is destroyed by elimination. Another reason is conceptual, methods that directly handle the constraints can be thought of solving the problem directly.</p>
-<h3 id="equality-constrained-convex-quadratic-minimization">10.1.1 Equality constrained convex quadratic minimization</h3>
-<p><span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-(1/2)x^TPx+q^Tx+r
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span></p>
-<p>The optimal conditions are <span class="math display">\[
-Ax^\star =b \quad Px^\star +q+A^Tv^\star=0
-\]</span> which we can write as <span class="math display">\[
-\begin{bmatrix}
-P &amp; A^T\\
-A  &amp; 0
-\end{bmatrix}
-\begin{bmatrix}
-x^\star \\ v^\star
-\end{bmatrix}=
-\begin{bmatrix}
--q\\b
-\end{bmatrix}
-\]</span> This set of <span class="math inline">\(n+p\)</span> linear equations is called <strong>KKT system</strong>. The coefficient matrix is called <strong>KKT matrix</strong>.</p>
-<p>If KKT matrix is nonsingular, there is an unique optimal solution. If singular, there is infinite solutions. If not solvable, the problem is infeasible.</p>
-<h3 id="eliminating-equality-constraints">10.1.2 Eliminating equality constraints</h3>
-<p>We have <span class="math display">\[
-\{x|Ax=b\}=\{Fz+\hat x|z\in R^{n-p}\}
-\]</span> where <span class="math inline">\(\hat x\)</span> is a particular solution of <span class="math inline">\(Ax=b\)</span> and <span class="math inline">\(F\)</span> is the null space of A.</p>
-<h3 id="solving-equality-constrained-problem-via-the-dual">10.1.3 Solving equality constrained problem via the dual</h3>
-<p>Another approach is to solving the dual, and then recover the optimal primal variable <span class="math inline">\(x^\star\)</span>.</p>
-<p>The dual function of 10.1 is <span class="math display">\[
-g(v)=-b^Tv+\inf_x(f(x)+v^TAx) \\
-=-b^Tv-f^\star (-A^Tv)
-\]</span></p>
-<p>where <span class="math inline">\(f^*\)</span> is the conjugate of <span class="math inline">\(f\)</span>.</p>
-<h2 id="newtons-method-with-equality-constraints">10.2 Newton's method with equality constraints</h2>
-<p>In this section we describe an extension of Newton's method to include equality constraints. The method is almost the same as Newton's method without constraints, except two differences: the initial point must be feasible, and the definition of Newton step is modified to take the equality constraints into account.</p>
-<h3 id="the-newton-step">10.2.1 The newton step</h3>
-<p>For the equality constrained problem, <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-f(x)
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-Ax=b
-\end{array}
-\end{array}
-\]</span> we replace the objective with the second-order Taylor approximation near <span class="math inline">\(x\)</span>, to form the problem <span class="math display">\[
-\begin{array}{|l|ll|}
-\text{minimize}\quad &amp; 
-\begin{array}{lll}
-\hat f(x+v)=f(x)+\nabla f(x)^Tv+(1/2)v^T\nabla^2f(x)v
-\end{array}\\\hline
-\text{subject to}\quad &amp; 
-\begin{array}{lll}
-A(x+v)=b
-\end{array}
-\end{array}
-\]</span> with variable <span class="math inline">\(v\)</span>. This is a convex quadratic minimization problem with equality constraints, and can be solved analytically. We define the newton step <span class="math inline">\(\Delta x_{nt}\)</span> at <span class="math inline">\(x\)</span> as the solution of the convex quadratic problem in the above. Then we have <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x) &amp; A^T\\A &amp; 0
-\end{bmatrix}
-\begin{bmatrix}
-\Delta x_{nt}\\w
-\end{bmatrix}=
-\begin{bmatrix}
--\nabla f(x)\\0
-\end{bmatrix}
-\]</span> where <span class="math inline">\(w\)</span> is the optimal dual variable for the quadratic problem.</p>
-<p><strong>Solution of linearized optimality conditions</strong></p>
-<p>Recall that a point <span class="math inline">\(x^\star\)</span> is optimal for the problem if and only if there is a <span class="math inline">\(v^\star\)</span> such that <span class="math display">\[
-Ax^\star =b\\ \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Newton method can be interpreted by solving the above equations.</p>
-<p>We substitute <span class="math inline">\(x+\Delta x_{nt}\)</span> for <span class="math inline">\(x^\star\)</span> and <span class="math inline">\(w\)</span> for <span class="math inline">\(v^\star\)</span>, and replace the gradient term in the second equation by its linearized approximation around <span class="math inline">\(x\)</span>, to obtain the equation, <span class="math display">\[
-A(x+\Delta x_{nt})=b\\
-\nabla f(x+\Delta x)+A^Tw\approx \nabla f(x)+\nabla^2 f(x)\Delta x_{nt}+A^Tw=0
-\]</span></p>
-<h2 id="infeasible-start-newton-method">10.3 Infeasible start Newton method</h2>
-<p>As in Newton's method, we start with optimality conditions for the equality constrained optimization problem: <span class="math display">\[
-Ax^\star=b\quad \nabla f(x^\star)+A^Tv^\star=0
-\]</span> Let <span class="math inline">\(x\)</span> denote the current point, which we do not assume to be feasible. We will do second-order Taylor expansion around the point <span class="math inline">\(x\)</span>, and our goal is to find a step <span class="math inline">\(\Delta x\)</span> so that <span class="math inline">\(x+\Delta x\)</span> satisfies (at least approximately) the optimality conditions, i.e. <span class="math inline">\(x+\Delta x\approx x^\star\)</span>. <span class="math display">\[
-\nabla f(x+\Delta x)\approx \nabla f(x)+\nabla^2f(x)\Delta x
-\]</span> For the gradient, we have <span class="math display">\[
-A(x+\Delta x)=b\\
-\nabla f(x)+\nabla^2f(x)\Delta x+A^Tw=0
-\]</span> This is a linear equations for <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(w\)</span> <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x) &amp; A^T\\A &amp; 0
-\end{bmatrix}
- \begin{bmatrix}
- \Delta x\\ w
- \end{bmatrix}=
- -\begin{bmatrix}
- \nabla f(x)\\Ax-b
- \end{bmatrix}
-\]</span></p>
-<p><strong>Primal-dual interpretation</strong></p>
-<p>We can give an interpretation of the equation in terms of the primal-dual method for the equality constrained problem. By the primal-dual method, we mean one in which we update both the primal variable <span class="math inline">\(x\)</span> and the dual variable <span class="math inline">\(v\)</span>, in order to satisfy the optimality conditions.</p>
-<p>We express the optimality conditions as <span class="math inline">\(r(x^\star,v^\star)=0\)</span>, where <span class="math inline">\(r:R^n\times R^p \rightarrow R^n\times R^p\)</span> is defined as <span class="math display">\[
-r(x,v)=(r_{dual}(x,v),r_{pri}(x,v))\\
-r_{dual}(x,v)=\nabla f(x)+A^Tv\\
-r_{pri}(x,v)=Ax-b
-\]</span> The first order Taylor approximate of <span class="math inline">\(r\)</span> is <span class="math display">\[
-r(y+z)\approx r(y)+Dr(y)z
-\]</span> We define <span class="math inline">\(\Delta y_{pd}=(\Delta x_{pd},\Delta v_{pd})\)</span> such that the Taylor approximation vanishes, i.e. <span class="math display">\[
-r(y+\Delta y_{pd})=r(y)+Dr(y)\Delta y_{pd}=0
-\]</span> Then we have <span class="math display">\[
-Dr(y)\Delta y_{pd}=-r(y)
-\]</span> Evaluating the derivative of <span class="math inline">\(r\)</span>, we have <span class="math display">\[
-\begin{bmatrix}
-\nabla^2f(x)&amp;A^T\\A&amp;0
-\end{bmatrix}
-\begin{bmatrix}
-\Delta x_{pd}\\\Delta v_{pd}
-\end{bmatrix}
-=-
-\begin{bmatrix}
-r_{dual}\\ r_{pri}
-\end{bmatrix}
-=-
-\begin{bmatrix}
-\nabla f(x)+A^Tv\\ Ax-b
-\end{bmatrix}
-\]</span> Let <span class="math inline">\(w=v+\Delta v_{pd}\)</span>, we have Newton step.</p>
-<p><strong>Using infeasible start Newton method to simplify initialization</strong></p>
-<p>The main advantage of the infeasible start Newton method is in the initialization required.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -693,7 +698,7 @@ r_{dual}\\ r_{pri}
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -724,7 +729,9 @@ r_{dual}\\ r_{pri}
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

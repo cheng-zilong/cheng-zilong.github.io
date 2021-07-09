@@ -218,6 +218,166 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/LeetCode Note/460. LFU Cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/01/25/LeetCode Note/460. LFU Cache/" class="post-title-link" itemprop="url">460. LFU Cache</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-01-25 12:00:47 / Modified: 16:51:20" itemprop="dateCreated datePublished" datetime="2021-01-25T12:00:47+08:00">2021-01-25</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LeetCode-Note/" itemprop="url" rel="index"><span itemprop="name">LeetCode Note</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="lfu-cache">460. LFU Cache</h1>
+<h2 id="question">1. Question</h2>
+<p>Design and implement a data structure for <a href="https://en.wikipedia.org/wiki/Least_frequently_used" target="_blank" rel="noopener">Least Frequently Used (LFU)</a> cache.</p>
+<p>Implement the <code>LFUCache</code> class:</p>
+<ul>
+<li><code>LFUCache(int capacity)</code> Initializes the object with the <code>capacity</code> of the data structure.</li>
+<li><code>int get(int key)</code> Gets the value of the <code>key</code> if the <code>key</code> exists in the cache. Otherwise, returns <code>-1</code>.</li>
+<li><code>void put(int key, int value)</code> Sets or inserts the value if the <code>key</code> is not already present. When the cache reaches its <code>capacity</code>, it should invalidate the least frequently used item before inserting a new item. For this problem, when there is a tie (i.e., two or more keys with the same frequency), <strong>the least recently</strong> used <code>key</code> would be evicted.</li>
+</ul>
+<p><strong>Notice that</strong> the number of times an item is used is the number of calls to the <code>get</code> and <code>put</code> functions for that item since it was inserted. This number is set to zero when the item is removed.</p>
+<p>Could you do both operations in <code>O(1)</code> time complexity?</p>
+<h2 id="thought">2. Thought</h2>
+<p>Because both operations are required in <code>O(1)</code> time complexity, we need to use the hash table to realize. In this problem, we use two hash tables.</p>
+<p>The first one maps from the frequency to a double linked list.</p>
+<p>The second one maps from the key to the <strong>pointer of item in the list</strong> (list::iterator).</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">list</span>&lt;LFUitem&gt; LFUlist_t;</span><br><span class="line"><span class="comment">// Hash table, freq-&gt;LFUlist</span></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t&gt; LFUfreqmap; </span><br><span class="line"><span class="comment">// Hash table, key-&gt;LFUlist::iterator</span></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t::iterator&gt; LFUkeymap;</span><br></pre></td></tr></table></figure>
+<p>By using such two hash tables, we can find the item by key in <code>o(1)</code> time complexity, and find the least frequent item in <code>o(1)</code> time complexity. Do remember that we have two tables and thus each operation is related to the two tables. Let’s analyze the procedure in detail.</p>
+<h3 id="put">1) Put</h3>
+<ul>
+<li><p>Capacity is zero</p>
+<p>Do nothing.</p></li>
+<li><p>Key not in the cache</p>
+<ul>
+<li><p>If cache is full, delete the least frequent item.</p>
+<p>Find the least frequent item by calling <code>LFUfreqmap[minfreq].back()</code>.</p>
+<p>Remove the least frequent item in the <code>LFUkeymap.</code></p>
+<p>Remove the least frequent item in the <code>LFUfreqmap</code> by calling <code>pop_back()</code>.</p></li>
+<li><p>Add new item in the cache.</p>
+<p>Check whether the list with frequency 1 exists in <code>LFUfreqmap</code>. If not exists, create the list.</p>
+<p><code>push_front</code> the new item in the list with frequency 1 in <code>LFUfreqmap</code>.</p>
+<p><code>emplace</code> the new key in the <code>LFUkeymap</code>.</p></li>
+<li><p>Set minimum frequency as 1 because the frequency of the new item must be 1.</p></li>
+</ul></li>
+<li><p>Key already in the cache</p>
+<p><em>Increase the frequency of the item with the given key.</em></p>
+<p>Update the value of the item with the given key.</p></li>
+</ul>
+<h3 id="get">2) Get</h3>
+<ul>
+<li><p>Capacity is zero</p>
+<p>Return -1.</p></li>
+<li><p>Key not in the cache</p>
+<p>Return -1.</p></li>
+<li><p>Key already in the cache</p>
+<p><em>Increase the frequency of the item with the given key.</em></p>
+<p>Return the value of the item with the given key.</p></li>
+</ul>
+<h3 id="increase-the-frequency-of-the-item-with-the-given-key">3) Increase the frequency of the item with the given key</h3>
+<p>Notice that in both <code>put</code> and <code>get</code> operations, we need to increase the frequency of the item with the specific key. Therefore we can write an independent function to realize it.</p>
+<ul>
+<li><p>Create a new item in the new list with the old frequency + 1.</p>
+<p>Check whether the list with old frequency + 1 exists in <code>LFUfreqmap</code>. If not exists, create the list.</p>
+<p><code>push_front</code> the new item in the list with old frequency + 1 in <code>LFUfreqmap</code>.</p>
+<p>Update the new key in the <code>LFUkeymap</code>.</p></li>
+<li><p>Delete the item in the old list with the old frequency.</p></li>
+</ul>
+<h3 id="how-to-maintain-the-minimum-frequency">4) How to maintain the minimum frequency</h3>
+<ul>
+<li><p>Put</p>
+<ul>
+<li><p>Key not in the cache</p>
+<p>Minimum frequency must be 1.</p></li>
+<li><p>Key in the cache</p>
+<p>If the item with the given key has the minimum frequency, then after erasing this item f rom the list with the minimum frequency, if the list is empty, then minimum frequency increases 1, otherwise, minimum frequency does not change.</p></li>
+</ul></li>
+<li><p>Get</p>
+<ul>
+<li><p>Key not in the cache</p>
+<p>Minimum frequency does not change.</p></li>
+<li><p>Key in the cache</p>
+<p>Same as the <code>Key in the cache</code> case in <code>put</code>.</p></li>
+</ul></li>
+</ul>
+<h2 id="code">3. Code</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LFUitem</span>&#123;</span></span><br><span class="line">    <span class="keyword">uint16_t</span> key;</span><br><span class="line">    <span class="keyword">uint16_t</span> freq;</span><br><span class="line">    <span class="keyword">uint16_t</span> val;</span><br><span class="line">    LFUitem(<span class="keyword">uint16_t</span> key_, <span class="keyword">uint16_t</span> freq_, <span class="keyword">uint16_t</span> val_): key(key_), freq(freq_), val(val_) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">list</span>&lt;LFUitem&gt; LFUlist_t;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">uint16_t</span> capacity;</span><br><span class="line">    <span class="keyword">uint16_t</span> size=<span class="number">0</span>;</span><br><span class="line">    <span class="comment">// Hash table, freq-&gt;LFUlist</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t&gt; LFUfreqmap; </span><br><span class="line">    <span class="comment">// Hash table, key-&gt;LFUlist::iterator</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">uint16_t</span>, LFUlist_t::iterator&gt; LFUkeymap; </span><br><span class="line">    <span class="keyword">uint16_t</span> minfreq=<span class="number">0</span>; <span class="comment">// minimum frequency</span></span><br><span class="line">    LFUCache(<span class="keyword">int</span> capacity) : capacity(capacity) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">increaseFreq</span><span class="params">(LFUlist_t::iterator iter)</span></span>&#123;</span><br><span class="line">        <span class="keyword">uint16_t</span> curr_freq = iter-&gt;freq;</span><br><span class="line">        <span class="comment">// create new item in curr_freq+1 list</span></span><br><span class="line">        <span class="keyword">if</span> (LFUfreqmap.find(curr_freq + <span class="number">1</span>) == LFUfreqmap.end()) </span><br><span class="line">            LFUfreqmap.emplace(curr_freq + <span class="number">1</span>, LFUlist_t()); <span class="comment">// there is no curr_freq+1 list, create list</span></span><br><span class="line">        LFUfreqmap[curr_freq + <span class="number">1</span>].push_front(LFUitem(iter-&gt;key, curr_freq + <span class="number">1</span>, iter-&gt;val)); <span class="comment">//push in a new item</span></span><br><span class="line">        LFUkeymap[iter-&gt;key] = LFUfreqmap[curr_freq + <span class="number">1</span>].begin();</span><br><span class="line">        <span class="comment">// delete old item in curr_freq list (which must exist)</span></span><br><span class="line">        LFUfreqmap[curr_freq].erase(iter);</span><br><span class="line">        <span class="comment">// if curr_freq list is empty, it is the minfreq list. Therefore increase minfreq</span></span><br><span class="line">        <span class="keyword">if</span> (minfreq == curr_freq &amp;&amp; LFUfreqmap[curr_freq].size() == <span class="number">0</span>) minfreq += <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;capacity == <span class="number">0</span> || LFUkeymap.find(key) == LFUkeymap.end()) <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// if not found </span></span><br><span class="line">        increaseFreq(LFUkeymap[key]); <span class="comment">// if found, just increase the freq in terms of the given key</span></span><br><span class="line">        <span class="keyword">return</span> LFUkeymap[key]-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;capacity == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (LFUkeymap.find(key) == LFUkeymap.end())&#123;<span class="comment">// if key is not found </span></span><br><span class="line">            <span class="keyword">if</span> (size == capacity)&#123;<span class="comment">// delete something</span></span><br><span class="line">                LFUkeymap.erase(LFUfreqmap[minfreq].back().key);</span><br><span class="line">                LFUfreqmap[minfreq].pop_back();</span><br><span class="line">            &#125; <span class="keyword">else</span> size++;</span><br><span class="line">            <span class="keyword">if</span> (LFUfreqmap.find(<span class="number">1</span>) == LFUfreqmap.end()) </span><br><span class="line">                LFUfreqmap.emplace(<span class="number">1</span>, LFUlist_t()); <span class="comment">// if there is no freq key 1 list, create list</span></span><br><span class="line">            LFUfreqmap[<span class="number">1</span>].push_front(LFUitem(key, <span class="number">1</span>, value)); <span class="comment">// push in a new item</span></span><br><span class="line">            LFUkeymap.emplace(key, LFUfreqmap[<span class="number">1</span>].begin());</span><br><span class="line">            minfreq=<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">// if key is found</span></span><br><span class="line">            increaseFreq(LFUkeymap[key]);</span><br><span class="line">            LFUkeymap[key]-&gt;val = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/9. Newton's method/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -648,217 +808,11 @@ f(x^k+\rho^m d^k)-f(x^k)\le \sigma \rho^m\langle \nabla f(x^k),d^k\rangle.
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/22/MA6268 Nonlinear Optimization/8.4 A symmetric Gauss-Seidel based semi-proximal ADMMALM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2020/12/22/MA6268 Nonlinear Optimization/8.4 A symmetric Gauss-Seidel based semi-proximal ADMMALM/" class="post-title-link" itemprop="url">8. ADMM methods for convex composite conic programming (2)</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2020-12-22 13:48:40 / Modified: 15:29:40" itemprop="dateCreated datePublished" datetime="2020-12-22T13:48:40+08:00">2020-12-22</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MA6268-Nonlinear-Optimization/" itemprop="url" rel="index"><span itemprop="name">MA6268 Nonlinear Optimization</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="a-symmetric-gauss-seidel-based-semi-proximal-admmalm">8.4 A symmetric Gauss-Seidel based semi-proximal ADMM/ALM</h2>
-<p>Let us consider the following convex composite quadratic programming, <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; \theta(y_1)+f(y_1,y_2,\dotsm,y_p)+\varphi(z_1)+g(z_1,z_2,\dotsm,z_q)\\
-\text{subject to}&amp; \mathcal A_1^* y_1+\mathcal A_2^*y_2+\dotsm+\mathcal A_p^*y_p+\mathcal B_1^*z_1+\mathcal B_2^*z_2+\dotsm+\mathcal B_q^*z_q=c,
-\end{array}
-\]</span> where</p>
-<ol type="1">
-<li><span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are given nonnegative integers, <span class="math inline">\(c\in\mathcal X\)</span> is a given vector.</li>
-<li><span class="math inline">\(\theta:\mathcal Y_1\rightarrow (-\infty,\infty]\)</span> and <span class="math inline">\(\varphi:\mathcal Z_1\rightarrow (-\infty,\infty]\)</span> are simple closed proper convex functions in the sense that their proximal mapping can be relatively <strong>easy</strong> to compute.</li>
-<li><span class="math inline">\(f:\mathcal Y_1\times \mathcal Y_2\times \dotsm\times \mathcal Y_p\rightarrow \mathbb R\)</span> and <span class="math inline">\(g:\mathcal Z_1\times \mathcal Z_2\times \dotsm\times \mathcal Z_q\rightarrow \mathbb R\)</span> are convex quadratic functions.</li>
-<li><span class="math inline">\(\mathcal A_i:\mathcal X\rightarrow \mathcal Y_i,\;i=1,\dotsm,p\)</span> and <span class="math inline">\(\mathcal B_j:\mathcal X\rightarrow \mathcal Z_j,\;j=1,\dotsm,q\)</span> are linear maps.</li>
-<li><span class="math inline">\(\mathcal Y_1.\dotsm,\mathcal Y_p\)</span>, <span class="math inline">\(\mathcal Z_1,\dotsm,\mathcal Z_q\)</span> and <span class="math inline">\(\mathcal X\)</span> are real finite dimensional Euclidean spaces each equipped with an inner product <span class="math inline">\(\langle \cdot,\cdot\rangle\)</span> and its induced norm <span class="math inline">\(||\cdot||\)</span>.</li>
-</ol>
-<p>Define <span class="math inline">\(\mathcal Y=\mathcal Y_1\times \mathcal Y_2\times \dotsm\times \mathcal Y_p\)</span> and <span class="math inline">\(\mathcal Z=\mathcal Z_1\times \mathcal Z_2\times \dotsm\times \mathcal Z_q\)</span>. Define <span class="math inline">\(y=(y_1,\dotsm,y_p)\in\mathcal Y\)</span> and <span class="math inline">\(z=(z_1,\dotsm,z_q)\in\mathcal Z\)</span>. Define the linear maps <span class="math inline">\(\mathcal A:\mathcal X\rightarrow \mathcal Y\)</span> and <span class="math inline">\(\mathcal B:\mathcal X\rightarrow \mathcal Z\)</span> such that the adjoint maps are given by <span class="math display">\[
-\mathcal A^* y=\sum_{i=1}^p \mathcal A_i^* y_i,\;\forall y\in\mathcal Y\\
-\mathcal B^* y=\sum_{j=1}^p \mathcal B_j^* z_j,\;\forall z\in\mathcal Z.
-\]</span> Then the problem can be denoted in a more compact form, <span class="math display">\[
-\text{(P)}\quad \begin{array}{rCl}
-\min &amp; \theta(y_1)+f(y)+\varphi(z_1)+g(z)\\
-\text{subject to}&amp; \mathcal A^*y+\mathcal B^*z=c.
-\end{array}
-\]</span> Assume the convex quadratic functions <span class="math inline">\(f:\mathcal Y\rightarrow \mathbb R\)</span> and <span class="math inline">\(g:\mathcal Z\rightarrow \mathbb R\)</span> are given by <span class="math display">\[
-f(y)=\frac{1}{2}\langle y,\mathcal Py\rangle -\langle b_f,y\rangle\\
-g(z)=\frac{1}{2}\langle z,\mathcal Qz\rangle -\langle b_g,z\rangle.
-\]</span> Here <span class="math inline">\(\mathcal P\)</span> and <span class="math inline">\(\mathcal Q\)</span> are self-adjoint positive semidefinite linear operator defined on <span class="math inline">\(\mathcal Y\)</span> and <span class="math inline">\(\mathcal Z\)</span>, respectively. For later discussion, we write <span class="math display">\[
-\mathcal P=\left(
-\begin{array}{cccc}
-\mathcal P_{11} &amp; \mathcal P_{12} &amp; \dotsm &amp; \mathcal P_{1p}\\
-\mathcal P_{12}^* &amp; \mathcal P_{22} &amp; \dotsm &amp; \mathcal P_{2p}\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-\mathcal P_{p1}^* &amp; \mathcal P_{p2}^* &amp; \dotsm &amp; \mathcal P_{pp}
-\end{array}
-\right)\quad 
-\mathcal Q=\left(
-\begin{array}{cccc}
-\mathcal Q_{11} &amp; \mathcal Q_{12} &amp; \dotsm &amp; \mathcal Q_{1p}\\
-\mathcal Q_{12}^* &amp; \mathcal Q_{22} &amp; \dotsm &amp; \mathcal Q_{2p}\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-\mathcal Q_{q1}^* &amp; \mathcal Q_{q2}^* &amp; \dotsm &amp; \mathcal Q_{qq}
-\end{array}
-\right),
-\]</span> where <span class="math inline">\(\mathcal P_{ij}:\mathcal Y_j\rightarrow \mathcal Y_i\)</span> for <span class="math inline">\(i=1,\dotsm,p\)</span>, <span class="math inline">\(j\le i\)</span> and <span class="math inline">\(\mathcal Q_{mn}:\mathcal Z_n\rightarrow \mathcal Z_m\)</span> for <span class="math inline">\(m=1,\dotsm,q\)</span>, <span class="math inline">\(n\le m\)</span> are linear operators. For simplicity, we further write <span class="math display">\[
-\theta_f(y)=\theta(y_1)+f(y)\\
-\varphi_g(z)=\varphi (z_1)+g(z).
-\]</span> Let <span class="math inline">\(\sigma &gt;0\)</span> be given. The augmented Lagrangian function is given as, for any <span class="math inline">\((y,z,x)\in\mathcal Y,\mathcal Z,\mathcal X\)</span>, <span class="math display">\[
-\mathcal L_\sigma (y,z;x)=\theta_f(y)+\varphi_g(z)+\langle x,\mathcal A^* y+\mathcal B^*z-c\rangle +\frac{\sigma}{2}||\mathcal A^* y+\mathcal B^* z-c||^2.
-\]</span> We first introduce two self-adjoint semidefinite linear operators <span class="math inline">\(\mathcal S_1\)</span> and <span class="math inline">\(\mathcal T_1\)</span> to handle the convex, possibly nonsmoothed, functions <span class="math inline">\(\theta(y_1)\)</span> and <span class="math inline">\(\varphi(z_1)\)</span>. Let <span class="math inline">\(\mathcal F_1\)</span> and <span class="math inline">\(\mathcal S_1\)</span> be self-adjoint operator on <span class="math inline">\(\mathcal Y_1\)</span> such that <span class="math display">\[
-\mathcal F_1=\mathcal S_1+\sigma^{-1}\mathcal P_{11}+\mathcal A_1\mathcal A_1^*\succ 0
-\]</span> and the following well-defined optimization problem (subproblem), <span class="math display">\[
-\min _{y_1} \theta(y_1)+\frac{\sigma}{2}||y_1-\bar y_1||^2_{\mathcal F_1}
-\]</span> can be easily solved for any <span class="math inline">\(\bar y_1\in\text{dom}(\theta)\)</span>. Similarly, define the self-adjoint semidefinite linear operator <span class="math inline">\(\mathcal G_1\)</span> and <span class="math inline">\(\mathcal T_1\)</span> on <span class="math inline">\(\mathcal Z_1\)</span> such that <span class="math display">\[
-\mathcal G_1=\mathcal T_1+\sigma ^{-1}\mathcal Q_{11}+\mathcal B_1\mathcal B_1^*\succ0
-\]</span> and the optimal solution to the following problem, <span class="math display">\[
-\min_{z_1} \varphi(z_1)+\frac{\sigma}{2}||z_1-\bar z_1||^2_{\mathcal G_1}
-\]</span> can be easily obtained for any <span class="math inline">\(\bar z_1\in\text{dom}(\varphi)\)</span>. Then for <span class="math inline">\(i=2,\dotsm,p\)</span>, let <span class="math inline">\(\mathcal F_i\)</span> be a self-adjoint positive definite linear operator such that it is a majorization of <span class="math inline">\(\sigma^{-1}\mathcal P_{ii}+\mathcal A_i\mathcal A_i^*\)</span>, i.e., <span class="math display">\[
-\mathcal F_i\succeq \sigma^{-1}\mathcal P_{ii}+\mathcal A_i\mathcal A_i^*,\quad i=1,\dotsm,p.
-\]</span> In practice, we would choose <span class="math inline">\(\mathcal F_i\)</span> in such a way that its inverse can be computed at a moderate cost. Define <span class="math display">\[
-\mathcal S_i=\mathcal F_i-\sigma^{-1}\mathcal P_{ii}-\mathcal A_i\mathcal A_i^*\succeq 0,\quad i=1,\dotsm,p.
-\]</span> Note that for numerical efficiency, we need the self-adjoint positive semidefinite linear operator <span class="math inline">\(\mathcal S_i\)</span> to be as small as possible for each <span class="math inline">\(i=1,\dotsm,p\)</span>. Similarly, for <span class="math inline">\(j=2,\dotsm,p\)</span>, let <span class="math inline">\(\mathcal G_j\)</span> be a self-adjoint positive definite linear operator on <span class="math inline">\(\mathcal Z_j\)</span> that majorizes <span class="math inline">\(\sigma^{-1}\mathcal Q_{jj}+\mathcal B_j\mathcal B_j^*\)</span> in such a way that <span class="math inline">\(\mathcal G^{-1}\)</span> can be computed relatively easily. Define <span class="math display">\[
-\mathcal T_j=\mathcal G_j-\sigma ^{-1}\mathcal Q_{jj}-\mathcal B_j\mathcal B_K^*\succeq 0,\quad j=1,\dotsm,q.
-\]</span> <strong>My thinking</strong></p>
-<p>Firstly, let us see how we can use sPADMM to solve this problem. We only analyze one of the blocks of the sPADMM here. <span class="math display">\[
-\begin{array}{rcl}y^{k+1}&amp;=&amp;\arg\min_y\left\{\mathcal L_\sigma(y,z^k;x^k)+\frac{1}{2}||y-y^k||_{\mathcal S_\mathcal M}\right\}\\&amp;=&amp; \arg\min_y\left\{\theta(y_1)+\frac{1}{2}\langle y,\mathcal Py\rangle -\langle b_f,y\rangle+\frac{\sigma}{2}||\mathcal A^*y+\mathcal B^*z^{k}-c+\sigma^{-1}x^{k}||^2+\frac{1}{2}||y-y^k||_{\mathcal S_\mathcal M}\right\}\\&amp;=&amp; \arg\min_y\left\{\theta(y_1)+\frac{1}{2}\langle y,(\mathcal P+\sigma \mathcal A\mathcal A^*)y\rangle-\langle b,y\rangle+\frac{1}{2}||y-y^k||_{\mathcal S_\mathcal M}\right\}\\\end{array}.
-\]</span> Define <span class="math display">\[
-\mathcal H=\left(\begin{array}{cccc}\mathcal P_{11} &amp; \mathcal P_{12} &amp; \dotsm &amp; \mathcal P_{1p}\\\mathcal P_{12}^* &amp; \mathcal P_{22} &amp; \dotsm &amp; \mathcal P_{2p}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\\mathcal P_{p1}^* &amp; \mathcal P_{p2}^* &amp; \dotsm &amp; \mathcal P_{pp}\end{array}\right)+\sigma \left(\begin{array}{cccc}\mathcal A_1\mathcal A_1^* &amp; \mathcal A_1\mathcal A_2^* &amp; \dotsm &amp; \mathcal A_1\mathcal A_p^*\\\mathcal A_2\mathcal A_1^* &amp; \mathcal A_2\mathcal A_2^* &amp; \dotsm &amp; \mathcal A_2\mathcal A_p^*\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\\mathcal A_p\mathcal A_1^* &amp; \mathcal A_p\mathcal A_2^* &amp; \dotsm &amp; \mathcal A_p\mathcal A_p^*\\\end{array}\right)\\=\left(\begin{array}{cccc}\mathcal P_{11}+\sigma \mathcal A_1\mathcal A_1^* &amp; \mathcal P_{12}+\sigma \mathcal A_1\mathcal A_2^* &amp; \dotsm &amp; \mathcal P_{1p}+\sigma \mathcal A_1\mathcal A_p^*\\\mathcal P_{21}+\sigma \mathcal A_2\mathcal A_1^* &amp; \mathcal P_{22}+\sigma \mathcal A_2\mathcal A_2^* &amp; \dotsm &amp; \mathcal P_{2p}+\sigma \mathcal A_2\mathcal A_p^*\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\\mathcal P_{p1}+\sigma \mathcal A_p\mathcal A_1^* &amp; \mathcal P_{p2}+\sigma \mathcal A_p\mathcal A_2^* &amp; \dotsm &amp; \mathcal P_{pp}+\sigma \mathcal A_p\mathcal A_p^*\\\end{array}\right).
-\]</span> And define <span class="math display">\[
-\mathcal U&#39;=\left(\begin{array}{cccc}0 &amp; \mathcal P_{12}+\sigma \mathcal A_1\mathcal A_2^* &amp; \dotsm &amp; \mathcal P_{1p}+\sigma \mathcal A_1\mathcal A_p^*\\0 &amp; 0 &amp; \dotsm &amp; \mathcal P_{2p}+\sigma \mathcal A_2\mathcal A_p^*\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; 0\\\end{array}\right)\\\mathcal D&#39;=\left(\begin{array}{cccc}\mathcal P_{11}+\sigma \mathcal A_1\mathcal A_1^* &amp; 0 &amp; \dotsm &amp; 0\\0 &amp; \mathcal P_{22}+\sigma \mathcal A_2\mathcal A_2^* &amp; \dotsm &amp; 0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; \mathcal P_{pp}+\sigma \mathcal A_p\mathcal A_p^*\\\end{array}\right).
-\]</span> Then sGS method can be applied to solve this subproblem if <span class="math inline">\(\mathcal S_\mathcal M\)</span> is chosen as <span class="math inline">\({\mathcal S_\mathcal M} = \mathcal U&#39;(\mathcal D&#39;)^{-1} (\mathcal U&#39;)^*\)</span>.</p>
-<p>But if this decomposition is applied, the subproblem to <span class="math inline">\(y^{k+1}_1\)</span> will be very difficult to solve because of the non-smooth function <span class="math inline">\(\theta(y_1)\)</span>. The subproblem is denoted as <span class="math display">\[
-\begin{array}{rcl}
-y_{1}^{k+1}&amp;=&amp;\operatorname{argmin}_{y_{1}} \mathcal{L}_{\sigma}\left(\left(y_{1}, \bar{y}_{\geq 2}^{k}\right), z^{k} ; x^{k}\right),\\
-&amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+f(y)+\varphi_g(z)+\langle x,\mathcal A^* y+\mathcal B^*z-c\rangle +\frac{\sigma}{2}||\mathcal A^* y+\mathcal B^* z-c||^2\\
-&amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+\frac{1}{2}\langle y,\mathcal Py\rangle -\langle b_f,y\rangle+\langle x,\mathcal A^* y\rangle +\frac{\sigma}{2}||\mathcal A^* y+\mathcal B^* z-c||^2\\
-&amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+\frac{1}{2}\langle y,(\mathcal P+\sigma \mathcal A^*\mathcal A)y\rangle -\langle b,y\rangle
-\end{array}
-\]</span> which is a non-smooth function. To solve this problem is as difficult as to solve the original problem. Therefore we hope to introduce the regulation part to each of the subproblems, especially the subproblem to <span class="math inline">\(y^{k+1}_1\)</span>, to make the subproblems easy to solve. The form we hope the subproblem to be is <span class="math display">\[
-\begin{array}{rcl}
-y_{1}^{k+1}
-&amp;=&amp; \operatorname{argmin}_{y_{1}} \theta(y_1)+||y_1-y_1^k||^2_\mathcal {SS},
-\end{array}
-\]</span> where <span class="math inline">\(\mathcal {SS}\)</span> is chosen from some positive definite symmetric matrices such that this problem can become a proximal operator to the function <span class="math inline">\(\theta\)</span>. Now let us see how we can achieve this goal.</p>
-<p>We consider the following problem by introducing another regulation part <span class="math inline">\(\mathcal S\)</span>. <span class="math display">\[
-\begin{array}{rcl}
-y^{k+1}&amp;=&amp; \arg\min_y\left\{\theta(y_1)+\frac{1}{2}\langle y,(\mathcal P+\sigma \mathcal A\mathcal A^*)y\rangle-\langle b,y\rangle
-+\underbrace{\frac{1}{2}||y-y^k||_{\mathcal S}}_{\text{New Part}}+\frac{1}{2}||y-y^k||_{\mathcal S_\mathcal M}\right\}\\\end{array},
-\]</span> where <span class="math inline">\(\mathcal S=\text{diag}(\mathcal S_1,\mathcal S_2,\dotsm,\mathcal S_p)\)</span>.</p>
-<p>Then we need to modify <span class="math inline">\(\mathcal D\)</span> such that the sGS can be applied. Therefore, <span class="math inline">\(\mathcal D&#39;\)</span> is redefined as <span class="math display">\[
-\mathcal D&#39;=\left(\begin{array}{cccc}\mathcal S_1+\mathcal P_{11}+\sigma \mathcal A_1\mathcal A_1^* &amp; 0 &amp; \dotsm &amp; 0\\0 &amp; \mathcal S_2+\mathcal P_{22}+\sigma \mathcal A_2\mathcal A_2^* &amp; \dotsm &amp; 0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; \mathcal S_p+\mathcal P_{pp}+\sigma \mathcal A_p\mathcal A_p^*\\\end{array}\right).
-\]</span> If we hope to be consistent with the above text, we need to let the <span class="math inline">\(\sigma\)</span> go outside.</p>
-<p>Define <span class="math inline">\(\sigma \mathcal D=\mathcal D&#39;\)</span>, and <span class="math inline">\(\sigma \mathcal U=\mathcal U&#39;\)</span>. Then we have <span class="math display">\[
-\mathcal D=\left(\begin{array}{cccc}\mathcal S_1+\sigma^{-1}\mathcal P_{11}+ \mathcal A_1\mathcal A_1^* &amp; 0 &amp; \dotsm &amp; 0\\0 &amp; \mathcal S_2+\sigma^{-1}\mathcal P_{22}+ \mathcal A_2\mathcal A_2^* &amp; \dotsm &amp; 0\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; \mathcal S_p+\sigma^{-1}\mathcal P_{pp}+ \mathcal A_p\mathcal A_p^*\\\end{array}\right)\\
-\mathcal U=\left(\begin{array}{cccc}
-0 &amp; \sigma^{-1}\mathcal P_{12}+ \mathcal A_1\mathcal A_2^* &amp; \dotsm &amp; \sigma^{-1}\mathcal P_{1p}+ \mathcal A_1\mathcal A_p^*\\
-0 &amp; 0 &amp; \dotsm &amp; \sigma^{-1}\mathcal P_{2p}+ \mathcal A_2\mathcal A_p^*\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0 &amp; 0 &amp; \dotsm &amp; 0
-\end{array}\right).
-\]</span> If we choose <span class="math inline">\(\mathcal S_i=\mathcal F_i-\sigma^{-1}\mathcal P_{ii}-\mathcal A_i\mathcal A_i^*\succeq 0,\quad i=1,\dotsm,p\)</span>, then we have <span class="math display">\[
-\mathcal D=
-\begin{bmatrix}
-\mathcal F_1 &amp; 0 &amp; \dotsm &amp; 0\\
-0 &amp; \mathcal F_2 &amp; \dotsm &amp; 0\\
-\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
-0 &amp; 0 &amp; \dotsm &amp; \mathcal F_p
-\end{bmatrix}.
-\]</span> Then we have <span class="math inline">\(\mathcal S_\mathcal M=\mathcal U\mathcal D^{-1}\mathcal U^*\)</span>, and the subproblems we need to solve can be denoted as <span class="math display">\[
-\begin{array}{rcl}
-\bar y_i^k &amp;=&amp;\arg\min _{y_i}\mathcal L_\sigma ((y^k_{\le i-1},y_i,\bar y^k_{\ge i+1}),z^k;x^k)+\frac{\sigma}{2}||y_i-y_i^k||_{\mathcal S_i}^2\\
-y_1^{k+1}&amp;=&amp;\arg\min_{y_1}\mathcal L_\sigma((y_1,\bar y^k_{\ge 2},z_k;x^k)+\frac{\sigma}{2}||y_1-y_1^k||_{\mathcal S_1}^2. 
-\end{array}
-\]</span></p>
-<p><strong>Proposition</strong></p>
-<p>For any <span class="math inline">\(k\ge 0\)</span>, the point <span class="math inline">\((x^{k+1},y^{k+1},z^{k+1})\)</span> obtained by sGS-sPADMM for solving the problem can be generated exactly according to the following iteration, <span class="math display">\[
-\begin{array}{rcl}
-y^{k+1}&amp;=&amp; \arg\min_y\{\mathcal L_\sigma (y,z^k;x^k)+\frac{\sigma}{2}||y-y^k||^2_{\mathcal S+\mathcal S_\mathcal M}\}\\
-z^{k+1}&amp;=&amp; \arg\min_z\{\mathcal L_\sigma (y^{k+1},z;x^k)+\frac{\sigma}{2}||y-y^k||^2_{\mathcal T+\mathcal T_\mathcal N}\}\\
-x^{k+1}&amp;=&amp; x^k+\tau\sigma (\mathcal A^* y^{k+1}+\mathcal B^* z^{k+1}-c).
-\end{array}
-\]</span> Proof.</p>
-<p>It is straightforward to prove it.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -903,7 +857,7 @@ x^{k+1}&amp;=&amp; x^k+\tau\sigma (\mathcal A^* y^{k+1}+\mathcal B^* z^{k+1}-c).
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -934,7 +888,9 @@ x^{k+1}&amp;=&amp; x^k+\tau\sigma (\mathcal A^* y^{k+1}+\mathcal B^* z^{k+1}-c).
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>

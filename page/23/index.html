@@ -218,6 +218,205 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/EE5904 Neural Network/2.RBFN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/05/09/EE5904 Neural Network/2.RBFN/" class="post-title-link" itemprop="url">Chapter 2. Radial-Basis Function Networks</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-09 13:45:47 / Modified: 14:35:51" itemprop="dateCreated datePublished" datetime="2019-05-09T13:45:47+08:00">2019-05-09</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="radial-basis-function-networks">Radial-Basis Function Networks</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>The activation of a hidden unit is determined by the distance between the input vector and a prototype vector, the center. <span class="math display">\[
+\varphi(||x-c||)=\varphi(r)
+\]</span> Given a set of N data points and a set of N target values.</p>
+<p>The goal is to find a function <span class="math inline">\(f(x)\)</span> that pass through all the training data points.</p>
+<p>There are infinite number of solutions and RBFN is just one solution.</p>
+<p>For the RBFN, we have <span class="math display">\[
+f(x)=\sum_{i=1}^N w_i\varphi(||x-x_i||)
+\]</span></p>
+<h2 id="how-to-determine-the-weights">2. How to Determine the Weights</h2>
+<p>It becomes a typical algebraic problem. <span class="math display">\[
+f(x_j)=\sum_{i=1}^{N}w_i\varphi(||x_j-x_i||)=d_j
+\]</span> Then we can expand the equation to a matrix form <span class="math display">\[
+\begin{bmatrix}
+\varphi_{11}  &amp; \varphi_{12} &amp; \dotsm &amp; \varphi_{1N}\\
+\varphi_{21}  &amp; \varphi_{22} &amp; \dotsm &amp; \varphi_{2N}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_{N1}  &amp; \varphi_{N2} &amp; \dotsm &amp; \varphi_{NN}\\
+\end{bmatrix}
+\begin{bmatrix}
+w_1\\w_2\\\vdots\\w_N
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> Then we can have <span class="math display">\[
+w=\Phi^{-1}d
+\]</span> Once we have the weight, we have function that represents a continuous differentiable surface that pass exactly through each data point.</p>
+<h2 id="commonly-used-radial-basis-functions">3. Commonly Used Radial Basis Functions</h2>
+<p>Gaussian Function <span class="math display">\[
+\varphi(r)=\exp (-\frac{r^2}{2\sigma^2})
+\]</span> Inverse Multi-Quadric Function <span class="math display">\[
+\varphi(r)=(r^2+\sigma^2)^{-0.5}
+\]</span> But the network perform poorly for the noisy data for the perfect tracking and large date sets the network will be very cost.</p>
+<p>To summarize,</p>
+<ol type="1">
+<li>For a given set containing N points</li>
+<li>Choose a RBF function <span class="math inline">\(\varphi\)</span></li>
+<li>Calculate <span class="math inline">\(\varphi_{ji}=\varphi(||x_j-x_i||)\)</span></li>
+<li>Obtain the interpolation matrix <span class="math inline">\(\Phi\)</span></li>
+<li>Solve the linear equation <span class="math inline">\(\Phi w=d\)</span></li>
+<li>Get the Unique solution <span class="math inline">\(w\)</span></li>
+</ol>
+<h2 id="train-the-network">4. Train the Network</h2>
+<p>However, the network requires one hidden unit for each training data pattern, and so for large datasets the network will become very costly to evaluate. Therefore, it is not necessary to use the sampling points as the centers. We choose some sampling points <span class="math inline">\(\mu_i\)</span> and then we have <span class="math display">\[
+f(x)=\sum_{i=1}^Mw_i\varphi_i(||x-\mu_i||)+b\\
+\]</span></p>
+<p>Let <span class="math inline">\(\varphi_0=1\)</span>, then the bias can be included in the vector. We have <span class="math display">\[
+f(x)=\sum_{i=0}^Mw_i\varphi_i(||x-\mu_i||)\\
+\]</span> Then the centers, spread parameters, and the weights can be learned by training as that for MLP.</p>
+<p>For the case of Gaussian basis functions, we have <span class="math display">\[
+\varphi_i(||x-\mu_i||)=\exp(-\frac{||x-\mu_i||^2}{2\sigma_i^2})
+\]</span> In which we have basis center <span class="math inline">\(\mu_i\)</span> and standard deviations <span class="math inline">\(\sigma_i\)</span>.</p>
+<p>The aim is to develop a process for finding the appropriate values of the weights <span class="math inline">\(w_i\)</span> and the centers and spreads <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i\)</span> .</p>
+<p>We hope to find the parameters <span class="math inline">\(w_i,\mu_i,\sigma_i\)</span> such that the cost function <span class="math display">\[
+E(w)=\sum_{i=1}^N(d(i)-y(i))^2
+\]</span> is minimized.</p>
+<p>There are two stages to tune the parameters.</p>
+<p>Stage 1,</p>
+<p>Use unsupervised learning methods to find center <span class="math inline">\(\mu_i\)</span> and spread <span class="math inline">\(\sigma_i\)</span></p>
+<p>Stage 2,</p>
+<p>Use supervised learning methods to find weight values between hidden and output units.</p>
+<h2 id="finding-the-output-weights">5. Finding the Output Weights</h2>
+<p>Given the hidden unit activations <span class="math inline">\(\varphi(x,\mu_i,\sigma_i)\)</span> is fixed while we determine the output weight <span class="math inline">\(w_i\)</span> <span class="math display">\[
+\begin{bmatrix}
+\varphi_0(x_1) &amp; \varphi_1(x_1) &amp; \dotsm &amp; \varphi_M(x_1)\\
+\varphi_0(x_2) &amp; \varphi_1(x_2) &amp; \dotsm &amp; \varphi_M(x_2)\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_0(x_N) &amp; \varphi_1(x_N) &amp; \dotsm &amp; \varphi_M(x_N)
+\end{bmatrix}
+\begin{bmatrix}
+w_0\\w_1\\\vdots\\w_M
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> That is <span class="math inline">\(\Phi w=d\)</span></p>
+<p>We can solve this problem by linear least squares <span class="math display">\[
+w=(\Phi^T\Phi)^{-1}\Phi^Td
+\]</span></p>
+<h2 id="finding-the-center-and-spread">6. Finding the Center and Spread</h2>
+<p>There are numerous approaches in the literature to find the center and spread for the first stage.</p>
+<p>The simplest and quickest approach to setting the RBF parameters is to take their centers as fixed at M points selected at random from the N data points.</p>
+<p>Specially, we can use RBFs centered at <span class="math inline">\(\mu_i\)</span> defined by <span class="math display">\[
+\varphi_i(x)=\exp (-\frac{M}{d_{max}^2}||x-\mu_i||^2)
+\]</span> That means the spread is <span class="math display">\[
+\sigma_i=\frac{d_{max}}{\sqrt{2M}}
+\]</span> We can also use K-means clustering</p>
+<p>K-means clustering,</p>
+<ol type="1">
+<li>Initialization. Choose random values for the initial centers.</li>
+<li>Sampling. Draw a sample vector from the training set.</li>
+<li>Assignment. Compute the distance from the vector to each center and assign the vector to the closet center.</li>
+<li>Updating. After all vectors are assigned to a center. Calculate the new center by the assigned vectors.</li>
+<li>Do the previous steps until converged.</li>
+</ol>
+<h2 id="supervised-rbf-network-training">7. Supervised RBF Network Training</h2>
+<p>The obvious approach is to perform gradient decent on a sum squared output error function as we did for MLPs. <span class="math display">\[
+E=\frac{1}{2}\sum_{j=1}^N(e_j)^2\\
+e_j=d_j-y(x_j)=d_j-\sum_{i=0}^Mw_i\varphi_i(x_j,\mu_i,\sigma_i)
+\]</span> Then we can use the gradient decent method, <span class="math display">\[
+\Delta w=-\eta g(n)
+\]</span></p>
+<h2 id="regularization-theory-for-rbf-networks">8. Regularization Theory for RBF Networks</h2>
+<p>Cost function <span class="math display">\[
+F(w)=\frac{1}{2}\sum_{i=1}^N(y(i)-d(i))^2+\frac{1}{2}\lambda||w||^2=\frac{1}{2}(\Phi w-d)^T(\Phi w-d)+\frac{1}{2}\lambda w^Tw
+\]</span> We hope to get the optimal solution for w <span class="math display">\[
+\frac{\partial F(w)}{\partial w}=0
+\]</span> Then we have <span class="math display">\[
+w=(\Phi^T\Phi+\lambda I)^{-1}\Phi^Td
+\]</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is the regularization factor.</p>
+<p>RBFN can also be used in classification problem.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,163 +566,11 @@ J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/EE5907 Pattern Recognition/9.Clustering and Application/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cheng-Zilong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cheng-Zilong">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/04/26/EE5907 Pattern Recognition/9.Clustering and Application/" class="post-title-link" itemprop="url">Chapter 9. Clustering and Applications</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-04-26 13:46:14 / Modified: 14:47:27" itemprop="dateCreated datePublished" datetime="2019-04-26T13:46:14+08:00">2019-04-26</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="clustering-and-applications">Clustering and Applications</h1>
-<h2 id="what-is-cluster-analysis">1. What is Cluster Analysis</h2>
-<p>Finding groups of objects such that the objects in a group will be similar to one another and different from the objects in other groups.</p>
-<p>A clustering is a set of clusters.</p>
-<p>Partitional Clustering: A division of data objects into non-overlapping subsets, such that each data object is in exactly one subset.</p>
-<p>Hierarchical clustering: A set of nested clusters organized as a hierarchical tree.</p>
-<p>Exclusive and non-exclusive: In non-exclusive clustering, points may belong to multiple clusters.</p>
-<p>Fuzzy and non-fuzzy: In fuzzy clustering, a point belongs to every cluster with some weight between 0 and 1.</p>
-<p>Partial and Complete: In some cases, we only want to cluster some of the data.</p>
-<h2 id="k-means">2. K-means</h2>
-<ol type="1">
-<li>partitional clustering approach</li>
-<li>Each cluster is associated with a centroid</li>
-<li>Each point is assigned to a cluster with the closest centroid</li>
-<li>Number of clusters, K, must be specified</li>
-</ol>
-<p>Algorithm</p>
-<p>Select K points as the initial centroids</p>
-<p>repeat</p>
-<p>From K clusters by assigning all points to the closest centroid.</p>
-<p>Recompute the centroid of each cluster.</p>
-<p>until the centroid don't change</p>
-<h2 id="evaluating-k-means-clusters">3. Evaluating K-means Clusters</h2>
-<p>Most common measure is Sum of Squared Error (SSE) <span class="math display">\[
-SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
-\]</span> the initial chosen points are very important.</p>
-<p>Solutions to Initial centroids problem</p>
-<ol type="1">
-<li>Multiple runs</li>
-<li>Use hierarchical clustering to determine initial centroids</li>
-<li>Select more than K initial centroids and then select among these initial centroids (Select most widely separated)</li>
-<li>Postprocessing
-<ol type="1">
-<li>Eliminate small clusters that may represent outliers</li>
-<li>Split loose clusters (Clusters with relatively high SSE)</li>
-<li>Merge close clusters (Clusters with relatively low SSE)</li>
-</ol></li>
-</ol>
-<p>Limitations of K-means</p>
-<p>K-means has problems when clusters are of differing sizes, densities.</p>
-<p>when the data contains outliers (not belonging to any cluster).</p>
-<p>The similarity function is suitable or not.</p>
-<h2 id="hierarchical-clustering">4. Hierarchical Clustering</h2>
-<p>Do not have assume any particular number of clusters</p>
-<p>Any desired number of clusters can be obtained by cutting the dendrogram at the proper level</p>
-<p>Two main types of hierarchical clustering</p>
-<h3 id="agglomerative-clustering-algorithm">1. Agglomerative clustering algorithm</h3>
-<p>Agglomerative: Start with the points as individual clusters and at each step, merge the closest part of clusters until only one cluster (or k clusters) left. (More popular)</p>
-<p>Algorithm:</p>
-<p>Compute the proximity/distance matrix</p>
-<p>Let each point be a cluster</p>
-<p>repeat</p>
-<p>​ Merge the two closet clusters</p>
-<p>​ update the proximity/distance matrix</p>
-<p>until only a single cluster remains</p>
-<h3 id="divisive-clustering-algorithm">2. Divisive clustering algorithm</h3>
-<p>Divisive: Start with one, all-inclusive cluster and at each step, split a cluster until each cluster contains a point (or there are k clusters)</p>
-<p>Traditional hierarchical algorithms use a similarity or distance matrix to merge or split one cluster at a time</p>
-<h2 id="inter-cluster-similarity">5. Inter-cluster Similarity</h2>
-<p>MIN: most similar (closest) points in the different clusters</p>
-<p>MAX: two least similar (most distant) points in the different clusters</p>
-<p>Group Average: Proximity of two clusters is the average of pairwise proximity between points in the two clusters.</p>
-<p>Distance Between Centroids</p>
-<h2 id="problems-and-limitations">6. Problems and Limitations</h2>
-<p>No objective function is directly minimized</p>
-<p>Different schemes have problems with one or more of the following:</p>
-<p>Sensitivity to noise and outliers Difficulty handling different sized clusters Breaking large clusters</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -568,7 +615,7 @@ SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -599,7 +646,9 @@ SSE=\sum_{i=1}^K \sum_{x\in C_i}dist^2(m_i,x)
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
