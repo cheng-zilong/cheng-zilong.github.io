@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="5. Corporate Finance  钱从哪里来 Reading 33 Cost of Capital  Debt Equity  钱往哪里花  长期投资 Reading 32 Capital Budgeting 短期投资 Reading 35 Working Capital Management  生产经营  ROE和ROA差一个Leverage Reading">
+<meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cheng-Zilong">
+<meta property="og:url" content="http://yoursite.com/2021/06/01/CFA LEVEL1/5. Corporate Finance/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:description" content="5. Corporate Finance  钱从哪里来 Reading 33 Cost of Capital  Debt Equity  钱往哪里花  长期投资 Reading 32 Capital Budgeting 短期投资 Reading 35 Working Capital Management  生产经营  ROE和ROA差一个Leverage Reading">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2021/06/01/CFA%20LEVEL1/5.%20Corporate%20Finance/6.%20Corporate%20Finance.assets/image-20210422125654280.png">
+<meta property="og:image" content="http://yoursite.com/2021/06/01/CFA%20LEVEL1/5.%20Corporate%20Finance/6.%20Corporate%20Finance.assets/image-20210422140328355.png">
+<meta property="og:updated_time" content="2021-07-09T04:18:59.952Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cheng-Zilong">
+<meta name="twitter:description" content="5. Corporate Finance  钱从哪里来 Reading 33 Cost of Capital  Debt Equity  钱往哪里花  长期投资 Reading 32 Capital Budgeting 短期投资 Reading 35 Working Capital Management  生产经营  ROE和ROA差一个Leverage Reading">
+<meta name="twitter:image" content="http://yoursite.com/2021/06/01/CFA%20LEVEL1/5.%20Corporate%20Finance/6.%20Corporate%20Finance.assets/image-20210422125654280.png">
+  <link rel="canonical" href="http://yoursite.com/2021/06/01/CFA LEVEL1/5. Corporate Finance/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title> | Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/5. Corporate Finance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-09 12:18:59" itemprop="dateModified" datetime="2021-07-09T12:18:59+08:00">2021-07-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="corporate-finance">5. Corporate Finance</h1>
+<ul>
+<li>钱从哪里来 Reading 33 Cost of Capital
+<ul>
+<li>Debt</li>
+<li>Equity</li>
+</ul></li>
+<li>钱往哪里花
+<ul>
+<li>长期投资 Reading 32 Capital Budgeting</li>
+<li>短期投资 Reading 35 Working Capital Management</li>
+</ul></li>
+<li>生产经营
+<ul>
+<li>ROE和ROA差一个Leverage Reading 34 Measures of Leverage</li>
+</ul></li>
+<li>赚的钱怎么分NI (二级学习)
+<ul>
+<li>Dividend和RE</li>
+</ul></li>
+<li>三权分立 Reading 31 Corporate Governance</li>
+</ul>
+<h2 id="reading-31-corporate-governance-and-esg">Reading 31 Corporate Governance and ESG</h2>
+<h3 id="stakeholder-management">1. Stakeholder Management</h3>
+<h4 id="corporate-governance-definition">Corporate Governance Definition</h4>
+<ul>
+<li><p>The system of internal controls</p></li>
+<li><p>Corporate governance 保证</p>
+<ul>
+<li>Shareholders (股东) 利益最大化，或者</li>
+<li>Stakeholders (公司利益相关者) 利益最大化</li>
+</ul></li>
+</ul>
+<h4 id="conflict-of-interest">Conflict of Interest</h4>
+<ul>
+<li>Shareholders and mangers
+<ul>
+<li>长期短期目标冲突</li>
+<li>高管high risk averse，股东low risk averse</li>
+<li>解决方法：ESOP(股权激励)</li>
+</ul></li>
+<li>大股东小股东
+<ul>
+<li>大股东获得控制权
+<ul>
+<li>A、B股，B股保护大股东</li>
+</ul></li>
+<li>Straight voting和cumulative voting
+<ul>
+<li>Straight voting就是每个人直接投票</li>
+<li>Cumulative voting可以累积投票，保护小股东</li>
+</ul></li>
+</ul></li>
+<li>股东和债权人
+<ul>
+<li>Risk tolerance冲突</li>
+<li>债务条款保护债权人</li>
+</ul></li>
+</ul>
+<h4 id="stakeholder-management-framework">Stakeholder Management Framework</h4>
+<ul>
+<li>Legal Infrastructure
+<ul>
+<li>Rights established by law</li>
+</ul></li>
+<li>Contractual Infrastructure
+<ul>
+<li>Contractual arrangements between the corporation and stakeholders</li>
+<li>Corporation has the most control</li>
+</ul></li>
+<li>Organizational Infrastructure
+<ul>
+<li>Internal systems, governance procedures, and practices adopted and controlled</li>
+</ul></li>
+<li>Governmental Infrastructure
+<ul>
+<li>Regulations imposed on companies.</li>
+</ul></li>
+<li>其中2、3可以被公司控制，1、4是强制性的</li>
+</ul>
+<h3 id="committees">2. Committees</h3>
+<ul>
+<li>三大专业委员会：
+<ul>
+<li>执行和监管分离，所以必须是Independent member</li>
+<li>Audit committee</li>
+<li>Compensation committee</li>
+<li>Nomination committee</li>
+</ul></li>
+</ul>
+<h3 id="shareholder-activism">3. Shareholder Activism</h3>
+<ul>
+<li><p>Hedge fund等大股东来操作</p></li>
+<li><p>收购公司股票积极参与管理，增加自身股票价值</p></li>
+</ul>
+<h3 id="environment-social-governance">4. Environment, Social, Governance</h3>
+<ul>
+<li><p>(Equity学过)</p></li>
+<li><p>Negative Screening</p></li>
+<li><p>Positive Screening</p></li>
+<li><p>Thematic Investing</p></li>
+<li><p>Engagement/Active ownership</p></li>
+</ul>
+<h2 id="reading-32-capital-budgeting">Reading 32 Capital Budgeting</h2>
+<h3 id="the-basics">1. The Basics</h3>
+<h4 id="definition">Definition</h4>
+<ul>
+<li>Selecting the most profitable long-term projects</li>
+</ul>
+<h4 id="capital-projects-classification">Capital Projects Classification</h4>
+<ul>
+<li>Replacement project
+<ul>
+<li>把手动设备换成自动设备</li>
+</ul></li>
+<li>Expansion project
+<ul>
+<li>增加规模，增加新项目</li>
+</ul></li>
+<li>Mandatory investment
+<ul>
+<li>环保、安全项目</li>
+</ul></li>
+<li>Other projects
+<ul>
+<li>现金流不太容易预测的项目，比如明星站台</li>
+<li>个人喜好产生的项目，比如买私人飞机</li>
+</ul></li>
+</ul>
+<h4 id="five-basic-principles-of-capital-budgeting">Five Basic Principles of Capital Budgeting</h4>
+<ul>
+<li>Based on <strong>incremental cash flow</strong>
+<ul>
+<li>新项目造成的现金流的增加</li>
+</ul></li>
+<li>The <strong>timing of cash flow</strong> is important</li>
+<li>Cash flow should be analyzed <strong>after tax</strong></li>
+<li>Included
+<ul>
+<li><strong>Externalities</strong>
+<ul>
+<li>对外部造成的影响，比如0度可乐</li>
+<li>Negative externalities</li>
+<li>Positive externalities</li>
+</ul></li>
+<li><strong>Opportunity cost</strong></li>
+</ul></li>
+<li>Ignored
+<ul>
+<li><strong>Sunk cost</strong>
+<ul>
+<li>与未来现金流无关的，直接扣除，比如咨询费</li>
+</ul></li>
+<li><strong>Financing cost</strong>
+<ul>
+<li>融资成本，考虑在折现率内</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="projects-evaluation-methods">2. Projects Evaluation Methods</h3>
+<ul>
+<li><p>Net Present Value (NPV)</p>
+<ul>
+<li><p>Definition</p>
+<ul>
+<li><span class="math inline">\(NPV=\displaystyle \sum_{t=0}^n\frac{CF_t}{(1+r)^t}\)</span></li>
+</ul></li>
+<li><p>缺点</p>
+<ul>
+<li>没有考虑初始规模</li>
+</ul></li>
+<li><blockquote>
+<p>Example</p>
+<p>Firm’s Cost of Capital = 9%</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Year</th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Net Cash Flow</td>
+<td style="text-align: center;">-100</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">75</td>
+</tr>
+</tbody>
+</table>
+<p>NPV=22.93</p>
+</blockquote></li>
+</ul></li>
+<li><p>Internal Rate of Return (IRR)</p>
+<ul>
+<li><p>Definition</p>
+<ul>
+<li><p>单位投入的回报率</p></li>
+<li><p>NPV=0时的折现率</p></li>
+</ul></li>
+<li><p>缺点</p>
+<ul>
+<li>可能产生无解或者多解
+<ul>
+<li>CF符号变动几次，最多出现几个IRR</li>
+<li>变动一次的叫做conventional cash flow</li>
+<li>变动多次的叫做unconventional cash flow</li>
+</ul></li>
+</ul></li>
+<li><p>如果NPV与IRR冲突，优先选用NPV</p></li>
+<li><blockquote>
+<p>Example | Year | 0 | 1 | 2 | 3 | | :-----------: | :--: | :--: | :--: | :--: | | Net Cash Flow | -100 | 25 | 50 | 75 | IRR = 19.44%</p>
+</blockquote></li>
+</ul></li>
+<li><p>Payback period (PBP)</p>
+<ul>
+<li><p>收回投资成本需要多久</p></li>
+<li><p>缺点：没有考虑回本后的现金流</p></li>
+<li><blockquote>
+<p>Example | Year | 0 | 1 | 2 | 3 | | :------------------: | :--: | :--: | :--: | :--: | | Net Cash Flow | -100 | 25 | 50 | 75 | | Cumulative Cash Flow | -100 | -75 | -25 | 50 | 在第二年和第三年之间回本，PBP = 2+25/75 = 2.33</p>
+</blockquote></li>
+</ul></li>
+<li><p>Discounted PBP (DPBP)</p>
+<ul>
+<li><p>所有现金流折现算回收期</p></li>
+<li><p>缺点：没有考虑回本后的现金流</p></li>
+<li><blockquote>
+<p>Example | Year | 0 | 1 | 2 | 3 | | :----------------------: | :--: | :----: | :----: | :---: | | Net Cash Flow | -100 | 25 | 50 | 75 | | Discounted Net Cash Flow | -100 | 22.94 | 42.08 | 57.91 | | Cumulative Net Cash Flow | -100 | -77.06 | -34.98 | 22.93 | DBP = 2 + 34.98/57.91 = 2.604</p>
+</blockquote></li>
+</ul></li>
+<li><p>Profitable index (PI)</p>
+<ul>
+<li><p>Definition <span class="math display">\[
+PI=\frac{\text{PV of future cash flow}}{|\text{CF}_0|}=1+\frac{NPV}{|\text{CF}_0|}
+\]</span></p></li>
+<li><p>缺点</p>
+<ul>
+<li>没有考虑绝对回报金额</li>
+</ul></li>
+<li><blockquote>
+<p>Example Firm’s Cost of Capital = 9% | Year | 0 | 1 | 2 | 3 | | :-----------: | :--: | :--: | :--: | :--: | | Net Cash Flow | -100 | 25 | 50 | 75 | PI = 1 + 22.93/100 = 1.2293</p>
+</blockquote></li>
+</ul></li>
+</ul>
+<h3 id="npv-profiles">3. NPV Profiles</h3>
+<ul>
+<li><p><img src="6.%20Corporate%20Finance.assets/image-20210422125654280.png" alt="image-20210422125654280" style="zoom:20%;"></p></li>
+<li><p>Plot</p>
+<ul>
+<li>横轴是Cost of Capital (Discount Rate)
+<ul>
+<li>与横轴交点是IRR</li>
+</ul></li>
+<li>纵轴是NPV
+<ul>
+<li>与纵轴交点是现金流直接加总</li>
+</ul></li>
+</ul></li>
+<li><p>Crossover Rate</p>
+<ul>
+<li>两个项目NPV相等时的IRR</li>
+</ul></li>
+<li><p>NPV和IRR冲突的原因</p>
+<ul>
+<li>大额现金流出现时机，大额现金流出现越晚，随r变动越快</li>
+</ul></li>
+</ul>
+<h3 id="impact-of-npv-rule-and-stock-price">4. Impact of NPV Rule and Stock Price</h3>
+<ul>
+<li><p>In theory</p>
+<ul>
+<li>股票价格波动量 <span class="math inline">\(\Delta P=\frac{NPV}{\text{Stock\# }}\)</span></li>
+</ul></li>
+<li><p>In reality</p>
+<ul>
+<li>预计的NPV已经反映在股票价格上了，如果实际NPV低于预期NPV，价格会下降</li>
+</ul></li>
+</ul>
+<h2 id="reading-33-cost-of-capital">Reading 33 Cost of Capital</h2>
+<h3 id="weighted-average-cost-of-capital-wacc">1. Weighted Average Cost of Capital (WACC)</h3>
+<ul>
+<li><p>Structure</p>
+<ul>
+<li><p>Debt</p></li>
+<li><p>Equity</p>
+<ul>
+<li>Preferred stock</li>
+<li>Common stock</li>
+</ul></li>
+<li><p>Calculation</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;">Cost of Capital</th>
+<th style="text-align: center;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Debt</td>
+<td style="text-align: center;"><span class="math inline">\(r_d(1-t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(w_d\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Preferred stock</td>
+<td style="text-align: center;"><span class="math inline">\(r_{ps}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(w_{ps}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Common stock</td>
+<td style="text-align: center;"><span class="math inline">\(r_s\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(w_s\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+  WACC=w_dr_d(1-t) + w_{ps}r_{ps}+w_sr_s
+  \]</span></p></li>
+<li><p><span class="math inline">\(t\)</span> is marginal tax rate，借债的利息有tax shield作用</p></li>
+</ul></li>
+</ul>
+<h3 id="how-to-find-weights">2. How to Find Weights</h3>
+<ul>
+<li><p>计算权重选用 market value</p></li>
+<li><p>Capital Structure Definition</p>
+<p>= Debt/Equity</p>
+<p><span class="math inline">\(w_d=D/(D+E)\)</span></p>
+<p><span class="math inline">\(w_s=E/(D+E)\)</span></p></li>
+<li><p>How to choose market structure</p>
+<ul>
+<li>Target capital structure</li>
+<li>Trends in capital structure</li>
+<li>Current capital structure</li>
+<li>Average of comparable company’s structure</li>
+</ul></li>
+<li><blockquote>
+<p>Example Fran is estimating the cost of capital of Frontier Corp. She has gathered the following information.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Current Year</th>
+<th style="text-align: center;">Forecasted for the Next Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Book Value of Debt</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Market Value of Debt</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Book Value of Equity</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Market Value of Equity</td>
+<td style="text-align: center;">210</td>
+<td style="text-align: center;">220</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+w_d=\frac{63}{63+220}=0.223\\
+w_e=1-w_d=0.777
+\]</span></p>
+</blockquote></li>
+</ul>
+<h3 id="how-to-find-cost-of-capital">3. How to Find Cost of Capital</h3>
+<h4 id="cost-of-debt-r_d">Cost of Debt <span class="math inline">\(r_d\)</span></h4>
+<ul>
+<li><p>YTM Approach</p></li>
+<li><p>已知PV</p>
+<p>计算区间利率</p>
+<p>年化得到 <span class="math inline">\(r_d\)</span></p>
+<p>Cost of debt = <span class="math inline">\(r_d(1-t)\)</span></p></li>
+<li><p>Debt-Rating Approach</p>
+<p>新公司不知道债券PV，找信用评级类似的企业</p></li>
+<li><blockquote>
+<p>Example Smith Inc. bond with remaining 5 Years is sold at 1030, Par value is 1000. Coupon rate is 10%. Coupon is paid semiannually. The marginal tax rate is 30%. N=10. PV=1030. PMT=-50. FV=-1000. 求得 I/Y = 4.618 YTM = <span class="math inline">\(4.618\times 2=9.237%\)</span> Cost of debt = <span class="math inline">\(9.237(1-30\%)=6.47\)</span></p>
+</blockquote></li>
+</ul>
+<h4 id="cost-of-preferred-stock-r_ps">Cost of Preferred Stock <span class="math inline">\(r_{ps}\)</span></h4>
+<ul>
+<li><p>Perpetual annuity</p>
+<p><span class="math display">\[
+  r_{ps}=\frac{D_1}{P_0}
+  \]</span> <span class="math inline">\(D_1\)</span>: Preferred dividends</p>
+<p><span class="math inline">\(P_0\)</span>: Market price of the preferred stock</p>
+<p>Convertible preferred stock: risk reduce, price increase, <span class="math inline">\(r_{ps}\)</span> reduce</p>
+<p>Callable preferred stock: risk increase, price increase, <span class="math inline">\(r_{ps}\)</span> increase</p></li>
+</ul>
+<h4 id="cost-of-equity-common-stock-r_s">Cost of Equity (Common Stock) <span class="math inline">\(r_s\)</span></h4>
+<ul>
+<li><p>CAPM approach <span class="math display">\[
+r_e = R_f + \beta (R_m-R_f)
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(R_f\)</span>: 长期国债收益率</p></li>
+<li><p><span class="math inline">\(\beta=\frac{\text{Cov}_{i,m}}{\sigma^2_m}\)</span></p></li>
+<li><p>上市公司<span class="math inline">\(\beta\)</span>已知，直接求</p></li>
+<li><p>非上市公司使用pure-play method</p>
+<p>求A公司<span class="math inline">\(\beta\)</span>，找已上市的comparable B公司</p>
+<p>Risk分为Business risk和Financial risk</p>
+<p>B公司去杠杆得到 <span class="math inline">\(\beta_{asset}=\beta_B\frac{E}{E+D(1-t)}\)</span></p>
+<p><span class="math inline">\(\beta_{asset}\)</span>加杠杆得到 <span class="math inline">\(\beta_A=\beta_{asset}\frac{E&#39;+D&#39;(1-t&#39;)}{E&#39;}\)</span></p>
+<p>再用CAPM计算<span class="math inline">\(r_s\)</span></p></li>
+<li><p>考虑Country Risk Premium (CRP)</p>
+<ul>
+<li><p>Sovereign yield spread (SYS)</p>
+<p>国家信用的差值，用长期国债利率表示，要转换成股票市场 <span class="math display">\[
+CRP=\frac{SYS}{\sigma_{bond}}\sigma_{stock}
+\]</span></p></li>
+<li><p>Cost of capital <span class="math display">\[
+r_e=R_f +\beta[R_m-R_f+CRP]
+\]</span></p></li>
+</ul></li>
+<li><blockquote>
+<p>Example | Current market price per share | $28 | | :---------------------------------------------- | :--: | | Most recent dividend per share paid (<span class="math inline">\(D_0\)</span>) | $2 | | Expected dividend payout rate | 40% | | Expected return on equity (ROE) | 15% | | Beta for the common stock | 1.3 | | Expected rate of return on the market portfolio | 13% | | Risk-free rate of return | 4% | <span class="math inline">\(r_e=r_f+\beta[r_M-r_f]=4+1.3[13-4]=15.7\)</span></p>
+</blockquote></li>
+</ul></li>
+<li><p>Dividend Discount Model (DDM) approach</p>
+<ul>
+<li><p>Golden growth model (GGM)</p>
+<p>假设所有股利按照增长率<span class="math inline">\(g\)</span>增长 <span class="math display">\[
+P_0=\frac{D_1}{r_e-g}\\
+r_e=\frac{D_1}{P_0}+g
+\]</span> <span class="math inline">\(D_1\)</span>: 第一期的dividend</p>
+<p><span class="math inline">\(D_1/P_0\)</span>: dividend yield</p>
+<p><span class="math inline">\(g\)</span>: Sustainable growth rate</p>
+<p><span class="math inline">\(g=\text{retention rate}\times ROE\)</span></p></li>
+<li><blockquote>
+<p>Example | Current market price per share | $30 | | ------------------------------------------- | :---: | | Most recent dividend per share paid (<span class="math inline">\(D_0\)</span>) | $2.5 | | Expected dividend payout rate | 50% | | Expected return on equity (ROE) | 15% | <span class="math inline">\(g=0.5\times 0.15=0.075\)</span> <span class="math inline">\(r_e=\frac{D_1}{P_0}+g=\frac{2.5(1+g)}{30}+g=16.5\)</span></p>
+</blockquote></li>
+</ul></li>
+<li><p>Bond yield plus risk premium approach <span class="math display">\[
+r_e=\text{bond yield} + \text{risk premium}
+\]</span></p>
+<ul>
+<li>Bond risk: market yield of firm long-term bond</li>
+<li>Risk premium: Historical spread between bond yield and stock</li>
+</ul></li>
+</ul>
+<h3 id="optimal-capital-budget">4. Optimal Capital Budget</h3>
+<ul>
+<li><p>Overestimated and underestimated</p>
+<p>If a project risk &gt; firms’ risk，如果用公司的WACC计算，NPV is overestimated.</p></li>
+<li><p>Break point</p>
+<p>WACC改变总资本的临界点</p></li>
+<li><p>Optimal Capital Budget Figure</p>
+<p><img src="6.%20Corporate%20Finance.assets/image-20210422140328355.png" alt="image-20210422140328355" style="zoom:25%;"></p>
+<ul>
+<li>融资成本不断上升，边际收益不断下降，因为好的项目越来越少</li>
+</ul></li>
+</ul>
+<h3 id="floatation-cost">5. Floatation Cost</h3>
+<ul>
+<li><p>Method 1</p>
+<p>使用GGM公式 <span class="math display">\[
+r_e&#39;=\frac{D_1}{P_0-F}+g
+\]</span> <span class="math inline">\(F\)</span>: 发行成本</p>
+<p>或者 <span class="math display">\[
+r_e&#39; = \frac{D_1}{P_0(1-f)}+g
+\]</span> <span class="math inline">\(f\)</span>: 发行费用所占比率</p></li>
+<li><p>Method 2</p>
+<p>发行成本作为<span class="math inline">\(CF_0\)</span>直接流出，更符合实际情况</p></li>
+</ul>
+<h2 id="reading-34-measures-of-leverage">Reading 34 Measures of Leverage</h2>
+<h3 id="definition-1">1. Definition</h3>
+<ul>
+<li><p>Operating leverage results from fix operating cost</p></li>
+<li><p>Financial leverage results from the use of debt</p></li>
+</ul>
+<h3 id="leverage">2. Leverage</h3>
+<ul>
+<li><p>Degree of Operating Leverage (DOL) <span class="math display">\[
+\begin{array}{rcl}
+DOL&amp;=&amp;\frac{\Delta EBIT/EBIT}{\Delta Q/Q}\\
+EBIT&amp;=&amp; \text{Sales} - TVC-FC\\
+&amp;=&amp; (P-VC)Q-FC\\
+\Delta EBIT&amp;=&amp; (P-VC)\Delta Q\\
+DOL&amp;=&amp; (P-VC)Q/EBIT\\
+&amp;=&amp; \frac{\text{Sales}-TVC}{\text{Sales}-TVC-FC}
+\end{array}
+\]</span></p>
+<ul>
+<li>杠杆对经营利润的放大效应</li>
+</ul></li>
+<li><p>Degree of financial leverage (DFL) <span class="math display">\[
+\begin{array}{rcl}
+DFL&amp;=&amp;\frac{\Delta EPS/EPS}{\Delta EBIT/EBIT}\\
+EPS&amp;=&amp; \frac{NI}{\text{stock # }}=\frac{EBIT-I}{\text{stock # }} \text{（不考虑税）}\\
+\Delta EPS&amp;=&amp; \frac{\Delta NI}{\text{stock # }}=\frac{\Delta EBIT}{\text{stock # }}\\
+DFL&amp;=&amp; \frac{EBIT}{EBIT-I}\\
+\end{array}
+\]</span></p></li>
+<li><p>Degree of total leverage (DTL) <span class="math display">\[
+\begin{array}{rcl}
+DTL&amp;=&amp;\frac{\Delta EPS/EPS}{\Delta Q/Q}\\
+&amp;=&amp; DOL \times DFL\\
+&amp;=&amp; \frac{\text{Sales}-TVC}{\text{Sales}-TVC-FC-I}
+\end{array}
+\]</span></p></li>
+</ul>
+<h3 id="breakeven-quantity">3. Breakeven Quantity</h3>
+<ul>
+<li><p>Breakeven quantity of sales <span class="math inline">\(Q_{BE}\)</span></p>
+<p>Consider <strong>fixed financial cost</strong> and <strong>fixed operating cost</strong></p>
+<p>Revenue <span class="math inline">\(=\)</span> Cost</p>
+<p>FC是经营性固定成本</p>
+<p>I是财务性固定成本 <span class="math display">\[
+\begin{array}{rcl}
+PQ&amp;=&amp;FC+I+VC\times Q\\
+Q_{BE}&amp;=&amp; \dfrac{FC+I}{P-VC}
+\end{array}
+\]</span> P-VC: Marginal contribution</p></li>
+<li><p>Operating breakeven quantity of sales <span class="math inline">\(Q_{OBE}\)</span></p>
+<p>Only consider fixed operating cost <span class="math display">\[
+\begin{array}{rcl}
+Q_{OBE}&amp;=&amp; \dfrac{FC}{P-VC}
+\end{array}
+\]</span></p></li>
+<li><p>杠杆越好，FC和I越高，Q越高</p></li>
+</ul>
+<h2 id="reading-35-working-capital-management">Reading 35 Working Capital Management</h2>
+<h3 id="sources-of-liquidity">1. Sources of Liquidity</h3>
+<ul>
+<li>Primary Source
+<ul>
+<li>健康的</li>
+</ul></li>
+<li>Secondary Source
+<ul>
+<li>不健康的</li>
+<li>比如：
+<ul>
+<li>Negotiating debt arrangements</li>
+<li>Liquidating short-term or long-term assets</li>
+<li>申请bankruptcy或者Reorganizing</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="流动性变差的原因">2. 流动性变差的原因</h3>
+<ul>
+<li>Drags on liquidity
+<ul>
+<li>收钱慢</li>
+</ul></li>
+<li>Pulls on liquidity
+<ul>
+<li>付钱快</li>
+</ul></li>
+</ul>
+<h3 id="liquidity-measures">3. Liquidity measures</h3>
+<ul>
+<li>同Financial statement analysis</li>
+</ul>
+<h3 id="working-capital-management">4. Working Capital Management</h3>
+<h4 id="account-receivable-management">Account Receivable Management</h4>
+<ul>
+<li><p>Receivable aging table</p>
+<p>平均receivable aging，加权平均</p></li>
+</ul>
+<h4 id="inventory-management">Inventory Management</h4>
+<ul>
+<li>存货周转率等指标，同行业可比</li>
+</ul>
+<h4 id="account-payable-management">Account Payable Management</h4>
+<ul>
+<li><p>Trade Credit</p>
+<ul>
+<li><p>提前还款奖励</p></li>
+<li><p>2/10 net 60</p>
+<p>60天内还清</p>
+<p>10天内还清有2%优惠</p></li>
+<li><p>Cost of trade credit</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">10</th>
+<th style="text-align: center;">60</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">98</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Calculation</p>
+<p>EAR = <span class="math inline">\((1+\frac{100-98}{98})^{\frac{365}{50}}-1\)</span></p></li>
+<li><p>供应商所带来的折扣的机会成本</p></li>
+<li><p>如果不提前还款收益&gt;Cost of trade credit，则不提前还款</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="cash-management">Cash Management</h4>
+<ul>
+<li><p>Monet Markey Yield <span class="math display">\[
+R_{MM}=\frac{F-P}{P}\frac{360}{t}
+\]</span></p></li>
+<li><p>Bond Equivalent Yield <span class="math display">\[
+BEY=\frac{F-P}{P}\frac{365}{t}
+\]</span></p></li>
+<li><p>Bank Discount Yield <span class="math display">\[
+R_{BD}=\frac{F-P}{F}\frac{360}{t}
+\]</span></p>
+<ul>
+<li>类似于打折</li>
+</ul></li>
+<li><p>对于discount bonds <span class="math display">\[
+R_{BD}&lt;R_{MM}&lt;BEY
+\]</span></p></li>
+</ul>
+<h3 id="short-term-funding-sources">5. Short Term Funding Sources</h3>
+<ul>
+<li>Sources from banks
+<ul>
+<li>Pledge asset 抵押贷款</li>
+<li>Lines of credit 授信额度
+<ul>
+<li>Uncommitted line of credit
+<ul>
+<li>根据公司经营情况判断是否借款</li>
+</ul></li>
+<li>Committed line of credit
+<ul>
+<li>还钱后额度不返还</li>
+</ul></li>
+<li>Revolving line of credit
+<ul>
+<li>还钱后额度返还</li>
+</ul></li>
+</ul></li>
+<li>Banker’s acceptance 银行承兑汇票
+<ul>
+<li>公司还不起钱银行还，保护第三方客户</li>
+</ul></li>
+<li>Factoring 保理
+<ul>
+<li>将A</li>
+</ul></li>
+</ul></li>
+<li>Sources from non-bank
+<ul>
+<li>金融机构高利贷</li>
+<li>Commercial paper 商业票据
+<ul>
+<li>大公司发行，无抵押，依赖于自身信用</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="cost-of-borrowing">6. Cost of Borrowing</h3>
+<ul>
+<li><p>Calculation</p>
+<p><span class="math display">\[
+  \text{Cost} = \frac{融资成本}{借到的本金}
+  \]</span></p></li>
+<li><p>如果Loan amount包含利息(all-inclusive)，借到的本金要减去利息</p></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2021/06/01/CFA LEVEL1/4 Financial Reporting and Analysis 2/" rel="next" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2021/06/01/CFA LEVEL1/6. Equity Investment/" rel="prev" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#corporate-finance"><span class="nav-text">5. Corporate Finance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#reading-31-corporate-governance-and-esg"><span class="nav-text">Reading 31 Corporate Governance and ESG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stakeholder-management"><span class="nav-text">1. Stakeholder Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#corporate-governance-definition"><span class="nav-text">Corporate Governance Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conflict-of-interest"><span class="nav-text">Conflict of Interest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stakeholder-management-framework"><span class="nav-text">Stakeholder Management Framework</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#committees"><span class="nav-text">2. Committees</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shareholder-activism"><span class="nav-text">3. Shareholder Activism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#environment-social-governance"><span class="nav-text">4. Environment, Social, Governance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reading-32-capital-budgeting"><span class="nav-text">Reading 32 Capital Budgeting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#the-basics"><span class="nav-text">1. The Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#definition"><span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#capital-projects-classification"><span class="nav-text">Capital Projects Classification</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#five-basic-principles-of-capital-budgeting"><span class="nav-text">Five Basic Principles of Capital Budgeting</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#projects-evaluation-methods"><span class="nav-text">2. Projects Evaluation Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npv-profiles"><span class="nav-text">3. NPV Profiles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#impact-of-npv-rule-and-stock-price"><span class="nav-text">4. Impact of NPV Rule and Stock Price</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reading-33-cost-of-capital"><span class="nav-text">Reading 33 Cost of Capital</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weighted-average-cost-of-capital-wacc"><span class="nav-text">1. Weighted Average Cost of Capital (WACC)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-to-find-weights"><span class="nav-text">2. How to Find Weights</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-to-find-cost-of-capital"><span class="nav-text">3. How to Find Cost of Capital</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cost-of-debt-r_d"><span class="nav-text">Cost of Debt \(r_d\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cost-of-preferred-stock-r_ps"><span class="nav-text">Cost of Preferred Stock \(r_{ps}\)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cost-of-equity-common-stock-r_s"><span class="nav-text">Cost of Equity (Common Stock) \(r_s\)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#optimal-capital-budget"><span class="nav-text">4. Optimal Capital Budget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#floatation-cost"><span class="nav-text">5. Floatation Cost</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reading-34-measures-of-leverage"><span class="nav-text">Reading 34 Measures of Leverage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#definition-1"><span class="nav-text">1. Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leverage"><span class="nav-text">2. Leverage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#breakeven-quantity"><span class="nav-text">3. Breakeven Quantity</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reading-35-working-capital-management"><span class="nav-text">Reading 35 Working Capital Management</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sources-of-liquidity"><span class="nav-text">1. Sources of Liquidity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流动性变差的原因"><span class="nav-text">2. 流动性变差的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#liquidity-measures"><span class="nav-text">3. Liquidity measures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#working-capital-management"><span class="nav-text">4. Working Capital Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#account-receivable-management"><span class="nav-text">Account Receivable Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inventory-management"><span class="nav-text">Inventory Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#account-payable-management"><span class="nav-text">Account Payable Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cash-management"><span class="nav-text">Cash Management</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#short-term-funding-sources"><span class="nav-text">5. Short Term Funding Sources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cost-of-borrowing"><span class="nav-text">6. Cost of Borrowing</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Unsupervised Feature Learning Representation learning refers to transforming the raw data into another (possibly lower-dimensional) space, such that one can do pattern recognition more easily. Why F">
+<meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 7. Unsupervised Feature Learning">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:description" content="Unsupervised Feature Learning Representation learning refers to transforming the raw data into another (possibly lower-dimensional) space, such that one can do pattern recognition more easily. Why F">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-04-19T06:53:00.110Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7. Unsupervised Feature Learning">
+<meta name="twitter:description" content="Unsupervised Feature Learning Representation learning refers to transforming the raw data into another (possibly lower-dimensional) space, such that one can do pattern recognition more easily. Why F">
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Chapter 7. Unsupervised Feature Learning | Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/EE5907 Pattern Recognition/7.Unsupervised Feature Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Chapter 7. Unsupervised Feature Learning
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-04-19 13:46:13 / Modified: 14:53:00" itemprop="dateCreated datePublished" datetime="2019-04-19T13:46:13+08:00">2019-04-19</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="unsupervised-feature-learning">Unsupervised Feature Learning</h1>
+<p>Representation learning refers to transforming the raw data into another (possibly lower-dimensional) space, such that one can do pattern recognition more easily.</p>
+<p>Why Feature Extraction?</p>
+<p>Visualization: projecting high-dimensional data onto 2D or 3D planes.</p>
+<p>Data compression: efficient storage and retrieval</p>
+<p>Noise removal: positive effect on testing accuracy</p>
+<h2 id="principal-component-analysis">1. Principal Component Analysis</h2>
+<p>PCA reduces the dimensionality of a collection of observations by finding a new set of variables, smaller than the original set of variables. It captures big variability in the data and ignore the small variability. The new variables are called principal components.</p>
+<p>For a group of data, the first PC is a line with minimum distance. The second PC is a line orthogonal to the first line with minimum distance.</p>
+<p>PCs are a series of linear least squares fits to a sample set each orthogonal to all the previous ones.</p>
+<p>Define the first principal component by the linear projection <span class="math inline">\(a_1\)</span> <span class="math display">\[
+z_1=a_1^Tx
+\]</span> where <span class="math inline">\(a_1=(a_{11},a_{21},\dotsm,a_{d1})\)</span>, we hope to find the <span class="math inline">\(a_1\)</span> such that the variance of <span class="math inline">\(z_1\)</span> is maximum <span class="math display">\[
+\begin{array}{rcl}
+var(z_1)&amp;=&amp;E((z_1-\bar z_1)^2)\\
+&amp;=&amp;\frac{1}{n} \sum_{i=1}^n(a_1^T x_i-a_1^T\bar x)^2\\
+&amp;=&amp;a_1^T\left[\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\right] a_1 \\
+&amp;=&amp; a_1^TSa_1
+\end{array}
+\]</span> where <span class="math inline">\(S=\frac{1}{n}\sum_{i=1}^n(x_i-\bar x)(x_i-\bar x)^T\)</span>, <span class="math inline">\(\bar x\)</span> is the mean.</p>
+<p>Then we hope to find <span class="math inline">\(a_1\)</span> that maximizes the variance, for example <span class="math display">\[
+x=
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 &amp; 4\\
+4 &amp; 3 &amp; 2 &amp; 1
+\end{bmatrix}\\
+\bar x=
+\begin{bmatrix}
+2.5 \\ 2.5
+\end{bmatrix}
+\]</span> Then we hope to find <span class="math inline">\(a_1=[a_{11},a_{12}]&#39;\)</span> and <span class="math inline">\(a_2=[a_{21},a_{22}]&#39;\)</span> to maximum the variance of <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span></p>
+<p>To find <span class="math inline">\(a_1\)</span> that maximizes the variance subject to <span class="math inline">\(a_1^Ta_1=c\)</span>, let <span class="math inline">\(\lambda\)</span> be a Lagrange multiplier <span class="math display">\[
+L=a_1^TSa_1-\lambda(a_1^Ta_1-c)\\
+\frac{\partial L}{\partial a_1}=Sa_1-\lambda a_1=0\\
+(S-\lambda I)a_1=0
+\]</span> therefore, <span class="math inline">\(a_1\)</span> is the eigenvector of S, corresponding the largest eigenvalue <span class="math inline">\(\lambda=\lambda_1\)</span></p>
+<p>It is easily found that <span class="math inline">\(var(z_k)=a_k^TSa_k=\lambda_k\)</span></p>
+<p>Therefore, we choose the <span class="math inline">\(k^{th}\)</span> largest eigenvalues of S.</p>
+<p>In practice, we compute the PCs via singular value decomposition (SVD) on the centered data matrix. <span class="math display">\[
+X=U_{d,d}D_{d,n}V^T_{n,n}
+\]</span> where U and V are orthogonal matrices, D is a diagonal matrix, <span class="math inline">\(X=\{(x_1-\bar x),\dotsm,(x_n-\bar x)\}\)</span></p>
+<p>The covariance matrix can be written <span class="math display">\[
+S=XX^T=UD^2U^T
+\]</span> So the eigenvectors of S are the columns of <span class="math inline">\(U\)</span> and the eigenvalues of S are the diagonal elements of <span class="math inline">\(D^2\)</span></p>
+<p>Take only a few significant eigenvalues <span class="math inline">\(p\)</span>, the reconstructed data is <span class="math display">\[
+x_i=\bar x+U_{d,p}U_{d,p}^T(x_i-\bar x)
+\]</span> How many PCs kept? <span class="math display">\[
+\frac{\sum_{i=1}^p \lambda_i}{\sum_{i=1}^d \lambda_i}\ge0.95(Threshold)
+\]</span></p>
+<h3 id="summary-of-pca">Summary of PCA</h3>
+<p>Input samples <span class="math inline">\(\{x_1,x_2,\dotsm,x_N\}\)</span></p>
+<ol type="1">
+<li>Compute the covariance matrix S</li>
+</ol>
+<p><span class="math display">\[
+S=\frac{1}{N}\sum_{i=1}^N(x_i-\bar x)(x_i-\bar x)^T
+\]</span></p>
+<ol start="2" type="1">
+<li><p>perform eigenvalue decomposition [U]=eig(S)</p></li>
+<li><p>Output PCs U(:,1:p)</p></li>
+</ol>
+<h2 id="nonnegative-matrix-factorization">2. Nonnegative Matrix Factorization</h2>
+<p>Find a set of orthogonal principal components</p>
+<p>The reconstructed image is a linear combination of the principal components plus mean face.</p>
+<p>Matrix factorization <span class="math display">\[
+V\approx WH
+\]</span> V: <span class="math inline">\(n\times m\)</span> matrix. Each column contains n nonnegative pixel values of one of the m facial images.</p>
+<p>W: <span class="math inline">\(n\times r\)</span> matrix. r columns of W are called the basis images.</p>
+<p>H: <span class="math inline">\(r\times m\)</span> matrix. each column of H is called encoding.</p>
+<p>Using gradient decent method $$ H_{a}H_{a}\</p>
+<p>W_{a}W_{a}\ $$</p>
+<h3 id="summary-of-nmf">Summary of NMF</h3>
+<p>Input sample matrix <span class="math inline">\(V=[v_1,v_2,\dotsm,v_N]\)</span></p>
+<p>Initialize <span class="math inline">\(W^0\)</span> and <span class="math inline">\(H^0\)</span> randomly as positive matrices</p>
+<p>for t=0:1:T_max do</p>
+<p>gradient decent method</p>
+<p>if <span class="math inline">\(||W^t-W^{t+1}||\le \epsilon_1\)</span> and <span class="math inline">\(||H^t-H^{t+1}||\le \epsilon_2\)</span></p>
+<p>return;</p>
+<p>end for</p>
+<p>output matrices W and H.</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/04/17/EE5907 Pattern Recognition/6. Bayesian Statistics/" rel="next" title="Chapter 6. Bayesian Statistics">
+                  <i class="fa fa-chevron-left"></i> Chapter 6. Bayesian Statistics
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/04/22/EE5907 Pattern Recognition/8.Supervised Feature Extraction/" rel="prev" title="Chapter 8. Supervised Feature Extraction">
+                  Chapter 8. Supervised Feature Extraction <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#unsupervised-feature-learning"><span class="nav-text">Unsupervised Feature Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#principal-component-analysis"><span class="nav-text">1. Principal Component Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#summary-of-pca"><span class="nav-text">Summary of PCA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nonnegative-matrix-factorization"><span class="nav-text">2. Nonnegative Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#summary-of-nmf"><span class="nav-text">Summary of NMF</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="3.10 Linear Functionals and Riesz Representation Theorem In section 3.5 we have remarked that for any fixed vector \(x_0\) in an inner product space E, the formula \(f(x)=&amp;lt;x,x_0&amp;gt;\) defines a bo">
+<meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 3-3. Linear Functionals and Riesz Representation Theorem">
+<meta property="og:url" content="http://yoursite.com/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:description" content="3.10 Linear Functionals and Riesz Representation Theorem In section 3.5 we have remarked that for any fixed vector \(x_0\) in an inner product space E, the formula \(f(x)=&amp;lt;x,x_0&amp;gt;\) defines a bo">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-27T07:00:06.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3-3. Linear Functionals and Riesz Representation Theorem">
+<meta name="twitter:description" content="3.10 Linear Functionals and Riesz Representation Theorem In section 3.5 we have remarked that for any fixed vector \(x_0\) in an inner product space E, the formula \(f(x)=&amp;lt;x,x_0&amp;gt;\) defines a bo">
+  <link rel="canonical" href="http://yoursite.com/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Chapter 3-3. Linear Functionals and Riesz Representation Theorem | Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/27/Introduction to Hilbert Spaces with Applications/3.10 Linear Functions and Riesz Representation Theorem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Chapter 3-3. Linear Functionals and Riesz Representation Theorem
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-27 13:48:00 / Modified: 15:00:06" itemprop="dateCreated datePublished" datetime="2019-08-27T13:48:00+08:00">2019-08-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Introduction-to-Hilbert-Spaces-with-Applications/" itemprop="url" rel="index"><span itemprop="name">Introduction to Hilbert Spaces with Applications</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="linear-functionals-and-riesz-representation-theorem">3.10 Linear Functionals and Riesz Representation Theorem</h2>
+<p>In section 3.5 we have remarked that for any fixed vector <span class="math inline">\(x_0\)</span> in an inner product space E, the formula <span class="math inline">\(f(x)=&lt;x,x_0&gt;\)</span> defines a bounded linear functional on E. It turns out E is a Hilbert space, then every bounded linear functional is of this form.</p>
+<p>==Example 3.10.1==</p>
+<p>Let <span class="math inline">\(H=L^2((a,b)),-\infty&lt;a&lt;b&lt;\infty\)</span>. Define a linear functional <span class="math inline">\(f\)</span> on <span class="math inline">\(H\)</span> by the formula <span class="math display">\[
+f(x)=\int _a^bx(t)dt
+\]</span> If <span class="math inline">\(x_0\)</span> denote the constant function 1 on <span class="math inline">\((a,b)\)</span>, then clearly <span class="math inline">\(f(x)=&lt;x,x_0&gt;\)</span> and thus <span class="math inline">\(f\)</span> is a bounded functional.</p>
+<p>==Example 3.10.2==</p>
+<p>Let <span class="math inline">\(H=L^2((a,b))\)</span> and let <span class="math inline">\(t_0\)</span> to be a fixed point in <span class="math inline">\((a,b)\)</span>. Let <span class="math inline">\(f\)</span> be a functional on H defined by <span class="math inline">\(f(x)=x(t_0)\)</span>. This function is linear but not bounded.</p>
+<p>==Lemma 3.10.1==</p>
+<p>Let <span class="math inline">\(f\)</span> be a bounded linear functional on an inner product space <span class="math inline">\(E\)</span>. Then dim <span class="math inline">\(\mathcal N(f)^\perp\le 1\)</span>.</p>
+<p>==Theorem 3.10.1== (Riesz Representation Theorem)</p>
+<p>Let <span class="math inline">\(f\)</span> be a bounded linear functional on a Hilbert space H. There exists one <span class="math inline">\(x_0\in H\)</span> such that <span class="math inline">\(f(x)=&lt;x,x_0&gt;\)</span> for all <span class="math inline">\(x\in H\)</span>. Moreover, we have <span class="math inline">\(||f||=||x_0||\)</span>.</p>
+<h2 id="separable-hilbert-space">3.11 Separable Hilbert Space</h2>
+<p>==Definition 3.11.1== (Separable Spaces)</p>
+<p>A Hilbert space is called separable if it contains a complete orthonormal sequence. Finite dimensional Hilbert space are considered separable.</p>
+<p>==Theorem 3.11.1==</p>
+<p>Every separable Hilbert Space contains a countable dense subset.</p>
+<p>==Theorem 3.11.2==</p>
+<p>Every orthogonal set in a separable Hilbert Space is countable.</p>
+<p>==Definition 3.11.2== (Hilbert Space Isomorphism)</p>
+<p>A Hilbert space <span class="math inline">\(H_1\)</span> is said to be isomorphic to a Hilbert space <span class="math inline">\(H_2\)</span> if there exists a one-to-one linear mapping T from <span class="math inline">\(H_1\)</span> onto <span class="math inline">\(H_2\)</span> such that <span class="math display">\[
+&lt;T(x),T(y)&gt;=&lt;x,y&gt;
+\]</span> for every <span class="math inline">\(x,y\in H_1\)</span>. Such a mapping is called a Hilbert Space isomorphism of <span class="math inline">\(H_1\)</span> onto <span class="math inline">\(H_2\)</span>.</p>
+<p>==Theorem 3.11.3==</p>
+<p>Let H be a separable Hilbert space.</p>
+<ol type="a">
+<li><p>if H is infinite dimensional, then it is isomorphic to <span class="math inline">\(l^2\)</span>.</p></li>
+<li><p>If H has a dimension N, then it is isomorphic to <span class="math inline">\(C^N\)</span>.</p></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/08/26/Introduction to Hilbert Spaces with Applications/3.6 Orthogonal and orthonormal systems/" rel="next" title="Chapter 3-2. Orthogonal and Orthonormal System">
+                  <i class="fa fa-chevron-left"></i> Chapter 3-2. Orthogonal and Orthonormal System
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/03/Convex Optimization/10. Equality constrained Minimization/" rel="prev" title="Chapter 10. Equality constrained Minimization">
+                  Chapter 10. Equality constrained Minimization <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-functionals-and-riesz-representation-theorem"><span class="nav-text">3.10 Linear Functionals and Riesz Representation Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#separable-hilbert-space"><span class="nav-text">3.11 Separable Hilbert Space</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

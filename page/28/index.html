@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheng-Zilong">
+<meta property="og:url" content="http://yoursite.com/page/28/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cheng-Zilong">
+  <link rel="canonical" href="http://yoursite.com/page/28/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/EE5904 Neural Network/2.RBFN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/05/09/EE5904 Neural Network/2.RBFN/" class="post-title-link" itemprop="url">Chapter 2. Radial-Basis Function Networks</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-09 13:45:47 / Modified: 14:35:51" itemprop="dateCreated datePublished" datetime="2019-05-09T13:45:47+08:00">2019-05-09</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5904-Neural-Network/" itemprop="url" rel="index"><span itemprop="name">EE5904 Neural Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="radial-basis-function-networks">Radial-Basis Function Networks</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>The activation of a hidden unit is determined by the distance between the input vector and a prototype vector, the center. <span class="math display">\[
+\varphi(||x-c||)=\varphi(r)
+\]</span> Given a set of N data points and a set of N target values.</p>
+<p>The goal is to find a function <span class="math inline">\(f(x)\)</span> that pass through all the training data points.</p>
+<p>There are infinite number of solutions and RBFN is just one solution.</p>
+<p>For the RBFN, we have <span class="math display">\[
+f(x)=\sum_{i=1}^N w_i\varphi(||x-x_i||)
+\]</span></p>
+<h2 id="how-to-determine-the-weights">2. How to Determine the Weights</h2>
+<p>It becomes a typical algebraic problem. <span class="math display">\[
+f(x_j)=\sum_{i=1}^{N}w_i\varphi(||x_j-x_i||)=d_j
+\]</span> Then we can expand the equation to a matrix form <span class="math display">\[
+\begin{bmatrix}
+\varphi_{11}  &amp; \varphi_{12} &amp; \dotsm &amp; \varphi_{1N}\\
+\varphi_{21}  &amp; \varphi_{22} &amp; \dotsm &amp; \varphi_{2N}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_{N1}  &amp; \varphi_{N2} &amp; \dotsm &amp; \varphi_{NN}\\
+\end{bmatrix}
+\begin{bmatrix}
+w_1\\w_2\\\vdots\\w_N
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> Then we can have <span class="math display">\[
+w=\Phi^{-1}d
+\]</span> Once we have the weight, we have function that represents a continuous differentiable surface that pass exactly through each data point.</p>
+<h2 id="commonly-used-radial-basis-functions">3. Commonly Used Radial Basis Functions</h2>
+<p>Gaussian Function <span class="math display">\[
+\varphi(r)=\exp (-\frac{r^2}{2\sigma^2})
+\]</span> Inverse Multi-Quadric Function <span class="math display">\[
+\varphi(r)=(r^2+\sigma^2)^{-0.5}
+\]</span> But the network perform poorly for the noisy data for the perfect tracking and large date sets the network will be very cost.</p>
+<p>To summarize,</p>
+<ol type="1">
+<li>For a given set containing N points</li>
+<li>Choose a RBF function <span class="math inline">\(\varphi\)</span></li>
+<li>Calculate <span class="math inline">\(\varphi_{ji}=\varphi(||x_j-x_i||)\)</span></li>
+<li>Obtain the interpolation matrix <span class="math inline">\(\Phi\)</span></li>
+<li>Solve the linear equation <span class="math inline">\(\Phi w=d\)</span></li>
+<li>Get the Unique solution <span class="math inline">\(w\)</span></li>
+</ol>
+<h2 id="train-the-network">4. Train the Network</h2>
+<p>However, the network requires one hidden unit for each training data pattern, and so for large datasets the network will become very costly to evaluate. Therefore, it is not necessary to use the sampling points as the centers. We choose some sampling points <span class="math inline">\(\mu_i\)</span> and then we have <span class="math display">\[
+f(x)=\sum_{i=1}^Mw_i\varphi_i(||x-\mu_i||)+b\\
+\]</span></p>
+<p>Let <span class="math inline">\(\varphi_0=1\)</span>, then the bias can be included in the vector. We have <span class="math display">\[
+f(x)=\sum_{i=0}^Mw_i\varphi_i(||x-\mu_i||)\\
+\]</span> Then the centers, spread parameters, and the weights can be learned by training as that for MLP.</p>
+<p>For the case of Gaussian basis functions, we have <span class="math display">\[
+\varphi_i(||x-\mu_i||)=\exp(-\frac{||x-\mu_i||^2}{2\sigma_i^2})
+\]</span> In which we have basis center <span class="math inline">\(\mu_i\)</span> and standard deviations <span class="math inline">\(\sigma_i\)</span>.</p>
+<p>The aim is to develop a process for finding the appropriate values of the weights <span class="math inline">\(w_i\)</span> and the centers and spreads <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i\)</span> .</p>
+<p>We hope to find the parameters <span class="math inline">\(w_i,\mu_i,\sigma_i\)</span> such that the cost function <span class="math display">\[
+E(w)=\sum_{i=1}^N(d(i)-y(i))^2
+\]</span> is minimized.</p>
+<p>There are two stages to tune the parameters.</p>
+<p>Stage 1,</p>
+<p>Use unsupervised learning methods to find center <span class="math inline">\(\mu_i\)</span> and spread <span class="math inline">\(\sigma_i\)</span></p>
+<p>Stage 2,</p>
+<p>Use supervised learning methods to find weight values between hidden and output units.</p>
+<h2 id="finding-the-output-weights">5. Finding the Output Weights</h2>
+<p>Given the hidden unit activations <span class="math inline">\(\varphi(x,\mu_i,\sigma_i)\)</span> is fixed while we determine the output weight <span class="math inline">\(w_i\)</span> <span class="math display">\[
+\begin{bmatrix}
+\varphi_0(x_1) &amp; \varphi_1(x_1) &amp; \dotsm &amp; \varphi_M(x_1)\\
+\varphi_0(x_2) &amp; \varphi_1(x_2) &amp; \dotsm &amp; \varphi_M(x_2)\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+\varphi_0(x_N) &amp; \varphi_1(x_N) &amp; \dotsm &amp; \varphi_M(x_N)
+\end{bmatrix}
+\begin{bmatrix}
+w_0\\w_1\\\vdots\\w_M
+\end{bmatrix}=
+\begin{bmatrix}
+d_1\\d_2\\\vdots\\d_N
+\end{bmatrix}
+\]</span> That is <span class="math inline">\(\Phi w=d\)</span></p>
+<p>We can solve this problem by linear least squares <span class="math display">\[
+w=(\Phi^T\Phi)^{-1}\Phi^Td
+\]</span></p>
+<h2 id="finding-the-center-and-spread">6. Finding the Center and Spread</h2>
+<p>There are numerous approaches in the literature to find the center and spread for the first stage.</p>
+<p>The simplest and quickest approach to setting the RBF parameters is to take their centers as fixed at M points selected at random from the N data points.</p>
+<p>Specially, we can use RBFs centered at <span class="math inline">\(\mu_i\)</span> defined by <span class="math display">\[
+\varphi_i(x)=\exp (-\frac{M}{d_{max}^2}||x-\mu_i||^2)
+\]</span> That means the spread is <span class="math display">\[
+\sigma_i=\frac{d_{max}}{\sqrt{2M}}
+\]</span> We can also use K-means clustering</p>
+<p>K-means clustering,</p>
+<ol type="1">
+<li>Initialization. Choose random values for the initial centers.</li>
+<li>Sampling. Draw a sample vector from the training set.</li>
+<li>Assignment. Compute the distance from the vector to each center and assign the vector to the closet center.</li>
+<li>Updating. After all vectors are assigned to a center. Calculate the new center by the assigned vectors.</li>
+<li>Do the previous steps until converged.</li>
+</ol>
+<h2 id="supervised-rbf-network-training">7. Supervised RBF Network Training</h2>
+<p>The obvious approach is to perform gradient decent on a sum squared output error function as we did for MLPs. <span class="math display">\[
+E=\frac{1}{2}\sum_{j=1}^N(e_j)^2\\
+e_j=d_j-y(x_j)=d_j-\sum_{i=0}^Mw_i\varphi_i(x_j,\mu_i,\sigma_i)
+\]</span> Then we can use the gradient decent method, <span class="math display">\[
+\Delta w=-\eta g(n)
+\]</span></p>
+<h2 id="regularization-theory-for-rbf-networks">8. Regularization Theory for RBF Networks</h2>
+<p>Cost function <span class="math display">\[
+F(w)=\frac{1}{2}\sum_{i=1}^N(y(i)-d(i))^2+\frac{1}{2}\lambda||w||^2=\frac{1}{2}(\Phi w-d)^T(\Phi w-d)+\frac{1}{2}\lambda w^Tw
+\]</span> We hope to get the optimal solution for w <span class="math display">\[
+\frac{\partial F(w)}{\partial w}=0
+\]</span> Then we have <span class="math display">\[
+w=(\Phi^T\Phi+\lambda I)^{-1}\Phi^Td
+\]</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is the regularization factor.</p>
+<p>RBFN can also be used in classification problem.</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/05/06/EE5907 Pattern Recognition/10.Gaussian Mixture Model and Boosting/" class="post-title-link" itemprop="url">Chapter 10. Gaussian Mixture Model and Boosting</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-06 13:46:13 / Modified: 14:47:38" itemprop="dateCreated datePublished" datetime="2019-05-06T13:46:13+08:00">2019-05-06</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EE5907-Pattern-Recognition/" itemprop="url" rel="index"><span itemprop="name">EE5907 Pattern Recognition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="gaussian-mixture-model-and-boosting">Gaussian Mixture Model and Boosting</h1>
+<p>A generative model learns the joint probability distribution <span class="math inline">\(p(x,y)\)</span> and a discriminative model learns the conditional probability distribution <span class="math inline">\(p(x|y)\)</span></p>
+<h2 id="gaussian-mixture-model-gmm">1. Gaussian Mixture Model (GMM)</h2>
+<p>GMM: the weighted sum of a number of Gaussians where the weights are determined by a distribution <span class="math inline">\(\pi\)</span>. <span class="math display">\[
+\begin{array}{lll}
+p(x)&amp;=&amp;\pi_1 N(x|\mu_1,\Sigma_1)+\pi_2 N(x|\mu_2,\Sigma_2)+\dotsm+\pi_K N(x|\mu_K,\Sigma_K)\\
+&amp;=&amp; \sum_{i=1}^K \pi_iN(x|\mu_i,\Sigma_i)
+\end{array}
+\]</span> The ==Expectation-maximization algorithm== (EM) is a method for finding maximum likelihood (or maximum a posteriori) estimate of parameters in statistical model, where the model depends on unobserved latent variables.</p>
+<p>EM is a iterative method which alternates between performing and Expectation (E) Step and Maximization (M) Step.</p>
+<p>E-Step: Computes the expectation of the log-likelihood evaluated using the current estimated distributions for the latent variables based on the parameters inferred from previous step.</p>
+<p>M-Step: Computes parameters maximizing the expected log-likelihood from the E-Step. These parameters are then used to determine the distribution of the latent variables in the next E-Step.</p>
+<p>It seems like a K-means algorithm.</p>
+<p>==Example==</p>
+<p>Let events be ''grades in a class'' <span class="math display">\[
+P(A)=0.5\\p(B)=\mu\\P(C)=2\mu\\P(D)=0.5-3\mu\\P(a,b,c,d|\mu)=K(0.5)^a \mu^b (2\mu)^c (0.5-3\mu)^d
+\]</span> We hope to get the max like <span class="math inline">\(\mu\)</span> <span class="math display">\[
+\log P=\log K+a\log0.5 + b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
+\frac{\partial \log P}{\partial \mu}=\frac{b}{\mu}+\frac{c}{\mu}-\frac{3d}{0.5-3\mu}=0\\
+\mu=\frac{b+c}{6(b+c+d)}
+\]</span> If the class got A=14,B=6,C=9,D=10, then we have <span class="math inline">\(\mu=\frac{1}{10}\)</span></p>
+<p>If we have a latent variable in the problem, A+B=h, C=c, D=d</p>
+<p>Then the probability is <span class="math display">\[
+P(h,c,d|\mu,b)=K(0.5)^{h-b}\mu^{b}(2\mu)^c (0.5-3\mu)^d\\
+\log P=\log K+(h-b)\log 0.5+b\log \mu + c \log(2\mu)+d\log (0.5-3\mu)\\
+\]</span> E-Step</p>
+<p>If we know <span class="math inline">\(\mu\)</span>, then we can get the expected b <span class="math display">\[
+E_\mu(b)=\frac{\mu}{0.5+\mu}h
+\]</span> M-Step</p>
+<p>If we know b, then we can get the optimal <span class="math inline">\(\mu\)</span> <span class="math display">\[
+\mu_b=\frac{E_\mu(b)+c}{6(E_\mu(b)+c+d)}
+\]</span> Then if we iterate between E-Step and M-Step, the values will be converged to a local minimum.</p>
+<p>Then we can use this algorithm to solve the GMM problems</p>
+<p>We define <span class="math display">\[
+\pi_i=p(w_i)\quad \sum_i \pi_i=1\\
+z_i=p(w_i|x)=\frac{p(w_i)p(x|w_i)}{\sum_{j=1}^Kp(w_j)p(x|w_j)}\\
+z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
+\]</span> Then the hidden variables <span class="math inline">\(z_k^n\)</span> indicating which component <span class="math inline">\(k\)</span> the datum <span class="math inline">\(n\)</span> is sampled from</p>
+<p>Identify the likelihood <span class="math display">\[
+P(x_1,\dotsm,x_N|\pi,\mu)=\prod_{n=1}^NP(x_n|\pi,\mu)\\
+=\prod_{n=1}^N \sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\\
+\log P =\sum_{n=1}^N\log \left[\sum_{k=1}^K P(x_n|w_k,\mu_k)P(\omega_k)\right]
+\]</span> Set the partials to zero, we have (Similarly for the other parameters) <span class="math display">\[
+\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
+\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
+\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
+\]</span> Therefore,</p>
+<p>E-Step: <span class="math display">\[
+z_k^n=p(w_k|x_n)=\frac{\pi_kN(x_n|\mu_k,\Sigma_k)}{\sum_{j=1}^K\pi_jN(x_n|\mu_j,\Sigma_j)}
+\]</span> M-Step: <span class="math display">\[
+\mu_k=\frac{\sum_{n=1}^Nz_k^nx_n}{\sum_{n=1}^Nz_k^n}\\
+\Sigma_k=\frac{\sum_{n=1}^N z_k^n (x_n-\mu_k)(x_n-\mu_k)^T}{\sum_{n=1}^N z_k^n}\\
+\pi_k=\frac{\sum_{n=1}^Nz_k^n}{N}
+\]</span></p>
+<h2 id="boosting">2. Boosting</h2>
+<p>Easy to implement, not requires external optimization tools</p>
+<p>Boosting fits the additive model <span class="math display">\[
+F(x)=f_1(x)+f_2(x)+f_3(x)+\dotsm
+\]</span> by minimizing the exponential loss <span class="math display">\[
+J(F)=\sum_{t=1}^Ne^{-y_tF(x_t)}
+\]</span> Sequential Procedure. At each step m we add <span class="math display">\[
+F(x)\leftarrow F(x)+f_m(x)
+\]</span> to minimize the residual loss <span class="math display">\[
+(\phi_m)=\arg\min_{\phi}\sum_{t=1}^N J(y_t,F(x_t)+f(x_t;\phi))
+\]</span> At each iteration, we choose <span class="math inline">\(f_m(x)\)</span> that minimizes the cost <span class="math display">\[
+J(F+f_m)=\sum_{t=1}^Ne^{-y_t(F(x_t)+f_m(x_t))}
+\]</span> Instead of doing exact optimization, gentle Boosting minimizes the approximation of the error <span class="math display">\[
+J(F)\propto \sum_{t=1}^Ne^{-y_tF(x_t)}(y_t-f_m(x_t))^2
+\]</span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

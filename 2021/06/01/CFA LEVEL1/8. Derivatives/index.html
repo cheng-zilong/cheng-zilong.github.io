@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="8. Derivatives Reading 48: Derivative Markets and Instruments 1. Derivative Markets and Instruments Definition of Derivative  A contract regarding buying or selling underlying asset in the future">
+<meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cheng-Zilong">
+<meta property="og:url" content="http://yoursite.com/2021/06/01/CFA LEVEL1/8. Derivatives/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:description" content="8. Derivatives Reading 48: Derivative Markets and Instruments 1. Derivative Markets and Instruments Definition of Derivative  A contract regarding buying or selling underlying asset in the future">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2021/06/01/CFA%20LEVEL1/8.%20Derivatives/8.%20Derivatives.assets/image-20210428122840470.png">
+<meta property="og:updated_time" content="2021-05-09T12:32:02.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cheng-Zilong">
+<meta name="twitter:description" content="8. Derivatives Reading 48: Derivative Markets and Instruments 1. Derivative Markets and Instruments Definition of Derivative  A contract regarding buying or selling underlying asset in the future">
+<meta name="twitter:image" content="http://yoursite.com/2021/06/01/CFA%20LEVEL1/8.%20Derivatives/8.%20Derivatives.assets/image-20210428122840470.png">
+  <link rel="canonical" href="http://yoursite.com/2021/06/01/CFA LEVEL1/8. Derivatives/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title> | Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/8. Derivatives/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-09 20:32:02" itemprop="dateModified" datetime="2021-05-09T20:32:02+08:00">2021-05-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="derivatives">8. Derivatives</h1>
+<h2 id="reading-48-derivative-markets-and-instruments">Reading 48: Derivative Markets and Instruments</h2>
+<h3 id="derivative-markets-and-instruments">1. Derivative Markets and Instruments</h3>
+<h4 id="definition-of-derivative">Definition of Derivative</h4>
+<ul>
+<li>A contract regarding buying or selling underlying asset in the future</li>
+<li>在三个月后以3%利率借100万，算Buy，因为付利息</li>
+</ul>
+<h4 id="why-invest-derivative">Why Invest Derivative</h4>
+<ul>
+<li>Hedge</li>
+<li>Speculate</li>
+</ul>
+<h4 id="four-derivatives">Four Derivatives</h4>
+<ul>
+<li><p>Forward Contract</p>
+<ul>
+<li>Private agreement</li>
+</ul></li>
+<li><p>Future Contract</p>
+<ul>
+<li>A specialized forward contract</li>
+<li>Standardized
+<ul>
+<li>Regulated</li>
+</ul></li>
+<li>Guaranteed by clearinghouse
+<ul>
+<li>Daily Settlement</li>
+</ul></li>
+</ul></li>
+<li><p>Swap Contract</p>
+<ul>
+<li>A series of forward contract</li>
+</ul></li>
+<li><p>Option Contract</p>
+<ul>
+<li>The owner has right but no obligation</li>
+<li>Option premium
+<ul>
+<li>期权费</li>
+</ul></li>
+<li>Call option
+<ul>
+<li>看涨期权</li>
+</ul></li>
+<li>Put option
+<ul>
+<li>看跌期权</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="classification-by-features">Classification by Features</h4>
+<ul>
+<li><p>Forward commitment</p>
+<ul>
+<li><p>Forward contract</p></li>
+<li><p>Futures contract</p></li>
+<li><p>Swap contract</p></li>
+</ul></li>
+<li><p>Contingent claim</p>
+<ul>
+<li><p>Option contract</p></li>
+<li><p>CDS</p>
+<ul>
+<li>类似于保险合同</li>
+<li>A买了一个bond，然后向B买了一个CDS，如果bond违约，B要付给A钱</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="classification-by-trading-place">Classification by Trading place</h4>
+<ul>
+<li><p>Exchange-traded (<span class="math inline">\(A\rightarrow \text{Clearning House} \rightarrow B\)</span>)</p>
+<ul>
+<li><p>Futures</p></li>
+<li><p>Option</p></li>
+</ul></li>
+<li><p>Over-the-counter (OTC) traded (<span class="math inline">\(A\rightarrow B\)</span>)</p>
+<ul>
+<li><p>Forward</p></li>
+<li><p>Swap</p></li>
+<li><p>Option</p></li>
+</ul></li>
+</ul>
+<h4 id="terminology">Terminology</h4>
+<ul>
+<li><p>Forward Commitment</p>
+<ul>
+<li>Long
+<ul>
+<li>Long forward</li>
+<li>Buy underlying asset in the future</li>
+</ul></li>
+<li>Short
+<ul>
+<li>Short forward</li>
+<li>Sell underlying asset in the future</li>
+</ul></li>
+</ul></li>
+<li><p>Contingent Claim</p>
+<ul>
+<li>Long
+<ul>
+<li>Buy right</li>
+</ul></li>
+<li>Short
+<ul>
+<li>Sell right</li>
+</ul></li>
+<li>Call
+<ul>
+<li>Buy underlying asset in the future</li>
+</ul></li>
+<li>Put
+<ul>
+<li>Sell underlying asset in the future</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="forward-contract">2. Forward Contract</h3>
+<h4 id="classification">Classification</h4>
+<ul>
+<li><p>Commodity forward contract</p></li>
+<li><p>Financial forward contract</p></li>
+</ul>
+<h4 id="characteristics">Characteristics</h4>
+<ul>
+<li>Exposed to default risk</li>
+<li>Zero-sum game</li>
+</ul>
+<h4 id="how-to-settle-a-forward-contract">How to Settle a Forward Contract</h4>
+<ul>
+<li><p>Settling a forward contract at expiration</p>
+<ul>
+<li><p>Physical settlement</p></li>
+<li><p>Cash settlement (Preferred)</p></li>
+</ul></li>
+<li><p>Settling a forward contract prior to expiration</p>
+<ul>
+<li>Entering into a <strong>opposite forward contract</strong> with the original party or different party</li>
+</ul></li>
+</ul>
+<h3 id="futures-contract">3. Futures Contract</h3>
+<h4 id="difference-with-forwards">Difference with Forwards</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Forwards</th>
+<th style="text-align: center;">Futures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Settlement at maturity</td>
+<td style="text-align: center;">Daily Settlement (Mark to Market)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">No margin deposit required</td>
+<td style="text-align: center;">Margin required and adjusted</td>
+</tr>
+</tbody>
+</table>
+<h4 id="standardization">Standardization</h4>
+<ul>
+<li>Quality and quantity
+<ul>
+<li>数量和质量</li>
+</ul></li>
+<li>Delivery time and manner
+<ul>
+<li>时间和方式</li>
+</ul></li>
+</ul>
+<h4 id="clearinghouse-function">Clearinghouse Function</h4>
+<ul>
+<li>Reduce default risk</li>
+</ul>
+<h4 id="risk-control-of-future-contract">Risk Control of Future Contract</h4>
+<ul>
+<li><p>Margin</p>
+<ul>
+<li><p>Initial margin</p></li>
+<li><p>Maintenance margin</p>
+<ul>
+<li>低于Maintenance margin，交到Initial margin</li>
+</ul></li>
+<li><p>Margin call</p></li>
+<li><p>Variation margin</p>
+<ul>
+<li>补充的保证金</li>
+</ul></li>
+</ul></li>
+<li><p>Daily price limit</p>
+<ul>
+<li>Limit move
+<ul>
+<li>涨跌停</li>
+</ul></li>
+<li>Locked limit
+<ul>
+<li>停盘</li>
+</ul></li>
+</ul></li>
+<li><p>Marking to market</p>
+<ul>
+<li>Daily settlement</li>
+</ul></li>
+</ul>
+<h3 id="swaps">4. Swaps</h3>
+<h4 id="classification-1">Classification</h4>
+<ul>
+<li><p>Interest rate swap</p>
+<ul>
+<li>Plain vanilla interest rate swap
+<ul>
+<li>Pay-fixed side</li>
+<li>Pay-floating side</li>
+</ul></li>
+<li><blockquote>
+<p>Example</p>
+<p>AAA wants to borrow floating</p>
+<p>BBB wants to borrow fixed</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Fixed</th>
+<th style="text-align: center;">Floating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">AAA</td>
+<td style="text-align: center;">10%</td>
+<td style="text-align: center;">LIBOR+0.3%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">BBB</td>
+<td style="text-align: center;">11.2%</td>
+<td style="text-align: center;">LIBOR+1%</td>
+</tr>
+</tbody>
+</table>
+<p>如果AAA直接借Floating，BBB直接借Fixed，则总支出为LIBOR+11.5%</p>
+<p>如果AAA借Fixed，BBB借Floating，然后AAA和BBB签订Swap，则总支出为LIBOR+11%</p>
+</blockquote></li>
+</ul></li>
+<li><p>Currency swaps</p>
+<ul>
+<li>美元利率换欧元利率</li>
+<li>Underlying principal amount is exchanged both at the start and at the end of the swap.</li>
+</ul></li>
+<li><p>Equity swaps</p>
+<ul>
+<li>中石油收益率换中石化收益率</li>
+</ul></li>
+</ul>
+<h3 id="options-and-other-derivatives">5. Options and Other Derivatives</h3>
+<h4 id="writer-of-the-option">Writer of the Option</h4>
+<ul>
+<li>Seller or short</li>
+</ul>
+<h4 id="prices">Prices</h4>
+<ul>
+<li>Option premium</li>
+<li>Exercise price</li>
+</ul>
+<h4 id="credit-derivatives">Credit derivatives</h4>
+<ul>
+<li>Credit default swaps (CDS)
+<ul>
+<li>CDS spread 保费</li>
+</ul></li>
+<li>Credit spread option
+<ul>
+<li>Credit spread超过一定数值，可以赚钱</li>
+</ul></li>
+<li>Credit-linked note
+<ul>
+<li>A买了一个Bond，A怕Bond违约，找到B，卖给了B一个Risk-free bond</li>
+<li>可以把B的收益增加，如果A买的Bond违约，B和A一起承担损失</li>
+</ul></li>
+<li>Total return swap
+<ul>
+<li>A和B完全交换债券</li>
+</ul></li>
+</ul>
+<h4 id="asset-backed-securities">Asset-Backed Securities</h4>
+<ul>
+<li>Asset-Backed Securities (ABS)</li>
+<li>Collateralized mortgage obligation (CMO)</li>
+<li>Collateralized debt obligation (CDO)</li>
+</ul>
+<h2 id="reading-49-basics-of-derivative-pricing-and-valuation">Reading 49: Basics of Derivative Pricing and Valuation</h2>
+<h3 id="risk-free-arbitrage-and-no-arbitrage-rule">0. Risk-Free Arbitrage and No-Arbitrage Rule</h3>
+<h4 id="arbitrage">Arbitrage</h4>
+<ul>
+<li>价格低的买入，价格高的卖出</li>
+</ul>
+<h4 id="replication">Replication</h4>
+<ul>
+<li>Replicate the payoffs on one asset or portfolio with those of a different asset or portfolio</li>
+</ul>
+<h4 id="pricing">Pricing</h4>
+<ul>
+<li>Pricing a contract is the process of determining the no-arbitrage price of the underlying asset</li>
+<li>标的资产未来买卖的价格</li>
+<li>Obey no-arbitrage rule</li>
+</ul>
+<h4 id="valuation">Valuation</h4>
+<ul>
+<li>Valuation of a contract is the process of determining the payoff of the contract during the life of the contract</li>
+<li>Contract 这张纸现在值多少钱</li>
+<li>Obey risk neutrality</li>
+</ul>
+<h3 id="forwards-pricing-and-valuation">1. Forwards Pricing and Valuation</h3>
+<h4 id="pricing-1">Pricing</h4>
+<ul>
+<li><p><span class="math inline">\(FP=(S_0+\theta-\gamma)(1+R_f)^T=S_0(1+R_f)^T-(\gamma - \theta)(1+R_f)^T\)</span></p>
+<ul>
+<li><span class="math inline">\(\gamma\)</span> is the carrying benefit
+<ul>
+<li>Dividend, coupon, interest</li>
+<li>Convenience yield</li>
+</ul></li>
+<li><span class="math inline">\(\theta\)</span> is the carrying cost
+<ul>
+<li>Cost of storage</li>
+</ul></li>
+<li><span class="math inline">\(\gamma-\theta\)</span> denotes the <strong>Cost of Carry</strong></li>
+<li>Zero-coupon bond</li>
+<li><span class="math inline">\(FP=S_0(1+R_f)^T\)</span></li>
+</ul></li>
+</ul>
+<h4 id="cash-and-carry-arbitrage">Cash-and-Carry Arbitrage</h4>
+<ul>
+<li><p>If <span class="math inline">\(FP&gt;S_0(1+R_f)^T\)</span></p>
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">At Initiation</th>
+<th style="text-align: center;">At settlement date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1. Borrow money <span class="math inline">\(S_0\)</span> at the risk-free rate <span class="math inline">\(R_f\)</span><br> 2. Buy the underlying bond at the price <span class="math inline">\(S_0\)</span><br> 3. Short the forward contract</td>
+<td style="text-align: center;">1. Sell the underlying bound at the price <span class="math inline">\(FP\)</span><br>2. Repay the loan <span class="math inline">\(S_0(1+R_f)^T\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Profit = <span class="math inline">\(FP-S_0(1+R_f)^T\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>借钱买现货，现货放身边</p></li>
+</ul>
+<h4 id="reverse-cash-and-carry-arbitrage">Reverse Cash-and-Carry Arbitrage</h4>
+<ul>
+<li><p>If <span class="math inline">\(FP&lt;S_0(1+R_f)^T\)</span></p>
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">At Initiation</th>
+<th style="text-align: center;">At settlement date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1. Borrow underlying bond<br> 2. Sell the underlying bond at the price <span class="math inline">\(S_0\)</span> and lend the money at risk-free rate <span class="math inline">\(R_f\)</span><br> 3. Long a forward contract</td>
+<td style="text-align: center;">1. Buy the underlying bond at the price <span class="math inline">\(FP\)</span> and repay<br> 2. Receive investment proceeds</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Profit = <span class="math inline">\(S_0(1+R_f)^T-FP\)</span></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<h4 id="valuation-1">Valuation</h4>
+<ul>
+<li><p>T-bill Forwards Valuation</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Time</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">t</td>
+<td style="text-align: center;"><span class="math inline">\(V_{long}=S_t - \frac{FP}{(1+R_f)^{T-t}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T</td>
+<td style="text-align: center;"><span class="math inline">\(V_{long}=S_T-FP\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Equity Forward Valuation</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Time</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">t</td>
+<td style="text-align: center;"><span class="math inline">\(V_{long}=(S_t-PVD_t) - \frac{FP}{(1+R_f)^{T-t}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T</td>
+<td style="text-align: center;"><span class="math inline">\(V_{long}=S_T-FP\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Coupon Bonds Forward Valuation</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Time</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">t</td>
+<td style="text-align: center;"><span class="math inline">\(V_{long}=(S_t-PVC_t) - \frac{FP}{(1+R_f)^{T-t}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T</td>
+<td style="text-align: center;"><span class="math inline">\(V_{long}=S_T-FP\)</span></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<h3 id="futures-pricing-and-valuation">2. Futures Pricing and Valuation</h3>
+<h4 id="futures-vs.-forward">Futures vs. Forward</h4>
+<ul>
+<li>If the correlation between the underlying asset value and interest rate is positive. Then prefer futures. Otherwise, prefer forward.
+<ul>
+<li>如果股票上升，Futures可以把钱取出来，利率高，收益高</li>
+<li>如果股票下降，Futures要补充保证金，利率低，成本低</li>
+<li>如果underlying asset是债券，选择Forward</li>
+</ul></li>
+</ul>
+<h4 id="price">Price</h4>
+<ul>
+<li>与Forward相同</li>
+</ul>
+<h4 id="value">Value</h4>
+<ul>
+<li>The value of the futures is reset as zero after the contract is marked to market.</li>
+</ul>
+<h3 id="forward-rate-agreement-fra">3. Forward Rate Agreement (FRA)</h3>
+<h4 id="quotation-example">Quotation example</h4>
+<ul>
+<li><p><span class="math inline">\(3\times 9\)</span> FRA</p></li>
+<li><p>When to borrow <span class="math inline">\(\times\)</span> When to repay</p></li>
+<li><p>Borrow and settle in 3 months later. Repay in 9 months later</p></li>
+<li><p>Off-the-run FRA，发行过一段时间的FRA</p></li>
+</ul>
+<h4 id="underlying-asset">Underlying asset</h4>
+<ul>
+<li>LIBOR</li>
+</ul>
+<h4 id="settlement-and-payoff">Settlement and Payoff</h4>
+<ul>
+<li><p>第3个月的时候就Settle了</p></li>
+<li><p>Quantitative analysis on payoff</p></li>
+</ul>
+<p><span class="math display">\[
+\frac{\text{Principal}\times (\text{floating rate at settlement} - \text{forward rate})\times\frac{\text{days}}{360}}{1+\text{floating rate at settlement}\times\frac{\text{days}}{360}} 
+\]</span></p>
+<ul>
+<li><blockquote>
+<p>Example</p>
+<p>Long <span class="math inline">\(1\times 4\)</span> FRA，利率5%，第一个月LIBOR变成4%</p>
+<p>Payoff = <span class="math inline">\(\frac{(4\%-5\%)\frac{3}{12}\text{Principal}}{1+4\%\times\frac{3}{12}}\)</span></p>
+</blockquote></li>
+</ul>
+<h3 id="swap-pricing-and-valuation">4. Swap Pricing and Valuation</h3>
+<h4 id="pricing-of-a-plain-vanilla-swap">Pricing of a plain vanilla swap</h4>
+<ul>
+<li>The pricing of swap is the determination of the fixed rate (swap rate).</li>
+</ul>
+<h4 id="valuation-2">Valuation</h4>
+<ul>
+<li><p>Equivalence to bonds</p>
+<ul>
+<li>An interest rate swap is identical to issuing a fixed-rate bond and using the proceeds to buy a floating-rate bond</li>
+</ul></li>
+<li><p>Equivalence to forward rate agreement (FRA)</p>
+<ul>
+<li><p>A swap can be viewed as a series of FRA</p></li>
+<li><p>Difference</p>
+<ol type="1">
+<li><p>FRAs have different forward rate</p></li>
+<li><p>The next payment is known one period ahead in interest rate swaps. This is not the case for an FRAs.</p></li>
+</ol></li>
+</ul></li>
+</ul>
+<h3 id="option-valuation">5. Option Valuation</h3>
+<h4 id="moneyness">Moneyness</h4>
+<ul>
+<li>In the money
+<ul>
+<li>Positive payoff</li>
+<li>S&gt;X</li>
+</ul></li>
+<li>At the money
+<ul>
+<li>no pay off</li>
+<li>S=X</li>
+</ul></li>
+<li>Out of the money
+<ul>
+<li>negative payoff</li>
+<li>S&lt;X</li>
+</ul></li>
+</ul>
+<h4 id="valuation-long-position">Valuation (Long position)</h4>
+<ul>
+<li><p>Intrinsic Value</p>
+<ul>
+<li>Call option
+<ul>
+<li><span class="math inline">\(C=\max[0,S-X]\)</span></li>
+</ul></li>
+<li>Put option
+<ul>
+<li><span class="math inline">\(P=\max[0,X-S]\)</span></li>
+</ul></li>
+</ul></li>
+<li><p>Time Value</p>
+<ul>
+<li>The longer the time, the larger the time value</li>
+</ul></li>
+<li><p>Option value</p>
+<ul>
+<li><p>Option value = Intrinsic value + Time value</p></li>
+<li><p>Before expiration</p>
+<ul>
+<li>Option value &gt; intrinsic value</li>
+</ul></li>
+<li><p>At expiration</p>
+<ul>
+<li>Option value = intrinsic value</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="payoff">Payoff</h4>
+<ul>
+<li><p>Long call、Long put、Short call、Short put</p>
+<p><img src="8.%20Derivatives.assets/image-20210428122840470.png" alt="image-20210428122840470" style="zoom:25%;"></p></li>
+</ul>
+<h4 id="gainloss">Gain/Loss</h4>
+<ul>
+<li>考虑期权费</li>
+<li>Long call、Long put 下移</li>
+<li>Short call、Short put 上移</li>
+</ul>
+<h4 id="factors-affecting-the-value-of-an-option">Factors Affecting the Value of an Option</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Sensitivity Factor</th>
+<th style="text-align: center;">Calls</th>
+<th style="text-align: center;">Puts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Underlying Price</td>
+<td style="text-align: center;">Positive related</td>
+<td style="text-align: center;">Negative related</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Strike Price</td>
+<td style="text-align: center;">Negative related</td>
+<td style="text-align: center;">Positive related</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Payments on the underlying</td>
+<td style="text-align: center;">Negative related</td>
+<td style="text-align: center;">Positive related</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Carrying Cost</td>
+<td style="text-align: center;">Positive related</td>
+<td style="text-align: center;">Negative related</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Volatility</td>
+<td style="text-align: center;">Positive related</td>
+<td style="text-align: center;">Positive related</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Risk-free rate</td>
+<td style="text-align: center;">Positive related</td>
+<td style="text-align: center;">Negative related</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Time to expiration</td>
+<td style="text-align: center;">Positive related</td>
+<td style="text-align: center;">Positive related*</td>
+</tr>
+</tbody>
+</table>
+<p>* When underlying price drops to zero, then negative related</p>
+<h3 id="put-call-parity">6. Put-Call Parity</h3>
+<ul>
+<li><p>Definition <span class="math display">\[
+C+\frac{X}{(1+R_f)^T} = P+S
+\]</span> where <span class="math inline">\(C\)</span> is the call option, <span class="math inline">\(X\)</span> is the strike price, <span class="math inline">\(S\)</span> is the underlying asset, <span class="math inline">\(P\)</span> is the put option.</p></li>
+<li><p>Fiduciary Call</p>
+<ul>
+<li><p><span class="math inline">\(C+\frac{X}{(1+R_f)^T}\)</span> is the fiduciary call.</p></li>
+<li><p>Analysis</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;"><span class="math inline">\(S_T&lt;X\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(S_T&gt;X\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Long call payoff</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(S_T-X\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Long bond payoff</td>
+<td style="text-align: center;"><span class="math inline">\(X\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(X\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Total payoff</td>
+<td style="text-align: center;"><span class="math inline">\(X\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(S_T\)</span></td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li><p>Protective put</p>
+<ul>
+<li><p><span class="math inline">\(P+S\)</span> is the protective put</p></li>
+<li><p>Analysis<br>
+| | <span class="math inline">\(S_T&lt;X\)</span> | <span class="math inline">\(S_T&gt;X\)</span> | | :---------------: | :-----: | :-----: | | Long put payoff | <span class="math inline">\(X-S_T\)</span> | <span class="math inline">\(0\)</span> | | Long stock payoff | <span class="math inline">\(S_T\)</span> | <span class="math inline">\(S_T\)</span> | | Total payoff | <span class="math inline">\(X\)</span> | <span class="math inline">\(S_T\)</span> |</p></li>
+</ul></li>
+</ul>
+<h3 id="put-call-forward-parity">7. Put-Call-Forward Parity</h3>
+<ul>
+<li><p>Definition <span class="math display">\[
+C+\frac{X-FP}{(1+R_f)^T} = P
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\frac{X-FP}{(1+R_f)^T}\)</span> 也是一张债券</li>
+<li><span class="math inline">\(FP=S(1+R_f)^T\)</span></li>
+</ul></li>
+</ul>
+<h3 id="binary-model-for-option-valuation">8. Binary Model for Option Valuation</h3>
+<ul>
+<li><span class="math inline">\(u=\frac{1}{d}\)</span>
+<ul>
+<li><span class="math inline">\(u\)</span>是上升的比率，<span class="math inline">\(S_1^+=S_0u\)</span></li>
+<li><span class="math inline">\(d\)</span>是下降的比率，<span class="math inline">\(S_1^-=S_0d\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\pi_u=\frac{1+R_f-u}{u-d}\)</span>
+<ul>
+<li><span class="math inline">\(\pi_u\)</span> 是上升的概率</li>
+<li><span class="math inline">\(\pi_d=1-\pi_u\)</span> 是下降的概率</li>
+</ul></li>
+<li>折现回当前时间</li>
+</ul>
+<h3 id="early-exercise-of-american-options">9. Early Exercise of American Options</h3>
+<ul>
+<li>Call option，不会提前行权，除非分红前</li>
+<li>Put option，不会提前行权，除非价格变为0</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2021/06/01/CFA LEVEL1/7. Fixed Income/" rel="next" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2021/06/01/CFA LEVEL1/9. Alternative Investments/" rel="prev" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#derivatives"><span class="nav-text">8. Derivatives</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#reading-48-derivative-markets-and-instruments"><span class="nav-text">Reading 48: Derivative Markets and Instruments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#derivative-markets-and-instruments"><span class="nav-text">1. Derivative Markets and Instruments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#definition-of-derivative"><span class="nav-text">Definition of Derivative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why-invest-derivative"><span class="nav-text">Why Invest Derivative</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#four-derivatives"><span class="nav-text">Four Derivatives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#classification-by-features"><span class="nav-text">Classification by Features</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#classification-by-trading-place"><span class="nav-text">Classification by Trading place</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#terminology"><span class="nav-text">Terminology</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-contract"><span class="nav-text">2. Forward Contract</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#classification"><span class="nav-text">Classification</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#characteristics"><span class="nav-text">Characteristics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#how-to-settle-a-forward-contract"><span class="nav-text">How to Settle a Forward Contract</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#futures-contract"><span class="nav-text">3. Futures Contract</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#difference-with-forwards"><span class="nav-text">Difference with Forwards</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#standardization"><span class="nav-text">Standardization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clearinghouse-function"><span class="nav-text">Clearinghouse Function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#risk-control-of-future-contract"><span class="nav-text">Risk Control of Future Contract</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swaps"><span class="nav-text">4. Swaps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#classification-1"><span class="nav-text">Classification</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#options-and-other-derivatives"><span class="nav-text">5. Options and Other Derivatives</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#writer-of-the-option"><span class="nav-text">Writer of the Option</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#prices"><span class="nav-text">Prices</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#credit-derivatives"><span class="nav-text">Credit derivatives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asset-backed-securities"><span class="nav-text">Asset-Backed Securities</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reading-49-basics-of-derivative-pricing-and-valuation"><span class="nav-text">Reading 49: Basics of Derivative Pricing and Valuation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#risk-free-arbitrage-and-no-arbitrage-rule"><span class="nav-text">0. Risk-Free Arbitrage and No-Arbitrage Rule</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#arbitrage"><span class="nav-text">Arbitrage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replication"><span class="nav-text">Replication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pricing"><span class="nav-text">Pricing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#valuation"><span class="nav-text">Valuation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forwards-pricing-and-valuation"><span class="nav-text">1. Forwards Pricing and Valuation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pricing-1"><span class="nav-text">Pricing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cash-and-carry-arbitrage"><span class="nav-text">Cash-and-Carry Arbitrage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reverse-cash-and-carry-arbitrage"><span class="nav-text">Reverse Cash-and-Carry Arbitrage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#valuation-1"><span class="nav-text">Valuation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#futures-pricing-and-valuation"><span class="nav-text">2. Futures Pricing and Valuation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#futures-vs.-forward"><span class="nav-text">Futures vs. Forward</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#price"><span class="nav-text">Price</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#value"><span class="nav-text">Value</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-rate-agreement-fra"><span class="nav-text">3. Forward Rate Agreement (FRA)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#quotation-example"><span class="nav-text">Quotation example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#underlying-asset"><span class="nav-text">Underlying asset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#settlement-and-payoff"><span class="nav-text">Settlement and Payoff</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swap-pricing-and-valuation"><span class="nav-text">4. Swap Pricing and Valuation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pricing-of-a-plain-vanilla-swap"><span class="nav-text">Pricing of a plain vanilla swap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#valuation-2"><span class="nav-text">Valuation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-valuation"><span class="nav-text">5. Option Valuation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#moneyness"><span class="nav-text">Moneyness</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#valuation-long-position"><span class="nav-text">Valuation (Long position)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#payoff"><span class="nav-text">Payoff</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gainloss"><span class="nav-text">Gain/Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#factors-affecting-the-value-of-an-option"><span class="nav-text">Factors Affecting the Value of an Option</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#put-call-parity"><span class="nav-text">6. Put-Call Parity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#put-call-forward-parity"><span class="nav-text">7. Put-Call-Forward Parity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#binary-model-for-option-valuation"><span class="nav-text">8. Binary Model for Option Valuation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#early-exercise-of-american-options"><span class="nav-text">9. Early Exercise of American Options</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

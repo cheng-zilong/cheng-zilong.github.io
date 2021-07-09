@@ -1,0 +1,2832 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheng-Zilong">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cheng-Zilong">
+  <link rel="canonical" href="http://yoursite.com/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/5. Corporate Finance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/06/01/CFA LEVEL1/5. Corporate Finance/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-09 12:18:59" itemprop="dateModified" datetime="2021-07-09T12:18:59+08:00">2021-07-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="corporate-finance">5. Corporate Finance</h1>
+<ul>
+<li>钱从哪里来 Reading 33 Cost of Capital
+<ul>
+<li>Debt</li>
+<li>Equity</li>
+</ul></li>
+<li>钱往哪里花
+<ul>
+<li>长期投资 Reading 32 Capital Budgeting</li>
+<li>短期投资 Reading 35 Working Capital Management</li>
+</ul></li>
+<li>生产经营
+<ul>
+<li>ROE和ROA差一个Leverage Reading 34 Measures of Leverage</li>
+</ul></li>
+<li>赚的钱怎么分NI (二级学习)
+<ul>
+<li>Dividend和RE</li>
+</ul></li>
+<li>三权分立 Reading 31 Corporate Governance</li>
+</ul>
+<h2 id="reading-31-corporate-governance-and-esg">Reading 31 Corporate Governance and ESG</h2>
+<h3 id="stakeholder-management">1. Stakeholder Management</h3>
+<h4 id="corporate-governance-definition">Corporate Governance Definition</h4>
+<ul>
+<li><p>The system of internal controls</p></li>
+<li><p>Corporate governance 保证</p>
+<ul>
+<li>Shareholders (股东) 利益最大化，或者</li>
+<li>Stakeholders (公司利益相关者) 利益最大化</li>
+</ul></li>
+</ul>
+<h4 id="conflict-of-interest">Conflict of Interest</h4>
+<ul>
+<li>Shareholders and mangers
+<ul>
+<li>长期短期目标冲突</li>
+<li>高管high risk averse，股东low risk averse</li>
+<li>解决方法：ESOP(股权激励)</li>
+</ul></li>
+<li>大股东小股东
+<ul>
+<li>大股东获得控制权
+<ul>
+<li>A、B股，B股保护大股东</li>
+</ul></li>
+<li>Straight voting和cumulative voting
+<ul>
+<li>Straight voting就是每个人直接投票</li>
+<li>Cumulative voting可以累积投票，保护小股东</li>
+</ul></li>
+</ul></li>
+<li>股东和债权人
+<ul>
+<li>Risk tolerance冲突</li>
+<li>债务条款保护债权人</li>
+</ul></li>
+</ul>
+<h4 id="stakeholder-management-framework">Stakeholder Management Framework</h4>
+<ul>
+<li>Legal Infrastructure
+<ul>
+<li>Rights established by law</li>
+</ul></li>
+<li>Contractual Infrastructure
+<ul>
+<li>Contractual arrangements between the corporation and stakeholders</li>
+<li>Corporation has the most control</li>
+</ul></li>
+<li>Organizational Infrastructure
+<ul>
+<li>Internal systems, governance procedures, and practices adopted and controlled</li>
+</ul></li>
+<li>Governmental Infrastructure
+<ul>
+<li>Regulations imposed on companies.</li>
+</ul></li>
+<li>其中2、3可以被公司控制，1、4是强制性的</li>
+</ul>
+<h3 id="committees">2. Committees</h3>
+<ul>
+<li>三大专业委员会：
+<ul>
+<li>执行和监管分离，所以必须是Independent member</li>
+<li>Audit committee</li>
+<li>Compensation committee</li>
+<li>Nomination committee</li>
+</ul></li>
+</ul>
+<h3 id="shareholder-activism">3. Shareholder Activism</h3>
+<ul>
+<li><p>Hedge fund等大股东来操作</p></li>
+<li><p>收购公司股票积极参与管理，增加自身股票价值</p></li>
+</ul>
+<h3 id="environment-social-governance">4. Environment, Social, Governance</h3>
+<ul>
+<li><p>(Equity学过)</p></li>
+<li><p>Negative Screening</p></li>
+<li><p>Positive Screening</p></li>
+<li><p>Thematic Investing</p></li>
+<li><p>Engagement/Active ownership</p></li>
+</ul>
+<h2 id="reading-32-capital-budgeting">Reading 32 Capital Budgeting</h2>
+<h3 id="the-basics">1. The Basics</h3>
+<h4 id="definition">Definition</h4>
+<ul>
+<li>Selecting the most profitable long-term projects</li>
+</ul>
+<h4 id="capital-projects-classification">Capital Projects Classification</h4>
+<ul>
+<li>Replacement project
+<ul>
+<li>把手动设备换成自动设备</li>
+</ul></li>
+<li>Expansion project
+<ul>
+<li>增加规模，增加新项目</li>
+</ul></li>
+<li>Mandatory investment
+<ul>
+<li>环保、安全项目</li>
+</ul></li>
+<li>Other projects
+<ul>
+<li>现金流不太容易预测的项目，比如明星站台</li>
+<li>个人喜好产生的项目，比如买私人飞机</li>
+</ul></li>
+</ul>
+<h4 id="five-basic-principles-of-capital-budgeting">Five Basic Principles of Capital Budgeting</h4>
+<ul>
+<li>Based on <strong>incremental cash flow</strong>
+<ul>
+<li>新项目造成的现金流的增加</li>
+</ul></li>
+<li>The <strong>timing of cash flow</strong> is important</li>
+<li>Cash flow should be analyzed <strong>after tax</strong></li>
+<li>Included
+<ul>
+<li><strong>Externalities</strong>
+<ul>
+<li>对外部造成的影响，比如0度可乐</li>
+<li>Negative externalities</li>
+<li>Positive externalities</li>
+</ul></li>
+<li><strong>Opportunity cost</strong></li>
+</ul></li>
+<li>Ignored
+<ul>
+<li><strong>Sunk cost</strong>
+<ul>
+<li>与未来现金流无关的，直接扣除，比如咨询费</li>
+</ul></li>
+<li><strong>Financing cost</strong>
+<ul>
+<li>融资成本，考虑在折现率内</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="projects-evaluation-methods">2. Projects Evaluation Methods</h3>
+<ul>
+<li><p>Net Present Value (NPV)</p>
+<ul>
+<li><p>Definition</p>
+<ul>
+<li><span class="math inline">\(NPV=\displaystyle \sum_{t=0}^n\frac{CF_t}{(1+r)^t}\)</span></li>
+</ul></li>
+<li><p>缺点</p>
+<ul>
+<li>没有考虑初始规模</li>
+</ul></li>
+<li><blockquote>
+<p>Example</p>
+<p>Firm’s Cost of Capital = 9%</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Year</th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Net Cash Flow</td>
+<td style="text-align: center;">-100</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">75</td>
+</tr>
+</tbody>
+</table>
+<p>NPV=22.93</p>
+</blockquote></li>
+</ul></li>
+<li><p>Internal Rate of Return (IRR)</p>
+<ul>
+<li><p>Definition</p>
+<ul>
+<li><p>单位投入的回报率</p></li>
+<li><p>NPV=0时的折现率</p></li>
+</ul></li>
+<li><p>缺点</p>
+<ul>
+<li>可能产生无解或者多解
+<ul>
+<li>CF符号变动几次，最多出现几个IRR</li>
+<li>变动一次的叫做conventional cash flow</li>
+<li>变动多次的叫做unconventional cash flow</li>
+</ul></li>
+</ul></li>
+<li><p>如果NPV与IRR冲突，优先选用NPV</p></li>
+<li><blockquote>
+<p>Example | Year | 0 | 1 | 2 | 3 | | :-----------: | :--: | :--: | :--: | :--: | | Net Cash Flow | -100 | 25 | 50 | 75 | IRR = 19.44%</p>
+</blockquote></li>
+</ul></li>
+<li><p>Payback period (PBP)</p>
+<ul>
+<li><p>收回投资成本需要多久</p></li>
+<li><p>缺点：没有考虑回本后的现金流</p></li>
+<li><blockquote>
+<p>Example | Year | 0 | 1 | 2 | 3 | | :------------------: | :--: | :--: | :--: | :--: | | Net Cash Flow | -100 | 25 | 50 | 75 | | Cumulative Cash Flow | -100 | -75 | -25 | 50 | 在第二年和第三年之间回本，PBP = 2+25/75 = 2.33</p>
+</blockquote></li>
+</ul></li>
+<li><p>Discounted PBP (DPBP)</p>
+<ul>
+<li><p>所有现金流折现算回收期</p></li>
+<li><p>缺点：没有考虑回本后的现金流</p></li>
+<li><blockquote>
+<p>Example | Year | 0 | 1 | 2 | 3 | | :----------------------: | :--: | :----: | :----: | :---: | | Net Cash Flow | -100 | 25 | 50 | 75 | | Discounted Net Cash Flow | -100 | 22.94 | 42.08 | 57.91 | | Cumulative Net Cash Flow | -100 | -77.06 | -34.98 | 22.93 | DBP = 2 + 34.98/57.91 = 2.604</p>
+</blockquote></li>
+</ul></li>
+<li><p>Profitable index (PI)</p>
+<ul>
+<li><p>Definition <span class="math display">\[
+PI=\frac{\text{PV of future cash flow}}{|\text{CF}_0|}=1+\frac{NPV}{|\text{CF}_0|}
+\]</span></p></li>
+<li><p>缺点</p>
+<ul>
+<li>没有考虑绝对回报金额</li>
+</ul></li>
+<li><blockquote>
+<p>Example Firm’s Cost of Capital = 9% | Year | 0 | 1 | 2 | 3 | | :-----------: | :--: | :--: | :--: | :--: | | Net Cash Flow | -100 | 25 | 50 | 75 | PI = 1 + 22.93/100 = 1.2293</p>
+</blockquote></li>
+</ul></li>
+</ul>
+<h3 id="npv-profiles">3. NPV Profiles</h3>
+<ul>
+<li><p><img src="6.%20Corporate%20Finance.assets/image-20210422125654280.png" alt="image-20210422125654280" style="zoom:20%;"></p></li>
+<li><p>Plot</p>
+<ul>
+<li>横轴是Cost of Capital (Discount Rate)
+<ul>
+<li>与横轴交点是IRR</li>
+</ul></li>
+<li>纵轴是NPV
+<ul>
+<li>与纵轴交点是现金流直接加总</li>
+</ul></li>
+</ul></li>
+<li><p>Crossover Rate</p>
+<ul>
+<li>两个项目NPV相等时的IRR</li>
+</ul></li>
+<li><p>NPV和IRR冲突的原因</p>
+<ul>
+<li>大额现金流出现时机，大额现金流出现越晚，随r变动越快</li>
+</ul></li>
+</ul>
+<h3 id="impact-of-npv-rule-and-stock-price">4. Impact of NPV Rule and Stock Price</h3>
+<ul>
+<li><p>In theory</p>
+<ul>
+<li>股票价格波动量 <span class="math inline">\(\Delta P=\frac{NPV}{\text{Stock\# }}\)</span></li>
+</ul></li>
+<li><p>In reality</p>
+<ul>
+<li>预计的NPV已经反映在股票价格上了，如果实际NPV低于预期NPV，价格会下降</li>
+</ul></li>
+</ul>
+<h2 id="reading-33-cost-of-capital">Reading 33 Cost of Capital</h2>
+<h3 id="weighted-average-cost-of-capital-wacc">1. Weighted Average Cost of Capital (WACC)</h3>
+<ul>
+<li><p>Structure</p>
+<ul>
+<li><p>Debt</p></li>
+<li><p>Equity</p>
+<ul>
+<li>Preferred stock</li>
+<li>Common stock</li>
+</ul></li>
+<li><p>Calculation</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;">Cost of Capital</th>
+<th style="text-align: center;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Debt</td>
+<td style="text-align: center;"><span class="math inline">\(r_d(1-t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(w_d\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Preferred stock</td>
+<td style="text-align: center;"><span class="math inline">\(r_{ps}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(w_{ps}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Common stock</td>
+<td style="text-align: center;"><span class="math inline">\(r_s\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(w_s\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+  WACC=w_dr_d(1-t) + w_{ps}r_{ps}+w_sr_s
+  \]</span></p></li>
+<li><p><span class="math inline">\(t\)</span> is marginal tax rate，借债的利息有tax shield作用</p></li>
+</ul></li>
+</ul>
+<h3 id="how-to-find-weights">2. How to Find Weights</h3>
+<ul>
+<li><p>计算权重选用 market value</p></li>
+<li><p>Capital Structure Definition</p>
+<p>= Debt/Equity</p>
+<p><span class="math inline">\(w_d=D/(D+E)\)</span></p>
+<p><span class="math inline">\(w_s=E/(D+E)\)</span></p></li>
+<li><p>How to choose market structure</p>
+<ul>
+<li>Target capital structure</li>
+<li>Trends in capital structure</li>
+<li>Current capital structure</li>
+<li>Average of comparable company’s structure</li>
+</ul></li>
+<li><blockquote>
+<p>Example Fran is estimating the cost of capital of Frontier Corp. She has gathered the following information.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Current Year</th>
+<th style="text-align: center;">Forecasted for the Next Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Book Value of Debt</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Market Value of Debt</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Book Value of Equity</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Market Value of Equity</td>
+<td style="text-align: center;">210</td>
+<td style="text-align: center;">220</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+w_d=\frac{63}{63+220}=0.223\\
+w_e=1-w_d=0.777
+\]</span></p>
+</blockquote></li>
+</ul>
+<h3 id="how-to-find-cost-of-capital">3. How to Find Cost of Capital</h3>
+<h4 id="cost-of-debt-r_d">Cost of Debt <span class="math inline">\(r_d\)</span></h4>
+<ul>
+<li><p>YTM Approach</p></li>
+<li><p>已知PV</p>
+<p>计算区间利率</p>
+<p>年化得到 <span class="math inline">\(r_d\)</span></p>
+<p>Cost of debt = <span class="math inline">\(r_d(1-t)\)</span></p></li>
+<li><p>Debt-Rating Approach</p>
+<p>新公司不知道债券PV，找信用评级类似的企业</p></li>
+<li><blockquote>
+<p>Example Smith Inc. bond with remaining 5 Years is sold at 1030, Par value is 1000. Coupon rate is 10%. Coupon is paid semiannually. The marginal tax rate is 30%. N=10. PV=1030. PMT=-50. FV=-1000. 求得 I/Y = 4.618 YTM = <span class="math inline">\(4.618\times 2=9.237%\)</span> Cost of debt = <span class="math inline">\(9.237(1-30\%)=6.47\)</span></p>
+</blockquote></li>
+</ul>
+<h4 id="cost-of-preferred-stock-r_ps">Cost of Preferred Stock <span class="math inline">\(r_{ps}\)</span></h4>
+<ul>
+<li><p>Perpetual annuity</p>
+<p><span class="math display">\[
+  r_{ps}=\frac{D_1}{P_0}
+  \]</span> <span class="math inline">\(D_1\)</span>: Preferred dividends</p>
+<p><span class="math inline">\(P_0\)</span>: Market price of the preferred stock</p>
+<p>Convertible preferred stock: risk reduce, price increase, <span class="math inline">\(r_{ps}\)</span> reduce</p>
+<p>Callable preferred stock: risk increase, price increase, <span class="math inline">\(r_{ps}\)</span> increase</p></li>
+</ul>
+<h4 id="cost-of-equity-common-stock-r_s">Cost of Equity (Common Stock) <span class="math inline">\(r_s\)</span></h4>
+<ul>
+<li><p>CAPM approach <span class="math display">\[
+r_e = R_f + \beta (R_m-R_f)
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(R_f\)</span>: 长期国债收益率</p></li>
+<li><p><span class="math inline">\(\beta=\frac{\text{Cov}_{i,m}}{\sigma^2_m}\)</span></p></li>
+<li><p>上市公司<span class="math inline">\(\beta\)</span>已知，直接求</p></li>
+<li><p>非上市公司使用pure-play method</p>
+<p>求A公司<span class="math inline">\(\beta\)</span>，找已上市的comparable B公司</p>
+<p>Risk分为Business risk和Financial risk</p>
+<p>B公司去杠杆得到 <span class="math inline">\(\beta_{asset}=\beta_B\frac{E}{E+D(1-t)}\)</span></p>
+<p><span class="math inline">\(\beta_{asset}\)</span>加杠杆得到 <span class="math inline">\(\beta_A=\beta_{asset}\frac{E&#39;+D&#39;(1-t&#39;)}{E&#39;}\)</span></p>
+<p>再用CAPM计算<span class="math inline">\(r_s\)</span></p></li>
+<li><p>考虑Country Risk Premium (CRP)</p>
+<ul>
+<li><p>Sovereign yield spread (SYS)</p>
+<p>国家信用的差值，用长期国债利率表示，要转换成股票市场 <span class="math display">\[
+CRP=\frac{SYS}{\sigma_{bond}}\sigma_{stock}
+\]</span></p></li>
+<li><p>Cost of capital <span class="math display">\[
+r_e=R_f +\beta[R_m-R_f+CRP]
+\]</span></p></li>
+</ul></li>
+<li><blockquote>
+<p>Example | Current market price per share | $28 | | :---------------------------------------------- | :--: | | Most recent dividend per share paid (<span class="math inline">\(D_0\)</span>) | $2 | | Expected dividend payout rate | 40% | | Expected return on equity (ROE) | 15% | | Beta for the common stock | 1.3 | | Expected rate of return on the market portfolio | 13% | | Risk-free rate of return | 4% | <span class="math inline">\(r_e=r_f+\beta[r_M-r_f]=4+1.3[13-4]=15.7\)</span></p>
+</blockquote></li>
+</ul></li>
+<li><p>Dividend Discount Model (DDM) approach</p>
+<ul>
+<li><p>Golden growth model (GGM)</p>
+<p>假设所有股利按照增长率<span class="math inline">\(g\)</span>增长 <span class="math display">\[
+P_0=\frac{D_1}{r_e-g}\\
+r_e=\frac{D_1}{P_0}+g
+\]</span> <span class="math inline">\(D_1\)</span>: 第一期的dividend</p>
+<p><span class="math inline">\(D_1/P_0\)</span>: dividend yield</p>
+<p><span class="math inline">\(g\)</span>: Sustainable growth rate</p>
+<p><span class="math inline">\(g=\text{retention rate}\times ROE\)</span></p></li>
+<li><blockquote>
+<p>Example | Current market price per share | $30 | | ------------------------------------------- | :---: | | Most recent dividend per share paid (<span class="math inline">\(D_0\)</span>) | $2.5 | | Expected dividend payout rate | 50% | | Expected return on equity (ROE) | 15% | <span class="math inline">\(g=0.5\times 0.15=0.075\)</span> <span class="math inline">\(r_e=\frac{D_1}{P_0}+g=\frac{2.5(1+g)}{30}+g=16.5\)</span></p>
+</blockquote></li>
+</ul></li>
+<li><p>Bond yield plus risk premium approach <span class="math display">\[
+r_e=\text{bond yield} + \text{risk premium}
+\]</span></p>
+<ul>
+<li>Bond risk: market yield of firm long-term bond</li>
+<li>Risk premium: Historical spread between bond yield and stock</li>
+</ul></li>
+</ul>
+<h3 id="optimal-capital-budget">4. Optimal Capital Budget</h3>
+<ul>
+<li><p>Overestimated and underestimated</p>
+<p>If a project risk &gt; firms’ risk，如果用公司的WACC计算，NPV is overestimated.</p></li>
+<li><p>Break point</p>
+<p>WACC改变总资本的临界点</p></li>
+<li><p>Optimal Capital Budget Figure</p>
+<p><img src="6.%20Corporate%20Finance.assets/image-20210422140328355.png" alt="image-20210422140328355" style="zoom:25%;"></p>
+<ul>
+<li>融资成本不断上升，边际收益不断下降，因为好的项目越来越少</li>
+</ul></li>
+</ul>
+<h3 id="floatation-cost">5. Floatation Cost</h3>
+<ul>
+<li><p>Method 1</p>
+<p>使用GGM公式 <span class="math display">\[
+r_e&#39;=\frac{D_1}{P_0-F}+g
+\]</span> <span class="math inline">\(F\)</span>: 发行成本</p>
+<p>或者 <span class="math display">\[
+r_e&#39; = \frac{D_1}{P_0(1-f)}+g
+\]</span> <span class="math inline">\(f\)</span>: 发行费用所占比率</p></li>
+<li><p>Method 2</p>
+<p>发行成本作为<span class="math inline">\(CF_0\)</span>直接流出，更符合实际情况</p></li>
+</ul>
+<h2 id="reading-34-measures-of-leverage">Reading 34 Measures of Leverage</h2>
+<h3 id="definition-1">1. Definition</h3>
+<ul>
+<li><p>Operating leverage results from fix operating cost</p></li>
+<li><p>Financial leverage results from the use of debt</p></li>
+</ul>
+<h3 id="leverage">2. Leverage</h3>
+<ul>
+<li><p>Degree of Operating Leverage (DOL) <span class="math display">\[
+\begin{array}{rcl}
+DOL&amp;=&amp;\frac{\Delta EBIT/EBIT}{\Delta Q/Q}\\
+EBIT&amp;=&amp; \text{Sales} - TVC-FC\\
+&amp;=&amp; (P-VC)Q-FC\\
+\Delta EBIT&amp;=&amp; (P-VC)\Delta Q\\
+DOL&amp;=&amp; (P-VC)Q/EBIT\\
+&amp;=&amp; \frac{\text{Sales}-TVC}{\text{Sales}-TVC-FC}
+\end{array}
+\]</span></p>
+<ul>
+<li>杠杆对经营利润的放大效应</li>
+</ul></li>
+<li><p>Degree of financial leverage (DFL) <span class="math display">\[
+\begin{array}{rcl}
+DFL&amp;=&amp;\frac{\Delta EPS/EPS}{\Delta EBIT/EBIT}\\
+EPS&amp;=&amp; \frac{NI}{\text{stock # }}=\frac{EBIT-I}{\text{stock # }} \text{（不考虑税）}\\
+\Delta EPS&amp;=&amp; \frac{\Delta NI}{\text{stock # }}=\frac{\Delta EBIT}{\text{stock # }}\\
+DFL&amp;=&amp; \frac{EBIT}{EBIT-I}\\
+\end{array}
+\]</span></p></li>
+<li><p>Degree of total leverage (DTL) <span class="math display">\[
+\begin{array}{rcl}
+DTL&amp;=&amp;\frac{\Delta EPS/EPS}{\Delta Q/Q}\\
+&amp;=&amp; DOL \times DFL\\
+&amp;=&amp; \frac{\text{Sales}-TVC}{\text{Sales}-TVC-FC-I}
+\end{array}
+\]</span></p></li>
+</ul>
+<h3 id="breakeven-quantity">3. Breakeven Quantity</h3>
+<ul>
+<li><p>Breakeven quantity of sales <span class="math inline">\(Q_{BE}\)</span></p>
+<p>Consider <strong>fixed financial cost</strong> and <strong>fixed operating cost</strong></p>
+<p>Revenue <span class="math inline">\(=\)</span> Cost</p>
+<p>FC是经营性固定成本</p>
+<p>I是财务性固定成本 <span class="math display">\[
+\begin{array}{rcl}
+PQ&amp;=&amp;FC+I+VC\times Q\\
+Q_{BE}&amp;=&amp; \dfrac{FC+I}{P-VC}
+\end{array}
+\]</span> P-VC: Marginal contribution</p></li>
+<li><p>Operating breakeven quantity of sales <span class="math inline">\(Q_{OBE}\)</span></p>
+<p>Only consider fixed operating cost <span class="math display">\[
+\begin{array}{rcl}
+Q_{OBE}&amp;=&amp; \dfrac{FC}{P-VC}
+\end{array}
+\]</span></p></li>
+<li><p>杠杆越好，FC和I越高，Q越高</p></li>
+</ul>
+<h2 id="reading-35-working-capital-management">Reading 35 Working Capital Management</h2>
+<h3 id="sources-of-liquidity">1. Sources of Liquidity</h3>
+<ul>
+<li>Primary Source
+<ul>
+<li>健康的</li>
+</ul></li>
+<li>Secondary Source
+<ul>
+<li>不健康的</li>
+<li>比如：
+<ul>
+<li>Negotiating debt arrangements</li>
+<li>Liquidating short-term or long-term assets</li>
+<li>申请bankruptcy或者Reorganizing</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="流动性变差的原因">2. 流动性变差的原因</h3>
+<ul>
+<li>Drags on liquidity
+<ul>
+<li>收钱慢</li>
+</ul></li>
+<li>Pulls on liquidity
+<ul>
+<li>付钱快</li>
+</ul></li>
+</ul>
+<h3 id="liquidity-measures">3. Liquidity measures</h3>
+<ul>
+<li>同Financial statement analysis</li>
+</ul>
+<h3 id="working-capital-management">4. Working Capital Management</h3>
+<h4 id="account-receivable-management">Account Receivable Management</h4>
+<ul>
+<li><p>Receivable aging table</p>
+<p>平均receivable aging，加权平均</p></li>
+</ul>
+<h4 id="inventory-management">Inventory Management</h4>
+<ul>
+<li>存货周转率等指标，同行业可比</li>
+</ul>
+<h4 id="account-payable-management">Account Payable Management</h4>
+<ul>
+<li><p>Trade Credit</p>
+<ul>
+<li><p>提前还款奖励</p></li>
+<li><p>2/10 net 60</p>
+<p>60天内还清</p>
+<p>10天内还清有2%优惠</p></li>
+<li><p>Cost of trade credit</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">10</th>
+<th style="text-align: center;">60</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">98</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Calculation</p>
+<p>EAR = <span class="math inline">\((1+\frac{100-98}{98})^{\frac{365}{50}}-1\)</span></p></li>
+<li><p>供应商所带来的折扣的机会成本</p></li>
+<li><p>如果不提前还款收益&gt;Cost of trade credit，则不提前还款</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="cash-management">Cash Management</h4>
+<ul>
+<li><p>Monet Markey Yield <span class="math display">\[
+R_{MM}=\frac{F-P}{P}\frac{360}{t}
+\]</span></p></li>
+<li><p>Bond Equivalent Yield <span class="math display">\[
+BEY=\frac{F-P}{P}\frac{365}{t}
+\]</span></p></li>
+<li><p>Bank Discount Yield <span class="math display">\[
+R_{BD}=\frac{F-P}{F}\frac{360}{t}
+\]</span></p>
+<ul>
+<li>类似于打折</li>
+</ul></li>
+<li><p>对于discount bonds <span class="math display">\[
+R_{BD}&lt;R_{MM}&lt;BEY
+\]</span></p></li>
+</ul>
+<h3 id="short-term-funding-sources">5. Short Term Funding Sources</h3>
+<ul>
+<li>Sources from banks
+<ul>
+<li>Pledge asset 抵押贷款</li>
+<li>Lines of credit 授信额度
+<ul>
+<li>Uncommitted line of credit
+<ul>
+<li>根据公司经营情况判断是否借款</li>
+</ul></li>
+<li>Committed line of credit
+<ul>
+<li>还钱后额度不返还</li>
+</ul></li>
+<li>Revolving line of credit
+<ul>
+<li>还钱后额度返还</li>
+</ul></li>
+</ul></li>
+<li>Banker’s acceptance 银行承兑汇票
+<ul>
+<li>公司还不起钱银行还，保护第三方客户</li>
+</ul></li>
+<li>Factoring 保理
+<ul>
+<li>将A</li>
+</ul></li>
+</ul></li>
+<li>Sources from non-bank
+<ul>
+<li>金融机构高利贷</li>
+<li>Commercial paper 商业票据
+<ul>
+<li>大公司发行，无抵押，依赖于自身信用</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="cost-of-borrowing">6. Cost of Borrowing</h3>
+<ul>
+<li><p>Calculation</p>
+<p><span class="math display">\[
+  \text{Cost} = \frac{融资成本}{借到的本金}
+  \]</span></p></li>
+<li><p>如果Loan amount包含利息(all-inclusive)，借到的本金要减去利息</p></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/4 Financial Reporting and Analysis 2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/06/01/CFA LEVEL1/4 Financial Reporting and Analysis 2/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-03 15:47:24" itemprop="dateModified" datetime="2021-05-03T15:47:24+08:00">2021-05-03</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="financial-reporting-and-analysis-2">4. Financial Reporting and Analysis 2</h1>
+<h2 id="reading-25-inventory-recognition">Reading 25 Inventory Recognition</h2>
+<h3 id="inventory-recognition">1. Inventory Recognition</h3>
+<h4 id="definition">Definition</h4>
+<ul>
+<li>企业在日常活动中持有以备出售的在产品、产成品和原材料</li>
+</ul>
+<h4 id="product-costs-capitalizing">Product Costs (Capitalizing)</h4>
+<ul>
+<li><p>卖出的时候进入利润表</p></li>
+<li><p>在达到可供出售状态前的一切必要支出</p></li>
+<li><p>外购</p>
+<ul>
+<li>购买价</li>
+<li>相关税费</li>
+<li>其他（运输、原材料存储）</li>
+</ul></li>
+<li><p>加工</p>
+<ul>
+<li>料：原材料</li>
+<li>工：工人工资</li>
+<li>费：制造费用，间接费用，比如：仓库管理费用</li>
+</ul></li>
+</ul>
+<h4 id="period-expense-expensing">Period Expense (Expensing)</h4>
+<ul>
+<li><p>直接进入利润表</p></li>
+<li><p>非正常损耗</p></li>
+<li><p>生产完后的存储费用</p></li>
+<li><p>行政管理费用</p></li>
+</ul>
+<h3 id="valuation-methods">2. Valuation Methods</h3>
+<ul>
+<li><p>确定inventory价格</p></li>
+<li><p>IFRS</p>
+<ul>
+<li>Specific identification</li>
+<li>FIFO</li>
+<li>Weighted average cost</li>
+</ul></li>
+<li><p>GAAP</p>
+<ul>
+<li>IFRS</li>
+<li>LIFO</li>
+</ul></li>
+</ul>
+<h3 id="analysis-of-valuation-method">3. Analysis of Valuation Method</h3>
+<ul>
+<li><p>LIFO: I/S accurate</p>
+<p>FIFO: B/S accurate</p></li>
+<li><p>In the periods of rising prices</p>
+<p>Analyze LIFO</p>
+<ul>
+<li>I/S
+<ul>
+<li>Higher COSG</li>
+<li>Lower EBIT</li>
+<li>Lower Tax</li>
+<li>Lower Net income</li>
+</ul></li>
+<li>B/S
+<ul>
+<li>Lower Inventory</li>
+<li>Lower working capital</li>
+</ul></li>
+<li>C/F
+<ul>
+<li>Higher CFO (because lower tax)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="inventory-system">4. Inventory System</h3>
+<ul>
+<li><p>确定库存数量</p></li>
+<li><p>Periodic inventory system</p>
+<ul>
+<li>在accounting period最后盘点存货，不能实时知道仓库存货</li>
+<li>数量x价格=Ending Inventory</li>
+<li>Beginning Inventory + Purchase - COGS = Ending Inventory
+<ul>
+<li>可以求出COGS</li>
+</ul></li>
+</ul></li>
+<li><p>Perpetual inventory system</p>
+<ul>
+<li>每次卖出存货都盘点</li>
+<li>数量1x价格1 = COGS1</li>
+<li>数量2x价格2 = COGS2</li>
+<li>Beginning Inventory + Purchase - (COGS1+COGS2+…) = Ending Inventory
+<ul>
+<li>可以求出Ending Inventory</li>
+</ul></li>
+</ul></li>
+<li><p>采用FIFO，Periodic和Perpetual结果是相同的</p></li>
+<li><p>采用LIFO，Periodic结果可能错误（寅吃卯粮）</p></li>
+<li><p>Valuation methods 和 Inventory System 共同决定了记账方式</p></li>
+</ul>
+<h3 id="impairment-of-inventory">5. Impairment of Inventory</h3>
+<ul>
+<li><p>存货是历史成本计量</p></li>
+<li><p>IFRS</p>
+<ul>
+<li>出现减值信号或至少一年一次</li>
+<li>做减值测试
+<ul>
+<li>可变现净值 Net realizable value (NRV)</li>
+<li>NRV = Selling price（预期售价）- Selling cost（达到预期售价的必要成本）</li>
+</ul></li>
+<li>减值（BV 账面价值&gt;NRV）
+<ul>
+<li>Inventory is write down to NRV on B/S</li>
+<li>A loss is recognized in I/S
+<ul>
+<li>减值有可能直接计在COGS里</li>
+<li>但最好放在impairments里，在infrequent and unusual items里</li>
+</ul></li>
+<li>减值的本质是把未来的销货成本提前</li>
+</ul></li>
+<li>减值迹象消失，可以冲回去，但不能超过历史价格</li>
+</ul></li>
+<li><p>GAAP</p>
+<ul>
+<li><p>比较BV和Market</p></li>
+<li><p>$$  =</p>
+<span class="math display">\[\begin{array}{|rcl}
+&amp;-&amp;\text{NRV}\\
+&amp;-&amp;\\
+&amp;-&amp; \text{Replacement cost}\\
+&amp;-&amp;\\
+&amp;-&amp; \text{NRV}-\text{Normal profit margin}
+
+\end{array}\]</span>
+<p>$$</p>
+<p>Market取Replacement cost或者上限NRV或者下限NRV-Normal profit margin</p>
+<p>NRV-Normal profit margin本质是不要利润，平价卖出</p></li>
+<li><p>如果BV&gt;Market，进行减值，跟IFRS一样</p></li>
+<li><p>减值不能恢复</p></li>
+</ul></li>
+<li><p>Inventory Adjustments</p>
+<ul>
+<li>Agricultural, forest products, minerals <strong>may be</strong> measured at Net realizable value (NRV).
+<ul>
+<li>在这里NRV = Fair value - Selling cost，而不是Selling price</li>
+</ul></li>
+<li>直接记在I/S的gain or loss里，不计减值</li>
+</ul></li>
+</ul>
+<h3 id="lifo-reserve">6. LIFO Reserve</h3>
+<ul>
+<li>GAAP要求，如果用LIFO，必须在Footnotes披露difference between LIFO and FIFO，就是LIFO Reserve</li>
+<li>B/S: LIFO Inv. + LIFO Res. = FIFO Inv.
+<ul>
+<li>I/S: LIFO COGS - <span class="math inline">\(\Delta\)</span>LIFO Res. = FIFO COGS</li>
+</ul></li>
+<li>Changes in accounting policy
+<ul>
+<li>其他方法改LIFO: Prospective application</li>
+<li>其他改动：Retrospective application</li>
+</ul></li>
+<li>LIFO改成FIFO的报表调整
+<ul>
+<li>期初
+<ul>
+<li>Inventory +Res1</li>
+<li>RE +Res1(1-t)</li>
+<li>Cash/Tax payable -/+Res1 x t</li>
+</ul></li>
+<li>期末
+<ul>
+<li>Inventory +Res2</li>
+<li>RE +Res2(1-t)</li>
+<li>Cash/Tax payable -/+Res2 x t</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="lifo-liquidation">7. LIFO Liquidation</h3>
+<ul>
+<li>正常情况
+<ul>
+<li>物价上升，存货数量上升，LIFO Reserve一定在上升</li>
+</ul></li>
+<li>不正常情况
+<ul>
+<li>物价下降或者存货数量下降都会导致LIFO Reserve下降</li>
+<li>物价下降导致的LIFO Reserve下降还是可以接受的</li>
+<li>当存货数量下降导致的LIFO Reserve下降，叫做LIFO Liquidation
+<ul>
+<li>所以LIFO Liquidation一定会导致LIFO Reserve下降</li>
+<li>但是LIFO Reserve下降不一定是LIFO Liquidation</li>
+<li>如果发生LIFO Liquidation，会导致COGS降低，会导致税增加，净利润增加（分析师应该调整报表），但这不是可持续的</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="reading-26-long-lived-assets">Reading 26 Long-Lived Assets</h2>
+<h3 id="capitalizing-and-expensing">1. Capitalizing and Expensing</h3>
+<ul>
+<li>Definition
+<ul>
+<li>Capitalizing
+<ul>
+<li>Cash变成别的Asset</li>
+<li>The asset capitalized today will be expensed in the future</li>
+</ul></li>
+<li>Expensing
+<ul>
+<li>Cash直接进入到I/S</li>
+</ul></li>
+</ul></li>
+<li>Impact on C/F（只针对long-lived asset）
+<ul>
+<li>Capitalized expenditures are classified as CFI</li>
+<li>Expensed expenditures are classified as CFO</li>
+</ul></li>
+<li>Capitalizing V.S. Expensing
+<ul>
+<li>Capitalizing
+<ul>
+<li>NI 先高后低</li>
+<li>Asset一直高</li>
+<li>Equity一直高</li>
+<li>ROA和ROE先高后低</li>
+<li>Net income volatility 低，因为资本化后钱逐渐进入I/S</li>
+<li>CFO 高</li>
+<li>CFI 低</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="tangible-asset-ppe">2. Tangible Asset (PPE)</h3>
+<h4 id="capitalized-parts">Capitalized Parts</h4>
+<ul>
+<li><p>固定资产达到可使用状态之前的一切必要支出为Capitalizing</p></li>
+<li><p><span class="math display">\[
+\begin{array}{|c|c|c|c|c|}\hline
+\text{Purchase}&amp;----&amp;\text{Ready for use}&amp;----------&amp;\text{End of life}\\\hline
+&amp;\begin{array}{c}
+\text{买来必要的费用}\\
+\textbf{Capitalize}
+\end{array}&amp;&amp;
+\begin{array}{c}
+\text{Depreciation}\\
+\text{Repair 小修小补}\\
+\text{Staff training}\\
+\textbf{Expense}\\\hline
+\text{Enhencement}\\
+\textbf{Capitalize}
+\end{array}\\\hline
+\end{array}
+\]</span></p></li>
+</ul>
+<h4 id="capitalizing-interest-costs">Capitalizing Interest Costs</h4>
+<ul>
+<li><p>如果借的钱买了PPE，则利息必须跟着设备一起资本化进入B/S，这部分利息随着折旧和摊销进入I/S，并且应出现在EBIT之前</p></li>
+<li><p>作为CFA在计算Interest coverage ratio时应该将这部分利息拿回I/S中的Interest里</p></li>
+<li><p>如果借的钱没有一次性花完，剩下的钱做短期理财，则利息应该记为净利息</p></li>
+<li><p>在C/F中，资本化的利息费用作为CFI流出，费用化的利息在GAAP中记为CFO，在IFRS中记为CFO或CFF</p></li>
+<li><p>Capitalized Interest V.S. Expensed Interest</p>
+<ul>
+<li>Capitalized Interest
+<ul>
+<li>NI 先高后低</li>
+<li>EBIT 低</li>
+<li>Interest expense 先低后相同</li>
+<li>Interest coverage ratio 先高后低</li>
+<li>CFI 先低后一样</li>
+<li>CFO 先高后一样</li>
+</ul></li>
+</ul></li>
+<li><blockquote>
+<p>Example</p>
+<ul>
+<li>Total Asset = 2000</li>
+</ul>
+<p>Capitalized interest costs = 50</p>
+<p>EBIT = 900</p>
+<p>Interest expense in I/S = 150</p>
+<p>Tax rate = 10%</p>
+<p>Depreciation expense due to the capitalized interest = 10</p>
+<p>CFO = 450</p>
+<p>CFI = -250</p>
+<ul>
+<li>As a CFA, should do the following adjustments</li>
+</ul>
+<p>Interest = <span class="math inline">\(150+50 = 200\)</span></p>
+<p>EBIT = <span class="math inline">\(900 + 10 = 910\)</span></p>
+<p>NI = (EBIT - I)(1-t) = <span class="math inline">\(710\times0.9 = 639\)</span></p>
+<p>Total asset = <span class="math inline">\(2000 - 50 + 10 = 1960\)</span></p>
+<p>CFO = <span class="math inline">\(450 - 50 = 400\)</span></p>
+<p>CFI = <span class="math inline">\(-250 + 50 = -200\)</span></p>
+</blockquote></li>
+</ul>
+<h3 id="intangible-assets">3. Intangible Assets</h3>
+<h4 id="classification">Classification</h4>
+<ul>
+<li>Internally generated</li>
+<li>Purchased separately
+<ul>
+<li>Patents, Copyrights</li>
+</ul></li>
+<li>Unidentifiable intangible asset
+<ul>
+<li>Goodwill</li>
+</ul></li>
+</ul>
+<h4 id="research-and-development">Research and Development</h4>
+<ul>
+<li><p>Research:</p>
+<ul>
+<li>IFRS &amp; GAAP: should be expensed as incurred</li>
+</ul></li>
+<li><p>Development:</p>
+<ul>
+<li>IFRS
+<ul>
+<li>Expensed except for technical feasibility</li>
+</ul></li>
+<li>GAAP
+<ul>
+<li>Expensed except for software development
+<ul>
+<li>For sales
+<ul>
+<li>Expensed except for technical feasibility</li>
+</ul></li>
+<li>For own use
+<ul>
+<li>can be capitalized if the project will be completed and the software will be used.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Structure <span class="math display">\[
+\text{R&amp;D}\left\{
+\begin{array}{l}
+\text{Research}\rightarrow\textbf{Expense}\text{ under both IFRS and GAAP}\\
+\text{Development}\left\{\begin{array}{l}
+\text{IFRS}\left\{
+\begin{array}{l}
+\text{Before technical feasibility}\rightarrow \textbf{Expense}\\
+\text{After} \rightarrow \textbf{Capitalize} 
+\end{array}
+\right.\\
+\text{GAAP}\left\{
+\begin{array}{l}
+\text{Not software development}\rightarrow \textbf{Expense}\\
+\text{Software development}\left\{
+\begin{array}{l}
+\text{For sale}\rightarrow \text{Same as IFRS}\\
+\text{For use}\rightarrow \textbf{Capitalize}\text{ if can be used}
+\end{array}
+\right.
+\end{array}
+\right.
+\end{array}\right.
+\end{array}
+\right.
+\]</span></p></li>
+</ul>
+<h4 id="goodwill-calculation-and-net-identifiable-asset">Goodwill Calculation and Net Identifiable Asset</h4>
+<ul>
+<li>Goodwill = Total cost of purchase the target company - Fair value of acquirer's net identifiable assets (可辨认净资产公允价值)
+<ul>
+<li>Net identifiable asset = Fair value of identifiable asset - Fair value of liabilities and contingent liabilities</li>
+</ul></li>
+<li>如果收购价格高，放在goodwill</li>
+<li>如果收购价格低，放在I/S里的bargain purchase</li>
+</ul>
+<h3 id="depreciation-methods">4. Depreciation Methods</h3>
+<h4 id="methods">Methods</h4>
+<ul>
+<li>Straight-line depreciation
+<ul>
+<li>Depreciation = (Cost - Residual value) / Useful life</li>
+<li>减值后折旧费用重新计算</li>
+</ul></li>
+<li>Accelerated deprecation
+<ul>
+<li>Depreciation = <span class="math inline">\(\frac{2}{N}\times NBV = \frac{2}{N}\times\)</span>(原价-累计折旧)</li>
+<li>要检验residual value，判断是否折多了，如果折多了则用残值</li>
+</ul></li>
+<li>Units of production
+<ul>
+<li>Depreciation = (目前工作量/总工作量)<span class="math inline">\(\times\)</span>(Cost - Residual value)</li>
+</ul></li>
+<li>I/S记录在COSG或者SG&amp;A中</li>
+</ul>
+<h4 id="residual-value-adjustment">Residual Value Adjustment</h4>
+<ul>
+<li>IFRS允许所有调整</li>
+<li>GAAP只允许下调</li>
+</ul>
+<h4 id="amortization">Amortization</h4>
+<ul>
+<li>只对使用寿命有限的intangible asset摊销</li>
+<li>对于无限寿命不摊销</li>
+</ul>
+<h3 id="impairment-of-long-lived-assets">5. Impairment of Long-Lived Assets</h3>
+<h4 id="classification-1">Classification</h4>
+<ul>
+<li><p>Held-for-use</p>
+<ul>
+<li>Impairment test
+<ul>
+<li><p>出现减值迹象做减值测试</p></li>
+<li><p>不是所有资产每年一次减值测试，除了Goodwill、未达到使用状态、使用寿命不确定</p>
+<p>其他资产不要求每年一次减值测试</p></li>
+</ul></li>
+</ul></li>
+<li><p>Held-for-sale</p>
+<ul>
+<li>状态转换当天做减值测试</li>
+<li>减值测试以及减值 Carrying value (=NBV) &gt; Fair Value - Cost to sell</li>
+<li>No depreciation after reclassification</li>
+</ul></li>
+</ul>
+<h4 id="impairment-of-long-lived-assets-held-for-use">Impairment of Long-Lived Assets Held-for-Use</h4>
+<ul>
+<li>IFRS
+<ul>
+<li>Carrying value (=NBV) &gt; Recoverable amount
+<ul>
+<li>Recoverable amount = <span class="math inline">\(\max\Big\{\text{Fair value} - \text{Selling cost}, \text{Value in use}\big\}\)</span>
+<ul>
+<li>Value in use: PV of future cash flow</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>GAAP
+<ul>
+<li>Step 1: Do the impairment test
+<ul>
+<li>CV of assets &gt; Undiscounted future cash flows generated by assets</li>
+</ul></li>
+<li>Step 2: Measure the loss
+<ul>
+<li>Fair value</li>
+<li>如果不存在Fair value</li>
+<li>Value in use</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="recoveries-of-impairment">Recoveries of Impairment</h4>
+<ul>
+<li>IFRS 允许</li>
+<li>GAAP
+<ul>
+<li>如果held-for-use不允许</li>
+<li>如果held-for-sale允许</li>
+</ul></li>
+<li>Goodwill不能转回</li>
+</ul>
+<h3 id="reporting-models">6. Reporting Models</h3>
+<h4 id="structure">Structure</h4>
+<ul>
+<li>IFRS
+<ul>
+<li>Investment property (投资性房地产)
+<ul>
+<li>Historical Cost
+<ul>
+<li>Fair Value Model</li>
+</ul></li>
+</ul></li>
+<li>Others
+<ul>
+<li>Historical Cost</li>
+<li>Revaluation Model</li>
+</ul></li>
+</ul></li>
+<li>GAAP
+<ul>
+<li>Historical Cost</li>
+</ul></li>
+</ul>
+<h4 id="fair-value-model">Fair Value Model</h4>
+<ul>
+<li>B/S：Fair value</li>
+<li>I/S：不考虑折旧摊销，记为Gain/Loss</li>
+</ul>
+<h4 id="revaluation-model">Revaluation Model</h4>
+<ul>
+<li><p>B/S：Fair value</p></li>
+<li><p>I/S：考虑Depreciation，剩下的放Gain/Loss</p>
+<ul>
+<li>低于历史成本的Loss记录在I/S</li>
+<li>超过历史成本的Gain记录在OCI，叫做Revaluation surplus</li>
+</ul></li>
+<li><p>处置资产时Revaluation surplus从AOCI直接进入RE，不经过I/S</p></li>
+<li><blockquote>
+<ul>
+<li><p>A company purchased a machine for 100. The estimated useful life is 10 years and estimated residual value is 0. Using revaluation model to record PPE</p></li>
+<li><table>
+<colgroup>
+<col style="width: 4%">
+<col style="width: 20%">
+<col style="width: 23%">
+<col style="width: 22%">
+<col style="width: 8%">
+<col style="width: 2%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Fair Value at revaluation day</th>
+<th style="text-align: center;">Carrying amount before revaluation</th>
+<th style="text-align: center;">Carrying amount after revaluation</th>
+<th style="text-align: center;">Depreciation</th>
+<th style="text-align: center;">G/L</th>
+<th style="text-align: center;">Revaluation Surplus in OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Y1</strong></td>
+<td style="text-align: center;"><strong>81</strong></td>
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">81</td>
+<td style="text-align: center;">-10</td>
+<td style="text-align: center;">-9</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Y2</strong></td>
+<td style="text-align: center;"><strong>88</strong></td>
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">88</td>
+<td style="text-align: center;">-9</td>
+<td style="text-align: center;">+9</td>
+<td style="text-align: center;">+7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Y3</strong></td>
+<td style="text-align: center;"><strong>60</strong></td>
+<td style="text-align: center;">77</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">-11</td>
+<td style="text-align: center;">-10</td>
+<td style="text-align: center;">-7</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</blockquote></li>
+</ul>
+<h3 id="disposal">7. Disposal</h3>
+<h4 id="sold">Sold</h4>
+<ul>
+<li>Cash +</li>
+<li>Residual value -</li>
+<li>RE +/-</li>
+</ul>
+<h4 id="abandon">Abandon</h4>
+<ul>
+<li>Residual value -</li>
+<li>RE -</li>
+</ul>
+<h4 id="exchange">Exchange</h4>
+<ul>
+<li>A -</li>
+<li>B +</li>
+<li>RE +/-</li>
+<li>换入的固定资产的账面价值是换出的资产A的fair value</li>
+</ul>
+<h2 id="reading-27-income-taxes">Reading 27 Income Taxes</h2>
+<h3 id="tax-reporting-financial-reporting">1. Tax Reporting &amp; Financial Reporting</h3>
+<h4 id="difference-between-two-systems">Difference Between Two Systems</h4>
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Income Statement</th>
+<th style="text-align: center;">Tax Return （纳税申报表）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Revenue</td>
+<td style="text-align: center;">编写完Income Statement <span class="math inline">\(\rightarrow\)</span> Taxable Revenue</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">-Expense</td>
+<td style="text-align: center;">-Deductible Expenses</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>EBT (Accounting Profit)</strong> <span class="math inline">\(\rightarrow\)</span> 开始编写Tax Return</td>
+<td style="text-align: center;"><strong>Taxable Income</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">-Income tax expense</td>
+<td style="text-align: center;">Current tax payable (=Taxable Income <span class="math inline">\(\times\)</span> Tax rate) <span class="math inline">\(\rightarrow\)</span> 返回 Income Statement</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Net Income</strong></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">(Accrual Based)</td>
+<td style="text-align: center;">(Cash Based)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sources-of-difference">Sources of Difference</h4>
+<ul>
+<li><p>Temporary difference</p>
+<p>例如：Unrealized gain or loss, depreciation</p>
+<p>会产生DTA和DTL</p>
+<p>DTL会导致企业未来多缴税</p>
+<p>DTA会导致企业未来少缴税</p>
+<p>DTA和DTL不允许netted</p></li>
+<li><p>Permanent difference</p>
+<p>例如：国债的利息收益，行政罚款等</p></li>
+<li><p>Income tax expense = Current taxes payable + <span class="math inline">\(\Delta\)</span>DTL - <span class="math inline">\(\Delta\)</span>DTA</p>
+<ul>
+<li>Current taxes payable: Cash tax</li>
+<li><span class="math inline">\(\Delta\)</span>DTL - <span class="math inline">\(\Delta\)</span>DTA: Deferred tax</li>
+</ul></li>
+</ul>
+<h4 id="calculation">Calculation</h4>
+<ul>
+<li><p>计算Taxable income</p></li>
+<li><p>计算Current tax payable = Taxable income <span class="math inline">\(\times\)</span> 当前税率t</p></li>
+<li><p>计算Temporary difference</p></li>
+<li><p>计算DTL和DTA = Temporary difference <span class="math inline">\(\times\)</span> 未来预期税率t</p></li>
+<li><p>计算<span class="math inline">\(\Delta\)</span>DTL和<span class="math inline">\(\Delta\)</span>DTA</p></li>
+<li><p>计算Income tax expense = Current tax payable + <span class="math inline">\(\Delta\)</span>DTL - <span class="math inline">\(\Delta\)</span>DTA</p></li>
+</ul>
+<h3 id="effective-tax-rate-statutory-tax-rate">2. Effective Tax Rate &amp; Statutory Tax Rate</h3>
+<ul>
+<li><p>Taxes payable = Taxable income <span class="math inline">\(\times\)</span> Tax rate</p>
+<p>其中Tax rate是Statutory tax rate</p></li>
+<li><p>Tax Expense = EBT (Accounting Profit) <span class="math inline">\(\times\)</span> Tax rate</p>
+<p>其中Tax rate是Effective tax rate</p></li>
+<li><p>如果不存在Permanent difference</p>
+<p>则Effective tax rate = Statutory tax rate</p>
+<p>如果存在Permanent difference，要进行disclose，要disclose为什么有差异</p></li>
+<li><p>Statutory tax rate是给出的，Effective tax rate是自己算出的</p></li>
+</ul>
+<h3 id="tax-base-carrying-value">3. Tax Base &amp; Carrying Value</h3>
+<h4 id="definition-1">Definition</h4>
+<ul>
+<li><p>只有暂时性差异是Difference between tax base &amp; carrying value</p></li>
+<li><p>可以直接比较Tax base和Carrying value判断DTA和DTL</p></li>
+<li><p>通过I/S和B/S都可以判断DTA和DTL，但建议使用B/S</p></li>
+<li><p>Tax base 就是税务机关眼中资产和负债值多少钱</p></li>
+</ul>
+<h4 id="tax-base-of-asset">Tax Base of Asset</h4>
+<ul>
+<li>可以在将来纳税申报表中可抵扣的金额就是资产现在的tax base</li>
+</ul>
+<h4 id="tax-base-of-liability">Tax Base of Liability</h4>
+<ul>
+<li><p>负债的账面价值减去负债在将来纳税申报表中可抵扣的金额</p></li>
+<li><p>(考试中基本为0)</p></li>
+</ul>
+<h4 id="tax-base-and-accounting-base-of-assets">Tax Base and Accounting Base of Assets</h4>
+<ul>
+<li><p>Depreciable assets</p>
+<ul>
+<li><p>Accounting base</p>
+<p>= Original cost - Accumulated accounting depreciation - Impairment</p></li>
+<li><p>Tax base</p>
+<p>= Original cost - Accumulated tax depreciation</p></li>
+</ul></li>
+<li><p>Research in R&amp;D</p>
+<ul>
+<li><p>Accounting base (Expense)</p>
+<p>= Zero</p></li>
+<li><p>Tax base (Capitalized) 担心少缴税，所以资产化</p>
+<p>= Original cost - Accumulated amortization</p></li>
+</ul></li>
+<li><p>Accounting receivable</p>
+<ul>
+<li><p>Accounting base</p>
+<p>= Invoiced amount - allowance for bed debt</p></li>
+<li><p>Tax base</p>
+<p>= Invoiced amount</p></li>
+</ul></li>
+</ul>
+<h4 id="tax-base-and-accounting-base-of-liabilities">Tax Base and Accounting Base of Liabilities</h4>
+<ul>
+<li><p>Customer advance (Unearned revenue)</p></li>
+<li><p>Accounting base</p>
+<p>Treat as liability</p></li>
+<li><p>Tax base</p>
+<p>今天就要交税，不确认负债</p></li>
+<li><p>Warranty liability</p>
+<ul>
+<li><p>Accounting base</p>
+<p>Treat as liability</p></li>
+<li><p>Tax base</p>
+<p>Recognized when cash flow is incurred</p></li>
+</ul></li>
+</ul>
+<h4 id="determine-dtadtl">Determine DTA/DTL</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Items</th>
+<th style="text-align: center;">Carrying Value &gt; Tax Base</th>
+<th style="text-align: center;">Carrying Value &lt; Tax Base</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Assets</td>
+<td style="text-align: center;">DTL</td>
+<td style="text-align: center;">DTA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Liability</td>
+<td style="text-align: center;">DTA</td>
+<td style="text-align: center;">DTL</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>资产账面价值大于计税基础产生DTL</p></li>
+<li><p>其中数值是difference<span class="math inline">\(\times\)</span>未来预计税率</p></li>
+</ul>
+<h4 id="tax-loss-carrying-forward">Tax Loss Carrying Forward</h4>
+<ul>
+<li><p>Tax loss carrying forward also results in a DTA</p>
+<p>之前的亏损可以在今天盈利的基础上减去，这就是Tax loss carrying forward</p></li>
+</ul>
+<h3 id="calculation-of-deferred-tax-items-income-tax-expense">4. Calculation of Deferred Tax Items &amp; Income Tax Expense</h3>
+<ul>
+<li><p>I/S approach</p>
+<p>比较EBT和Taxable income的temporary difference，得到<span class="math inline">\(\Delta\)</span>DTA和<span class="math inline">\(\Delta\)</span>DTL</p>
+<p>计算DTA和DTL</p>
+<p>计算Income tax expense = Taxes payable + <span class="math inline">\(\Delta\)</span>DTL - <span class="math inline">\(\Delta\)</span>DTA</p></li>
+<li><p>B/S approach</p>
+<p>比较账面价值和计税基础得到DTA和DTL</p>
+<p>计算<span class="math inline">\(\Delta\)</span>DTA和<span class="math inline">\(\Delta\)</span>DTL</p>
+<p>计算Income tax expense</p></li>
+<li><p>如果利率发生变化，两者结果不同，B/S approach是正确的</p></li>
+<li><p>建议使用B/S approach</p></li>
+<li><blockquote>
+<p>Example</p>
+<p>Original costs of PPE is 6, and <span class="math inline">\(\text{DTL}_0=0\)</span>，tax rate = 30%.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Y1</th>
+<th style="text-align: center;">Y2</th>
+<th style="text-align: center;">Y3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Accounting Dep.</td>
+<td style="text-align: center;"><strong>(2)</strong></td>
+<td style="text-align: center;"><strong>(2)</strong></td>
+<td style="text-align: center;"><strong>(2)</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Tax Dep.</td>
+<td style="text-align: center;"><strong>(3)</strong></td>
+<td style="text-align: center;"><strong>(2)</strong></td>
+<td style="text-align: center;"><strong>(1)</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\Delta\)</span>DTL</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">DTL</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Carrying base</td>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: center;"><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Tax base</td>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>0</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">DTL</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\Delta\)</span>DTL</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">-0.3</td>
+</tr>
+</tbody>
+</table>
+</blockquote></li>
+</ul>
+<h3 id="changes-in-income-tax-rates">5. Changes in Income Tax Rates</h3>
+<ul>
+<li><p>Income Tax Expense = Taxes payable + <span class="math inline">\(\Delta\)</span>DTL - <span class="math inline">\(\Delta\)</span>DTA</p>
+<ul>
+<li>计算Taxes payable用Current tax rate</li>
+<li>计算<span class="math inline">\(\Delta\)</span>DTL和<span class="math inline">\(\Delta\)</span>DTA用future tax rate</li>
+</ul></li>
+<li><p><span class="math inline">\((\text{DTL or DTA})_\text{ending}\)</span> = Temporary difference <span class="math inline">\(\times\)</span> New tax rate</p>
+<p>所以即使Temporary difference不变，税率变化也会影响<span class="math inline">\(\Delta\)</span>DTL和<span class="math inline">\(\Delta\)</span>DTA</p></li>
+<li><p>税率变化的影响</p>
+<p>未来税率变化不一定怎么影响Income tax expense</p>
+<p>当前税率的升高会增加Income tax expense</p></li>
+</ul>
+<h3 id="income-tax-analysis">6. Income Tax Analysis</h3>
+<h4 id="dta-impairments">DTA Impairments</h4>
+<ul>
+<li><p>DTA减值会导致Income tax expense升高</p></li>
+<li><p>IFRS直接在原值上减值</p></li>
+<li><p>GAAP有备抵账户Valuation allowance，可以恢复减值</p></li>
+<li><p>DTA的减值可以用来操作Income</p></li>
+</ul>
+<h4 id="recognition-of-dtl">Recognition of DTL</h4>
+<ul>
+<li>(CFA的处理)
+<ul>
+<li>If DTL is to be reversed, treated as liability</li>
+<li>If DTL is unlikely to be reversed, treated as equity</li>
+</ul></li>
+</ul>
+<h4 id="classification-on-liquidity">Classification on Liquidity</h4>
+<ul>
+<li>IFRS
+<ul>
+<li>Non-current on B/S</li>
+</ul></li>
+<li>GAAP
+<ul>
+<li>Current or Non-current on B/S，取决于多久转回</li>
+</ul></li>
+</ul>
+<h2 id="reading-28-long-term-liabilities-and-leases">Reading 28 Long-Term Liabilities and Leases</h2>
+<h3 id="general-features-of-bonds">1. General Features of Bonds</h3>
+<ul>
+<li><p>Terminology</p>
+<ul>
+<li><p>Face value (Par value)</p></li>
+<li><p>Coupon rate</p></li>
+<li><p>Coupon payments</p>
+<p>= Face value <span class="math inline">\(\times\)</span> Coupon rate</p></li>
+<li><p>Effective rate of interest (YTM, Market rate)</p></li>
+<li><p>Interest expense</p>
+<p>= 期初摊余成本 <span class="math inline">\(\times\)</span> 实际利率</p></li>
+<li><p>Affirmative covenants</p>
+<p>债权人把钱借给债务人，债务人必须怎么做</p></li>
+<li><p>Negative covenants</p>
+<p>债务人不得怎么做</p></li>
+</ul></li>
+</ul>
+<h3 id="accounting-for-bond-amortization">2. Accounting for Bond Amortization</h3>
+<h4 id="interest-expense-and-book-value">Interest Expense and Book Value</h4>
+<ul>
+<li>Interest expense = 期初摊余成本<span class="math inline">\(\times\)</span>Effective rate of interest</li>
+<li>期初摊余成本 + Interest Expense - Coupon = 期末摊余成本</li>
+</ul>
+<h4 id="amortization-1">Amortization</h4>
+<ul>
+<li><p>Interest Expense - Coupon</p></li>
+<li><blockquote>
+<ul>
+<li>Example</li>
+</ul>
+<p>Par value 1000, Market interest rate 12%, Coupon rate 10%.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>1st Jan</th>
+<th>Interest Expense</th>
+<th>Coupon</th>
+<th>31st Dec</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2003</td>
+<td>951.96</td>
+<td>114.24</td>
+<td>100</td>
+<td>966.20</td>
+</tr>
+<tr class="even">
+<td>2004</td>
+<td>966.20</td>
+<td>115.94</td>
+<td>100</td>
+<td>982.14</td>
+</tr>
+<tr class="odd">
+<td>2005</td>
+<td>982.14</td>
+<td>117.86</td>
+<td>100</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+ \begin{array}{rr}
+ \begin{array}{r|r|r|r|}
+ \text{Cash} &amp; 2003初 &amp; 2003末&amp;2004末&amp;2005末\\
+ &amp; +951.96 &amp; -100&amp; -100&amp; -100\\
+ &amp;&amp;&amp;&amp;-1000
+ \end{array}&amp;
+ \begin{array}{r|r|r|r|r|r|}
+ \text{Bonds} &amp; 2003初 &amp; 2003末 &amp; 2004末&amp;2005末\\
+ \text{Payable}&amp; +951.96&amp;+14.24&amp;+15.94&amp;+17.68 \\
+ &amp;&amp;&amp;&amp;-1000\\
+ \hline
+ \text{RE}&amp;&amp;-114.24&amp;-115.94&amp;-117.68
+ \end{array}
+ \end{array}
+\]</span></p>
+</blockquote></li>
+</ul>
+<h3 id="analysis-for-accounting-treatments">3. Analysis for Accounting Treatments</h3>
+<ul>
+<li><p>折价发行</p>
+<ul>
+<li><p>利息越来越多</p></li>
+<li><p>利息增加速度越来越快</p></li>
+<li><p>摊余成本变化越来越快</p></li>
+<li><p><span class="math inline">\(\Delta\)</span>利息</p>
+<p>=(期初摊余成本-期末摊余成本)<span class="math inline">\(\times\)</span>实际利率</p>
+<p>=(Interest-Coupon)<span class="math inline">\(\times\)</span>实际利率</p>
+<p>=Amortization<span class="math inline">\(\times\)</span>实际利率</p></li>
+</ul></li>
+<li><p>溢价发行</p>
+<p>同上</p></li>
+<li><p>实际利率变化</p>
+<p>债券定价后实际利率变化视而不见</p></li>
+</ul>
+<h3 id="cash-flow-of-bonds">4. Cash Flow of Bonds</h3>
+<ul>
+<li><p>CPA views</p>
+<ul>
+<li><p>Payments of coupon</p>
+<p>IFRS: CFO或者CFF</p>
+<p>GAAP: CFO</p></li>
+<li><p>Principal: CFF</p></li>
+</ul></li>
+<li><p>CFA views (Compared with GAAP)</p>
+<ul>
+<li><p>调整后</p>
+<p>CFO流出Interest Expense</p>
+<p>CFF流入Amortization</p></li>
+</ul>
+<p>For bonds issued at discount, if without adjustment, CFO is overstated, CFF is understated</p>
+<p>For bonds issued at premium, if without adjustment, CFO is understated, CFF is overstated.</p></li>
+</ul>
+<h3 id="issuance-costs">5. Issuance Costs</h3>
+<h4 id="ifrs-and-gaap">IFRS and GAAP</h4>
+<ul>
+<li><p>IFRS</p>
+<p>发行成本并入债券，修改实际利率</p></li>
+<li><p>GAAP</p>
+<p>发行成本资本化，外挂资产</p></li>
+</ul>
+<h4 id="derecognition-of-debt">Derecognition of Debt</h4>
+<ul>
+<li><p>提前终止债券</p></li>
+<li><p>在利润表可能确认一个G/L</p></li>
+<li><p>GAAP要处理外挂</p></li>
+</ul>
+<h3 id="definition-and-classification-of-leases">6. Definition and Classification of Leases</h3>
+<h4 id="two-parties">Two parties</h4>
+<ul>
+<li>Lessee: use the asset</li>
+<li>Lessor: owner of the asset</li>
+</ul>
+<h4 id="two-types">Two types</h4>
+<ul>
+<li><p>Operating lease</p>
+<p>经营租赁，所有权不变更</p></li>
+<li><p>Finance lease</p>
+<p>租赁期限长，资产没必要转回</p>
+<p>实质：借钱买资产</p>
+<p>所有权发生变更，进入Lessee的B/S的使用权资产</p></li>
+</ul>
+<h4 id="lessee-structure">Lessee Structure</h4>
+<ul>
+<li>IFRS: Finance lease</li>
+<li>GAAP: Finance lease and operating lease* (特殊的operating lease，资产也要入账)</li>
+<li>Exceptions
+<ul>
+<li>短期租赁行为，IFRS和GAAP都可以使用operating lease，</li>
+<li>低价值租赁，IFRS可以使用operating lease</li>
+</ul></li>
+</ul>
+<h4 id="lessor-structure">Lessor Structure</h4>
+<ul>
+<li><p>IFRS: Finance lease and operating lease</p></li>
+<li><p>GAAP: Finance lease (sales-type, direct finance) and operating lease</p></li>
+<li><p>判断：</p>
+<ul>
+<li>是否满足FL和OL区分的一般条件</li>
+<li>是否很有可能收到租赁费</li>
+<li>Yes (都满足): 作为GAAP Sales-type finance lease (IFRS Finance lease)</li>
+<li>No (有一条不满足): 是否有第三方担保或出租人通过收取承租人租赁费的方式换回成本
+<ul>
+<li>Yes (满足其中一个): GAAP Direct finance lease</li>
+<li>No (都不满足): GAAP Operating lease (IFRS Operating lease)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="accounting-for-lessee">7. Accounting for Lessee</h3>
+<ul>
+<li><p>Operating lease</p>
+<ul>
+<li><p>Inception 无操作</p></li>
+<li><p>Periodic</p>
+<ul>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Cash}- \\
+&amp; \begin{array}{l}
+\hline
+\textbf{Equity}\\
+\text{RE}-
+\end{array}
+\end{array}
+\]</span></p></li>
+<li><p>I/S</p>
+<p>Rental Expense</p></li>
+<li><p>C/S</p>
+<p>CFO<span class="math inline">\(-\)</span></p></li>
+</ul></li>
+</ul></li>
+<li><p>Operating lease*</p>
+<ul>
+<li><p>Only in GAAP</p></li>
+<li><p>Inception</p>
+<ul>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Rou}+ &amp; \text{Lease Liability}+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\end{array}
+\end{array}
+\]</span> Rou (Right-of-use)</p>
+<p>Lease liability (未来Lease payment的现值)</p></li>
+</ul></li>
+<li><p>Periodic</p>
+<ul>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Cash}- &amp; \text{Lease Liability}-\\
+\text{Rou}- \\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\text{RE}-
+\end{array}
+\end{array}
+\]</span> 每一期摊销Rou和Lease Liability，不影响利润表</p></li>
+<li><p>I/S</p>
+<p>Rental Expense</p></li>
+<li><p>C/S</p>
+<p>CFO<span class="math inline">\(-\)</span></p></li>
+</ul></li>
+</ul></li>
+<li><p>Finance lease</p>
+<ul>
+<li><p>借钱买资产</p></li>
+<li><p>Inception</p>
+<ul>
+<li>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Rou}+ &amp; \text{Lease Liability}+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\end{array}
+\end{array}
+\]</span> 与 Operating lease* 相同</li>
+</ul></li>
+<li><p>Periodic</p>
+<ul>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Cash}- &amp; \text{Lease Liability}-\\
+\text{Rou}- \\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\text{RE}--
+\end{array}
+\end{array}
+\]</span></p>
+<p>Rou 做 Depreciation</p>
+<p>Lease Liability 做 Amortization</p>
+<p>RE 减去 Depreciation，减去 Interest expense</p></li>
+<li><p>I/S</p>
+<p>Depreciation</p>
+<p>Interest expense</p></li>
+<li><p>C/S</p>
+<p>CFF 还本</p>
+<p>CFO 付息</p></li>
+</ul></li>
+</ul></li>
+<li><p>期末模式Example</p>
+<p>BM Inc. leases a machine for its own use for <strong>3 years</strong>, with annual payments of <strong>$1000 paid in arrear</strong>. The appropriate interest rate on the lease is <strong>10%</strong></p>
+<ul>
+<li><p>Operating lease <span class="math display">\[
+  \begin{array}{r|l}
+  \textbf{Asset} &amp; \textbf{Liability}\\
+  \begin{array}{|c|c|c|c}
+  \text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+  \text{Cash} &amp; &amp;-1000&amp;-1000&amp;-1000\\
+  \text{Rou} &amp;
+  \end{array}
+  &amp;
+  \begin{array}{c|c|c|c|}
+  \text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+  \text{LL} &amp; 
+  \end{array} 
+  \\
+  &amp;\begin{array}{l}
+  \hline
+  \textbf{Equity}\\
+  \begin{array}{c|c|c|c|}
+  \text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+  \text{RE} &amp; &amp;-1000&amp;-1000&amp;-1000
+  \end{array} 
+  \end{array}
+  \end{array}
+  \]</span></p></li>
+<li><p>Operating lease* <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\begin{array}{|c|c|c|c}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{Cash} &amp; &amp;-1000&amp;-1000&amp;-1000\\
+\text{Rou} &amp; +2487 &amp; -751 &amp; -826 &amp; -909\\
+&amp; +2487 &amp; =1736 &amp; =909 &amp; =0\\
+\end{array}
+&amp;
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{LL} &amp; +2487 &amp; -751 &amp; -826 &amp; -909\\
+&amp; =2487 &amp; =1736 &amp; =909 &amp; =0\\
+\end{array} 
+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{RE} &amp; &amp;-1000&amp;-1000&amp;-1000
+\end{array} 
+\end{array}
+\end{array}
+\]</span></p></li>
+<li><p>Finance lease <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\begin{array}{|c|c|c|c}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{Cash} &amp; &amp;-1000&amp;-1000&amp;-1000\\
+\text{Rou} &amp; +2487 &amp; -829 &amp; -829 &amp; -829\\
+&amp; +2487 &amp; =1658 &amp; =829 &amp; =0\\
+\end{array}
+&amp;
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{LL} &amp; +2487 &amp; -751 &amp; -826 &amp; -909\\
+&amp; =2487 &amp; =1736 &amp; =909 &amp; =0\\
+\end{array} 
+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{RE} &amp; &amp;-829&amp;-829&amp;-829\\
+&amp; &amp;-249&amp;-174&amp;-91
+\end{array} 
+\end{array}
+\end{array}
+\]</span></p></li>
+</ul></li>
+<li><p>期初模式Example</p>
+<p>BM Inc. leases a machine for its own use for <strong>3 years</strong>, with annual payments of <strong>$1000 paid upfront</strong>. The appropriate interest rate on the lease is <strong>10%</strong></p>
+<ul>
+<li><p>Operating lease <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\begin{array}{|c|c|c|c}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{Cash} &amp; -1000&amp;-1000&amp;-1000&amp;\\
+\text{Prepaid Expense} &amp; +1000 &amp; +1000 &amp; +1000 \\
+&amp;&amp;-1000 &amp; -1000 &amp; -1000
+\end{array}
+&amp;
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{LL} &amp; 
+\end{array} 
+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{RE} &amp; &amp;-1000&amp;-1000&amp;-1000
+\end{array} 
+\end{array}
+\end{array}
+\]</span></p></li>
+<li><p>Operating lease* <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\begin{array}{|c|c|c|c}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{Cash} &amp; -1000&amp;-1000&amp;-1000&amp;\\
+\text{Rou} &amp; + 2736 &amp; -826 &amp; -909 &amp; -1000
+\end{array}
+&amp;
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{LL} &amp; +2736\\
+&amp;-1000 &amp; -826 &amp; -909\\
+&amp;=1736 &amp; =909 &amp; 0
+\end{array} 
+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{RE} &amp; &amp;-1000&amp;-1000&amp;-1000
+\end{array} 
+\end{array}
+\end{array}
+\]</span></p></li>
+<li><p>Finance lease <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\begin{array}{|c|c|c|c}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{Cash} &amp; -1000&amp;-1000&amp;-1000&amp;\\
+\text{Rou} &amp; + 2736 &amp; -912 &amp; -912 &amp; -912
+\end{array}
+&amp;
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{LL} &amp; +2736\\
+&amp;-1000 &amp; -826 &amp; -909\\
+&amp;=1736 &amp; =909 &amp; 0
+\end{array} 
+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{RE} &amp; &amp;-912&amp;-912&amp;-912\\
+&amp;&amp;-174&amp; -91
+\end{array} 
+\end{array}
+\end{array}
+\]</span></p></li>
+</ul></li>
+</ul>
+<h3 id="accounting-and-analysis-for-lessor">8. Accounting and Analysis for Lessor</h3>
+<h4 id="accounting">Accounting</h4>
+<ul>
+<li><p>Operating lease</p>
+<ul>
+<li><p>Inception 无操作</p></li>
+<li><p>Periodic</p>
+<ul>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Cash}+ \\
+\text{Depreciation}- \\
+&amp; \begin{array}{l}
+\hline
+\textbf{Equity}\\
+\text{RE}+ -
+\end{array}
+\end{array}
+\]</span></p></li>
+<li><p>I/S</p>
+<p>Rental Revenue</p>
+<p>Depreciation</p></li>
+<li><p>C/S</p>
+<p>CFO<span class="math inline">\(+\)</span></p></li>
+</ul></li>
+</ul></li>
+<li><p>Finance lease</p>
+<ul>
+<li><p>Sales-type Inception</p>
+<ul>
+<li><p>进利润表</p></li>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Investment in Lease}+ &amp; \\
+\text{PPE}-\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\text{RE} +-
+\end{array}
+\end{array}
+\]</span> Investment in lease 是未来现金流折现求和</p>
+<p>PPE是账面净值</p></li>
+<li><p>I/S</p>
+<p>Sales +Investment in lease</p>
+<p>COGS -PPE</p></li>
+</ul></li>
+<li><p>Direct Inception</p>
+<ul>
+<li><p>不进利润表</p></li>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Investment in Lease}+ &amp; \\
+\text{PPE}-\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\end{array}
+\end{array}
+\]</span></p></li>
+<li><p>I/S</p>
+<p>None</p></li>
+</ul></li>
+<li><p>Periodic</p>
+<ul>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\text{Cash}+ &amp; \\
+\text{Investment in Lease}- \\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\text{RE}+
+\end{array}
+\end{array}
+\]</span></p>
+<p>其中获得的 Cash 包含本金和利息，利息进入I/S，本金摊销Investment in lease</p></li>
+<li><p>I/S</p>
+<p>Interest Receive</p></li>
+<li><p>C/S</p>
+<p>CFI 本金</p>
+<p>CFO 利息</p></li>
+</ul></li>
+</ul></li>
+<li><blockquote>
+<p>Example</p>
+<p>BY bought a machine and lease it to BM for <strong>3 years</strong> with an annual lease payment of <strong>$1000 at the beginning of each year</strong>.</p>
+<p>The appropriate interest rate on the lease <strong>is 10%</strong></p>
+<p>The carrying value of the machine <strong>is $2736</strong></p>
+<ul>
+<li><p>Operating lease</p></li>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\begin{array}{|c|c|c|c}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{Cash} &amp; +1000&amp;+1000&amp;+1000&amp;\\
+\text{PPE} &amp;  &amp; -912 &amp; -912 &amp; -912
+\end{array}
+&amp;
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{U.R.} &amp; +1000 &amp; +1000 &amp; +1000\\
+&amp; &amp; -1000 &amp; -1000 &amp; -1000
+\end{array} 
+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{RE} &amp; &amp;+1000&amp;+1000&amp;+1000\\
+&amp;&amp;-912&amp; -912&amp;-912
+\end{array} 
+\end{array}
+\end{array}
+\]</span> U.R.是 Unearned Revenue</p></li>
+<li><p>I/S</p>
+<p>Rental Revenue+</p>
+<p>Depreciation-</p></li>
+<li><p>C/F</p>
+<p>CFO</p></li>
+<li><p>Finance lease (Direct)</p></li>
+<li><p>B/S <span class="math display">\[
+\begin{array}{r|l}
+\textbf{Asset} &amp; \textbf{Liability}\\
+\begin{array}{|c|c|c|c}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{Cash} &amp; +1000&amp;+1000&amp;+1000&amp;\\
+\text{PPE} &amp;-2736  \\
+\text{Investment in Lease} &amp;+1736&amp;-826&amp;-909&amp;
+\end{array}
+&amp;
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\end{array} 
+\\
+&amp;\begin{array}{l}
+\hline
+\textbf{Equity}\\
+\begin{array}{c|c|c|c|}
+\text{Year} &amp;0&amp; 1&amp; 2 &amp; 3\\
+\text{RE} &amp; &amp;+1736\times10\%&amp;+910\times 10\%&amp;\\
+\end{array} 
+\end{array}
+\end{array}
+\]</span></p></li>
+<li></li>
+<li><p>I/S</p>
+<p>Interest +</p></li>
+<li><p>C/F</p>
+<p>CFO (利息)</p>
+<p>CFI (本金)</p></li>
+</ul>
+</blockquote></li>
+</ul>
+<h4 id="disclosure-of-lease-arrangement">Disclosure of Lease Arrangement</h4>
+<ul>
+<li><p>披露接下来5年的Lease payment (Rental revenue)，剩下的加和</p></li>
+<li><p>Interest coverage ratio 和 Fixed charge ratio</p>
+<ul>
+<li>Interest coverage ratio = EBIT/I</li>
+<li>Fixed charge ratio = (EBIT+LP)/(I+LP)</li>
+</ul></li>
+</ul>
+<h3 id="brief-introduction-of-pension-plans">9. Brief Introduction of Pension Plans</h3>
+<ul>
+<li><p>Defined contribution plans (DC plan)</p>
+<ul>
+<li>设定提存计划</li>
+<li>充钱固定</li>
+<li>可以转移到其他公司，员工自负盈亏</li>
+</ul></li>
+<li><p>Defined benefit plan (DB plan)</p>
+<ul>
+<li>设定收益计划</li>
+<li>员工拿钱固定</li>
+<li>负债，公司管钱，员工不负盈亏</li>
+</ul></li>
+<li><p>Brief introduction of DB accounting</p>
+<ul>
+<li><p>PBO: Projected benefit obligation</p>
+<p>PBO = Final wage <span class="math inline">\(\times\)</span> N (工作年数) $$ 1%</p></li>
+<li><p>Fund Status</p>
+<p>Fund Status = Fair value of plan assets (PA) - PBO</p>
+<p>PA和PBO在B/S上要相互抵消</p>
+<p>Fund Status&gt;0: Overfunded，B/S上只有Net Plan Assets</p>
+<p>Fund Status&lt;0: Underfunded，B/S上只有Net Plan Liability</p></li>
+</ul></li>
+</ul>
+<h2 id="reading-29-financial-reporting-quality">Reading 29 Financial Reporting Quality</h2>
+<h3 id="financial-reporting-quality-and-earnings-quality">1. Financial reporting quality and earnings quality</h3>
+<h4 id="financial-reporting-quality">Financial Reporting Quality</h4>
+<ul>
+<li>Relevance and faithful representation (Decisional-useful information)</li>
+</ul>
+<h4 id="earnings-quality">Earnings quality</h4>
+<ul>
+<li>Provides sustainable and adequate return</li>
+</ul>
+<h4 id="relationship-between-financial-reporting-quality-and-earnings-quality">Relationship between Financial Reporting Quality and Earnings quality</h4>
+<ul>
+<li>Financial reporting quality
+<ul>
+<li>低
+<ul>
+<li>影响评估earnings quality</li>
+</ul></li>
+<li>高
+<ul>
+<li>Earnings quality 高，增加企业价值</li>
+<li>Earnings quality 低，减少企业价值</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="fraud-triangle">Fraud Triangle</h4>
+<ul>
+<li>Motivation (动机)</li>
+<li>Opportunity (机会)</li>
+<li>Rationalization (接口)</li>
+</ul>
+<h4 id="discipline-mechanism">Discipline Mechanism</h4>
+<ul>
+<li>Internal discipline 市场自发性的</li>
+<li>External discipline 证监会，审计师，合约</li>
+</ul>
+<h2 id="reading-30-financial-statement-analysis-applications">Reading 30 Financial Statement Analysis Applications</h2>
+<p>略</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

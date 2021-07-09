@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheng-Zilong">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cheng-Zilong">
+  <link rel="canonical" href="http://yoursite.com/page/5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/2. Quantitative/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/06/01/CFA LEVEL1/2. Quantitative/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-28 21:08:11" itemprop="dateModified" datetime="2021-04-28T21:08:11+08:00">2021-04-28</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="quantitative-methods">2. Quantitative methods</h1>
+<h2 id="reading-6-time-value-of-money">Reading 6 Time Value of Money</h2>
+<h3 id="decomposition-of-required-rate-of-return">1. Decomposition of Required Rate of Return</h3>
+<h4 id="fisher-effect">Fisher Effect</h4>
+<ul>
+<li><span class="math inline">\((1+R_n)=(1+R_r)(1+I)\)</span>
+<ul>
+<li><span class="math inline">\(R_n \approx R_r+I\)</span></li>
+<li><span class="math inline">\(R_n\)</span>: Nominal interest rate</li>
+<li><span class="math inline">\(R_r\)</span>: Real interest rate</li>
+<li><span class="math inline">\(I\)</span>: Expected inflation rate</li>
+</ul></li>
+</ul>
+<h4 id="required-interest-rate-on-security">Required Interest Rate on Security</h4>
+<ul>
+<li><span class="math inline">\(R_i=R_f+R_p\)</span>
+<ul>
+<li><span class="math inline">\(R_i\)</span>: Required rate of return</li>
+<li><span class="math inline">\(R_f\)</span>: Nominal risk-free rate</li>
+<li><span class="math inline">\(R_p\)</span>: Risk premium
+<ul>
+<li>Default risk premium: 拖延或者还的少</li>
+<li>Liquidity risk premium: 流动性差风险高</li>
+<li>Maturity risk premium: 期限风险，时间长风险越大</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="effective-annual-rate-ear">2. Effective Annual Rate (EAR)</h3>
+<h4 id="calculation">Calculation</h4>
+<ul>
+<li><span class="math inline">\(EAR=\left(1+\frac{r}{m}\right)^m-1\)</span></li>
+</ul>
+<h4 id="continuous-compounding">Continuous Compounding</h4>
+<ul>
+<li><span class="math inline">\(EAR = e^r-1\)</span></li>
+</ul>
+<h3 id="annuities">3. Annuities</h3>
+<h4 id="calculation-1">Calculation</h4>
+<ul>
+<li><span class="math inline">\(FV=PV\left(1+\frac{r}{m}\right)^{mn}\)</span></li>
+</ul>
+<h4 id="requirements">Requirements</h4>
+<ul>
+<li>Same intervals</li>
+<li>Same amount of cash</li>
+<li>Same direction</li>
+</ul>
+<h4 id="classification">Classification</h4>
+<ul>
+<li><p>Ordinary annuities</p>
+<ul>
+<li>普通年金，后付年金</li>
+</ul></li>
+<li><p>Annuity due</p>
+<ul>
+<li>先付年金</li>
+</ul></li>
+<li><p>Perpetuity</p>
+<ul>
+<li>永续年金 <span class="math inline">\(PV=\frac{A}{r}\)</span></li>
+</ul></li>
+</ul>
+<h2 id="reading-7-statistical-concepts-and-market-returns">Reading 7 Statistical Concepts and Market Returns</h2>
+<h3 id="holding-period-return-hpr">1. Holding Period Return (HPR)</h3>
+<ul>
+<li><span class="math inline">\(HPR=\frac{FV-PV}{PV}=\frac{P_1-P_0+CF}{P_0}\)</span>
+<ul>
+<li><p><span class="math inline">\(P_1-P_0\)</span>：价差</p></li>
+<li><p><span class="math inline">\(CF\)</span>：稳定现金流（比如分红，股利）</p></li>
+<li><p>不是年化收益率</p></li>
+</ul></li>
+</ul>
+<h3 id="statistics-classification">2. Statistics Classification</h3>
+<ul>
+<li>Descriptive statistics</li>
+<li>Inferential statistics
+<ul>
+<li>Population 总体
+<ul>
+<li>Parameter</li>
+</ul></li>
+<li>Sample 样本
+<ul>
+<li>Sample statistic</li>
+<li>Sample size 样本容量</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="measurement-scales">3. Measurement Scales</h3>
+<ul>
+<li>Types of measurement scales:
+<ul>
+<li>Nominal scales 类别，男女</li>
+<li>Ordinal scales 大小，排名</li>
+<li>Interval scales 加减，温度</li>
+<li>Ratio scales 乘除，金钱</li>
+</ul></li>
+</ul>
+<h3 id="measure-of-central-tendency">4. Measure of Central Tendency</h3>
+<ul>
+<li><p>Arithmetic mean, geometric mean, harmonic mean</p>
+<ul>
+<li><p>算数平均&gt;=几何平均&gt;=调和平均</p>
+<p>拿123试一试</p></li>
+<li><p>调和平均：算平均估股价</p>
+<p><span class="math display">\[
+\frac{3}{1/p_1+1/p_2+1/p_3}
+\]</span></p></li>
+</ul></li>
+<li><p>算数平均看的是未来，Expectation是一种算数平均</p>
+<ul>
+<li>几何平均衡量历史业绩</li>
+</ul></li>
+</ul>
+<h3 id="quantiles">5. Quantiles</h3>
+<ul>
+<li><p>Quartile 四分位</p></li>
+<li><p>Quintile 五分位</p></li>
+<li><p>Deciles 十分位</p></li>
+<li><p>Percentile 百分位</p></li>
+<li><p>位置：第 <span class="math inline">\((n+1)*分数\)</span> 个数字</p></li>
+</ul>
+<h3 id="measures-of-dispersion">6. Measures of Dispersion</h3>
+<ul>
+<li><p>Mean absolute deviation (MAD)</p>
+<ul>
+<li><span class="math inline">\(MAD=\frac{\sum|X_i-\bar X|}{n}\)</span></li>
+</ul></li>
+<li><p>Variance &amp; standard deviation</p>
+<ul>
+<li>For population <span class="math inline">\(\sigma\)</span></li>
+<li>For sample <span class="math inline">\(s\)</span></li>
+</ul></li>
+</ul>
+<h3 id="chebyshevs-inequality">7. Chebyshev’s Inequality</h3>
+<ul>
+<li><span class="math inline">\(P(\mu-k\sigma\le X\le\mu+k\sigma)\ge 1-\frac{1}{k^2}\)</span></li>
+</ul>
+<h3 id="cv-sr">8. CV &amp; SR</h3>
+<h4 id="coefficient-of-variation-cv">Coefficient of Variation (CV)</h4>
+<ul>
+<li><p><span class="math inline">\(CV=\frac{s}{\bar X}\)</span></p></li>
+<li><p>每单位均值的标准差</p></li>
+<li><p>Scale-free (没有单位)</p></li>
+<li><p>Relative dispersion</p></li>
+<li><blockquote>
+<p>Example 修路，没有考虑规模因素</p>
+</blockquote></li>
+</ul>
+<h4 id="sharp-ratio-sp">Sharp Ratio (SP)</h4>
+<ul>
+<li><p><span class="math inline">\(SR=\frac{R_p-R_f}{\sigma_p}\)</span></p></li>
+<li><p>每单位风险的超额收益，所以越大越好</p></li>
+</ul>
+<h3 id="skewness">9. Skewness</h3>
+<ul>
+<li><p>定义</p>
+<ul>
+<li>Positive (right) skew 尾巴在右边</li>
+</ul></li>
+<li><p>Mode&lt;median&lt;mean</p></li>
+<li><p>投资者喜欢右偏：小概率获得大收益</p></li>
+<li><p>阶数 = 3</p></li>
+</ul>
+<h3 id="kurtosis">10. Kurtosis</h3>
+<ul>
+<li><p>Leptokurtic 高峰 Platykurtic 低峰</p></li>
+<li><p>Normal distribution的kurtosis=3，大于3是高峰</p></li>
+<li><p>阶数=4</p></li>
+<li><p>高峰肥尾:</p>
+<p>假设：和正态分布离散程度相同</p>
+<p>结论：不喜欢高峰肥尾</p></li>
+</ul>
+<h2 id="reading-8-probability-concepts">Reading 8 Probability Concepts</h2>
+<h3 id="probability-classification-and-odds">1. Probability Classification and Odds</h3>
+<ul>
+<li>Objective probability
+<ul>
+<li>通过客观数据</li>
+<li>Empirical probability
+<ul>
+<li>特定事情发生次数占总次数</li>
+</ul></li>
+<li>Prior probability
+<ul>
+<li>基于历史数据和逻辑分析</li>
+</ul></li>
+</ul></li>
+<li>Subjective probability
+<ul>
+<li>Intuitive estimation</li>
+</ul></li>
+<li>Odds for an event
+<ul>
+<li>发生概率/不发生概率</li>
+</ul></li>
+</ul>
+<h3 id="multiplication-and-addition-rule">2. Multiplication and Addition Rule</h3>
+<ul>
+<li><p>Multiplication</p>
+<ul>
+<li><span class="math inline">\(P(AB)=P(A|B)P(B)=P(B|A)P(A)\)</span></li>
+</ul></li>
+<li><p>Addition</p>
+<ul>
+<li><span class="math inline">\(P(A\ or\ B) = P(A)+P(B)-P(AB)\)</span></li>
+</ul></li>
+<li><p>Independent even</p>
+<ul>
+<li><span class="math inline">\(P(AB)=P(A)P(B)\)</span></li>
+</ul></li>
+<li><p>Exclusive</p>
+<ul>
+<li><span class="math inline">\(P(AB)=0\)</span></li>
+</ul></li>
+</ul>
+<h3 id="expected-value-and-variance">3. Expected Value and Variance</h3>
+<ul>
+<li><p>Expected value</p>
+<ul>
+<li><span class="math inline">\(E(X)=\sum P_iX_i\)</span></li>
+</ul></li>
+<li><p>Variance</p>
+<ul>
+<li><span class="math inline">\(\sigma^2 = E\Big[\big(X_i-E(X)\big)^2\Big]\)</span></li>
+</ul></li>
+</ul>
+<h3 id="covariance-and-correlation">4. Covariance and Correlation</h3>
+<ul>
+<li>Covariance
+<ul>
+<li><span class="math inline">\(COV(X,Y)=E\Big[\big(X-E(X)\big)\big(Y-E(Y)\big)\Big]=\sigma_X\sigma_Y\rho_{XY}\)</span></li>
+</ul></li>
+<li>Correlation
+<ul>
+<li><span class="math inline">\(\rho_{XY}=\frac{COV(X,Y)}{\sqrt{Var(X)Var(Y)}}=\frac{COV(X,Y)}{\sigma_X\sigma_Y}\)</span>
+<ul>
+<li>range：<span class="math inline">\([-1,1]\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="portfolio-return-and-risk">5. Portfolio Return and Risk</h3>
+<ul>
+<li><p>Return</p>
+<ul>
+<li><span class="math inline">\(E(r_p)=\sum_{i=1}^n w_iE(R_i)\)</span></li>
+</ul></li>
+<li><p>Variance</p>
+<ul>
+<li><p>Two assets Variance</p>
+<p><span class="math inline">\(COV(X_1,X_2)=w_1\sigma_1^2+w_2\sigma_2^2+2w_1w_2\sigma_1\sigma_2\rho_{1,2}\)</span></p></li>
+</ul></li>
+</ul>
+<h3 id="bayes-formula">6. Bayes’ Formula</h3>
+<ul>
+<li>Definition <span class="math display">\[
+P(AB)=P(A)P(B|A)=P(B)P(A|B)\\
+P(A|B)=\frac{P(A)P(B|A)}{P(B)}\\
+P(B)=P(A_1)P(B|A_1)+P(A_2)P(B|A_2)+\dotsm
+\]</span></li>
+</ul>
+<h3 id="principle-of-counting">7. Principle of Counting</h3>
+<ul>
+<li>Combination
+<ul>
+<li>Notation: <span class="math inline">\(nCr\)</span></li>
+</ul></li>
+<li>Permutation
+<ul>
+<li>Notation: <span class="math inline">\(nPr\)</span></li>
+</ul></li>
+</ul>
+<h2 id="reading-9-common-probability-distributions">Reading 9 Common Probability Distributions</h2>
+<h3 id="different-types-of-random-variables">1. Different Types of Random Variables</h3>
+<ul>
+<li><p>Discrete</p></li>
+<li><p>Continuous</p></li>
+<li><p>Probability density function (PDF)</p></li>
+<li><p>Cumulative probability function (CPF)</p></li>
+</ul>
+<h3 id="discrete-distribution-classification">2. Discrete Distribution Classification</h3>
+<ul>
+<li>Uniform distribution</li>
+<li>Binominal distribution</li>
+</ul>
+<h3 id="continuous-uniform-distribution-feature">3. Continuous Uniform Distribution Feature</h3>
+<ul>
+<li>某一点概率为0</li>
+</ul>
+<h3 id="normal-distribution">4. Normal Distribution</h3>
+<h4 id="the-confidence-interval">The Confidence Interval</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Probability</th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>68%</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>90%</td>
+<td>1.65</td>
+</tr>
+<tr class="odd">
+<td>95%</td>
+<td>1.96</td>
+</tr>
+<tr class="even">
+<td>99%</td>
+<td>2.58</td>
+</tr>
+</tbody>
+</table>
+<h4 id="standard-normal-distribution">Standard Normal Distribution</h4>
+<p><span class="math display">\[
+\frac{X-\mu}{\sigma}\sim N(0,1)
+\]</span></p>
+<h3 id="safety-first-ratio">5. Safety First Ratio</h3>
+<h4 id="short-fall-risk-definition">Short Fall Risk Definition</h4>
+<ul>
+<li>Minimum return required 低于客户要求的最小回报率</li>
+</ul>
+<h4 id="safety-first-ratio-definition">Safety First Ratio Definition</h4>
+<ul>
+<li>S-F-Ratio<span class="math inline">\(=\frac{E(R_p)-R_L}{\sigma_p}\)</span>
+<ul>
+<li>当<span class="math inline">\(R_L = R_f\)</span>, 就是sharp ratio</li>
+<li>越大越好，S-F-Ratio越大，客户遇到short fall risk的可能性越小</li>
+</ul></li>
+</ul>
+<h3 id="lognormal-distribution">6. Lognormal Distribution</h3>
+<h4 id="definition">Definition</h4>
+<ul>
+<li>如果 <span class="math inline">\(\ln X\sim N\)</span>, <span class="math inline">\(X\sim \log N\)</span></li>
+</ul>
+<h4 id="features">Features</h4>
+<ul>
+<li><p>右偏</p></li>
+<li><p>随机变量大于0</p></li>
+</ul>
+<h4 id="application">Application</h4>
+<ul>
+<li><p>一般假设价格服从对数正态分布</p></li>
+<li><p>一般假设return服从正态分布</p></li>
+</ul>
+<h3 id="simulation-classification">7. Simulation Classification</h3>
+<ul>
+<li><p>Monte Carlo Simulation</p>
+<ul>
+<li>Assume a distribution</li>
+</ul></li>
+<li><p>Historical Simulation</p>
+<ul>
+<li><p>Using the historical data</p></li>
+<li><p>Limitation</p>
+<ul>
+<li>没有考虑极端情况</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="reading-10-sampling-and-estimation">Reading 10 Sampling and Estimation</h2>
+<h3 id="sampling">1. Sampling</h3>
+<h4 id="sampling-classification">Sampling Classification</h4>
+<ul>
+<li>Simple sampling 简单抽样</li>
+<li>Stratified sampling 分层抽样</li>
+</ul>
+<h4 id="sampling-rrror">Sampling Rrror</h4>
+<ul>
+<li><p>Definition</p>
+<ul>
+<li>Sample mean - population mean</li>
+</ul></li>
+<li><p>降低 sampling error 方法：增加样本容量</p></li>
+</ul>
+<h4 id="types-of-data">Types of Data</h4>
+<ul>
+<li>Time series data 同一公司不同时间</li>
+<li>Cross-sectional data 同一时间不同公司</li>
+</ul>
+<h3 id="central-limit-theory">2. Central Limit Theory</h3>
+<h4 id="assumption">Assumption</h4>
+<ul>
+<li>样本容量 <span class="math inline">\(n\)</span> 足够大 (<span class="math inline">\(n\ge 30\)</span>)</li>
+<li>总体的 <span class="math inline">\(\mu\)</span> 和 <span class="math inline">\(\sigma^2\)</span>已知</li>
+</ul>
+<h4 id="conclusion">Conclusion</h4>
+<ul>
+<li><span class="math inline">\(\bar X\sim N(\mu_x,\frac{\sigma^2}{n})\)</span></li>
+</ul>
+<h4 id="standard-error">Standard Error</h4>
+<ul>
+<li>样本均值的标准差 <span class="math inline">\(\sigma_{\bar X}=\frac{\sigma_x}{\sqrt n}\)</span> 叫做 <strong>standard error</strong> （标准误）
+<ul>
+<li>如果总体的variance未知，可以用样本的variance代替</li>
+</ul></li>
+</ul>
+<h3 id="estimation">3. Estimation</h3>
+<h4 id="properties">Properties</h4>
+<ul>
+<li>Unbiasedness
+<ul>
+<li>$E(X)=$</li>
+</ul></li>
+<li>Efficiency
+<ul>
+<li>方差小</li>
+</ul></li>
+<li>Consistency
+<ul>
+<li>当样本容量增加，准确性应该增加</li>
+<li>当样本容量增加，standard error应该下降</li>
+</ul></li>
+</ul>
+<h4 id="estimation-classification">Estimation Classification</h4>
+<ul>
+<li><p>Point estimation</p>
+<ul>
+<li><span class="math inline">\(\mu=\bar x\)</span></li>
+</ul></li>
+<li><p>Confidential interval (CI) estimation 置信区间估计</p>
+<ul>
+<li><p><span class="math inline">\(\bar X \pm k \frac{\sigma}{\sqrt n}\)</span></p></li>
+<li><p><span class="math inline">\(k\)</span> 对应的百分比叫做 degree of confidence 置信度</p></li>
+<li><p>剩下的尾巴部分面积叫做level of significance 显著性水平，通常用 <span class="math inline">\(\alpha\)</span> 表示</p></li>
+</ul></li>
+</ul>
+<h3 id="student-t-distribution">5. Student t Distribution</h3>
+<h4 id="features-1">Features</h4>
+<ul>
+<li>Symmetric</li>
+<li>唯一的参数：Degrees of freedom (<span class="math inline">\(df\)</span>)
+<ul>
+<li><span class="math inline">\(df=n-1\)</span></li>
+</ul></li>
+<li>相比于正态分布，低峰肥尾</li>
+<li>当 <span class="math inline">\(df\)</span> 足够大，趋近于标准正态分布</li>
+</ul>
+<h4 id="z-distribution-v.s.-t-distribution">Z-Distribution V.S. t-Distribution</h4>
+<ul>
+<li>方差已知用z</li>
+<li>方差未知用t</li>
+<li>非正态小样本不可估计</li>
+<li>大样本 (<span class="math inline">\(n\ge 30\)</span>) 任何情况可用z</li>
+</ul>
+<h3 id="types-of-bias">6. Types of Bias</h3>
+<ul>
+<li>Data-mining bias
+<ul>
+<li>偶然当必然</li>
+<li>如果用相同数据库测试和训练，会产生该偏差</li>
+</ul></li>
+<li>Sample selection bias
+<ul>
+<li>例子：survivorship bias 幸存者偏差</li>
+</ul></li>
+<li>Look ahead bias
+<ul>
+<li>用到的数据得不到，用历史数据估计产生的偏差</li>
+</ul></li>
+<li>Time-period bias
+<ul>
+<li>与时间相关的偏差</li>
+</ul></li>
+</ul>
+<h2 id="reading-11-hypothesis-testing">Reading 11 Hypothesis Testing</h2>
+<h3 id="critical-value-method">1. Critical Value Method</h3>
+<h4 id="state-hypothesis">State Hypothesis</h4>
+<ul>
+<li>Null hypothesis (<span class="math inline">\(H_0\)</span>)
+<ul>
+<li>想拒绝的假设 (等于号都放在这里边)</li>
+</ul></li>
+<li>Alternative hypothesis (<span class="math inline">\(H_a\)</span>)
+<ul>
+<li><p>想接受的假设</p></li>
+<li><p>One tailed and two tailed</p>
+<ul>
+<li>One tailed</li>
+<li><span class="math inline">\(H_0:\mu=\mu_0\quad H_a:\mu\neq \mu_0\)</span></li>
+<li>Two tailed
+<ul>
+<li><span class="math inline">\(H_0: \mu\le \mu_0\quad H_a: \mu&gt;\mu_0\)</span></li>
+<li><span class="math inline">\(H_0: \mu\ge \mu_0\quad H_a: \mu&lt;\mu_0\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="test-statistic">Test Statistic</h4>
+<ul>
+<li><p>Calculation</p>
+<ul>
+<li><span class="math inline">\(\frac{\bar X-\mu}{\sigma/\sqrt n}\)</span></li>
+</ul></li>
+<li><p>Critic Value Selection (就是那个k)</p>
+<ul>
+<li><p>与 <span class="math inline">\(\alpha\)</span> 有关</p></li>
+<li><p>与查哪张表有关</p></li>
+<li><p>与单尾双尾有关</p></li>
+</ul></li>
+<li><p>Statement</p>
+<ul>
+<li><p>Reject the null hypothesis</p></li>
+<li><p>Fail to reject the null hypothesis</p></li>
+</ul></li>
+</ul>
+<h3 id="hypothesis-testing-for-different-parameters">2. Hypothesis Testing for Different Parameters</h3>
+<h4 id="mean-hypothesis-testing">Mean Hypothesis Testing</h4>
+<ul>
+<li>一个均值
+<ul>
+<li>z/t</li>
+</ul></li>
+<li>两个均值之间的关系 t分布
+<ul>
+<li>独立的</li>
+<li>不独立
+<ul>
+<li>paired comparison test</li>
+<li>假设检验差值是否等于0</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="variance-hypothesis-testing">Variance Hypothesis Testing</h4>
+<ul>
+<li>一个方差：<span class="math inline">\(\Chi^2\)</span> 分布</li>
+<li>两个方差：F 分布</li>
+</ul>
+<h4 id="correlation-hypothesis-testing">Correlation Hypothesis Testing</h4>
+<ul>
+<li><p>Null hypothesis <span class="math inline">\(H_0: r=0\)</span></p></li>
+<li><p><span class="math display">\[
+t=\frac{r-0}{\sqrt{\frac{1-r^2}{n-2}}}\\
+df=n-2
+\]</span></p></li>
+<li><p>r 是相关系数</p></li>
+<li><p>如果拒绝了原假设，也就是说 <span class="math inline">\(r\)</span> significantly different from 0，说明有线性关系</p></li>
+</ul>
+<h3 id="p-value-method">3. P-Value Method</h3>
+<h4 id="definition-1">Definition</h4>
+<ul>
+<li>拒绝原假设的最小显著性水平</li>
+</ul>
+<h4 id="compare-p-alpha">Compare <span class="math inline">\(P\)</span> &amp; <span class="math inline">\(\alpha\)</span></h4>
+<ul>
+<li><p><span class="math inline">\(P&gt;\alpha\)</span> 不能拒绝原假设</p></li>
+<li><p>P越小越拒绝</p></li>
+</ul>
+<h3 id="type-i-and-type-ii-error">4. Type I and Type II error</h3>
+<h4 id="definition-2">Definition</h4>
+<ul>
+<li><p>原假设正确但是reject了，第一类错误，错杀好人</p></li>
+<li><p><span class="math inline">\(P(\text{I error})=\alpha\)</span></p></li>
+<li><p>原假设错误但是fail to reject了，第二类错误，放走坏人</p></li>
+</ul>
+<h4 id="power-of-test">Power of test</h4>
+<ul>
+<li><p>原假设是错误的，拒绝了</p></li>
+<li><p><span class="math inline">\(1-P(\text{II error})\)</span></p></li>
+</ul>
+<h4 id="features-2">Features</h4>
+<ul>
+<li>当n不变，I error 和 II error此消彼长</li>
+<li>当n增大，I和II error都下降</li>
+</ul>
+<h3 id="nonparametric-test">5. Nonparametric test</h3>
+<ul>
+<li>对非参数检验
+<ul>
+<li>当数据不满足分布假设</li>
+<li>当数据是排序的</li>
+<li>当检验的不是参数</li>
+</ul></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/01/CFA LEVEL1/10. Portfolio/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2021/06/01/CFA LEVEL1/10. Portfolio/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2021-06-01 11:36:45" itemprop="dateCreated datePublished" datetime="2021-06-01T11:36:45+08:00">2021-06-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-17 15:23:28" itemprop="dateModified" datetime="2021-05-17T15:23:28+08:00">2021-05-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CFA-LEVEL1/" itemprop="url" rel="index"><span itemprop="name">CFA LEVEL1</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="portfolio-management">10. Portfolio Management</h1>
+<h2 id="reading-51-overview">Reading 51: Overview</h2>
+<h3 id="portfolio-approach">1. Portfolio Approach</h3>
+<h4 id="definition">Definition</h4>
+<ul>
+<li>From the perspective of risk and returns, evaluate the whole portfolio</li>
+</ul>
+<h4 id="objective">Objective</h4>
+<ul>
+<li><p>Diversification</p>
+<ul>
+<li>During severe market turmoil, diversification is less effective</li>
+</ul></li>
+</ul>
+<h3 id="portfolio-management-process">2. Portfolio Management Process</h3>
+<ul>
+<li><p>Planning</p>
+<ul>
+<li>Develop Investment Policy Statement (IPS)</li>
+</ul></li>
+<li><p>Execution</p>
+<ul>
+<li><p>Asset allocation - Reading 52</p></li>
+<li><p>Security analysis - Reading 53</p></li>
+<li><p>Portfolio Construction - Reading 54</p></li>
+</ul></li>
+<li><p>Feedback</p>
+<ul>
+<li><p>Monitor and rebalance</p></li>
+<li><p>Measure portfolio performance</p></li>
+</ul></li>
+</ul>
+<h3 id="types-of-clients">3. Types of Clients</h3>
+<h4 id="types">Types</h4>
+<ul>
+<li><p>Individual Investors</p>
+<ul>
+<li>Individual</li>
+<li>Defined contrition (DC) plan</li>
+</ul></li>
+<li><p>Institutional Investors</p>
+<ul>
+<li><p>Defined benefit (DB) plan</p></li>
+<li><p>Endowment and foundation</p></li>
+<li><p>Bank</p></li>
+<li><p>Insurance</p></li>
+</ul></li>
+</ul>
+<h4 id="characteristics">Characteristics</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Investor</th>
+<th style="text-align: center;">Risk Tolerance</th>
+<th style="text-align: center;">Time Horizon</th>
+<th style="text-align: center;">Liquidity Needs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">DB Plan</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">Long</td>
+<td style="text-align: center;">Low</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Banks</td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">Short</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Endowments and Foundations</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">Long</td>
+<td style="text-align: center;">Low</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Insurance</td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">Short</td>
+<td style="text-align: center;">High</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pooled-investments">4. Pooled Investments</h3>
+<h4 id="objective-1">Objective</h4>
+<ul>
+<li>Improve diversification</li>
+</ul>
+<h4 id="types-1">Types</h4>
+<ul>
+<li><p>Mutual funds</p>
+<p><span class="math display">\[
+  \text{Sponser} 
+  \quad\begin{array}{c}
+  \overset{\text{Subsrcibe}}{\Huge\longrightarrow}\\
+  \underset{\text{Redeem}}{\Huge\longleftarrow}
+  \end{array}\quad
+  \text{Investor}
+  \]</span></p>
+<ul>
+<li>Open-end and close-end</li>
+<li>Open-end mutual fund is priced with the net asset value per share
+<ul>
+<li>Money market funds, bond funds, stock funds, hybrid or balanced funds.</li>
+</ul></li>
+</ul></li>
+<li><p>Exchange traded funds (ETFs): <span class="math display">\[
+  \text{Sponser} 
+  \quad\begin{array}{c}
+  \overset{\text{Subsrcibe}}{\Huge\longrightarrow}\\
+  \underset{\text{Redeem}}{\Huge\longleftarrow}
+  \end{array}\quad
+  \begin{array}{c}
+  \text{Financial}\\
+  \text{Institute}
+  \end{array}
+  \quad\begin{array}{c}
+  \overset{\text{Buy}}{\Huge\longrightarrow}\\
+  \underset{\text{Sell}}{\Huge\longleftarrow}
+  \end{array}\quad
+  \text{Investor}
+\]</span></p></li>
+<li><p>Alternatives</p>
+<ul>
+<li>Separately managed account (SMA)</li>
+<li>Hedge funds</li>
+<li>Buyout funds (Leveraged BO: LBO，借钱杠杆收购)</li>
+<li>Venture capital funds</li>
+</ul></li>
+</ul>
+<h4 id="gainloss-classification">Gain/Loss Classification</h4>
+<ul>
+<li>Capital gain
+<ul>
+<li>Gain from shares sold by the investor</li>
+</ul></li>
+<li>Capital gain distribution
+<ul>
+<li>Gain from asset sold by manager</li>
+</ul></li>
+<li>Premium/discount
+<ul>
+<li>The difference between NAV and share price</li>
+</ul></li>
+</ul>
+<h3 id="asset-management-industry">5. Asset Management Industry</h3>
+<h4 id="buy-side-firms">Buy-Side Firms</h4>
+<ul>
+<li>资产管理机构、基金经理等操盘的人</li>
+</ul>
+<h4 id="sell-side-firms">Sell-Side Firms</h4>
+<ul>
+<li>Broker-dealers等站在中介的角度为市场提供流动性</li>
+</ul>
+<h4 id="asset-manager">Asset Manager</h4>
+<ul>
+<li>Full-service asset managers</li>
+<li>Specialist asset managers</li>
+</ul>
+<h4 id="active-management-and-passive-management">Active Management and Passive Management</h4>
+<ul>
+<li>Active management
+<ul>
+<li>Attempts to outperform a chosen benchmark by manager skills</li>
+</ul></li>
+<li>Passive management
+<ul>
+<li>Attempts to replicate the returns of a chosen market index</li>
+</ul></li>
+</ul>
+<h4 id="asset-management-industry-trends">Asset Management Industry Trends</h4>
+<ul>
+<li><p>Passive management grows</p></li>
+<li><p>Data grows</p></li>
+<li><p>Robo-advisor grows</p></li>
+</ul>
+<h2 id="reading-52-portfolio-risk-and-return-part-i">Reading 52: Portfolio Risk and Return (Part I)</h2>
+<h3 id="return-and-risk">1. Return and Risk</h3>
+<h4 id="main-theory">Main Theory</h4>
+<ul>
+<li>Modern Portfolio Theory (MPT)
+<ul>
+<li>Portfolios reduce risk more than they increase returns.</li>
+</ul></li>
+</ul>
+<h4 id="return-classification">Return Classification</h4>
+<ul>
+<li><p>Holding Period Return (HPR)</p>
+<ul>
+<li><span class="math inline">\(HPR = \frac{FV-PV}{PV}\)</span></li>
+</ul></li>
+<li><p>Average Return</p>
+<ul>
+<li><p>Arithmetic mean return</p></li>
+<li><p>Geometric mean return</p>
+<ul>
+<li>Time Weighted Rate of Return (TWRR)
+<ul>
+<li><span class="math inline">\(TWRR=\left(\Pi_{i=1}^N (1+HPR_i)\right)^{1/n}-1\)</span>
+<ul>
+<li>N: 滚了几期</li>
+<li>n: 总年数</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Money-weighted return</p>
+<ul>
+<li>Money weighted rate of return (MWRR)
+<ul>
+<li>Annualized Internal Rate of Return (IRR)</li>
+</ul></li>
+</ul></li>
+<li><p>Relationship between TWRR and MWRR</p>
+<ul>
+<li>Similarity: Both are annual rates.</li>
+<li>Difference: TWRR is not influenced by cash flow</li>
+</ul></li>
+<li><blockquote>
+<p>Example</p>
+<ul>
+<li><p>Eric invests $1000 in an account. After one year, the value of the investment is $1200 and Eric adds another $800 into the account. At the end of Year 2, the total value of the investment is $2,200. Calculate the annual TWRR and MWRR.</p></li>
+<li><p>TWRR:14.9%</p></li>
+<li><p>MWRR: 13.62%</p></li>
+</ul>
+</blockquote></li>
+<li><p>Other Return Measures</p>
+<ul>
+<li><p>Gross return and net return <span class="math display">\[
+  \text{Return}\\
+  -\text{Transaction Cost (交易费用)}\\
+  ------------\\
+  \text{Gross Return}\\
+  -\text{M&amp;A  Cost (基金经理管理费用)}\\
+  ------------\\
+  \text{Net Return}
+  \]</span></p></li>
+<li><p>Pre-tax nominal return and After-tax nominal return:</p>
+<ul>
+<li><span class="math inline">\(\text{After-tax nominal return} = \text{Pre-tax nominal return} \times (1-t)\)</span></li>
+</ul></li>
+<li><p>Real Return</p>
+<ul>
+<li><span class="math inline">\((1+r_\text{nominal}) = (1+r_\text{real})(1+\pi)\)</span></li>
+<li><span class="math inline">\(\pi\)</span> is the inflation rate, when <span class="math inline">\(\pi\)</span> is small, Fisher equation is derived</li>
+<li><span class="math inline">\(r_\text{nominal} = r_\text{real}+\pi\)</span></li>
+</ul></li>
+<li><p>Leveraged Return</p>
+<ul>
+<li>Only consider the own money.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="variance-of-return-for-two-asset-portfolio">Variance of Return for Two Asset Portfolio</h4>
+<ul>
+<li><span class="math inline">\(\sigma_{p}^2=\omega_1^2\sigma_1^2+\omega_2^2\sigma_2^2+2\omega_1\omega_2\sigma_1\sigma_2\rho_{1,2}\)</span></li>
+</ul>
+<h3 id="efficient-frontier-ef">2. Efficient Frontier (EF)</h3>
+<h4 id="definition-1">Definition</h4>
+<ul>
+<li><p>In the case of two asset portfolio, there are three equations</p>
+<p><span class="math display">\[
+  \begin{array}{rcl}
+  \sigma_{p}^2&amp;=&amp;\omega_1^2\sigma_1^2+\omega_2^2\sigma_2^2+2\omega_1\omega_2\sigma_1\sigma_2\rho_{1,2}\\
+  E(R)&amp;=&amp;\omega_1R_1+\omega_2R_2\\
+  \omega_1+\omega_2&amp;=&amp; 1
+  \end{array}
+  \]</span></p></li>
+<li><p>The parameters <span class="math inline">\(R_1,R_2,\sigma_1,\sigma_2,\rho_{1,2}\)</span> are known. If we choose different <span class="math inline">\(\omega_1\)</span> and <span class="math inline">\(\omega_2\)</span>, we can draw between <span class="math inline">\(\sigma_{p}\)</span> in terms of x-axis and <span class="math inline">\(E(R)\)</span> in terms of y-axis.</p></li>
+<li><p>Key Components</p>
+<ul>
+<li>Opportunity investment set</li>
+<li>Minimum-variance frontier</li>
+<li>Global variance minimum point</li>
+<li>Efficient frontier (EF)
+<ul>
+<li>Un-efficient 右下方</li>
+<li>Not achievable 左上方</li>
+</ul></li>
+</ul></li>
+<li><p>EF Properties</p>
+<ul>
+<li><p>Only consider risky assets</p></li>
+<li><p>Given <span class="math inline">\(E(R)\)</span>, <span class="math inline">\(\sigma\)</span> is minimum</p>
+<p>Given <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(E(R)\)</span> is maximum</p></li>
+<li><p>Efficient portfolio is well-diversified or fully diversified</p></li>
+</ul></li>
+</ul>
+<h3 id="utility-theory">3. Utility Theory</h3>
+<ul>
+<li><p>Utility Function</p>
+<ul>
+<li><span class="math inline">\(U=E(R)-\frac{1}{2}A\sigma^2\)</span>
+<ul>
+<li><p>If <span class="math inline">\(A&lt;0\)</span>, risk seeking</p></li>
+<li><p>If <span class="math inline">\(A=0\)</span>, risk neutral</p></li>
+<li><p>If <span class="math inline">\(A&gt;0\)</span>, risk averse</p></li>
+</ul></li>
+</ul></li>
+<li><p>Indifference Curve</p>
+<ul>
+<li><p>The curve of the utility function</p>
+<ul>
+<li><p>在indifference curve上，utility相同</p></li>
+<li><p>曲线是convex的</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="optimal-portfolio-selection">4. Optimal Portfolio Selection</h3>
+<h4 id="capital-allocation-line-cal-definition">Capital Allocation Line (CAL) Definition</h4>
+<ul>
+<li>无风险资产与风险资产做组合得到的线 <span class="math display">\[
+  \begin{array}{rcl}
+  \sigma_{p}^2&amp;=&amp;\omega_1^2\sigma_1^2\\
+  E(R)&amp;=&amp;\omega_1R_1+\omega_2R_2\\
+  \omega_1+\omega_2&amp;=&amp; 1
+  \end{array}
+  \]</span></li>
+</ul>
+<h4 id="optimal-cal">Optimal CAL</h4>
+<ul>
+<li>Sharp ratio最高的CAL</li>
+</ul>
+<h4 id="optimal-risky-portfolio">Optimal Risky Portfolio</h4>
+<ul>
+<li>Optimal CAL与有效前沿的交点</li>
+</ul>
+<h4 id="two-fund-separation-theorem">Two-fund Separation Theorem</h4>
+<ul>
+<li>All investors will hold a combination of two portfolios: A risky-free asset and an optimal risky portfolio</li>
+</ul>
+<h4 id="optimal-investor-portfolio">Optimal Investor Portfolio</h4>
+<ul>
+<li>无差异曲线和有效前沿的交点</li>
+</ul>
+<h4 id="borrowing-portfolio-and-lending-portfolio">Borrowing Portfolio and Lending Portfolio</h4>
+<ul>
+<li><p>Borrowing portfolio: 右上方直线，借钱投资</p></li>
+<li><p>Lending portfolio: 左下方直线</p></li>
+</ul>
+<h2 id="reading-53-portfolio-risk-and-return-part-2">Reading 53: Portfolio Risk and Return (Part 2)</h2>
+<h3 id="capital-market-line-cml">1. Capital Market Line (CML)</h3>
+<ul>
+<li><p>Main Theory: Capital Market Theory (CMT)</p></li>
+<li><p>Capital Market Line (CML)</p>
+<ul>
+<li><p>基于homogeneity of expectation产生CML，是一种特殊的CAL，Optimal risky portfolio in CML叫做market portfolio</p></li>
+<li><p>Risk-free asset 与 market portfolio 的组合产生CML</p></li>
+<li><p><span class="math inline">\(E(R_p)=R_f+\frac{R_M-R_f}{\sigma_M}\sigma_p\)</span></p>
+<ul>
+<li>Market Sharp Ratio: <span class="math inline">\(\frac{R_M-R_f}{\sigma_M}\)</span></li>
+<li>Portfolio Sharp Ratio: <span class="math inline">\(\frac{E(R_p)-R_f}{\sigma_p}\)</span></li>
+<li>Market Sharp Ratio = Portfolio Sharp Ratio</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="the-capm-and-sml">2. The CAPM and SML</h3>
+<h4 id="capm-core-idea">CAPM Core Idea</h4>
+<ul>
+<li>Only systematic risk is compensated.</li>
+</ul>
+<h4 id="nonsystematic-risk-and-systematic-risk">Nonsystematic Risk and Systematic Risk</h4>
+<ul>
+<li><p>Nonsystematic risk</p>
+<ul>
+<li><p>Can be avoided by forming a diversified portfolio</p></li>
+<li><p>Is local or limited to particular asset.</p></li>
+<li><p>影响单个公司或者行业</p></li>
+</ul></li>
+<li><p>Systematic risk (Market risk)</p>
+<ul>
+<li>A standardized measure of systematic risk is Beta</li>
+</ul></li>
+</ul>
+<h4 id="estimation-of-beta-by-security-characteristic-line">Estimation of Beta by Security Characteristic Line</h4>
+<ul>
+<li><p>Security characteristic line (SCL):</p>
+<ul>
+<li><p>X: Excess Market Return <span class="math inline">\(R_m-R_f\)</span></p></li>
+<li><p>Y: Excess Security Return <span class="math inline">\(R_i-R_f\)</span></p></li>
+<li><p>Slope: <span class="math inline">\(\beta = \frac{\Delta R_i}{\Delta R_m}\)</span> (The sensitivity of security in terms of the change of market)</p></li>
+</ul></li>
+</ul>
+<h4 id="compute-beta">Compute Beta</h4>
+<ul>
+<li><p><span class="math inline">\(\beta = \frac{\Delta R_i}{\Delta R_m}=\frac{\text{Cov}_{i,m}}{\sigma_m^2}=\rho_{i,m}\frac{\sigma_i}{\sigma_m}\)</span></p></li>
+<li><p>市场组合的<span class="math inline">\(\beta=\frac{\Delta R_m}{\Delta R_m}=1\)</span></p></li>
+</ul>
+<h4 id="capm">CAPM</h4>
+<ul>
+<li><p>The security market line (SML) equation</p>
+<ul>
+<li><span class="math inline">\(E(R_i) = R_f+(E(R_m)-R_f)\beta_i\)</span>
+<ul>
+<li><span class="math inline">\(E(R_m)-R_f\)</span>: Market risk premium</li>
+</ul></li>
+</ul></li>
+<li><p>Undervalued, Overestimated and Properly valued.</p>
+<ul>
+<li>If the point is above the SML, it is undervalued, buy</li>
+</ul></li>
+</ul>
+<h3 id="other-return-generating-models">3. Other Return Generating Models</h3>
+<ul>
+<li><p>Market Model</p>
+<ul>
+<li>Single factor model</li>
+</ul></li>
+<li><p>Multifactor model</p>
+<ul>
+<li><p><span class="math inline">\(R_i = b_0+b_1F_1+b_2F_2+\dotsm\)</span></p></li>
+<li><p>分类：</p>
+<ul>
+<li>Macroeconomic factors</li>
+<li>Fundamental factors</li>
+<li>Statistical factors</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="performance-evaluation-indicators">4. Performance Evaluation Indicators</h3>
+<h4 id="sharp-ratio-sr">Sharp Ratio (SR)</h4>
+<ul>
+<li><p>Definition</p>
+<p><span class="math display">\[
+  SR=\frac{E(R)-R_f}{\sigma_p}
+  \]</span></p></li>
+<li><p>Indirect indicator</p></li>
+</ul>
+<h4 id="m2alpha-indicator"><span class="math inline">\(M^2\alpha\)</span> Indicator</h4>
+<ul>
+<li><p><span class="math inline">\(M^2\)</span> definition</p>
+<ul>
+<li>Create a new portfolio <span class="math inline">\(P&#39;\)</span> that mimics the risk of a market portfolio with the same sharp ratio as given portfolio and obtain the return as <span class="math inline">\(M^2=E(R_{P&#39;})=\frac{E(R_p)-R_f}{\sigma_p}\sigma_m+R_f\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(M^2 \alpha\)</span> definition</p>
+<p><span class="math display">\[
+  \begin{array}{rcl}
+  M^2 \alpha &amp;=&amp;E(R_{P&#39;})-R_m\\
+  &amp;=&amp;\frac{E(R)-R_f}{\sigma_p}\sigma_m+R_f-R_m\\
+  &amp;=&amp;\frac{E(R)-R_f}{\sigma_p}\sigma_m-(R_m-R_f)\\
+  &amp;=&amp;\Big(\frac{E(R)-R_f}{\sigma_p}-\frac{R_m-R_f}{\sigma_m}\Big)\sigma_m\\
+  &amp;=&amp;\Big(SR_p-SR_m\Big)\sigma_m\\
+  \end{array}
+  \]</span></p></li>
+<li><p>Direct indicator</p></li>
+</ul>
+<h4 id="treynor-ratio-tr">Treynor Ratio (TR)</h4>
+<ul>
+<li><p>Definition</p>
+<ul>
+<li>Only consider systematic risk</li>
+<li><span class="math inline">\(TR=\frac{E(R_p)-R_f}{\beta_p}\)</span></li>
+</ul></li>
+</ul>
+<h4 id="jensens-alpha-jalpha">Jensen's alpha (<span class="math inline">\(J\alpha\)</span>)</h4>
+<ul>
+<li><p>Alpha 通常用来表示超额收益率</p></li>
+<li><p><span class="math inline">\(J\alpha_p = R_p - SML_p =R_p - (R_f+\beta_p(E(R_m)-R_f))\)</span></p></li>
+<li><p>The difference between real return and the return on the SML</p></li>
+</ul>
+<h2 id="reading-54-basics-of-portfolio-planning-and-construction">Reading 54: Basics of Portfolio Planning and Construction</h2>
+<h3 id="components-of-ips">1. Components of IPS</h3>
+<ul>
+<li>…</li>
+<li>Investment of objectives</li>
+<li>Investment of constraints</li>
+<li>…</li>
+<li><strong>Appendices:</strong> Strategic asset allocation (SAA), Rebalancing policy (记住这两个)</li>
+</ul>
+<h3 id="objective-and-constraints">2. Objective and Constraints</h3>
+<ul>
+<li><p>RRTTLLU</p></li>
+<li><p>Investment Objectives: Risk and Return</p>
+<ul>
+<li><p>Risk Objective Measurement</p>
+<ul>
+<li><p>Absolute measurement</p>
+<ul>
+<li>Variance or standard deviation</li>
+</ul></li>
+<li><p>Relative measurement</p>
+<ul>
+<li>Relative to benchmark</li>
+</ul></li>
+<li><p>Downside risk</p>
+<ul>
+<li>Value at risk (VaR)
+<ul>
+<li>Loss in a given probability 小概率下的最小损失，大概率下的最大损失</li>
+</ul></li>
+</ul></li>
+<li><p>Risk Tolerance</p>
+<ul>
+<li><p>Willingness and ability</p></li>
+<li><p>If either one is low, then the risk tolerance is low.</p></li>
+</ul></li>
+</ul></li>
+<li><p>Return Objective Measurement</p>
+<ul>
+<li><p>Absolute basis</p>
+<ul>
+<li>Expectation return</li>
+</ul></li>
+<li><p>Relative basis</p>
+<ul>
+<li>Relative to benchmark</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>Investment Constraints</p>
+<ul>
+<li><p>Time horizon</p></li>
+<li><p>Tax</p></li>
+<li><p>Liquidity</p></li>
+<li><p>Legal</p></li>
+<li><p>Unique Circumstances</p></li>
+</ul></li>
+</ul>
+<h3 id="asset-allocation">3. Asset Allocation</h3>
+<ul>
+<li><p>Strategic asset allocation (SAA)</p>
+<ul>
+<li><p>Long term, consistent with IPS</p></li>
+<li><p>Correlations within the class is higher than the correlations between asset classes</p></li>
+</ul></li>
+<li><p>Tactical asset allocation (TAA)</p>
+<ul>
+<li>Short term, may not consistent with IPS</li>
+</ul></li>
+</ul>
+<h3 id="specifications-of-asset-classes">4. Specifications of Asset Classes</h3>
+<ul>
+<li><p>Correlations</p>
+<ul>
+<li>相同资产类别correlation大</li>
+</ul></li>
+</ul>
+<h3 id="environment-social-governance-esg">5. Environment, Social, Governance (ESG)</h3>
+<ul>
+<li>如何选择好的ESG公司
+<ul>
+<li>Negative Screening 负面清单</li>
+<li>Positive Screening 正面清单</li>
+<li>Thematic Investing 炒话题</li>
+<li>Engagement/Active Ownership Investing 介入公司管理</li>
+</ul></li>
+</ul>
+<h2 id="reading-55-introduction-to-risk-management">Reading 55: Introduction to Risk Management</h2>
+<h3 id="define-risk-management">1. Define Risk Management</h3>
+<h4 id="risk">Risk</h4>
+<ul>
+<li>Exposure to uncertainty</li>
+</ul>
+<h4 id="risk-exposure">Risk Exposure</h4>
+<ul>
+<li>The extent to which an entity’s value may be affected</li>
+</ul>
+<h4 id="risk-management">Risk Management</h4>
+<ul>
+<li>Maximizing utility given a tolerance level of risk</li>
+</ul>
+<h4 id="risk-governance">Risk Governance</h4>
+<ul>
+<li>Top-down process and guidance that directs risk management activities to align with and support the overall enterprise</li>
+</ul>
+<h4 id="risk-budgeting">Risk Budgeting</h4>
+<ul>
+<li>Quantifies and allocates the tolerable risk by specific metrics</li>
+</ul>
+<h4 id="procedure">Procedure</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Board</th>
+<th style="text-align: center;">Management</th>
+<th style="text-align: center;">Establish Management Infrastructure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Goals</td>
+<td style="text-align: center;">Strategies</td>
+<td style="text-align: center;">Identify Risk</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Risk Tolerance</td>
+<td style="text-align: center;">Risk Activities</td>
+<td style="text-align: center;">Measure Risk</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Risk Budgeting</td>
+<td style="text-align: center;">Risk Exposure</td>
+<td style="text-align: center;">Monitor Risk</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Report Risk</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Strategic Analysis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="types-of-risks">2. Types of Risks</h3>
+<ul>
+<li><p>Financial Risks</p>
+<ul>
+<li><p>Market Risk</p>
+<ul>
+<li>价格波动</li>
+</ul></li>
+<li><p>Credit Risk</p>
+<ul>
+<li>违约</li>
+</ul></li>
+<li><p>Liquidity Risk</p>
+<ul>
+<li>Measured by bid-ask spread</li>
+</ul></li>
+</ul></li>
+<li><p>Non-financial Risks</p>
+<ul>
+<li><p>Operational Risk</p>
+<ul>
+<li>操作不合规</li>
+</ul></li>
+<li><p>Solvency Risk</p>
+<ul>
+<li>破产</li>
+</ul></li>
+<li><p>等等</p></li>
+</ul></li>
+<li><p>Interaction between risks</p>
+<ul>
+<li>指的是两类风险相互促进作用</li>
+</ul></li>
+</ul>
+<h3 id="measure-and-modify-risks">3. Measure and Modify Risks</h3>
+<h4 id="risk-metrics">Risk Metrics</h4>
+<ul>
+<li><p>Deviation</p></li>
+<li><p>Beta</p></li>
+<li><p>Value at risk (VaR)</p></li>
+<li><p>Conditional VaR (CVaR)</p>
+<ul>
+<li>Weighted average of all loss in small probability</li>
+</ul></li>
+</ul>
+<h4 id="risk-modification">Risk Modification</h4>
+<ul>
+<li><p>Tradeoff between costs and benefits</p></li>
+<li><p>方法</p>
+<ul>
+<li><p>Risk prevention and avoidance</p>
+<ul>
+<li>不要参加产生风险的活动</li>
+</ul></li>
+<li><p>Risk acceptance</p>
+<ul>
+<li><p>Self-insurance: setting sufficient capital to cover losses</p></li>
+<li><p>Diversification</p></li>
+</ul></li>
+<li><p>Risk transfer</p>
+<ul>
+<li>Insurance</li>
+</ul></li>
+<li><p>Risk shifting</p>
+<ul>
+<li>Derivatives</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="reading-56-technical-analysis">Reading 56: Technical Analysis</h2>
+<h3 id="assumption">1. Assumption</h3>
+<ul>
+<li><p>Relies on historic price and volume data</p></li>
+<li><p>假设有效市场不成立</p></li>
+</ul>
+<h3 id="types-of-charts">2. Types of Charts</h3>
+<ul>
+<li><p>Line charts</p></li>
+<li><p>Bar charts</p></li>
+<li><p>Candlestick charts</p></li>
+<li><p>Point and figure charts</p></li>
+</ul>
+<h3 id="types-of-trend">3. Types of Trend</h3>
+<h4 id="uptrend-line">Uptrend line</h4>
+<ul>
+<li>Connect low point</li>
+</ul>
+<h4 id="downtrend-line">Downtrend line</h4>
+<ul>
+<li>Connect the high point</li>
+</ul>
+<h4 id="support-level">Support level</h4>
+<ul>
+<li>跌不破</li>
+</ul>
+<h4 id="resistance-level">Resistance level</h4>
+<ul>
+<li>涨不过</li>
+</ul>
+<h4 id="change-in-polarity">Change in polarity</h4>
+<ul>
+<li>Change of support level and resistance level</li>
+</ul>
+<h3 id="common-chart-patterns">3. Common Chart Patterns</h3>
+<ul>
+<li><p>Reversal patterns</p>
+<ul>
+<li><p>Head and shoulders pattern and inverse head and shoulders pattern</p></li>
+<li><p>Price target: 以neckline为对称轴，把head翻转下来</p></li>
+</ul></li>
+<li><p>Continuation patterns</p>
+<ul>
+<li>Triangles</li>
+<li>Rectangles</li>
+<li>Flags and pennants</li>
+</ul></li>
+</ul>
+<h2 id="reading-57-fintech-in-investment-management">Reading 57: Fintech in Investment Management</h2>
+<h4 id="fintech-主要驱动力">Fintech 主要驱动力</h4>
+<ol type="1">
+<li>Big Data:
+<ul>
+<li>Characteristic
+<ul>
+<li>Volume</li>
+<li>Velocity</li>
+<li>Variety</li>
+</ul></li>
+<li>Structured, semi-structured, and unstructured data</li>
+</ul></li>
+<li>Analytical Techniques</li>
+</ol>
+<h4 id="fintech主要应用">Fintech主要应用</h4>
+<ol start="3" type="1">
+<li>Automated trading</li>
+<li>Automated advice</li>
+<li>Financial Record keeping [Distributed Ledger Technology (DLT): Bitcoin]
+<ol type="1">
+<li>Consensus mechanism</li>
+<li>Cryptography<br>
+</li>
+<li>Smart contracts</li>
+</ol></li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>
