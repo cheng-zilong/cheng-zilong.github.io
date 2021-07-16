@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Support Vector Machine (SVM) 1. Introduction There are many planes to separate data. SVM is one of the best planes. 2. Data Data set \(\sum\) containing \(N+\bar N\) examples is partitioned into a">
+<meta name="keywords" content="Optimization, Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 4. Support Vector Machine">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/Neural Network/4.SVM/index.html">
+<meta property="og:site_name" content="Cheng-Zilong">
+<meta property="og:description" content="Support Vector Machine (SVM) 1. Introduction There are many planes to separate data. SVM is one of the best planes. 2. Data Data set \(\sum\) containing \(N+\bar N\) examples is partitioned into a">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-05-13T06:36:35.796Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4. Support Vector Machine">
+<meta name="twitter:description" content="Support Vector Machine (SVM) 1. Introduction There are many planes to separate data. SVM is one of the best planes. 2. Data Data set \(\sum\) containing \(N+\bar N\) examples is partitioned into a">
+  <link rel="canonical" href="http://yoursite.com/2019/05/13/Neural Network/4.SVM/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Chapter 4. Support Vector Machine | Cheng-Zilong</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cheng-Zilong</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Learning Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/Neural Network/4.SVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cheng-Zilong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cheng-Zilong">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Chapter 4. Support Vector Machine
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-05-13 13:45:47 / Modified: 14:36:35" itemprop="dateCreated datePublished" datetime="2019-05-13T13:45:47+08:00">2019-05-13</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Neural-Network/" itemprop="url" rel="index"><span itemprop="name">Neural Network</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="support-vector-machine-svm">Support Vector Machine (SVM)</h1>
+<h2 id="introduction">1. Introduction</h2>
+<p>There are many planes to separate data. SVM is one of the best planes.</p>
+<h2 id="data">2. Data</h2>
+<p>Data set <span class="math inline">\(\sum\)</span> containing <span class="math inline">\(N+\bar N\)</span> examples is partitioned into a training set <span class="math display">\[
+S=\{(x_1,d_1),\dotsm,(x_N,d_N)\}
+\]</span> and a test set <span class="math display">\[
+\bar S=\{(\bar x_1,\bar d_1),\dotsm,(\bar x_\bar N,\bar d_\bar N)\}
+\]</span></p>
+<h2 id="classification">3. Classification</h2>
+<p>A hyperplane denoted by <span class="math inline">\((w,b)\)</span> can be expressed by <span class="math display">\[
+g(x)=w^Tx+b=0
+\]</span> Hyperplane classifies a given <span class="math inline">\(x_i\)</span> with <span class="math display">\[
+sgn[g(x_i)]=
+\begin{cases}
++1\quad if\quad g(x_i)&gt;0\\
+-1\quad if\quad g(x_i)&lt;0
+\end{cases}
+\]</span> Hyperplane classifies an example <span class="math inline">\((x_i,d_i)\)</span> correctly if <span class="math display">\[
+sgn[d_i g(x_i)]=1
+\]</span> Two classes of data are linearly separable if and only if there exists a hyperplane that separates the two classes.</p>
+<h2 id="margins">4. Margins</h2>
+<p>The functional margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
+\gamma_i^f=d_i(w^Tx_i+b)
+\]</span> The Geometric margin of an example <span class="math inline">\((x_i,d_i)\)</span> with respect to a hyperplane is defined as <span class="math display">\[
+\gamma_i^g=d_i(\frac{1}{||w||}w^Tx_i+\frac{1}{||w||}b)
+\]</span> that is the Euclidean distance from the point to the hyperplane.</p>
+<p>It is easy to see that <span class="math inline">\(\frac{1}{||w||}b\)</span> is the distance from origin to the hyperplane. <span class="math inline">\(\frac{1}{||w||}w^T x_i\)</span> is the projection distance (vector projection distance) from the point <span class="math inline">\(x_i\)</span> to the subspace <span class="math inline">\(w\)</span> , therefore <span class="math inline">\(\gamma_i^g\)</span> is the Euclidean distance from the point to the hyperplane.</p>
+<p>The hyperplane does not change when scaled by a real constant. <span class="math display">\[
+w^Tx+b=0\\
+cw^Tx+cb=0
+\]</span> <span class="math inline">\(\gamma_i^g\)</span> does not change but <span class="math inline">\(\gamma_i^f\)</span> changes (This property is important).</p>
+<p>We have the following equation <span class="math display">\[
+\gamma_i^g=\frac{\gamma_i^f}{||w||}
+\]</span> The functional margin of the training set is defined as <span class="math display">\[
+\gamma^f=\min_{1\le i\le N}\{\gamma_i^f\}
+\]</span> The geometric margin of a training set is defined as <span class="math display">\[
+\gamma^g=\min_{1\le i \le N}\{\gamma_i^g\}
+\]</span> The training set S can have different geometric margins depending on how hyperplane is defined.</p>
+<p>The optimal hyperplane for a given S is one that gives maximum <span class="math inline">\(\gamma^g\)</span> over all possible hyperplanes. <span class="math display">\[
+\gamma =\max\{\gamma^g_{(w_1,b_1)},\gamma^g_{(w_2,b_2)},\dotsm\}
+\]</span></p>
+<h2 id="primal">5. Primal</h2>
+<p>How to find the margin of S?</p>
+<p>For a given w, We have <span class="math display">\[
+\gamma_i^g=\frac{\gamma_i^f}{||w||}
+\]</span> The sample k that yields <span class="math display">\[
+\gamma^f=\gamma^f_k
+\]</span> also yields <span class="math display">\[
+\gamma^g =\gamma_k^g
+\]</span> So we have <span class="math display">\[
+\gamma^g=\frac{\gamma^f}{||w||}
+\]</span> therefore, we can maximize <span class="math inline">\(\gamma^g\)</span> by fixing <span class="math inline">\(\gamma^f\)</span> and then minimizing <span class="math inline">\(||w||\)</span> <span class="math display">\[
+\gamma^f = d_k(w^Tx_k+b)=1
+\]</span> That means we choose different to satisfy <span class="math inline">\(\gamma^f=1\)</span> . Without this constraint, we have infinite solutions <span class="math inline">\(w\)</span> since <span class="math inline">\(w&#39;=cw\)</span> and <span class="math inline">\(b&#39;=cb\)</span> where <span class="math inline">\(c\)</span> can any number.</p>
+<p>With <span class="math inline">\(\gamma^f\)</span> fixed at 1, for any examples in <span class="math inline">\(x_i\)</span> , we have <span class="math display">\[
+d_i(w^Tx_i+b)\ge1
+\]</span></p>
+<p>Therefore we get the constraint optimization problem, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
+\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
+\end{array}
+\]</span> Solving this problem yields the optimal hyperplane <span class="math inline">\((w_0,b_0)\)</span></p>
+<p>Then the discriminant function is <span class="math display">\[
+g(x)=w_0^Tx+b_0
+\]</span></p>
+<h2 id="lagrange-multipliers-and-kkt-conditions">6. Lagrange Multipliers and KKT Conditions</h2>
+<p>For the constraint optimization problem <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)\\
+\text{Subject to:} &amp; h(w)=0\\
+\end{array}
+\]</span> We can use Lagrange Theorem to solve. The necessary for the existence of an optimal solution <span class="math inline">\(w_0\)</span> corresponding to a minimum of <span class="math inline">\(f(w)\)</span> subject to <span class="math inline">\(h_i(w)=0\)</span> are <span class="math display">\[
+\frac{\partial L(w_0,\beta_0)}{\partial w}=0\\
+\frac{\partial L(w_0,\beta_0)}{\partial \beta_i}=0\\
+\]</span></p>
+<p>where we define the Lagrangian Function <span class="math display">\[
+L(w,\beta)=f(w)+\sum_{i=1}^m \beta_i h_i(w)
+\]</span> Lagrange Theorem can be generalized to deal with problems having both equality and inequality constraints.</p>
+<p>For the primal problem, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)\\
+\text{Subject to:} &amp; q_i(w)\le 0\\
+&amp; h_i(w)=0
+\end{array}
+\]</span> We have the generalized Lagrangian function <span class="math display">\[
+L(w,\alpha,\beta)=f(w)+\sum_{i=1}^k \alpha_iq_i(w)+\sum_{i=1}^m\beta_ih_i(w)
+\]</span> where <span class="math inline">\(\alpha_i\)</span> and <span class="math inline">\(\beta_i\)</span> are the Lagrange Multipliers.</p>
+<p>In order to solve the primal problem, we have Kuhn-Tucker Theorem</p>
+<p>The sufficient and necessary condition for a point <span class="math inline">\(w_o\)</span> to be an optimal solution is the existence of <span class="math inline">\(\alpha_o\)</span> and <span class="math inline">\(\beta_o\)</span> such that <span class="math display">\[
+\begin{array}{rcl}
+\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial w}&amp;=&amp;0\\
+\frac{\partial L(w_o,\alpha_o\beta_o)}{\partial \beta_i}&amp;=&amp;0\\
+\alpha_{o,i}q_i(w_o)&amp;=&amp;0\\
+q_i(w_o)&amp;\le&amp;0\\
+\alpha_{o,i}&amp;\ge&amp;0
+\end{array}
+\]</span></p>
+<h2 id="lagrange-dual-problem">7. Lagrange Dual Problem</h2>
+<p>In mathematical optimization theory, duality or the duality principle is the principle that optimization problems may be viewed from either of two perspectives, the primal problem or the dual problem. The solution to the dual problem provides a lower bound to the solution of the primal (minimization) problem. However in general the optimal values of the primal and dual problems need not be equal. Their difference is called the ==duality gap==. For convex optimization problems, the duality gap is zero under a constraint qualification condition (Regularity conditions). (From Wikipedia Duality (Optimization))</p>
+<p>The Lagrangian dual problem is obtained by forming the Lagrangian of a minimization problem by using nonnegative Lagrange multipliers to add the constraints to the objective function, and then solving for the primal variable values that minimize the original objective function. This solution gives the primal variables as functions of the Lagrange multipliers, which are called dual variables, so that the new problem is to maximize the objective function with respect to the dual variables under the derived constraints on the dual variables (including at least the nonnegativity constraints).</p>
+For a convex minimization problem with inequality constraints (primal problem), <span class="math display">\[
+\begin{array}{ll}{\underset{x}{\operatorname{minimize}}} &amp; {f(x)} \\ {\text { subject to }} &amp; {g_{i}(x) \leq 0, \quad i=1, \ldots, m}\end{array}
+\]</span> The Lagrangian Dual Problem is <span class="math display">\[
+\begin{array}{cl}{\underset{u}{\operatorname{maximize}}} &amp; {\inf _{x}\left(f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x)\right)} \\ {\text { subject to }} &amp; {u_{i} \geq 0, \quad i=1, \ldots, m}\end{array}
+\]</span> The infimum occurs where the gradient is equal to zero. Then problem is denoted as <span class="math display">\[
+\begin{array}{cl}
+\underset{x, u}{\operatorname{maximize}} &amp; f(x)+\sum_{j=1}^{m} u_{j} g_{j}(x) \\ 
+\text { subject to } &amp; \nabla f(x)+\sum_{j=1}^{m} u_{j} \nabla g_{j}(x)=0 \\ 
+&amp; {u_{i} \geq 0, \quad i=1, \ldots, m}
+\end{array}
+\]</span> Therefore, for the primal problem of SVM, <span class="math display">\[
+\begin{array}{rl}
+\text{Minimize:} &amp; f(w)=\frac{1}{2}||w||^2=\frac{1}{2}w^Tw\\
+\text{Subject to:} &amp; d_i(w^Tx_i+b)\ge 1
+\end{array}
+\]</span> we have the dual problem <span class="math display">\[
+\begin{array}{rl}
+\text{Maximize:} &amp; L(w,\alpha,\beta)\\
+\text{Subject to:} &amp; \frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}=0\\
+&amp;\alpha\ge0 
+\end{array}
+\]</span> Then we hope to reduce the variables in the dual problem <span class="math display">\[
+\begin{array}{rcl}
+q_i &amp;=&amp; -d_i(w^Tx_i+b)+1\le0\\
+L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_i(d_i(w^Tx_i+b)-1)\\
+&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i
+\end{array}
+\]</span> Then we have <span class="math display">\[
+\begin{array}{rcl}
+\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial w}&amp;=&amp; \frac{1}{2}\frac{\partial w^Tw}{\partial w}-\sum_{i=1}^N\alpha_id_i(\frac{\partial w^Tx_i}{\partial w})\\
+&amp;=&amp;w-\sum_{i=1}^N\alpha_id_ix_i=0\\
+w&amp;=&amp;\sum_{i=1}^N\alpha_id_ix_i\\
+\frac{\partial L(w_o,\alpha_o,\beta_o)}{\partial b}&amp;=&amp;\sum_{i=1}^Na_id_i=0
+\end{array}
+\]</span> Then we have the simplified dual problem $$
+<span class="math display">\[\begin{array}{rcl}
+L(w,b,\alpha)&amp;=&amp;\frac{1}{2}w^Tw-\sum_{i=1}^N\alpha_id_iw^Tx_i-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
+
+&amp;=&amp;\frac{1}{2}\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]\left[\sum_{i=1}^N\alpha_id_ix_i\right]\\
+&amp;&amp;-\sum_{i=1}^N\alpha_id_i\left[\sum_{i=1}^N\alpha_id_ix_i^T\right]x_i\\
+&amp;&amp;-b\sum_{i=1}^N\alpha_id_i+\sum_{i=1}^N\alpha_i\\
+
+&amp;=&amp; \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+&amp;&amp;-\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+&amp;&amp;-0+\sum_{i=1}^N\alpha_i
+\end{array}\]</span>
+<span class="math display">\[
+Then we have the dual problem
+\]</span>
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+
+\text{Subject to:} &amp; \alpha_i\ge0 \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<p><span class="math display">\[
+From the KKT condition, we have
+\]</span> _{o,i}(d_i(w_o^Tx_i+b_o)-1)=0 $$ For the support vectors, we have <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> Then <span class="math inline">\(\alpha_{o,i}\neq 0\)</span></p>
+<p>Furthermore, fore a support vector <span class="math inline">\(x_i\)</span>, <span class="math inline">\(d_i(w_o^Tx_i+b_o)-1=0\)</span> then <span class="math inline">\(b_o=\frac{1}{d_i}-w_o^Tx_i\)</span> .</p>
+<p>As <span class="math inline">\(\alpha_{o,i}\)</span> is obtained, we can calculate <span class="math inline">\(w_o\)</span> and <span class="math inline">\(b_o\)</span> as follows <span class="math display">\[
+w_o=\sum_{i=1}^N \alpha_{o,i}d_ix_i\\
+b_o=\frac{1}{d^{(s)}}-w_o^Tx^{(s)}\\
+\]</span> <span class="math inline">\(\alpha_{o,i}\)</span> can be solved by many methods such as quadratic programming.</p>
+<h2 id="soft-margin">8. Soft Margin</h2>
+<p>We add nonnegative slack variables <span class="math inline">\(\xi_i\)</span></p>
+<p><span class="math inline">\(\xi_i =0\)</span> when data point is not in region of separation</p>
+<p><span class="math inline">\(0\le \xi_i\le 1\)</span> when data point is in the region of separation and on correct side of hyperplane</p>
+<p><span class="math inline">\(\xi_i &gt; 0\)</span> when data point is in the region of separation but on wrong side of hyperplane</p>
+<p>We hope to minimize the cost function <span class="math display">\[
+f(w,\xi)=\frac{1}{2}w^Tw+C\sum_{i=1}^N \xi_i
+\]</span> A large C generally leads to smaller margin but also fewer misclassification</p>
+<p>A small C generally leads to larger margin but also more misclassification</p>
+Then for an example we have <span class="math display">\[
+d_i(w^Tx_i+b)\ge 1-\xi_i 
+\]</span> Finally we have the dual problem $$
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jx_i^Tx_i\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<p>$$ Then we try to find the support vector</p>
+<ol type="1">
+<li>For the support vector with <span class="math inline">\(\alpha_i&lt;C\)</span> . Support is located on the boarder of margin of separation.</li>
+<li>For the support vector with <span class="math inline">\(\alpha_i=C\)</span>. Support is located inside the margin of separation.</li>
+</ol>
+<p>Then for each sample <span class="math inline">\(x_i\)</span> with <span class="math inline">\(0\le \alpha_i \le C\)</span> <span class="math display">\[
+w_o=\sum_{i=1}^N\alpha_{o,i}d_ix_i\\
+b_{o,i}=\frac{1}{d_i}-w_o^Tx_i\\
+b_o=\frac{\sum_{i=1}^mb_{o,i}}{m}
+\]</span></p>
+<h2 id="kernel">9. Kernel</h2>
+<p>Cover's Theorem</p>
+<p>Probability that classes are linearly separable increases when data points in input space are nonlinearly mapped to a higher dimensional feature space.</p>
+<p>Then if we map <span class="math inline">\(x_i\)</span> to <span class="math inline">\(\varphi(x_i)\)</span></p>
+The discriminant function becomes <span class="math display">\[
+g(x)=w_o^T\varphi(x)+b_o
+\]</span> The dual problem becomes $$
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_j\varphi(x_i)^T\varphi(x_j)\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<span class="math display">\[
+Given the optimal value $\alpha_{o,i}$ 
+\]</span> w_o=<em>{i=1}^N</em>{o,i}d_i(x_i)\ b_o=-w_o<sup>T(x</sup>{(s)})\ <span class="math display">\[
+Solution requires $\varphi$ but finding explicit form of $\varphi$ is not easy, then we define
+\]</span> K(x,y)=^T(x)(y) <span class="math display">\[
+The dual problem becomes
+\]</span>
+<span class="math display">\[\begin{array}{rl}
+\text{Maximize:} &amp; Q(\alpha)=\sum_{i=1}^N\alpha_i-\frac{1}
+{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jd_id_jK(x_i,x_j)\\
+
+\text{Subject to:} &amp; 0\le\alpha_i\le C \\
+&amp;\sum_{i=1}^Na_id_i=0
+\end{array}\]</span>
+<span class="math display">\[
+Given the optimal value $\alpha_{o,i}$, we have
+\]</span> b_o=-<em>{i=1}<sup>N<em>{o,i}d_iK(x_i,x^{(s)}) <span class="math display">\[
+The discriminant function is 
+\]</span> g(x)=</em>{i=1}</sup>N</em>{o,i}d_iK(x_i,x)+b_o <span class="math display">\[
+==Attention== the expression for $K$ must satisfy Mercer&#39;s Condition
+\]</span> K=
+<span class="math display">\[\begin{bmatrix}
+k(x_1,x_1) &amp; \dotsm &amp; K(x_1,x_N)\\
+\vdots &amp; \ddots &amp; \vdots\\
+K(x_N,x_1) &amp; \dotsm &amp; K(x_N,x_N)
+\end{bmatrix}\]</span>
+<p>$$ is positive semi-definite.</p>
+<h2 id="summary">10. Summary</h2>
+<p>Given a training set <span class="math inline">\(S=\{(x_i,d_i)\}\)</span></p>
+<ol type="1">
+<li>Find a suitable kernel and check Mercer's condition</li>
+<li>Choose a value for C</li>
+<li>Solve for <span class="math inline">\(\alpha_{o,i}\)</span></li>
+<li>Determine <span class="math inline">\(b_o\)</span></li>
+<li>Use discriminant function</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/05/11/Neural Network/3.SOM/" rel="next" title="Chapter 3. Self-Organizing Maps">
+                  <i class="fa fa-chevron-left"></i> Chapter 3. Self-Organizing Maps
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/05/17/Neural Network/5.RL/" rel="prev" title="Chapter 5. Reinfocement Learning">
+                  Chapter 5. Reinfocement Learning <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#support-vector-machine-svm"><span class="nav-text">Support Vector Machine (SVM)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data"><span class="nav-text">2. Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#classification"><span class="nav-text">3. Classification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margins"><span class="nav-text">4. Margins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#primal"><span class="nav-text">5. Primal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrange-multipliers-and-kkt-conditions"><span class="nav-text">6. Lagrange Multipliers and KKT Conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lagrange-dual-problem"><span class="nav-text">7. Lagrange Dual Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#soft-margin"><span class="nav-text">8. Soft Margin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kernel"><span class="nav-text">9. Kernel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-text">10. Summary</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Cheng-Zilong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:zilongcheng@u.nus.edu" title="E-Mail &rarr; mailto:zilongcheng@u.nus.edu" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cheng-Zilong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>
